@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
-
+@import '../helpers/variables';
 .main {
   position: relative;
 
@@ -17,4 +17,31 @@
 
 :root {
   font-family: 'Poppins', sans-serif;
+}
+.button {
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.page-grid {
+  position: relative;
+  margin: 120px auto 60px;
+  width: $page-content-width;
+}
+.title-header {
+  position: absolute;
+  top: -70px;
+  left: 0px;
+  right: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 26px;
+  letter-spacing: -1px;
+  margin: 25px 0px 10px;
+  font-weight: bold;
+  color: #000000;
 }

@@ -1,10 +1,11 @@
 //home page
 @import '../helpers/global';
+@import '../helpers/variables';
 
 .home-page {
   // background-image: url('../../../assets/img/home-01.png');
   min-height: calc(100vh - 50px - 215px - 65px);
-
+  // section-01
   .section-01 {
     width: 100%;
     margin: 0px auto;
@@ -57,7 +58,94 @@
         }
       }
     }
-
-    .custom-dots {}
   }
+  //section 02
+  .section-02 {
+    color: #000000;
+    .grid-container {
+      width: $page-content-width;
+      // position: relative;
+      margin: 120px auto 60px;
+      display: grid;
+      gap: 20px;
+      place-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      .wrapper-header {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: -70px;
+        left: 0px;
+        right: 0px;
+        font-family: BrandonBlack, sans-serif;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: 26px;
+        letter-spacing: -1px;
+        margin: 25px 0px 10px;
+        font-weight: bold;
+        .show-all-item {
+          font-size: 16px;
+          line-height: 45px;
+          color: #dc4de8;
+        }
+      }
+      .grid-item {
+        width: 260px;
+        height: 220px;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: end;
+        justify-content: flex-end;
+        border-radius: 10px;
+        background-color: #333333;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+        .banner-image {
+          img {
+            position: absolute;
+            top: 0px;
+            height: 50%;
+            width: 100%;
+            z-index: 2;
+          }
+          // background-image: url(https://collectible.sweet.io/collection/63/banner.png);
+        }
+        .wrapper-content {
+          padding: 0px 15px 15px;
+          z-index: 3;
+          flex: 0.5 1 0%;
+          text-align: left;
+          width: 100%;
+          color: #ffffff;
+          .avatar {
+            position: absolute;
+            top: 35%;
+            z-index: 1;
+            img {
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              border: 2px solid #ffffff;
+            }
+          }
+          .name-label {
+            margin-top: 50px;
+            margin-bottom: 5px;
+            font-size: 22px;
+            letter-spacing: -1px;
+          }
+        }
+      }
+    }
+    .page-grid {
+      .list-carousel {
+
+      }
+    }
+  }
+
 }
