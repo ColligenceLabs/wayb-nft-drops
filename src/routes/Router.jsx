@@ -3,6 +3,7 @@ import React from 'react';
 import Homepage from 'pages/homepage';
 import Collection from 'pages/Collection';
 import CollectionLayout from 'components/layouts/studioLayout/CollectionLayout';
+import Collections from 'pages/Collections';
 
 const Router = () => [
   {
@@ -14,6 +15,11 @@ const Router = () => [
     path: '/collection',
     element: <CollectionLayout />,
     children: [{ path: '/collection', element: <Collection /> }],
+  },
+  {
+    path: '/collections',
+    element: <CollectionLayout />,
+    children: [{ path: '/collections', element: <Collections /> }],
   }
 ];
 

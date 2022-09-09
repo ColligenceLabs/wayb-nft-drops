@@ -48,25 +48,33 @@
                         .fullname {
                             font-size: 24px;
                             margin-bottom: 5px;
+                            font-weight: 600;
                         }
 
+                        // .username {
+                        //     font-size: 18px;
+                        //     color: #fff;
+                        //     overflow: hidden;
+                        //     position: relative;
+                        //     mix-blend-mode: lighten;
+                        //     background-color: #000;
+                        //     display: inline-block;
+                        // }
+
+                        // .username::before {
+                        //     content: "";
+                        //     display: block;
+                        //     position: absolute;
+                        //     inset: 0px;
+                        //     background: linear-gradient(to right, #f261b7, #6182fd);
+                        //     mix-blend-mode: multiply;
+                        // }
                         .username {
                             font-size: 18px;
-                            color: #fff;
-                            overflow: hidden;
-                            position: relative;
-                            mix-blend-mode: lighten;
-                            background-color: #000;
-                            display: inline-block;
-                        }
-
-                        .username::before {
-                            content: "";
-                            display: block;
-                            position: absolute;
-                            inset: 0px;
-                            background: linear-gradient(to right, #f261b7, #6182fd);
-                            mix-blend-mode: multiply;
+                            font-weight: 600;
+                            background: linear-gradient(45deg, #f261b7 14%, #6182fd 30%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
                         }
                     }
                 }
@@ -84,6 +92,7 @@
                         .value {
                             font-size: 26px;
                             margin-bottom: 5px;
+                            font-weight: 600;
                         }
 
                         .label {
@@ -141,8 +150,12 @@
                     font: inherit;
                     text-decoration: none;
                     border: none;
-                    background: transparent;
                     cursor: pointer;
+                    border-radius: 8px;
+
+                    background: #fff;
+                    border-radius: 5px;
+                    box-shadow: 0 0 5px 5px #f0ebfc;
                 }
 
                 .item_product {
@@ -206,7 +219,7 @@
                                     }
                                 }
                             }
-                            
+
                             .owner_product_box::after {
                                 background-color: transparent;
                                 background-position: 50% center;
@@ -219,6 +232,7 @@
                                 height: 0.55rem;
                                 background-image: url("./../../../assets/img/verify-icon.png");
                             }
+
                             .status {
                                 color: #00fe7a;
                                 font-size: 12px;
@@ -235,21 +249,25 @@
                             white-space: nowrap;
                             text-overflow: ellipsis;
                         }
-                        .box-price{
+
+                        .box-price {
                             border-right: 1px solid #5a5a5a;
-                            .price{
+
+                            .price {
                                 font-size: 14px;
                             }
-                            .currency{
+
+                            .currency {
                                 font-size: 18px;
                                 text-transform: uppercase;
                             }
                         }
-                        .remaining{
+
+                        .remaining {
                             font-size: 14px;
                         }
-                        .remaining-total{
-                            color: #fff;
+
+                        .remaining-total {
                             font-size: 18px;
                         }
                     }
