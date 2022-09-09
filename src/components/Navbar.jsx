@@ -3,6 +3,7 @@ import logo_header from '../assets/img/logo_header.png';
 import icon_twitter from '../assets/img/icon_twitter.png';
 import icon_discord from '../assets/img/icon_discord.png';
 import icon_telegram from '../assets/img/icon_telegram.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -10,7 +11,9 @@ const Navbar = () => {
       <div className="background-nav"></div>
       <div className="main-header-box">
         <div className="logo-header">
-          <img src={logo_header} alt="" />
+          <Link to={"/"}>
+            <img src={logo_header} alt="" />
+          </Link>
         </div>
         <div className="search-bar">
           <svg

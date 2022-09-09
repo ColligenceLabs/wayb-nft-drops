@@ -4,7 +4,7 @@
   position: relative;
 
   .background-section01 {
-    background-image: url('../../../assets/img/home-01.png');
+    background-image: url('../../../assets/img/home_01.png');
     height: 790px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,4 +44,22 @@
   margin: 25px 0px 10px;
   font-weight: bold;
   color: #000000;
+}
+.hot-ollectibles-wrapper {
+  height: 450px;
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: transform 0.15s ease-in-out 0s;
+  cursor: pointer;
+  margin: 0px;
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  background-color: #ffffff;
+}
+.hot-ollectibles-item {
+  width: 90%;
+  padding: 0px 15px;
+  border-right: none;
 }

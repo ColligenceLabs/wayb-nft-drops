@@ -41,13 +41,17 @@
     }
 
     .home-carousel {
-      background: linear-gradient(180deg, rgba(9, 9, 121, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(9, 9, 121, 0) 0%,
+        rgba(0, 0, 0, 1) 100%
+      );
       padding-bottom: 30px;
 
       .slide-item {
         display: flex;
 
-        &>* {
+        & > * {
           flex: 1 1 100%;
           margin: 0 20px;
 
@@ -64,27 +68,15 @@
     color: #000000;
     .grid-container {
       width: $page-content-width;
-      // position: relative;
+      position: relative;
       margin: 120px auto 60px;
       display: grid;
       gap: 20px;
       place-items: center;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       .wrapper-header {
         display: flex;
         justify-content: space-between;
-        position: absolute;
-        top: -70px;
-        left: 0px;
-        right: 0px;
-        font-family: BrandonBlack, sans-serif;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        font-size: 26px;
-        letter-spacing: -1px;
-        margin: 25px 0px 10px;
-        font-weight: bold;
         .show-all-item {
           font-size: 16px;
           line-height: 45px;
@@ -104,6 +96,8 @@
         padding: 0;
         overflow: hidden;
         position: relative;
+        box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+        background-color: #ffffff;
         .banner-image {
           img {
             position: absolute;
@@ -120,7 +114,7 @@
           flex: 0.5 1 0%;
           text-align: left;
           width: 100%;
-          color: #ffffff;
+          // color: #ffffff;
           .avatar {
             position: absolute;
             top: 35%;
@@ -137,15 +131,159 @@
             margin-bottom: 5px;
             font-size: 22px;
             letter-spacing: -1px;
+            font-weight: 500;
           }
         }
       }
     }
     .page-grid {
-      .list-carousel {
-
+      .wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-weight: 600;
+        .list-carousel {
+          gap: 20px;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: row;
+          position: relative;
+          flex-wrap: wrap;
+          .slide-item {
+            flex: 0 0 auto;
+            width: 260px;
+            position: relative;
+            .hot-ollectibles-wrapper {
+              .hot-ollectibles-item:nth-child(1) {
+                width: auto;
+                font-size: 13px;
+                margin: 10px 0px 5px;
+                padding: 0px 0px 0px 15px;
+                flex: 1 1 0%;
+              }
+              .hot-ollectibles-item:nth-child(2) {
+                width: auto;
+                text-align: right;
+                margin: 10px 0px 5px;
+                color: #aeaecb;
+                opacity: 0.8;
+                font-size: 13px;
+                padding-left: 0px;
+                text-transform: uppercase;
+              }
+              .hot-ollectibles-item:nth-child(3) {
+                .img-token {
+                  width: 80%;
+                  height: 250px;
+                  margin: 10px auto;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+              }
+              .hot-ollectibles-item:nth-child(4) {
+                .wrapper-item {
+                  display: flex;
+                  -webkit-box-align: center;
+                  align-items: center;
+                  -webkit-box-pack: justify;
+                  justify-content: space-between;
+                  margin-top: auto;
+                  margin-bottom: 0.5rem;
+                  font-size: 18px;
+                  .content-left {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    font-size: 15px;
+                    letter-spacing: -1px;
+                    .avatar {
+                      width: 24px;
+                      height: 24px;
+                      margin-right: 7px;
+                      border-radius: 100%;
+                      box-shadow: rgb(0 0 0 / 76%) 0px 0px 0px 1px;
+                      overflow: hidden;
+                      img {
+                        width: 100%;
+                      }
+                    }
+                  }
+                  .content-left::after {
+                    background-color: transparent;
+                    background-position: 50% center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    content: '';
+                    display: block;
+                    margin: 0px 0px 0.3125rem 0.2rem;
+                    width: 0.55rem;
+                    height: 0.55rem;
+                    background-image: url('../../../assets/img/verify-icon.png');
+                  }
+                  .content-right {
+                    color: #00fe7a;
+                    font-size: 12px;
+                    font-family: BrandonBlack, sans-serif;
+                    text-transform: uppercase;
+                  }
+                }
+              }
+              .hot-ollectibles-item:nth-child(5) {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                .name-label {
+                  margin: 0px 0px 10px;
+                  font-size: 18px;
+                  text-align: left;
+                  overflow: hidden;
+                  width: 100%;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+              }
+              .hot-ollectibles-item:nth-child(6) {
+                text-align: center;
+                background-color: rgba(68, 64, 64, 0.08);
+                padding: 15px 0px;
+                width: 50%;
+                font-size: 0.6875rem;
+                .wrapper-price {
+                  border-right: 1px solid #5a5a5a;
+                  .price-header {
+                    font-size: 14px;
+                  }
+                  .current-price {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                  }
+                }
+              }
+              .hot-ollectibles-item:nth-child(7) {
+                text-align: center;
+                background-color: rgba(68, 64, 64, 0.08);
+                padding: 15px 0px;
+                width: 50%;
+                font-size: 0.6875rem;
+                .wrapper-remaining {
+                  .remaining-header {
+                    font-size: 14px;
+                  }
+                  .quantity-remaining {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-
 }
