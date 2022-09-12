@@ -42,7 +42,7 @@ const Collections = () => {
               </div>
             </button>
           </Link>
-          <Link to={'/'} className="custom-link">
+          <Link to={'/sale'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_06_banner} alt="" />
@@ -59,7 +59,7 @@ const Collections = () => {
               </div>
             </button>
           </Link>
-          <Link to={'/'} className="custom-link">
+          <Link to={'/sale'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_07_banner} alt="" />
