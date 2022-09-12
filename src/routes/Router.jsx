@@ -1,6 +1,6 @@
 import StudioLayout from '../components/layouts/studioLayout/StudioLayout';
 import React from 'react';
-import Homepage from 'pages/homepage';
+import Homepage from 'pages/homepage/HomePagePC';
 import Bucks from 'pages/Bucks';
 import Collections from 'pages/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles';

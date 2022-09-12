@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo_header from '../assets/img/logo_header.png';
-import icon_twitter from '../assets/img/icon_twitter.png';
-import icon_discord from '../assets/img/icon_discord.png';
-import icon_telegram from '../assets/img/icon_telegram.png';
-import icon_instagram from '../assets/img/icon_instagram.png';
+import logo_header from '../../assets/img/logo_header.png';
+import icon_twitter from '../../assets/img/icon_twitter.png';
+import icon_discord from '../../assets/img/icon_discord.png';
+import icon_telegram from '../../assets/img/icon_telegram.png';
+import icon_instagram from '../../assets/img/icon_instagram.png';
 const Footer = () => {
   return (
     <div className="footer">
