@@ -3,6 +3,8 @@ import React from 'react';
 import Homepage from 'pages/homepage';
 import Bucks from 'pages/Bucks';
 import Collections from 'pages/Collections';
+import SaleCollectibles from 'pages/SaleCollectibles';
+import Collection from 'pages/Bucks';
 
 const Router = () => [
   {
@@ -10,20 +12,13 @@ const Router = () => [
     element: <StudioLayout />,
     children: [
       { path: '/', element: <Homepage /> },
-      { path: '/collections', element: <Collections /> },
+      { path: '/collection', element: <Collection/> },
+      { path: '/collections', element: <Collections/> },
+      { path: '/sale', element: <SaleCollectibles/> },
       { path: '/bucks', element: <Bucks /> },  
   ],
   },
-  // {
-  //   path: '/collection',
-  //   element: <CollectionLayout />,
-  //   children: [{ path: '/collection', element: <Collection /> }],
-  // },
-  // {
-  //   path: '/collections',
-  //   element: <CollectionLayout />,
-  //   children: [{ path: '/collections', element: <Collections /> }],
-  // }
+
 ];
 
 export default Router;

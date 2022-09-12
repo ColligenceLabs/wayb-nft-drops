@@ -7,6 +7,7 @@ import product from '../../assets/img/product.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
 const Collection = () => {
   return (
     <main className="collection-container">
@@ -20,22 +21,22 @@ const Collection = () => {
           <div className="collection-info">
             <div className="collection-info-left">
               <img src={avatar} alt="" draggable={false} />
-              <div class="name">
-                <div class="fullname">Fear the Deer NFTs</div>
-                <div class="username">@bucks</div></div>
+              <div className="name">
+                <div className="fullname">Fear the Deer NFTs</div>
+                <div className="username">@bucks</div></div>
             </div>
             <div className="collection-info-right">
               <div className="collection-info-right-details">
-                <div class="value">750</div>
-                <div class="label">NFTs</div>
+                <div className="value">750</div>
+                <div className="label">NFTs</div>
               </div>
               <div className="collection-info-right-details">
-                <div class="value">723</div>
-                <div class="label">Followers</div>
+                <div className="value">723</div>
+                <div className="label">Followers</div>
               </div>
             </div>
           </div>
-          <div class="collection-info-content">
+          <div className="collection-info-content">
             <div>The Milwaukee Bucks are excited to launch the Fear the Deer NFT series with their first collection - The Championship Collection. Collect unique NFTs that commemorate the Bucks 2021 Championship. Stay informed to this marketplace and through Milwaukee Bucks social channels for announcements regarding The Championship Collection drops. Let’s celebrate 50 Years in the Making!
             </div>
           </div>
@@ -43,11 +44,56 @@ const Collection = () => {
         <div className="marketplace">
           <div className="marketplace-collection-tittle">Featured Collectibles</div>
           <div className="marketplace-items">
+            <Link to="/sale">
+              <div className="item_product">
+                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
+                  <div className="total_item">Total Run: 50</div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
+                  <div>erc721</div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                  <div className="card">
+                    <img src={product} alt="" />
+                  </div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                  <div className="owner_product">
+                    <div className="owner_product_box">
+                      <span className="owner_product_avatar">
+                        <img src={avatar} alt="" />
+                      </span>
+                      <p>Milwaukee Bucks</p>
+                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_NAME_KEY">
+                  <div className="product_name">Chicago Deer</div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_BID_KEY">
+                  <div className="box-price">
+                    <div className="price">Price</div>
+                    <div className="currency">$50.00</div>
+                  </div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_NAME_TIME">
+                  <div>
+                    <div className="remaining">Remaining</div>
+                    <div className="remaining-total">0</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
 
-            <a href="/">
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -65,9 +111,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -86,12 +134,12 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
 
-            <a href="/">
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -109,9 +157,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -130,11 +180,12 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="/">
+            </Link>
+
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -152,9 +203,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -173,11 +226,12 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="/">
+            </Link>
+
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -195,9 +249,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -216,11 +272,12 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="/">
+            </Link>
+
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -238,9 +295,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -259,11 +318,12 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="/">
+            </Link>
+
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -281,9 +341,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -302,11 +364,12 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="/">
+            </Link>
+
+            <Link to="/sale">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
+                  <div className="total_item">Total Run: 50</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY">
                   <div>erc721</div>
@@ -324,9 +387,11 @@ const Collection = () => {
                       </span>
                       <p>Milwaukee Bucks</p>
                     </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
+                    <Link to="/sale">
+                      <div className="status">
+                        Buy Now
+                      </div>
+                    </Link>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">
@@ -345,265 +410,7 @@ const Collection = () => {
                   </div>
                 </div>
               </div>
-            </a>
-            <a href="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
-                  <div>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
-                    <img src={product} alt="" />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <span className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </span>
-                      <p>Milwaukee Bucks</p>
-                    </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name">Chicago Deer</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price">Price</div>
-                    <div className="currency">$50.00</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">0</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
-                  <div>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
-                    <img src={product} alt="" />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <span className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </span>
-                      <p>Milwaukee Bucks</p>
-                    </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name">Chicago Deer</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price">Price</div>
-                    <div className="currency">$50.00</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">0</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
-                  <div>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
-                    <img src={product} alt="" />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <span className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </span>
-                      <p>Milwaukee Bucks</p>
-                    </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name">Chicago Deer</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price">Price</div>
-                    <div className="currency">$50.00</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">0</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
-                  <div>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
-                    <img src={product} alt="" />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <span className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </span>
-                      <p>Milwaukee Bucks</p>
-                    </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name">Chicago Deer</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price">Price</div>
-                    <div className="currency">$50.00</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">0</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
-                  <div>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
-                    <img src={product} alt="" />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <span className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </span>
-                      <p>Milwaukee Bucks</p>
-                    </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name">Chicago Deer</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price">Price</div>
-                    <div className="currency">$50.00</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">0</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY ">
-                  <div class="total_item">Total Run: 50</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY">
-                  <div>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
-                    <img src={product} alt="" />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <span className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </span>
-                      <p>Milwaukee Bucks</p>
-                    </div>
-                    <div className="status">
-                      Buy Now
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name">Chicago Deer</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price">Price</div>
-                    <div className="currency">$50.00</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">0</div>
-                  </div>
-                </div>
-              </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
