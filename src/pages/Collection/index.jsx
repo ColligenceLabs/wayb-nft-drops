@@ -11,12 +11,13 @@ import { Link } from 'react-router-dom';
 const Collection = () => {
   return (
     <main className="collection-container">
-      <div className="box-collection">
-        <div className="collection-banner-image"
+           <div className="collection-banner-image"
           style={{
             backgroundImage: `url("${banner_collection}")`
           }}>
         </div>
+      <div className="box-collection">
+   
         <div className="collection-details-box">
           <div className="collection-info">
             <div className="collection-info-left">
