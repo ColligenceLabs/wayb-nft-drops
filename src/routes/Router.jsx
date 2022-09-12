@@ -22,7 +22,7 @@ const Router = () => [
   },
   {
     element: <LandingLayout />,
-    children: [{ path: '/ladingpage', element: <Landing /> }],
+    children: [{ path: '/landingpage', element: <Landing /> }],
   },
 
 ];
