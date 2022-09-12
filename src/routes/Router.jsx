@@ -5,6 +5,8 @@ import Bucks from 'pages/Bucks';
 import Collections from 'pages/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles';
 import Collection from 'pages/Bucks';
+import Landing from 'pages/Landingpage';
+import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 
 const Router = () => [
   {
@@ -17,6 +19,10 @@ const Router = () => [
       { path: '/sale', element: <SaleCollectibles/> },
       { path: '/bucks', element: <Bucks /> },  
   ],
+  },
+  {
+    element: <LandingLayout />,
+    children: [{ path: '/ladingpage', element: <Landing /> }],
   },
 
 ];
