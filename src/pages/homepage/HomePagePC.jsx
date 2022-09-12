@@ -111,7 +111,7 @@ const Homepage = () => {
             </div>
           </div>
           <div className="slide-item">
-            <Link to={'/bucks'}>
+            <Link to={'/collection'}>
               <div>
                 <img src={home_04} alt="" draggable={false} />
               </div>
@@ -129,7 +129,7 @@ const Homepage = () => {
               See all
             </Link>
           </div>
-          <Link to={'/bucks'} className="custom-link">
+          <Link to={'/collection'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_05_banner} alt="" />
