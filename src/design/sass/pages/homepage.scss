@@ -83,55 +83,59 @@
           color: #dc4de8;
         }
       }
-      .grid-item {
-        width: 260px;
-        height: 220px;
-        display: flex;
-        flex-direction: column;
-        -webkit-box-pack: end;
-        justify-content: flex-end;
-        border-radius: 10px;
-        background-color: #333333;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        position: relative;
-        box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-        background-color: #ffffff;
-        .banner-image {
-          img {
-            position: absolute;
-            top: 0px;
-            height: 50%;
-            width: 100%;
-            z-index: 2;
-          }
-          // background-image: url(https://collectible.sweet.io/collection/63/banner.png);
-        }
-        .wrapper-content {
-          padding: 0px 15px 15px;
-          z-index: 3;
-          flex: 0.5 1 0%;
-          text-align: left;
-          width: 100%;
-          // color: #ffffff;
-          .avatar {
-            position: absolute;
-            top: 35%;
-            z-index: 1;
+      .custom-link {
+        text-decoration: none;
+        color: #000000;
+        .grid-item {
+          width: 260px;
+          height: 220px;
+          display: flex;
+          flex-direction: column;
+          -webkit-box-pack: end;
+          justify-content: flex-end;
+          border-radius: 10px;
+          background-color: #333333;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          position: relative;
+          box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+          background-color: #ffffff;
+          .banner-image {
             img {
-              width: 60px;
-              height: 60px;
-              border-radius: 50%;
-              border: 2px solid #ffffff;
+              position: absolute;
+              top: 0px;
+              height: 50%;
+              width: 100%;
+              z-index: 2;
             }
+            // background-image: url(https://collectible.sweet.io/collection/63/banner.png);
           }
-          .name-label {
-            margin-top: 50px;
-            margin-bottom: 5px;
-            font-size: 22px;
-            letter-spacing: -1px;
-            font-weight: 500;
+          .wrapper-content {
+            padding: 0px 15px 15px;
+            z-index: 3;
+            flex: 0.5 1 0%;
+            text-align: left;
+            width: 100%;
+            // color: #ffffff;
+            .avatar {
+              position: absolute;
+              top: 35%;
+              z-index: 1;
+              img {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: 2px solid #ffffff;
+              }
+            }
+            .name-label {
+              margin-top: 50px;
+              margin-bottom: 5px;
+              font-size: 22px;
+              letter-spacing: -1px;
+              font-weight: 500;
+            }
           }
         }
       }

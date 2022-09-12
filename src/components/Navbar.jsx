@@ -3,12 +3,13 @@ import logo_header from '../assets/img/logo_header.png';
 import icon_twitter from '../assets/img/icon_twitter.png';
 import icon_discord from '../assets/img/icon_discord.png';
 import icon_telegram from '../assets/img/icon_telegram.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  let location = useLocation();
   return (
     <div className="nav-bar">
-      <div className="background-nav"></div>
+      <div className={`${location.pathname === "/" ? "nav-home" : "nav-other-page"}`}></div>
       <div className="main-header-box">
         <div className="logo-header">
           <Link to={"/"}>

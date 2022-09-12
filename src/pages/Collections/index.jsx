@@ -9,58 +9,77 @@ import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
 
-
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
 const Collections = () => {
-    return (
-        <div className="home-page">
-            <div className="section-02">
-                <div className="grid-container">
-                    {/* Featured Collections */}
-                    <div className="wrapper-header">
-                        <div className="header-name">Featured Collections</div>
-                        <a href='/' className="show-all-item button">See all</a>
-                    </div>
-                    <button className="grid-item button">
-                        <div className="banner-image">
-                            <img src={home_05_banner} alt="" />
-                        </div>
-                        <div className="wrapper-content">
-                            <div className="avatar">
-                                <img src={home_08_avt} data-qa-component="campaign-avatar-image" alt="Fear the Deer NFTs" />
-                            </div>
-                            <div className="name-label">Fear the Deer NFTs</div>
-                        </div>
-                    </button>
-                    <button className="grid-item button">
-                        <div className="banner-image">
-                            <img src={home_06_banner} alt="" />
-                        </div>
-                        <div className="wrapper-content">
-                            <div className="avatar">
-                                <img src={home_09_avt} data-qa-component="campaign-avatar-image" alt="Kia" />
-                            </div>
-                            <div className="name-label">Kia</div>
-                        </div>
-                    </button>
-                    <button className="grid-item button">
-                        <div className="banner-image">
-                            <img src={home_07_banner} alt="" />
-                        </div>
-                        <div className="wrapper-content">
-                            <div className="avatar">
-                                <img src={home_10_avt} data-qa-component="campaign-avatar-image" alt="Old Navy" />
-                            </div>
-                            <div className="name-label">Old Navy</div>
-                        </div>
-                    </button>
+  return (
+    <div className="home-page">
+      <div className="section-02">
+        <div className="grid-container">
+          {/* Featured Collections */}
+          <div className="wrapper-header title-header">
+            <div className="header-name">All Collections</div>
+            <Link to={'/collections'} className="show-all-item button">
+              See all
+            </Link>
+          </div>
+          <Link to={'/bucks'} className="custom-link">
+            <button className="grid-item button">
+              <div className="banner-image">
+                <img src={home_05_banner} alt="" />
+              </div>
+              <div className="wrapper-content">
+                <div className="avatar">
+                  <img
+                    src={home_08_avt}
+                    data-qa-component="campaign-avatar-image"
+                    alt="Fear the Deer NFTs"
+                  />
                 </div>
-            </div>
+                <div className="name-label">Fear the Deer NFTs</div>
+              </div>
+            </button>
+          </Link>
+          <Link to={'/'} className="custom-link">
+            <button className="grid-item button">
+              <div className="banner-image">
+                <img src={home_06_banner} alt="" />
+              </div>
+              <div className="wrapper-content">
+                <div className="avatar">
+                  <img
+                    src={home_09_avt}
+                    data-qa-component="campaign-avatar-image"
+                    alt="Kia"
+                  />
+                </div>
+                <div className="name-label">Kia</div>
+              </div>
+            </button>
+          </Link>
+          <Link to={'/'} className="custom-link">
+            <button className="grid-item button">
+              <div className="banner-image">
+                <img src={home_07_banner} alt="" />
+              </div>
+              <div className="wrapper-content">
+                <div className="avatar">
+                  <img
+                    src={home_10_avt}
+                    data-qa-component="campaign-avatar-image"
+                    alt="Old Navy"
+                  />
+                </div>
+                <div className="name-label">Old Navy</div>
+              </div>
+            </button>
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Collections;

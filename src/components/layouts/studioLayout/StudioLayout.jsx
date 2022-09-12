@@ -1,12 +1,13 @@
 import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const StudioLayout = () => {
+  let location = useLocation();
   return (
     <>
-      <div className="main">
+      <div className={`${location.pathname === "/" ? "main" : ""}`}>
         <div className="background-section01"></div>
         <Navbar />
         <Outlet />
