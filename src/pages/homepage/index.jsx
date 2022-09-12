@@ -107,9 +107,11 @@ const Homepage = () => {
             </div>
           </div>
           <div className="slide-item">
-            <div>
-              <img src={home_04} alt="" draggable={false} />
-            </div>
+            <Link to={'/bucks'}>
+              <div>
+                <img src={home_04} alt="" draggable={false} />
+              </div>
+            </Link>
           </div>
         </Carousel>
       </div>
@@ -119,55 +121,61 @@ const Homepage = () => {
           {/* Featured Collections */}
           <div className="wrapper-header title-header">
             <div className="header-name">Featured Collections</div>
-            <a href="/" className="show-all-item button">
+            <Link to={"/collections"} className="show-all-item button">
               See all
-            </a>
+            </Link>
           </div>
-          <button className="grid-item button">
-            <div className="banner-image">
-              <img src={home_05_banner} alt="" />
-            </div>
-            <div className="wrapper-content">
-              <div className="avatar">
-                <img
-                  src={home_08_avt}
-                  data-qa-component="campaign-avatar-image"
-                  alt="Fear the Deer NFTs"
-                />
+          <Link to={'/bucks'} className="custom-link">
+            <button className="grid-item button">
+              <div className="banner-image">
+                <img src={home_05_banner} alt="" />
               </div>
-              <div className="name-label">Fear the Deer NFTs</div>
-            </div>
-          </button>
-          <button className="grid-item button">
-            <div className="banner-image">
-              <img src={home_06_banner} alt="" />
-            </div>
-            <div className="wrapper-content">
-              <div className="avatar">
-                <img
-                  src={home_09_avt}
-                  data-qa-component="campaign-avatar-image"
-                  alt="Kia"
-                />
+              <div className="wrapper-content">
+                <div className="avatar">
+                  <img
+                    src={home_08_avt}
+                    data-qa-component="campaign-avatar-image"
+                    alt="Fear the Deer NFTs"
+                  />
+                </div>
+                <div className="name-label">Fear the Deer NFTs</div>
               </div>
-              <div className="name-label">Kia</div>
-            </div>
-          </button>
-          <button className="grid-item button">
-            <div className="banner-image">
-              <img src={home_07_banner} alt="" />
-            </div>
-            <div className="wrapper-content">
-              <div className="avatar">
-                <img
-                  src={home_10_avt}
-                  data-qa-component="campaign-avatar-image"
-                  alt="Old Navy"
-                />
+            </button>
+          </Link>
+          <Link to={'/'} className="custom-link">
+            <button className="grid-item button">
+              <div className="banner-image">
+                <img src={home_06_banner} alt="" />
               </div>
-              <div className="name-label">Old Navy</div>
-            </div>
-          </button>
+              <div className="wrapper-content">
+                <div className="avatar">
+                  <img
+                    src={home_09_avt}
+                    data-qa-component="campaign-avatar-image"
+                    alt="Kia"
+                  />
+                </div>
+                <div className="name-label">Kia</div>
+              </div>
+            </button>
+          </Link>
+          <Link to={'/'} className="custom-link">
+            <button className="grid-item button">
+              <div className="banner-image">
+                <img src={home_07_banner} alt="" />
+              </div>
+              <div className="wrapper-content">
+                <div className="avatar">
+                  <img
+                    src={home_10_avt}
+                    data-qa-component="campaign-avatar-image"
+                    alt="Old Navy"
+                  />
+                </div>
+                <div className="name-label">Old Navy</div>
+              </div>
+            </button>
+          </Link>
         </div>
         {/* Hot Collectibles */}
         <div className="page-grid">
