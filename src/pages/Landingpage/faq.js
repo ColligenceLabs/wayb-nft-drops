@@ -3,7 +3,7 @@ import React from "react";
 import logo from '../../assets/img/landing-logo.png';
 
 export default ({ close }) => (
-    <div className="modal">
+    <div className="modal-landingpage">
         
         <div className="modal-box">
             <div className="modal-content">
