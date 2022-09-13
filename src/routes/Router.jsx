@@ -1,7 +1,6 @@
 import StudioLayout from '../components/layouts/studioLayout/StudioLayout';
 import React from 'react';
 import Homepage from 'pages/homepage/HomePagePC';
-import Bucks from 'pages/Collection';
 import Collections from 'pages/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles';
 import Collection from 'pages/Collection';
@@ -15,7 +14,6 @@ const Router = () => [
       { path: '/collection', element: <Collection/> },
       { path: '/collections', element: <Collections/> },
       { path: '/sale', element: <SaleCollectibles/> },
-      // { path: '/bucks', element: <Bucks /> },  
   ],
   },
 
