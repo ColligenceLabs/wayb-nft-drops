@@ -64,24 +64,6 @@
                         font-weight: 600;
                     }
 
-                    // .username {
-                    //     font-size: 18px;
-                    //     color: #fff;
-                    //     overflow: hidden;
-                    //     position: relative;
-                    //     mix-blend-mode: lighten;
-                    //     background-color: #000;
-                    //     display: inline-block;
-                    // }
-
-                    // .username::before {
-                    //     content: "";
-                    //     display: block;
-                    //     position: absolute;
-                    //     inset: 0px;
-                    //     background: linear-gradient(to right, #f261b7, #6182fd);
-                    //     mix-blend-mode: multiply;
-                    // }
                     .username {
                         font-size: 18px;
                         font-weight: 600;
@@ -157,10 +139,11 @@
             place-items: center;
             max-width: 1380px;
             grid-template-columns: repeat(5, 1fr);
+            
 
             a {
                 background: #fff;
-                border-radius: 5px;
+                border-radius: 8px;
                 box-shadow: 0 0 5px 5px #f0ebfc;
             }
 
@@ -175,6 +158,7 @@
                 transition: transform 0.15s ease-in-out 0s;
                 cursor: pointer;
                 margin: 0px;
+                border-radius: 8px;
 
                 .item_product_detail {
                     width: 100%;
@@ -294,7 +278,7 @@
                     width: auto;
                     text-align: right;
                     margin: 10px 0px 5px;
-                    color: var(--font-color-aeaecb);
+                    color: #aeaecb;
                     opacity: 0.8;
                     font-size: 13px;
                     padding-left: 0px;
@@ -311,7 +295,7 @@
                 .item_product_detail:nth-last-child(1),
                 .item_product_detail:nth-last-child(2) {
                     text-align: center;
-                    background-color: rgba(255, 255, 255, 0.08);
+                    background-color: rgba(64, 64, 64, 0.08);
                     padding: 15px 0px;
                     width: 50%;
                     font-size: 0.6875rem;
@@ -697,6 +681,103 @@
                 padding: 15px 0px;
                 width: 50%;
                 font-size: 0.6875rem;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 900px){
+    .box-collection { 
+        width: 95%;
+        .marketplace {
+            .marketplace-items {
+                margin: 0px;
+                width: 100%;
+                position: relative;
+                display: grid;
+                gap: 20px;
+                place-items: center;
+                max-width: 1380px;
+                grid-template-columns: repeat(2, 1fr);
+
+                .item_product{
+                    width: 380px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .box-collection {
+        max-width: 95%;
+        .collection-details-box {
+            .collection-info {
+                flex-wrap: wrap;
+                margin: 0;
+                .collection-info-left {
+                    display: flex;
+    
+                    img {
+                        height: 100px;
+                        width: 100px;
+                        margin-left: 10px;
+                    
+                    }
+    
+                    .name {
+                        padding: 0px 10px;
+                    }
+                }
+                .collection-info-right {
+                    width: 100%;
+                    margin: 30px 0px;
+                }
+            }
+        }
+    
+        .marketplace {
+            width: 90%;
+            .marketplace-items {
+                grid-template-columns: repeat(1, 1fr);
+
+                .item_product{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 540px){
+    .collection-container {
+        .collection-banner-image {
+            height: 220px;
+        }
+    }
+    
+}
+
+@media (max-width: 410px){
+    .box-collection {
+        .collection-details-box {
+            .collection-info {
+                flex-wrap: wrap;
+                .collection-info-left {
+                    display: flex;
+    
+                    img {
+                        height: 100px;
+                        width: 100px;
+                        margin-left: 40px;
+                    
+                    }
+    
+                    .name {
+                        padding: 0px 10px;
+                    }
+                }
             }
         }
     }
