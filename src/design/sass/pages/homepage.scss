@@ -50,7 +50,6 @@
 
       .slide-item {
         display: flex;
-
         & > * {
           flex: 1 1 100%;
           margin: 0 20px;
@@ -58,6 +57,11 @@
           img {
             border-radius: 20px;
             width: 100%;
+            height: 100%;
+            width: 100%;
+            max-height: 300px;
+            max-width: 1036px;
+            border-radius: 20px;
           }
         }
       }
@@ -73,7 +77,7 @@
       display: grid;
       gap: 20px;
       place-items: center;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       .wrapper-header {
         display: flex;
         justify-content: space-between;

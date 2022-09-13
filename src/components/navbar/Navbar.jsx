@@ -53,13 +53,13 @@ const Navbar = () => {
           <a href="/">Help</a>
         </div>
         <div className="fanpage-icons">
-          <a href="https://twitter.com">
+          <a href="https://twitter.com" target={"_blank"} rel="noreferrer">
             <img src={icon_twitter} alt="" />
           </a>
-          <a href="https://discord.com">
+          <a href="https://discord.com" target={"_blank"} rel="noreferrer">
             <img src={icon_discord} alt="" />
           </a>
-          <a href="https://web.telegram.org">
+          <a href="https://web.telegram.org" target={"_blank"} rel="noreferrer">
             <img src={icon_telegram} alt="" />
           </a>
         </div>
