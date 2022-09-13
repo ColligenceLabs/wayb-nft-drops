@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import home_02 from '../../assets/img/home_02.jpeg';
 import home_03 from '../../assets/img/home_03.jpeg';
 import home_04 from '../../assets/img/home_04.jpeg';
@@ -14,10 +14,13 @@ import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import home_14_avt from '../../assets/img/home_14_avt.jpg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Carousel, { WithStyles } from 'react-multi-carousel';
+import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
+import {isMobile} from 'react-device-detect';
+import HomePageMb from './HomePageMb'
 const Homepage = () => {
+
   const settings = {
     className: 'center',
     centerMode: true,
@@ -26,9 +29,10 @@ const Homepage = () => {
     slidesToShow: 1,
     speed: 500,
   };
-
   return (
-    <div className="home-page">
+      isMobile ? <HomePageMb />
+      :
+      <div className="home-page">
       {/* section 01 */}
       <div className="section-01">
         <div className="content-header">
@@ -107,7 +111,7 @@ const Homepage = () => {
             </div>
           </div>
           <div className="slide-item">
-            <Link to={'/bucks'}>
+            <Link to={'/collection'}>
               <div>
                 <img src={home_04} alt="" draggable={false} />
               </div>
@@ -125,7 +129,7 @@ const Homepage = () => {
               See all
             </Link>
           </div>
-          <Link to={'/bucks'} className="custom-link">
+          <Link to={'/collection'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_05_banner} alt="" />
@@ -371,6 +375,7 @@ const Homepage = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

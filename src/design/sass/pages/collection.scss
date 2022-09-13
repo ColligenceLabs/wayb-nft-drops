@@ -15,20 +15,21 @@
         border-radius: 8px;
         background: #fff;
     }
-}
-
-.box-collection {
-    max-width: 1600px;
-    margin: 0 auto;
-
     .collection-banner-image {
         height: 300px;
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
         width: 100vw;
-        margin: 20px 0px 20px calc(-50vw + 50%);
+        // margin: 20px 0px 20px calc(-50vw + 50%);
     }
+}
+
+.box-collection {
+    max-width: 1600px;
+    margin: 0 auto;
+
+
 
     .collection-details-box {
         max-width: 1320px;

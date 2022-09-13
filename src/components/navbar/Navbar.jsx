@@ -1,18 +1,25 @@
 import React from 'react';
-import logo_header from '../assets/img/logo_header.png';
-import icon_twitter from '../assets/img/icon_twitter.png';
-import icon_discord from '../assets/img/icon_discord.png';
-import icon_telegram from '../assets/img/icon_telegram.png';
+import logo_header from '../../assets/img/logo_header.png';
+import icon_twitter from '../../assets/img/icon_twitter.png';
+import icon_discord from '../../assets/img/icon_discord.png';
+import icon_telegram from '../../assets/img/icon_telegram.png';
 import { Link, useLocation } from 'react-router-dom';
-
+import { isMobile } from 'react-device-detect';
+import NavbarMb from './NavbarMb';
 const Navbar = () => {
   let location = useLocation();
-  return (
+  return isMobile ? (
+    <NavbarMb />
+  ) : (
     <div className="nav-bar">
-      <div className={`${location.pathname === "/" ? "nav-home" : "nav-other-page"}`}></div>
+      <div
+        className={`${
+          location.pathname === '/' ? 'nav-home' : 'nav-other-page'
+        }`}
+      ></div>
       <div className="main-header-box">
         <div className="logo-header">
-          <Link to={"/"}>
+          <Link to={'/'}>
             <img src={logo_header} alt="" />
           </Link>
         </div>
