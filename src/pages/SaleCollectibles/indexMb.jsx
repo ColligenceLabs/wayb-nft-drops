@@ -10,13 +10,10 @@ import home_11 from '../../assets/img/home_11.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import ic_info from '../../assets/icon/info_pink.svg';
 import ic_search from '../../assets/icon/search.svg';
-import {isMobile} from 'react-device-detect';
-import SaleCollectiblesMb from './indexMb';
 
 
-const SaleCollectibles = () => {
+const SaleCollectiblesMb = () => {
   return (
-    isMobile ? <SaleCollectiblesMb /> :
     <main className="collection-container" style={{ marginTop: `3rem` }}>
       <div>
         <div className="price-collection-view-page">
@@ -401,4 +398,4 @@ const SaleCollectibles = () => {
   );
 };
 
-export default SaleCollectibles;
+export default SaleCollectiblesMb;
