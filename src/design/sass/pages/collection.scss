@@ -64,24 +64,6 @@
                         font-weight: 600;
                     }
 
-                    // .username {
-                    //     font-size: 18px;
-                    //     color: #fff;
-                    //     overflow: hidden;
-                    //     position: relative;
-                    //     mix-blend-mode: lighten;
-                    //     background-color: #000;
-                    //     display: inline-block;
-                    // }
-
-                    // .username::before {
-                    //     content: "";
-                    //     display: block;
-                    //     position: absolute;
-                    //     inset: 0px;
-                    //     background: linear-gradient(to right, #f261b7, #6182fd);
-                    //     mix-blend-mode: multiply;
-                    // }
                     .username {
                         font-size: 18px;
                         font-weight: 600;
@@ -157,10 +139,11 @@
             place-items: center;
             max-width: 1380px;
             grid-template-columns: repeat(5, 1fr);
+            
 
             a {
                 background: #fff;
-                border-radius: 5px;
+                border-radius: 8px;
                 box-shadow: 0 0 5px 5px #f0ebfc;
             }
 
@@ -175,6 +158,7 @@
                 transition: transform 0.15s ease-in-out 0s;
                 cursor: pointer;
                 margin: 0px;
+                border-radius: 8px;
 
                 .item_product_detail {
                     width: 100%;
@@ -294,7 +278,7 @@
                     width: auto;
                     text-align: right;
                     margin: 10px 0px 5px;
-                    color: var(--font-color-aeaecb);
+                    color: #aeaecb;
                     opacity: 0.8;
                     font-size: 13px;
                     padding-left: 0px;
@@ -311,7 +295,7 @@
                 .item_product_detail:nth-last-child(1),
                 .item_product_detail:nth-last-child(2) {
                     text-align: center;
-                    background-color: rgba(255, 255, 255, 0.08);
+                    background-color: rgba(64, 64, 64, 0.08);
                     padding: 15px 0px;
                     width: 50%;
                     font-size: 0.6875rem;
@@ -473,7 +457,7 @@
                 display: block;
                 width: 100%;
                 padding: 20px;
-                color: $pink-color-white;
+                color: $white-color-primary;
                 background: linear-gradient(to left, rgb(103, 129, 249), rgb(227, 100, 190));
             }
         }
@@ -507,7 +491,8 @@
         grid-template-columns: repeat(5, 1fr);
 
         .filter-box {
-
+            border-bottom: 1px solid $dark-color-primary;
+            margin-bottom: 10px;
             .search-box {
                 flex: 1 1 0%;
                 display: flex;
@@ -515,7 +500,7 @@
                 align-items: center;
                 margin: 0px 0px 20px;
                 height: calc($header-height - 5px);
-                background-color: $font-dark-color-15;
+                background:  rgba(68, 64, 64, 0.08);
                 border-radius: 50vh;
                 position: relative;
                 max-width: 600px;
@@ -526,9 +511,9 @@
                     margin: 0px -15px 0px 0px;
                     padding: 0px;
                     height: 100%;
-                    color: $dark-color-primary;
-                    border: 1px solid $dark-color-primary;
-                    border-radius: 50px;
+                    color: #000;
+                    background:transparent;
+                    border: 0px;
                     overflow: visible;
                     outline: none;
                     font-size: 20px;
@@ -697,6 +682,268 @@
                 padding: 15px 0px;
                 width: 50%;
                 font-size: 0.6875rem;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 900px){
+    .box-collection { 
+        width: 95%;
+        .marketplace {
+            .marketplace-items {
+                margin: 0px;
+                width: 100%;
+                position: relative;
+                display: grid;
+                gap: 20px;
+                place-items: center;
+                max-width: 1380px;
+                grid-template-columns: repeat(2, 1fr);
+
+                .item_product{
+                    width: 380px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .box-collection {
+        max-width: 95%;
+        .collection-details-box {
+            .collection-info {
+                flex-wrap: wrap;
+                margin: 0;
+                .collection-info-left {
+                    display: flex;
+    
+                    img {
+                        height: 100px;
+                        width: 100px;
+                        margin-left: 10px;
+                    
+                    }
+    
+                    .name {
+                        padding: 0px 10px;
+                    }
+                }
+                .collection-info-right {
+                    width: 100%;
+                    margin: 30px 0px;
+                }
+            }
+        }
+    
+        .marketplace {
+            width: 90%;
+            .marketplace-items {
+                grid-template-columns: repeat(1, 1fr);
+
+                .item_product{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .price-collection-view-page {
+        .price-collection-box {
+            flex-direction: column;
+    
+            .token-showcase-box {
+                position: relative;
+                width: 100%;
+                border: none;
+                padding-top: 0;
+    
+                video {
+                    padding: 0;
+                    transform: scale(0.8);
+                    width: 100% ;
+                    height: auto ;
+                }
+            }
+    
+            .token-details-box {
+                width: 90%;
+                margin: 0 auto;
+    
+            }
+    
+            .token-details-box>div {
+                margin-bottom: 20px;
+            }
+        }
+    
+        .userSales {
+            margin: 0px 20px;
+            width: 90%;
+            grid-template-columns: repeat(1, 1fr);
+            .filter-box {
+                border-bottom: none;
+            }
+    
+            .marketplace-items {
+                position: relative;
+                width: 100%;
+                gap: 20px;
+                place-items: center;
+                max-width: 1380px;
+                grid-template-columns: repeat(5, 1fr);
+    
+                .list-carousel {
+                    gap: 20px;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: row;
+                    position: relative;
+                    flex-wrap: wrap;
+                }
+    
+                .slide-item {
+                  width: 100%;
+                }
+    
+                .hot-ollectibles-item:nth-child(1) {
+                    width: auto;
+                    font-size: 13px;
+                    margin: 10px 0px 5px;
+                    padding: 0px 0px 0px 15px;
+                    flex: 1 1;
+                }
+    
+                .hot-ollectibles-item:nth-child(2) {
+                    width: auto;
+                    text-align: right;
+                    margin: 10px 0px 5px;
+                    color: #aeaecb;
+                    opacity: 0.8;
+                    font-size: 13px;
+                    padding-left: 0px;
+                    text-transform: uppercase;
+                }
+    
+                .hot-ollectibles-item:nth-child(3) {
+                    .img-token {
+                        width: 80%;
+                        height: 250px;
+                        margin: 10px auto;
+    
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .hot-ollectibles-item:nth-child(4) .wrapper-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: auto;
+                    margin-bottom: 0.5rem;
+                    font-size: 18px;
+    
+                    .content-left{
+                        display: flex;
+                        align-items: center;
+                        font-size: 15px;
+                        letter-spacing: -1px;
+    
+                        .avatar{
+                            width: 24px;
+                            height: 24px;
+                            margin-right: 7px;
+                            border-radius: 100%;
+                            box-shadow: rgb(0 0 0 / 76%) 0px 0px 0px 1px;
+                            overflow: hidden;
+    
+                            img{
+                                width: 100%;
+                            }
+                        }
+                    }
+    
+                    .content-right{
+                        color: $dark-color-green;
+                    }
+                }
+    
+                .hot-ollectibles-item:nth-child(5) {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+    
+                    .name-label{
+                        margin: 0px 0px 10px;
+                        font-size: 18px;
+                        text-align: left;
+                        overflow: hidden;
+                        width: 100%;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                }
+    
+                .hot-ollectibles-item:nth-child(6) {
+                    text-align: center;
+                    background-color: rgba(68, 64, 64, 0.08);
+                    padding: 15px 0px;
+                    width: 50%;
+                    font-size: 0.6875rem;
+    
+                    .wrapper-price{
+                        border-right: 1px solid #5a5a5a;
+                    }
+                }
+    
+                .hot-ollectibles-item:nth-child(7) {
+                    text-align: center;
+                    background-color: rgba(68, 64, 64, 0.08);
+                    padding: 15px 0px;
+                    width: 50%;
+                    font-size: 0.6875rem;
+                }
+            }
+        }
+    }
+    
+}
+
+@media (max-width: 540px){
+    .collection-container {
+        .collection-banner-image {
+            height: 220px;
+        }
+    }
+    
+}
+
+@media (max-width: 410px){
+    .box-collection {
+        .collection-details-box {
+            .collection-info {
+                flex-wrap: wrap;
+                .collection-info-left {
+                    display: flex;
+    
+                    img {
+                        height: 100px;
+                        width: 100px;
+                        margin-left: 40px;
+                    
+                    }
+    
+                    .name {
+                        padding: 0px 10px;
+                    }
+                }
             }
         }
     }

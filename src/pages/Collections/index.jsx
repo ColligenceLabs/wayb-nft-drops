@@ -21,9 +21,6 @@ const Collections = () => {
           {/* Featured Collections */}
           <div className="wrapper-header title-header">
             <div className="header-name">All Collections</div>
-            <Link to={'/collections'} className="show-all-item button">
-              See all
-            </Link>
           </div>
           <Link to={'/bucks'} className="custom-link">
             <button className="grid-item button">
