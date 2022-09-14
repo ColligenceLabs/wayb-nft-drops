@@ -15,19 +15,13 @@ import 'react-multi-carousel/lib/styles.css';
 import Popup from "reactjs-popup";
 import Content from "./content";
 import Faq from "./faq";
-import {isMobile} from 'react-device-detect';
-import LandingPageMB from './indexMB'
 
 const Landing = () => {
     return (
-        isMobile ? <LandingPageMB /> :
         <main className="landing-container">
             <div className="box-landing">
                 <div className="navbar">
                     <div className="box-nav">
-                        <div className="line-left"></div>
-                        <img src={logo} alt="" className='logo' />
-                        <div className="line-right"></div>
                         <img src={left_cross} alt=""className='left_cross' />
                         <Popup modal trigger={
                             <button className="faq">FAQ</button>
@@ -36,6 +30,7 @@ const Landing = () => {
                         </Popup>
                         <button className="sign-up">Sign Up</button>
                     </div>
+                    <div className="line"></div>
                 </div>
                 <div className="landing-box-detail">
                     <div className="details">
@@ -73,9 +68,6 @@ const Landing = () => {
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div className="buynow-wrapper">
-                                <a href="https://sweet.io/magicdogs" target="_blank">Buy Now</a>
                             </div>
                         </div>
                     </div>
