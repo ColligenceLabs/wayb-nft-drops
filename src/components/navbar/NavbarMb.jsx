@@ -4,6 +4,7 @@ import logo_header from '../../assets/img/logo_header.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_telegram from '../../assets/img/icon_telegram.png';
+import avatar_user from '../../assets/img/avatar_user.webp';
 const NavbarMb = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   let location = useLocation();
@@ -68,6 +69,33 @@ const NavbarMb = () => {
               </svg>
             </button>
           </div>
+          {/* after login */}
+        <div className="wrapper-user">
+          <div className="avatar-user">
+            <img src={avatar_user} alt="profile-avatar" />
+          </div>
+          <p className="user-name">User name</p>
+        </div>
+        <button className="username-dropdown button">
+          <svg
+            class="sc-196ec885-12 eKhfKP"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18.092"
+            height="11.168"
+            viewBox="0 0 18.092 11.168"
+          >
+            <path
+              id="Path_46142"
+              data-name="Path 46142"
+              d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+              transform="translate(10860.586 7360.121)"
+              fill="none"
+              stroke="#fff"
+              stroke-linecap="round"
+              stroke-width="3"
+            ></path>
+          </svg>
+        </button>
         </div>
       </div>
       {/* side bar  */}
@@ -147,9 +175,9 @@ const NavbarMb = () => {
               <path
                 d="M4.80001 4.2H11.2H4.80001ZM4.80001 7.4H11.2H4.80001ZM4.80001 10.6H7.20001H4.80001ZM3.20001 17H12.8C13.6837 17 14.4 16.2837 14.4 15.4V2.6C14.4 1.71634 13.6837 1 12.8 1H3.20001C2.31635 1 1.60001 1.71634 1.60001 2.6V15.4C1.60001 16.2837 2.31635 17 3.20001 17Z"
                 stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               ></path>
             </svg>
             Blog
