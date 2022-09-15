@@ -162,7 +162,7 @@ const Landing = () => {
                     </Popup>
                 </div>
                 <div className="buy-now-mb">
-                    <a href="https://sweet.io/magicdogs" target="_blank" class="Buy-button-mb">Buy Now</a>
+                    <a href="https://sweet.io/magicdogs" target="_blank" className="Buy-button-mb">Buy Now</a>
                 </div>
             </div>
         </main>

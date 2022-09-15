@@ -76,14 +76,18 @@ const Homepage = () => {
           swipeable
         >
           <div className="slide-item">
-            <div>
-              <img src={home_02} alt="" draggable={false} />
-            </div>
+            <Link to={'/landingpage'} target={'_blank'}>
+              <div>
+                <img src={home_02} alt="" draggable={false} />
+              </div>
+            </Link>
           </div>
           <div className="slide-item">
-            <div>
-              <img src={home_03} alt="" draggable={false} />
-            </div>
+            <Link to={'/'}>
+              <div>
+                <img src={home_03} alt="" draggable={false} />
+              </div>
+            </Link>
           </div>
           <div className="slide-item">
             <Link to={'/collection'}>
@@ -212,90 +216,90 @@ const Homepage = () => {
             slidesToSlide={1}
             swipeable
           >
-            <Link to={'/'} className="button custom-box">
-                <div className="hot-ollectibles-wrapper">
-                  <div className="header-left hot-ollectibles-item">
-                    <span className="total-run">Total Run: 35000</span>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div>erc721</div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="img-token">
-                      <img src={home_11} alt="" />
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-item">
-                      <div className="content-left">
-                        <div className="avatar">
-                          <img src={home_13_avt} alt="" />
-                        </div>
-                        <div className="name-label">Elton John</div>
-                      </div>
-                      <div className="content-right">Buy Now</div>
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="name-label">
-                      Elton John Rocket NFT Club Pass
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-price">
-                      <div className="price-header">Price</div>
-                      <div className="current-price">$29.99</div>
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-remaining">
-                      <div className="remaining-header">Remaining </div>
-                      <div className="quantity-remaining">26008</div>
-                    </div>
+            <Link to={'/sale'} className="button custom-box">
+              <div className="hot-ollectibles-wrapper">
+                <div className="header-left hot-ollectibles-item">
+                  <span className="total-run">Total Run: 35000</span>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div>erc721</div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="img-token">
+                    <img src={home_11} alt="" />
                   </div>
                 </div>
-              </Link>
-              <Link to={'/'} className="button custom-box">
-                <div className="hot-ollectibles-wrapper">
-                  <div className="header-left hot-ollectibles-item">
-                    <span className="total-run">Total Run: 35000</span>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div>erc721</div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="img-token">
-                      <img src={home_12} alt="" />
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-item">
-                      <div className="content-left">
-                        <div className="avatar">
-                          <img src={home_14_avt} alt="" />
-                        </div>
-                        <div className="name-label">Old Navy</div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-item">
+                    <div className="content-left">
+                      <div className="avatar">
+                        <img src={home_13_avt} alt="" />
                       </div>
-                      <div className="content-right">Buy Now</div>
+                      <div className="name-label">Elton John</div>
                     </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="name-label">Generative Magic the Dog</div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-price">
-                      <div className="price-header">Price</div>
-                      <div className="current-price">$0.094</div>
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-remaining">
-                      <div className="remaining-header">Remaining </div>
-                      <div className="quantity-remaining">0</div>
-                    </div>
+                    <div className="content-right">Buy Now</div>
                   </div>
                 </div>
-              </Link>
+                <div className="hot-ollectibles-item">
+                  <div className="name-label">
+                    Elton John Rocket NFT Club Pass
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-price">
+                    <div className="price-header">Price</div>
+                    <div className="current-price">$29.99</div>
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-remaining">
+                    <div className="remaining-header">Remaining </div>
+                    <div className="quantity-remaining">26008</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link to={'/sale'} className="button custom-box">
+              <div className="hot-ollectibles-wrapper">
+                <div className="header-left hot-ollectibles-item">
+                  <span className="total-run">Total Run: 35000</span>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div>erc721</div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="img-token">
+                    <img src={home_12} alt="" />
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-item">
+                    <div className="content-left">
+                      <div className="avatar">
+                        <img src={home_14_avt} alt="" />
+                      </div>
+                      <div className="name-label">Old Navy</div>
+                    </div>
+                    <div className="content-right">Buy Now</div>
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="name-label">Generative Magic the Dog</div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-price">
+                    <div className="price-header">Price</div>
+                    <div className="current-price">$0.094</div>
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-remaining">
+                    <div className="remaining-header">Remaining </div>
+                    <div className="quantity-remaining">0</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </Carousel>
         </div>
         {/* Free Drops */}
@@ -354,90 +358,90 @@ const Homepage = () => {
             slidesToSlide={1}
             swipeable
           >
-            <Link to={'/'} className="button custom-box">
-                <div className="hot-ollectibles-wrapper">
-                  <div className="header-left hot-ollectibles-item">
-                    <span className="total-run">Total Run: 35000</span>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div>erc721</div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="img-token">
-                      <img src={home_11} alt="" />
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-item">
-                      <div className="content-left">
-                        <div className="avatar">
-                          <img src={home_13_avt} alt="" />
-                        </div>
-                        <div className="name-label">Elton John</div>
-                      </div>
-                      <div className="content-right">Buy Now</div>
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="name-label">
-                      Elton John Rocket NFT Club Pass
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-price">
-                      <div className="price-header">Price</div>
-                      <div className="current-price">$29.99</div>
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-remaining">
-                      <div className="remaining-header">Remaining </div>
-                      <div className="quantity-remaining">26008</div>
-                    </div>
+            <Link to={'/sale'} className="button custom-box">
+              <div className="hot-ollectibles-wrapper">
+                <div className="header-left hot-ollectibles-item">
+                  <span className="total-run">Total Run: 35000</span>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div>erc721</div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="img-token">
+                    <img src={home_11} alt="" />
                   </div>
                 </div>
-              </Link>
-              <Link to={'/'} className="button custom-box">
-                <div className="hot-ollectibles-wrapper">
-                  <div className="header-left hot-ollectibles-item">
-                    <span className="total-run">Total Run: 35000</span>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div>erc721</div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="img-token">
-                      <img src={home_12} alt="" />
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-item">
-                      <div className="content-left">
-                        <div className="avatar">
-                          <img src={home_14_avt} alt="" />
-                        </div>
-                        <div className="name-label">Old Navy</div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-item">
+                    <div className="content-left">
+                      <div className="avatar">
+                        <img src={home_13_avt} alt="" />
                       </div>
-                      <div className="content-right">Buy Now</div>
+                      <div className="name-label">Elton John</div>
                     </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="name-label">Generative Magic the Dog</div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-price">
-                      <div className="price-header">Price</div>
-                      <div className="current-price">$0.094</div>
-                    </div>
-                  </div>
-                  <div className="hot-ollectibles-item">
-                    <div className="wrapper-remaining">
-                      <div className="remaining-header">Remaining </div>
-                      <div className="quantity-remaining">0</div>
-                    </div>
+                    <div className="content-right">Buy Now</div>
                   </div>
                 </div>
-              </Link>
+                <div className="hot-ollectibles-item">
+                  <div className="name-label">
+                    Elton John Rocket NFT Club Pass
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-price">
+                    <div className="price-header">Price</div>
+                    <div className="current-price">$29.99</div>
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-remaining">
+                    <div className="remaining-header">Remaining </div>
+                    <div className="quantity-remaining">26008</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link to={'/sale'} className="button custom-box">
+              <div className="hot-ollectibles-wrapper">
+                <div className="header-left hot-ollectibles-item">
+                  <span className="total-run">Total Run: 35000</span>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div>erc721</div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="img-token">
+                    <img src={home_12} alt="" />
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-item">
+                    <div className="content-left">
+                      <div className="avatar">
+                        <img src={home_14_avt} alt="" />
+                      </div>
+                      <div className="name-label">Old Navy</div>
+                    </div>
+                    <div className="content-right">Buy Now</div>
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="name-label">Generative Magic the Dog</div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-price">
+                    <div className="price-header">Price</div>
+                    <div className="current-price">$0.094</div>
+                  </div>
+                </div>
+                <div className="hot-ollectibles-item">
+                  <div className="wrapper-remaining">
+                    <div className="remaining-header">Remaining </div>
+                    <div className="quantity-remaining">0</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </Carousel>
         </div>
       </div>

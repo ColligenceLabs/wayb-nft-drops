@@ -73,6 +73,6 @@ function loadFile(event) {
     if (event.target.files.length > 0) {
         avatar = URL.createObjectURL(event.target.files[0]);
         // setFile(avatar);
-        avatar_upload.src = {avatar}
+        // avatar_upload.src = {avatar}
     }
 };

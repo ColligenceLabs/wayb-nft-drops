@@ -70,32 +70,32 @@ const NavbarMb = () => {
             </button>
           </div>
           {/* after login */}
-        <div className="wrapper-user">
-          <div className="avatar-user">
-            <img src={avatar_user} alt="profile-avatar" />
+          <div className="wrapper-user">
+            <div className="avatar-user">
+              <img src={avatar_user} alt="profile-avatar" />
+            </div>
+            <p className="user-name">User name</p>
           </div>
-          <p className="user-name">User name</p>
-        </div>
-        <button className="username-dropdown button">
-          <svg
-            class="sc-196ec885-12 eKhfKP"
-            xmlns="http://www.w3.org/2000/svg"
-            width="18.092"
-            height="11.168"
-            viewBox="0 0 18.092 11.168"
-          >
-            <path
-              id="Path_46142"
-              data-name="Path 46142"
-              d="M-10858.465-7358l6.925,6.926,6.925-6.926"
-              transform="translate(10860.586 7360.121)"
-              fill="none"
-              stroke="#fff"
-              stroke-linecap="round"
-              stroke-width="3"
-            ></path>
-          </svg>
-        </button>
+          <button className="username-dropdown button">
+            <svg
+              className="sc-196ec885-12 eKhfKP"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18.092"
+              height="11.168"
+              viewBox="0 0 18.092 11.168"
+            >
+              <path
+                id="Path_46142"
+                data-name="Path 46142"
+                d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+                transform="translate(10860.586 7360.121)"
+                fill="none"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-width="3"
+              ></path>
+            </svg>
+          </button>
         </div>
       </div>
       {/* side bar  */}
@@ -197,13 +197,13 @@ const NavbarMb = () => {
           </div>
         </div>
         <div className="fanpage-icons">
-          <a href="https://twitter.com" target={"_blank"} rel="noreferrer">
+          <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
             <img src={icon_twitter} alt="" />
           </a>
-          <a href="https://discord.com" target={"_blank"} rel="noreferrer">
+          <a href="https://discord.com" target={'_blank'} rel="noreferrer">
             <img src={icon_discord} alt="" />
           </a>
-          <a href="https://web.telegram.org" target={"_blank"} rel="noreferrer">
+          <a href="https://web.telegram.org" target={'_blank'} rel="noreferrer">
             <img src={icon_telegram} alt="" />
           </a>
         </div>
