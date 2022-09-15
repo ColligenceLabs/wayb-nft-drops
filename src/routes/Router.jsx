@@ -4,7 +4,7 @@ import Homepage from 'pages/homepage/HomePagePC';
 import Collections from 'pages/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles';
 import Collection from 'pages/Collection';
-import MyCollectibles from 'pages/MyCollectibles';
+import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
 import Landing from 'pages/Landingpage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 import Profile from 'pages/MyProfile'
