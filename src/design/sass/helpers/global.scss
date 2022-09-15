@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 @import '../helpers/variables';
 @import '../helpers/mixin';
-#root{
+#root {
   overflow-x: hidden;
 }
 .main {
   position: relative;
-
+  background-color: #f4f6fb;
   .background-section01 {
     background-image: url('../../../assets/img/home_01.png');
     height: 790px;
@@ -18,14 +18,15 @@
     left: 0;
     right: 0;
   }
-  @include Tablet() {
-    .background-section01 {
-      height: 540px;
-    }
-  }
+  // @include Tablet() {
+  //   .background-section01 {
+  //     height: 640px;
+  //   }
+  // }
   @include Mobile() {
     .background-section01 {
       height: 540px;
+      background-position: 35% center;
     }
   }
 }
@@ -61,6 +62,7 @@
   color: #000000;
 }
 .hot-ollectibles-wrapper {
+  width: 260px;
   height: 450px;
   display: flex;
   flex-flow: row wrap;
@@ -71,23 +73,22 @@
   cursor: pointer;
   margin: 0px;
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-  background-color: #ffffff;
 }
 .hot-ollectibles-item {
   width: 90%;
   padding: 0px 15px;
   border-right: none;
 }
-.fw-600{
+.fw-600 {
   font-weight: 600;
 }
-.disable{
+.disable {
   background: $dark-color-39 !important;
   color: $dark-color-70 !important;
 }
-.font-size-14{
+.font-size-14 {
   font-size: 14px;
 }
-.font-size-18{
+.font-size-18 {
   font-size: 18px;
 }
