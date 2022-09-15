@@ -12,13 +12,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carousel, { WithStyles } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
 import Popup from "reactjs-popup";
 import Content from "./TermsandConditions";
 import Faq from "./faq";
 
 const Landing = () => {
 	return (
-		<main className="landing-container">
+		<main className="landing-container-mb">
 			<div className="box-landing">
 				<div className="navbar">
 					<div className="box-nav">
@@ -162,7 +163,7 @@ const Landing = () => {
 					</Popup>
 				</div>
 				<div className="buy-now-mb">
-					<a href="https://sweet.io/magicdogs" target="_blank" className="Buy-button-mb">Buy Now</a>
+					<Link to="/collections" target="_blank" className="Buy-button-mb">Buy Now</Link>
 				</div>
 			</div>
 		</main>

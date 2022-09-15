@@ -121,7 +121,6 @@
 					ul{
 						margin: 0px 40px;
 						font-size: 18px;
-						font-family: "Poppins";
 						span{
 							color: rgb(252, 255, 112);
 							font-weight: 600;
@@ -139,7 +138,6 @@
 						border-radius: 5px;
 						color: rgb(72, 123, 237);
 						font-size: 18px;
-						font-family: "Poppins";
 						font-weight: 600;
 					}
 				}
@@ -274,12 +272,6 @@
 				font-weight: 700;
 			}
 		}
-		.buy-now-mb{
-			display: block;
-			a{
-				visibility: hidden;
-			}
-		}
 	}
 }
 .modal-landingpage{
@@ -405,19 +397,54 @@
 		min-height: 0px;
 	}
 }
-@media (max-width: 768px){
-	.landing-container {
-
+	.landing-container-mb {
+		margin: 0px 0px -5px;
+		padding: 0px;
+		max-width: none;
 		.box-landing{
 			padding: 0px 20px;
+			background-color: rgb(72, 123, 237);
+			a, button {
+				color: inherit;
+				font: inherit;
+				text-decoration: none;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+			}
+			p{
+				color: white;
+			}
 			.navbar{ 
+				display: flex;
+				flex-direction: column;
 				.box-nav {
+					display: flex;
+					-webkit-box-pack: end;
+					justify-content: flex-end;
+					padding: 32px 0px;
+					background-color: transparent;
 					.left_cross{
 						width: 245px;
 						left: -100px;
+						top: 0px;
+						position: absolute;
+					}
+					.faq{
+						font-size: 18px;
+						font-family: "Poppins Century ModON";
+						font-weight: 600;
+						margin-right: 60px;
+						color: white;
 					}
 					.sign-up{
 						padding: 12px 20px;
+						background-color: white;
+						border-radius: 5px;
+						color: rgb(72, 123, 237);
+						font-size: 18px;
+						font-family: "Poppins Century ModON";
+						font-weight: 600;
 					}
 					.logo{
 						display: none;
@@ -436,9 +463,16 @@
 				}
 			}
 			.landing-box-detail{
+				display: flex;
+				flex-direction: column;
+				-webkit-box-align: center;
+				align-items: center;
 				padding: 30px 0px;
 				.details{
 					flex-direction: column;
+					display: flex;
+					margin-top: 50px;
+					width: 100%;
 					.magic-arch-mobile{
 						display: inherit;
 						// width: 100%;
@@ -446,54 +480,156 @@
 					}
 					.dog-gift {
 						width: 100%;
+						z-index: 3;
+						img{
+							width: 100%;
+						}
 					}
 				}
 				.magic-arch-wrapper {
 					width: 100%;
 					padding: 0px;
+					p{
+						font-size: 22px;
+						color: white;
+					}
+					strong{
+						font-weight: bold;
+					}
 					.box_info {
+						background: rgb(61, 105, 202);
+						border-radius: 10px;
+						padding: 23px 37px;
+						margin-bottom: 80px;
+						margin-top: 0px;
 						h3{
 							font-size: 22px;
+							font-weight: 600;
+							font-family: "Poppins";
+							margin-bottom: 20px;
+							text-align: left;
+							color: white;
 						}
 						ul {
 							margin: 0px 0px 0px 20px;
 							padding: 0;
-						}
-					}
-					.buynow-wrapper{
-						display: flex;
-						-webkit-box-pack: center;
-						justify-content: center;
-						a{
-							display: none;
+							span{
+								color: rgb(252, 255, 112);
+								font-weight: 600;
+							}
+							li{
+								color: white;
+							}
 						}
 					}
 				}
 			}
 			.lading-box-info {
+				display: flex;
+				flex-direction: column;
+				-webkit-box-align: center;
+				align-items: center;
+				h1{
+					font-size: 38px;
+					font-weight: 600;
+					text-align: center;
+					color: white;
+				}
 				.top-box-info {
+					display: flex;
+					flex-direction: column;
+					-webkit-box-align: center;
+					align-items: center;
+					width: 80%;
+					img{
+						width: 320px;
+						margin-top: 30px;
+					}
 					p{
 						font-size: 18px;
 						margin: 20px 0px;
+						font-weight: 200;
+						text-align: center;
+					}
+					span{
+						color: rgb(252, 255, 112);
+						font-weight: 600;
 					}
 					a{
 						font-size: 18px;
+						margin-bottom: 55px;
+						font-family: "Eames Century ModON";
+						font-weight: 600;
+						color: rgb(252, 255, 112);
+						text-decoration: underline;
 					}
 				}
 				.step_start{
 					padding: 60px 10%;
 					margin-bottom: 80px;
 					width: auto;
+					background: rgb(61, 105, 202);
+					border-radius: 20px;
+					margin-top: 80px;
 					h1{
 						font-size: 40px;
+						font-weight: 600;
+						margin-bottom: 45px;
 					}
 					.step_detail{
+						display: grid;
 						grid-template-columns: 1fr;
 						row-gap: 30px;
+						.detail_info{
+							color: white;
+							h2{
+								color: rgb(252, 255, 112);
+								font-size: 48px;
+								font-weight: 600;
+								margin-bottom: 10px;
+							}
+							h3{
+								font-size: 20px;
+								font-weight: 600;
+								margin-bottom: 20px;
+							}
+							p{
+								font-size: 18px;
+								font-weight: 400;
+								a{
+									text-decoration: underline;
+									color: rgb(252, 255, 112);
+									font-weight: 600;
+								}
+								span{
+									color: rgb(252, 255, 112);
+									font-weight: 600;
+								}
+							}
+						}
+					}
+					.note{
+						font-size: 16px;
+						color: rgba(252, 252, 252, 0.565);
+						font-weight: 300;
+						margin-top: 90px;
 					}
 				}
 			}
 			.landing_follow {
+				display: flex;
+				flex-direction: column;
+				-webkit-box-align: center;
+				align-items: center;
+				padding: 80px 0px;
+				position: relative;
+				h1{
+					font-size: 48px;
+					font-weight: 600;
+					font-family: "Eames Century ModON";
+					color: white;
+					text-align: center;
+				}
 				.social-buttons{
 					flex-direction: column;
 					-webkit-box-align: center;
@@ -503,7 +639,24 @@
 						width: 70%;
 						-webkit-box-pack: center;
 						justify-content: center;
+						margin-right: 20px;
+						height: 15px;
+						background-color: rgb(252, 255, 112);
+						font-size: 18px;
+						color: rgb(72, 123, 237);
+						display: flex;
+						-webkit-box-align: center;
+						align-items: center;
+						padding: 16px 25px;
+						text-decoration: none;
+						font-weight:500;
 					}
+				}
+				a{
+					color: rgb(252, 255, 112);
+					text-decoration: underline;
+					font-size: 18px;
+					font-weight: 700;
 				}
 			}
 		}
@@ -532,6 +685,7 @@
 			}
 		}
 	}
+@media (max-width: 768px){
 	.modal-landingpage{
 		.modal-box{
 			inset: 0;
@@ -550,9 +704,6 @@
 		left: 0px !important;
 		top: 0px !important;
 		border-radius: 0px !important;
-	}
-	.profile-container .my-profile-contact{
-		flex-wrap: wrap;
 	}
 	
 }

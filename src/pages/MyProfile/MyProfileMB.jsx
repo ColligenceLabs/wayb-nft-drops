@@ -10,7 +10,7 @@ import Delete from './deleteaccount'
 
 const MyProfile = () => {
 	return(
-		<main className="profile-container">
+		<main className="profile-container-mb">
 			<div className="my-profile-page">
 				<div className="my-profile-header">
 					<h1>My profile</h1>
