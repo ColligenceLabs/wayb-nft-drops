@@ -4,6 +4,7 @@ import Homepage from 'pages/homepage/HomePagePC';
 import Collections from 'pages/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles';
 import Collection from 'pages/Collection';
+import MyCollectibles from 'pages/MyCollectibles';
 
 const Router = () => [
   {
@@ -14,6 +15,7 @@ const Router = () => [
       { path: '/collection', element: <Collection/> },
       { path: '/collections', element: <Collections/> },
       { path: '/sale', element: <SaleCollectibles/> },
+      { path: '/my-collectibles', element: <MyCollectibles/> }
   ],
   },
 
