@@ -203,7 +203,7 @@ const Navbar = () => {
                   </svg>
                   Purchase History
                 </Link>
-                <Link to={'/'} className="wallet-button">
+                <Link to={'/my-profile'} className="wallet-button">
                   <svg
                     id="manage_accounts_black_24dp"
                     xmlns="http://www.w3.org/2000/svg"
