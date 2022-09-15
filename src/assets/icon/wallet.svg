@@ -1,0 +1,43 @@
+<svg
+              class="sc-28fa28fe-1 hAkbcz"
+              id="account_balance_wallet_black_24dp_2_"
+              data-name="account_balance_wallet_black_24dp (2)"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48.08"
+              height="48.08"
+              viewBox="0 0 48.08 48.08"
+            >
+              <defs>
+                <linearGradient
+                  id="icWalletGradientOutline"
+                  x2="0.799"
+                  y2="1"
+                  gradientUnits="objectBoundingBox"
+                >
+                  <stop offset="0" stop-color="#2061e2"></stop>
+                  <stop offset="1" stop-color="#b07cfe"></stop>
+                </linearGradient>
+              </defs>
+              <path
+                id="Path_123406"
+                data-name="Path 123406"
+                d="M0,0H48.08V48.08H0Z"
+                fill="none"
+              ></path>
+              <path
+                id="Path_123407"
+                data-name="Path 123407"
+                d="M39.06,11.574V7.007A4.018,4.018,0,0,0,35.053,3H7.007A4.006,4.006,0,0,0,3,7.007V35.053A4.006,4.006,0,0,0,7.007,39.06H35.053a4.018,4.018,0,0,0,4.007-4.007V30.486a4.008,4.008,0,0,0,2-3.446V15.02a4.008,4.008,0,0,0-2-3.446Zm-2,3.446V27.04H23.033V15.02ZM7.007,35.053V7.007H35.053v4.007H23.033a4.018,4.018,0,0,0-4.007,4.007V27.04a4.018,4.018,0,0,0,4.007,4.007h12.02v4.007Z"
+                transform="translate(3.01 3.01)"
+                fill="url(#icWalletGradientOutline)"
+              ></path>
+              <circle
+                id="Ellipse_2363"
+                data-name="Ellipse 2363"
+                cx="3.005"
+                cy="3.005"
+                r="3.005"
+                transform="translate(29.048 21.035)"
+                fill="url(#icWalletGradientOutline)"
+              ></circle>
+</svg>
