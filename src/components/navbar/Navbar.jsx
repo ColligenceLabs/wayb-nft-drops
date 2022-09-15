@@ -102,7 +102,10 @@ const Navbar = () => {
         </div> */}
         {/* after login */}
         <div className="btn-wallets">
-          <button className="custom-btn button" onClick={handleOpenWalletDialog}>
+          <button
+            className="custom-btn button"
+            onClick={handleOpenWalletDialog}
+          >
             <span className="wrapper-btn">
               <svg
                 className="sc-ac9cac12-4 cqTouq"
@@ -164,7 +167,7 @@ const Navbar = () => {
           <div ref={ref}>
             <div className="user-dropdown-box">
               <div className="wrapper-dropdown">
-                <Link to={'/'} className="wallet-button">
+                <Link to={'/my-collectibles'} className="wallet-button">
                   <svg
                     id="photo_library_black_24dp"
                     xmlns="http://www.w3.org/2000/svg"
@@ -258,9 +261,7 @@ const Navbar = () => {
                   Help
                 </div>
               </div>
-              <div className="logout-btn">
-                Log Out
-              </div>
+              <div className="logout-btn">Log Out</div>
             </div>
           </div>
         )}

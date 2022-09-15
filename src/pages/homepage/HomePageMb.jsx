@@ -77,14 +77,18 @@ const HomePageMb = () => {
           swipeable
         >
           <div className="slide-item">
-            <div>
-              <img src={home_02} alt="" draggable={false} />
-            </div>
+            <Link to={'/landingpage'} target={'_blank'}>
+              <div>
+                <img src={home_02} alt="" draggable={false} />
+              </div>
+            </Link>
           </div>
           <div className="slide-item">
-            <div>
-              <img src={home_03} alt="" draggable={false} />
-            </div>
+            <Link to={'/'}>
+              <div>
+                <img src={home_03} alt="" draggable={false} />
+              </div>
+            </Link>
           </div>
           <div className="slide-item">
             <Link to={'/collection'}>
@@ -214,7 +218,7 @@ const HomePageMb = () => {
             slidesToSlide={1}
             swipeable
           >
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -257,7 +261,7 @@ const HomePageMb = () => {
                 </div>
               </div>
             </Link>
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -298,7 +302,7 @@ const HomePageMb = () => {
                 </div>
               </div>
             </Link>
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -341,7 +345,7 @@ const HomePageMb = () => {
                 </div>
               </div>
             </Link>
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -441,7 +445,7 @@ const HomePageMb = () => {
             slidesToSlide={1}
             swipeable
           >
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -484,7 +488,7 @@ const HomePageMb = () => {
                 </div>
               </div>
             </Link>
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -525,7 +529,7 @@ const HomePageMb = () => {
                 </div>
               </div>
             </Link>
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>
@@ -568,7 +572,7 @@ const HomePageMb = () => {
                 </div>
               </div>
             </Link>
-            <Link to={'/'} className="button custom-box">
+            <Link to={'/sale'} className="button custom-box">
               <div className="hot-ollectibles-wrapper">
                 <div className="header-left hot-ollectibles-item">
                   <span className="total-run">Total Run: 35000</span>

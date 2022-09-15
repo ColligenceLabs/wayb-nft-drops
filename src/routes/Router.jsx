@@ -18,7 +18,7 @@ const Router = () => [
       { path: '/collection', element: <Collection/> },
       { path: '/collections', element: <Collections/> },
       { path: '/sale', element: <SaleCollectibles/> },
-      { path: '/my-collectibles', element: <MyCollectibles/> }
+      { path: '/my-collectibles', element: <MyCollectibles/> },
       { path: '/my-profile', element: <Profile/> },
   ],
   },

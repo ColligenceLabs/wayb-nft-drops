@@ -3,9 +3,9 @@ import ReactModal from 'react-modal';
 const DialogWallets = (show, onHide) => {
   return (
     <ReactModal
-      isOpen={true}
+      isOpen={show}
       contentLabel="onRequestClose Example"
-      onRequestClose={undefined}
+      onRequestClose={onHide}
       className="Modal"
       overlayClassName="Overlay"
       style={{
@@ -17,8 +17,7 @@ const DialogWallets = (show, onHide) => {
         },
       }}
     >
-      <p>Modal text!</p>
-      {/* <button onClick={this.handleCloseModal}>Close Modal</button> */}
+      {/* <p>Modal text!</p> */}
     </ReactModal>
   );
 };
