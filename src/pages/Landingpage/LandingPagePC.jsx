@@ -12,10 +12,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import Carousel, { WithStyles } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Popup from 'reactjs-popup';
-import Content from './content';
+import Content from './TermsandConditions';
 import Faq from './faq';
 import { isMobile } from 'react-device-detect';
-import LandingPageMB from './indexMB';
+import LandingPageMB from './LandingPageMB';
 
 const Landing = () => {
   return isMobile ? (
