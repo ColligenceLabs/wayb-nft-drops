@@ -13,6 +13,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
+    "reactjs-popup": "^2.0.5",
     "reactstrap": "^9.1.4",
     "reactstrap-carousel": "^0.0.18",
     "sass": "^1.54.9",

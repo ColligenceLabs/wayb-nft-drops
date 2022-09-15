@@ -4,6 +4,9 @@ import Homepage from 'pages/homepage/HomePagePC';
 import Collections from 'pages/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles';
 import Collection from 'pages/Collection';
+import Landing from 'pages/Landingpage';
+import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
+import Profile from 'pages/MyProfile'
 
 const Router = () => [
   {
@@ -14,7 +17,12 @@ const Router = () => [
       { path: '/collection', element: <Collection/> },
       { path: '/collections', element: <Collections/> },
       { path: '/sale', element: <SaleCollectibles/> },
+      { path: '/my-profile', element: <Profile/> },
   ],
+  },
+  {
+    element: <LandingLayout />,
+    children: [{ path: '/landingpage', element: <Landing /> }],
   },
 
 ];
