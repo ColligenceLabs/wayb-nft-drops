@@ -19,7 +19,8 @@
     "reactstrap-carousel": "^0.0.18",
     "sass": "^1.54.9",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-phone-input-2": "^2.15.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,12 +1,12 @@
 import StudioLayout from '../components/layouts/studioLayout/StudioLayout';
 import React from 'react';
 import Homepage from 'pages/homepage/HomePagePC';
-import Collections from 'pages/Collections';
-import SaleCollectibles from 'pages/SaleCollectibles';
-import Collection from 'pages/Collection';
-import MyCollectibles from 'pages/MyCollectibles';
+import Collections from 'pages/Collections/CollectionsPC';
+import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
+import Collection from 'pages/Collection/CollectionPC';
 import Landing from 'pages/Landingpage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
+import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
 import Profile from 'pages/MyProfile'
 
 const Router = () => [
