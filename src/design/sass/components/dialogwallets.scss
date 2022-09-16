@@ -7,8 +7,8 @@
   height: 360px;
   margin: 0px 0px 5% auto;
   border-radius: 0px 0px 0px 10px;
+  background-color: rgb(45, 46, 51);
   box-shadow: black -5px 5px 20px;
-  background-color: #113577;
   outline: none;
   padding: 0.1px;
   color: #ffffff;
@@ -21,7 +21,7 @@
     font-size: 16px;
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #08255f;
+    background-color: rgb(33, 34, 38);
     .title {
       display: flex;
       align-items: center;
@@ -58,7 +58,7 @@
       color: white;
       padding: 10px 20px;
       margin-bottom: 15px;
-      background: #08255f;
+      background-color: rgb(33, 34, 38);
       cursor: pointer;
       font-weight: 500;
       .wrapper-left {
@@ -72,17 +72,17 @@
             width: 100%;
           }
         }
-        .logo-talken {
-          width: 48px;
-          img {
-            width: 100%;
-          }
-        }
+        // .logo-talken {
+        //   width: 48px;
+        //   img {
+        //     width: 100%;
+        //   }
+        // }
       }
       .wrapper-right {
         display: flex;
         align-items: center;
-        width: 85px;
+        width: 100px;
         font-size: 14px;
         color: rgb(148, 149, 151);
         .text {
