@@ -291,6 +291,8 @@
 // homepage Tablet and Mobile
 //homepage tablet
 .homepage-mb {
+  z-index: 50;
+  position: relative;
   margin: 0px auto;
   max-width: 100vw;
   .section-01 {

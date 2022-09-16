@@ -21,7 +21,7 @@ const Purchase_History_Detail = () => {
 				<div className="campaignBlock">
 					<img height={30} src="https://static.assets.sweet.io/campaigns/267/avatar.jpg" alt="" />
 					<div className="campaign_name"> Sweet </div>
-					<img height={19} valign={top} src="https://collectible.sweet.io/static/verified.png"></img>
+					<img height={19} src="https://collectible.sweet.io/static/verified.png"></img>
 				</div>
 				<h1>Strawberry Shortcake Space Creampop #49</h1>
 				<div className="collectibleDescription">
