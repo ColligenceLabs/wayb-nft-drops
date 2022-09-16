@@ -12,10 +12,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import Carousel, { WithStyles } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Popup from 'reactjs-popup';
-import Content from './content';
+import Content from './TermsandConditions';
 import Faq from './faq';
+import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
-import LandingPageMB from './indexMB';
+import LandingPageMB from './LandingPageMB';
 
 const Landing = () => {
   return isMobile ? (
@@ -37,11 +38,6 @@ const Landing = () => {
         </div>
         <div className="landing-box-detail">
           <div className="details">
-            <img
-              className="magic-arch-mobile"
-              src={logo}
-              alt="magic dog arch"
-            />
             <div className="dog-gift">
               <img src={magic_dogs} alt="" />
             </div>
@@ -94,9 +90,9 @@ const Landing = () => {
                 </div>
               </div>
               <div className="buynow-wrapper">
-                <a href="https://sweet.io/magicdogs" target="_blank">
+                <Link to="/collections" target="_blank">
                   Buy Now
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -251,15 +247,6 @@ const Landing = () => {
           <Popup modal trigger={<a>Terms and Conditions</a>}>
             {(close) => <Content close={close} />}
           </Popup>
-        </div>
-        <div className="buy-now-mb">
-          <a
-            href="https://sweet.io/magicdogs"
-            target="_blank"
-            className="Buy-button-mb"
-          >
-            Buy Now
-          </a>
         </div>
       </div>
     </main>
