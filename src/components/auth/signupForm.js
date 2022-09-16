@@ -87,7 +87,7 @@ export default ({ close }) => (
         <div class="div-mobile">Connect with your Mobile Number</div>
         <form>
           <div class="phone_number">
-            <div class=" react-tel-input ">
+            <div class="react-tel-input ">
               <div class="special-label">Phone</div>
               <PhoneInput country={'us'} {...{ buttonStyle, dropdownStyle }} />
             </div>
@@ -97,9 +97,6 @@ export default ({ close }) => (
         <div class="animated">
           <div class="reCaptcha"><a>-- ReCAPTCHA --</a></div>
           <button type="submit" class="button-login" >Continue</button>
-          {/* <div class="text_switch">
-                            <button onClick={close}><span>Already have an account? Log in now!</span></button>
-                        </div> */}
           <Popup modal
             onClose={close}
             trigger={
