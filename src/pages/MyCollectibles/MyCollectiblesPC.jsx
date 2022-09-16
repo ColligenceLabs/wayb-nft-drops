@@ -10,11 +10,13 @@ import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
 import verify from '../../assets/img/verify-icon.png';
 
+
 import { useState, useRef } from 'react';
+import { isMobile } from 'react-device-detect';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-
+import MyCollectiblesMB from './MyCollectiblesMB';
 
 const MyCollectibles = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -133,9 +135,13 @@ const MyCollectibles = () => {
         return false;
     }
 
-    return (
+    return ( isMobile ? (
+        <MyCollectiblesMB />
+    ) : (
     <main className="my-wallet-container">
         <div className="wallet-wp">
+
+            {/* banner  */}
             <div className="banner">
                 
                 <div className="collectibles">
@@ -144,6 +150,7 @@ const MyCollectibles = () => {
                 
             </div>
 
+            {/* list button sort  */}
             <div className="wallet-sort">
                 <div className="count-label">9 items</div>
                 
@@ -178,6 +185,8 @@ const MyCollectibles = () => {
                         
                 </div>
             </div>
+
+            {/* item  */}
             <div className="page-grid">
             {listItems.map((item, index) => {
                         
@@ -214,7 +223,7 @@ const MyCollectibles = () => {
             </div>
         </div>
     </main>
-    
+    )
     );
 };
 
