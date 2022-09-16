@@ -55,8 +55,9 @@ const DialogWallets = ({ show, onHide }) => {
               MetaMask
             </div>
             <div className="wrapper-right">
-              <img src={dot_noconnect} alt="" />
-              <div className="text">Off</div>
+              {/* icon dot off */}
+              {/* <img src={dot_noconnect} alt="" /> */}
+              <div className="text">Available on desktop</div>
             </div>
           </button>
           <button className="account-item button">
@@ -67,8 +68,9 @@ const DialogWallets = ({ show, onHide }) => {
               Temple
             </div>
             <div className="wrapper-right">
-              <img src={dot_noconnect} alt="" />
-              <div className="text">Off</div>
+              {/* icon dot off */}
+              {/* <img src={dot_noconnect} alt="" /> */}
+              <div className="text">Available on desktop</div>
             </div>
           </button>
         </div>
