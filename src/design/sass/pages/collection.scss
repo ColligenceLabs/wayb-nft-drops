@@ -326,6 +326,13 @@
       width: 50%;
       border-right: 1px solid $dark-color-primary;
 
+      img{
+        display: block;
+        width: 85%;
+        margin: auto;
+        padding-top: 100px;
+        -webkit-transform: translateX(10px);
+      }
       video {
         display: block;
         width: 85%;
@@ -968,5 +975,5 @@
         }
       }
     }
-  }
+                                                      }
 }

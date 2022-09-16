@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import 'slick-carousel/slick/slick.css';
@@ -12,6 +12,8 @@ import ic_info from '../../assets/icon/info_pink.svg';
 import ic_search from '../../assets/icon/search.svg';
 import { isMobile } from 'react-device-detect';
 import SaleCollectiblesMb from './SaleCollectiblesMB';
+import PaymentWallets from 'components/modal/PaymentWallets';
+import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 
 
 const SaleCollectibles = () => {
@@ -63,6 +65,36 @@ const SaleCollectibles = () => {
       name: 'Chicago Deer 9',
     },
   ]
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
+  const ref = useRef();
+
+  const useOnClickOutside = (ref, handler) => {
+    useEffect(() => {
+      const listener = (event) => {
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener('mousedown', listener);
+      document.addEventListener('touchstart', listener);
+      return () => {
+        document.removeEventListener('mousedown', listener);
+        document.removeEventListener('touchstart', listener);
+      };
+    }, [ref, handler]);
+  };
+
+  useOnClickOutside(ref, () => setModalOpen(false));
+  const handleOpenPaymentWallets = () => {
+    setOpenPaymentWallets(true);
+  };
+
+  const handleClosePaymentWallets = () => {
+    setOpenPaymentWallets(false);
+  };
+
   return (
     isMobile ? <SaleCollectiblesMb /> :
       <main className="collection-container" style={{ marginTop: `3rem` }}>
@@ -70,7 +102,7 @@ const SaleCollectibles = () => {
           <div className="price-collection-view-page">
             <div className="price-collection-box">
               <div className="token-showcase-box">
-                <video id="visualizer_video" src="https://media.sweet.io/series/xGqErj1D/media.mp4?Expires=1663231386&Signature=an1-olHyIXC6qtuTdwCm-oGuFF98EogQzpDBVrBkQl5Ejh0Es~~5QqJjciR-uR4U8Ga1s70V~S0XsiIlJjPEfjxPkHpluUqmf9sCKm8CBTYAscnvUSUO8wFniid4lUrAljQTHjURKb8k0omQPagP6L54Xt-Oh~NlHwJbxrsggYjYOiJQR7tBH8L00pr0Ns2svnI4cd5WsfmCQ9~52LAJAmBpDQIzEk3Cojv03bmVVLi09Z0Q-Sl1pnnVuUUsUPKT5UqNbqt-wMLed7ieAvNQ1dDPY1vdqirZ76ip3fhLMdFd5TlrBfuMLNBcpx~TZbGwLSD33HH96YBSGx7pJNNWDg__&Key-Pair-Id=APKAI7JPLY6SMYVRHWMQ" ></video>
+                  <img src={home_11} />                                                                                                                                                                                                                                                                                                                           
               </div>
               <div className="token-details-box">
                 <div>
@@ -135,7 +167,7 @@ const SaleCollectibles = () => {
                     <div className="lable-top">Purchase price</div>
                     <div className="lable-bottom fw-600">$50.00</div>
                   </div>
-                  <button className="btn-sale-collection disable">Sold out</button>
+                  <button className={'btn-sale-collection'} onClick={setOpenPaymentWallets}>Buy Now</button>
                 </div>
               </div>
             </div>
@@ -165,7 +197,6 @@ const SaleCollectibles = () => {
                 <div className="marketplace-items">
                   <div className="list-carousel">
                     {list_products.map((item, index) => {
-                      console.log(item, index);
                       return (
                         <div className="slide-item">
                           <Link to={'/sale'} className="button">
@@ -219,6 +250,10 @@ const SaleCollectibles = () => {
               </div>
             </div>
           </div>
+          <PaymentWallets
+            show={openPaymentWallets}
+            onHide={handleClosePaymentWallets}
+          />
         </div>
       </main>
   );
