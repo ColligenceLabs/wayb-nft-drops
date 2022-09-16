@@ -9,6 +9,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import NavbarMb from './NavbarMb';
 import DialogWallets from 'components/modal/DialogWallets';
+import Popup from 'reactjs-popup';
+import LoginForm from "../auth/loginForm";
+import 'reactjs-popup/dist/index.css';
+
+const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
+const closeOnDocumentClick = false;
+const lockScroll = true;
 
 const Navbar = () => {
   const ref = useRef();
@@ -45,9 +52,8 @@ const Navbar = () => {
   ) : (
     <div className="nav-bar">
       <div
-        className={`${
-          location.pathname === '/' ? 'nav-home' : 'nav-other-page'
-        }`}
+        className={`${location.pathname === '/' ? 'nav-home' : 'nav-other-page'
+          }`}
       ></div>
       <div className="main-header-box">
         <div className="logo-header">
@@ -96,11 +102,18 @@ const Navbar = () => {
           </a>
         </div>
         {/* before login */}
-        {/* <div className="btn-login">
-          <button className="custom-btn">
-            <span className="custom-text">log in/ sign up</span>
-          </button>
-        </div> */}
+        <div className="btn-login">
+          <Popup modal
+            trigger={
+              <button className="custom-btn">
+                <span className="custom-text">log in/ sign up</span>
+              </button>
+            }
+            {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+          >
+            {close => <LoginForm close={close} />}
+          </Popup>
+        </div>
         {/* after login */}
         <div className="btn-wallets">
           <button

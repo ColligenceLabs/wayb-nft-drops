@@ -4,9 +4,9 @@ import Homepage from 'pages/homepage/HomePagePC';
 import Collections from 'pages/Collections/CollectionsPC';
 import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
 import Collection from 'pages/Collection/CollectionPC';
-import MyCollectibles from 'pages/MyCollectibles';
 import Landing from 'pages/Landingpage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
+import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
 import Profile from 'pages/MyProfile'
 
 const Router = () => [
