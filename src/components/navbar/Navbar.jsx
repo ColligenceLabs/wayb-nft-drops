@@ -11,7 +11,7 @@ import NavbarMb from './NavbarMb';
 import DialogWallets from 'components/modal/DialogWallets';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import Popup from 'reactjs-popup';
-import LoginForm from "../auth/loginForm";
+import LoginForm from '../auth/loginForm';
 import 'reactjs-popup/dist/index.css';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
@@ -37,8 +37,9 @@ const Navbar = () => {
   ) : (
     <div className="nav-bar">
       <div
-        className={`${location.pathname === '/' ? 'nav-home' : 'nav-other-page'
-          }`}
+        className={`${
+          location.pathname === '/' ? 'nav-home' : 'nav-other-page'
+        }`}
       ></div>
       <div className="main-header-box">
         <div className="logo-header">
@@ -88,7 +89,8 @@ const Navbar = () => {
         </div>
         {/* before login */}
         <div className="btn-login">
-          <Popup modal
+          <Popup
+            modal
             trigger={
               <button className="custom-btn">
                 <span className="custom-text">log in/ sign up</span>
@@ -96,7 +98,7 @@ const Navbar = () => {
             }
             {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
           >
-            {close => <LoginForm close={close} />}
+            {(close) => <LoginForm close={close} />}
           </Popup>
         </div>
         {/* after login */}
@@ -161,6 +163,7 @@ const Navbar = () => {
               strokeWidth="3"
             ></path>
           </svg>
+          {/* user dropdown box */}
           {isModalOpen && (
             <div>
               <div className="user-dropdown-box">
@@ -264,8 +267,6 @@ const Navbar = () => {
             </div>
           )}
         </button>
-        {/* user dropdown box */}
-
         {/* wallets box */}
         <DialogWallets
           show={openDialogWallets}
