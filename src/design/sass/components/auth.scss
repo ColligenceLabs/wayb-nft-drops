@@ -338,20 +338,27 @@
     .DsOX {
       height: 100vh;
       width: 100vw;
-    }
 
-    .div-wallets_1 {
-      button {
-        font-size: 9px;
-      }
-    }
+      .box-content {
+        form {
+          .box-input {
+            .div-wallets_1 {
+              button {
+                font-size: 9px;
+              }
+            }
 
-    .div-wallets_2 {
-      .row {
-        button {
-          font-size: 11.7px;
+            .div-wallets_2 {
+              .row {
+                button {
+                  font-size: 11.7px;
+                }
+              }
+            }
+          }
         }
       }
     }
+
   }
 }
