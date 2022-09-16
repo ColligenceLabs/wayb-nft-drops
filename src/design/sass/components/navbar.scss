@@ -389,6 +389,37 @@
             height: 25px;
           }
         }
+        .wrapper-fanpages {
+          border-top: 1px solid #393939;
+          display: flex;
+          justify-content: space-between;
+          padding: 20px;
+          .custom-icon {
+            width: 28px;
+            img {
+              width: 100%;
+            }
+          }
+        }
+        .wrapper-wallets {
+          width: 100%;
+          border-top: 1px solid #393939;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 13px 0;
+          .btn-wallets {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            .img-wallet {
+              width: 22px;
+              margin-right: 10px;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
       }
       .logout-btn {
         margin-top: 14px;
@@ -510,6 +541,7 @@
         margin-right: 5px;
       }
     }
+
   }
   .fanpage-icons {
     border-top: 1px solid rgba(255, 255, 255, 0.3);

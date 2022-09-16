@@ -9,6 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import NavbarMb from './NavbarMb';
 import DialogWallets from 'components/modal/DialogWallets';
+import useOnClickOutside from 'components/common/useOnClickOutside';
 import Popup from 'reactjs-popup';
 import LoginForm from "../auth/loginForm";
 import 'reactjs-popup/dist/index.css';
@@ -21,22 +22,7 @@ const Navbar = () => {
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
   const [openDialogWallets, setOpenDialogWallets] = useState(false);
-  const useOnClickOutside = (ref, handler) => {
-    useEffect(() => {
-      const listener = (event) => {
-        if (!ref.current || ref.current.contains(event.target)) {
-          return;
-        }
-        handler(event);
-      };
-      document.addEventListener('mousedown', listener);
-      document.addEventListener('touchstart', listener);
-      return () => {
-        document.removeEventListener('mousedown', listener);
-        document.removeEventListener('touchstart', listener);
-      };
-    }, [ref, handler]);
-  };
+
   useOnClickOutside(ref, () => setModalOpen(false));
   const handleOpenWalletDialog = () => {
     setOpenDialogWallets(true);
@@ -46,7 +32,6 @@ const Navbar = () => {
     setOpenDialogWallets(false);
   };
   let location = useLocation();
-  console.log(isModalOpen, 'modal');
   return isMobile ? (
     <NavbarMb />
   ) : (

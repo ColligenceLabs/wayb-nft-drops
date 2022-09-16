@@ -5,11 +5,14 @@ import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_telegram from '../../assets/img/icon_telegram.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
+import wallet_white from '../../assets/icon/wallet_white.svg';
+import useOnClickOutside from 'components/common/useOnClickOutside';
 const NavbarMb = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
   let location = useLocation();
+  useOnClickOutside(ref, () => setModalOpen(false));
   return (
     <>
       {/* navbar mobile */}
@@ -51,6 +54,7 @@ const NavbarMb = () => {
           </div>
           <div className="icon-nav">
             <button
+              ref={ref}
               className="button"
               style={{ display: 'block' }}
               onClick={() => setShowSidebar(!showSidebar)}
@@ -79,6 +83,7 @@ const NavbarMb = () => {
             <p className="user-name">User name</p>
           </div>
           <button
+            ref={ref}
             className="username-dropdown button"
             onClick={() => setModalOpen(!isModalOpen)}
           >
@@ -103,7 +108,7 @@ const NavbarMb = () => {
           </button>
           {/* user dropdown box */}
           {isModalOpen && (
-            <div ref={ref}>
+            <div>
               <div className="user-dropdown-box">
                 <div className="wrapper-dropdown">
                   <Link to={'/my-collectibles'} className="wallet-button">
@@ -198,6 +203,25 @@ const NavbarMb = () => {
                       <path d="M11 23.59v-3.6c-5.01-.26-9-4.42-9-9.49C2 5.26 6.26 1 11.5 1S21 5.26 21 10.5c0 4.95-3.44 9.93-8.57 12.4l-1.43.69zM11.5 3C7.36 3 4 6.36 4 10.5S7.36 18 11.5 18H13v2.3c3.64-2.3 6-6.08 6-9.8C19 6.36 15.64 3 11.5 3zm-1 11.5h2v2h-2zm2-1.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"></path>
                     </svg>
                     Help
+                  </div>
+                  <div className="wrapper-fanpages">
+                    <Link to={"/https://twitter.com"} target={"_blank"} rel="noreferrer" className='custom-icon'>
+                          <img src={icon_twitter} alt="" />
+                    </Link>
+                    <Link to={"https://discord.com"} target={"_blank"} rel="noreferrer" className='custom-icon'>
+                          <img src={icon_discord} alt="" />
+                    </Link>
+                    <Link to={"https://web.telegram.org"} target={"_blank"} rel="noreferrer" className='custom-icon'>
+                          <img src={icon_telegram} alt="" />
+                    </Link>
+                  </div>
+                  <div className="wrapper-wallets">
+                    <button className="btn-wallets button">
+                      <div className="img-wallet">
+                        <img src={wallet_white} alt="wallet" />
+                      </div>
+                      <span>Wallets</span>
+                    </button>
                   </div>
                 </div>
                 <div className="logout-btn">Log Out</div>
