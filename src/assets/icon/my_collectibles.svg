@@ -1,0 +1,21 @@
+          <svg
+            id="photo_library_black_24dp"
+            xmlns="http://www.w3.org/2000/svg"
+            width="46"
+            height="46"
+            viewBox="0 0 46 46"
+          >
+            <path
+              id="Path_123410"
+              data-name="Path 123410"
+              d="M0,0H46V46H0Z"
+              fill="none"
+            ></path>
+            <path
+              id="Path_123411"
+              data-name="Path 123411"
+              d="M36.65,5.85v23.1H13.55V5.85h23.1m0-3.85H13.55A3.861,3.861,0,0,0,9.7,5.85v23.1a3.861,3.861,0,0,0,3.85,3.85h23.1a3.861,3.861,0,0,0,3.85-3.85V5.85A3.861,3.861,0,0,0,36.65,2ZM20.287,20.615l3.253,4.35L28.315,19l6.41,8.027H15.475ZM2,9.7V36.65A3.861,3.861,0,0,0,5.85,40.5H32.8V36.65H5.85V9.7Z"
+              transform="translate(1.75 1.75)"
+              fill="#fff"
+            ></path>
+          </svg>

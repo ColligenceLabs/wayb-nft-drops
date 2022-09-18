@@ -12,20 +12,25 @@
   // padding: 20px 20px 0;
   transition: all 500ms;
   font-weight: 500;
+
   &.show {
     // left: 0;
     transform: translateX(-100%);
   }
+
   .close-sidebar {
     text-align: right;
     padding: 20px 20px 15px;
+
     .icon-close {
       display: inline-block;
-      svg {
+
+      img {
         width: 20px;
       }
     }
   }
+
   .login-signup {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -33,46 +38,50 @@
     text-transform: uppercase;
 
     span {
-      background: linear-gradient(
-        90deg,
-        rgb(227, 100, 190),
-        rgb(103, 129, 249)
-      );
+      background: linear-gradient(90deg,
+          rgb(227, 100, 190),
+          rgb(103, 129, 249));
       // background: linear-gradient(90deg, #b07cfe, #2061e2, );
       background-clip: text;
       color: transparent;
       font-weight: 600;
     }
   }
+
   .wrapper {
     margin-top: 25px;
     margin-left: 10px;
     padding: 0 20px;
+
     a {
       font-size: 16px;
       display: flex;
       align-items: center;
       margin-bottom: 15px;
-      svg {
+
+      img {
         width: 25px;
         height: 25px;
         margin-right: 5px;
       }
     }
+
     .about {
-      svg {
+      img {
         width: 20px;
         height: 20px;
         margin-left: 2px;
         margin-right: 8px;
       }
     }
+
     .help {
       font-size: 16px;
       display: flex;
       align-items: center;
       margin-bottom: 15px;
-      svg {
+
+      img {
         width: 25px;
         height: 25px;
         margin-right: 5px;
@@ -80,19 +89,23 @@
     }
 
   }
+
   .fanpage-icons {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding: 20px 30px;
+
     a {
       width: 30px;
+
       img {
         width: 100%;
       }
     }
   }
+
   //mobile view
   @include Mobile() {
     width: 55%;

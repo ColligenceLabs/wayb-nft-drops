@@ -1,0 +1,17 @@
+            <svg
+              className="sc-af3224b2-3 search-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="17.98"
+              height="17.98"
+              viewBox="0 0 17.98 17.98"
+            >
+              {' '}
+              <path
+                id="Trazado_46141"
+                data-name="Trazado 46141"
+                d="M15.85,14.308h-.812l-.288-.278a6.692,6.692,0,1,0-.72.72l.278.288v.812l5.14,5.13,1.532-1.532Zm-6.168,0a4.626,4.626,0,1,1,4.626-4.626A4.62,4.62,0,0,1,9.682,14.308Z"
+                transform="translate(-3 -3)"
+                fill="#fff"
+                opacity="0.248"
+              ></path>{' '}
+            </svg>

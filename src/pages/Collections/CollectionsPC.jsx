@@ -22,7 +22,7 @@ const Collections = () => {
           <div className="wrapper-header title-header">
             <div className="header-name">All Collections</div>
           </div>
-          <Link to={'/bucks'} className="custom-link">
+          <Link to={'/collection'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_05_banner} alt="" />
@@ -39,7 +39,7 @@ const Collections = () => {
               </div>
             </button>
           </Link>
-          <Link to={'/sale'} className="custom-link">
+          <Link to={'/collection'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_06_banner} alt="" />
@@ -56,7 +56,7 @@ const Collections = () => {
               </div>
             </button>
           </Link>
-          <Link to={'/sale'} className="custom-link">
+          <Link to={'/collection'} className="custom-link">
             <button className="grid-item button">
               <div className="banner-image">
                 <img src={home_07_banner} alt="" />
