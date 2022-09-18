@@ -76,7 +76,7 @@ const Homepage = () => {
           swipeable
         >
           <div className="slide-item">
-            <Link to={'/landingpage'} target={'_blank'}>
+            <Link to={'/oldnavy'} target={'_blank'}>
               <div>
                 <img src={home_02} alt="" draggable={false} />
               </div>
