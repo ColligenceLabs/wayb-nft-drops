@@ -6,15 +6,30 @@ import search_icon from '../../assets/icon/search_icon.svg';
 import nav_icon from '../../assets/icon/nav_icon.svg';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import SidebarMb from 'components/sidebar/SidebarMb';
-import UsernameBox from 'components/modal/UsernameBox';
+import UsernameBox from 'components/common/UsernameBox';
+import DialogWallets from 'components/modal/DialogWallets';
+import DialogWalletsMb from 'components/modal/DialogWalletsMb';
 
 const NavbarMb = () => {
   // const [showSidebar, setShowSidebar] = useState(false);
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const [openDialogWalletsMb, setOpenDialogWalletsMb] = useState(false);
+  const handleOpenWalletDialog = () => {
+    setOpenDialogWalletsMb(true);
+  };
+
+  const handleCloseWalletDialog = () => {
+    setOpenDialogWalletsMb(false);
+  };
   let location = useLocation();
   useOnClickOutside(ref, () => setModalOpen(false));
+
   const handleCloseSidebar = () => {
+    setSidebarOpen(false);
+  };
+  const handleHideModal = () => {
     setModalOpen(false);
   };
   return (
@@ -41,11 +56,11 @@ const NavbarMb = () => {
             />
           </div>
           <div className="icon-nav">
-            <button className="button" onClick={() => setModalOpen(true)}>
+            <button className="button" onClick={() => setSidebarOpen(true)}>
               <img src={nav_icon} alt="Navbar Icon" />
               {/* side bar */}
             </button>
-            <SidebarMb show={isModalOpen} onHide={handleCloseSidebar} />
+            <SidebarMb show={isSidebarOpen} onHide={handleCloseSidebar} openWallets={handleOpenWalletDialog} onHideWalletsMb={handleCloseWalletDialog}   />
           </div>
 
           {/* after login */}
@@ -79,7 +94,14 @@ const NavbarMb = () => {
               ></path>
             </svg>
             {/* user dropdown box */}
-            {isModalOpen && <UsernameBox onHide={handleCloseSidebar} />}
+            {isModalOpen && <UsernameBox onHide={handleHideModal} />}
+            {/* wallets box */}
+            <DialogWalletsMb
+              showWalletsMb={openDialogWalletsMb}
+              onHideWalletsMb={handleCloseWalletDialog}
+              openWallets={handleOpenWalletDialog}
+              onHide={handleCloseSidebar}
+            />
           </button>
         </div>
       </div>

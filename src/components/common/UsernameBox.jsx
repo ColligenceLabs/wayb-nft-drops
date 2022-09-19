@@ -10,24 +10,36 @@ import my_profile from '../../assets/icon/my_profile.svg';
 import help from '../../assets/icon/help.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 
-const UsernameBox = (onHide) => {
+const UsernameBox = ({ openWallets, onHideSidebar }) => {
   return (
     <div className="user-dropdown-box">
       <div className="close-sidebar">
-        <div className="icon-close" onClick={onHide}>
+        <div className="icon-close" onClick={onHideSidebar}>
           <img src={close_icon} alt="Close Icon" />
         </div>
       </div>
       <div className="wrapper-dropdown">
-        <Link to={'/my-collectibles'} className="wallet-button">
+        <Link
+          to={'/my-collectibles'}
+          className="wallet-button"
+          onClick={onHideSidebar}
+        >
           <img src={my_collectibles} alt="My Collectibles" />
           My Collectibles
         </Link>
-        <Link to={'/purchase-history'} className="wallet-button">
+        <Link
+          to={'/purchase-history'}
+          className="wallet-button"
+          onClick={onHideSidebar}
+        >
           <img src={purchase_history} alt="Purchase History" />
           Purchase History
         </Link>
-        <Link to={'/my-profile'} className="wallet-button">
+        <Link
+          to={'/my-profile'}
+          className="wallet-button"
+          onClick={onHideSidebar}
+        >
           <img src={my_profile} alt="My Profile" />
           My Profile
         </Link>
@@ -62,7 +74,13 @@ const UsernameBox = (onHide) => {
           </a>
         </div>
         <div className="wrapper-wallets">
-          <button className="btn-wallets button">
+          <button
+            className="btn-wallets button"
+            onClick={() => {
+              openWallets();
+              onHideSidebar();
+            }}
+          >
             <div className="img-wallet">
               <img src={wallet_white} alt="wallet" />
             </div>
