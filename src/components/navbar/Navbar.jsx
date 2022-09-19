@@ -14,7 +14,7 @@ import useOnClickOutside from 'components/common/useOnClickOutside';
 import Popup from 'reactjs-popup';
 import LoginForm from '../auth/loginForm';
 import 'reactjs-popup/dist/index.css';
-import UsernameBox from 'components/modal/UsernameBox';
+import UsernameBox from 'components/common/UsernameBox';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -135,6 +135,7 @@ const Navbar = () => {
         <DialogWallets
           show={openDialogWallets}
           onHide={handleCloseWalletDialog}
+          open={handleOpenWalletDialog}
         />
       </div>
     </div>

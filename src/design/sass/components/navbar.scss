@@ -11,10 +11,12 @@
     width: 100%;
     height: 150px;
     top: 0px;
-    background-image: linear-gradient(rgb(0, 0, 0),
-        rgb(0, 0, 0),
-        rgba(0, 0, 0, 0.75),
-        rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+      rgb(0, 0, 0),
+      rgb(0, 0, 0),
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0)
+    );
     opacity: 0.4;
   }
 
@@ -197,52 +199,6 @@
       margin-left: 15px;
     }
 
-    // user-dropdown-box
-    // .user-dropdown-box {
-    //   // width: 220px;
-    //   height: auto;
-    //   border-radius: 12px;
-    //   background-color: #333333;
-    //   position: absolute;
-    //   right: 0px;
-    //   top: 115%;
-    //   flex-direction: column;
-    //   padding: 20px;
-    //   z-index: 20;
-    //   // display: none;
-    //   .wrapper-dropdown {
-    //     display: flex;
-    //     flex-direction: column;
-    //     margin-bottom: 20px;
-    //     .wallet-button {
-    //       text-decoration: none;
-    //       color: white;
-    //       font-weight: 500;
-    //       display: flex;
-    //       align-items: center;
-    //       padding: 10px 0px;
-    //       svg {
-    //         margin-right: 5px;
-    //         width: 25px;
-    //         height: 25px;
-    //       }
-    //     }
-    //   }
-    //   .logout-btn {
-    //     margin-top: 14px;
-    //     border-radius: 10px;
-    //     font-size: 13px;
-    //     color: #ff6a6a;
-    //     height: 40px;
-    //     line-height: 40px;
-    //     width: 100%;
-    //     cursor: pointer;
-    //     background-color: #262525;
-    //     text-align: center;
-    //     font-weight: 600;
-    //   }
-    // }
-
     //modal wallets box
     .modal-wallets {
       position: fixed;
@@ -258,6 +214,7 @@
       box-shadow: #113577 -5px 5px 20px;
     }
   }
+  
 }
 
 //navbar tablet and mobile
@@ -274,10 +231,12 @@
     width: 100%;
     height: 150px;
     top: 0px;
-    background-image: linear-gradient(rgb(0, 0, 0),
-        rgb(0, 0, 0),
-        rgba(0, 0, 0, 0.75),
-        rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+      rgb(0, 0, 0),
+      rgb(0, 0, 0),
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0)
+    );
     opacity: 0.4;
   }
 
@@ -380,84 +339,6 @@
       margin-right: 20px;
       // display: none;
     }
-
-    // user-dropdown-box-mobile
-    // .user-dropdown-box {
-    //   // width: 220px;
-    //   height: auto;
-    //   border-radius: 12px;
-    //   background-color: #333333;
-    //   position: absolute;
-    //   right: 0px;
-    //   top: 100%;
-    //   flex-direction: column;
-    //   padding: 20px;
-    //   z-index: 20;
-    //   margin-right: 25px;
-    //   // display: none;
-    //   .wrapper-dropdown {
-    //     display: flex;
-    //     flex-direction: column;
-    //     margin-bottom: 20px;
-    //     .wallet-button {
-    //       text-decoration: none;
-    //       color: white;
-    //       font-weight: 500;
-    //       display: flex;
-    //       align-items: center;
-    //       padding: 10px 0px;
-    //       svg {
-    //         margin-right: 5px;
-    //         width: 25px;
-    //         height: 25px;
-    //       }
-    //     }
-    //     .wrapper-fanpages {
-    //       border-top: 1px solid #393939;
-    //       display: flex;
-    //       justify-content: space-between;
-    //       padding: 20px;
-    //       .custom-icon {
-    //         width: 28px;
-    //         img {
-    //           width: 100%;
-    //         }
-    //       }
-    //     }
-    //     .wrapper-wallets {
-    //       width: 100%;
-    //       border-top: 1px solid #393939;
-    //       font-size: 14px;
-    //       font-weight: 500;
-    //       padding: 13px 0;
-    //       .btn-wallets {
-    //         display: flex;
-    //         justify-content: space-between;
-    //         align-items: flex-start;
-    //         .img-wallet {
-    //           width: 22px;
-    //           margin-right: 10px;
-    //           img {
-    //             width: 100%;
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    //   .logout-btn {
-    //     margin-top: 14px;
-    //     border-radius: 10px;
-    //     font-size: 13px;
-    //     color: #ff6a6a;
-    //     height: 40px;
-    //     line-height: 40px;
-    //     width: 100%;
-    //     cursor: pointer;
-    //     background-color: #262525;
-    //     text-align: center;
-    //     font-weight: 600;
-    //   }
-    // }
   }
 
   //navbar mobile

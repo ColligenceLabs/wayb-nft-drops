@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LoginForm from 'components/auth/loginForm';
 import Popup from 'reactjs-popup';
 import icon_twitter from '../../assets/img/icon_twitter.png';
@@ -9,14 +9,14 @@ import about from '../../assets/icon/about.svg';
 import blog from '../../assets/icon/blog.svg';
 import help from '../../assets/icon/help.svg';
 
-import UsernameBox from 'components/modal/UsernameBox';
+import UsernameBox from 'components/common/UsernameBox';
 
-const SidebarMb = ({ show, onHide }) => {
+const SidebarMb = ({ openWallets, onHideWalletsMb, show, onHide }) => {
   const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
   const closeOnDocumentClick = false;
   const lockScroll = true;
   return (
-    <div className={`side-bar ${show ? 'show' : ''}`}>
+    <div className={`side-bar ${show ? 'show' : ''}`} onClick={onHide}>
       {/* sidebar before login */}
       {/* <>
         <div className="close-sidebar">
@@ -60,7 +60,13 @@ const SidebarMb = ({ show, onHide }) => {
         </div>
       </> */}
       {/* sidebar after login */}
-      <UsernameBox />
+      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+        <UsernameBox
+          onHideSidebar={onHide}
+          openWallets={openWallets}
+          onHideWalletsMb={onHideWalletsMb}
+        />
+      </div>
     </div>
   );
 };
