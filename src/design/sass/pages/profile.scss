@@ -538,7 +538,7 @@
 		}
 	}
 }
-@media (max-width: 540px){
+@include Mobile() {
 	.modal-editprofile .modal-overlay .modal-content{
 		height: -webkit-fill-available;
 		border-radius: 0px;

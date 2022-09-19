@@ -389,7 +389,7 @@
 		display: none;
 	}
 }
-@media (max-width: 414px){
+@include Mobile() {
 	.landing-container{
 		min-height: 0px;
 	}
@@ -679,7 +679,7 @@
 			}
 		}
 	}
-@media (max-width: 768px){
+  @include Mobile() {
 	.modal-landingpage{
 		.modal-box{
 			inset: 0;

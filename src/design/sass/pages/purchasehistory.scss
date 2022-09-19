@@ -292,7 +292,7 @@
 		}
 	}
 }
-@media (max-width: 768px){
+@include Mobile() {
 	.purchase-container .purchase-history-page{
 		width: 100%;
 		.purchase-history-header{
