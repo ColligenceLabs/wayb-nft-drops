@@ -167,7 +167,7 @@
 		overflow: auto;
 		.modal-content{
 			outline: none;
-			background-color: #ffff;
+			background-color: #212121;
 			padding: 0.1px;
 			width: 750px;
 			margin: 5% auto;
@@ -181,6 +181,7 @@
 					position: relative;
 					font-size: 26px;
 					margin-bottom: 25px;
+					color: white;
 					.close{
 						position: absolute;
 						right: 0px;
@@ -212,6 +213,7 @@
 						.content-title{
 							margin-bottom: 5px;
 							margin-left: 5px;
+							color: white;
 						}
 						input{
 							border-radius: 10px;
@@ -220,7 +222,8 @@
 							padding: 12px 10px;
 							outline: none;
 							border: none;
-							box-shadow: 0 0 5px 5px #f0ebfc;
+							background-color: #363636;
+							color: white;
 						}
 						textarea{
 							resize: vertical;
@@ -550,6 +553,9 @@
 				}
 				.photo{
 					margin: 10px 29%;
+					.content-title{
+						font-size: 15px;
+					}
 				}
 			}
 		}

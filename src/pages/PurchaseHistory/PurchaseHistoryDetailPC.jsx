@@ -1,5 +1,9 @@
 import React from 'react';
-import twitter_icon from '../../assets/svg/twitter_icon.svg';
+import talken_icon from '../../assets/img/icon_talk.png';
+import verify_icon from '../../assets/img/verify-icon.png';
+import info_icon from '../../assets/img/icon_info.png';
+import image_nft from '../../assets/img/image_nft.png';
+import avatar from '../../assets/img/avatar_user.webp';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -18,12 +22,12 @@ const Purchase_History_Detail = () => {
 			</Link>
 			<div className="collectible">
 				<div className="collectible-image-container">
-					<img src="https://collectible.sweet.io/series/1727/images/front.png" alt="" />
+					<img src={image_nft} alt="" />
 				</div>
 				<div className="campaignBlock">
-					<img height={30} src="https://static.assets.sweet.io/campaigns/267/avatar.jpg" alt="" />
-					<div className="campaign_name"> Sweet </div>
-					<img height={19} src="https://collectible.sweet.io/static/verified.png"></img>
+					<img height={30} src={talken_icon} alt="" />
+					<div className="campaign_name"> Talken </div>
+					<img height={19} src={verify_icon}></img>
 				</div>
 				<h1>Strawberry Shortcake Space Creampop #49</h1>
 				<div className="collectibleDescription">
@@ -31,12 +35,12 @@ const Purchase_History_Detail = () => {
           	The only thing better than ice cream is ice cream in SPACE!
         	</p>
 					<button>
-						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/OOjs_UI_icon_info_big.svg/1200px-OOjs_UI_icon_info_big.svg.png" alt="Information"/>
+						<img src={info_icon} alt="Information"/>
 						<span>Authenticity</span>
 					</button>
 				</div>
 				<div className="current_owner">
-					<img id="profile_image" height={30} src="https://lh3.googleusercontent.com/a/AATXAJxEAWU5gCe8QEZrHleAchePl1Prf7Fu1ZFoLq5X=s500-c"/>
+					<img id="profile_image" height={30} src={avatar}/>
 					<br />
 					<div className="current_owner_title">Current Owner</div>
 						Martin K.
@@ -69,7 +73,7 @@ const Purchase_History_Detail = () => {
 					<a href="#" target={'_blank'}>
 						<div className="marketplace-container">
 							<span>
-								<img class="marketplace-icon" src="https://collectible.sweet.io/static/sweet-pop-white.svg"/>
+								<img className="marketplace-icon" src={talken_icon}/>
 							</span>
 							<span className='marketplace-text'>Visit the Marketplace</span>
 						</div>

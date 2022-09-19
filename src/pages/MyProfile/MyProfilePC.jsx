@@ -1,5 +1,6 @@
 import React from 'react';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
+import avatar from '../../assets/img/avatar_user.webp';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -23,7 +24,7 @@ const MyProfile = () => {
 					<div className="my-profile-leftdetail">
 						<div className="my-profile-detail-header">
 							<div>
-								<img src="https://chiase24.com/wp-content/uploads/2022/02/Tong-hop-hinh-anh-gai-xinh-de-thuong-cute-nhat-1.jpg" alt="avatar" className="avatar"/>
+								<img src={avatar} alt="avatar" className="avatar"/>
 								<div className="my-profile-name">
 									<div className="fullname">Chainos</div>
 									<div className="username">@Chainos_2022</div>
@@ -52,7 +53,7 @@ const MyProfile = () => {
 							</div>
 							<div className="contact-detail">
 								<div className="title">🎂  Birthday</div>
-								<div className="content">16/09/2000</div>
+								<div className="content">07/05/2018</div>
 							</div>
 							<div className="contact-detail">
 								<div className="title">📨  Email</div>
