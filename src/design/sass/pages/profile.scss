@@ -538,7 +538,42 @@
 		}
 	}
 }
-@include Mobile() {
+@include Tablet_Mobile(){
+	.profile-container {
+		.my-profile-page{
+			.my-profile-detail{
+				.my-profile-leftdetail{
+					.my-profile-detail-header{
+						flex-direction: column;
+						>div{
+							width: 100%;
+							text-align: left;
+						}
+						.myProfileSocials{
+							margin-top: 15px;
+							.Socialsdetail{
+								padding: 0px 10px;
+								>div{
+									display: inline;
+								}
+								.value{
+									font-size: 20px;
+    							margin: 0px;
+								}
+								.label{
+									font-size: 16px;
+									margin-left: 10px;
+								}
+							}
+						}
+					}
+				}
+			}
+		} 
+	}
+	.profile-container .my-profile-contact{
+		flex-wrap: wrap;
+	}
 	.modal-editprofile .modal-overlay .modal-content{
 		height: -webkit-fill-available;
 		border-radius: 0px;
@@ -559,5 +594,31 @@
 				}
 			}
 		}
+	}
+}
+@media (max-width: 1024px){
+	.profile-container {
+		.my-profile-page{
+			.my-profile-detail{
+				flex-direction: column;  
+			}
+		} 
+		.my-profile-rightdetail{
+			margin: 20px 0 0 5px !important;
+		}
+	}
+}
+@media (max-width: 1366px){
+	.profile-container {
+		.my-profile-page{
+			.my-profile-header{
+				width: 100%;
+				padding: 15px 15px 0;
+			} 
+			.my-profile-detail{
+				width: 100%;
+				padding: 15px 15px 0;
+			}
+		} 
 	}
 }

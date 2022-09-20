@@ -35,9 +35,11 @@ const Landing = () => {
             </Popup>
             <button className="sign-up">Sign Up</button>
           </div>
+					<div className="line"></div>
         </div>
         <div className="landing-box-detail">
           <div className="details">
+						<img className="magic-arch-mobile" src={logo} alt="magic dog arch"/>
             <div className="dog-gift">
               <img src={magic_dogs} alt="" />
             </div>
@@ -248,6 +250,9 @@ const Landing = () => {
             {(close) => <Content close={close} />}
           </Popup>
         </div>
+        <div className="buy-now-mb">
+					<Link to="/collections" target="_blank" className="Buy-button-mb">Buy Now</Link>
+				</div>
       </div>
     </main>
   );

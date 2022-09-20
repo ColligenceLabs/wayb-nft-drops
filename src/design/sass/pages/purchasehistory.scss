@@ -292,7 +292,7 @@
 		}
 	}
 }
-@include Mobile() {
+@include Tablet_Mobile() {
 	.purchase-container .purchase-history-page{
 		width: 100%;
 		.purchase-history-header{
@@ -487,5 +487,38 @@
 				}
 			}
 		}
+	}
+}
+@include Tablet_Mobile(){
+	.purchase-detail-container{
+		.collectible .infoContainer .collectible-info-boxes{
+			flex-wrap: wrap;
+				justify-content: center;
+			.info{
+				padding: 0 5px;
+			}
+		} 
+		.back-purchase-list{
+			top: 85px;
+			left: -5px;
+			z-index: 10;
+			height: 40px;
+			width: 75px;
+		}
+	}
+
+}
+@include Tablet(){
+	.purchase-detail-container{
+		.collectible .infoContainer .collectible-info-boxes{
+			width: 450px;
+		} 
+	}
+}
+@include Mobile(){
+	.purchase-detail-container{
+		.collectible .infoContainer .collectible-info-boxes{
+			width: 357px;
+		} 
 	}
 }
