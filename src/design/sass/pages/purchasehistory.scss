@@ -114,7 +114,7 @@
 	}
 .purchase-detail-container{
 	position: relative;
-	z-index: 300;
+	// z-index: 15;
 	max-width: 100vw;
 	padding: 50px 1rem 50px;
 	.back-purchase-list{
@@ -167,6 +167,7 @@
 			> img{
 				height: 30;
 				border-radius: 50%;
+				margin-right: 5px;
 			}
 			.campaign_name{
 				margin-right: 4px;
@@ -291,7 +292,7 @@
 		}
 	}
 }
-@media (max-width: 768px){
+@include Mobile() {
 	.purchase-container .purchase-history-page{
 		width: 100%;
 		.purchase-history-header{
@@ -306,7 +307,7 @@
 //mobile series
 .purchase-detail-container-mb{
 	position: relative;
-	z-index: 300;
+	// z-index: 15;
 	max-width: 100vw;
 	padding: 50px 1rem 50px;
 	.back-purchase-list{
@@ -359,6 +360,7 @@
 			> img{
 				height: 30;
 				border-radius: 50%;
+				margin-right: 5px;
 			}
 			.campaign_name{
 				margin-right: 4px;
