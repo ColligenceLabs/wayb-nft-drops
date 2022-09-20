@@ -4,7 +4,8 @@ import Homepage from 'pages/homepage/HomePagePC';
 import Collections from 'pages/Collections/CollectionsPC';
 import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
 import Collection from 'pages/Collection/CollectionPC';
-import Landing from 'pages/Landingpage/LandingPagePC';
+import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetailsPC';
+import Landing from 'pages/Landingpage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
 import Profile from 'pages/MyProfile/MyProfilePC';
@@ -21,6 +22,7 @@ const Router = () => [
       { path: '/collections', element: <Collections /> },
       { path: '/sale', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },
+      { path: '/my-collectibles/details', element: <MyCollectiblesDetails/> },
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <Purchase_History /> },
       { path: '/series', element: <Purchase_History_Detail /> },

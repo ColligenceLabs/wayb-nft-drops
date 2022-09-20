@@ -191,7 +191,7 @@ const MyCollectibles = () => {
             {listItems.map((item, index) => {
                         
                         
-            return <a href="/" key={index}>
+            return <a href='/' key={index}>
                 <div className="item-product" >
                         
                     
