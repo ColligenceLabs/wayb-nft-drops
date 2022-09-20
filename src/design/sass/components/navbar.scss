@@ -1,6 +1,7 @@
 @import '../helpers/variables';
 @import '../helpers/mixin';
 
+//navbar PC view
 .nav-bar {
   padding-top: 20px;
   color: #ffffff;
@@ -41,6 +42,7 @@
 
     .logo-header {
       width: 110px;
+      margin-left: 20px;
 
       img {
         width: 100%;
@@ -197,6 +199,7 @@
     .username-dropdown {
       background-color: transparent;
       margin-left: 15px;
+      margin-right: 20px;
     }
 
     //modal wallets box
