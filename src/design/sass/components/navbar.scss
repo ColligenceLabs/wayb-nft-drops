@@ -39,6 +39,7 @@
     position: relative;
     z-index: 10;
     margin: auto;
+    gap: 10px;
 
     .logo-header {
       width: 110px;
@@ -53,7 +54,6 @@
       display: flex;
       -webkit-box-align: center;
       align-items: center;
-      margin: 0px 30px 0px 15px;
       height: calc(50px - 5px);
       background-color: #ffffff1a;
       border-radius: 50vh;
@@ -85,12 +85,11 @@
     .contact-header {
       display: flex;
       justify-content: space-between;
-      margin-right: 20px;
       font-size: 16px;
       font-weight: 600;
+      width: 150px;
 
       a {
-        margin-right: 15px;
         color: #ffffff;
         text-decoration: none;
         cursor: pointer;
@@ -99,13 +98,13 @@
     }
 
     .fanpage-icons {
-      padding-left: 20px;
-      padding-right: 5px;
       border-left: 1px solid #ffffff;
       height: 30px;
-
+      display: flex;
+      justify-content: space-evenly;
+      width: 150px;
+      flex-shrink: 0;
       a {
-        margin-right: 15px;
         display: inline-block;
         height: 100%;
         cursor: pointer;
@@ -116,14 +115,14 @@
         }
       }
     }
-
+    // before login PC view
     .btn-login {
       padding: 0px 15px;
-      margin: 0px;
+      margin-right: 20px;
       border-radius: 40px;
       background: linear-gradient(90deg, #2061e2, #b07cfe);
       overflow: hidden;
-
+      // display: none;
       .custom-btn {
         background-color: transparent;
         text-decoration: none;
@@ -141,12 +140,16 @@
         }
       }
     }
-
+    // before login Tablet, Mobile view
+    .icon-nav {
+      margin-right: 20px;
+      display: none;
+    }
     //after login
     .btn-wallets {
       height: 45px;
       padding: 0 15px;
-
+      display: none;
       .custom-btn {
         height: 100%;
         padding: 0px 20px;
@@ -171,13 +174,13 @@
         }
       }
     }
-
     .wrapper-user {
       display: flex;
       align-items: center;
       background-color: transparent;
       position: relative;
       align-self: center;
+      display: none;
 
       .avatar-user {
         width: 26px;
@@ -193,6 +196,7 @@
         font-weight: 500;
         line-height: 36px;
         order: 1;
+        white-space: nowrap;
       }
     }
 
@@ -200,6 +204,7 @@
       background-color: transparent;
       margin-left: 15px;
       margin-right: 20px;
+      display: none;
     }
 
     //modal wallets box
@@ -217,7 +222,39 @@
       box-shadow: #113577 -5px 5px 20px;
     }
   }
-  
+  @include Tablet() {
+    z-index: 400;
+    padding-bottom: 0;
+    .main-header-box {
+      .search-bar {
+        margin: 0px 9px;
+        height: $header-mobile-height;
+        .search-icon {
+          margin: 0px 5px 0px 20px;
+          line-height: 50px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+      .contact-header {
+        display: none;
+      }
+      .fanpage-icons {
+        display: none;
+      }
+      .btn-login {
+        display: none;
+      }
+      .btn-wallets {
+        display: none;
+      }
+      .icon-nav {
+        display: block;
+        margin-right: 15px;
+      }
+    }
+
+  }
 }
 
 //navbar tablet and mobile

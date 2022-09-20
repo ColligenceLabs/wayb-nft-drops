@@ -187,7 +187,7 @@ const MyCollectiblesMB = () => {
             {listItems.map((item, index) => {
                         
                         
-            return <a href="/" key={index}>
+            return <Link to={"/details"} key={index}>
                 <div className="item-product" >
                         
                     
@@ -211,7 +211,7 @@ const MyCollectiblesMB = () => {
                     </div>
                     
                 </div>
-            </a>
+            </Link>
             })}
             </div>
             </div>

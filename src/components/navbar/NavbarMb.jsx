@@ -14,7 +14,7 @@ const NavbarMb = () => {
   // const [showSidebar, setShowSidebar] = useState(false);
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [openDialogWalletsMb, setOpenDialogWalletsMb] = useState(false);
   const handleOpenWalletDialog = () => {
     setOpenDialogWalletsMb(true);
@@ -60,7 +60,12 @@ const NavbarMb = () => {
               <img src={nav_icon} alt="Navbar Icon" />
               {/* side bar */}
             </button>
-            <SidebarMb show={isSidebarOpen} onHide={handleCloseSidebar} openWallets={handleOpenWalletDialog} onHideWalletsMb={handleCloseWalletDialog}   />
+            <SidebarMb
+              show={isSidebarOpen}
+              onHide={handleCloseSidebar}
+              openWallets={handleOpenWalletDialog}
+              onHideWalletsMb={handleCloseWalletDialog}
+            />
           </div>
 
           {/* after login */}

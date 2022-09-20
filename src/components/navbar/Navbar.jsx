@@ -6,6 +6,7 @@ import icon_telegram from '../../assets/img/icon_telegram.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_white from '../../assets/icon/wallet_white.svg';
+import nav_icon from '../../assets/icon/nav_icon.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import NavbarMb from './NavbarMb';
@@ -15,6 +16,7 @@ import Popup from 'reactjs-popup';
 import LoginForm from '../auth/loginForm';
 import 'reactjs-popup/dist/index.css';
 import UsernameBox from 'components/common/UsernameBox';
+import SidebarMb from 'components/sidebar/SidebarMb';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -24,6 +26,7 @@ const Navbar = () => {
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
   const [openDialogWallets, setOpenDialogWallets] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   useOnClickOutside(ref, () => setModalOpen(false));
   const handleOpenWalletDialog = () => {
@@ -32,6 +35,9 @@ const Navbar = () => {
 
   const handleCloseWalletDialog = () => {
     setOpenDialogWallets(false);
+  };
+  const handleCloseSidebar = () => {
+    setSidebarOpen(false);
   };
   let location = useLocation();
   return isMobile ? (
@@ -73,7 +79,7 @@ const Navbar = () => {
             <img src={icon_telegram} alt="" />
           </a>
         </div>
-        {/* before login */}
+        {/* before login PC view */}
         <div className="btn-login">
           <Popup
             modal
@@ -86,6 +92,19 @@ const Navbar = () => {
           >
             {(close) => <LoginForm close={close} />}
           </Popup>
+        </div>
+        {/* before login Tablet, Mobile view */}
+        <div className="icon-nav">
+          <button className="button" onClick={() => setSidebarOpen(true)}>
+            <img src={nav_icon} alt="Navbar Icon" />
+            {/* side bar */}
+          </button>
+          <SidebarMb
+            show={isSidebarOpen}
+            onHide={handleCloseSidebar}
+            openWallets={handleOpenWalletDialog}
+            onHideWalletsMb={handleCloseWalletDialog}
+          />
         </div>
         {/* after login */}
         <div className="btn-wallets">
