@@ -17,11 +17,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import MyCollectiblesMB from './MyCollectiblesMB';
+import { useNavigate } from 'react-router-dom';
 
 const MyCollectibles = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const navigate = useNavigate();
     const [appState, setChange] = useState({
-        
         objects: [{
             id: 1,
             name: 'Newest'
