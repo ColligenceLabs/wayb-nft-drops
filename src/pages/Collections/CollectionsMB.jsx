@@ -13,13 +13,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
-import CollectionsMb from './CollectionsMB';
-import { isMobile } from 'react-device-detect';
-const Collections = () => {
+const CollectionsMb = () => {
   return (
-    isMobile ? <CollectionsMb />
-    :
-    <div className="home-page">
+    <div className="homepage-mb">
       <div className="section-02">
         <div className="grid-container">
           {/* Featured Collections */}
@@ -83,4 +79,4 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default CollectionsMb;
