@@ -63,7 +63,6 @@ const NavbarMb = () => {
             <SidebarMb
               show={isSidebarOpen}
               onHide={handleCloseSidebar}
-              openWallets={handleOpenWalletDialog}
               onHideWalletsMb={handleCloseWalletDialog}
             />
           </div>
@@ -101,12 +100,12 @@ const NavbarMb = () => {
             {/* user dropdown box */}
             {isModalOpen && <UsernameBox onHide={handleHideModal} />}
             {/* wallets box */}
-            <DialogWalletsMb
+            {/* <DialogWalletsMb
               showWalletsMb={openDialogWalletsMb}
               onHideWalletsMb={handleCloseWalletDialog}
               openWallets={handleOpenWalletDialog}
               onHide={handleCloseSidebar}
-            />
+            /> */}
           </button>
         </div>
       </div>

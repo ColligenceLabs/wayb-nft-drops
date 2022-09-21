@@ -17,6 +17,7 @@ import LoginForm from '../auth/loginForm';
 import 'reactjs-popup/dist/index.css';
 import UsernameBox from 'components/common/UsernameBox';
 import SidebarMb from 'components/sidebar/SidebarMb';
+import { useModalWalletsStore, useSidebarStore } from 'components/common/AppStore';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -25,20 +26,11 @@ const lockScroll = true;
 const Navbar = () => {
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [openDialogWallets, setOpenDialogWallets] = useState(false);
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const {openSidebar} = useSidebarStore()
+  const { updateOpenWallet } = useModalWalletsStore();
 
   useOnClickOutside(ref, () => setModalOpen(false));
-  const handleOpenWalletDialog = () => {
-    setOpenDialogWallets(true);
-  };
 
-  const handleCloseWalletDialog = () => {
-    setOpenDialogWallets(false);
-  };
-  const handleCloseSidebar = () => {
-    setSidebarOpen(false);
-  };
   let location = useLocation();
   return isMobile ? (
     <NavbarMb />
@@ -95,22 +87,18 @@ const Navbar = () => {
         </div>
         {/* before login Tablet, Mobile view */}
         <div className="icon-nav">
-          <button className="button" onClick={() => setSidebarOpen(true)}>
+          <button className="button" onClick={openSidebar}>
             <img src={nav_icon} alt="Navbar Icon" />
             {/* side bar */}
           </button>
           <SidebarMb
-            show={isSidebarOpen}
-            onHide={handleCloseSidebar}
-            openWallets={handleOpenWalletDialog}
-            onHideWalletsMb={handleCloseWalletDialog}
           />
         </div>
         {/* after login */}
         <div className="btn-wallets">
           <button
             className="custom-btn button"
-            onClick={handleOpenWalletDialog}
+            onClick={() => updateOpenWallet(true)}
           >
             <span className="wrapper-btn">
               <img src={wallet_white} alt="Wallet Icon" />
@@ -151,11 +139,7 @@ const Navbar = () => {
           {isModalOpen && <UsernameBox />}
         </button>
         {/* wallets box */}
-        <DialogWallets
-          show={openDialogWallets}
-          onHide={handleCloseWalletDialog}
-          open={handleOpenWalletDialog}
-        />
+        <DialogWallets />
       </div>
     </div>
   );

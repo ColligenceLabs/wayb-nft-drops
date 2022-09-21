@@ -7,16 +7,18 @@ import dot_connected from '../../assets/icon/dot_connected.svg';
 import dot_noconnect from '../../assets/icon/dot_noconnect.svg';
 import metamask from '../../assets/icon/metamask.svg';
 import temple from '../../assets/icon/temple.svg';
+import { useModalWalletsStore } from 'components/common/AppStore';
 
 // const {show, onhide } = props // {show:true, onHide: ()=> {}}
 
-const DialogWallets = ({ show, onHide }) => {
+const DialogWallets = () => {
+  const {isOpen, updateOpenWallet} = useModalWalletsStore();
   return (
     <ReactModal
       preventScroll={true}
-      isOpen={show}
+      isOpen={isOpen}
       contentLabel="onRequestClose Example"
-      onRequestClose={onHide}
+      onRequestClose={() => updateOpenWallet(false)}
       className="Modal"
       overlayClassName="dialog-wallets-overlay"
       shouldCloseOnOverlayClick
@@ -27,7 +29,7 @@ const DialogWallets = ({ show, onHide }) => {
             <img src={wallet} alt="icon wallet" />
             <div>My Wallets</div>
           </div>
-          <div className="close-button button" onClick={onHide}>
+          <div className="close-button button" onClick={() => updateOpenWallet(false)}>
             <img src={close_icon} alt="close icon" />
           </div>
         </div>
@@ -35,7 +37,7 @@ const DialogWallets = ({ show, onHide }) => {
           Choose one or more accounts to connect
         </div>
         <div className="wrapper-accounts">
-          <button className="account-item button">
+          <button className="account-item button" onClick={() => updateOpenWallet(false)}>
             <div className="wrapper-left">
               <div className="logo-item logo-talken">
                 <img src={logo_talken} alt="logo talken" />
@@ -47,7 +49,7 @@ const DialogWallets = ({ show, onHide }) => {
               <div className="text">Connected</div>
             </div>
           </button>
-          <button className="account-item button">
+          <button className="account-item button" onClick={() => updateOpenWallet(false)}>
             <div className="wrapper-left">
               <div className="logo-item">
                 <img src={metamask} alt="logo metamask" />
@@ -60,7 +62,7 @@ const DialogWallets = ({ show, onHide }) => {
               <div className="text">Available on desktop</div>
             </div>
           </button>
-          <button className="account-item button">
+          <button className="account-item button" onClick={() => updateOpenWallet(false)}>
             <div className="wrapper-left">
               <div className="logo-item">
                 <img src={temple} alt="logo temple" />

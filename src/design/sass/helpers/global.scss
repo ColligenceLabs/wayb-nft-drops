@@ -93,3 +93,25 @@
 .font-size-18 {
   font-size: 18px;
 }
+.on-hide {
+  display: none;
+}
+.on-show {
+  display: block;
+}
+@include Mobile() {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+@include Tablet() {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+
+@include PC() {
+  .hidden-pc {
+    display: none !important;
+  }
+}

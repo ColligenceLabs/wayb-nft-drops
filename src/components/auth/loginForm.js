@@ -12,21 +12,21 @@ import icon_metamask from 'assets/img/icon_metamask.png';
 const closeOnDocumentClick = false;
 const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
 
-export default ({ close }) => (
-  <div className="DsOX" tabindex="-1" role="dialog" aria-modal="true">
-    <div class="box-content">
-      <div class="div-title">
-        <div class="title">Log in</div>
-        <button onClick={close} class="button-close">
-          <svg class="sc-6c80924e-4 eTDRlh" xmlns="http://www.w3.org/2000/svg" width="24.329" height="24.329" viewBox="0 0 24.329 24.329">
+const LoginForm = ({ close }) => (
+  <div className="DsOX" tabIndex="-1" role="dialog" aria-modal="true">
+    <div className="box-content">
+      <div className="div-title">
+        <div className="title">Log in</div>
+        <button onClick={close} className="button-close">
+          <svg className="sc-6c80924e-4 eTDRlh" xmlns="http://www.w3.org/2000/svg" width="24.329" height="24.329" viewBox="0 0 24.329 24.329">
             <path id="Path_84708" data-name="Path 84708" d="M29.329,7.45,26.878,5l-9.714,9.714L7.45,5,5,7.45l9.714,9.714L5,26.878l2.45,2.45,9.714-9.714,9.714,9.714,2.45-2.45-9.714-9.714Z" transform="translate(-5 -5)" fill="#fff"></path>
           </svg>
         </button>
       </div>
       <div>
-        <div class="div-methods">Log in with one of these methods</div>
-        <div class="methods">
-          <button data-channel="apple" class="method-apple">
+        <div className="div-methods">Log in with one of these methods</div>
+        <div className="methods">
+          <button data-channel="apple" className="method-apple">
             <svg xmlns="http://www.w3.org/2000/svg" width="20.688" height="25.365" viewBox="0 0 20.688 25.365">
               <g id="Group_14385" data-name="Group 14385" transform="translate(0 0)">
                 <path id="Path_10317" data-name="Path 10317" d="M356.758,622.364c-.121.106-.24.209-.357.315a9.148,9.148,0,0,0-1.242,1.31,5.1,5.1,0,0,0-1.035,2.656,5.747,5.747,0,0,0,1.962,4.943,3.534,3.534,0,0,0,1.339.767l.044.015c-.052.156-.1.31-.156.462a15.339,15.339,0,0,1-2.482,4.353A5.963,5.963,0,0,1,353.4,638.5a2.869,2.869,0,0,1-1.677.495,4.958,4.958,0,0,1-1.261-.243c-.452-.141-.9-.3-1.35-.44a5.648,5.648,0,0,0-1.474-.267,4.5,4.5,0,0,0-1.613.266c-.4.136-.789.3-1.186.439a4.794,4.794,0,0,1-1.171.278,2.815,2.815,0,0,1-1.533-.307,5.2,5.2,0,0,1-1.521-1.2,12.8,12.8,0,0,1-1.63-2.315,17.708,17.708,0,0,1-1.588-3.585,13.776,13.776,0,0,1-.509-2.333,12.547,12.547,0,0,1-.06-2.588,9.176,9.176,0,0,1,.665-2.864,6.825,6.825,0,0,1,1.955-2.677,4.851,4.851,0,0,1,2.4-1.065,6.368,6.368,0,0,1,1.969.039,19.513,19.513,0,0,1,2.047.5,8.982,8.982,0,0,0,1.3.281,2.669,2.669,0,0,0,.867-.073,14.477,14.477,0,0,0,1.61-.472,8.283,8.283,0,0,1,1.8-.418,5.438,5.438,0,0,1,4.275,1.308,8.669,8.669,0,0,1,1.016,1.057Z" transform="translate(-336.783 -613.676)" fill="#fff"></path>
@@ -34,7 +34,7 @@ export default ({ close }) => (
               </g>
             </svg>
           </button>
-          <button data-channel="twitter" class="method-twitter">
+          <button data-channel="twitter" className="method-twitter">
             <svg xmlns="http://www.w3.org/2000/svg" width="27.872" height="22.691" viewBox="0 0 27.872 22.691">
               <g id="nFfOKX.tif" transform="translate(0 0)">
                 <g id="Group_14390" data-name="Group 14390">
@@ -44,40 +44,40 @@ export default ({ close }) => (
               </g>
             </svg>
           </button>
-          <button class="method-google" data-channel="google">
+          <button className="method-google" data-channel="google">
             <svg xmlns="http://www.w3.org/2000/svg" width="25.06" height="25.571" viewBox="0 0 25.06 25.571">
               <defs>
-                <clipPath id="clip-path">
-                  <path id="Intersection_4" data-name="Intersection 4" d="M4.329,12.013V8.8A5.873,5.873,0,0,0,6.88,4.946H0V0H12.042a14.7,14.7,0,0,1,.233,2.616,12.474,12.474,0,0,1-3.813,9.4Z" fill="none" stroke="#707070" stroke-width="1"></path>
+                <clipPath id="clipPath">
+                  <path id="Intersection_4" data-name="Intersection 4" d="M4.329,12.013V8.8A5.873,5.873,0,0,0,6.88,4.946H0V0H12.042a14.7,14.7,0,0,1,.233,2.616,12.474,12.474,0,0,1-3.813,9.4Z" fill="none" stroke="#707070" strokeWidth="1"></path>
                 </clipPath>
-                <clipPath id="clip-path-2">
-                  <path id="Intersection_6" data-name="Intersection 6" d="M0,3.313V0H4.272a7.619,7.619,0,0,0,7.154,5.27,7.682,7.682,0,0,0,4.329-1.22l4.132,3.209a12.212,12.212,0,0,1-8.462,3.1A12.78,12.78,0,0,1,0,3.313Z" fill="none" stroke="#707070" stroke-width="1"></path>
+                <clipPath id="clipPath-2">
+                  <path id="Intersection_6" data-name="Intersection 6" d="M0,3.313V0H4.272a7.619,7.619,0,0,0,7.154,5.27,7.682,7.682,0,0,0,4.329-1.22l4.132,3.209a12.212,12.212,0,0,1-8.462,3.1A12.78,12.78,0,0,1,0,3.313Z" fill="none" stroke="#707070" strokeWidth="1"></path>
                 </clipPath>
-                <clipPath id="clip-path-3">
-                  <path id="Intersection_8" data-name="Intersection 8" d="M0,5.742A12.768,12.768,0,0,1,1.36,0H5.632V3.313a7.55,7.55,0,0,0,0,4.859L1.36,11.484A12.773,12.773,0,0,1,0,5.742Z" fill="none" stroke="#707070" stroke-width="1"></path>
+                <clipPath id="clipPath-3">
+                  <path id="Intersection_8" data-name="Intersection 8" d="M0,5.742A12.768,12.768,0,0,1,1.36,0H5.632V3.313a7.55,7.55,0,0,0,0,4.859L1.36,11.484A12.773,12.773,0,0,1,0,5.742Z" fill="none" stroke="#707070" strokeWidth="1"></path>
                 </clipPath>
-                <clipPath id="clip-path-4">
-                  <path id="Intersection_10" data-name="Intersection 10" d="M0,7.044A12.78,12.78,0,0,1,11.425,0,12.29,12.29,0,0,1,19.98,3.329L16.312,7a6.908,6.908,0,0,0-4.887-1.91,7.618,7.618,0,0,0-7.154,5.27Z" fill="none" stroke="#707070" stroke-width="1"></path>
+                <clipPath id="clipPath-4">
+                  <path id="Intersection_10" data-name="Intersection 10" d="M0,7.044A12.78,12.78,0,0,1,11.425,0,12.29,12.29,0,0,1,19.98,3.329L16.312,7a6.908,6.908,0,0,0-4.887-1.91,7.618,7.618,0,0,0-7.154,5.27Z" fill="none" stroke="#707070" strokeWidth="1"></path>
                 </clipPath>
               </defs>
               <g id="Group_14376" data-name="Group 14376" transform="translate(12.786 10.461)">
-                <g id="Group_14375" data-name="Group 14375" transform="translate(0 0)" clip-path="url(#clip-path)">
-                  <rect id="Rectangle_6897" data-name="Rectangle 6897" width="26.481" height="26.219" transform="translate(-7.103 -7.104)" fill="#3e82f1" stroke="#707070" stroke-width="1"></rect>
+                <g id="Group_14375" data-name="Group 14375" transform="translate(0 0)" clipPath="url(#clipPath)">
+                  <rect id="Rectangle_6897" data-name="Rectangle 6897" width="26.481" height="26.219" transform="translate(-7.103 -7.104)" fill="#3e82f1" stroke="#707070" strokeWidth="1"></rect>
                 </g>
               </g>
               <g id="Group_14378" data-name="Group 14378" transform="translate(1.36 15.215)">
-                <g id="Group_14377" data-name="Group 14377" transform="translate(0)" clip-path="url(#clip-path-2)">
-                  <rect id="Rectangle_6899" data-name="Rectangle 6899" width="34.094" height="24.563" transform="translate(-7.104 -7.104)" fill="#32a753" stroke="#707070" stroke-width="1"></rect>
+                <g id="Group_14377" data-name="Group 14377" transform="translate(0)" clipPath="url(#clipPath-2)">
+                  <rect id="Rectangle_6899" data-name="Rectangle 6899" width="34.094" height="24.563" transform="translate(-7.104 -7.104)" fill="#32a753" stroke="#707070" strokeWidth="1"></rect>
                 </g>
               </g>
               <g id="Group_14380" data-name="Group 14380" transform="translate(0 7.044)">
-                <g id="Group_14379" data-name="Group 14379" clip-path="url(#clip-path-3)">
-                  <rect id="Rectangle_6901" data-name="Rectangle 6901" width="19.838" height="25.69" transform="translate(-7.103 -7.103)" fill="#f9bb00" stroke="#707070" stroke-width="1"></rect>
+                <g id="Group_14379" data-name="Group 14379" clipPath="url(#clipPath-3)">
+                  <rect id="Rectangle_6901" data-name="Rectangle 6901" width="19.838" height="25.69" transform="translate(-7.103 -7.103)" fill="#f9bb00" stroke="#707070" strokeWidth="1"></rect>
                 </g>
               </g>
               <g id="Group_14382" data-name="Group 14382" transform="translate(1.36)">
-                <g id="Group_14381" data-name="Group 14381" transform="translate(0)" clip-path="url(#clip-path-4)">
-                  <rect id="Rectangle_6903" data-name="Rectangle 6903" width="34.187" height="24.563" transform="translate(-7.104 -7.103)" fill="#e74235" stroke="#707070" stroke-width="1"></rect>
+                <g id="Group_14381" data-name="Group 14381" transform="translate(0)" clipPath="url(#clipPath-4)">
+                  <rect id="Rectangle_6903" data-name="Rectangle 6903" width="34.187" height="24.563" transform="translate(-7.104 -7.103)" fill="#e74235" stroke="#707070" strokeWidth="1"></rect>
                 </g>
               </g>
             </svg>
@@ -86,35 +86,35 @@ export default ({ close }) => (
         <div>- or -</div>
       </div>
       <form>
-        <div class="box-input">
-          <div class="div-wallets_1">
+        <div className="box-input">
+          <div className="div-wallets_1">
             <button type="button"><img src={icon_ethereum}></img>Ethereum</button>
             <button type="button"><img src={icon_klaytn}></img>Klayth</button>
             <button type="button"><img src={icon_solana}></img>Solana</button>
             <button type="button"><img src={icon_binance}></img>Binance</button>
           </div>
-          <div class="div-wallets_2">
-            <div class="row">
+          <div className="div-wallets_2">
+            <div className="row">
               <button type="button"><img src={icon_metamask}></img>Metamask</button>
               <button type="button"><img src={icon_ethereum2}></img>Wallet Connector</button>
             </div>
-            <div class="row">
+            <div className="row">
               <button type="button"><img src={icon_talk}></img>Talken</button>
               <button type="button"><img src={icon_klaytn}></img>Kaikas</button>
             </div>
           </div>
-          <label class="div-keep_logged_in">
+          <label className="div-keep_logged_in">
             <input type="checkbox"></input>
             <span>Keep me logged in</span>
           </label>
-          <button type="submit" class="button-login">Log in</button>
-          <button class="button-forgot-password">Forgot Password?</button>
+          <button type="submit" className="button-login">Log in</button>
+          <button className="button-forgot-password">Forgot Password?</button>
         </div>
       </form>
       <Popup modal
         onClose={close}
         trigger={
-          <div class="text_switch">
+          <div className="text_switch">
             <button><span>New user? Create your account!</span></button>
           </div>
         }
@@ -125,3 +125,4 @@ export default ({ close }) => (
     </div>
   </div>
 );
+export default LoginForm
