@@ -15,3 +15,9 @@
     @content;
   }
 }
+
+@mixin PC() {
+  @media (min-width: 769px) {
+    @content;
+  }
+}

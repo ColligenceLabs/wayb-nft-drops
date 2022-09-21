@@ -3,6 +3,7 @@
 // user-dropdown-box
 .user-dropdown-box {
   // width: 220px;
+  margin-right: 20px;
   height: auto;
   border-radius: 12px;
   background-color: #333333;
@@ -180,11 +181,4 @@
     }
   }
 }
-.wrapper-backdrop {
-  background: #212121;
-  width: 55%;
-  height: 100%;
-  position: absolute;
-  right: 0;
 
-}

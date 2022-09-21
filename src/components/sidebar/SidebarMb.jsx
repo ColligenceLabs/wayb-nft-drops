@@ -10,23 +10,26 @@ import blog from '../../assets/icon/blog.svg';
 import help from '../../assets/icon/help.svg';
 
 import UsernameBox from 'components/common/UsernameBox';
+import { useSidebarStore } from 'components/common/AppStore';
 
-const SidebarMb = ({ openWallets, onHideWalletsMb, show, onHide }) => {
+const SidebarMb = () => {
   const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
   const closeOnDocumentClick = false;
   const lockScroll = true;
+  const { isOpen, closeSidebar } = useSidebarStore();
   return (
-    <div className={`side-bar ${show ? 'show' : ''}`} onClick={onHide}>
+    <div className={`side-bar ${isOpen ? 'show' : ''}`} onClick={closeSidebar}>
       {/* sidebar before login */}
-      {/* <>
+      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
         <div className="close-sidebar">
-          <div className="icon-close" onClick={onHide}>
+          <div className="icon-close" onClick={closeSidebar}>
             <img src={close_icon} alt="Close Icon" />
           </div>
         </div>
         <div className="login-signup">
           <Popup
             modal
+            onOpen={closeSidebar}
             trigger={<span>log in/ sign up</span>}
             {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
           >
@@ -47,7 +50,7 @@ const SidebarMb = ({ openWallets, onHideWalletsMb, show, onHide }) => {
             Help
           </div>
         </div>
-        <div className="fanpage-icons">
+        <div className="fanpage-icons-sidebar">
           <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
             <img src={icon_twitter} alt="" />
           </a>
@@ -58,14 +61,10 @@ const SidebarMb = ({ openWallets, onHideWalletsMb, show, onHide }) => {
             <img src={icon_telegram} alt="" />
           </a>
         </div>
-      </> */}
+      </div> */}
       {/* sidebar after login */}
       <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
-        <UsernameBox
-          onHideSidebar={onHide}
-          openWallets={openWallets}
-          onHideWalletsMb={onHideWalletsMb}
-        />
+        <UsernameBox />
       </div>
     </div>
   );

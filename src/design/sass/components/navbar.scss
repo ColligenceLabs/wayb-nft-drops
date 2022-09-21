@@ -122,7 +122,7 @@
       border-radius: 40px;
       background: linear-gradient(90deg, #2061e2, #b07cfe);
       overflow: hidden;
-      // display: none;
+      display: none;
       .custom-btn {
         background-color: transparent;
         text-decoration: none;
@@ -149,7 +149,7 @@
     .btn-wallets {
       height: 45px;
       padding: 0 15px;
-      display: none;
+      // display: none;
       .custom-btn {
         height: 100%;
         padding: 0px 20px;
@@ -180,7 +180,8 @@
       background-color: transparent;
       position: relative;
       align-self: center;
-      display: none;
+      gap: 10px;
+      // display: none;
 
       .avatar-user {
         width: 26px;
@@ -192,7 +193,6 @@
       }
 
       .user-name {
-        padding-left: 10px;
         font-weight: 500;
         line-height: 36px;
         order: 1;
@@ -202,9 +202,9 @@
 
     .username-dropdown {
       background-color: transparent;
-      margin-left: 15px;
       margin-right: 20px;
-      display: none;
+      padding: 0;
+      // display: none;
     }
 
     //modal wallets box
@@ -227,7 +227,6 @@
     padding-bottom: 0;
     .main-header-box {
       .search-bar {
-        margin: 0px 9px;
         height: $header-mobile-height;
         .search-icon {
           margin: 0px 5px 0px 20px;
@@ -249,11 +248,65 @@
         display: none;
       }
       .icon-nav {
-        display: block;
-        margin-right: 15px;
+        // display: block;
+        margin-right: 20px;
+        .button {
+          padding: 0;
+        }
       }
+      // .wrapper-user {
+      //   display: none;
+      // }
+      // .username-dropdown {
+      //   display: none;
+      // }
     }
 
+  }
+  @include Mobile() {
+    z-index: 400;
+    .main-header-box {
+      .logo-header {
+        width: 70px;
+        img {
+          width: 100%;
+        }
+      }
+      .search-bar {
+        height: $header-mobile-height;
+        .search-icon {
+          margin: 0px 5px 0px 20px;
+          line-height: 50px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+      .contact-header {
+        display: none;
+      }
+      .fanpage-icons {
+        display: none;
+      }
+      .btn-login {
+        display: none;
+      }
+      .btn-wallets {
+        display: none;
+      }
+      .wrapper-user {
+        display: none;
+      }
+      .username-dropdown {
+        display: none;
+      }
+      .icon-nav {
+        display: block;
+        margin-right: 20px;
+        .button {
+          padding: 0;
+        }
+      }
+    }
   }
 }
 

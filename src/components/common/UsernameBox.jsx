@@ -9,12 +9,15 @@ import purchase_history from '../../assets/icon/purchase_history.svg';
 import my_profile from '../../assets/icon/my_profile.svg';
 import help from '../../assets/icon/help.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
+import { useModalWalletsStore, useSidebarStore } from './AppStore';
 
-const UsernameBox = ({ openWallets, onHideSidebar }) => {
+const UsernameBox = () => {
+  const { updateOpenWallet } = useModalWalletsStore();
+const {closeSidebar} = useSidebarStore()
   return (
     <div className="user-dropdown-box">
       <div className="close-sidebar">
-        <div className="icon-close" onClick={onHideSidebar}>
+        <div className="icon-close" onClick={closeSidebar}>
           <img src={close_icon} alt="Close Icon" />
         </div>
       </div>
@@ -22,7 +25,7 @@ const UsernameBox = ({ openWallets, onHideSidebar }) => {
         <Link
           to={'/my-collectibles'}
           className="wallet-button"
-          onClick={onHideSidebar}
+          onClick={closeSidebar}
         >
           <img src={my_collectibles} alt="My Collectibles" />
           My Collectibles
@@ -30,7 +33,7 @@ const UsernameBox = ({ openWallets, onHideSidebar }) => {
         <Link
           to={'/purchase-history'}
           className="wallet-button"
-          onClick={onHideSidebar}
+          onClick={closeSidebar}
         >
           <img src={purchase_history} alt="Purchase History" />
           Purchase History
@@ -38,7 +41,7 @@ const UsernameBox = ({ openWallets, onHideSidebar }) => {
         <Link
           to={'/my-profile'}
           className="wallet-button"
-          onClick={onHideSidebar}
+          onClick={closeSidebar}
         >
           <img src={my_profile} alt="My Profile" />
           My Profile
@@ -77,8 +80,8 @@ const UsernameBox = ({ openWallets, onHideSidebar }) => {
           <button
             className="btn-wallets button"
             onClick={() => {
-              openWallets();
-              onHideSidebar();
+              updateOpenWallet(true);
+              closeSidebar(false);
             }}
           >
             <div className="img-wallet">

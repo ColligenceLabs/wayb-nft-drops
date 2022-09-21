@@ -20,6 +20,42 @@ import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import HomePageMb from './HomePageMb';
 const Homepage = () => {
+  const carouselOption = {
+    additionalTransfrom: 0,
+    arrows: true,
+    autoPlay: true,
+    autoPlaySpeed: 3000,
+    draggable: true,
+    focusOnSelect: false,
+    infinite: true,
+    keyBoardControl: true,
+    minimumTouchDrag: 80,
+    pauseOnHover: true,
+    renderArrowsWhenDisabled: false,
+    renderButtonGroupOutside: false,
+    renderDotsOutside: false,
+    rewind: false,
+    rewindWithAnimation: false,
+    rtl: false,
+    shouldResetAutoplay: true,
+    showDots: true,
+    slidesToSlide: 1,
+    swipeable: true,
+  };
+  const slideData = [
+    {
+      url: '/oldnavy',
+      image: home_02,
+    },
+    {
+      url: '/',
+      image: home_03,
+    },
+    {
+      url: '/collection',
+      image: home_04,
+    },
+  ];
   return isMobile ? (
     <HomePageMb />
   ) : (
@@ -37,65 +73,67 @@ const Homepage = () => {
             leading teams, brands, and artists
           </div>
         </div>
+        {/* carousel pc view */}
         <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlay
-          autoPlaySpeed={3000}
+          {...carouselOption}
           centerMode
-          className=""
-          containerClass="container-with-dots home-carousel"
-          dotListClass="custom-dots"
-          draggable
-          focusOnSelect={false}
-          infinite
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
+          containerClass="container-with-dots home-carousel-pc hidden-tablet hidden-mobile"
           responsive={{
             desktop: {
               breakpoint: {
                 max: 3000,
-                min: 0,
+                min: 1024,
               },
               items: 1,
               partialVisibilityGutter: 40,
             },
           }}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
         >
-          <div className="slide-item">
-            <Link to={'/oldnavy'} target={'_blank'}>
-              <div>
-                <img src={home_02} alt="" draggable={false} />
+          {slideData.map((item) => {
+            return (
+              <div className="slide-item">
+                <Link to={item.url} target={'_blank'}>
+                  <div>
+                    <img src={item.image} alt="" draggable={false} />
+                  </div>
+                </Link>
               </div>
-            </Link>
-          </div>
-          <div className="slide-item">
-            <Link to={'/'}>
-              <div>
-                <img src={home_03} alt="" draggable={false} />
-              </div>
-            </Link>
-          </div>
-          <div className="slide-item">
-            <Link to={'/collection'}>
-              <div>
-                <img src={home_04} alt="" draggable={false} />
-              </div>
-            </Link>
-          </div>
+            );
+          })}
+        </Carousel>
+        {/* carousel tablet and mobile view */}
+        <Carousel
+          {...carouselOption}
+          centerMode={false}
+          containerClass="container-with-dots home-carousel-mb hidden-pc"
+          responsive={{
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 30,
+            },
+            tablet: {
+              breakpoint: {
+                max: 1024,
+                min: 464,
+              },
+              items: 1,
+              partialVisibilityGutter: 30,
+            },
+          }}
+        >
+          {slideData.map((item) => (
+            <div className="slide-item">
+              <Link to={item.url} target={'_blank'}>
+                <div>
+                  <img src={item.image} alt="" draggable={false} />
+                </div>
+              </Link>
+            </div>
+          ))}
         </Carousel>
       </div>
       {/* section 02 */}
