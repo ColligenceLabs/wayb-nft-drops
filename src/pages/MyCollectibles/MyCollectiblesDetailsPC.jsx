@@ -56,7 +56,20 @@ const MyCollectiblesDetailsPC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  return isMobile ? (
+  const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
+  const handleScrollPercent = () => {
+    const positionPercent = (window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight)) * 100;
+    setScrollPercentPosition(positionPercent);
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollPercent);
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollPercent);
+    };
+  }, []);
+  console.log(scrollPercentPosition)
+  return (isMobile ? (
     <MyCollectiblesDetailsMB />
   ) : (
     <main className="collectibles-details-container">
@@ -68,12 +81,8 @@ const MyCollectiblesDetailsPC = () => {
                 <img src={ic_back} alt="back-icon" /> Back
               </button>
             </Link>
-            <canvas
-              className="canvas-card"
-              width="1125"
-              height="1125"
-              style={{ width: '900px', height: '900px' }}
-            ></canvas>
+            <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" style={{ width: '100%', height: '554px', objectFit: 'contain', paddingTop: '70px' }} />
+            {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
 
           <div className="details-box">
@@ -128,10 +137,7 @@ const MyCollectiblesDetailsPC = () => {
               {' '}
               The only thing better than ice cream is ice cream in SPACE!
             </div>
-            <a
-              target="_blank"
-              href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
-              className="authenticity-button"
+            <a target="_blank" href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48" className="authenticity-button"
             >
               <img src={ic_authenticity} alt="authenticity-icon" />
               Authenticity
@@ -168,31 +174,24 @@ const MyCollectiblesDetailsPC = () => {
             </div>
             <div className="list-trade">
               <Popup
-                // defaultOpen
                 trigger={
                   <button type="button" className="btn-trade status disabled">
                     <img src={ic_sell} alt="sell" />
                     {'Sell on Sweet'}
                   </button>
                 }
-                {...{ repositionOnResize }}
-                position={scrollPosition < 300 ? 'top center' : 'bottom center'}
+                position={scrollPercentPosition < 60 ? 'top center' : 'bottom center'}
                 on={['hover', 'focus']}
               >
-                {/* (<button className="btn-trade status disabled">
-                                    <img src={ic_sell} alt="sell" />
-                                    Sell on Sweet
-                                </button>) */}
                 <div className="noti-cannot" data-id="tooltip">
                   This collectible cannot be currently sold on Sweet.
                 </div>{' '}
-                {/* do it later */}
               </Popup>
 
               <button className="btn-trade status">
                 <img src={ic_trade} alt="trade" />
-                Trade on Sweet
-                <div className="test">test</div>
+                  Trade on Sweet
+                
               </button>
             </div>
             <div className="price-history">
@@ -206,7 +205,7 @@ const MyCollectiblesDetailsPC = () => {
         </div>
       </div>
     </main>
-  );
+  ));
 };
 
 export default MyCollectiblesDetailsPC;
