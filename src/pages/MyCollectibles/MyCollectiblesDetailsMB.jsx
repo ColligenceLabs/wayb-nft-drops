@@ -65,7 +65,8 @@ const MyCollectiblesDetailsMB = () => {
                             <img src={ic_back} alt="back-icon" /> Back
                         </button>
                     </Link>
-                        <canvas className="canvas-card" width="1125" height="1125" style={{width: '900px', height: '900px'}}></canvas>
+                    <img src="https://collectible.sweet.io/series/1727/image-front.png" alt=""/>
+            {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
                     </div>
 
                     <div className="details-box">

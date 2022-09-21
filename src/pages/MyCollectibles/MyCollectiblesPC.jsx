@@ -184,7 +184,7 @@ const MyCollectibles = () => {
                             return <li key={index} className="name-sort-dropdown-box">
                                 <button type="button" className="sort-button" onClick={() => {handleSortClick(item); toggleActive(index);
                             setSelectedIndex(index);}}>
-                                    <span>{item.name }</span>
+                                    <span style={{ fontWeight: 'bold' }}>{item.name }</span>
                                     <span>{isItemInSelection(item) && ''}</span>
                                 </button>    
                             </li>
