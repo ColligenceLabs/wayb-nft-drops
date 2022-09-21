@@ -30,6 +30,7 @@ const MyCollectiblesDetailsMB = () => {
     const [open, setOpen] = useState(false);
     const [popup, setPopUp] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
+    const [scrollPositionPercent, setScrollPositionPercent ] = useState(0)
     const handleScroll = () => {
         const position = window.pageYOffset;
         setScrollPosition(position);
@@ -41,19 +42,19 @@ const MyCollectiblesDetailsMB = () => {
           window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
-  const handleScrollPercent = () => {
-    const positionPercent = (window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight)) * 100;
-    setScrollPercentPosition(positionPercent);
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', handleScrollPercent);
-
-    return () => {
-      window.removeEventListener('scroll', handleScrollPercent);
-    };
-  }, []);
-    console.log(scrollPercentPosition)
+    const handeScrollPercent = () => {
+        const positionPercent = (window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight)) * 100;
+        setScrollPositionPercent(positionPercent);
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", handeScrollPercent);
+    
+        return () => {
+          window.removeEventListener("scroll", handeScrollPercent);
+        };
+    }, []);
+    console.log(scrollPositionPercent);
+    // console.log(scrollPosition);
     return (
         <main className="collectibles-details-container-mb">
             <div className="collectibles-details-wp">
@@ -138,31 +139,28 @@ const MyCollectiblesDetailsMB = () => {
                             </div>
                         </div>
                         <div className="list-trade">
-                            <Popup
-
-                                trigger={
-                                <button type="button" className="btn-trade status disabled">
-                                    <img src={ic_sell} alt="sell" />
-                                    {'Sell on Sweet'}
+                            <div style={{ position: 'relative' }}>
+                                    
+                                <button className="btn-trade status disabled">
+                                    
+                                        <img src={ic_sell} alt="sell" />
+                                        Sell on Sweet
+                                        
                                 </button>
-                                }
-
-                                position={scrollPercentPosition < 80 ? 'top center' : 'bottom center'}
-                                on={['hover', 'focus']}
-                            >
-
-                                <div className="noti-cannot" data-id="tooltip">
-                                This collectible cannot be currently sold on Sweet.
-                                </div>{' '}
-                                {/* do it later */}
-                            </Popup>
+                                
+                            <div className="noti-cannot">This collectible cannot be currently sold on Sweet.</div> 
+                            
+                            
                             </div>
+                
+                          
                             <div>
                             <button className="btn-trade status">
-                                <img src={ic_trade} alt="trade" />
+                                <img src={ic_trade} alt="trade"/>
                                 Trade on Sweet
                                 
                             </button>
+                            </div>
                         </div>
                         <div className="price-history">
                             <div className="price-history-label">
