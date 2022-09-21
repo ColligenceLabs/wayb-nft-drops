@@ -23,6 +23,7 @@ const MyCollectibles = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const navigate = useNavigate();
     const [appState, setChange] = useState({
+        
         objects: [{
             id: 1,
             name: 'Newest'
@@ -193,7 +194,7 @@ const MyCollectibles = () => {
                         
                         
             return <a href='/' key={index}>
-                <div className="item-product" >
+                <div className="item-product" onClick={() => navigate("/details")}>
                         
                     
                     <div className="item-product-detail">

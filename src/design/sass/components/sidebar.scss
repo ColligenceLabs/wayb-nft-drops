@@ -1,6 +1,6 @@
 // side bar before login
 .side-bar {
-  width: 35%;
+  width: 100%;
   height: 100vh;
   background-color: transparent;
   // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -10,12 +10,19 @@
   color: #ffffff;
   left: 100%;
   // padding: 20px 20px 0;
-  transition: all 500ms;
+  transition: all 1000ms;
   font-weight: 500;
 
   &.show {
     // left: 0;
     transform: translateX(-100%);
+  }
+  .wrapper-backdrop {
+    background: #212121;
+    width: 35%;
+    height: 100%;
+    position: absolute;
+    right: 0;
   }
 
   .close-sidebar {
@@ -24,7 +31,7 @@
 
     .icon-close {
       display: inline-block;
-
+      cursor: pointer;
       img {
         width: 20px;
       }
@@ -36,15 +43,17 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding: 20px;
     text-transform: uppercase;
-
     span {
-      background: linear-gradient(90deg,
-          rgb(227, 100, 190),
-          rgb(103, 129, 249));
+      background: linear-gradient(
+        90deg,
+        rgb(227, 100, 190),
+        rgb(103, 129, 249)
+      );
       // background: linear-gradient(90deg, #b07cfe, #2061e2, );
       background-clip: text;
       color: transparent;
       font-weight: 600;
+      cursor: pointer;
     }
   }
 
@@ -87,10 +96,9 @@
         margin-right: 5px;
       }
     }
-
   }
 
-  .fanpage-icons {
+  .fanpage-icons-sidebar {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     -webkit-box-pack: justify;
@@ -105,9 +113,15 @@
       }
     }
   }
-
+  // tablet view
+  @include Tablet() {
+  }
   //mobile view
   @include Mobile() {
+    transition: all 500ms;
+    .wrapper-backdrop {
+      width: 55%;
+    }
     width: 100%;
   }
 }
