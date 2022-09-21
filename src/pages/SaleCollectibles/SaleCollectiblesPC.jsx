@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import not_found from '../../assets/img/not_found.gif';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -63,6 +64,11 @@ const SaleCollectibles = () => {
       id: 9,
       owner_name: 'Milwaukee Bucks 9',
       name: 'Chicago Deer 9',
+    },
+    {
+      id: 10,
+      owner_name: 'Milwaukee Bucks 10',
+      name: 'Chicago Deer 10',
     },
   ]
   const [isModalOpen, setModalOpen] = useState(false);
@@ -179,7 +185,7 @@ const SaleCollectibles = () => {
               <div className="userSales">
                 <div className="filter-box">
                   <div className="search-box">
-                    <img src={ic_search} style={{ marginLeft: '20px' }} />
+                    <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} />
                     <input className="marketplace-search-textbox" placeholder="Search listings…" />
                   </div>
                   <div className="type-filter-box">
@@ -245,6 +251,14 @@ const SaleCollectibles = () => {
                         </div>
                       )
                     })}
+                  </div>
+                  <div className="not-found">
+                    <div>
+                      <img src={not_found} alt="" />
+                      <div className="token-not-found">
+                        No tokens found...
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

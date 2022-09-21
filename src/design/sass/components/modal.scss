@@ -127,3 +127,27 @@
 .modal-xl {
     width: 1140px;
 }
+@include Tablet_Mobile{
+    .payments-wallets-overlay .modal-dialog{
+        height: -webkit-fill-available;
+        border-radius: 0px;
+        margin: 0px;
+        width: -webkit-fill-available;
+        .modal-content{
+            position: absolute;
+            display: contents;
+        }
+    }
+}
+@media (max-width:600px){
+    .payments-wallets-overlay .modal-header{
+        height: 120px;
+        @include Mobile{
+            .modal-tittle{
+                .title{
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+}
