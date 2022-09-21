@@ -1,5 +1,6 @@
 @import "../helpers/global.scss";
 
+
 .collectibles-details-container {
     a, button {
         color: inherit;
@@ -28,7 +29,6 @@
                 width: 50%;
                 border-right: 1px solid rgb(120 120 120 / 8%);;
                 .back-button {
-                    // top: 100px;
                     height: 40px;
                     width: 105px;
                     padding: 0px 15px;
@@ -42,6 +42,7 @@
                     cursor: pointer;
                     position: absolute;
                     z-index: 10;
+                    box-shadow: 0 0 5px 5px #f0ebfc;
                     img {
                         transform: rotate(180deg);
                         margin-right: 10px;
@@ -119,12 +120,6 @@
                                     }
                                 }
                             }
-                            // .dropdown-item {
-                            //     display: flex;
-                            //     -webkit-box-align: center;
-                            //     align-items: center;
-                            //     padding: 10px 0px;
-                            // }
                         }
                     }
                 }
@@ -135,6 +130,7 @@
                     font-size: 30px;
                     padding-right: 15px;
                     margin-bottom: 20px;
+                    font-weight: bold;
                     .rarity-label {
                         font-size: 18px;
                         display: flex;
@@ -204,7 +200,7 @@
                     margin-bottom: 20px;
                     
                     .btn-trade.disabled {
-                        
+                        opacity: 0.4;
                         cursor: default;
                     } 
                     .btn-trade{
@@ -226,7 +222,41 @@
                         img {
                             margin-right: 10px;
                         }
-                        
+                    }
+                    .noti-cannot {
+                        display: none;
+                       max-width: 160px;
+                        text-align: center;
+                        border-radius: 12px;
+                        color: #fff;
+                        background-color: #222;
+                        font-size: 16px;
+                        border: 1px solid transparent;
+                        padding: 0px 21px;
+                        pointer-events: none;
+                        transition: opacity 0.3s ease-out;
+                    }
+                    .btn-trade:hover + .noti-cannot {
+                        position: absolute;
+                        bottom: 100%;
+                        display: block;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        z-index: 9999;
+                        margin-bottom: 10px;
+                        max-width: 160px;
+                        width: max-content;
+                    }
+                    .btn-trade:hover + .down {
+                        position: absolute;
+                        top: 100%;
+                        display: block;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        z-index: 9999;
+                        margin-bottom: 10px;
+                       max-width: 160px;
+                        width: max-content;
                     }
                     
                     
@@ -259,8 +289,97 @@
         }
     }
 }
-//my collectibles tablet and mobile
 
+@include Tablet_Mobile() {
+    .collectibles-details-container {
+        margin: 45px auto;
+        .collectibles-details-wp {
+            .product-details {
+                flex-direction: column;
+                -webkit-box-align: center;
+                align-items: center;
+                overflow: hidden;
+                .showcase-box {
+                    width: 100%;
+                    border-right: none;
+                    padding-top: 0px;
+                    .canvas-card {
+                        transform: scale(1.7) translate(0px, 5.5%);
+                        margin-bottom: 41%;
+                        width: 100% !important;
+                        height: auto !important;
+                    }
+                }
+                .details-box {
+                    margin: 100px auto;
+                    width: 90%;
+                    
+                    .list-trade {
+                        .btn-trade.disabled {
+                            position: relative;
+                            
+                        } 
+                        .btn-trade{
+                            font-size: 14px;
+                            
+                        }
+                        .noti-cannot {
+                            display: none;
+                            max-width: 160px;
+                            text-align: center;
+                            border-radius: 12px;
+                            color: #fff;
+                            background-color: #222;
+                            font-size: 16px;
+                            border: 1px solid transparent;
+                            padding: 0px 21px;
+                            pointer-events: none;
+                            transition: opacity 0.3s ease-out;
+                        }
+                    }
+                    
+                }
+                @include Mobile() {
+                    .details-box {
+                        margin: 0px auto;
+                        .label-name {
+                            padding: 0px;
+                            margin-bottom: 20px;
+                            font-size: 26px;
+                            flex-direction: column;
+                            text-align: center;
+                        }
+                        .rarity-label {
+                            margin: 0px auto;
+                            font-size: 14px;
+                            img {
+                                width: 18px;
+                                height: 18px;
+                            }
+                        }
+                        .list-item {
+                            .item {
+                                max-width: 30vw;
+                                padding: 20px 10px;
+                                font-size: 12px;
+                            }
+                        }
+                        .list-trade {
+                            display: flex;
+                            flex-direction: column;
+                            -webkit-box-align: center;
+                            align-items: center;
+                            
+                            
+                        } 
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+}
 
 .collectibles-details-container-mb {
     a, button {
@@ -304,6 +423,7 @@
                     position: absolute;
                     z-index: 10;
                     top: 100px;
+                    box-shadow: 0 0 5px 5px #f0ebfc;
                     img {
                         transform: rotate(180deg);
                         margin-right: 10px;
@@ -498,12 +618,12 @@
                         }
                         .noti-cannot {
                             display: none;
-                            max-width: 200px;
+                           max-width: 160px;
                             text-align: center;
                             border-radius: 12px;
                             color: #fff;
                             background-color: #222;
-                            font-size: 18px;
+                            font-size: 16px;
                             border: 1px solid transparent;
                             padding: 0px 21px;
                             pointer-events: none;
@@ -517,7 +637,7 @@
                             transform: translateX(-50%);
                             z-index: 9999;
                             margin-bottom: 10px;
-                            max-width: 200px;
+                           max-width: 160px;
                             width: max-content;
                         }
                         .btn-trade:hover + .down {
@@ -528,46 +648,11 @@
                             transform: translateX(-50%);
                             z-index: 9999;
                             margin-bottom: 10px;
-                            max-width: 200px;
+                           max-width: 160px;
                             width: max-content;
                         }
                         
-                    }
-                    
-                    // .btn-trade::before, .btn-trade::after {
-                    //     --scale: 0;
-                    //     --arrow-size: 10px;
-                    //     --tooltip-color: #333;
-                    //     position: absolute;
-                    //     top: -.5rem;
-                    //     left: 50%;
-                    //     transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-                    //     transition: 150ms transform;
-                    // }
-                    // .btn-trade::before {
-                    //     --translate-y: calc(-100% - var(--arrow-size));
-                    //     content: attr(data-tooltip);
-                    //     color: #222;
-                    //     padding: .5rem;
-                    //     border-radius: 12px;
-                    //     text-align: center;
-                    //     width: max-content;
-                    //     max-width: 200px;
-                    //     background-color: #fff;
-                    //     transform-origin: bottom center;
-
-                    // }
-                    // .btn-trade.disabled:hover::before {
-                    //     --scale: 1;
-                    // }          
-                    // .btn-trade.disabled::after {
-                    //     --translate-y: calc(-1 * var(--arrow-size));
-                    //     content: '';
-                    //     background-color: #ffff;
-                    //     border: var(--arrow-size) solid transparent;
-                    //     border-top-color: #fff;
-                    //     transform-origin: top center;
-                    // }          
+                    }     
                 }
                 .price-history {
                     margin-bottom: 20px;
@@ -634,16 +719,16 @@
     }
 }
 
+.noti-cannot {
+   max-width: 160px;
+    text-align: center;
+    border-radius: 12px;
+    color: #fff;
+    background-color: #222;
+    font-size: 14px;
+    border: 1px solid transparent;
+    padding: 0px 21px;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
 
-    .noti-cannot {
-        max-width: 200px;
-        text-align: center;
-        border-radius: 12px;
-        color: #fff;
-        background-color: #222;
-        font-size: 18px;
-        border: 1px solid transparent;
-        padding: 0px 21px;
-        pointer-events: none;
-        transition: opacity 0.3s ease-out;
-    }

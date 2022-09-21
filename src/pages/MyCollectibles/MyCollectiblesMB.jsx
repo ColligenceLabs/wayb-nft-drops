@@ -14,8 +14,9 @@ import home_11 from '../../assets/img/home_11.png';
 import home_12 from '../../assets/img/home_12.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import home_14_avt from '../../assets/img/home_14_avt.jpg';
-import verify from '../../assets/img/verify-icon.png'
+import ic_dropdown_button_arrow from '../../assets/svg/dropdown_button_arrow.svg';
 
+import verify from '../../assets/img/verify-icon.png';
 const MyCollectiblesMB = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [appState, setChange] = useState({
@@ -159,7 +160,7 @@ const MyCollectiblesMB = () => {
                         
                     </span>
                     <div className="sort-dropdown-button" onClick={() => setOpen(open => !open)}>
-                        <img src={verify} alt="" />
+                        <img src={ic_dropdown_button_arrow} alt="" />
                         
                     </div>
                     {open && (
@@ -187,7 +188,7 @@ const MyCollectiblesMB = () => {
             {listItems.map((item, index) => {
                         
                         
-            return <Link to={"/details"} key={index}>
+            return <a href="/" key={index}>
                 <div className="item-product" >
                         
                     
@@ -211,7 +212,7 @@ const MyCollectiblesMB = () => {
                     </div>
                     
                 </div>
-            </Link>
+            </a>
             })}
             </div>
             </div>
