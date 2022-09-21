@@ -14,6 +14,9 @@ import home_11 from '../../assets/img/home_11.png';
 import home_12 from '../../assets/img/home_12.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import home_14_avt from '../../assets/img/home_14_avt.jpg';
+import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
+import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
+import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
 import ic_dropdown_button_arrow from '../../assets/svg/dropdown_button_arrow.svg';
 
 import verify from '../../assets/img/verify-icon.png';
@@ -46,46 +49,55 @@ const MyCollectiblesMB = () => {
             id: 1,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_1
         },
         {
             id: 2,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_09_avt,
+            icon: ic_collectible_2
         },
         {
             id: 3,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_08_avt,
+            icon: ic_collectible_2
         },
         {
             id: 4,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_09_avt,
+            icon: ic_collectible_1
         },
         {
             id: 5,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_3
         },
         {
             id: 6,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_3
         },
         {
             id: 7,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_2
         },
         {
             id: 8,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_1
         },
         {
             id: 9,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_2
         },
     ]
 
@@ -206,7 +218,7 @@ const MyCollectiblesMB = () => {
                                 {item.name}
                                 </div>
                             </div>
-                            <img src={verify} alt="" />
+                            <img src={item.icon} alt="" />
                                             
                         </div>
                     </div>

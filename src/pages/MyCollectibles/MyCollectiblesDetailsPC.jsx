@@ -88,21 +88,14 @@ const MyCollectiblesDetailsPC = () => {
           <div className="details-box">
             <div className="banner-dropdown" ref={ref}>
               <div className="logo">
-                <img
-                  src="https://static.assets.sweet.io/campaigns/267/avatar.jpg"
-                  alt="Sweet"
-                  className="logo-img"
-                />
+                <img src="https://static.assets.sweet.io/campaigns/267/avatar.jpg" alt="Sweet" className="logo-img"/>
                 <div className="logo-info">
                   <div className="creator">Creator</div>
                   <div className="name">Sweet</div>
                 </div>
               </div>
               <div className="dropdown">
-                <div
-                  className="dropdown-button"
-                  onClick={() => setOpen((open) => !open)}
-                >
+                <div className="dropdown-button" onClick={() => setOpen((open) => !open)}>
                   <img src={ic_dropdown} alt="dropdown" />
                 </div>
                 {open && (
