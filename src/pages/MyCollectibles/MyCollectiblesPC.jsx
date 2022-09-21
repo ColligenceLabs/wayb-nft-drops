@@ -8,20 +8,19 @@ import home_07_banner from '../../assets/img/home_07_banner.jpeg';
 import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
-import verify from '../../assets/img/verify-icon.png';
-
-
+import ic_dropdown_button_arrow from '../../assets/svg/dropdown_button_arrow.svg';
+import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
+import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
+import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
 import { useState, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import MyCollectiblesMB from './MyCollectiblesMB';
-import { useNavigate } from 'react-router-dom';
 
 const MyCollectibles = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const navigate = useNavigate();
     const [appState, setChange] = useState({
         
         objects: [{
@@ -49,46 +48,55 @@ const MyCollectibles = () => {
             id: 1,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_1
         },
         {
             id: 2,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_09_avt,
+            icon: ic_collectible_2
         },
         {
             id: 3,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_08_avt,
+            icon: ic_collectible_2
         },
         {
             id: 4,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_09_avt,
+            icon: ic_collectible_1
         },
         {
             id: 5,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_3
         },
         {
             id: 6,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_3
         },
         {
             id: 7,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_2
         },
         {
             id: 8,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_1
         },
         {
             id: 9,
             name: 'Strawberry Shortcake Space Creampop',
             image: home_10_avt,
+            icon: ic_collectible_2
         },
     ]
 
@@ -165,7 +173,7 @@ const MyCollectibles = () => {
                          
                     </span>
                     <div className="sort-dropdown-button" onClick={() => setOpen(open => !open)}>
-                        <img src={verify} alt="" />
+                        <img src={ic_dropdown_button_arrow} alt="" />
                         
                     </div>
                     {open && (
@@ -193,8 +201,8 @@ const MyCollectibles = () => {
             {listItems.map((item, index) => {
                         
                         
-            return <a href='/' key={index}>
-                <div className="item-product" onClick={() => navigate("/details")}>
+            return <a href='/my-collectibles/details' key={index}>
+                <div className="item-product" >
                         
                     
                     <div className="item-product-detail">
@@ -211,7 +219,7 @@ const MyCollectibles = () => {
                                 {item.name}
                                 </div>
                             </div>
-                            <img src={verify} alt="" />
+                            <img src={item.icon} alt="" />
                                             
                         </div>
                     </div>
