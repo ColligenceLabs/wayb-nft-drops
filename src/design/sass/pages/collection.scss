@@ -576,7 +576,20 @@
       place-items: center;
       max-width: 1380px;
       grid-template-columns: repeat(5, 1fr);
-
+      .not-found{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+          height: 300px;
+          margin-top: 30px;
+        }
+        .token-not-found{
+          margin-top: 10px;
+          font-size: 18px;
+          text-align: center;
+        }
+      }
       .list-carousel {
         gap: 20px;
         list-style: none;
@@ -819,7 +832,6 @@
         place-items: center;
         max-width: 1380px;
         grid-template-columns: repeat(5, 1fr);
-
         .list-carousel {
           gap: 20px;
           list-style: none;

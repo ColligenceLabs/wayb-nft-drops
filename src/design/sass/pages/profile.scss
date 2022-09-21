@@ -586,11 +586,19 @@
 				.content-box{
 					width: 100%;
 				}
-				.photo{
-					margin: 10px 29%;
+				@include Tablet{
+					.photo{
+						margin: 10px 40%;
+						width: 150px;
+					}
+				}
+				@include Mobile{
+					.photo{
+						margin: 10px 29%;
+					}
+				}
 					.content-title{
 						font-size: 15px;
-					}
 				}
 			}
 		}
