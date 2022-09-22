@@ -220,6 +220,12 @@
     }
 }
 
+@media (max-width: 600px) {    
+    .modal_collectibles {
+        min-width: auto;
+        height: 695px;
+    }
+}
 @include Mobile() {
     .modal_collectibles {
         min-width: auto;
