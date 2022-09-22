@@ -193,6 +193,7 @@ const Homepage = () => {
       </div>
       {/* section 02 */}
       <div className="section-02">
+        {/* Featured Collections */}
         <div className="featured-collections">
           <div className="wrapper-header title-header">
             <div className="header-name">Featured Collections</div>
@@ -201,7 +202,6 @@ const Homepage = () => {
             </Link>
           </div>
           <div className="grid-container">
-            {/* Featured Collections */}
             {featuredCollectionsData.map((item, index) => (
               <Link to={item.url} className="custom-link" key={index}>
                 <button className="grid-item button">
