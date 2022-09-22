@@ -73,7 +73,6 @@ const MyCollectiblesDetailsPC = () => {
       window.removeEventListener('scroll', handleScrollPercent);
     };
   }, []);
-  console.log(scrollPercentPosition)
   return (isMobile ? (
     <MyCollectiblesDetailsMB />
   ) : (

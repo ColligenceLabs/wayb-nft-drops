@@ -48,24 +48,10 @@
 
 .page-grid {
   position: relative;
-  margin: 120px auto 60px;
-  // width: $page-content-width;
+  margin: 80px auto 60px;
 }
-// .title-header {
-//   position: absolute;
-//   top: -70px;
-//   left: 0px;
-//   right: 0px;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-//   overflow: hidden;
-//   font-size: 26px;
-//   letter-spacing: -1px;
-//   margin: 25px 0px 10px;
-//   font-weight: bold;
-// }
+
 .hot-ollectibles-wrapper {
-  width: 260px;
   height: 450px;
   display: flex;
   flex-flow: row wrap;
