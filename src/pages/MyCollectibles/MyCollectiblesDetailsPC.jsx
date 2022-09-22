@@ -19,6 +19,7 @@ import ic_authenticity from '../../assets/svg/authenticity_icon.svg';
 import price_history_lg from '../../assets/svg/price_history_logo.svg';
 import ic_trade from '../../assets/svg/trade_icon.svg';
 import ic_sell from '../../assets/svg/sell_icon.svg';
+import WarningForm from "components/collectibles_modals/warning";
 
 import { useState, useEffect, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
@@ -28,13 +29,17 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import MyCollectiblesDetailsMB from './MyCollectiblesDetailsMB';
 const repositionOnResize = true;
+const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
+const closeOnDocumentClick = false;
+const lockScroll = true;
 
 const MyCollectiblesDetailsPC = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
+  var opened = false;
   useEffect(() => {
     let handler = (event) => {
-      if (!ref.current.contains(event.target)) {
+      if (opened == false && !ref.current.contains(event.target)) {
         setOpen(false);
       }
     };
@@ -101,13 +106,23 @@ const MyCollectiblesDetailsPC = () => {
                 {open && (
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
-                      <button className="dropdown-item ">
-                        <img
-                          src={ic_send_to_my_wallet}
-                          alt="send-to-my-wallet"
-                        />
-                        Send to My Wallet
-                      </button>
+                      <Popup
+                        onClose={() => opened = false}
+                        onOpen={() => opened = true}
+                        modal
+                        trigger={
+                          <button className="dropdown-item ">
+                            <img
+                              src={ic_send_to_my_wallet}
+                              alt="send-to-my-wallet"
+                            />
+                            Send to My Wallet
+                          </button>
+                        }
+                        {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+                      >
+                        {close => <WarningForm close={close} />}
+                      </Popup>
                     </li>
                     <li className="list-dropdown-item">
                       <button className="dropdown-item">
