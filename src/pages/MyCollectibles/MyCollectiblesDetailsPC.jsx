@@ -85,7 +85,7 @@ const MyCollectiblesDetailsPC = () => {
                 <img src={ic_back} alt="back-icon" /> Back
               </button>
             </Link>
-            <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" style={{ width: '100%', height: '554px', objectFit: 'contain', paddingTop: '70px' }} />
+            <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" className="thumbnail" />
             {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
 

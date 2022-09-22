@@ -18,7 +18,7 @@ import rare_lg from '../../assets/svg/rare_logo.svg';
 import ic_authenticity from '../../assets/svg/authenticity_icon.svg';
 import price_history_lg from '../../assets/svg/price_history_logo.svg';
 import ic_trade from '../../assets/svg/trade_icon.svg';
-import ic_sell from '../../assets/svg/sell_icon.svg'
+import ic_sell from '../../assets/svg/sell_icon.svg';
 
 import { useState, useEffect, useRef } from 'react';
 import Popup from 'reactjs-popup';
@@ -70,7 +70,7 @@ const MyCollectiblesDetailsMB = () => {
                                 <img src={ic_back} alt="back-icon" /> Back
                             </button>
                         </Link>
-                        <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" />
+                        <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" className="thumbnail"/>
                         {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
                     </div>
 
