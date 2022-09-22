@@ -200,7 +200,7 @@ const MyCollectiblesMB = () => {
             {listItems.map((item, index) => {
                         
                         
-            return <a href="/" key={index}>
+            return <a href="/my-collectibles/details" key={index}>
                 <div className="item-product" >
                         
                     
