@@ -63,6 +63,7 @@
         }
       }
     }
+
     // .home-carousel-mb {
     //   display: none;
     // }
@@ -324,6 +325,7 @@
       }
     }
   }
+
   @include Tablet() {
     .section-01 {
       .home-carousel-mb {
@@ -332,7 +334,8 @@
 
         .slide-item {
           display: flex;
-          & > * {
+
+          &>* {
             flex: 1 1 100%;
             margin: 0 20px;
 
@@ -345,6 +348,7 @@
       }
     }
   }
+
   @include Mobile() {
     .section-01 {
       .home-carousel-mb {
@@ -353,7 +357,8 @@
 
         .slide-item {
           display: flex;
-          & > * {
+
+          &>* {
             flex: 1 1 100%;
             margin: 0 20px;
 
@@ -364,12 +369,15 @@
           }
         }
       }
+
       .content-header {
         padding: 90px 20px 30px 20px;
+
         .text-head {
           font-size: 36px;
           line-height: 40px;
         }
+
         .text-bottom {
           font-size: 16px;
         }
@@ -418,14 +426,12 @@
         }
       }
 
-    .home-carousel {
-      z-index: 50;
-      background: linear-gradient(
-        180deg,
-        rgba(9, 9, 121, 0) 0%,
-        rgba(0, 0, 0, 1) 100%
-      );
-      padding-bottom: 30px;
+      .home-carousel {
+        z-index: 50;
+        background: linear-gradient(180deg,
+            rgba(9, 9, 121, 0) 0%,
+            rgba(0, 0, 0, 1) 100%);
+        padding-bottom: 30px;
 
         .slide-item {
           display: flex;
@@ -712,6 +718,58 @@
   }
 }
 
+@media (max-width: 1382px) {
+  .home-page {
+
+    .section-02 {
+      .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 1094px) {
+  .home-page {
+
+    .section-02 {
+      .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 812px) {
+  .home-page {
+
+    .section-02 {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .home-page {
+
+    .section-02 {
+      .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+
+        .custom-link {
+          width: 90%;
+
+          .grid-item {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
 //homepage mobile view
 @include Mobile() {
   .home-page {
@@ -738,6 +796,13 @@
     .section-02 {
       .grid-container {
         grid-template-columns: 1fr;
+
+        .custom-link {
+          width:90%;
+          .grid-item {
+            width: 100%;
+          }
+        }
 
         .wrapper-header {
           .header-name {
