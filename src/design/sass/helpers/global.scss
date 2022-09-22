@@ -4,12 +4,15 @@
 #root {
   overflow-x: hidden;
 }
+* {
+  box-sizing: border-box;
+}
 .main {
   position: relative;
   background-color: #f4f6fb;
   .background-section01 {
     background-image: url('../../../assets/img/home_01.png');
-    height: 790px;
+    height: 700px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% center;
@@ -46,27 +49,27 @@
 .page-grid {
   position: relative;
   margin: 120px auto 60px;
-  width: $page-content-width;
+  // width: $page-content-width;
 }
-.title-header {
-  position: absolute;
-  top: -70px;
-  left: 0px;
-  right: 0px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 26px;
-  letter-spacing: -1px;
-  margin: 25px 0px 10px;
-  font-weight: bold;
-  color: #000000;
-}
+// .title-header {
+//   position: absolute;
+//   top: -70px;
+//   left: 0px;
+//   right: 0px;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   font-size: 26px;
+//   letter-spacing: -1px;
+//   margin: 25px 0px 10px;
+//   font-weight: bold;
+// }
 .hot-ollectibles-wrapper {
   width: 260px;
   height: 450px;
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.08);
   overflow: hidden;
