@@ -22,24 +22,29 @@ import ic_sell from '../../assets/svg/sell_icon.svg'
 
 import { useState, useEffect, useRef } from 'react';
 import Popup from 'reactjs-popup';
+import WarningForm from "components/collectibles_modals/warning";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 
 const MyCollectiblesDetailsMB = () => {
+    const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
+    const closeOnDocumentClick = false;
+    const lockScroll = true;
     const [open, setOpen] = useState(false);
     const [popup, setPopUp] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [scrollPositionPercent, setScrollPositionPercent ] = useState(0)
+    const [scrollPositionPercent, setScrollPositionPercent] = useState(0)
+    const opened=false;
     const handleScroll = () => {
         const position = window.pageYOffset;
         setScrollPosition(position);
     };
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-    
+
         return () => {
-          window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
     const handeScrollPercent = () => {
@@ -48,9 +53,9 @@ const MyCollectiblesDetailsMB = () => {
     }
     useEffect(() => {
         window.addEventListener("scroll", handeScrollPercent);
-    
+
         return () => {
-          window.removeEventListener("scroll", handeScrollPercent);
+            window.removeEventListener("scroll", handeScrollPercent);
         };
     }, []);
     console.log(scrollPositionPercent);
@@ -60,19 +65,19 @@ const MyCollectiblesDetailsMB = () => {
             <div className="collectibles-details-wp">
                 <div className="product-details">
                     <div className="showcase-box">
-                    <Link to={'/my-collectibles'}>
-                        <button className="back-button">
-                            <img src={ic_back} alt="back-icon" /> Back
-                        </button>
-                    </Link>
-                    <img src="https://collectible.sweet.io/series/1727/image-front.png" alt=""/>
-            {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
+                        <Link to={'/my-collectibles'}>
+                            <button className="back-button">
+                                <img src={ic_back} alt="back-icon" /> Back
+                            </button>
+                        </Link>
+                        <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" />
+                        {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
                     </div>
 
                     <div className="details-box">
                         <div className="banner-dropdown">
                             <div className="logo">
-                                <img src="https://static.assets.sweet.io/campaigns/267/avatar.jpg" alt="Sweet" className="logo-img"/>
+                                <img src="https://static.assets.sweet.io/campaigns/267/avatar.jpg" alt="Sweet" className="logo-img" />
                                 <div className="logo-info">
                                     <div className="creator">Creator</div>
                                     <div className="name">Sweet</div>
@@ -83,21 +88,34 @@ const MyCollectiblesDetailsMB = () => {
                                     <img src={ic_dropdown} alt="dropdown" />
                                 </div>
                                 {open && (
-                                <ul className="dropdown-box">
-                                    <li className="list-dropdown-item">
-                                        <button className="dropdown-item ">
-                                            <img src={ic_send_to_my_wallet} alt="send-to-my-wallet" />
-                                            Send to My Wallet
-                                        </button>
-                                    </li>
-                                    <li className="list-dropdown-item">
-                                        <button className="dropdown-item">
-                                            <img src={ic_show_off} alt="show-off" />
-                                            Show off
-                                        </button>
-                                    </li>
-                                    
-                                </ul>
+                                    <ul className="dropdown-box">
+                                        <li className="list-dropdown-item">
+                                            <Popup
+                                                onClose={() => opened = false}
+                                                onOpen={() => opened = true}
+                                                modal
+                                                trigger={
+                                                    <button className="dropdown-item ">
+                                                        <img
+                                                            src={ic_send_to_my_wallet}
+                                                            alt="send-to-my-wallet"
+                                                        />
+                                                        Send to My Wallet
+                                                    </button>
+                                                }
+                                                {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+                                            >
+                                                {close => <WarningForm close={close} />}
+                                            </Popup>
+                                        </li>
+                                        <li className="list-dropdown-item">
+                                            <button className="dropdown-item">
+                                                <img src={ic_show_off} alt="show-off" />
+                                                Show off
+                                            </button>
+                                        </li>
+
+                                    </ul>
                                 )}
                             </div>
                         </div>
@@ -141,31 +159,31 @@ const MyCollectiblesDetailsMB = () => {
                         </div>
                         <div className="list-trade">
                             <div style={{ position: 'relative' }}>
-                                    
+
                                 <button className="btn-trade status disabled">
-                                    
-                                        <img src={ic_sell} alt="sell" />
-                                        Sell on Sweet
-                                        
+
+                                    <img src={ic_sell} alt="sell" />
+                                    Sell on Sweet
+
                                 </button>
-                                
-                            <div className="noti-cannot">This collectible cannot be currently sold on Sweet.</div> 
-                            
-                            
+
+                                <div className="noti-cannot">This collectible cannot be currently sold on Sweet.</div>
+
+
                             </div>
-                
-                          
+
+
                             <div>
-                            <button className="btn-trade status">
-                                <img src={ic_trade} alt="trade"/>
-                                Trade on Sweet
-                                
-                            </button>
+                                <button className="btn-trade status">
+                                    <img src={ic_trade} alt="trade" />
+                                    Trade on Sweet
+
+                                </button>
                             </div>
                         </div>
                         <div className="price-history">
                             <div className="price-history-label">
-                                <img src={price_history_lg } alt="price-history" />
+                                <img src={price_history_lg} alt="price-history" />
                                 Price History
                             </div>
                             <div className="list-price-history"></div>
