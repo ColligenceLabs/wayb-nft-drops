@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from '../../assets/img/landing-logo.png';
 import left_cross from '../../assets/img/left_cross.png';
 import magic_dogs from '../../assets/img/magic_dogs.gif';
@@ -6,6 +6,8 @@ import boys_girls_club_logo from '../../assets/svg/boys_girls_club_logo.svg';
 import facebook_icon from '../../assets/svg/facebook.svg';
 import instagram_icon from '../../assets/svg/instagram_icon.svg';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
+import avatar_user from '../../assets/img/avatar_user.webp';
+import nav_icon from '../../assets/icon/nav_icon.svg';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -17,13 +19,27 @@ import Faq from './faq';
 import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import LandingPageMB from './LandingPageMB';
+import UsernameBox from 'components/common/UsernameBox';
+import useOnClickOutside from 'components/common/useOnClickOutside';
+import DialogWallets from 'components/modal/DialogWallets';
+import SidebarMb from 'components/sidebar/SidebarMb';
+import { useModalWalletsStore, useSidebarStore } from 'components/common/AppStore';
+import 'reactjs-popup/dist/index.css';
+
 
 const Landing = () => {
+  const ref = useRef();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const {openSidebar} = useSidebarStore();
+  
+  useOnClickOutside(ref, () => setModalOpen(false));
+
+
   return isMobile ? (
     <LandingPageMB />
   ) : (
     <main className="landing-container">
-      <div className="box-landing">
+      <div className="box-landing" >
         <div className="navbar">
           <div className="box-nav">
             <div className="line-left"></div>
@@ -33,7 +49,48 @@ const Landing = () => {
             <Popup modal trigger={<button className="faq">FAQ</button>}>
               {(close) => <Faq close={close} />}
             </Popup>
-            <button className="sign-up">Sign Up</button>
+            {/* <button className="sign-up">Sign Up</button> */}
+            <div className="icon-nav">
+              <button className="button" onClick={openSidebar}>
+                <img src={nav_icon} alt="Navbar Icon" />
+                {/* side bar */}
+              </button>
+              <SidebarMb
+              />
+            </div>
+            <div className="wrapper-user">
+              <div className="avatar-user">
+                <img src={avatar_user} alt="profile-avatar" />
+              </div>
+              <p className="user-name">User name</p>
+            </div>
+            <button
+              ref={ref}
+              className="username-dropdown button"
+              onClick={() => setModalOpen(!isModalOpen)}
+            >
+              <svg
+                className="sc-196ec885-12 eKhfKP"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18.092"
+                height="11.168"
+                viewBox="0 0 18.092 11.168"
+              >
+                <path
+                  id="Path_46142"
+                  data-name="Path 46142"
+                  d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+                  transform="translate(10860.586 7360.121)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeWidth="3"
+                ></path>
+              </svg>
+              {/* user dropdown box */}
+              {isModalOpen && <UsernameBox />}
+            </button>
+            <DialogWallets />
           </div>
 					<div className="line"></div>
         </div>
@@ -53,13 +110,14 @@ const Landing = () => {
                 generated traits co-created with Boys &amp; Girls Clubs of
                 America youth arts community.
               </p>
-              <p>
+              <div>
                 <div>
                   <strong>An NFT &amp; A Flag Tee For Under A Buck</strong>
                 </div>
+                <p>
                 When you buy an NFT, we’ll throw in our iconic flag tee* as well
-                as future access to perks, incentives and more.
-              </p>
+                as future access to perks, incentives and more.</p> 
+              </div>
               <div>
                 <div className="box_info">
                   <h3>What You Need to Know:</h3>
