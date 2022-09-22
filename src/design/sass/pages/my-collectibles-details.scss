@@ -43,17 +43,22 @@
           position: absolute;
           z-index: 10;
           box-shadow: 0 0 5px 5px #f0ebfc;
-          background: linear-gradient(to left, rgb(103, 129, 249), rgb(227, 100, 190));
+          background: linear-gradient(
+            to left,
+            rgb(103, 129, 249),
+            rgb(227, 100, 190)
+          );
           color: #fff;
           img {
             transform: rotate(180deg);
             margin-right: 10px;
           }
         }
-        .canvas-card {
-          cursor: grab;
-          margin-top: 50px;
-          transform: translate(-20%, -10%);
+        .thumbnail {
+          width: 100%;
+          height: 554px;
+          object-fit: contain;
+          padding-top: 70px;
         }
       }
       .details-box {
@@ -321,7 +326,6 @@
           }
         }
         .details-box {
-          
           margin: 100px auto;
           width: 90%;
           .label-name {
@@ -349,37 +353,49 @@
             }
           }
         }
-        @include Mobile() {
-          .details-box {
+      }
+    }
+  }
+}
+@include Mobile() {
+  .collectibles-details-container {
+    margin: 45px auto;
+    .collectibles-details-wp {
+      .product-details {
+        .showcase-box {
+          .thumbnail {
+            height: auto;
+          }
+        }
+        .details-box {
+          margin: 0px auto;
+          .label-name {
+            padding: 0px;
+            margin-bottom: 20px;
+            font-size: 26px;
+            flex-direction: column;
+            text-align: center;
+          }
+          .rarity-label {
             margin: 0px auto;
-            .label-name {
-              padding: 0px;
-              margin-bottom: 20px;
-              font-size: 26px;
-              flex-direction: column;
-              text-align: center;
+            font-size: 14px;
+            img {
+              width: 18px;
+              height: 18px;
             }
-            .rarity-label {
-              margin: 0px auto;
-              font-size: 14px;
-              img {
-                width: 18px;
-                height: 18px;
-              }
+          }
+          .list-item {
+            .item {
+              max-width: 30vw;
+              padding: 20px 10px;
+              font-size: 12px;
             }
-            .list-item {
-              .item {
-                max-width: 30vw;
-                padding: 20px 10px;
-                font-size: 12px;
-              }
-            }
-            .list-trade {
-              display: flex;
-              flex-direction: column;
-              -webkit-box-align: center;
-              align-items: center;
-            }
+          }
+          .list-trade {
+            display: flex;
+            flex-direction: column;
+            -webkit-box-align: center;
+            align-items: center;
           }
         }
       }
@@ -430,14 +446,18 @@
           position: absolute;
           z-index: 10;
           box-shadow: 0 0 5px 5px #f0ebfc;
-          background: linear-gradient(to left, rgb(103, 129, 249), rgb(227, 100, 190));
+          background: linear-gradient(
+            to left,
+            rgb(103, 129, 249),
+            rgb(227, 100, 190)
+          );
           color: #fff;
           img {
             transform: rotate(180deg);
             margin-right: 10px;
           }
         }
-        > img {
+        .thumbnail {
           width: 100%;
           height: 554px;
           object-fit: contain;
@@ -693,15 +713,17 @@
       }
     }
   }
-  @include Mobile() {
+}
+
+@include Mobile() {
+  .collectibles-details-container-mb {
+    margin: 45px auto;
+
     .collectibles-details-wp {
       .product-details {
         .showcase-box {
-          > img {
-            width: 100%;
-            height: 660px;
-            object-fit: contain;
-            padding-top: 70px;
+          .thumbnail {
+            height: auto;
           }
         }
         .details-box {
@@ -739,7 +761,6 @@
     }
   }
 }
-
 .noti-cannot {
   max-width: 160px;
   text-align: center;
