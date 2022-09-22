@@ -64,11 +64,12 @@
     padding: 0 40px;
     margin: auto;
     .featured-collections {
+      margin-bottom: 60px;
       .wrapper-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 150px auto 10px;
+        margin: 100px auto 10px;
         font-weight: bold;
         font-size: 26px;
         white-space: nowrap;
@@ -353,6 +354,18 @@
   }
   @include Mobile() {
     .section-01 {
+      .content-header {
+        padding: 90px 20px 30px 20px;
+        .text-head {
+          font-size: 36px;
+          line-height: 40px;
+        }
+
+        .text-bottom {
+          font-size: 16px;
+          max-width: 100%;
+        }
+      }
       .home-carousel {
         z-index: 50;
         padding-bottom: 20px;
@@ -372,8 +385,10 @@
       }
     }
     .section-02 {
+      margin-top: 100px;
       .featured-collections {
         .wrapper-header {
+          margin: auto;
           gap: 10px;
           .header-name {
             font-size: 22px;
@@ -386,6 +401,13 @@
     }
   }
   @media (max-width: 320px) {
+    .section-01 {
+      .content-header {
+        .text-bottom {
+          font-size: 14px;
+        }
+      }
+    }
     .section-02 {
       .featured-collections {
         .wrapper-header {
@@ -397,8 +419,6 @@
       }
     }
   }
-
-
 }
 
 // homepage Tablet and Mobile
