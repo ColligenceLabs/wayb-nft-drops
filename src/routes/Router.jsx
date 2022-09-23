@@ -5,12 +5,12 @@ import Collections from 'pages/Collections/CollectionsPC';
 import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
 import Collection from 'pages/Collection/CollectionPC';
 import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetailsPC';
-import Landing from 'pages/Landingpage/LandingPagePC';
+import Landing from 'pages/landingpage/LandingPagePC';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
-import Profile from 'pages/MyProfile/MyProfilePC';
-import Purchase_History from 'pages/PurchaseHistory/PurchaseHistoryPC';
-import Purchase_History_Detail from 'pages/PurchaseHistory/PurchaseHistoryDetailPC';
+import Profile from 'pages/myprofile/MyProfilePC';
+import Purchase_History from 'pages/purchasehistory/PurchaseHistoryPC';
+import Purchase_History_Detail from 'pages/purchasehistory/PurchaseHistoryDetailPC';
 
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollectionPC';
 

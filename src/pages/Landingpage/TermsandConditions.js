@@ -2,7 +2,7 @@ import React from "react";
 
 import logo from '../../assets/img/landing-logo.png';
 
-export default ({ close }) => (
+const TermsandConditions = ({ close }) => (
 	<div className="modal-landingpage">
 		
 		<div className="modal-box">
@@ -39,4 +39,4 @@ export default ({ close }) => (
 	
 	</div>
   );
-
+export default TermsandConditions;

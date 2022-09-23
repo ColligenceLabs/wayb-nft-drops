@@ -2,9 +2,8 @@ import React from "react";
 
 import logo from '../../assets/img/landing-logo.png';
 
-export default ({ close }) => (
+const Faq = ({ close }) => (
 	<div className="modal-landingpage">
-		
 		<div className="modal-box">
 			<div className="modal-content">
 				<button className="close" onClick={close}>
@@ -109,14 +108,11 @@ export default ({ close }) => (
 	</div>
 	
   );
-
+export default Faq;
 function myFunction(id,svg){
 	const element = document.getElementById(id);
-	const element1 = document.getElementById(svg);
 	if (element.className == "faq-content content-hidden") {
 		element.className = "faq-content content-show";
-		// element1.attr = "arrow-up";
-		// element1.setAttribute("class", "arrow-up");
 	} else {
 		element.className = "faq-content content-hidden";
 	}
