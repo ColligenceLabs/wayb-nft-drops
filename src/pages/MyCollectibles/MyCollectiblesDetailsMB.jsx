@@ -22,20 +22,37 @@ import ic_sell from '../../assets/svg/sell_icon.svg';
 
 import { useState, useEffect, useRef } from 'react';
 import Popup from 'reactjs-popup';
-import WarningForm from "components/collectibles_modals/warning";
+import WarningForm from 'components/collectibles_modals/warning';
+import SendingForm from '../../components/collectibles_modals/sending';
+import SuccessForm from 'components/collectibles_modals/success';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 
 const MyCollectiblesDetailsMB = () => {
-    const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
+
+    const overlayStyle = { background: 'rgba(0,0,0,0.4)' };
     const closeOnDocumentClick = false;
     const lockScroll = true;
     const [open, setOpen] = useState(false);
+    const [warningOpen, setWarningOpen] = useState(false);
+    const [sendingOpen, setSendingOpen] = useState(false);
+    const [successOpen, setSuccessOpen] = useState(false);
     const [popup, setPopUp] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [scrollPositionPercent, setScrollPositionPercent] = useState(0)
-    const opened=false;
+
+    const closeWarning = () => {
+        setWarningOpen(false);
+    };
+
+    const closeSending = () => {
+        setSendingOpen(false);
+    };
+
+    const closeSuccess = () => {
+        setSuccessOpen(false);
+    };
     const handleScroll = () => {
         const position = window.pageYOffset;
         setScrollPosition(position);
@@ -70,7 +87,7 @@ const MyCollectiblesDetailsMB = () => {
                                 <img src={ic_back} alt="back-icon" /> Back
                             </button>
                         </Link>
-                        <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" className="thumbnail"/>
+                        <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" className="thumbnail" />
                         {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
                     </div>
 
@@ -90,23 +107,13 @@ const MyCollectiblesDetailsMB = () => {
                                 {open && (
                                     <ul className="dropdown-box">
                                         <li className="list-dropdown-item">
-                                            <Popup
-                                                onClose={() => opened = false}
-                                                onOpen={() => opened = true}
-                                                modal
-                                                trigger={
-                                                    <button className="dropdown-item ">
-                                                        <img
-                                                            src={ic_send_to_my_wallet}
-                                                            alt="send-to-my-wallet"
-                                                        />
-                                                        Send to My Wallet
-                                                    </button>
-                                                }
-                                                {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
-                                            >
-                                                {close => <WarningForm close={close} />}
-                                            </Popup>
+                                            <button className="dropdown-item "  onClick={() => setWarningOpen(true)}>
+                                                <img
+                                                    src={ic_send_to_my_wallet}
+                                                    alt="send-to-my-wallet"
+                                                />
+                                                Send to My Wallet
+                                            </button>
                                         </li>
                                         <li className="list-dropdown-item">
                                             <button className="dropdown-item">
@@ -190,6 +197,34 @@ const MyCollectiblesDetailsMB = () => {
                         </div>
                     </div>
                 </div>
+                <Popup
+                    open={warningOpen}
+                    onClose={closeWarning}
+                    modal
+                    {...{ closeOnDocumentClick, lockScroll, overlayStyle }}
+                >
+                    <WarningForm close={closeWarning} onConfirm={() => setSendingOpen(true)} />
+                </Popup>
+
+                <Popup
+                    modal
+                    open={sendingOpen}
+                    onOpen={closeWarning}
+                    onClose={closeSending}
+                    {...{ closeOnDocumentClick, lockScroll, overlayStyle }}
+                >
+                    <SendingForm close={closeSending} onConfirm={() => setSuccessOpen(true)} />
+                </Popup>
+
+                <Popup
+                    modal
+                    open={successOpen}
+                    onOpen={closeSending}
+                    onClose={closeSuccess}
+                    {...{ closeOnDocumentClick, lockScroll, overlayStyle }}
+                >
+                    <SuccessForm close={closeSuccess} />
+                </Popup>
             </div>
         </main>
     );
