@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ close }) => (
+const deleteaccount = ({ close }) => (
 	<div className="modal-delete-account">
 		<div className="modal-overlay">
 			<div className="modal-content">
@@ -17,3 +17,4 @@ export default ({ close }) => (
 		</div>
 	</div>
 );
+export default deleteaccount;

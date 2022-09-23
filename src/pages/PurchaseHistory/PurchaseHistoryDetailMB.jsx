@@ -9,11 +9,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
-import {isMobile} from 'react-device-detect';
 
 const Purchase_History_Detail = () => {
 	return(
-		<main className="purchase-detail-container-mb">
+		<main className="purchase-detail-container">
 			<Link to="/purchase-history" className="back-purchase-list">
 				<svg xmlns="http://www.w3.org/2000/svg" width="28.021" height="15.509" viewBox="0 0 28.021 15.509"><path id="Path_84705" data-name="Path 84705" d="M25.033,13.816H4v3.877H25.033v5.816l6.988-7.755L25.033,8Z" transform="translate(-4 -8)" fill="#fff"></path></svg>
 				Back
@@ -25,7 +24,7 @@ const Purchase_History_Detail = () => {
 				<div className="campaignBlock">
 					<img height={30} src={talken_icon} alt="" />
 					<div className="campaign_name"> Talken </div>
-					<img height={19} src={verify_icon}></img>
+					<img height={19} src={verify_icon} alt="" />
 				</div>
 				<h1>Strawberry Shortcake Space Creampop #49</h1>
 				<div className="collectibleDescription">
@@ -38,7 +37,7 @@ const Purchase_History_Detail = () => {
 					</button>
 				</div>
 				<div className="current_owner">
-					<img id="profile_image" height={30} src={avatar}/>
+					<img id="profile_image" height={30} src={avatar} alt="" />
 					<br />
 					<div className="current_owner_title">Current Owner</div>
 						Martin K.
@@ -68,14 +67,14 @@ const Purchase_History_Detail = () => {
 					</div>
 				</div>
 				<div className="marketPlaceBtn">
-					<a href="#" target={'_blank'}>
+					<Link to={"/"}>
 						<div className="marketplace-container">
 							<span>
-								<img className="marketplace-icon" src={talken_icon}/>
+								<img className="marketplace-icon" src={talken_icon} alt=""/>
 							</span>
 							<span className='marketplace-text'>Visit the Marketplace</span>
 						</div>
-					</a>
+					</Link>
 				</div>
 			</div>
 			

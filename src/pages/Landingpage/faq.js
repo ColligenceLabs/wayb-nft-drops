@@ -1,17 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import logo from '../../assets/img/landing-logo.png';
 
-export default ({ close }) => (
+const Faq = ({ close }) => (
 	<div className="modal-landingpage">
-		
 		<div className="modal-box">
 			<div className="modal-content">
 				<button className="close" onClick={close}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24.329" height="24.329" viewBox="0 0 24.329 24.329"><path id="Path_84708" data-name="Path 84708" d="M29.329,7.45,26.878,5l-9.714,9.714L7.45,5,5,7.45l9.714,9.714L5,26.878l2.45,2.45,9.714-9.714,9.714,9.714,2.45-2.45-9.714-9.714Z" transform="translate(-5 -5)" fill="#fff"></path></svg>
 				</button>
 				<div className="logo">
-					<img src={logo}></img>
+					<img src={logo} alt="" />
 				</div>
 				<h1>Frequently Asked Questions</h1>
 				<div className="table-faq" >
@@ -31,7 +31,7 @@ export default ({ close }) => (
 						</div>
 						<div className="faq-content content-hidden" id="2">
 							To purchase - and later sell - an NFT, you must first set up a digital wallet. When you create an account with 
-							<a href="https://sweet.io/" target="_blank"> Sweet.io </a>
+							<Link to={"/"} target="_blank"> Talken </Link>
 							, a digital wallet will automatically be created for you. The Magic NFTs may be purchased using a credit card or cryptocurrency.
 						</div>
 					</div>
@@ -109,14 +109,11 @@ export default ({ close }) => (
 	</div>
 	
   );
-
+export default Faq;
 function myFunction(id,svg){
 	const element = document.getElementById(id);
-	const element1 = document.getElementById(svg);
 	if (element.className == "faq-content content-hidden") {
 		element.className = "faq-content content-show";
-		// element1.attr = "arrow-up";
-		// element1.setAttribute("class", "arrow-up");
 	} else {
 		element.className = "faq-content content-hidden";
 	}

@@ -5,7 +5,6 @@ import not_found from '../../assets/img/not_found.gif';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-
 import avatar from '../../assets/img/avatar.png';
 import home_11 from '../../assets/img/home_11.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
@@ -14,8 +13,6 @@ import ic_search from '../../assets/icon/search.svg';
 import { isMobile } from 'react-device-detect';
 import SaleCollectiblesMb from './SaleCollectiblesMB';
 import PaymentWallets from 'components/modal/PaymentWallets';
-import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
-
 
 const SaleCollectibles = () => {
   const list_products = [
@@ -93,10 +90,6 @@ const SaleCollectibles = () => {
   };
 
   useOnClickOutside(ref, () => setModalOpen(false));
-  const handleOpenPaymentWallets = () => {
-    setOpenPaymentWallets(true);
-  };
-
   const handleClosePaymentWallets = () => {
     setOpenPaymentWallets(false);
   };
@@ -108,13 +101,13 @@ const SaleCollectibles = () => {
           <div className="price-collection-view-page">
             <div className="price-collection-box">
               <div className="token-showcase-box">
-                  <img src={home_11} />                                                                                                                                                                                                                                                                                                                           
+                  <img src={home_11} alt=""/>                                                                                                                                                                                                                                                                                                                           
               </div>
               <div className="token-details-box">
                 <div>
                   <div className="box-owner-product">
                     <button className="btn-avatar-owner-product">
-                      <img src={avatar} />
+                      <img src={avatar} alt=""/>
                     </button>
                     <div className="name-owner-product">
                       <button className="btn-name-owner-product">Milwaukee Bucks</button>
@@ -137,7 +130,7 @@ const SaleCollectibles = () => {
                 </div>
                 <div>
                   <a className="authenticity-button">
-                    <img src={ic_info} style={{ marginRight: '5px' }} /> Authenticity
+                    <img src={ic_info} style={{ marginRight: '5px' }}  alt=""/> Authenticity
                   </a>
                 </div>
                 <div>
@@ -174,6 +167,7 @@ const SaleCollectibles = () => {
                     <div className="lable-bottom fw-600">$50.00</div>
                   </div>
                   <button className={'btn-sale-collection'} onClick={setOpenPaymentWallets}>Buy Now</button>
+              {/* <button className="btn-sale-collection disable">Sold out</button> */}
                 </div>
               </div>
             </div>
@@ -185,7 +179,7 @@ const SaleCollectibles = () => {
               <div className="userSales">
                 <div className="filter-box">
                   <div className="search-box">
-                    <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} />
+                    <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} alt=""/>
                     <input className="marketplace-search-textbox" placeholder="Search listings…" />
                   </div>
                   <div className="type-filter-box">
@@ -204,7 +198,7 @@ const SaleCollectibles = () => {
                   <div className="list-carousel">
                     {list_products.map((item, index) => {
                       return (
-                        <div className="slide-item">
+                        <div className="slide-item" key={index}>
                           <Link to={'/sale'} className="button">
                             <div className="hot-ollectibles-wrapper">
                               <div className="header-left hot-ollectibles-item">

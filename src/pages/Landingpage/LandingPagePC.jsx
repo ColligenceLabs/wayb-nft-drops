@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from '../../assets/img/landing-logo.png';
 import left_cross from '../../assets/img/left_cross.png';
 import magic_dogs from '../../assets/img/magic_dogs.gif';
@@ -6,34 +6,139 @@ import boys_girls_club_logo from '../../assets/svg/boys_girls_club_logo.svg';
 import facebook_icon from '../../assets/svg/facebook.svg';
 import instagram_icon from '../../assets/svg/instagram_icon.svg';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
+import avatar_user from '../../assets/img/avatar_user.webp';
+import nav_icon from '../../assets/icon/nav_icon.svg';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carousel, { WithStyles } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Popup from 'reactjs-popup';
-import Content from './TermsandConditions';
+import TermsandConditions from './TermsandConditions';
 import Faq from './faq';
 import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import LandingPageMB from './LandingPageMB';
+import UsernameBox from 'components/common/UsernameBox';
+import useOnClickOutside from 'components/common/useOnClickOutside';
+import DialogWallets from 'components/modal/DialogWallets';
+import SidebarMb from 'components/sidebar/SidebarMb';
+import { useModalWalletsStore, useSidebarStore } from 'components/common/AppStore';
+import 'reactjs-popup/dist/index.css';
+
 
 const Landing = () => {
+  const [open, setOpen] = useState(false);
+  const [FaqOpen, setFaqOpen] = useState(false);
+  const [TermsandConditionsOpen, setTermsandConditionsOpen] = useState(false);
+  const element = document.getElementById('buy-now-mb');
+
+  const ref = useRef();
+  var opened = false;
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const {openSidebar} = useSidebarStore();
+  
+  useOnClickOutside(ref, () => setModalOpen(false));
+
+  const CloseTermsandConditions = () =>{
+    setTermsandConditionsOpen(false);
+  }
+  const CloseFaq = () =>{
+    setFaqOpen(false);
+  }
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
+  const handleScrollPercent = () => {
+    const positionPercent =
+      (window.pageYOffset /
+        (document.documentElement.offsetHeight - window.innerHeight)) *
+      100;
+    setScrollPercentPosition(positionPercent);
+  };
+    if(scrollPercentPosition == 100){
+    element.className = "buy-now-mb-hidden";
+
+  }
+  if(scrollPercentPosition < 100 && scrollPercentPosition>20){
+    element.className = "buy-now-mb"
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollPercent);
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollPercent);
+    };
+  },[]);
+
   return isMobile ? (
     <LandingPageMB />
   ) : (
     <main className="landing-container">
-      <div className="box-landing">
+      <div className="box-landing" >
         <div className="navbar">
           <div className="box-nav">
             <div className="line-left"></div>
             <img src={logo} alt="" className="logo" />
             <div className="line-right"></div>
             <img src={left_cross} alt="" className="left_cross" />
-            <Popup modal trigger={<button className="faq">FAQ</button>}>
+            <button className="faq" onClick={() => setFaqOpen(true)}>FAQ</button>
+            <Popup modal >
               {(close) => <Faq close={close} />}
             </Popup>
-            <button className="sign-up">Sign Up</button>
+            {/* <button className="sign-up">Sign Up</button> */}
+            <div className="icon-nav">
+              <button className="button" onClick={openSidebar}>
+                <img src={nav_icon} alt="Navbar Icon" />
+                {/* side bar */}
+              </button>
+              <SidebarMb
+              />
+            </div>
+            <div className="wrapper-user">
+              <div className="avatar-user">
+                <img src={avatar_user} alt="profile-avatar" />
+              </div>
+              <p className="user-name">User name</p>
+            </div>
+            <button
+              ref={ref}
+              className="username-dropdown button"
+              onClick={() => setModalOpen(!isModalOpen)}
+            >
+              <svg
+                className="sc-196ec885-12 eKhfKP"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18.092"
+                height="11.168"
+                viewBox="0 0 18.092 11.168"
+              >
+                <path
+                  id="Path_46142"
+                  data-name="Path 46142"
+                  d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+                  transform="translate(10860.586 7360.121)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeWidth="3"
+                ></path>
+              </svg>
+              {/* user dropdown box */}
+              {isModalOpen && <UsernameBox />}
+            </button>
+            <DialogWallets />
           </div>
 					<div className="line"></div>
         </div>
@@ -53,13 +158,14 @@ const Landing = () => {
                 generated traits co-created with Boys &amp; Girls Clubs of
                 America youth arts community.
               </p>
-              <p>
+              <div>
                 <div>
                   <strong>An NFT &amp; A Flag Tee For Under A Buck</strong>
                 </div>
+                <p>
                 When you buy an NFT, we’ll throw in our iconic flag tee* as well
-                as future access to perks, incentives and more.
-              </p>
+                as future access to perks, incentives and more.</p> 
+              </div>
               <div>
                 <div className="box_info">
                   <h3>What You Need to Know:</h3>
@@ -247,12 +353,20 @@ const Landing = () => {
             </a>
           </div>
           <Popup modal trigger={<a>Terms and Conditions</a>}>
-            {(close) => <Content close={close} />}
+            {(close) => <TermsandConditions close={close} />}
           </Popup>
         </div>
-        <div className="buy-now-mb">
+        <div className='name' id='buy-now-mb'>
 					<Link to="/collections" target="_blank" className="Buy-button-mb">Buy Now</Link>
 				</div>
+        <Popup
+          open={FaqOpen}
+          onClose={CloseFaq}
+          modal
+          closeOnDocumentClick
+        >
+          <Faq close={CloseFaq}/>
+        </Popup>
       </div>
     </main>
   );

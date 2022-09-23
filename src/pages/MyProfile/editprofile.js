@@ -1,7 +1,7 @@
 import React from "react";
 import avatar from '../../assets/img/avatar.png';
 
-export default ({ close }) => (
+const editprofile = ({ close }) => (
 	<div className="modal-editprofile">
 		<div className="modal-overlay">
 			<div className="modal-content">
@@ -43,8 +43,8 @@ export default ({ close }) => (
 									Edit Profile Photo
 								</div>
 								<div className="avatar">
-									<img id="avatar_upload" src={avatar}></img>
-									<input type="file" id="file-upload" onChange={loadFile} accept="image/*" />
+									<img id="avatar_upload" src={avatar} alt="" />
+									<input type="file" id="file-upload" accept="image/*" />
 									<svg id="edit_black_24dp"
 										xmlns="http://www.w3.org/2000/svg"
 										width="23.278" height="23.278" viewBox="0 0 23.278 23.278">
@@ -68,11 +68,4 @@ export default ({ close }) => (
 		</div>
 	</div>
 );
-
-function loadFile(event) {
-	if (event.target.files.length > 0) {
-		avatar = URL.createObjectURL(event.target.files[0]);
-		// setFile(avatar);
-		// avatar_upload.src = {avatar}
-	}
-};
+export default editprofile;

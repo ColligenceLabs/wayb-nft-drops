@@ -74,7 +74,7 @@ const SaleCollectiblesMb = () => {
             <div>
               <div className="box-owner-product">
                 <button className="btn-avatar-owner-product">
-                  <img src={avatar} />
+                  <img src={avatar} alt=""/>
                 </button>
                 <div className="name-owner-product">
                   <button className="btn-name-owner-product">Milwaukee Bucks</button>
@@ -145,7 +145,7 @@ const SaleCollectiblesMb = () => {
           <div className="userSales">
             <div className="filter-box">
               <div className="search-box">
-                <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} />
+                <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} alt=""/>
                 <input className="marketplace-search-textbox" placeholder="Search listings…" />
               </div>
               <div className="type-filter-box">
