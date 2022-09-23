@@ -14,9 +14,131 @@ import home_11 from '../../assets/img/home_11.png';
 import home_12 from '../../assets/img/home_12.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import home_14_avt from '../../assets/img/home_14_avt.jpg';
+import home_15 from '../../assets/img/home_15.jpg';
+import home_16 from '../../assets/img/home_16.jpg';
+import home_17 from '../../assets/img/home_17.jpg';
+import useScreenSize from 'components/common/useScreenSize';
 const HomePageMb = () => {
+  const screenSize = useScreenSize();
+  const carouselOption = {
+    additionalTransfrom: 0,
+    arrows: true,
+    autoPlay: true,
+    autoPlaySpeed: 3000,
+    draggable: true,
+    focusOnSelect: false,
+    keyBoardControl: true,
+    minimumTouchDrag: 80,
+    pauseOnHover: true,
+    renderArrowsWhenDisabled: false,
+    renderButtonGroupOutside: false,
+    renderDotsOutside: false,
+    rewind: false,
+    rewindWithAnimation: false,
+    rtl: false,
+    shouldResetAutoplay: true,
+    showDots: true,
+    slidesToSlide: 1,
+    swipeable: true,
+  };
+  const slideData = [
+    {
+      url: '/oldnavy',
+      imagePC: home_02,
+      imageMb: home_15,
+    },
+    {
+      url: '/',
+      imagePC: home_03,
+      imageMb: home_16,
+    },
+    {
+      url: '/collection',
+      imagePC: home_04,
+      imageMb: home_17,
+    },
+  ];
+  const featuredCollectionsData = [
+    {
+      url: '/collection',
+      imageBanner: home_05_banner,
+      imageAvatar: home_08_avt,
+      nameLabel: 'Fear the Deer NFTs',
+    },
+    {
+      url: '/collection',
+      imageBanner: home_06_banner,
+      imageAvatar: home_09_avt,
+      nameLabel: 'Kia',
+    },
+    {
+      url: '/collection',
+      imageBanner: home_07_banner,
+      imageAvatar: home_10_avt,
+      nameLabel: 'Old Navy',
+    },
+    {
+      url: '/collection',
+      imageBanner: home_05_banner,
+      imageAvatar: home_08_avt,
+      nameLabel: 'Fear the Deer NFTs',
+    },
+    {
+      url: '/collection',
+      imageBanner: home_06_banner,
+      imageAvatar: home_09_avt,
+      nameLabel: 'Kia',
+    },
+  ];
+  const hotCollectiblesData = [
+    {
+      url: '/sale',
+      image: home_11,
+      imageAvt: home_13_avt,
+      nameLabel: 'Elton John',
+      details: 'Elton John Rocket NFT Club Pass',
+      currentPrice: 29.99,
+      quantityRemaining: 26008,
+    },
+    {
+      url: '/sale',
+      image: home_12,
+      imageAvt: home_14_avt,
+      nameLabel: 'Old Navy',
+      details: 'Generative Magic the Dog',
+      currentPrice: 0.094,
+      quantityRemaining: 0,
+    },
+    {
+      url: '/sale',
+      image: home_11,
+      imageAvt: home_13_avt,
+      nameLabel: 'Elton John',
+      details: 'Elton John Rocket NFT Club Pass',
+      currentPrice: 29.99,
+      quantityRemaining: 26008,
+    },
+    {
+      url: '/sale',
+      image: home_12,
+      imageAvt: home_14_avt,
+      nameLabel: 'Old Navy',
+      details: 'Generative Magic the Dog',
+      currentPrice: 0.094,
+      quantityRemaining: 0,
+    },
+    {
+      url: '/sale',
+      image: home_11,
+      imageAvt: home_13_avt,
+      nameLabel: 'Elton John',
+      details: 'Elton John Rocket NFT Club Pass',
+      currentPrice: 29.99,
+      quantityRemaining: 26008,
+    },
+  ];
   return (
-    <div className="homepage-mb">
+    <div className="home-page">
       {/* section 01 */}
       <div className="section-01">
         <div className="content-header">
@@ -31,170 +153,88 @@ const HomePageMb = () => {
           </div>
         </div>
         <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlay
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className=""
+          {...carouselOption}
+          centerMode={screenSize > 1023}
           containerClass="container-with-dots home-carousel"
-          dotListClass="custom-dots"
-          draggable
-          focusOnSelect={false}
           infinite
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
           responsive={{
-            mobile: {
+            desktop: {
               breakpoint: {
-                max: 464,
+                max: 3000,
                 min: 0,
               },
               items: 1,
-              partialVisibilityGutter: 30,
-            },
-            tablet: {
-              breakpoint: {
-                max: 1024,
-                min: 464,
-              },
-              items: 1,
-              partialVisibilityGutter: 30,
+              partialVisibilityGutter: 40,
             },
           }}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
         >
-          <div className="slide-item">
-            <Link to={'/oldnavy'} target={'_blank'}>
-              <div>
-                <img src={home_02} alt="" draggable={false} />
-              </div>
-            </Link>
-          </div>
-          <div className="slide-item">
-            <Link to={'/'}>
-              <div>
-                <img src={home_03} alt="" draggable={false} />
-              </div>
-            </Link>
-          </div>
-          <div className="slide-item">
-            <Link to={'/collection'}>
-              <div>
-                <img src={home_04} alt="" draggable={false} />
-              </div>
-            </Link>
-          </div>
+          {slideData.map((item, index) => (
+            <div className="slide-item" key={index}>
+              <Link to={item.url} target={'_blank'}>
+                <div>
+                  <img
+                    src={screenSize > 520 ? item.imagePC : item.imageMb}
+                    alt=""
+                    draggable={false}
+                  />
+                </div>
+              </Link>
+            </div>
+          ))}
         </Carousel>
       </div>
       {/* section 02 */}
       <div className="section-02">
-        <div className="grid-container">
-          {/* Featured Collections */}
+        {/* Featured Collections */}
+        <div className="featured-collections">
           <div className="wrapper-header title-header">
             <div className="header-name">Featured Collections</div>
             <Link to={'/collections'} className="show-all-item button">
               See all
             </Link>
           </div>
-          <Link to={'/collection'} className="custom-link">
-            <button className="grid-item button">
-              <div className="banner-image">
-                <img src={home_05_banner} alt="" />
-              </div>
-              <div className="wrapper-content">
-                <div className="avatar">
-                  <img
-                    src={home_08_avt}
-                    data-qa-component="campaign-avatar-image"
-                    alt="Fear the Deer NFTs"
-                  />
-                </div>
-                <div className="name-label">Fear the Deer NFTs</div>
-              </div>
-            </button>
-          </Link>
-          <Link to={'/'} className="custom-link">
-            <button className="grid-item button">
-              <div className="banner-image">
-                <img src={home_06_banner} alt="" />
-              </div>
-              <div className="wrapper-content">
-                <div className="avatar">
-                  <img
-                    src={home_09_avt}
-                    data-qa-component="campaign-avatar-image"
-                    alt="Kia"
-                  />
-                </div>
-                <div className="name-label">Kia</div>
-              </div>
-            </button>
-          </Link>
-          <Link to={'/'} className="custom-link">
-            <button className="grid-item button">
-              <div className="banner-image">
-                <img src={home_07_banner} alt="" />
-              </div>
-              <div className="wrapper-content">
-                <div className="avatar">
-                  <img
-                    src={home_10_avt}
-                    data-qa-component="campaign-avatar-image"
-                    alt="Old Navy"
-                  />
-                </div>
-                <div className="name-label">Old Navy</div>
-              </div>
-            </button>
-          </Link>
+          <div className="grid-container">
+            {featuredCollectionsData.map((item, index) => (
+              <Link to={item.url} className="custom-link" key={index}>
+                <button className="grid-item button">
+                  <div className="banner-image">
+                    <img src={item.imageBanner} alt="" />
+                  </div>
+                  <div className="wrapper-content">
+                    <div className="avatar">
+                      <img
+                        src={item.imageAvatar}
+                        data-qa-component="campaign-avatar-image"
+                        alt={item.nameLabel}
+                      />
+                    </div>
+                    <div className="name-label">{item.nameLabel}</div>
+                  </div>
+                </button>
+              </Link>
+            ))}
+          </div>
         </div>
         {/* Hot Collectibles */}
         <div className="page-grid">
           <div className="title-header">Hot Collectibles</div>
           <Carousel
-            additionalTransfrom={0}
-            arrows
-            autoPlay
-            autoPlaySpeed={3000}
-            centerMode={false}
-            className=""
-            containerClass="container hot-collectibles"
-            dotListClass=""
-            draggable
-            focusOnSelect={false}
-            infinite={false}
-            itemClass=""
+            {...carouselOption}
             keyBoardControl
-            minimumTouchDrag={80}
-            pauseOnHover
-            renderArrowsWhenDisabled={false}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
+            removeArrowOnDeviceType=""
+            containerClass="container hot-collectibles"
             responsive={{
               desktop: {
                 breakpoint: {
                   max: 3000,
-                  min: 1024,
+                  min: 1420,
                 },
                 items: 5,
                 partialVisibilityGutter: 40,
               },
               mobile: {
                 breakpoint: {
-                  max: 464,
+                  max: 640,
                   min: 0,
                 },
                 items: 1,
@@ -203,225 +243,97 @@ const HomePageMb = () => {
               tablet: {
                 breakpoint: {
                   max: 1024,
-                  min: 464,
+                  min: 640,
                 },
                 items: 2,
                 partialVisibilityGutter: 30,
               },
+              laptopLarge: {
+                breakpoint: {
+                  max: 1420,
+                  min: 1180,
+                },
+                items: 4,
+                partialVisibilityGutter: 30,
+              },
+              laptop: {
+                breakpoint: {
+                  max: 1180,
+                  min: 1024,
+                },
+                items: 3,
+                partialVisibilityGutter: 30,
+              },
             }}
-            rewind={false}
-            rewindWithAnimation={false}
-            rtl={false}
-            shouldResetAutoplay
             showDots={false}
-            sliderClass=""
-            slidesToSlide={1}
-            swipeable
           >
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_11} alt="" />
+            {hotCollectiblesData.map((item, index) => (
+              <Link to={item.url} className="button custom-box" key={index}>
+                <div className="hot-ollectibles-wrapper">
+                  <div className="header-left hot-ollectibles-item">
+                    <span className="total-run">Total Run: 35000</span>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_13_avt} alt="" />
-                      </div>
-                      <div className="name-label">Elton John</div>
+                  <div className="hot-ollectibles-item">
+                    <div>erc721</div>
+                  </div>
+                  <div className="hot-ollectibles-item">
+                    <div className="img-token">
+                      <img src={item.image} alt="" draggable={false} />
                     </div>
-                    <div className="content-right">Buy Now</div>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">
-                    Elton John Rocket NFT Club Pass
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$29.99</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">26008</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_12} alt="" />
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_14_avt} alt="" />
+                  <div className="hot-ollectibles-item">
+                    <div className="wrapper-item">
+                      <div className="content-left">
+                        <div className="avatar">
+                          <img src={item.imageAvt} alt="" draggable={false} />
+                        </div>
+                        <div className="name-label">{item.nameLabel}</div>
                       </div>
-                      <div className="name-label">Old Navy</div>
+                      <div className="content-right">Buy Now</div>
                     </div>
-                    <div className="content-right">Buy Now</div>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">Generative Magic the Dog</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$0.094</div>
+                  <div className="hot-ollectibles-item">
+                    <div className="name-label">{item.details}</div>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">0</div>
+                  <div className="hot-ollectibles-item">
+                    <div className="wrapper-price">
+                      <div className="price-header">Price</div>
+                      <div className="current-price">${item.currentPrice}</div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_11} alt="" />
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_13_avt} alt="" />
+                  <div className="hot-ollectibles-item">
+                    <div className="wrapper-remaining">
+                      <div className="remaining-header">Remaining </div>
+                      <div className="quantity-remaining">
+                        {item.quantityRemaining}
                       </div>
-                      <div className="name-label">Elton John</div>
                     </div>
-                    <div className="content-right">Buy Now</div>
                   </div>
                 </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">
-                    Elton John Rocket NFT Club Pass
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$29.99</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">26008</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_12} alt="" />
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_14_avt} alt="" />
-                      </div>
-                      <div className="name-label">Old Navy</div>
-                    </div>
-                    <div className="content-right">Buy Now</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">Generative Magic the Dog</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$0.094</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">0</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </Carousel>
         </div>
         {/* Free Drops */}
         <div className="page-grid">
           <div className="title-header">Free Drops</div>
           <Carousel
-            additionalTransfrom={0}
-            arrows
-            autoPlay
-            autoPlaySpeed={3000}
-            centerMode={false}
-            className=""
-            containerClass="container hot-collectibles"
-            dotListClass=""
-            draggable
-            focusOnSelect={false}
-            infinite={false}
-            itemClass=""
+            {...carouselOption}
             keyBoardControl
-            minimumTouchDrag={80}
-            pauseOnHover
-            renderArrowsWhenDisabled={false}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
+            removeArrowOnDeviceType=""
+            containerClass="container hot-collectibles"
             responsive={{
               desktop: {
                 breakpoint: {
                   max: 3000,
-                  min: 1024,
+                  min: 1420,
                 },
                 items: 5,
                 partialVisibilityGutter: 40,
               },
               mobile: {
                 breakpoint: {
-                  max: 464,
+                  max: 640,
                   min: 0,
                 },
                 items: 1,
@@ -430,189 +342,75 @@ const HomePageMb = () => {
               tablet: {
                 breakpoint: {
                   max: 1024,
-                  min: 464,
+                  min: 640,
                 },
                 items: 2,
                 partialVisibilityGutter: 30,
               },
+              laptopLarge: {
+                breakpoint: {
+                  max: 1420,
+                  min: 1180,
+                },
+                items: 4,
+                partialVisibilityGutter: 30,
+              },
+              laptop: {
+                breakpoint: {
+                  max: 1180,
+                  min: 1024,
+                },
+                items: 3,
+                partialVisibilityGutter: 30,
+              },
             }}
-            rewind={false}
-            rewindWithAnimation={false}
-            rtl={false}
-            shouldResetAutoplay
             showDots={false}
-            sliderClass=""
-            slidesToSlide={1}
-            swipeable
           >
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_11} alt="" />
+            {hotCollectiblesData.map((item, index) => (
+              <Link to={item.url} className="button custom-box" key={index}>
+                <div className="hot-ollectibles-wrapper">
+                  <div className="header-left hot-ollectibles-item">
+                    <span className="total-run">Total Run: 35000</span>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_13_avt} alt="" />
-                      </div>
-                      <div className="name-label">Elton John</div>
+                  <div className="hot-ollectibles-item">
+                    <div>erc721</div>
+                  </div>
+                  <div className="hot-ollectibles-item">
+                    <div className="img-token">
+                      <img src={item.image} alt="" draggable={false} />
                     </div>
-                    <div className="content-right">Buy Now</div>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">
-                    Elton John Rocket NFT Club Pass
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$29.99</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">26008</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_12} alt="" />
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_14_avt} alt="" />
+                  <div className="hot-ollectibles-item">
+                    <div className="wrapper-item">
+                      <div className="content-left">
+                        <div className="avatar">
+                          <img src={item.imageAvt} alt="" draggable={false} />
+                        </div>
+                        <div className="name-label">{item.nameLabel}</div>
                       </div>
-                      <div className="name-label">Old Navy</div>
+                      <div className="content-right">Buy Now</div>
                     </div>
-                    <div className="content-right">Buy Now</div>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">Generative Magic the Dog</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$0.094</div>
+                  <div className="hot-ollectibles-item">
+                    <div className="name-label">{item.details}</div>
                   </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">0</div>
+                  <div className="hot-ollectibles-item">
+                    <div className="wrapper-price">
+                      <div className="price-header">Price</div>
+                      <div className="current-price">${item.currentPrice}</div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_11} alt="" />
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_13_avt} alt="" />
+                  <div className="hot-ollectibles-item">
+                    <div className="wrapper-remaining">
+                      <div className="remaining-header">Remaining </div>
+                      <div className="quantity-remaining">
+                        {item.quantityRemaining}
                       </div>
-                      <div className="name-label">Elton John</div>
                     </div>
-                    <div className="content-right">Buy Now</div>
                   </div>
                 </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">
-                    Elton John Rocket NFT Club Pass
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$29.99</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">26008</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to={'/sale'} className="button custom-box">
-              <div className="hot-ollectibles-wrapper">
-                <div className="header-left hot-ollectibles-item">
-                  <span className="total-run">Total Run: 35000</span>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div>erc721</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="img-token">
-                    <img src={home_12} alt="" />
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-item">
-                    <div className="content-left">
-                      <div className="avatar">
-                        <img src={home_14_avt} alt="" />
-                      </div>
-                      <div className="name-label">Old Navy</div>
-                    </div>
-                    <div className="content-right">Buy Now</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="name-label">Generative Magic the Dog</div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-price">
-                    <div className="price-header">Price</div>
-                    <div className="current-price">$0.094</div>
-                  </div>
-                </div>
-                <div className="hot-ollectibles-item">
-                  <div className="wrapper-remaining">
-                    <div className="remaining-header">Remaining </div>
-                    <div className="quantity-remaining">0</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </Carousel>
         </div>
       </div>

@@ -1,153 +1,207 @@
 .payments-wallets-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0, 0, 0, 0.75);
+  color: #ffffff;
+
+  .modal-dialog {
+    z-index: 21;
+    padding: 50px;
     position: fixed;
-    inset: 0;
-    background: rgb(0, 0, 0, 0.75);
-    color: #ffffff;
+    inset: 0px;
+    width: 600px;
+    height: max-content;
+    margin: auto;
+    border-radius: 30px;
+    box-shadow: black -5px 5px 20px;
+    background-color: #212121;
+    outline: none;
+    transition: all 500ms;
+  }
 
-    .modal-dialog {
-        z-index: 21;
-        padding: 50px;
-        position: fixed;
+  .modal-header {
+    height: 44px;
+
+    .modal-tittle {
+      text-align: center;
+      position: relative;
+      font-size: 26px;
+      margin-bottom: 50px;
+      margin-top: 70px;
+
+      .title {
+        font-size: 36px;
+      }
+
+      .sub-title {
+        font-size: 18px;
+      }
+    }
+
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 15px;
+    }
+  }
+
+  .modal-body {
+    padding-top: 4rem;
+    .payment-modal-box {
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      margin-bottom: 44px;
+
+      .abc {
+        display: block;
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-color: #171717;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+
+      img {
+        position: absolute;
         inset: 0px;
-        width: 500px;
-        height: max-content;
         margin: auto;
-        border-radius: 30px;
-        box-shadow: black -5px 5px 20px;
-        background-color: #212121;
-        outline: none;
-        transition: all 500ms;
+        width: 140px;
+        height: 140px;
+        object-fit: contain;
+      }
     }
 
-    .modal-header {
-        height: 44px;
-
-        .modal-tittle {
-            text-align: center;
-            position: relative;
-            font-size: 26px;
-            margin-bottom: 50px;
-            margin-top: 70px;
-
-            .title {
-                font-size: 36px;
-            }
-
-            .sub-title {
-                font-size: 18px;
-            }
-        }
-
-        .close-button {
-            position: absolute;
-            top: 20px;
-            right: 15px;
-        }
+    .payment-modal-box > :first-child {
+      margin-right: 30px;
     }
 
+    .payments-btn-submit {
+      border: none;
+      color: #ffffff;
+      width: 100%;
+      font-size: 21px;
+      height: 65px;
+      background: linear-gradient(
+        to left,
+        rgb(103, 129, 249),
+        rgb(227, 100, 190)
+      );
+      border-radius: 14px;
+    }
+
+    .disabled {
+      opacity: 0.5 !important;
+      cursor: default;
+      pointer-events: all !important;
+    }
+
+    .payment-modal-success-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 70%;
+        height: 100%;
+      }
+    }
+    .content-payment-modal-success {
+      text-align: center;
+      margin-bottom: 2rem;
+      .tittle {
+        font-size: 32px;
+        font-weight: 600;
+      }
+      .content {
+        font-size: 16px;
+      }
+    }
+
+  }
+  @media (max-width: 768px) {
+    .modal-dialog {
+      .modal-content {
+        .modal-header {
+          .modal-tittle {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
     .modal-body {
-        padding-top: 4rem;
-        .payment-modal-box {
-            display: flex;
-            -webkit-box-pack: center;
-            justify-content: center;
-            margin-bottom: 44px;
-
-            .abc {
-                display: block;
-                position: relative;
-                width: 200px;
-                height: 200px;
-                background-color: #171717;
-                border-radius: 40px;
-                cursor: pointer;
-            }
-
-            img {
-                position: absolute;
-                inset: 0px;
-                margin: auto;
-                width: 140px;
-                height: 140px;
-                object-fit: contain;
-            }
+      .content-payment-modal-success {
+        .tittle {
+          font-size: 26px;
+          padding-bottom: 10px;
         }
-
-        .payment-modal-box> :first-child {
-            margin-right: 30px;
-            ;
-        }
-
-        .payments-btn-submit {
-            color: #ffffff;
-            width: 100%;
-            font-size: 21px;
-            height: 65px;
-            background: linear-gradient(to left, rgb(103, 129, 249), rgb(227, 100, 190));
-            border-radius: 14px;
-        }
-
-        .disabled {
-            opacity: 0.5 !important;
-            cursor: default;
-            pointer-events: all !important;
-        }
-
-        .payment-modal-success-box{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img{
-                width: 70%;
-                height: 100%;
-            }
-        }
-        .content-payment-modal-success{
-            text-align: center;
-            margin-bottom: 2rem;
-            .tittle{
-                font-size: 32px;
-                font-weight: 600;
-            }
-            .content{
-                font-size: 16px;
-            }
-        }
+      }
     }
+  }
+  @media (max-width: 520px) {
+    .modal-dialog {
+      padding: 20px;
+      .modal-body {
+        .payment-modal-box {
+          gap: 20px;
+          .abc {
+            margin-right: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            img {
+              width: 70px;
+              height: 70px;
+            }
+          }
+        }
+      }
+      .modal-content {
+        .modal-header {
+          .modal-tittle {
+            margin-top: 30px;
+            .title {
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .modal-sm {
-    width: 300px;
+  width: 300px;
 }
 
 .modal-lg {
-    width: 800px;
+  width: 800px;
 }
 
 .modal-xl {
-    width: 1140px;
+  width: 1140px;
 }
-@include Tablet_Mobile{
-    .payments-wallets-overlay .modal-dialog{
-        height: -webkit-fill-available;
-        border-radius: 0px;
-        margin: 0px;
-        width: -webkit-fill-available;
-        .modal-content{
-            position: absolute;
-            display: contents;
-        }
+@include Tablet_Mobile {
+  .payments-wallets-overlay .modal-dialog {
+    height: -webkit-fill-available;
+    border-radius: 0px;
+    margin: 0px;
+    width: -webkit-fill-available;
+    .modal-content {
+      position: absolute;
+      display: contents;
     }
+  }
 }
-@media (max-width:600px){
-    .payments-wallets-overlay .modal-header{
-        height: 120px;
-        @include Mobile{
-            .modal-tittle{
-                .title{
-                    font-size: 30px;
-                }
-            }
+@media (max-width: 600px) {
+  .payments-wallets-overlay .modal-header {
+    height: 120px;
+    @include Mobile {
+      .modal-tittle {
+        .title {
+          font-size: 30px;
         }
+      }
     }
+  }
 }

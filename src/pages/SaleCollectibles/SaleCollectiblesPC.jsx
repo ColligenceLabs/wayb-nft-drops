@@ -5,7 +5,6 @@ import not_found from '../../assets/img/not_found.gif';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-
 import avatar from '../../assets/img/avatar.png';
 import home_11 from '../../assets/img/home_11.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
@@ -14,8 +13,6 @@ import ic_search from '../../assets/icon/search.svg';
 import { isMobile } from 'react-device-detect';
 import SaleCollectiblesMb from './SaleCollectiblesMB';
 import PaymentWallets from 'components/modal/PaymentWallets';
-import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
-
 
 const SaleCollectibles = () => {
   const list_products = [
@@ -174,6 +171,7 @@ const SaleCollectibles = () => {
                     <div className="lable-bottom fw-600">$50.00</div>
                   </div>
                   <button className={'btn-sale-collection'} onClick={setOpenPaymentWallets}>Buy Now</button>
+              {/* <button className="btn-sale-collection disable">Sold out</button> */}
                 </div>
               </div>
             </div>
@@ -204,7 +202,7 @@ const SaleCollectibles = () => {
                   <div className="list-carousel">
                     {list_products.map((item, index) => {
                       return (
-                        <div className="slide-item">
+                        <div className="slide-item" key={index}>
                           <Link to={'/sale'} className="button">
                             <div className="hot-ollectibles-wrapper">
                               <div className="header-left hot-ollectibles-item">
