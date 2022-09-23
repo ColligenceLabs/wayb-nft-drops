@@ -30,7 +30,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import MyCollectiblesDetailsMB from './MyCollectiblesDetailsMB';
-const overlayStyle = { background: 'rgba(0,0,0,0.4)' };
+const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
 

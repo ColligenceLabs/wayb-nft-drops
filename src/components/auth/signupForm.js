@@ -10,7 +10,7 @@ const dropdownStyle = { backgroundColor: '#333333', textAlign: 'left' };
 const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
 
 const SignupForm = ({ close }) => (
-  <div className="DsOX" tabindex="-1" role="dialog" aria-modal="true">
+  <div className="login_form" tabindex="-1" role="dialog" aria-modal="true">
     <div class="box-content">
       <div class="div-title">
         <div class="title">Sign up</div>

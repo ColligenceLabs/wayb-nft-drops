@@ -13,7 +13,7 @@ const closeOnDocumentClick = false;
 const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
 
 const LoginForm = ({ close }) => (
-  <div className="DsOX" tabIndex="-1" role="dialog" aria-modal="true">
+  <div className="login_form" tabIndex="-1" role="dialog" aria-modal="true">
     <div className="box-content">
       <div className="div-title">
         <div className="title">Log in</div>
