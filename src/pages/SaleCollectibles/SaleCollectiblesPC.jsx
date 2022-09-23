@@ -90,10 +90,6 @@ const SaleCollectibles = () => {
   };
 
   useOnClickOutside(ref, () => setModalOpen(false));
-  const handleOpenPaymentWallets = () => {
-    setOpenPaymentWallets(true);
-  };
-
   const handleClosePaymentWallets = () => {
     setOpenPaymentWallets(false);
   };
@@ -105,13 +101,13 @@ const SaleCollectibles = () => {
           <div className="price-collection-view-page">
             <div className="price-collection-box">
               <div className="token-showcase-box">
-                  <img src={home_11} />                                                                                                                                                                                                                                                                                                                           
+                  <img src={home_11} alt=""/>                                                                                                                                                                                                                                                                                                                           
               </div>
               <div className="token-details-box">
                 <div>
                   <div className="box-owner-product">
                     <button className="btn-avatar-owner-product">
-                      <img src={avatar} />
+                      <img src={avatar} alt=""/>
                     </button>
                     <div className="name-owner-product">
                       <button className="btn-name-owner-product">Milwaukee Bucks</button>
@@ -134,7 +130,7 @@ const SaleCollectibles = () => {
                 </div>
                 <div>
                   <a className="authenticity-button">
-                    <img src={ic_info} style={{ marginRight: '5px' }} /> Authenticity
+                    <img src={ic_info} style={{ marginRight: '5px' }}  alt=""/> Authenticity
                   </a>
                 </div>
                 <div>
@@ -183,7 +179,7 @@ const SaleCollectibles = () => {
               <div className="userSales">
                 <div className="filter-box">
                   <div className="search-box">
-                    <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} />
+                    <img src={ic_search} style={{ margin: '0px 5px 0px 20px' }} alt=""/>
                     <input className="marketplace-search-textbox" placeholder="Search listings…" />
                   </div>
                   <div className="type-filter-box">
