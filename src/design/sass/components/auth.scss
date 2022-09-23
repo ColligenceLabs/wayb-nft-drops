@@ -48,7 +48,7 @@
     sans-serif;
 
   .login_form {
-    -webkit-animation: 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards fade-in;
+    animation: 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards fade-in;
     z-index: 30;
     background-color: #212121;
     color: white;
@@ -353,9 +353,9 @@
       }
     }
   }
-
   @include Mobile() {
-    .DsOX {
+    .login_form {
+      border-radius: 0;
       height: 100vh;
       width: 100vw;
 
