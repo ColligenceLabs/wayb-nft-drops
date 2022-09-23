@@ -9,8 +9,6 @@ import metamask from '../../assets/icon/metamask.svg';
 import temple from '../../assets/icon/temple.svg';
 import { useModalWalletsStore } from 'components/common/AppStore';
 
-// const {show, onhide } = props // {show:true, onHide: ()=> {}}
-
 const DialogWallets = () => {
   const {isOpen, updateOpenWallet} = useModalWalletsStore();
   return (

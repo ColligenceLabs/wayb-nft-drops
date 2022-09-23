@@ -5,12 +5,12 @@ import Collections from 'pages/Collections/CollectionsPC';
 import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
 import Collection from 'pages/Collection/CollectionPC';
 import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetailsPC';
-import Landing from 'pages/landingpage/LandingPagePC';
+import Landing from 'pages/LandingPage/LandingPagePC';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
-import Profile from 'pages/myprofile/MyProfilePC';
-import Purchase_History from 'pages/purchasehistory/PurchaseHistoryPC';
-import Purchase_History_Detail from 'pages/purchasehistory/PurchaseHistoryDetailPC';
+import Profile from 'pages/MyProfile/MyProfilePC';
+import Purchase_History from 'pages/PurchaseHistory/PurchaseHistoryPC';
+import Purchase_History_Detail from 'pages/PurchaseHistory/PurchaseHistoryDetailPC';
 
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollectionPC';
 
@@ -24,7 +24,7 @@ const Router = () => [
       { path: '/collections', element: <Collections /> },
       { path: '/sale', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },
-      { path: '/my-collectibles/details', element: <MyCollectiblesDetails/> },
+      { path: '/my-collectibles/details', element: <MyCollectiblesDetails /> },
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <Purchase_History /> },
       { path: '/series', element: <Purchase_History_Detail /> },
