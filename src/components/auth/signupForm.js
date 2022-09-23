@@ -10,7 +10,7 @@ const dropdownStyle = { backgroundColor: '#333333', textAlign: 'left' };
 const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
 
 const SignupForm = ({ close }) => (
-  <div className="login_form" tabindex="-1" role="dialog" aria-modal="true">
+  <div className="login_form" tabIndex="-1" role="dialog" aria-modal="true">
     <div class="box-content">
       <div class="div-title">
         <div class="title">Sign up</div>
@@ -149,7 +149,7 @@ const SignupForm = ({ close }) => (
                   id="Group_14375"
                   data-name="Group 14375"
                   transform="translate(0 0)"
-                  clip-path="url(#clip-path)"
+                  clipPath="url(#clip-path)"
                 >
                   <rect
                     id="Rectangle_6897"
@@ -172,7 +172,7 @@ const SignupForm = ({ close }) => (
                   id="Group_14377"
                   data-name="Group 14377"
                   transform="translate(0)"
-                  clip-path="url(#clip-path-2)"
+                  clipPath="url(#clip-path-2)"
                 >
                   <rect
                     id="Rectangle_6899"
@@ -194,7 +194,7 @@ const SignupForm = ({ close }) => (
                 <g
                   id="Group_14379"
                   data-name="Group 14379"
-                  clip-path="url(#clip-path-3)"
+                  clipPath="url(#clip-path-3)"
                 >
                   <rect
                     id="Rectangle_6901"
@@ -217,7 +217,7 @@ const SignupForm = ({ close }) => (
                   id="Group_14381"
                   data-name="Group 14381"
                   transform="translate(0)"
-                  clip-path="url(#clip-path-4)"
+                  clipPath="url(#clip-path-4)"
                 >
                   <rect
                     id="Rectangle_6903"

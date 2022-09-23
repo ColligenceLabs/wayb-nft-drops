@@ -1,15 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import home_02 from '../../assets/img/home_02.jpeg';
-import home_03 from '../../assets/img/home_03.jpeg';
-import home_04 from '../../assets/img/home_04.jpeg';
-import home_05_banner from '../../assets/img/home_05_banner.png';
-import home_06_banner from '../../assets/img/home_06_banner.jpg';
-import home_07_banner from '../../assets/img/home_07_banner.jpeg';
-import home_08_avt from '../../assets/img/home_08_avt.png';
-import home_09_avt from '../../assets/img/home_09_avt.jpg';
-import home_10_avt from '../../assets/img/home_10_avt.jpg';
-import verify from '../../assets/img/verify-icon.png';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import ic_show_off from '../../assets/svg/show_off_icon.svg';
 import ic_back from '../../assets/svg/back_icon.svg';
@@ -46,9 +36,9 @@ const MyCollectiblesDetailsPC = () => {
         setOpen(false);
       }
     };
-    document.addEventListener('mousedown', handler);
+    document.addEventListener('mouse-down', handler);
     return () => {
-      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('mouse-down', handler);
     };
   });
 
@@ -133,7 +123,10 @@ const MyCollectiblesDetailsPC = () => {
                 {open && (
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
-                      <button className="dropdown-item " onClick={() => setWarningOpen(true)}>
+                      <button
+                        className="dropdown-item "
+                        onClick={() => setWarningOpen(true)}
+                      >
                         <img
                           src={ic_send_to_my_wallet}
                           alt="send-to-my-wallet"
@@ -239,7 +232,10 @@ const MyCollectiblesDetailsPC = () => {
           modal
           {...{ closeOnDocumentClick, lockScroll, overlayStyle }}
         >
-          <WarningForm close={closeWarning} onConfirm={() => setSendingOpen(true)} />
+          <WarningForm
+            close={closeWarning}
+            onConfirm={() => setSendingOpen(true)}
+          />
         </Popup>
 
         <Popup
@@ -249,7 +245,10 @@ const MyCollectiblesDetailsPC = () => {
           onClose={closeSending}
           {...{ closeOnDocumentClick, overlayStyle }}
         >
-          <SendingForm close={closeSending} onConfirm={() => setSuccessOpen(true)} />
+          <SendingForm
+            close={closeSending}
+            onConfirm={() => setSuccessOpen(true)}
+          />
         </Popup>
 
         <Popup
