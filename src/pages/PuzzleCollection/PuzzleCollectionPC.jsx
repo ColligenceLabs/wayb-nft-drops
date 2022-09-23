@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import banner_collection from '../../assets/img/banner_collection.png';
 import avatar from '../../assets/img/avatar.png';
 
@@ -9,14 +9,22 @@ import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
 import CollectionMb from './PuzzleCollectionMB';
 import { isMobile } from 'react-device-detect';
+import ReactModal from 'react-modal';
+import close_icon from '../../assets/icon/close_icon.svg';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 const PuzzleCollection = () => {
+  const [show, setShow] = useState(false);
+  const [clickedImg, setClickedImg] = useState(null);
   const getPieces = () => {
     const result = [];
     for (let i = 0; i < 91; i++) {
       result.push(
-        <img style={{ width: "100%" }} src={`https://image.toast.com/aaaaave/nft/hong_whale/${String(i + 1).padStart(3, '0')}.jpg`} alt="test" key={i + 1} />
+        <img style={{ width: "100%", pointerEvents: "all" }} src={`https://image.toast.com/aaaaave/nft/hong_whale/${String(i + 1).padStart(3, '0')}.jpg`} alt="test" key={i + 1}
+          onClick={(event) => {
+            setClickedImg(event.target.src);
+            setShow(true);
+          }} />
       );
     }
     return result;
@@ -93,6 +101,41 @@ const PuzzleCollection = () => {
             </div>
           </div>
         </div>
+        <ReactModal
+          preventScroll={true}
+          isOpen={show}
+          contentLabel="onRequestClose Example"
+          onRequestClose={() => setShow(false)}
+          className="Modal"
+          ariaHideApp={false}
+          overlayClassName="payments-wallets-overlay"
+          shouldCloseOnOverlayClick
+        >
+          <div className="modal-dialog ">
+            <div className="modal-content">
+              <div className="modal-header">
+                <div className="modal-tittle">
+                  <div>
+                    <div className="title">
+                      This is title..
+                    </div>
+
+                    <div className="sub-title">
+                      subsubsubtitle
+                    </div>
+                  </div>
+                </div>
+                <button type="button" className="close-button button" onClick={() => setShow(false)}>
+                  <img src={close_icon} />
+                </button>
+              </div>
+              <div className='modal-body'>
+                <img style={{ width: "-webkit-fill-available" }} src={clickedImg} />
+              </div>
+            </div>
+          </div>
+
+        </ReactModal>
       </main>
   );
 };
