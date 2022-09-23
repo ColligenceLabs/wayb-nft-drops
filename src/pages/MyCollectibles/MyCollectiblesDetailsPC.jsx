@@ -10,6 +10,7 @@ import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
 import verify from '../../assets/img/verify-icon.png';
+import SendingForm from '../../components/collectibles_modals/sending';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import ic_show_off from '../../assets/svg/show_off_icon.svg';
 import ic_back from '../../assets/svg/back_icon.svg';
@@ -19,7 +20,7 @@ import ic_authenticity from '../../assets/svg/authenticity_icon.svg';
 import price_history_lg from '../../assets/svg/price_history_logo.svg';
 import ic_trade from '../../assets/svg/trade_icon.svg';
 import ic_sell from '../../assets/svg/sell_icon.svg';
-import WarningForm from "components/collectibles_modals/warning";
+import WarningForm from 'components/collectibles_modals/warning';
 
 import { useState, useEffect, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
@@ -35,6 +36,8 @@ const lockScroll = true;
 
 const MyCollectiblesDetailsPC = () => {
   const [open, setOpen] = useState(false);
+  const [warningOpen, setWarningOpen] = useState(false);
+  const [sendingOpen, setSendingOpen] = useState(false);
   const ref = useRef();
   var opened = false;
   useEffect(() => {
@@ -49,6 +52,13 @@ const MyCollectiblesDetailsPC = () => {
     };
   });
 
+  const closeWarning = () => {
+    setWarningOpen(false);
+  };
+
+  const closeSending = () => {
+    setSendingOpen(false);
+  };
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -63,7 +73,10 @@ const MyCollectiblesDetailsPC = () => {
   }, []);
   const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
   const handleScrollPercent = () => {
-    const positionPercent = (window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight)) * 100;
+    const positionPercent =
+      (window.pageYOffset /
+        (document.documentElement.offsetHeight - window.innerHeight)) *
+      100;
     setScrollPercentPosition(positionPercent);
   };
   useEffect(() => {
@@ -73,7 +86,7 @@ const MyCollectiblesDetailsPC = () => {
       window.removeEventListener('scroll', handleScrollPercent);
     };
   }, []);
-  return (isMobile ? (
+  return isMobile ? (
     <MyCollectiblesDetailsMB />
   ) : (
     <main className="collectibles-details-container">
@@ -85,42 +98,54 @@ const MyCollectiblesDetailsPC = () => {
                 <img src={ic_back} alt="back-icon" /> Back
               </button>
             </Link>
-            <img src="https://collectible.sweet.io/series/1727/image-front.png" alt="" className="thumbnail" />
+            <img
+              src="https://collectible.sweet.io/series/1727/image-front.png"
+              alt=""
+              className="thumbnail"
+            />
             {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
 
           <div className="details-box">
             <div className="banner-dropdown" ref={ref}>
               <div className="logo">
-                <img src="https://static.assets.sweet.io/campaigns/267/avatar.jpg" alt="Sweet" className="logo-img"/>
+                <img
+                  src="https://static.assets.sweet.io/campaigns/267/avatar.jpg"
+                  alt="Sweet"
+                  className="logo-img"
+                />
                 <div className="logo-info">
                   <div className="creator">Creator</div>
                   <div className="name">Sweet</div>
                 </div>
               </div>
               <div className="dropdown">
-                <div className="dropdown-button" onClick={() => setOpen((open) => !open)}>
+                <div
+                  className="dropdown-button"
+                  onClick={() => setOpen((open) => !open)}
+                >
                   <img src={ic_dropdown} alt="dropdown" />
                 </div>
                 {open && (
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
+                      <button className="dropdown-item " onClick={()=> setWarningOpen(true)}>
+                        <img
+                          src={ic_send_to_my_wallet}
+                          alt="send-to-my-wallet"
+                        />
+                        Send to My Wallet
+                      </button>
                       <Popup
-                        onClose={() => opened = false}
-                        onOpen={() => opened = true}
+                        // onClose={() => opened = false}
+                        // onOpen={() => opened = true}
                         modal
-                        trigger={
-                          <button className="dropdown-item ">
-                            <img
-                              src={ic_send_to_my_wallet}
-                              alt="send-to-my-wallet"
-                            />
-                            Send to My Wallet
-                          </button>
-                        }
+                        // trigger={
+
+                        // }
                         {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
                       >
-                        {close => <WarningForm close={close} />}
+                        {(close) => <WarningForm close={close} />}
                       </Popup>
                     </li>
                     <li className="list-dropdown-item">
@@ -144,7 +169,10 @@ const MyCollectiblesDetailsPC = () => {
               {' '}
               The only thing better than ice cream is ice cream in SPACE!
             </div>
-            <a target="_blank" href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48" className="authenticity-button"
+            <a
+              target="_blank"
+              href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
+              className="authenticity-button"
             >
               <img src={ic_authenticity} alt="authenticity-icon" />
               Authenticity
@@ -187,7 +215,9 @@ const MyCollectiblesDetailsPC = () => {
                     {'Sell on Sweet'}
                   </button>
                 }
-                position={scrollPercentPosition < 60 ? 'top center' : 'bottom center'}
+                position={
+                  scrollPercentPosition < 60 ? 'top center' : 'bottom center'
+                }
                 on={['hover', 'focus']}
               >
                 <div className="noti-cannot" data-id="tooltip">
@@ -197,8 +227,7 @@ const MyCollectiblesDetailsPC = () => {
 
               <button className="btn-trade status">
                 <img src={ic_trade} alt="trade" />
-                  Trade on Sweet
-                
+                Trade on Sweet
               </button>
             </div>
             <div className="price-history">
@@ -210,9 +239,44 @@ const MyCollectiblesDetailsPC = () => {
             </div>
           </div>
         </div>
+        <Popup
+       
+          open={warningOpen}
+          onClose={closeWarning}
+          // onClose={() => opened = false}
+          // onOpen={() => opened = true}
+          modal
+          
+          closeOnDocumentClick
+          // trigger={
+
+          // }
+          // {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+        >
+           <WarningForm close={closeWarning} onConfirm={()=> setSendingOpen(true)} />
+        </Popup>
+        <Popup
+          modal
+          open={sendingOpen}
+          onOpen={closeWarning}
+          onClose={closeSending}
+          closeOnDocumentClick
+          // onOpen={() => sending_opened = true}
+          // trigger={
+          //   <button
+          //     className="understand_button"
+          //     data-qa-component="continue-button"
+          //   >
+          //     I Understand
+          //   </button>
+          // }
+          // {...{ overlayStyle, closeOnDocumentClick }}
+        >
+          <SendingForm close={closeSending} />
+        </Popup>
       </div>
     </main>
-  ));
+  );
 };
 
 export default MyCollectiblesDetailsPC;
