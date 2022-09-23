@@ -20,7 +20,7 @@ const SidebarMb = () => {
   return (
     <div className={`side-bar ${isOpen ? 'show' : ''}`} onClick={closeSidebar}>
       {/* sidebar before login */}
-      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
         <div className="close-sidebar">
           <div className="icon-close" onClick={closeSidebar}>
             <img src={close_icon} alt="Close Icon" />
@@ -61,11 +61,11 @@ const SidebarMb = () => {
             <img src={icon_telegram} alt="" />
           </a>
         </div>
-      </div> */}
-      {/* sidebar after login */}
-      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
-        <UsernameBox />
       </div>
+      {/* sidebar after login */}
+      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+        <UsernameBox />
+      </div> */}
     </div>
   );
 };

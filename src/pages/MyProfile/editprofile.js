@@ -43,7 +43,7 @@ const editprofile = ({ close }) => (
 									Edit Profile Photo
 								</div>
 								<div className="avatar">
-									<img id="avatar_upload" src={avatar}></img>
+									<img id="avatar_upload" src={avatar} alt="" />
 									<input type="file" id="file-upload" accept="image/*" />
 									<svg id="edit_black_24dp"
 										xmlns="http://www.w3.org/2000/svg"

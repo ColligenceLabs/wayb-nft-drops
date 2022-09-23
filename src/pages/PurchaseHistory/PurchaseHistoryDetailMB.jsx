@@ -24,7 +24,7 @@ const Purchase_History_Detail = () => {
 				<div className="campaignBlock">
 					<img height={30} src={talken_icon} alt="" />
 					<div className="campaign_name"> Talken </div>
-					<img height={19} src={verify_icon}></img>
+					<img height={19} src={verify_icon} alt="" />
 				</div>
 				<h1>Strawberry Shortcake Space Creampop #49</h1>
 				<div className="collectibleDescription">
@@ -37,7 +37,7 @@ const Purchase_History_Detail = () => {
 					</button>
 				</div>
 				<div className="current_owner">
-					<img id="profile_image" height={30} src={avatar}/>
+					<img id="profile_image" height={30} src={avatar} alt="" />
 					<br />
 					<div className="current_owner_title">Current Owner</div>
 						Martin K.
@@ -67,14 +67,14 @@ const Purchase_History_Detail = () => {
 					</div>
 				</div>
 				<div className="marketPlaceBtn">
-					<a href="#" target={'_blank'}>
+					<Link to={"/"}>
 						<div className="marketplace-container">
 							<span>
-								<img className="marketplace-icon" src={talken_icon}/>
+								<img className="marketplace-icon" src={talken_icon} alt=""/>
 							</span>
 							<span className='marketplace-text'>Visit the Marketplace</span>
 						</div>
-					</a>
+					</Link>
 				</div>
 			</div>
 			

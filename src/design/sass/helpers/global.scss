@@ -21,11 +21,6 @@
     left: 0;
     right: 0;
   }
-  // @include Tablet() {
-  //   .background-section01 {
-  //     height: 640px;
-  //   }
-  // }
   @include Mobile() {
     .background-section01 {
       height: 540px;
