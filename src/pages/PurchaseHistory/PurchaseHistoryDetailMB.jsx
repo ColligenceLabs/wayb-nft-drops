@@ -9,11 +9,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
-import {isMobile} from 'react-device-detect';
 
 const Purchase_History_Detail = () => {
 	return(
-		<main className="purchase-detail-container-mb">
+		<main className="purchase-detail-container">
 			<Link to="/purchase-history" className="back-purchase-list">
 				<svg xmlns="http://www.w3.org/2000/svg" width="28.021" height="15.509" viewBox="0 0 28.021 15.509"><path id="Path_84705" data-name="Path 84705" d="M25.033,13.816H4v3.877H25.033v5.816l6.988-7.755L25.033,8Z" transform="translate(-4 -8)" fill="#fff"></path></svg>
 				Back

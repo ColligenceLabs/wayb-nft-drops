@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Carousel, { WithStyles } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Popup from 'reactjs-popup';
-import Content from './TermsandConditions';
+import TermsandConditions from './TermsandConditions';
 import Faq from './faq';
 import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
@@ -28,12 +28,59 @@ import 'reactjs-popup/dist/index.css';
 
 
 const Landing = () => {
+  const [open, setOpen] = useState(false);
+  const [FaqOpen, setFaqOpen] = useState(false);
+  const [TermsandConditionsOpen, setTermsandConditionsOpen] = useState(false);
+  const element = document.getElementById('buy-now-mb');
+
   const ref = useRef();
+  var opened = false;
+
   const [isModalOpen, setModalOpen] = useState(false);
   const {openSidebar} = useSidebarStore();
   
   useOnClickOutside(ref, () => setModalOpen(false));
 
+  const CloseTermsandConditions = () =>{
+    setTermsandConditionsOpen(false);
+  }
+  const CloseFaq = () =>{
+    setFaqOpen(false);
+  }
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
+  const handleScrollPercent = () => {
+    const positionPercent =
+      (window.pageYOffset /
+        (document.documentElement.offsetHeight - window.innerHeight)) *
+      100;
+    setScrollPercentPosition(positionPercent);
+  };
+    if(scrollPercentPosition == 100){
+    element.className = "buy-now-mb-hidden";
+
+  }
+  if(scrollPercentPosition < 100 && scrollPercentPosition>20){
+    element.className = "buy-now-mb"
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollPercent);
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollPercent);
+    };
+  },[]);
 
   return isMobile ? (
     <LandingPageMB />
@@ -46,7 +93,8 @@ const Landing = () => {
             <img src={logo} alt="" className="logo" />
             <div className="line-right"></div>
             <img src={left_cross} alt="" className="left_cross" />
-            <Popup modal trigger={<button className="faq">FAQ</button>}>
+            <button className="faq" onClick={() => setFaqOpen(true)}>FAQ</button>
+            <Popup modal >
               {(close) => <Faq close={close} />}
             </Popup>
             {/* <button className="sign-up">Sign Up</button> */}
@@ -305,12 +353,20 @@ const Landing = () => {
             </a>
           </div>
           <Popup modal trigger={<a>Terms and Conditions</a>}>
-            {(close) => <Content close={close} />}
+            {(close) => <TermsandConditions close={close} />}
           </Popup>
         </div>
-        <div className="buy-now-mb">
+        <div className='name' id='buy-now-mb'>
 					<Link to="/collections" target="_blank" className="Buy-button-mb">Buy Now</Link>
 				</div>
+        <Popup
+          open={FaqOpen}
+          onClose={CloseFaq}
+          modal
+          closeOnDocumentClick
+        >
+          <Faq close={CloseFaq}/>
+        </Popup>
       </div>
     </main>
   );
