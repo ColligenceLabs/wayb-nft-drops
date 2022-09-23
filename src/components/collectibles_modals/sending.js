@@ -1,11 +1,7 @@
 import React from 'react';
-import Popup from 'reactjs-popup';
-import SuccessForm from './success';
 import test_collectibles from 'assets/img/collectibles_test.png';
-const closeOnDocumentClick = false;
-const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
 
-const Sending = ({ close }) => (
+const Sending = ({ close, onConfirm }) => (
   <div className="modal_collectibles" tabindex="-1" role="dialog" aria-modal="true">
     <div className="contents flex" data-qa-component="send-to-matic-modal-box">
       <div className="titles">
@@ -81,21 +77,13 @@ const Sending = ({ close }) => (
         </div>
       </div>
       <div className="understand">
-        <Popup
-          modal
-          onClose={close}
-          trigger={
-            <button
-              className="understand_button"
-              data-qa-component="continue-button"
-            >
-              Confirm Transfer
-            </button>
-          }
-          {...{ overlayStyle, closeOnDocumentClick }}
+        <button
+          onClick={onConfirm}
+          className="understand_button"
+          data-qa-component="continue-button"
         >
-          {(close) => <SuccessForm close={close} />}
-        </Popup>
+          Confirm Transfer
+        </button>
       </div>
     </div>
   </div>

@@ -1,22 +1,7 @@
 import React from 'react';
-// import { useState, useEffect, useRef } from 'react';
-import Popup from 'reactjs-popup';
-import SendingForm from './sending';
-import SuccessForm from './success';
 import test_collectibles from 'assets/img/collectibles_test.png';
-const closeOnDocumentClick = false;
-const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
+
 const Warning = ({ close, onConfirm }) => {
-  var sending_opened = false;
-  // useEffect(() => {
-  //   let handler = (event) => {
-  //     if (sending_opened==true) { alert(sending_opened); close() }
-  //   };
-  //   document.addEventListener('mousedown', handler);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handler);
-  //   };
-  // });
   return (
     <div
       className="modal_collectibles Warning-modal"

@@ -1,5 +1,4 @@
 import React from 'react';
-import Popup from 'reactjs-popup';
 import { Link } from 'react-router-dom';
 import success_icon from '../../assets/img/success.png';
 import test_collectibles from 'assets/img/collectibles_test.png';
