@@ -23,7 +23,8 @@
       justify-content: space-around;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 40px;
-      margin-bottom: 20px;
+      margin: 0 20px;
+      gap: 20px;
       .showcase-box {
         position: relative;
         width: 50%;
@@ -34,7 +35,7 @@
           padding: 0px 15px;
           border-radius: 8px;
           margin-right: 20px;
-          margin-left: 25px;
+
           font-size: 18px;
           display: flex;
           -webkit-box-align: center;
@@ -55,16 +56,17 @@
           }
         }
         .thumbnail {
-          width: 100%;
+          width: 95%;
           height: 554px;
           object-fit: contain;
           padding-top: 70px;
         }
       }
       .details-box {
-        width: 600px;
+        width: 740px;
         margin: 0px auto;
         text-align: center;
+        margin-right: 20px;
         .banner-dropdown {
           display: flex;
           -webkit-box-align: center;
@@ -318,15 +320,15 @@
           width: 100%;
           border-right: none;
           padding-top: 0px;
-          .canvas-card {
-            transform: scale(1.7) translate(0px, 5.5%);
-            margin-bottom: 41%;
-            width: 100% !important;
-            height: auto !important;
+          .back-button {
+            margin-left: 25px;
+          }
+          .thumbnail {
+            width: 100%;
           }
         }
         .details-box {
-          margin: 100px auto;
+          margin: 60px auto;
           width: 90%;
           .label-name {
             font-size: 25px;
@@ -363,6 +365,10 @@
     .collectibles-details-wp {
       .product-details {
         .showcase-box {
+          width: 90%;
+          .back-button {
+            margin-left: 0px;
+          }
           .thumbnail {
             height: auto;
           }
@@ -427,6 +433,7 @@
       -webkit-box-align: center;
       align-items: center;
       overflow: hidden;
+      margin: 0 20px;
       .showcase-box {
         width: 100%;
         border-right: none;
@@ -437,7 +444,6 @@
           padding: 0px 15px;
           border-radius: 8px;
           margin-right: 20px;
-          margin-left: 25px;
           font-size: 18px;
           display: flex;
           -webkit-box-align: center;
@@ -462,12 +468,6 @@
           height: 554px;
           object-fit: contain;
           padding-top: 70px;
-        }
-        .canvas-card {
-          transform: scale(1.7) translate(0px, 5.5%);
-          margin-bottom: 41%;
-          width: 100% !important;
-          height: auto !important;
         }
       }
       .details-box {
@@ -616,9 +616,9 @@
           grid-template-rows: repeat(2, 1fr);
           gap: 10px;
           margin-bottom: 20px;
-          div {
-            max-width: 350px;
-            width: 100%;
+          // div {
+          //   max-width: 350px;
+          //   width: 100%;
             .btn-trade.disabled {
               position: relative;
               opacity: 0.4;
@@ -684,7 +684,7 @@
               max-width: 160px;
               width: max-content;
             }
-          }
+          // }
         }
         .price-history {
           margin-bottom: 20px;
@@ -723,7 +723,7 @@
       .product-details {
         .showcase-box {
           .thumbnail {
-            height: auto;
+            padding-top: 0;
           }
         }
         .details-box {
@@ -762,7 +762,7 @@
   }
 }
 .noti-cannot {
-  max-width: 160px;
+  max-width: 200px;
   text-align: center;
   border-radius: 12px;
   color: #fff;

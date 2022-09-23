@@ -38,9 +38,8 @@ const MyCollectiblesDetailsMB = () => {
     const [warningOpen, setWarningOpen] = useState(false);
     const [sendingOpen, setSendingOpen] = useState(false);
     const [successOpen, setSuccessOpen] = useState(false);
-    const [popup, setPopUp] = useState(false);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [scrollPositionPercent, setScrollPositionPercent] = useState(0)
+    const [scrollPercentPosition, setScrollPercentPosition] = useState(0)
 
     const closeWarning = () => {
         setWarningOpen(false);
@@ -66,7 +65,7 @@ const MyCollectiblesDetailsMB = () => {
     }, []);
     const handeScrollPercent = () => {
         const positionPercent = (window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight)) * 100;
-        setScrollPositionPercent(positionPercent);
+        setScrollPercentPosition(positionPercent);
     }
     useEffect(() => {
         window.addEventListener("scroll", handeScrollPercent);
@@ -75,7 +74,7 @@ const MyCollectiblesDetailsMB = () => {
             window.removeEventListener("scroll", handeScrollPercent);
         };
     }, []);
-    console.log(scrollPositionPercent);
+    console.log(scrollPercentPosition);
     // console.log(scrollPosition);
     return (
         <main className="collectibles-details-container-mb">
@@ -165,28 +164,31 @@ const MyCollectiblesDetailsMB = () => {
                             </div>
                         </div>
                         <div className="list-trade">
-                            <div style={{ position: 'relative' }}>
+                        <Popup
+                        // defaultOpen
+                          trigger={
+                            <button type="button" className="btn-trade status disabled">
+                              <img src={ic_sell} alt="sell" />
+                              {'Sell on Sweet'}
+                            </button>
+                          }
+                          position={
+                          scrollPercentPosition < 60 ? 'top center' : 'bottom center'
+                          }
+                            on={['hover', 'focus']}
+                          >
+                          <div className="noti-cannot" data-id="tooltip">
+                          This collectible cannot be currently sold on Sweet.
+                          </div>
+                        </Popup>
 
-                                <button className="btn-trade status disabled">
 
-                                    <img src={ic_sell} alt="sell" />
-                                    Sell on Sweet
+                        <button className="btn-trade status">
+                            <img src={ic_trade} alt="trade" />
+                            Trade on Sweet
 
-                                </button>
+                        </button>
 
-                                <div className="noti-cannot">This collectible cannot be currently sold on Sweet.</div>
-
-
-                            </div>
-
-
-                            <div>
-                                <button className="btn-trade status">
-                                    <img src={ic_trade} alt="trade" />
-                                    Trade on Sweet
-
-                                </button>
-                            </div>
                         </div>
                         <div className="price-history">
                             <div className="price-history-label">
