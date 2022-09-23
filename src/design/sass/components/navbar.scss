@@ -265,6 +265,9 @@
   }
   @include Mobile() {
     z-index: 400;
+    .nav-other-page {
+      height: 80px;
+    }
     .main-header-box {
       .logo-header {
         width: 70px;

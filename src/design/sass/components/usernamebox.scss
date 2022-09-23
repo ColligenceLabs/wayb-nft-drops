@@ -120,19 +120,18 @@
   @include Mobile() {
     margin-right: 25px;
     display: contents;
-
     .close-sidebar {
       display: block;
     }
 
     .wrapper-dropdown {
-      padding: 0 20px;
+      padding: 0 15px;
 
       .wrapper-fanpages {
         border-top: 1px solid #393939;
         display: flex;
         justify-content: space-between;
-        padding: 20px;
+        padding: 10px;
 
         .custom-icon {
           width: 28px;
