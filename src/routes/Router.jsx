@@ -12,6 +12,8 @@ import Profile from 'pages/MyProfile/MyProfilePC';
 import Purchase_History from 'pages/PurchaseHistory/PurchaseHistoryPC';
 import Purchase_History_Detail from 'pages/PurchaseHistory/PurchaseHistoryDetailPC';
 
+import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollectionPC';
+
 const Router = () => [
   {
     path: '/',
@@ -26,6 +28,8 @@ const Router = () => [
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <Purchase_History /> },
       { path: '/series', element: <Purchase_History_Detail /> },
+
+      { path: '/puzzle-collection', element: <PuzzleCollection /> },
     ],
   },
   {
