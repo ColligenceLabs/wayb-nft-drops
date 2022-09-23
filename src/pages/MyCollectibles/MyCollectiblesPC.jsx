@@ -1,10 +1,4 @@
 import React, { useEffect } from 'react';
-import home_02 from '../../assets/img/home_02.jpeg';
-import home_03 from '../../assets/img/home_03.jpeg';
-import home_04 from '../../assets/img/home_04.jpeg';
-import home_05_banner from '../../assets/img/home_05_banner.png';
-import home_06_banner from '../../assets/img/home_06_banner.jpg';
-import home_07_banner from '../../assets/img/home_07_banner.jpeg';
 import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
@@ -19,7 +13,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import MyCollectiblesMB from './MyCollectiblesMB';
 
-const MyCollectibles = () => {
+const MyCollectiblesPC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [appState, setChange] = useState({
     objects: [
@@ -164,13 +158,22 @@ const MyCollectibles = () => {
             <span className="sort-selected">
               {appState.objects.map((item, index) => {
                 return (
-                  <div className={`${selectedIndex === index ? 'name-sort-selected' : 'not-selected'}`} key={index}>
+                  <div
+                    className={`${
+                      selectedIndex === index
+                        ? 'name-sort-selected'
+                        : 'not-selected'
+                    }`}
+                    key={index}
+                  >
                     {item.name}
                   </div>
                 );
               })}
             </span>
-            <div className="sort-dropdown-button" onClick={() => setOpen((open) => !open)}
+            <div
+              className="sort-dropdown-button"
+              onClick={() => setOpen((open) => !open)}
             >
               <img src={ic_dropdown_button_arrow} alt="" />
             </div>
@@ -235,4 +238,4 @@ const MyCollectibles = () => {
   );
 };
 
-export default MyCollectibles;
+export default MyCollectiblesPC;
