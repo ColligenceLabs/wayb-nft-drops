@@ -1,4 +1,28 @@
+@keyframes fade-in {
+    0% {
+        box-shadow: 0 0 0 hsl(0deg 0% 95% / 0%);
+        opacity: 0;
+        -webkit-transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0);
+    }
+
+    1% {
+        box-shadow: 0 0 0 hsl(0deg 0% 95% / 0%);
+        opacity: 0;
+        -webkit-transform: scale(0.96) translateY(10px);
+        transform: scale(0.96) translateY(10px);
+    }
+
+    100% {
+        box-shadow: 0 0 500px hsl(0deg 0% 95% / 0%);
+        opacity: 1;
+        -webkit-transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0);
+    }
+}
+
 .modal_collectibles {
+    -webkit-animation: 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards fade-in;
     min-width: 500px;
     max-width: 570px;
     height: max-content;
@@ -8,7 +32,6 @@
     padding: 20px;
     color: white;
     outline: none;
-    // border:5px solid white;
 
     .contents {
         position: relative;
@@ -45,8 +68,7 @@
                 display: flex;
                 -webkit-box-align: center;
                 align-items: center;
-                padding-left: 11%;
-                width: 80%;
+                margin: 0px auto;
                 text-align: center;
 
                 >svg {
@@ -61,18 +83,17 @@
                         fill: rgb(92, 189, 109);
                     }
                 }
+            }
 
-                .close_button {
-                    position: absolute;
-                    top: 0px;
-                    right: 0px;
-                    width: fit-content;
-                    color: red;
+            .close_button {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width: fit-content;
 
-                    .button {
-                        background-color: transparent;
-                        border: none;
-                    }
+                .button {
+                    background-color: transparent;
+                    border: none;
                 }
             }
         }
@@ -94,16 +115,15 @@
 
         .text_sending {
             color: white;
-            font-size: 21px;
+            font-size: 19px;
             font-weight: 400;
             padding: 0px 10px;
             font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
-            // padding-bottom: 40%;
             .purple_text {
                 color: rgb(227, 100, 190);
                 display: inline-block;
-                font-size: 21px;
+                font-size: 19px;
             }
         }
 
@@ -113,7 +133,7 @@
 
             .input_address {
                 height: 10%;
-                width: 96%;
+                width: 100%;
                 padding-top: 16px;
                 padding-bottom: 16px;
                 padding-left: 16px;
@@ -189,7 +209,6 @@
 
         .understand {
             font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-            width: 96%;
             padding: 0px 10px;
             padding-top: 2%;
 
@@ -220,12 +239,13 @@
     }
 }
 
-@media (max-width: 600px) {    
+@media (max-width: 600px) {
     .modal_collectibles {
         min-width: auto;
         height: 695px;
     }
 }
+
 @include Mobile() {
     .modal_collectibles {
         min-width: auto;

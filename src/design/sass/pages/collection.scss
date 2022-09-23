@@ -29,8 +29,7 @@
 .box-collection {
   max-width: 1600px;
   margin: 0 auto;
-
-
+  padding: 0 40px;
 
   .collection-details-box {
     max-width: 1320px;
@@ -141,7 +140,6 @@
       max-width: 1380px;
       grid-template-columns: repeat(5, 1fr);
 
-
       a {
         background: rgb(32, 32, 32);
         color: #fff;
@@ -222,12 +220,12 @@
               background-position: 50% center;
               background-repeat: no-repeat;
               background-size: cover;
-              content: "";
+              content: '';
               display: block;
               margin: 0px 0px 0.3125rem 0.2rem;
               width: 0.55rem;
               height: 0.55rem;
-              background-image: url("./../../../assets/img/verify-icon.png");
+              background-image: url('./../../../assets/img/verify-icon.png');
             }
 
             .status {
@@ -310,9 +308,9 @@
 
 .price-collection-view-page {
   width: 100%;
-  max-width: 1380px;
+  max-width: 1460px;
   margin: 0px auto;
-  padding: 10px 0px;
+  padding: 10px 40px;
 
   .price-collection-box {
     display: flex;
@@ -326,7 +324,7 @@
       width: 50%;
       border-right: 1px solid $dark-color-primary;
 
-      img{
+      img {
         display: block;
         width: 85%;
         margin: auto;
@@ -373,12 +371,12 @@
             background-position: 50% center;
             background-repeat: no-repeat;
             background-size: cover;
-            content: "";
+            content: '';
             display: block;
             margin: 0px 0px 0.3125rem 0.2rem;
             width: 0.55rem;
             height: 0.55rem;
-            background-image: url("./../../../assets/img/verify-icon.png");
+            background-image: url('./../../../assets/img/verify-icon.png');
           }
         }
       }
@@ -468,11 +466,15 @@
         width: 100%;
         padding: 20px;
         color: $white-color-primary;
-        background: linear-gradient(to left, rgb(103, 129, 249), rgb(227, 100, 190));
+        background: linear-gradient(
+          to left,
+          rgb(103, 129, 249),
+          rgb(227, 100, 190)
+        );
       }
     }
 
-    .token-details-box>div {
+    .token-details-box > div {
       margin-bottom: 20px;
     }
   }
@@ -563,8 +565,6 @@
           justify-content: center;
           -webkit-box-align: center;
           align-items: center;
-
-
         }
       }
     }
@@ -576,15 +576,15 @@
       place-items: center;
       max-width: 1380px;
       grid-template-columns: repeat(5, 1fr);
-      .not-found{
+      .not-found {
         display: flex;
         align-items: center;
         justify-content: center;
-        img{
+        img {
           height: 300px;
           margin-top: 30px;
         }
-        .token-not-found{
+        .token-not-found {
           margin-top: 10px;
           font-size: 18px;
           text-align: center;
@@ -719,7 +719,24 @@
   }
 }
 
-
+@media (max-width: 1420px) {
+  .box-collection {
+    .marketplace {
+      .marketplace-items {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+}
+@media (max-width: 1180px) {
+  .box-collection {
+    .marketplace {
+      .marketplace-items {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
 @media (max-width: 900px) {
   .box-collection {
     width: 95%;
@@ -759,7 +776,6 @@
             height: 100px;
             width: 100px;
             margin-left: 10px;
-
           }
 
           .name {
@@ -808,10 +824,9 @@
       .token-details-box {
         width: 90%;
         margin: 0 auto;
-
       }
 
-      .token-details-box>div {
+      .token-details-box > div {
         margin-bottom: 20px;
       }
     }
@@ -841,6 +856,9 @@
           flex-direction: row;
           position: relative;
           flex-wrap: wrap;
+        }
+        .not-found {
+          padding-bottom: 50px;
         }
 
         .slide-item {
@@ -953,16 +971,28 @@
       }
     }
   }
-
 }
 
 @media (max-width: 540px) {
-  .collection-container {
-    .collection-banner-image {
-      height: 220px;
+  .box-collection {
+    padding: 0 20px;
+    .collection-container {
+      .collection-banner-image {
+        height: 220px;
+      }
     }
   }
-
+  .price-collection-view-page {
+    padding: 10px 0 0 0;
+    .title-sale-by-Collectors {
+      padding: 0 20px;
+      font-size: 26px;
+    }
+    .sub-title-sale-by-Collectors {
+      padding: 0 20px 20px 20px;
+      font-size: 16px;
+    }
+  }
 }
 
 @media (max-width: 410px) {
@@ -978,7 +1008,6 @@
             height: 100px;
             width: 100px;
             margin-left: 40px;
-
           }
 
           .name {
@@ -987,5 +1016,19 @@
         }
       }
     }
-                                                      }
+  }
+  .price-collection-view-page {
+    .token-details-box {
+      .box-price-collection {
+        .box-price-detail-collection {
+          .lable-top {
+            font-size: 12px;
+          }
+          .lable-bottom {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
 }

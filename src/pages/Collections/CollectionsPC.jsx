@@ -1,7 +1,4 @@
 import React from 'react';
-import home_02 from '../../assets/img/home_02.jpeg';
-import home_03 from '../../assets/img/home_03.jpeg';
-import home_04 from '../../assets/img/home_04.jpeg';
 import home_05_banner from '../../assets/img/home_05_banner.png';
 import home_06_banner from '../../assets/img/home_06_banner.jpg';
 import home_07_banner from '../../assets/img/home_07_banner.jpeg';

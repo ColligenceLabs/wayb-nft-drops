@@ -10,7 +10,6 @@ import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
 import verify from '../../assets/img/verify-icon.png';
-import SendingForm from '../../components/collectibles_modals/sending';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import ic_show_off from '../../assets/svg/show_off_icon.svg';
 import ic_back from '../../assets/svg/back_icon.svg';
@@ -21,6 +20,8 @@ import price_history_lg from '../../assets/svg/price_history_logo.svg';
 import ic_trade from '../../assets/svg/trade_icon.svg';
 import ic_sell from '../../assets/svg/sell_icon.svg';
 import WarningForm from 'components/collectibles_modals/warning';
+import SendingForm from '../../components/collectibles_modals/sending';
+import SuccessForm from 'components/collectibles_modals/success';
 
 import { useState, useEffect, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
@@ -29,7 +30,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import MyCollectiblesDetailsMB from './MyCollectiblesDetailsMB';
-const repositionOnResize = true;
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -38,11 +38,11 @@ const MyCollectiblesDetailsPC = () => {
   const [open, setOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
   const ref = useRef();
-  var opened = false;
   useEffect(() => {
     let handler = (event) => {
-      if (opened == false && !ref.current.contains(event.target)) {
+      if (!ref.current.contains(event.target)) {
         setOpen(false);
       }
     };
@@ -58,6 +58,10 @@ const MyCollectiblesDetailsPC = () => {
 
   const closeSending = () => {
     setSendingOpen(false);
+  };
+
+  const closeSuccess = () => {
+    setSuccessOpen(false);
   };
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
@@ -129,24 +133,13 @@ const MyCollectiblesDetailsPC = () => {
                 {open && (
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
-                      <button className="dropdown-item " onClick={()=> setWarningOpen(true)}>
+                      <button className="dropdown-item " onClick={() => setWarningOpen(true)}>
                         <img
                           src={ic_send_to_my_wallet}
                           alt="send-to-my-wallet"
                         />
                         Send to My Wallet
                       </button>
-                      <Popup
-                        // onClose={() => opened = false}
-                        // onOpen={() => opened = true}
-                        modal
-                        // trigger={
-
-                        // }
-                        {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
-                      >
-                        {(close) => <WarningForm close={close} />}
-                      </Popup>
                     </li>
                     <li className="list-dropdown-item">
                       <button className="dropdown-item">
@@ -239,40 +232,34 @@ const MyCollectiblesDetailsPC = () => {
             </div>
           </div>
         </div>
+
         <Popup
-       
           open={warningOpen}
           onClose={closeWarning}
-          // onClose={() => opened = false}
-          // onOpen={() => opened = true}
           modal
-          
-          closeOnDocumentClick
-          // trigger={
-
-          // }
-          // {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+          {...{ closeOnDocumentClick, lockScroll, overlayStyle }}
         >
-           <WarningForm close={closeWarning} onConfirm={()=> setSendingOpen(true)} />
+          <WarningForm close={closeWarning} onConfirm={() => setSendingOpen(true)} />
         </Popup>
+
         <Popup
           modal
           open={sendingOpen}
           onOpen={closeWarning}
           onClose={closeSending}
-          closeOnDocumentClick
-          // onOpen={() => sending_opened = true}
-          // trigger={
-          //   <button
-          //     className="understand_button"
-          //     data-qa-component="continue-button"
-          //   >
-          //     I Understand
-          //   </button>
-          // }
-          // {...{ overlayStyle, closeOnDocumentClick }}
+          {...{ closeOnDocumentClick, overlayStyle }}
         >
-          <SendingForm close={closeSending} />
+          <SendingForm close={closeSending} onConfirm={() => setSuccessOpen(true)} />
+        </Popup>
+
+        <Popup
+          modal
+          open={successOpen}
+          onOpen={closeSending}
+          onClose={closeSuccess}
+          {...{ closeOnDocumentClick, overlayStyle }}
+        >
+          <SuccessForm close={closeSuccess} />
         </Popup>
       </div>
     </main>
