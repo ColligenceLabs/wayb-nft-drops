@@ -14,8 +14,27 @@
   }
 }
 
-.popup-overlay {
-  background: rgba(0, 0, 0, 0.8);
+@keyframes fade-in {
+  0% {
+    box-shadow: 0 0 0 hsl(0deg 0% 95% / 0%);
+    opacity: 0;
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+  }
+
+  1% {
+    box-shadow: 0 0 0 hsl(0deg 0% 95% / 0%);
+    opacity: 0;
+    -webkit-transform: scale(0.96) translateY(10px);
+    transform: scale(0.96) translateY(10px);
+  }
+
+  100% {
+    box-shadow: 0 0 500px hsl(0deg 0% 95% / 0%);
+    opacity: 1;
+    -webkit-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+  }
 }
 
 .popup-content {
@@ -28,7 +47,8 @@
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 
-  .DsOX {
+  .login_form {
+    -webkit-animation: 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards fade-in;
     z-index: 30;
     background-color: #212121;
     color: white;
@@ -359,6 +379,5 @@
         }
       }
     }
-
   }
 }
