@@ -175,7 +175,7 @@ const Faq: React.FC<FaqProps> = ({ close }) => (
             <div className="faq-content content-hidden" id="4">
               Magic NFT holders can claim their classic flag tee at their local
               Old Navy store or on
-              <a href="http://www.oldnavy.com" target="_blank">
+              <a href="http://www.oldnavy.com" target="_blank" rel="noreferrer">
                 {' '}
                 www.oldnavy.com{' '}
               </a>
@@ -325,7 +325,7 @@ const Faq: React.FC<FaqProps> = ({ close }) => (
               Sweet is the enterprise NFT platform used by top brands and
               creators to design, mint, and distribute NFTs through engaging
               consumer experiences.
-              <a href="https://sweet.io/" target="_blank">
+              <a href="https://sweet.io/" target="_blank" rel="noreferrer">
                 {' '}
                 Learn more{' '}
               </a>
@@ -365,7 +365,7 @@ const Faq: React.FC<FaqProps> = ({ close }) => (
               customer experience. Tezos uses a more efficient approach to
               secure its network, allowing it to operate with minimal energy
               consumption and a low carbon footprint.
-              <a href="https://tezos.com/build-play-collect/" target="_blank">
+              <a href="https://tezos.com/build-play-collect/" target="_blank" rel="noreferrer">
                 {' '}
                 Learn more{' '}
               </a>

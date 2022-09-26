@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect } from 'react';
+import React, { MutableRefObject, useEffect, useState, useRef } from 'react';
 import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
@@ -6,7 +6,6 @@ import ic_dropdown_button_arrow from '../../assets/svg/dropdown_button_arrow.svg
 import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
 import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
 import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
-import { useState, useRef } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -99,7 +98,7 @@ const MyCollectibles = () => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
-    let handler = (event: any) => {
+    const handler = (event: any) => {
       if (!ref.current.contains(event.target)) {
         setOpen(false);
       }

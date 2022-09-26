@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react';
+import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import ic_show_off from '../../assets/svg/show_off_icon.svg';
@@ -13,7 +13,6 @@ import WarningForm from 'components/collectibles_modals/warning';
 import SendingForm from '../../components/collectibles_modals/sending';
 import SuccessForm from 'components/collectibles_modals/success';
 
-import { useState, useEffect, useRef } from 'react';
 import Popup from 'reactjs-popup';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -29,7 +28,7 @@ const MyCollectiblesDetails = () => {
   const [successOpen, setSuccessOpen] = useState(false);
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   useEffect(() => {
-    let handler = (event: any) => {
+    const handler = (event: any) => {
       if (!ref.current.contains(event.target)) {
         setOpen(false);
       }
@@ -155,6 +154,7 @@ const MyCollectiblesDetails = () => {
               target="_blank"
               href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
               className="authenticity-button"
+              rel="noreferrer"
             >
               <img src={ic_authenticity} alt="authenticity-icon" />
               Authenticity

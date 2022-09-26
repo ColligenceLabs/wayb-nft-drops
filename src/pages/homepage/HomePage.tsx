@@ -152,7 +152,7 @@ const Homepage = () => {
             LICENSED
           </div>
           <div className="text-bottom">
-            NFTs and Collectibles from the world's
+            NFTs and Collectibles from the world&apos;s
             <br />
             leading teams, brands, and artists
           </div>

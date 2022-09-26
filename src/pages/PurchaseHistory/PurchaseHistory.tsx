@@ -32,7 +32,7 @@ const Purchase_History = () => {
                   Racecarpop 4
                 </a>
                 <Link to="/series" className="name">
-                  It's a race to the finish! This Pop is raring to go fourth.
+                  It&apos;s a race to the finish! This Pop is raring to go fourth.
                 </Link>
               </div>
               <div className="value amount">$8.99</div>
@@ -98,7 +98,7 @@ const Purchase_History = () => {
                   Ketchupop!
                 </a>
                 <Link to="/series" className="name">
-                  Let's ketchup some time! It's been too long...
+                  Let&apos;s ketchup some time! It&apos;s been too long...
                 </Link>
               </div>
               <div className="value amount">$19.99</div>
