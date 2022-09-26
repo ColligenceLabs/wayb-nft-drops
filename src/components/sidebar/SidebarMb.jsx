@@ -31,7 +31,7 @@ const SidebarMb = () => {
   return (
     <div className={`side-bar ${isOpen ? 'show' : ''}`} onClick={closeSidebar}>
       {/* sidebar before login */}
-      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
         <div className="close-sidebar">
           <div className="icon-close" onClick={closeSidebar}>
             <img src={close_icon} alt="Close Icon" />
@@ -65,11 +65,13 @@ const SidebarMb = () => {
             <img src={icon_telegram} alt="" />
           </a>
         </div>
-      </div>
-      {/* sidebar after login */}
-      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
-        <UsernameBox />
       </div> */}
+      {/* sidebar after login */}
+      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+        <UsernameBox />
+      </div>
+
+      {/* popup log in */}
       <Popup
         modal
         open={loginOpen}
@@ -77,12 +79,9 @@ const SidebarMb = () => {
         onClose={closeLogin}
         {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
       >
-        <LoginForm
-          close={closeLogin}
-          onConfirm={() => setSignupOpen(true)}
-        />
+        <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />
       </Popup>
-
+      {/* popup sign up */}
       <Popup
         modal
         open={signupOpen}
@@ -90,10 +89,7 @@ const SidebarMb = () => {
         onClose={closeSignup}
         {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
       >
-        <SignupForm
-          close={closeSignup}
-          onConfirm={() => setLoginOpen(true)}
-        />
+        <SignupForm close={closeSignup} onConfirm={() => setLoginOpen(true)} />
       </Popup>
     </div>
   );

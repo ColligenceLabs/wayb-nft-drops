@@ -13,6 +13,7 @@ import ic_search from '../../assets/icon/search.svg';
 import { isMobile } from 'react-device-detect';
 import SaleCollectiblesMb from './SaleCollectiblesMB';
 import PaymentWallets from 'components/modal/PaymentWallets';
+import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 
 const SaleCollectibles = () => {
   const list_products = [
@@ -70,8 +71,8 @@ const SaleCollectibles = () => {
   ]
   const [isModalOpen, setModalOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
+  const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] = useState(false);
   const ref = useRef();
-
   const useOnClickOutside = (ref, handler) => {
     useEffect(() => {
       const listener = (event) => {
@@ -90,9 +91,6 @@ const SaleCollectibles = () => {
   };
 
   useOnClickOutside(ref, () => setModalOpen(false));
-  const handleClosePaymentWallets = () => {
-    setOpenPaymentWallets(false);
-  };
 
   return (
     isMobile ? <SaleCollectiblesMb /> :
@@ -166,7 +164,7 @@ const SaleCollectibles = () => {
                     <div className="lable-top">Purchase price</div>
                     <div className="lable-bottom fw-600">$50.00</div>
                   </div>
-                  <button className={'btn-sale-collection'} onClick={setOpenPaymentWallets}>Buy Now</button>
+                  <button className={'btn-sale-collection'} onClick={() => setOpenPaymentWallets(true)}>Buy Now</button>
               {/* <button className="btn-sale-collection disable">Sold out</button> */}
                 </div>
               </div>
@@ -260,7 +258,12 @@ const SaleCollectibles = () => {
           </div>
           <PaymentWallets
             show={openPaymentWallets}
-            onHide={handleClosePaymentWallets}
+            onHide={() => setOpenPaymentWallets(false)}
+            openPaymentWalletsSuccess={() => setOpenPaymentWalletsSuccess(true)}
+          />
+           <PaymentWalletsSuccess
+            show={openPaymentWalletsSuccess}
+            onHide={() => setOpenPaymentWalletsSuccess(false)}
           />
         </div>
       </main>

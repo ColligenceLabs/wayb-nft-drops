@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import not_found from '../../assets/img/not_found.gif';
 
@@ -11,9 +11,13 @@ import home_11 from '../../assets/img/home_11.png';
 import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import ic_info from '../../assets/icon/info_pink.svg';
 import ic_search from '../../assets/icon/search.svg';
+import PaymentWallets from 'components/modal/PaymentWallets';
+import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 
 
 const SaleCollectiblesMb = () => {
+  const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
+  const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] = useState(false);
   const list_products = [
     {
       id: 1,
@@ -133,7 +137,8 @@ const SaleCollectiblesMb = () => {
                 <div className="lable-top">Purchase price</div>
                 <div className="lable-bottom fw-600">$50.00</div>
               </div>
-              <button className="btn-sale-collection disable">Sold out</button>
+              <button className={'btn-sale-collection'} onClick={() => setOpenPaymentWallets(true)}>Buy Now</button>
+              {/* <button className="btn-sale-collection disable">Sold out</button> */}
             </div>
           </div>
         </div>
@@ -225,6 +230,15 @@ const SaleCollectiblesMb = () => {
           </div>
         </div>
       </div>
+      <PaymentWallets
+            show={openPaymentWallets}
+            onHide={() => setOpenPaymentWallets(false)}
+            openPaymentWalletsSuccess={() => setOpenPaymentWalletsSuccess(true)}
+          />
+           <PaymentWalletsSuccess
+            show={openPaymentWalletsSuccess}
+            onHide={() => setOpenPaymentWalletsSuccess(false)}
+          />
     </div>
   </main>
   );
