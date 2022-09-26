@@ -18,7 +18,10 @@ import SignupForm from '../auth/signupForm';
 import 'reactjs-popup/dist/index.css';
 import UsernameBox from 'components/common/UsernameBox';
 import SidebarMb from 'components/sidebar/SidebarMb';
-import { useModalWalletsStore, useSidebarStore } from 'components/common/AppStore';
+import {
+  useModalWalletsStore,
+  useSidebarStore,
+} from 'components/common/AppStore';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -27,7 +30,7 @@ const lockScroll = true;
 const Navbar = () => {
   const ref = useRef();
   const [isModalOpen, setModalOpen] = useState(false);
-  const { openSidebar } = useSidebarStore()
+  const { openSidebar } = useSidebarStore();
   const { updateOpenWallet } = useModalWalletsStore();
 
   useOnClickOutside(ref, () => setModalOpen(false));
@@ -48,8 +51,9 @@ const Navbar = () => {
   ) : (
     <div className="nav-bar">
       <div
-        className={`${location.pathname === '/' ? 'nav-home' : 'nav-other-page'
-          }`}
+        className={`${
+          location.pathname === '/' ? 'nav-home' : 'nav-other-page'
+        }`}
       ></div>
       <div className="main-header-box">
         <div className="logo-header">
@@ -83,8 +87,7 @@ const Navbar = () => {
         </div>
         {/* before login PC view */}
         <div className="btn-login">
-          <button className="custom-btn" onClick={() => setLoginOpen(true)}
-          >
+          <button className="custom-btn" onClick={() => setLoginOpen(true)}>
             <span className="custom-text">log in/ sign up</span>
           </button>
         </div>
@@ -94,8 +97,7 @@ const Navbar = () => {
             <img src={nav_icon} alt="Navbar Icon" />
             {/* side bar */}
           </button>
-          <SidebarMb
-          />
+          <SidebarMb />
         </div>
         {/* after login */}
         <div className="btn-wallets">
@@ -143,6 +145,7 @@ const Navbar = () => {
         </button>
         {/* wallets box */}
         <DialogWallets />
+        {/* popup log in  */}
         <Popup
           modal
           open={loginOpen}
@@ -150,12 +153,9 @@ const Navbar = () => {
           onClose={closeLogin}
           {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
         >
-          <LoginForm
-            close={closeLogin}
-            onConfirm={() => setSignupOpen(true)}
-          />
+          <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />
         </Popup>
-
+        {/* popup sign up */}
         <Popup
           modal
           open={signupOpen}

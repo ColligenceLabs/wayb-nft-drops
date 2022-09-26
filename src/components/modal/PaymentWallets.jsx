@@ -3,12 +3,8 @@ import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
-import PaymentWalletsSuccess from './PaymentWalletsSuccess';
-
-const PaymentWallets = ({ show, onHide }) => {
+const PaymentWallets = ({ show, onHide, openPaymentWalletsSuccess }) => {
   const [isModalOpenSuccess, setModalOpenSuccess] = useState(false);
-  const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
-    useState(false);
   const ref = useRef();
 
   const useOnClickOutsideSuccess = (ref, handler) => {
@@ -29,14 +25,6 @@ const PaymentWallets = ({ show, onHide }) => {
   };
 
   useOnClickOutsideSuccess(ref, () => setModalOpenSuccess(false));
-  // const handleOpenPaymentWalletsSuccess = () => {
-  //   setOpenPaymentWalletsSuccess(true);
-  // };
-
-  const handleClosePaymentWalletsSuccess = () => {
-    setOpenPaymentWalletsSuccess(false);
-  };
-
   return (
     <ReactModal
       preventScroll={true}
@@ -83,16 +71,15 @@ const PaymentWallets = ({ show, onHide }) => {
             <button
               type="submit"
               className="payments-btn-submit fw-600"
-              onClick={setOpenPaymentWalletsSuccess}
+              onClick={() => {
+                openPaymentWalletsSuccess();
+                onHide();
+              }}
             >
               Continue
             </button>
           </div>
         </div>
-        <PaymentWalletsSuccess
-          show={openPaymentWalletsSuccess}
-          onHide={handleClosePaymentWalletsSuccess}
-        />
       </div>
     </ReactModal>
   );
