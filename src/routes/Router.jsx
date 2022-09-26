@@ -5,7 +5,7 @@ import Collections from 'pages/Collections/Collections';
 import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectibles';
 import Collection from 'pages/Collection/Collection';
 import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetails';
-import Landing from 'pages/LandingPage/LandingPage';
+import Landing from 'pages/Landingpage/LandingPage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 import MyCollectibles from 'pages/MyCollectibles/MyCollectibles';
 import Profile from 'pages/MyProfile/MyProfilePC';
