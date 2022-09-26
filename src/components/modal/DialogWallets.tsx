@@ -5,15 +5,61 @@ import wallet from '../../assets/icon/wallet.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import dot_connected from '../../assets/icon/dot_connected.svg';
 import metamask from '../../assets/icon/metamask.svg';
-import walletconnect from '../../assets/icon/walletconnect.png';
+import walletconnectIcon from '../../assets/icon/walletconnect.png';
+import env from '../../env';
+import { ChainId } from '../../config';
+import { useDispatch } from 'react-redux';
+import { useWeb3React } from '@web3-react/core';
+import { injected, kaikas, walletconnect } from '../../hooks/connectors';
+import { setActivatingConnector } from '../../redux/slices/wallet';
+import { setupNetwork } from '../../utils/wallet';
 
 import { useModalWalletsStore } from 'components/common/AppStore';
 
 const DialogWallets = () => {
   const { isOpen, updateOpenWallet } = useModalWalletsStore();
+  const dispatch = useDispatch();
+  const context = useWeb3React();
+  const { activate, chainId, account } = context;
 
-  const onClickConnect = (id: string) => {
+  const onClickConnect = async (id: string) => {
     console.log(`Click Wallet Button(id) : ${id}`);
+    // Check Blockchain Network first
+    const targetNetwork = env.REACT_APP_TARGET_NETWORK ?? ChainId.KLAYTN;
+    try {
+      if (chainId !== targetNetwork) {
+        await setupNetwork(targetNetwork);
+      }
+    } catch (e) {
+      console.log('change network error', e);
+    }
+
+    // Activate Wallet next
+    try {
+      if (id === '0') {
+        // await activate(injected, undefined, true);
+        // dispatch(setActivatingConnector(injected));
+        // window.localStorage.setItem('wallet', 'injected');
+        console.log('click Talken Wallet');
+      } else if (id === '1') {
+        await activate(injected, undefined, true);
+        dispatch(setActivatingConnector(injected));
+        window.localStorage.setItem('wallet', 'injected');
+        // const wc = walletconnect(true);
+        // await activate(wc, undefined, true);
+        // window.localStorage.setItem('wallet', 'walletconnect');
+      } else if (id === '2') {
+        console.log('click Wallet Connect');
+      }
+      // todo 인중 후 데이터 처리
+      // dispatch(setCompany(testCompanyInfo));
+      // navigate('/games');
+    } catch (e) {
+      console.log('connect wallet error', e);
+    }
+
+    window.localStorage.setItem('walletStatus', 'connected');
+    console.log(`selected chain : ${chainId}, account: ${account}`);
     updateOpenWallet(false);
   };
 
@@ -81,7 +127,7 @@ const DialogWallets = () => {
           >
             <div className="wrapper-left">
               <div className="logo-item">
-                <img src={walletconnect} alt="logo walletconnect" />
+                <img src={walletconnectIcon} alt="logo walletconnect" />
               </div>
               Walletconnect
             </div>

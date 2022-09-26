@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ethersproject/providers": "^5.7.1",
+    "@metamask/detect-provider": "^1.2.0",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -39,8 +40,8 @@
     "zustand": "^4.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_PHASE=${PHASE} react-scripts start",
+    "build": "REACT_APP_PHASE=${PHASE} react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
