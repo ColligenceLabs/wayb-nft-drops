@@ -1,18 +1,18 @@
 import StudioLayout from '../components/layouts/studioLayout/StudioLayout';
 import React from 'react';
-import Homepage from 'pages/homepage/HomePagePC';
-import Collections from 'pages/Collections/CollectionsPC';
-import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
-import Collection from 'pages/Collection/CollectionPC';
-import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetailsPC';
-import Landing from 'pages/LandingPage/LandingPagePC';
+import Homepage from 'pages/homepage/HomePage';
+import Collections from 'pages/Collections/Collections';
+import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectibles';
+import Collection from 'pages/Collection/Collection';
+import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetails';
+import Landing from 'pages/LandingPage/LandingPage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
-import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
+import MyCollectibles from 'pages/MyCollectibles/MyCollectibles';
 import Profile from 'pages/MyProfile/MyProfilePC';
-import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistoryPC';
-import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetailPC';
+import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistory';
+import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
 
-import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollectionPC';
+import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
 
 const Router = () => [
   {

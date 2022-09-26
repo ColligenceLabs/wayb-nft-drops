@@ -14,17 +14,15 @@ import SendingForm from '../../components/collectibles_modals/sending';
 import SuccessForm from 'components/collectibles_modals/success';
 
 import { useState, useEffect, useRef } from 'react';
-import { isMobile } from 'react-device-detect';
 import Popup from 'reactjs-popup';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import MyCollectiblesDetailsMB from './MyCollectiblesDetailsMB';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
 
-const MyCollectiblesDetailsPC = () => {
+const MyCollectiblesDetails = () => {
   const [open, setOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
@@ -80,9 +78,7 @@ const MyCollectiblesDetailsPC = () => {
       window.removeEventListener('scroll', handleScrollPercent);
     };
   }, []);
-  return isMobile ? (
-    <MyCollectiblesDetailsMB />
-  ) : (
+  return (
     <main className="collectibles-details-container">
       <div className="collectibles-details-wp">
         <div className="product-details">
@@ -265,4 +261,4 @@ const MyCollectiblesDetailsPC = () => {
   );
 };
 
-export default MyCollectiblesDetailsPC;
+export default MyCollectiblesDetails;
