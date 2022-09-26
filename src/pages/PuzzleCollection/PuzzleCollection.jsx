@@ -6,9 +6,6 @@ import avatar from '../../assets/img/avatar.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import { Link } from 'react-router-dom';
-import CollectionMb from './PuzzleCollectionMB';
-import { isMobile } from 'react-device-detect';
 import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
@@ -20,7 +17,7 @@ const PuzzleCollection = () => {
     const result = [];
     for (let i = 0; i < 91; i++) {
       result.push(
-        <img style={{ width: "100%", pointerEvents: "all" }} src={`https://image.toast.com/aaaaave/nft/hong_whale/${String(i + 1).padStart(3, '0')}.jpg`} alt="test" key={i + 1}
+        <img style={{ width: "100%", pointerEvents: "all", background: "rgba(0, 0, 0, 0.7)" }} src={`https://image.toast.com/aaaaave/nft/hong_whale/${String(i + 1).padStart(3, '0')}.jpg`} alt="test" key={i + 1}
           onClick={(event) => {
             setClickedImg(event.target.src);
             setShow(true);
@@ -30,8 +27,6 @@ const PuzzleCollection = () => {
     return result;
   };
   return (
-    isMobile ? <CollectionMb />
-      :
       <main className="collection-container">
         <div className="collection-banner-image"
           style={{
@@ -66,7 +61,7 @@ const PuzzleCollection = () => {
           </div>
           <div className="marketplace">
             <div className="marketplace-collection-tittle">Whale puzzle</div>
-            <div>
+            <div style={{ maxWidth: "1000px", margin: "0px auto" }}>
               <TransformWrapper initialScale={1}>
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                   <React.Fragment>
@@ -78,8 +73,7 @@ const PuzzleCollection = () => {
                     <TransformComponent>
                       <div
                         style={{
-                          width: "100%",
-                          height: "100%",
+                          // width: "80%",
                           display: "table",
                           background: "rgba(0, 0, 0, 0.7)",
                           color: "#fff",
@@ -93,7 +87,6 @@ const PuzzleCollection = () => {
                       >
                         {getPieces()}
                       </div>
-                      <div>Example text</div>
                     </TransformComponent>
                   </React.Fragment>
                 )}

@@ -12,7 +12,7 @@ import Profile from 'pages/MyProfile/MyProfilePC';
 import Purchase_History from 'pages/PurchaseHistory/PurchaseHistoryPC';
 import Purchase_History_Detail from 'pages/PurchaseHistory/PurchaseHistoryDetailPC';
 
-import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollectionPC';
+import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
 
 const Router = () => [
   {
