@@ -7,13 +7,11 @@ import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
 import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
 import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
 import { useState, useRef } from 'react';
-import { isMobile } from 'react-device-detect';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import MyCollectiblesMB from './MyCollectiblesMB';
 
-const MyCollectiblesPC = () => {
+const MyCollectibles = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [appState, setChange] = useState({
     objects: [
@@ -138,9 +136,7 @@ const MyCollectiblesPC = () => {
     return false;
   }
 
-  return isMobile ? (
-    <MyCollectiblesMB />
-  ) : (
+  return (
     <main className="my-wallet-container">
       <div className="wallet-wp">
         {/* banner  */}
@@ -238,4 +234,4 @@ const MyCollectiblesPC = () => {
   );
 };
 
-export default MyCollectiblesPC;
+export default MyCollectibles;

@@ -1,16 +1,16 @@
 import StudioLayout from '../components/layouts/studioLayout/StudioLayout';
 import React from 'react';
-import Homepage from 'pages/homepage/HomePagePC';
-import Collections from 'pages/Collections/CollectionsPC';
-import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectiblesPC';
-import Collection from 'pages/Collection/CollectionPC';
-import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetailsPC';
-import Landing from 'pages/LandingPage/LandingPagePC';
+import Homepage from 'pages/homepage/HomePage';
+import Collections from 'pages/Collections/Collections';
+import SaleCollectibles from 'pages/SaleCollectibles/SaleCollectibles';
+import Collection from 'pages/Collection/Collection';
+import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetails';
+import Landing from 'pages/LandingPage/LandingPage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
-import MyCollectibles from 'pages/MyCollectibles/MyCollectiblesPC';
+import MyCollectibles from 'pages/MyCollectibles/MyCollectibles';
 import Profile from 'pages/MyProfile/MyProfilePC';
-import Purchase_History from 'pages/PurchaseHistory/PurchaseHistoryPC';
-import Purchase_History_Detail from 'pages/PurchaseHistory/PurchaseHistoryDetailPC';
+import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistory';
+import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
 
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
 
@@ -26,8 +26,8 @@ const Router = () => [
       { path: '/my-collectibles', element: <MyCollectibles /> },
       { path: '/my-collectibles/details', element: <MyCollectiblesDetails /> },
       { path: '/my-profile', element: <Profile /> },
-      { path: '/purchase-history', element: <Purchase_History /> },
-      { path: '/series', element: <Purchase_History_Detail /> },
+      { path: '/purchase-history', element: <PurchaseHistory /> },
+      { path: '/series', element: <PurchaseHistoryDetail /> },
 
       { path: '/puzzle-collection', element: <PuzzleCollection /> },
     ],

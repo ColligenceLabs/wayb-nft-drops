@@ -21,9 +21,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
-import HomePageMb from './HomePageMb';
 import useScreenSize from 'components/common/useScreenSize';
+
 const Homepage = () => {
   const screenSize = useScreenSize();
   const carouselOption = {
@@ -143,9 +142,7 @@ const Homepage = () => {
       quantityRemaining: 26008,
     },
   ];
-  return isMobile ? (
-    <HomePageMb />
-  ) : (
+  return (
     <div className="home-page">
       {/* section 01 */}
       <div className="section-01">
