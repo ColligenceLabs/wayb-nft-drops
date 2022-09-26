@@ -6,8 +6,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
-import CollectionMb from './CollectionMB';
-import { isMobile } from 'react-device-detect';
 
 const Collection = () => {
   const list_products = [
@@ -57,9 +55,7 @@ const Collection = () => {
       name: 'Chicago Deer 9',
     },
   ];
-  return isMobile ? (
-    <CollectionMb />
-  ) : (
+  return (
     <main className="collection-container">
       <div
         className="collection-banner-image"

@@ -79,7 +79,7 @@ const Landing = () => {
     };
   },[]);
 
-  return(
+  return (
     <main className="landing-container">
       <div className="box-landing" >
         <div className="navbar">

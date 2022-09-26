@@ -8,8 +8,6 @@ import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_white from '../../assets/icon/wallet_white.svg';
 import nav_icon from '../../assets/icon/nav_icon.svg';
 import { Link, useLocation } from 'react-router-dom';
-import { isMobile } from 'react-device-detect';
-import NavbarMb from './NavbarMb';
 import DialogWallets from 'components/modal/DialogWallets';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import Popup from 'reactjs-popup';
@@ -46,9 +44,7 @@ const Navbar = () => {
   };
 
   let location = useLocation();
-  return isMobile ? (
-    <NavbarMb />
-  ) : (
+  return (
     <div className="nav-bar">
       <div
         className={`${
