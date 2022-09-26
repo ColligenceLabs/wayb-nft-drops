@@ -24,8 +24,13 @@ import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import HomePageMb from './HomePageMb';
 import useScreenSize from 'components/common/useScreenSize';
+import { testGetMbox } from '../../services/services';
 const Homepage = () => {
   const screenSize = useScreenSize();
+
+  const [slideData, setSliceData] = useState([]);
+  const [featuredCollectionsData, setFeaturedCollectionsData] = useState([]);
+
   const carouselOption = {
     additionalTransfrom: 0,
     arrows: true,
@@ -47,55 +52,57 @@ const Homepage = () => {
     slidesToSlide: 1,
     swipeable: true,
   };
-  const slideData = [
-    {
-      url: '/oldnavy',
-      imagePC: home_02,
-      imageMb: home_15,
-    },
-    {
-      url: '/',
-      imagePC: home_03,
-      imageMb: home_16,
-    },
-    {
-      url: '/collection',
-      imagePC: home_04,
-      imageMb: home_17,
-    },
-  ];
-  const featuredCollectionsData = [
-    {
-      url: '/collection',
-      imageBanner: home_05_banner,
-      imageAvatar: home_08_avt,
-      nameLabel: 'Fear the Deer NFTs',
-    },
-    {
-      url: '/collection',
-      imageBanner: home_06_banner,
-      imageAvatar: home_09_avt,
-      nameLabel: 'Kia',
-    },
-    {
-      url: '/collection',
-      imageBanner: home_07_banner,
-      imageAvatar: home_10_avt,
-      nameLabel: 'Old Navy',
-    },
-    {
-      url: '/collection',
-      imageBanner: home_05_banner,
-      imageAvatar: home_08_avt,
-      nameLabel: 'Fear the Deer NFTs',
-    },
-    {
-      url: '/collection',
-      imageBanner: home_06_banner,
-      imageAvatar: home_09_avt,
-      nameLabel: 'Kia',
-    },
-  ];
+  // const slideData = [
+  //   {
+  //     url: '/oldnavy',
+  //     imagePC: home_02,
+  //     imageMb: home_15,
+  //   },
+  //   {
+  //     url: '/',
+  //     imagePC: home_03,
+  //     imageMb: home_16,
+  //   },
+  //   {
+  //     url: '/collection',
+  //     imagePC: home_04,
+  //     imageMb: home_17,
+  //   },
+  // ];
+
+  // const featuredCollectionsData = [
+  //   {
+  //     url: '/collection',
+  //     imageBanner: home_05_banner,
+  //     imageAvatar: home_08_avt,
+  //     nameLabel: 'Fear the Deer NFTs',
+  //   },
+  //   {
+  //     url: '/collection',
+  //     imageBanner: home_06_banner,
+  //     imageAvatar: home_09_avt,
+  //     nameLabel: 'Kia',
+  //   },
+  //   {
+  //     url: '/collection',
+  //     imageBanner: home_07_banner,
+  //     imageAvatar: home_10_avt,
+  //     nameLabel: 'Old Navy',
+  //   },
+  //   {
+  //     url: '/collection',
+  //     imageBanner: home_05_banner,
+  //     imageAvatar: home_08_avt,
+  //     nameLabel: 'Fear the Deer NFTs',
+  //   },
+  //   {
+  //     url: '/collection',
+  //     imageBanner: home_06_banner,
+  //     imageAvatar: home_09_avt,
+  //     nameLabel: 'Kia',
+  //   },
+  // ];
+
   const hotCollectiblesData = [
     {
       url: '/sale',
@@ -143,6 +150,27 @@ const Homepage = () => {
       quantityRemaining: 26008,
     },
   ];
+
+  useEffect(() => {
+    const slideDataFetch = async () => {
+      const res = await testGetMbox();
+      if (res.data.status === 1) {
+        setSliceData(res.data.data.list);
+      }
+    };
+
+    const featuredCollectionsDataFetch = async () => {
+      const res = await testGetMbox();
+      if (res.data.status === 1) {
+        console.log(res.data.data.list);
+        setFeaturedCollectionsData(res.data.data.list);
+      }
+    };
+
+    slideDataFetch();
+    featuredCollectionsDataFetch();
+  }, []);
+
   return isMobile ? (
     <HomePageMb />
   ) : (
@@ -181,7 +209,8 @@ const Homepage = () => {
               <Link to={item.url} target={'_blank'}>
                 <div>
                   <img
-                    src={screenSize > 520 ? item.imagePC : item.imageMb}
+                    // src={screenSize > 520 ? item.imagePC : item.imageMb}
+                    src={item.bannerImage}
                     alt=""
                     draggable={false}
                   />
@@ -206,17 +235,17 @@ const Homepage = () => {
               <Link to={item.url} className="custom-link" key={index}>
                 <button className="grid-item button">
                   <div className="banner-image">
-                    <img src={item.imageBanner} alt="" />
+                    <img src={item.bannerImage} alt="" />
                   </div>
                   <div className="wrapper-content">
                     <div className="avatar">
                       <img
                         src={item.imageAvatar}
                         data-qa-component="campaign-avatar-image"
-                        alt={item.nameLabel}
+                        alt={item.title.en}
                       />
                     </div>
-                    <div className="name-label">{item.nameLabel}</div>
+                    <div className="name-label">{item.title.en}</div>
                   </div>
                 </button>
               </Link>
