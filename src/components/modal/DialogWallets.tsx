@@ -4,13 +4,29 @@ import logo_talken from '../../assets/img/logo_header.png';
 import wallet from '../../assets/icon/wallet.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import dot_connected from '../../assets/icon/dot_connected.svg';
-import dot_noconnect from '../../assets/icon/dot_noconnect.svg';
 import metamask from '../../assets/icon/metamask.svg';
-import temple from '../../assets/icon/temple.svg';
+import walletconnect from '../../assets/icon/walletconnect.png';
+
 import { useModalWalletsStore } from 'components/common/AppStore';
 
 const DialogWallets = () => {
   const { isOpen, updateOpenWallet } = useModalWalletsStore();
+
+  const onClickTalken = () => {
+    console.log('Click Talken');
+    updateOpenWallet(false);
+  };
+
+  const onClickMetamask = () => {
+    console.log('Click Metamask');
+    updateOpenWallet(false);
+  };
+
+  const onClickWalletConnector = () => {
+    console.log('Click WalletConnector');
+    updateOpenWallet(false);
+  };
+
   return (
     <ReactModal
       preventScroll={true}
@@ -38,10 +54,7 @@ const DialogWallets = () => {
           Choose one or more accounts to connect
         </div>
         <div className="wrapper-accounts">
-          <button
-            className="account-item button"
-            onClick={() => updateOpenWallet(false)}
-          >
+          <button className="account-item button" onClick={onClickTalken}>
             <div className="wrapper-left">
               <div className="logo-item logo-talken">
                 <img src={logo_talken} alt="logo talken" />
@@ -53,10 +66,7 @@ const DialogWallets = () => {
               <div className="text">Connected</div>
             </div>
           </button>
-          <button
-            className="account-item button"
-            onClick={() => updateOpenWallet(false)}
-          >
+          <button className="account-item button" onClick={onClickMetamask}>
             <div className="wrapper-left">
               <div className="logo-item">
                 <img src={metamask} alt="logo metamask" />
@@ -71,13 +81,13 @@ const DialogWallets = () => {
           </button>
           <button
             className="account-item button"
-            onClick={() => updateOpenWallet(false)}
+            onClick={onClickWalletConnector}
           >
             <div className="wrapper-left">
               <div className="logo-item">
-                <img src={temple} alt="logo temple" />
+                <img src={walletconnect} alt="logo walletconnect" />
               </div>
-              Temple
+              Walletconnect
             </div>
             <div className="wrapper-right">
               {/* icon dot off */}
