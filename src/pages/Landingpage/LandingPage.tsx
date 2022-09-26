@@ -33,7 +33,7 @@ const Landing = () => {
   const element = document.getElementById('buy-now-mb');
 
   const ref = useRef() as MutableRefObject<HTMLButtonElement>;
-  var opened = false;
+  const opened = false;
 
   const [isModalOpen, setModalOpen] = useState(false);
   const { openSidebar } = useSidebarStore();
@@ -217,7 +217,7 @@ const Landing = () => {
               support a more inclusive future through art,
               <span> 100% of proceeds go back to them.</span>
             </p>
-            <a href="https://www.bgca.org/" target="_blank">
+            <a href="https://www.bgca.org/" target="_blank" rel="noreferrer">
               Visit Boys &amp; Girls Club of America
             </a>
           </div>
