@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ReactModal from 'react-modal';
 import banner_collection from '../../assets/img/banner_collection.png';
 import avatar from '../../assets/img/avatar.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
+import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
@@ -66,7 +66,7 @@ const PuzzleCollection = () => {
         </div>
         <div className="marketplace">
           <div className="marketplace-collection-tittle">Whale puzzle</div>
-          <div>
+          <div style={{ maxWidth: '1000px', margin: '0px auto' }}>
             <TransformWrapper initialScale={1}>
               {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
                 <React.Fragment>
