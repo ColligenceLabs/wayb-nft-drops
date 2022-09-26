@@ -12,6 +12,7 @@ import DialogWallets from 'components/modal/DialogWallets';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import Popup from 'reactjs-popup';
 import LoginForm from '../auth/loginForm';
+import SignupForm from '../auth/signupForm';
 import 'reactjs-popup/dist/index.css';
 import UsernameBox from 'components/common/UsernameBox';
 import SidebarMb from 'components/sidebar/SidebarMb';
@@ -31,14 +32,23 @@ const NavbarMb = () => {
   const { updateOpenWallet } = useModalWalletsStore();
 
   useOnClickOutside(ref, () => setModalOpen(false));
+  const [open, setOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
+  const closeLogin = () => {
+    setLoginOpen(false);
+  };
+
+  const closeSignup = () => {
+    setSignupOpen(false);
+  };
 
   let location = useLocation();
   return (
     <div className="nav-bar">
       <div
-        className={`${
-          location.pathname === '/' ? 'nav-home' : 'nav-other-page'
-        }`}
+        className={`${location.pathname === '/' ? 'nav-home' : 'nav-other-page'
+          }`}
       ></div>
       <div className="main-header-box">
         <div className="logo-header">
@@ -72,17 +82,9 @@ const NavbarMb = () => {
         </div>
         {/* before login PC view */}
         <div className="btn-login">
-          <Popup
-            modal
-            trigger={
-              <button className="custom-btn">
-                <span className="custom-text">log in/ sign up</span>
-              </button>
-            }
-            {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
-          >
-            {(close) => <LoginForm close={close} />}
-          </Popup>
+          <button className="custom-btn" onClick={() => setLoginOpen(true)}>
+            <span className="custom-text">log in/ sign up</span>
+          </button>
         </div>
         {/* before login Tablet, Mobile view */}
         <div className="icon-nav">
@@ -138,6 +140,31 @@ const NavbarMb = () => {
         </button>
         {/* wallets box */}
         <DialogWallets />
+        <Popup
+          modal
+          open={loginOpen}
+          onOpen={closeSignup}
+          onClose={closeLogin}
+          {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+        >
+          <LoginForm
+            close={closeLogin}
+            onConfirm={() => setSignupOpen(true)}
+          />
+        </Popup>
+
+        <Popup
+          modal
+          open={signupOpen}
+          onOpen={closeLogin}
+          onClose={closeSignup}
+          {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
+        >
+          <SignupForm
+            close={closeSignup}
+            onConfirm={() => setLoginOpen(true)}
+          />
+        </Popup>
       </div>
     </div>
   );
