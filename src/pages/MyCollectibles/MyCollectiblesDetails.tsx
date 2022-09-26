@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { Link } from 'react-router-dom';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import ic_show_off from '../../assets/svg/show_off_icon.svg';
@@ -27,9 +27,9 @@ const MyCollectiblesDetails = () => {
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
-  const ref = useRef();
+  const ref = useRef() as MutableRefObject<HTMLDivElement>;
   useEffect(() => {
-    let handler = (event) => {
+    let handler = (event: any) => {
       if (!ref.current.contains(event.target)) {
         setOpen(false);
       }

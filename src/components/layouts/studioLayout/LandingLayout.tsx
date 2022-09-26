@@ -7,7 +7,7 @@ const LandingLayout = () => {
     <>
       <div className="landingpage">
         <Outlet />
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

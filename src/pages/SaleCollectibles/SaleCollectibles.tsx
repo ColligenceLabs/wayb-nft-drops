@@ -71,9 +71,9 @@ const SaleCollectibles = () => {
   const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
     useState(false);
   const ref = useRef();
-  const useOnClickOutside = (ref, handler) => {
+  const useOnClickOutside = (ref: any, handler: any) => {
     useEffect(() => {
-      const listener = (event) => {
+      const listener = (event: any) => {
         if (!ref.current || ref.current.contains(event.target)) {
           return;
         }
@@ -91,7 +91,7 @@ const SaleCollectibles = () => {
   useOnClickOutside(ref, () => setModalOpen(false));
 
   return (
-    <main className="collection-container" style={{ marginTop: `3rem` }}>
+    <main className="collection-container" style={{ marginTop: '3rem' }}>
       <div>
         <div className="price-collection-view-page">
           <div className="price-collection-box">

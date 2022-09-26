@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 
-const Loadable = (Component) => (props) =>
+const Loadable = (Component: any) => (props: any) =>
   (
     <Suspense fallback={<Spinner />}>
       <Component {...props} />

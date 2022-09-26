@@ -198,6 +198,7 @@ const Homepage = () => {
               See all
             </Link>
           </div>
+
           <div className="grid-container">
             {featuredCollectionsData.map((item, index) => (
               <Link to={item.url} className="custom-link" key={index}>

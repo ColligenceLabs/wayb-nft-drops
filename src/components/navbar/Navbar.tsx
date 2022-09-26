@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { MutableRefObject, useRef, useState } from 'react';
 import logo_header from '../../assets/img/logo_header.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_discord from '../../assets/img/icon_discord.png';
@@ -26,7 +26,7 @@ const closeOnDocumentClick = false;
 const lockScroll = true;
 
 const Navbar = () => {
-  const ref = useRef();
+  const ref = useRef() as MutableRefObject<HTMLButtonElement>;
   const [isModalOpen, setModalOpen] = useState(false);
   const { openSidebar } = useSidebarStore();
   const { updateOpenWallet } = useModalWalletsStore();
@@ -43,7 +43,7 @@ const Navbar = () => {
     setSignupOpen(false);
   };
 
-  let location = useLocation();
+  const location = useLocation();
   return (
     <div className="nav-bar">
       <div

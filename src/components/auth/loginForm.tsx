@@ -1,18 +1,24 @@
 import React from 'react';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import icon_ethereum from 'assets/img/icon_ethereum.png';
+import icon_klaytn from 'assets/img/icon_klaytn.png';
+import icon_solana from 'assets/img/icon_solana.png';
+import icon_binance from 'assets/img/icon_binance.png';
+import icon_talk from 'assets/img/icon_talk.png';
+import icon_ethereum2 from 'assets/img/icon_ethereum2.png';
+import icon_metamask from 'assets/img/icon_metamask.png';
 
-const buttonStyle = { backgroundColor: 'transparent', border: 'none' };
-const dropdownStyle = { backgroundColor: '#333333', textAlign: 'left' };
-
-const SignupForm = ({ close, onConfirm }) => (
-  <div className="login_form" tabIndex="-1" role="dialog" aria-modal="true">
-    <div class="box-content">
-      <div class="div-title">
-        <div class="title">Sign up</div>
-        <button onClick={close} class="button-close">
+type LoginFormProps = {
+  close: any;
+  onConfirm: any;
+};
+const LoginForm: React.FC<LoginFormProps> = ({ close, onConfirm }) => (
+  <div className="login_form" tabIndex={-1} role="dialog" aria-modal="true">
+    <div className="box-content">
+      <div className="div-title">
+        <div className="title">Log in</div>
+        <button onClick={close} className="button-close">
           <svg
-            class="sc-6c80924e-4 eTDRlh"
+            className="sc-6c80924e-4 eTDRlh"
             xmlns="http://www.w3.org/2000/svg"
             width="24.329"
             height="24.329"
@@ -29,9 +35,9 @@ const SignupForm = ({ close, onConfirm }) => (
         </button>
       </div>
       <div>
-        <div class="div-methods">Connect with one of these methods</div>
-        <div class="methods">
-          <button data-channel="apple" class="method-apple">
+        <div className="div-methods">Log in with one of these methods</div>
+        <div className="methods">
+          <button data-channel="apple" className="method-apple">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20.688"
@@ -60,7 +66,7 @@ const SignupForm = ({ close, onConfirm }) => (
               </g>
             </svg>
           </button>
-          <button data-channel="twitter" class="method-twitter">
+          <button data-channel="twitter" className="method-twitter">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="27.872"
@@ -87,7 +93,7 @@ const SignupForm = ({ close, onConfirm }) => (
               </g>
             </svg>
           </button>
-          <button class="method-google" data-channel="google">
+          <button className="method-google" data-channel="google">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25.06"
@@ -95,44 +101,44 @@ const SignupForm = ({ close, onConfirm }) => (
               viewBox="0 0 25.06 25.571"
             >
               <defs>
-                <clipPath id="clip-path">
+                <clipPath id="clipPath">
                   <path
                     id="Intersection_4"
                     data-name="Intersection 4"
                     d="M4.329,12.013V8.8A5.873,5.873,0,0,0,6.88,4.946H0V0H12.042a14.7,14.7,0,0,1,.233,2.616,12.474,12.474,0,0,1-3.813,9.4Z"
                     fill="none"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></path>
                 </clipPath>
-                <clipPath id="clip-path-2">
+                <clipPath id="clipPath-2">
                   <path
                     id="Intersection_6"
                     data-name="Intersection 6"
                     d="M0,3.313V0H4.272a7.619,7.619,0,0,0,7.154,5.27,7.682,7.682,0,0,0,4.329-1.22l4.132,3.209a12.212,12.212,0,0,1-8.462,3.1A12.78,12.78,0,0,1,0,3.313Z"
                     fill="none"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></path>
                 </clipPath>
-                <clipPath id="clip-path-3">
+                <clipPath id="clipPath-3">
                   <path
                     id="Intersection_8"
                     data-name="Intersection 8"
                     d="M0,5.742A12.768,12.768,0,0,1,1.36,0H5.632V3.313a7.55,7.55,0,0,0,0,4.859L1.36,11.484A12.773,12.773,0,0,1,0,5.742Z"
                     fill="none"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></path>
                 </clipPath>
-                <clipPath id="clip-path-4">
+                <clipPath id="clipPath-4">
                   <path
                     id="Intersection_10"
                     data-name="Intersection 10"
                     d="M0,7.044A12.78,12.78,0,0,1,11.425,0,12.29,12.29,0,0,1,19.98,3.329L16.312,7a6.908,6.908,0,0,0-4.887-1.91,7.618,7.618,0,0,0-7.154,5.27Z"
                     fill="none"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></path>
                 </clipPath>
               </defs>
@@ -145,7 +151,7 @@ const SignupForm = ({ close, onConfirm }) => (
                   id="Group_14375"
                   data-name="Group 14375"
                   transform="translate(0 0)"
-                  clipPath="url(#clip-path)"
+                  clipPath="url(#clipPath)"
                 >
                   <rect
                     id="Rectangle_6897"
@@ -155,7 +161,7 @@ const SignupForm = ({ close, onConfirm }) => (
                     transform="translate(-7.103 -7.104)"
                     fill="#3e82f1"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></rect>
                 </g>
               </g>
@@ -168,7 +174,7 @@ const SignupForm = ({ close, onConfirm }) => (
                   id="Group_14377"
                   data-name="Group 14377"
                   transform="translate(0)"
-                  clipPath="url(#clip-path-2)"
+                  clipPath="url(#clipPath-2)"
                 >
                   <rect
                     id="Rectangle_6899"
@@ -178,7 +184,7 @@ const SignupForm = ({ close, onConfirm }) => (
                     transform="translate(-7.104 -7.104)"
                     fill="#32a753"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></rect>
                 </g>
               </g>
@@ -190,7 +196,7 @@ const SignupForm = ({ close, onConfirm }) => (
                 <g
                   id="Group_14379"
                   data-name="Group 14379"
-                  clipPath="url(#clip-path-3)"
+                  clipPath="url(#clipPath-3)"
                 >
                   <rect
                     id="Rectangle_6901"
@@ -200,7 +206,7 @@ const SignupForm = ({ close, onConfirm }) => (
                     transform="translate(-7.103 -7.103)"
                     fill="#f9bb00"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></rect>
                 </g>
               </g>
@@ -213,7 +219,7 @@ const SignupForm = ({ close, onConfirm }) => (
                   id="Group_14381"
                   data-name="Group 14381"
                   transform="translate(0)"
-                  clipPath="url(#clip-path-4)"
+                  clipPath="url(#clipPath-4)"
                 >
                   <rect
                     id="Rectangle_6903"
@@ -223,7 +229,7 @@ const SignupForm = ({ close, onConfirm }) => (
                     transform="translate(-7.104 -7.103)"
                     fill="#e74235"
                     stroke="#707070"
-                    stroke-width="1"
+                    strokeWidth="1"
                   ></rect>
                 </g>
               </g>
@@ -232,32 +238,56 @@ const SignupForm = ({ close, onConfirm }) => (
         </div>
         <div>- or -</div>
       </div>
-      <div class="box-input">
-        <div class="div-mobile">Connect with your Mobile Number</div>
-        <form>
-          <div class="phone_number">
-            <div class="react-tel-input ">
-              <div class="special-label">Phone</div>
-              <PhoneInput country={'us'} {...{ buttonStyle, dropdownStyle }} />
-            </div>
-          </div>
-        </form>
-
-        <div class="animated">
-          <div class="reCaptcha">
-            <a>-- ReCAPTCHA --</a>
-          </div>
-          <button type="submit" class="button-login">
-            Continue
-          </button>
-          <div class="text_switch">
-            <button onClick={onConfirm}>
-              <span>Already have an account? Log in now!</span>
+      <form>
+        <div className="box-input">
+          <div className="div-wallets_1">
+            <button type="button">
+              <img src={icon_ethereum}></img>Ethereum
+            </button>
+            <button type="button">
+              <img src={icon_klaytn}></img>Klayth
+            </button>
+            <button type="button">
+              <img src={icon_solana}></img>Solana
+            </button>
+            <button type="button">
+              <img src={icon_binance}></img>Binance
             </button>
           </div>
+          <div className="div-wallets_2">
+            <div className="row">
+              <button type="button">
+                <img src={icon_metamask}></img>Metamask
+              </button>
+              <button type="button">
+                <img src={icon_ethereum2}></img>Wallet Connector
+              </button>
+            </div>
+            <div className="row">
+              <button type="button">
+                <img src={icon_talk}></img>Talken
+              </button>
+              <button type="button">
+                <img src={icon_klaytn}></img>Kaikas
+              </button>
+            </div>
+          </div>
+          <label className="div-keep_logged_in">
+            <input type="checkbox"></input>
+            <span>Keep me logged in</span>
+          </label>
+          <button type="submit" className="button-login">
+            Log in
+          </button>
+          <button className="button-forgot-password">Forgot Password?</button>
         </div>
+      </form>
+      <div className="text_switch" onClick={onConfirm}>
+        <button>
+          <span>New user? Create your account!</span>
+        </button>
       </div>
     </div>
   </div>
 );
-export default SignupForm;
+export default LoginForm;

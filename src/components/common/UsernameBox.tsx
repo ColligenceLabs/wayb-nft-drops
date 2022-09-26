@@ -13,7 +13,7 @@ import { useModalWalletsStore, useSidebarStore } from './AppStore';
 
 const UsernameBox = () => {
   const { updateOpenWallet } = useModalWalletsStore();
-const {closeSidebar} = useSidebarStore()
+  const { closeSidebar } = useSidebarStore();
   return (
     <div className="user-dropdown-box">
       <div className="close-sidebar">

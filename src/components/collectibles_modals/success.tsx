@@ -1,8 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import success_icon from '../../assets/img/success.png';
 import test_collectibles from 'assets/img/collectibles_test.png';
 
-const Sending = ({ close, onConfirm }) => (
-  <div className="modal_collectibles" tabIndex="-1" role="dialog" aria-modal="true">
+type SuccessProps = {
+  close: any;
+};
+
+const Success: React.FC<SuccessProps> = ({ close }) => (
+  <div
+    className="modal_collectibles"
+    tabIndex={-1}
+    role="dialog"
+    aria-modal="true"
+  >
     <div className="contents flex" data-qa-component="send-to-matic-modal-box">
       <div className="titles">
         <div className="title">
@@ -59,33 +70,35 @@ const Sending = ({ close, onConfirm }) => (
           alt=""
         ></img>
       </div>
+      <div className="success">
+        Success
+        <img src={success_icon} alt="" />
+      </div>
       <div className="text_sending">
-        You are requesting to send your
-        <a className="purple_text" data-qa-component="token-name-label">
+        <a className="purple_text">
           &nbsp;Strawberry Shortcake Space Creampop #49&nbsp;
         </a>
-        token to your private Polygon wallet.
+        is on its way to 0xF3e34e...f478670B20
       </div>
-      <div className="input_address_box">
-        <input
-          placeholder="Wallet address to transfer your NFT"
-          data-qa-component="wallet-address-textbox"
-          className="input_address"
-        ></input>
-        <div className="input_address_text">
-          Enter wallet address above to verify.&nbsp;
-        </div>
+      {/* <hr size={1} width={'80%'} color={'#363433'}></hr> */}
+      <hr style={{ fontSize: 1, width: '80%', color: '#363433' }}></hr>
+      <div className="text_small">
+        It may takes a few hours to show up in your interval wallet. Please
+        email us at <a className="purple_text">support@sweet.io</a> if you have
+        any question.
       </div>
       <div className="understand">
-        <button
-          onClick={onConfirm}
-          className="understand_button"
-          data-qa-component="continue-button"
-        >
-          Confirm Transfer
-        </button>
+        <Link to={'/my-collectibles'} className="link">
+          <button
+            onClick={close}
+            className="understand_button"
+            data-qa-component="continue-button"
+          >
+            Go to My Wallet
+          </button>
+        </Link>
       </div>
     </div>
   </div>
 );
-export default Sending;
+export default Success;

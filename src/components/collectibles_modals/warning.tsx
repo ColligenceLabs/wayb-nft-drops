@@ -1,11 +1,16 @@
 import React from 'react';
 import test_collectibles from 'assets/img/collectibles_test.png';
 
-const Warning = ({ close, onConfirm }) => {
+type WarningProps = {
+  close: any;
+  onConfirm: any;
+};
+
+const Warning: React.FC<WarningProps> = ({ close, onConfirm }) => {
   return (
     <div
       className="modal_collectibles Warning-modal"
-      tabIndex="-1"
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
     >
@@ -14,7 +19,7 @@ const Warning = ({ close, onConfirm }) => {
         data-qa-component="send-to-matic-modal-box"
       >
         <div className="titles">
-        <div className="close_button">
+          <div className="close_button">
             <button onClick={close} className="button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

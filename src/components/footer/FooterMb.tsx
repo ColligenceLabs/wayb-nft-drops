@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import logo_header from '../../assets/img/logo_header.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_discord from '../../assets/img/icon_discord.png';
@@ -18,6 +18,7 @@ const FooterMb = () => {
             <Link to={'/'} className="nav-item">
               Help Center
             </Link>
+
             <Link to={'/'} className="nav-item">
               FAQ
             </Link>
@@ -81,7 +82,7 @@ const FooterMb = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FooterMb
+export default FooterMb;

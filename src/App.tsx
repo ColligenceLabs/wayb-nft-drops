@@ -1,6 +1,5 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 import ScrollToTop from 'components/common/ScrollToTop';
 import Router from './routes/Router';

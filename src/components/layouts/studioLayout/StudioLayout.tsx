@@ -4,10 +4,10 @@ import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const StudioLayout = () => {
-  let location = useLocation();
+  const location = useLocation();
   return (
     <>
-      <div className={`${location.pathname === "/" ? "main" : ""}`}>
+      <div className={`${location.pathname === '/' ? 'main' : ''}`}>
         <div className="background-section01"></div>
         <Navbar />
         <Outlet />

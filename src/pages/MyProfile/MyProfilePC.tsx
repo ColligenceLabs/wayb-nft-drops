@@ -71,7 +71,7 @@ const MyProfile = () => {
               <div className="item-value">twitter/Chainos</div>
             </div>
             <Popup modal trigger={<button>Edit Profile</button>}>
-              {(close) => <Edit close={close} />}
+              <>{(close: any) => <Edit close={close} />}</>
             </Popup>
             <Popup
               modal
@@ -79,7 +79,7 @@ const MyProfile = () => {
                 <button className="delete-account">Delete Account</button>
               }
             >
-              {(close) => <Delete close={close} />}
+              <>{(close: any) => <Delete close={close} />}</>
             </Popup>
           </div>
         </div>

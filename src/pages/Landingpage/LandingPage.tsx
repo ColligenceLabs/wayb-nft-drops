@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import logo from '../../assets/img/landing-logo.png';
 import left_cross from '../../assets/img/left_cross.png';
 import magic_dogs from '../../assets/img/magic_dogs.gif';
@@ -14,15 +14,17 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import Popup from 'reactjs-popup';
 import TermsandConditions from './TermsandConditions';
-import Faq from './faq';
+import Faq from './Faq';
 import { Link } from 'react-router-dom';
 import UsernameBox from 'components/common/UsernameBox';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import DialogWallets from 'components/modal/DialogWallets';
 import SidebarMb from 'components/sidebar/SidebarMb';
-import { useModalWalletsStore, useSidebarStore } from 'components/common/AppStore';
+import {
+  useModalWalletsStore,
+  useSidebarStore,
+} from 'components/common/AppStore';
 import 'reactjs-popup/dist/index.css';
-
 
 const Landing = () => {
   const [open, setOpen] = useState(false);
@@ -30,20 +32,20 @@ const Landing = () => {
   const [TermsandConditionsOpen, setTermsandConditionsOpen] = useState(false);
   const element = document.getElementById('buy-now-mb');
 
-  const ref = useRef();
+  const ref = useRef() as MutableRefObject<HTMLButtonElement>;
   var opened = false;
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const {openSidebar} = useSidebarStore();
-  
+  const { openSidebar } = useSidebarStore();
+
   useOnClickOutside(ref, () => setModalOpen(false));
 
-  const CloseTermsandConditions = () =>{
+  const CloseTermsandConditions = () => {
     setTermsandConditionsOpen(false);
-  }
-  const CloseFaq = () =>{
+  };
+  const CloseFaq = () => {
     setFaqOpen(false);
-  }
+  };
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -64,12 +66,11 @@ const Landing = () => {
       100;
     setScrollPercentPosition(positionPercent);
   };
-    if(scrollPercentPosition == 100){
-    element.className = "buy-now-mb-hidden";
-
+  if (element && scrollPercentPosition == 100) {
+    element.className = 'buy-now-mb-hidden';
   }
-  if(scrollPercentPosition < 100 && scrollPercentPosition>20){
-    element.className = "buy-now-mb"
+  if (element && scrollPercentPosition < 100 && scrollPercentPosition > 20) {
+    element.className = 'buy-now-mb';
   }
   useEffect(() => {
     window.addEventListener('scroll', handleScrollPercent);
@@ -77,20 +78,22 @@ const Landing = () => {
     return () => {
       window.removeEventListener('scroll', handleScrollPercent);
     };
-  },[]);
+  }, []);
 
   return (
     <main className="landing-container">
-      <div className="box-landing" >
+      <div className="box-landing">
         <div className="navbar">
           <div className="box-nav">
             <div className="line-left"></div>
             <img src={logo} alt="" className="logo" />
             <div className="line-right"></div>
             <img src={left_cross} alt="" className="left_cross" />
-            <button className="faq" onClick={() => setFaqOpen(true)}>FAQ</button>
-            <Popup modal >
-              {(close) => <Faq close={close} />}
+            <button className="faq" onClick={() => setFaqOpen(true)}>
+              FAQ
+            </button>
+            <Popup modal>
+              <>{(close: any) => <Faq close={close} />}</>
             </Popup>
             {/* <button className="sign-up">Sign Up</button> */}
             <div className="icon-nav">
@@ -98,8 +101,7 @@ const Landing = () => {
                 <img src={nav_icon} alt="Navbar Icon" />
                 {/* side bar */}
               </button>
-              <SidebarMb
-              />
+              <SidebarMb />
             </div>
             <div className="wrapper-user">
               <div className="avatar-user">
@@ -135,11 +137,15 @@ const Landing = () => {
             </button>
             <DialogWallets />
           </div>
-					<div className="line"></div>
+          <div className="line"></div>
         </div>
         <div className="landing-box-detail">
           <div className="details">
-						<img className="magic-arch-mobile" src={logo} alt="magic dog arch"/>
+            <img
+              className="magic-arch-mobile"
+              src={logo}
+              alt="magic dog arch"
+            />
             <div className="dog-gift">
               <img src={magic_dogs} alt="" />
             </div>
@@ -158,8 +164,9 @@ const Landing = () => {
                   <strong>An NFT &amp; A Flag Tee For Under A Buck</strong>
                 </div>
                 <p>
-                When you buy an NFT, we’ll throw in our iconic flag tee* as well
-                as future access to perks, incentives and more.</p> 
+                  When you buy an NFT, we’ll throw in our iconic flag tee* as
+                  well as future access to perks, incentives and more.
+                </p>
               </div>
               <div>
                 <div className="box_info">
@@ -348,19 +355,16 @@ const Landing = () => {
             </a>
           </div>
           <Popup modal trigger={<a>Terms and Conditions</a>}>
-            {(close) => <TermsandConditions close={close} />}
+            <>{(close: any) => <TermsandConditions close={close} />}</>
           </Popup>
         </div>
-        <div className='name' id='buy-now-mb'>
-					<Link to="/collections" target="_blank" className="Buy-button-mb">Buy Now</Link>
-				</div>
-        <Popup
-          open={FaqOpen}
-          onClose={CloseFaq}
-          modal
-          closeOnDocumentClick
-        >
-          <Faq close={CloseFaq}/>
+        <div className="name" id="buy-now-mb">
+          <Link to="/collections" target="_blank" className="Buy-button-mb">
+            Buy Now
+          </Link>
+        </div>
+        <Popup open={FaqOpen} onClose={CloseFaq} modal closeOnDocumentClick>
+          <Faq close={CloseFaq} />
         </Popup>
       </div>
     </main>

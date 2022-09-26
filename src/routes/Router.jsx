@@ -11,7 +11,6 @@ import MyCollectibles from 'pages/MyCollectibles/MyCollectibles';
 import Profile from 'pages/MyProfile/MyProfilePC';
 import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistory';
 import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
-
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
 
 const Router = () => [

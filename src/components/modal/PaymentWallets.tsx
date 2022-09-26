@@ -3,13 +3,23 @@ import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
-const PaymentWallets = ({ show, onHide, openPaymentWalletsSuccess }) => {
+
+type PaymentWalletsProps = {
+  show: any;
+  onHide: any;
+  openPaymentWalletsSuccess: any;
+};
+const PaymentWallets: React.FC<PaymentWalletsProps> = ({
+  show,
+  onHide,
+  openPaymentWalletsSuccess,
+}) => {
   const [isModalOpenSuccess, setModalOpenSuccess] = useState(false);
   const ref = useRef();
 
-  const useOnClickOutsideSuccess = (ref, handler) => {
+  const useOnClickOutsideSuccess = (ref: any, handler: any) => {
     useEffect(() => {
-      const listener = (event) => {
+      const listener = (event: any) => {
         if (!ref.current || ref.current.contains(event.target)) {
           return;
         }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import ReactModal from 'react-modal';
 import banner_collection from '../../assets/img/banner_collection.png';
 import avatar from '../../assets/img/avatar.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
@@ -22,7 +22,7 @@ const PuzzleCollection = () => {
           ).padStart(3, '0')}.jpg`}
           alt="test"
           key={i + 1}
-          onClick={(event) => {
+          onClick={(event: any) => {
             setClickedImg(event.target.src);
             setShow(true);
           }}
@@ -80,7 +80,7 @@ const PuzzleCollection = () => {
                       style={{
                         width: '100%',
                         height: '100%',
-                        display: 'table',
+                        // display: 'table',
                         background: 'rgba(0, 0, 0, 0.7)',
                         color: '#fff',
                         display: 'grid',
@@ -132,7 +132,7 @@ const PuzzleCollection = () => {
             <div className="modal-body">
               <img
                 style={{ width: '-webkit-fill-available' }}
-                src={clickedImg}
+                src={clickedImg ? clickedImg : ''}
               />
             </div>
           </div>

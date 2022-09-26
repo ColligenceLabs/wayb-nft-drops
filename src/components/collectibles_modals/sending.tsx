@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import success_icon from '../../assets/img/success.png';
 import test_collectibles from 'assets/img/collectibles_test.png';
 
-const Success = ({ close }) => (
+type SendingProps = {
+  close: any;
+  onConfirm: any;
+};
+
+const Sending: React.FC<SendingProps> = ({ close, onConfirm }) => (
   <div
     className="modal_collectibles"
-    tabIndex="-1"
+    tabIndex={-1}
     role="dialog"
     aria-modal="true"
   >
@@ -66,34 +69,33 @@ const Success = ({ close }) => (
           alt=""
         ></img>
       </div>
-      <div className="success">
-        Success
-        <img src={success_icon} alt="" />
-      </div>
       <div className="text_sending">
-        <a className="purple_text">
+        You are requesting to send your
+        <a className="purple_text" data-qa-component="token-name-label">
           &nbsp;Strawberry Shortcake Space Creampop #49&nbsp;
         </a>
-        is on its way to 0xF3e34e...f478670B20
+        token to your private Polygon wallet.
       </div>
-      <hr size={1} width={'80%'} color={'#363433'}></hr>
-      <div className="text_small">
-        It may takes a few hours to show up in your interval wallet. Please
-        email us at <a className="purple_text">support@sweet.io</a> if you have
-        any question.
+      <div className="input_address_box">
+        <input
+          placeholder="Wallet address to transfer your NFT"
+          data-qa-component="wallet-address-textbox"
+          className="input_address"
+        ></input>
+        <div className="input_address_text">
+          Enter wallet address above to verify.&nbsp;
+        </div>
       </div>
       <div className="understand">
-        <Link to={'/my-collectibles'} className="link">
-          <button
-            onClick={close}
-            className="understand_button"
-            data-qa-component="continue-button"
-          >
-            Go to My Wallet
-          </button>
-        </Link>
+        <button
+          onClick={onConfirm}
+          className="understand_button"
+          data-qa-component="continue-button"
+        >
+          Confirm Transfer
+        </button>
       </div>
     </div>
   </div>
 );
-export default Success;
+export default Sending;

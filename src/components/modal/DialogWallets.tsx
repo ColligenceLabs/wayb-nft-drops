@@ -10,7 +10,7 @@ import temple from '../../assets/icon/temple.svg';
 import { useModalWalletsStore } from 'components/common/AppStore';
 
 const DialogWallets = () => {
-  const {isOpen, updateOpenWallet} = useModalWalletsStore();
+  const { isOpen, updateOpenWallet } = useModalWalletsStore();
   return (
     <ReactModal
       preventScroll={true}
@@ -27,7 +27,10 @@ const DialogWallets = () => {
             <img src={wallet} alt="icon wallet" />
             <div>My Wallets</div>
           </div>
-          <div className="close-button button" onClick={() => updateOpenWallet(false)}>
+          <div
+            className="close-button button"
+            onClick={() => updateOpenWallet(false)}
+          >
             <img src={close_icon} alt="close icon" />
           </div>
         </div>
@@ -35,7 +38,10 @@ const DialogWallets = () => {
           Choose one or more accounts to connect
         </div>
         <div className="wrapper-accounts">
-          <button className="account-item button" onClick={() => updateOpenWallet(false)}>
+          <button
+            className="account-item button"
+            onClick={() => updateOpenWallet(false)}
+          >
             <div className="wrapper-left">
               <div className="logo-item logo-talken">
                 <img src={logo_talken} alt="logo talken" />
@@ -47,7 +53,10 @@ const DialogWallets = () => {
               <div className="text">Connected</div>
             </div>
           </button>
-          <button className="account-item button" onClick={() => updateOpenWallet(false)}>
+          <button
+            className="account-item button"
+            onClick={() => updateOpenWallet(false)}
+          >
             <div className="wrapper-left">
               <div className="logo-item">
                 <img src={metamask} alt="logo metamask" />
@@ -60,7 +69,10 @@ const DialogWallets = () => {
               <div className="text">Available on desktop</div>
             </div>
           </button>
-          <button className="account-item button" onClick={() => updateOpenWallet(false)}>
+          <button
+            className="account-item button"
+            onClick={() => updateOpenWallet(false)}
+          >
             <div className="wrapper-left">
               <div className="logo-item">
                 <img src={temple} alt="logo temple" />

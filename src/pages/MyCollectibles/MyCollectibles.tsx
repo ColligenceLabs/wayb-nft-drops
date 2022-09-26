@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { MutableRefObject, useEffect } from 'react';
 import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
@@ -13,7 +13,7 @@ import 'react-multi-carousel/lib/styles.css';
 
 const MyCollectibles = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [appState, setChange] = useState({
+  const [appState, setChange] = useState<any>({
     objects: [
       {
         id: 1,
@@ -94,11 +94,12 @@ const MyCollectibles = () => {
   ];
 
   const [open, setOpen] = useState(false);
-  const [selection, setSelection] = useState([]);
+  const [selection, setSelection] = useState<any>([]);
 
-  const ref = useRef();
+  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+
   useEffect(() => {
-    let handler = (event) => {
+    let handler = (event: any) => {
       if (!ref.current.contains(event.target)) {
         setOpen(false);
       }
@@ -109,12 +110,12 @@ const MyCollectibles = () => {
     };
   });
 
-  function toggleActive(index) {
+  function toggleActive(index: number) {
     setChange({ ...appState, activeObject: appState.objects[index] });
   }
 
-  function handleSortClick(item, multipleSelect = false) {
-    if (!selection.some((current) => current.id === item.id)) {
+  function handleSortClick(item: any, multipleSelect = false) {
+    if (!selection.some((current: any) => current.id === item.id)) {
       if (!multipleSelect) {
         setSelection([item]);
       } else if (multipleSelect) {
@@ -123,14 +124,14 @@ const MyCollectibles = () => {
     } else {
       let selectionAfterRemoval = selection;
       selectionAfterRemoval = selectionAfterRemoval.filter(
-        (current) => current.id !== item.id
+        (current: any) => current.id !== item.id
       );
       setSelection([...selectionAfterRemoval]);
     }
   }
 
-  function isItemInSelection(item) {
-    if (selection.find((current) => current.id === item.id)) {
+  function isItemInSelection(item: any) {
+    if (selection.find((current: any) => current.id === item.id)) {
       return true;
     }
     return false;
@@ -152,7 +153,7 @@ const MyCollectibles = () => {
 
           <div className="sort-box" ref={ref}>
             <span className="sort-selected">
-              {appState.objects.map((item, index) => {
+              {appState.objects.map((item: any, index: number) => {
                 return (
                   <div
                     className={`${
@@ -175,7 +176,7 @@ const MyCollectibles = () => {
             </div>
             {open && (
               <ul className="sort-dropdown-box">
-                {appState.objects.map((item, index) => {
+                {appState.objects.map((item: any, index: number) => {
                   return (
                     <li key={index} className="name-sort-dropdown-box">
                       <button
