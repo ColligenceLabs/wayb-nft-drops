@@ -12,18 +12,8 @@ import { useModalWalletsStore } from 'components/common/AppStore';
 const DialogWallets = () => {
   const { isOpen, updateOpenWallet } = useModalWalletsStore();
 
-  const onClickTalken = () => {
-    console.log('Click Talken');
-    updateOpenWallet(false);
-  };
-
-  const onClickMetamask = () => {
-    console.log('Click Metamask');
-    updateOpenWallet(false);
-  };
-
-  const onClickWalletConnector = () => {
-    console.log('Click WalletConnector');
+  const onClickConnect = (id: string) => {
+    console.log(`Click Wallet Button(id) : ${id}`);
     updateOpenWallet(false);
   };
 
@@ -54,7 +44,10 @@ const DialogWallets = () => {
           Choose one or more accounts to connect
         </div>
         <div className="wrapper-accounts">
-          <button className="account-item button" onClick={onClickTalken}>
+          <button
+            className="account-item button"
+            onClick={() => onClickConnect('0')}
+          >
             <div className="wrapper-left">
               <div className="logo-item logo-talken">
                 <img src={logo_talken} alt="logo talken" />
@@ -66,7 +59,10 @@ const DialogWallets = () => {
               <div className="text">Connected</div>
             </div>
           </button>
-          <button className="account-item button" onClick={onClickMetamask}>
+          <button
+            className="account-item button"
+            onClick={() => onClickConnect('1')}
+          >
             <div className="wrapper-left">
               <div className="logo-item">
                 <img src={metamask} alt="logo metamask" />
@@ -81,7 +77,7 @@ const DialogWallets = () => {
           </button>
           <button
             className="account-item button"
-            onClick={onClickWalletConnector}
+            onClick={() => onClickConnect('2')}
           >
             <div className="wrapper-left">
               <div className="logo-item">
