@@ -5,12 +5,8 @@ import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_telegram from '../../assets/img/icon_telegram.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
-import { isMobile } from 'react-device-detect';
-import FooterMb from './FooterMb';
 const Footer = () => {
-  return isMobile ? (
-    <FooterMb />
-  ) : (
+  return (
     <div className="footer">
       <div className="wrapper-footer">
         <div className="navbar-footer">

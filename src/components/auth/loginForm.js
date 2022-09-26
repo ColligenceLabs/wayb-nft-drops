@@ -1,6 +1,4 @@
 import React from "react";
-import Popup from 'reactjs-popup';
-import SignupForm from "./signupForm";
 import icon_ethereum from 'assets/img/icon_ethereum.png';
 import icon_klaytn from 'assets/img/icon_klaytn.png';
 import icon_solana from 'assets/img/icon_solana.png';
@@ -9,10 +7,7 @@ import icon_talk from 'assets/img/icon_talk.png';
 import icon_ethereum2 from 'assets/img/icon_ethereum2.png';
 import icon_metamask from 'assets/img/icon_metamask.png';
 
-const closeOnDocumentClick = false;
-const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
-
-const LoginForm = ({ close }) => (
+const LoginForm = ({ close, onConfirm }) => (
   <div className="login_form" tabIndex="-1" role="dialog" aria-modal="true">
     <div className="box-content">
       <div className="div-title">
@@ -111,17 +106,9 @@ const LoginForm = ({ close }) => (
           <button className="button-forgot-password">Forgot Password?</button>
         </div>
       </form>
-      <Popup modal
-        onClose={close}
-        trigger={
-          <div className="text_switch">
-            <button><span>New user? Create your account!</span></button>
-          </div>
-        }
-        {...{ overlayStyle, closeOnDocumentClick }}
-      >
-        {close => <SignupForm close={close} />}
-      </Popup>
+      <div className="text_switch" onClick={onConfirm}>
+        <button><span>New user? Create your account!</span></button>
+      </div>
     </div>
   </div>
 );

@@ -1,15 +1,11 @@
 import React from 'react';
-import Popup from 'reactjs-popup';
-import LoginForm from './loginForm';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-const closeOnDocumentClick = false;
 const buttonStyle = { backgroundColor: 'transparent', border: 'none' };
 const dropdownStyle = { backgroundColor: '#333333', textAlign: 'left' };
-const overlayStyle = { background: 'rgba(0,0,0,0.0)' };
 
-const SignupForm = ({ close }) => (
+const SignupForm = ({ close, onConfirm }) => (
   <div className="login_form" tabIndex="-1" role="dialog" aria-modal="true">
     <div class="box-content">
       <div class="div-title">
@@ -254,20 +250,11 @@ const SignupForm = ({ close }) => (
           <button type="submit" class="button-login">
             Continue
           </button>
-          <Popup
-            modal
-            onClose={close}
-            trigger={
-              <div class="text_switch">
-                <button>
-                  <span>Already have an account? Log in now!</span>
-                </button>
-              </div>
-            }
-            {...{ overlayStyle, closeOnDocumentClick }}
-          >
-            {(close) => <LoginForm close={close} />}
-          </Popup>
+          <div class="text_switch">
+            <button onClick={onConfirm}>
+              <span>Already have an account? Log in now!</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

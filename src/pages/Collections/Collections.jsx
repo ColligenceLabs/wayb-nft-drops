@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
+
 const featuredCollectionsData = [
   {
     url: '/collection',
@@ -47,7 +48,7 @@ const featuredCollectionsData = [
     nameLabel: 'Old Navy',
   },
 ];
-const CollectionsMB = () => {
+const Collections = () => {
   return (
     <div className="home-page">
       <div className="section-02">
@@ -83,5 +84,4 @@ const CollectionsMB = () => {
   );
 };
 
-export default CollectionsMB;
-
+export default Collections;

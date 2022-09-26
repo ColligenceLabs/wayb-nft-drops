@@ -1,6 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Carousel from 'react-multi-carousel';
+import React, { useEffect, useState } from 'react';
 import home_02 from '../../assets/img/home_02.jpeg';
 import home_03 from '../../assets/img/home_03.jpeg';
 import home_04 from '../../assets/img/home_04.jpeg';
@@ -17,8 +15,15 @@ import home_14_avt from '../../assets/img/home_14_avt.jpg';
 import home_15 from '../../assets/img/home_15.jpg';
 import home_16 from '../../assets/img/home_16.jpg';
 import home_17 from '../../assets/img/home_17.jpg';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
-const HomePageMb = () => {
+
+const Homepage = () => {
   const screenSize = useScreenSize();
   const carouselOption = {
     additionalTransfrom: 0,
@@ -418,4 +423,4 @@ const HomePageMb = () => {
   );
 };
 
-export default HomePageMb;
+export default Homepage;
