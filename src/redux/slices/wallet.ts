@@ -9,6 +9,10 @@ const initialState = {
   account: null,
   balance: null,
   talBalance: null,
+  ethereum: {},
+  klaytn: {},
+  solana: {},
+  binance: {},
 };
 
 const slice = createSlice({
@@ -39,6 +43,22 @@ const slice = createSlice({
     setTalBalance(state, action) {
       state.talBalance = action.payload;
     },
+
+    setKlaytn(state, action) {
+      state.klaytn = action.payload;
+    },
+
+    setSolana(state, action) {
+      state.solana = action.payload;
+    },
+
+    setEthereum(state, action) {
+      state.ethereum = action.payload;
+    },
+
+    setBinance(state, action) {
+      state.binance = action.payload;
+    },
   },
 });
 
@@ -52,6 +72,10 @@ export const {
   setBalance,
   setTalBalance,
   setAccount,
+  setKlaytn,
+  setSolana,
+  setEthereum,
+  setBinance,
 } = slice.actions;
 
 // ----------------------------------------------------------------------

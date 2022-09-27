@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { Buffer } from 'buffer';
 
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/Store';
@@ -21,6 +22,9 @@ function getLibrary(provider: any) {
   library.pollingInterval = 12000;
   return library;
 }
+
+// To solve WalletConnector error : Buffer is not defined
+window.Buffer = window.Buffer || Buffer;
 
 root.render(
   <React.StrictMode>
