@@ -16,6 +16,9 @@ import SignupForm from '../auth/signupForm';
 import 'reactjs-popup/dist/index.css';
 import UsernameBox from 'components/common/UsernameBox';
 import SidebarMb from 'components/sidebar/SidebarMb';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/Store';
+import { useEagerConnect, useInactiveListener } from '../../hooks/useWallet';
 import {
   useModalWalletsStore,
   useSidebarStore,
@@ -38,6 +41,12 @@ const Navbar = () => {
   const closeLogin = () => {
     setLoginOpen(false);
   };
+
+  const { activatingConnector } = useSelector(
+    (state: RootState) => state.wallet
+  );
+  const triedEager = useEagerConnect();
+  useInactiveListener(!triedEager || !!activatingConnector);
 
   const closeSignup = () => {
     setSignupOpen(false);
