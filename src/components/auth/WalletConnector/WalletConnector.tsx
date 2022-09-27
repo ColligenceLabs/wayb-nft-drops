@@ -8,6 +8,7 @@ import KlaytnWallets from './KlaytnWallets';
 import SolanaWallets from './SolanaWallets';
 import BinanceWallets from './BinanceWallets';
 import { useSelector } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
 
 const NetworkList = [
   {
@@ -45,12 +46,24 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
   onConfirm,
 }) => {
   const [selectedNetwork, setSelectedNetwork] = useState(0);
-
+  const [showTooltip, setShowTooltip] = useState(true);
   const changeNetwork = (id: number) => {
     if (id === 2) return;
     setSelectedNetwork(id);
   };
 
+  const handeTooltip = (show: boolean, id: number) => {
+    if (id === 2) {
+      if (show) setShowTooltip(show);
+      else {
+        setShowTooltip(false);
+        setTimeout(() => setShowTooltip(true), 5);
+      }
+    } else {
+      setShowTooltip(false);
+      setTimeout(() => setShowTooltip(true), 5);
+    }
+  };
   return (
     <div className="login_form" tabIndex={-1} role="dialog" aria-modal="true">
       <div className="box-content">
@@ -85,10 +98,25 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
                   }`}
                   key={network.id}
                   type="button"
+                  data-tip
+                  data-for={network.network_name}
                   onClick={() => changeNetwork(network.id)}
+                  onMouseEnter={() => handeTooltip(true, network.id)}
+                  onMouseLeave={() => handeTooltip(false, network.id)}
                 >
                   <img src={network.icon}></img>
                   {network.network_name}
+                  {showTooltip && (
+                    <ReactTooltip
+                      id={network.network_name}
+                      // place="top"
+                      effect="solid"
+                      backgroundColor="white"
+                      textColor="black"
+                    >
+                      Coming soon..
+                    </ReactTooltip>
+                  )}
                 </button>
               ))}
             </div>
