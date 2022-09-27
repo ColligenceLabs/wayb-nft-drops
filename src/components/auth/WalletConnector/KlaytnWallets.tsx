@@ -10,6 +10,7 @@ import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
 import {
   setActivatingConnector,
   setEthereum,
+  setKlaytn,
 } from '../../../redux/slices/wallet';
 
 const KlaytnWallets = () => {
@@ -21,7 +22,7 @@ const KlaytnWallets = () => {
 
   useEffect(() => {
     if (walletName !== '' && account !== '') {
-      dispatch(setEthereum({ wallet: walletName, address: account }));
+      dispatch(setKlaytn({ wallet: walletName, address: account }));
     }
   }, [walletName, account]);
 

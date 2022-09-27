@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useWeb3React } from '@web3-react/core';
 import {
   setActivatingConnector,
+  setBinance,
   setEthereum,
 } from '../../../redux/slices/wallet';
 import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
@@ -21,7 +22,7 @@ const BinanceWallets = () => {
 
   useEffect(() => {
     if (walletName !== '' && account !== '') {
-      dispatch(setEthereum({ wallet: walletName, address: account }));
+      dispatch(setBinance({ wallet: walletName, address: account }));
     }
   }, [walletName, account]);
 
