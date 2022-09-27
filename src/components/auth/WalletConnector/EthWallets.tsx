@@ -32,24 +32,23 @@ const EthWallets = () => {
     try {
       setWalletName(value);
       if (id === 0) {
-        // setWalletName(value);
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         console.log(`click ${id}, this is Metamask (Ethereum)`);
+        // setWalletName(value);
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
+        console.log(`click ${id}, this is Wallet Connector (Ethereum)`);
         // setWalletName(value);
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
-        console.log(`click ${id}, this is Wallet Connector (Ethereum)`);
       } else if (id === 2) {
-        // setWalletName(value;
         console.log(`click ${id}, this is Talken (Ethereum)`);
+        // setWalletName(value;
       } else {
+        console.log(`click ${id}, this is Kaikas (Ethereum)`);
         // setWalletName(value;
         await activate(kaikas, undefined, true);
         await dispatch(setActivatingConnector(kaikas));
-        console.log(`click ${id}, this is Kaikas (Ethereum)`);
       }
     } catch (e) {
       console.log('connect wallet error', e);
