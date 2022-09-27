@@ -12,6 +12,7 @@ import help from '../../assets/icon/help.svg';
 
 import UsernameBox from 'components/common/UsernameBox';
 import { useSidebarStore } from 'components/common/AppStore';
+import WalletConnector from '../auth/WalletConnector/WalletConnector';
 
 const SidebarMb = () => {
   const [open, setOpen] = useState(false);
@@ -79,7 +80,11 @@ const SidebarMb = () => {
         onClose={closeLogin}
         {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
       >
-        <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />
+        {/* <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />*/}
+        <WalletConnector
+          close={closeLogin}
+          onConfirm={() => setSignupOpen(true)}
+        />
       </Popup>
       {/* popup sign up */}
       <Popup

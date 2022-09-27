@@ -23,6 +23,7 @@ import {
   useModalWalletsStore,
   useSidebarStore,
 } from 'components/common/AppStore';
+import WalletConnector from '../auth/WalletConnector/WalletConnector';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -108,7 +109,8 @@ const Navbar = () => {
         <div className="btn-wallets">
           <button
             className="custom-btn button"
-            onClick={() => updateOpenWallet(true)}
+            // onClick={() => updateOpenWallet(true)}
+            onClick={() => setLoginOpen(true)}
           >
             <span className="wrapper-btn">
               <img src={wallet_white} alt="Wallet Icon" />
@@ -158,7 +160,11 @@ const Navbar = () => {
           onClose={closeLogin}
           {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
         >
-          <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />
+          {/* <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />*/}
+          <WalletConnector
+            close={closeLogin}
+            onConfirm={() => setSignupOpen(true)}
+          />
         </Popup>
         {/* popup sign up */}
         <Popup
