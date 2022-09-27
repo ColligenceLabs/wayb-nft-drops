@@ -3,13 +3,11 @@ import icon_ethereum from 'assets/img/icon_ethereum.png';
 import icon_klaytn from 'assets/img/icon_klaytn.png';
 import icon_solana from 'assets/img/icon_solana.png';
 import icon_binance from 'assets/img/icon_binance.png';
-import icon_talk from 'assets/img/icon_talk.png';
-import icon_ethereum2 from 'assets/img/icon_ethereum2.png';
-import icon_metamask from 'assets/img/icon_metamask.png';
 import EthWallets from './EthWallets';
 import KlaytnWallets from './KlaytnWallets';
 import SolanaWallets from './SolanaWallets';
 import BinanceWallets from './BinanceWallets';
+import { useSelector } from 'react-redux';
 
 const NetworkList = [
   {
@@ -82,7 +80,9 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
             <div className="div-wallets_1">
               {NetworkList.map((network: any) => (
                 <button
-                  className={selectedNetwork === network.id ? 'active' : ''}
+                  className={`${
+                    selectedNetwork === network.id ? ' active' : ''
+                  }`}
                   key={network.id}
                   type="button"
                   onClick={() => changeNetwork(network.id)}

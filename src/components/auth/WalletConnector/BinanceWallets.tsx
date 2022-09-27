@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import icon_metamask from '../../../assets/img/icon_metamask.png';
-import icon_ethereum2 from '../../../assets/img/icon_ethereum2.png';
-import icon_talk from '../../../assets/img/icon_talk.png';
-import icon_klaytn from '../../../assets/img/icon_klaytn.png';
 import { Wallets } from './Wallets';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useWeb3React } from '@web3-react/core';
 import {
   setActivatingConnector,
   setBinance,
-  setEthereum,
 } from '../../../redux/slices/wallet';
 import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
+import splitAddress from '../../../utils/splitAddress';
 
 const BinanceWallets = () => {
   const dispatch = useDispatch();
   const context = useWeb3React();
   const { activate, account } = context;
-  // const { ethereum } = useSelector((state) => state.wallets);
+  const { binance } = useSelector((state: any) => state.wallet);
   const [walletName, setWalletName] = useState('');
+  const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
 
   useEffect(() => {
     if (walletName !== '' && account !== '') {
@@ -26,24 +23,30 @@ const BinanceWallets = () => {
     }
   }, [walletName, account]);
 
-  const handleClickWallet = async (id: number) => {
+  useEffect(() => {
+    if (binance !== undefined)
+      setConnectedWallet({ value: binance.wallet, address: binance.address });
+  }, [binance]);
+
+  const handleClickWallet = async (id: number, value: string) => {
     try {
+      setWalletName(value);
       if (id === 0) {
         console.log(`click ${id}, this is Metamask (Binance)`);
-        setWalletName('metamask');
+        // setWalletName('metamask');
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
         console.log(`click ${id}, this is Wallet Connector (Binance)`);
-        setWalletName('walletConnector');
+        // setWalletName('walletConnector');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
         console.log(`click ${id}, this is Talken (Binance)`);
-        setWalletName('talken');
+        // setWalletName('talken');
       } else {
         console.log(`click ${id}, this is Kaikas (Binance)`);
-        setWalletName('kaikas');
+        // setWalletName('kaikas');
         await activate(kaikas, undefined, true);
         await dispatch(setActivatingConnector(kaikas));
       }
@@ -57,11 +60,18 @@ const BinanceWallets = () => {
         {Wallets.map((wallet) => (
           <button
             key={wallet.id}
+            className={
+              connectedWallet && connectedWallet.value === wallet.value
+                ? 'active'
+                : ''
+            }
             type="button"
-            onClick={() => handleClickWallet(wallet.id)}
+            onClick={() => handleClickWallet(wallet.id, wallet.value)}
           >
             <img src={wallet.icon}></img>
-            {wallet.name}
+            {connectedWallet && connectedWallet.value === wallet.value
+              ? splitAddress(connectedWallet.address)
+              : wallet.name}
           </button>
         ))}
       </div>
