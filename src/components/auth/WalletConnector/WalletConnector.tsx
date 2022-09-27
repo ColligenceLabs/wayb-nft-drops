@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import icon_ethereum from 'assets/img/icon_ethereum.png';
 import icon_klaytn from 'assets/img/icon_klaytn.png';
 import icon_solana from 'assets/img/icon_solana.png';
@@ -53,6 +53,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
   };
 
   const handeTooltip = (show: boolean, id: number) => {
+    console.log('aaa');
     if (id === 2) {
       if (show) setShowTooltip(show);
       else {
@@ -64,6 +65,9 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
       setTimeout(() => setShowTooltip(true), 5);
     }
   };
+
+  useEffect(() => console.log(showTooltip), [showTooltip]);
+
   return (
     <div className="login_form" tabIndex={-1} role="dialog" aria-modal="true">
       <div className="box-content">
@@ -101,12 +105,12 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
                   data-tip
                   data-for={network.network_name}
                   onClick={() => changeNetwork(network.id)}
-                  // onMouseEnter={() => handeTooltip(true, network.id)}
-                  // onMouseLeave={() => handeTooltip(false, network.id)}
+                  onMouseEnter={() => handeTooltip(true, network.id)}
+                  onMouseLeave={() => handeTooltip(false, network.id)}
                 >
                   <img src={network.icon}></img>
                   {network.network_name}
-                  {!showTooltip && (
+                  {showTooltip && network.id === 2 && (
                     <ReactTooltip
                       id={network.network_name}
                       // place="top"
