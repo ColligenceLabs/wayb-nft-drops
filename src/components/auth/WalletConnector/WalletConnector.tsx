@@ -53,7 +53,6 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
   };
 
   const handeTooltip = (show: boolean, id: number) => {
-    console.log('aaa');
     if (id === 2) {
       if (show) setShowTooltip(show);
       else {
@@ -65,8 +64,6 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
       setTimeout(() => setShowTooltip(true), 5);
     }
   };
-
-  useEffect(() => console.log(showTooltip), [showTooltip]);
 
   return (
     <div className="login_form" tabIndex={-1} role="dialog" aria-modal="true">
