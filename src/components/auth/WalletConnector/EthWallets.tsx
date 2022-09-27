@@ -61,12 +61,16 @@ const EthWallets = () => {
         {Wallets.map((wallet) => (
           <button
             key={wallet.id}
-            className={connectedWallet.value === wallet.value ? 'active' : ''}
+            className={
+              connectedWallet && connectedWallet.value === wallet.value
+                ? 'active'
+                : ''
+            }
             type="button"
             onClick={() => handleClickWallet(wallet.id, wallet.value)}
           >
             <img src={wallet.icon}></img>
-            {connectedWallet.value === wallet.value
+            {connectedWallet && connectedWallet.value === wallet.value
               ? splitAddress(connectedWallet.address)
               : wallet.name}
           </button>
