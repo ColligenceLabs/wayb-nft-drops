@@ -101,12 +101,12 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
                   data-tip
                   data-for={network.network_name}
                   onClick={() => changeNetwork(network.id)}
-                  onMouseEnter={() => handeTooltip(true, network.id)}
-                  onMouseLeave={() => handeTooltip(false, network.id)}
+                  // onMouseEnter={() => handeTooltip(true, network.id)}
+                  // onMouseLeave={() => handeTooltip(false, network.id)}
                 >
                   <img src={network.icon}></img>
                   {network.network_name}
-                  {showTooltip && (
+                  {!showTooltip && (
                     <ReactTooltip
                       id={network.network_name}
                       // place="top"
