@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import not_found from '../../assets/img/not_found.gif';
 
 import 'slick-carousel/slick/slick.css';
@@ -13,59 +13,61 @@ import ic_search from '../../assets/icon/search.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 
+const list_products = [
+  {
+    id: 1,
+    owner_name: 'Milwaukee Bucks 1',
+    name: 'Chicago Deer 1',
+  },
+  {
+    id: 2,
+    owner_name: 'Milwaukee Bucks 2',
+    name: 'Chicago Deer 2',
+  },
+  {
+    id: 3,
+    owner_name: 'Milwaukee Bucks 3',
+    name: 'Chicago Deer 3',
+  },
+  {
+    id: 4,
+    owner_name: 'Milwaukee Bucks 4',
+    name: 'Chicago Deer 4',
+  },
+  {
+    id: 5,
+    owner_name: 'Milwaukee Bucks 5',
+    name: 'Chicago Deer 5',
+  },
+  {
+    id: 6,
+    owner_name: 'Milwaukee Bucks 6',
+    name: 'Chicago Deer 6',
+  },
+  {
+    id: 7,
+    owner_name: 'Milwaukee Bucks 7',
+    name: 'Chicago Deer 7',
+  },
+  {
+    id: 8,
+    owner_name: 'Milwaukee Bucks 8',
+    name: 'Chicago Deer 8',
+  },
+  {
+    id: 9,
+    owner_name: 'Milwaukee Bucks 9',
+    name: 'Chicago Deer 9',
+  },
+  {
+    id: 10,
+    owner_name: 'Milwaukee Bucks 10',
+    name: 'Chicago Deer 10',
+  },
+];
+
 const SaleCollectibles = () => {
-  const list_products = [
-    {
-      id: 1,
-      owner_name: 'Milwaukee Bucks 1',
-      name: 'Chicago Deer 1',
-    },
-    {
-      id: 2,
-      owner_name: 'Milwaukee Bucks 2',
-      name: 'Chicago Deer 2',
-    },
-    {
-      id: 3,
-      owner_name: 'Milwaukee Bucks 3',
-      name: 'Chicago Deer 3',
-    },
-    {
-      id: 4,
-      owner_name: 'Milwaukee Bucks 4',
-      name: 'Chicago Deer 4',
-    },
-    {
-      id: 5,
-      owner_name: 'Milwaukee Bucks 5',
-      name: 'Chicago Deer 5',
-    },
-    {
-      id: 6,
-      owner_name: 'Milwaukee Bucks 6',
-      name: 'Chicago Deer 6',
-    },
-    {
-      id: 7,
-      owner_name: 'Milwaukee Bucks 7',
-      name: 'Chicago Deer 7',
-    },
-    {
-      id: 8,
-      owner_name: 'Milwaukee Bucks 8',
-      name: 'Chicago Deer 8',
-    },
-    {
-      id: 9,
-      owner_name: 'Milwaukee Bucks 9',
-      name: 'Chicago Deer 9',
-    },
-    {
-      id: 10,
-      owner_name: 'Milwaukee Bucks 10',
-      name: 'Chicago Deer 10',
-    },
-  ];
+  const params = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
   const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
@@ -90,6 +92,11 @@ const SaleCollectibles = () => {
 
   useOnClickOutside(ref, () => setModalOpen(false));
 
+  useEffect(() => {
+    if (params) {
+      console.log(`fetch ${params.id} mbox info`);
+    }
+  }, [params]);
   return (
     <main className="collection-container" style={{ marginTop: '3rem' }}>
       <div>
