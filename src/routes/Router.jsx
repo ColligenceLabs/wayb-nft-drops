@@ -19,7 +19,7 @@ const Router = () => [
     element: <StudioLayout />,
     children: [
       { path: '/', element: <Homepage /> },
-      { path: '/collection', element: <Collection /> },
+      { path: '/collection/:id', element: <Collection /> },
       { path: '/collections', element: <Collections /> },
       { path: '/sale/:id', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },

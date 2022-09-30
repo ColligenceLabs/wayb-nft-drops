@@ -5,33 +5,39 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
+import { hotCollectiblesTestData } from './mockData';
 import {
-  slideTestData,
-  featuredCollectionsTestData,
-  hotCollectiblesTestData,
-} from './mockData';
-import { getSlideData } from '../../services/services';
-import { MBoxTypes } from '../../types/MBoxTypes';
+  getFeaturedCollections,
+  getFeaturedList,
+} from '../../services/services';
+import { FeaturedTypes } from '../../types/FeaturedTypes';
+import FeaturedCard from '../../components/card/FeaturedCard';
 
 const Homepage = () => {
   const screenSize = useScreenSize();
-  const [mboxData, setMBox] = useState<MBoxTypes[] | null>(null);
+  const [slideData, setSlideData] = useState<FeaturedTypes[]>([]);
+  const [featuredCollections, setFeaturedCollections] = useState<
+    FeaturedTypes[]
+  >([]);
 
   useEffect(() => {
     const fetchSlideData = async () => {
-      const res = await getSlideData();
+      const res = await getFeaturedList();
 
       if (res.data.status === 1) {
-        setMBox(res.data.data.list);
+        setSlideData(res.data.data.list);
       }
     };
 
+    const fetchFeaturedCollections = async () => {
+      const res = await getFeaturedCollections();
+      if (res.data.status === 1) {
+        setFeaturedCollections(res.data.data.list);
+      }
+    };
     fetchSlideData();
+    fetchFeaturedCollections();
   }, []);
-
-  useEffect(() => {
-    console.log(mboxData);
-  }, [mboxData]);
 
   const carouselOption = {
     additionalTransfrom: 0,
@@ -86,19 +92,21 @@ const Homepage = () => {
             },
           }}
         >
-          {slideTestData.map((item, index) => (
-            <div className="slide-item" key={index}>
-              <Link to={item.url} target={'_blank'}>
-                <div>
-                  <img
-                    src={screenSize > 520 ? item.imagePC : item.imageMb}
-                    alt=""
-                    draggable={false}
-                  />
-                </div>
-              </Link>
-            </div>
-          ))}
+          {slideData !== null &&
+            slideData.map((item: FeaturedTypes, index) => (
+              <div className="slide-item" key={index}>
+                <Link to={'/'} target={'_blank'}>
+                  <div>
+                    <img
+                      // src={screenSize > 520 ? item.image : item.imageMb}
+                      src={item.banner}
+                      alt=""
+                      draggable={false}
+                    />
+                  </div>
+                </Link>
+              </div>
+            ))}
         </Carousel>
       </div>
       {/* section 02 */}
@@ -113,31 +121,15 @@ const Homepage = () => {
           </div>
 
           <div className="grid-container">
-            {featuredCollectionsTestData.map((item, index) => (
-              <Link to={item.url} className="custom-link" key={index}>
-                <button className="grid-item button">
-                  <div className="banner-image">
-                    <img src={item.imageBanner} alt="" />
-                  </div>
-                  <div className="wrapper-content">
-                    <div className="avatar">
-                      <img
-                        src={item.imageAvatar}
-                        data-qa-component="campaign-avatar-image"
-                        alt={item.nameLabel}
-                      />
-                    </div>
-                    <div className="name-label">{item.nameLabel}</div>
-                  </div>
-                </button>
-              </Link>
+            {featuredCollections.map((item: FeaturedTypes, index) => (
+              <FeaturedCard key={item.id} item={item} />
             ))}
           </div>
         </div>
         {/* Hot Collectibles */}
         <div className="page-grid">
           <div className="title-header">Hot Collectibles</div>
-          {mboxData && (
+          {hotCollectiblesTestData && (
             <Carousel
               {...carouselOption}
               keyBoardControl
@@ -187,7 +179,7 @@ const Homepage = () => {
               }}
               showDots={false}
             >
-              {mboxData.map((item: MBoxTypes, index) => (
+              {hotCollectiblesTestData.map((item: any, index) => (
                 <Link
                   to={`/sale/${item.id}`}
                   className="button custom-box"
@@ -202,14 +194,14 @@ const Homepage = () => {
                     </div>
                     <div className="hot-ollectibles-item">
                       <div className="img-token">
-                        <img src={item.packageImage} alt="" draggable={false} />
+                        <img src={item.image} alt="" draggable={false} />
                       </div>
                     </div>
                     <div className="hot-ollectibles-item">
                       <div className="wrapper-item">
                         <div className="content-left">
                           <div className="avatar">
-                            <img src={''} alt="" draggable={false} />
+                            <img src={item.imageAvt} alt="" draggable={false} />
                           </div>
                           <div className="name-label">연동필요</div>
                         </div>
@@ -217,18 +209,22 @@ const Homepage = () => {
                       </div>
                     </div>
                     <div className="hot-ollectibles-item">
-                      <div className="name-label">{item.introduction.en}</div>
+                      <div className="name-label">{item.details}</div>
                     </div>
                     <div className="hot-ollectibles-item">
                       <div className="wrapper-price">
                         <div className="price-header">Price</div>
-                        <div className="current-price">${item.price}</div>
+                        <div className="current-price">
+                          ${item.currentPrice}
+                        </div>
                       </div>
                     </div>
                     <div className="hot-ollectibles-item">
                       <div className="wrapper-remaining">
                         <div className="remaining-header">Remaining </div>
-                        <div className="quantity-remaining">{0}</div>
+                        <div className="quantity-remaining">
+                          {item.quantityRemaining}
+                        </div>
                       </div>
                     </div>
                   </div>
