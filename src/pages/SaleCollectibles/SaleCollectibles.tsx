@@ -78,13 +78,9 @@ const SaleCollectibles = () => {
     console.log('=======>', mBoxInfo);
     setIsLoading(true);
     if (mBoxInfo) {
-      if (account === undefined || library?.connection === undefined) {
-        // TODO : 지갑 연경 창을 띄워 줄 것...
-        console.log('### 준호야 지갑연결 창을 띄워 줘... ');
-      }
-      const payment = parseEther(
-        ((mBoxInfo.price ?? 0) * 1).toString()
-      ).toString();
+      const amount = 1;
+      const price = mBoxInfo.price ?? 0;
+      const payment = parseEther((price * amount).toString()).toString();
       const result = await buyKey(
         mBoxInfo.boxContractAddress,
         1,
