@@ -4,10 +4,9 @@ import { erc721Abi } from '../config/abi/ERC721Token';
 import { whiteListAbi } from '../config/abi/WhiteListNFT';
 import { subscriptionAbi } from '../config/abi/Subscription';
 import { parseUnits } from 'ethers/lib/utils';
-import { FAILURE, SUCCESS } from '../config';
+import { FAILURE, SUCCESS, RPC_URLS } from '../config';
 import Caver, { AbiItem } from 'caver-js';
 import { evenAllocAbi } from '../config/abi/EventAllocation';
-import { RPC_URLS } from '../config';
 import env from '../env';
 import { formatEther } from 'taalswap-ethers/lib/utils';
 
@@ -94,7 +93,7 @@ export async function getKeyRemains(
   }
 
   let remains: BigNumber = BIG_ZERO;
-  let retRemains: number = 0;
+  let retRemains = 0;
   try {
     if (isKaikas) {
       const hardCap = await contract.methods
@@ -640,7 +639,7 @@ export async function claimEvenAllocation(
       gasLimit: calculateGasMargin(BigNumber.from(gasLimit)),
     };
 
-    let retMsg: string = '';
+    let retMsg = '';
     if (isKaikas) {
       tx = await contract.methods
         .claim()
@@ -651,9 +650,9 @@ export async function claimEvenAllocation(
 
       if (tx?.status) {
         console.log('====================> ', tx);
-        let nNFT: number = 0;
-        let nWin: number = 0;
-        let refund: string = '0';
+        let nNFT = 0;
+        let nWin = 0;
+        let refund = '0';
         for (let i = 0; i < tx.events.length; i++) {
           const eventName = tx.events[i].event;
           if (eventName === 'RefundNFT') {
@@ -682,9 +681,9 @@ export async function claimEvenAllocation(
       }
       if (receipt.status === 1) {
         console.log('====================> ', receipt);
-        let nNFT: number = 0;
-        let nWin: number = 0;
-        let refund: string = '0';
+        let nNFT = 0;
+        let nWin = 0;
+        let refund = '0';
         for (let i = 0; i < receipt.events.length; i++) {
           const eventName = receipt.events[i].event;
           if (eventName === 'RefundNFT') {
@@ -940,7 +939,7 @@ export async function claimSubscription(
       gasLimit: calculateGasMargin(BigNumber.from(gasLimit)),
     };
 
-    let retMsg: string = '';
+    let retMsg = '';
     if (isKaikas) {
       tx = await contract.methods
         .claim()
@@ -950,9 +949,9 @@ export async function claimSubscription(
         });
       if (tx?.status) {
         console.log('====================> ', tx);
-        let nNFT: number = 0;
-        let nWin: number = 0;
-        let refund: string = '0';
+        let nNFT = 0;
+        let nWin = 0;
+        let refund = '0';
         for (let i = 0; i < tx.events.length; i++) {
           const eventName = tx.events[i].event;
           if (eventName === 'RefundNFT') {
@@ -981,9 +980,9 @@ export async function claimSubscription(
       }
       if (receipt.status === 1) {
         console.log('====================> ', receipt);
-        let nNFT: number = 0;
-        let nWin: number = 0;
-        let refund: string = '0';
+        let nNFT = 0;
+        let nWin = 0;
+        let refund = '0';
         for (let i = 0; i < receipt.events.length; i++) {
           const eventName = receipt.events[i].event;
           if (eventName === 'RefundNFT') {
@@ -1364,8 +1363,8 @@ export async function getItemMetadata(
     contract = new ethers.Contract(address, erc721Abi, library?.getSigner());
   }
 
-  let tokenId: number[] = [];
-  let tokenURI: string[] = [];
+  const tokenId: number[] = [];
+  const tokenURI: string[] = [];
   try {
     if (isKaikas) {
       for (let i = 0; i < balance; i++) {
@@ -1427,7 +1426,7 @@ export async function getKeyMetadata(
     contract = new ethers.Contract(address, erc721Abi, library?.getSigner());
   }
 
-  let tokenURI: string = '';
+  let tokenURI = '';
   try {
     // get Metadata
     if (isKaikas) {

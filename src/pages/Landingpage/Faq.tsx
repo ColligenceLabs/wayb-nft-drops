@@ -365,7 +365,11 @@ const Faq: React.FC<FaqProps> = ({ close }) => (
               customer experience. Tezos uses a more efficient approach to
               secure its network, allowing it to operate with minimal energy
               consumption and a low carbon footprint.
-              <a href="https://tezos.com/build-play-collect/" target="_blank" rel="noreferrer">
+              <a
+                href="https://tezos.com/build-play-collect/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 {' '}
                 Learn more{' '}
               </a>

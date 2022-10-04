@@ -32,7 +32,8 @@ const Purchase_History = () => {
                   Racecarpop 4
                 </a>
                 <Link to="/series" className="name">
-                  It&apos;s a race to the finish! This Pop is raring to go fourth.
+                  It&apos;s a race to the finish! This Pop is raring to go
+                  fourth.
                 </Link>
               </div>
               <div className="value amount">$8.99</div>
