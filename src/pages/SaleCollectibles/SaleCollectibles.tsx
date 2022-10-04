@@ -13,6 +13,11 @@ import ic_search from '../../assets/icon/search.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 import { MBoxTypes } from '../../types/MBoxTypes';
+import { buyKey } from '../../utils/marketTransactions';
+import { parseEther } from 'ethers/lib/utils';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import contracts from '../../config/constants/contracts';
+import { targetNetwork } from '../../config';
 
 type MBoxTypesWithCompany = MBoxTypes & {
   companyLogo: string;
@@ -75,6 +80,7 @@ const list_products = [
 const SaleCollectibles = () => {
   const location = useLocation();
 
+  const { account, library } = useActiveWeb3React();
   const [mBoxInfo, setMBoxInfo] = useState<MBoxTypesWithCompany | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
@@ -103,6 +109,21 @@ const SaleCollectibles = () => {
   useEffect(() => {
     if (location.state.item) setMBoxInfo(location.state.item);
   }, []);
+
+  const handleBuyClick = async (info: MBoxTypesWithCompany) => {
+    console.log('=======>', info);
+    const payment = parseEther(((info.price ?? 0) * 1).toString()).toString();
+    const result = await buyKey(
+      info.boxContractAddress,
+      1,
+      payment,
+      info.quote === 'klay'
+        ? contracts.klay[targetNetwork]
+        : contracts.wklay[targetNetwork],
+      account,
+      library
+    );
+  };
 
   return (
     <main className="collection-container" style={{ marginTop: '3rem' }}>
@@ -173,7 +194,8 @@ const SaleCollectibles = () => {
                   </div>
                   <button
                     className={'btn-sale-collection'}
-                    onClick={() => setOpenPaymentWallets(true)}
+                    // onClick={() => setOpenPaymentWallets(true)}
+                    onClick={async () => await handleBuyClick(mBoxInfo)}
                   >
                     Buy Now
                   </button>

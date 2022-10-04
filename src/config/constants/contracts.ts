@@ -1,6 +1,14 @@
 import { ChainId } from '../../config';
 
 export default {
+  klay: {
+    [ChainId.MAINNET]: '',
+    [ChainId.ROPSTEN]: '',
+    [ChainId.RINKEBY]: '',
+    [ChainId.KLAYTN]: '0x0000000000000000000000000000000000000000',
+    [ChainId.BAOBAB]: '0x0000000000000000000000000000000000000000',
+    [ChainId.TMP]: '0x0000000000000000000000000000000000000000',
+  },
   wklay: {
     [ChainId.MAINNET]: '',
     [ChainId.ROPSTEN]: '',
