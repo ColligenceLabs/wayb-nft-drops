@@ -74,32 +74,6 @@ const SaleCollectibles = () => {
 
   useOnClickOutside(ref, () => setModalOpen(false));
 
-  useEffect(() => {
-    const fetchMboxItemList = async () => {
-      const res = await getMboxItemListMboxId(location.state.item.id);
-      if (res.status === 200) {
-        setMBoxItemList(res.data.list);
-      }
-    };
-    if (location.state.item) {
-      setMBoxInfo(location.state.item);
-      fetchMboxItemList();
-    }
-  }, []);
-
-  useEffect(() => {
-    const getAvailability = async (info: MBoxTypesWithCompany) => {
-      const left = await getKeyRemains(
-        info.keyContractAddress,
-        info.boxContractAddress,
-        account,
-        library
-      );
-      setRemains(left);
-    };
-    if (account && library?.connection) getAvailability(location.state.item);
-  }, [account, library]);
-
   const handleBuyClick = async () => {
     console.log('=======>', mBoxInfo);
     setIsLoading(true);
@@ -132,6 +106,32 @@ const SaleCollectibles = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const fetchMboxItemList = async () => {
+      const res = await getMboxItemListMboxId(location.state.item.id);
+      if (res.status === 200) {
+        setMBoxItemList(res.data.list);
+      }
+    };
+    if (location.state.item) {
+      setMBoxInfo(location.state.item);
+      fetchMboxItemList();
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const getAvailability = async (info: MBoxTypesWithCompany) => {
+      const left = await getKeyRemains(
+        info.keyContractAddress,
+        info.boxContractAddress,
+        account,
+        library
+      );
+      setRemains(left);
+    };
+    if (account && library?.connection) getAvailability(location.state.item);
+  }, [account, library]);
+
   return (
     <main className="collection-container" style={{ marginTop: '3rem' }}>
       {mBoxInfo ? (
@@ -141,7 +141,7 @@ const SaleCollectibles = () => {
               <div className="token-showcase-box">
                 {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (
                   <div>
-                    <video autoPlay={true} loop={true}>
+                    <video muted autoPlay playsInline loop>
                       <source src={mBoxInfo.revealAnimation} type="video/mp4" />
                     </video>
                   </div>
