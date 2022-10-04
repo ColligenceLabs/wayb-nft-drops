@@ -13,7 +13,7 @@ import { getMboxItemListMboxId } from '../../services/services';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import MBoxItemCard from '../../components/card/MBoxItemCard';
 import { ImageList, ImageListItem } from '@mui/material';
-import { buyKey } from '../../utils/marketTransactions';
+import { buyKey, getKeyRemains } from '../../utils/marketTransactions';
 import { parseEther } from 'ethers/lib/utils';
 import contracts from '../../config/constants/contracts';
 import { targetNetwork } from '../../config';
@@ -37,6 +37,7 @@ const SaleCollectibles = () => {
   const { account, library } = useWeb3React();
 
   const [mBoxInfo, setMBoxInfo] = useState<MBoxTypesWithCompany | null>(null);
+  const [remains, setRemains] = useState(0);
   const [mBoxItemList, setMBoxItemList] = useState<MBoxItemTypes[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
@@ -84,6 +85,19 @@ const SaleCollectibles = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const getAvailability = async (info: MBoxTypesWithCompany) => {
+      const left = await getKeyRemains(
+        info.keyContractAddress,
+        info.boxContractAddress,
+        account,
+        library
+      );
+      setRemains(left);
+    };
+    if (account && library?.connection) getAvailability(location.state.item);
+  }, [account, library]);
+
   const handleBuyClick = async () => {
     console.log('=======>', mBoxInfo);
     if (mBoxInfo) {
@@ -104,6 +118,13 @@ const SaleCollectibles = () => {
         account,
         library
       );
+      const left = await getKeyRemains(
+        mBoxInfo.keyContractAddress,
+        mBoxInfo.boxContractAddress,
+        account,
+        library
+      );
+      setRemains(left);
     }
   };
 
@@ -169,7 +190,7 @@ const SaleCollectibles = () => {
                     </div>
                     <div className="box-price-detail-collection">
                       <div className="lable-top">Availability</div>
-                      <div className="lable-bottom fw-600">0</div>
+                      <div className="lable-bottom fw-600">{remains}</div>
                     </div>
                     <div className="box-price-detail-collection">
                       <div className="lable-top">Token Type</div>
