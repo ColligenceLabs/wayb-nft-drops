@@ -8,6 +8,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { Link, useParams } from 'react-router-dom';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { getFeaturedById } from '../../services/services';
+import CollectionList from './CollectionList';
 
 const Collection = () => {
   const params = useParams();
@@ -108,61 +109,66 @@ const Collection = () => {
                 <div>{featured.description.en}</div>
               </div>
             </div>
-            <div className="marketplace">
-              <div className="marketplace-collection-tittle">
-                Featured Collectibles
-              </div>
+            <CollectionList
+              featuredId={featured.id}
+              companyLogo={featured.company.image}
+              companyName={featured.company.name.en}
+            />
+            {/*<div className="marketplace">*/}
+            {/*  <div className="marketplace-collection-tittle">*/}
+            {/*    Featured Collectibles*/}
+            {/*  </div>*/}
 
-              <div className="marketplace-items">
-                {list_products.map((item, index) => {
-                  return (
-                    <Link to={`/sale/${index}`} key={index}>
-                      <div className="item_product">
-                        <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                          <div className="total_item">Total Run: 50</div>
-                        </div>
-                        <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                          <div>erc721</div>
-                        </div>
-                        <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                          <div className="card">
-                            <img src={product} alt="" />
-                          </div>
-                        </div>
-                        <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                          <div className="owner_product">
-                            <div className="owner_product_box">
-                              <span className="owner_product_avatar">
-                                <img src={avatar} alt="" />
-                              </span>
-                              <p className="">{item.owner_name}</p>
-                            </div>
-                            <Link to="/sale">
-                              <div className="status ">Buy Now</div>
-                            </Link>
-                          </div>
-                        </div>
-                        <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                          <div className="product_name ">{item.name}</div>
-                        </div>
-                        <div className="item_product_detail MARKETPLACE_BID_KEY">
-                          <div className="box-price">
-                            <div className="price ">Price</div>
-                            <div className="currency ">$50.00</div>
-                          </div>
-                        </div>
-                        <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                          <div>
-                            <div className="remaining ">Remaining</div>
-                            <div className="remaining-total ">0</div>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+            {/*  <div className="marketplace-items">*/}
+            {/*    {list_products.map((item, index) => {*/}
+            {/*      return (*/}
+            {/*        <Link to={`/sale/${index}`} key={index}>*/}
+            {/*          <div className="item_product">*/}
+            {/*            <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">*/}
+            {/*              <div className="total_item">Total Run: 50</div>*/}
+            {/*            </div>*/}
+            {/*            <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">*/}
+            {/*              <div>erc721</div>*/}
+            {/*            </div>*/}
+            {/*            <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">*/}
+            {/*              <div className="card">*/}
+            {/*                <img src={product} alt="" />*/}
+            {/*              </div>*/}
+            {/*            </div>*/}
+            {/*            <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">*/}
+            {/*              <div className="owner_product">*/}
+            {/*                <div className="owner_product_box">*/}
+            {/*                  <span className="owner_product_avatar">*/}
+            {/*                    <img src={avatar} alt="" />*/}
+            {/*                  </span>*/}
+            {/*                  <p className="">{item.owner_name}</p>*/}
+            {/*                </div>*/}
+            {/*                <Link to="/sale">*/}
+            {/*                  <div className="status ">Buy Now</div>*/}
+            {/*                </Link>*/}
+            {/*              </div>*/}
+            {/*            </div>*/}
+            {/*            <div className="item_product_detail MARKETPLACE_NAME_KEY">*/}
+            {/*              <div className="product_name ">{item.name}</div>*/}
+            {/*            </div>*/}
+            {/*            <div className="item_product_detail MARKETPLACE_BID_KEY">*/}
+            {/*              <div className="box-price">*/}
+            {/*                <div className="price ">Price</div>*/}
+            {/*                <div className="currency ">$50.00</div>*/}
+            {/*              </div>*/}
+            {/*            </div>*/}
+            {/*            <div className="item_product_detail MARKETPLACE_NAME_TIME">*/}
+            {/*              <div>*/}
+            {/*                <div className="remaining ">Remaining</div>*/}
+            {/*                <div className="remaining-total ">0</div>*/}
+            {/*              </div>*/}
+            {/*            </div>*/}
+            {/*          </div>*/}
+            {/*        </Link>*/}
+            {/*      );*/}
+            {/*    })}*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
         </>
       ) : (
