@@ -12,7 +12,7 @@ import { MBoxTypes } from '../../types/MBoxTypes';
 import { getMboxItemListMboxId } from '../../services/services';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import MBoxItemCard from '../../components/card/MBoxItemCard';
-import { ImageList, ImageListItem } from '@mui/material';
+import { CircularProgress, ImageList, ImageListItem } from '@mui/material';
 import { buyKey, getKeyRemains } from '../../utils/marketTransactions';
 import { parseEther } from 'ethers/lib/utils';
 import contracts from '../../config/constants/contracts';
@@ -45,6 +45,8 @@ const SaleCollectibles = () => {
     useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const closeLogin = () => {
     setLoginOpen(false);
   };
@@ -100,6 +102,7 @@ const SaleCollectibles = () => {
 
   const handleBuyClick = async () => {
     console.log('=======>', mBoxInfo);
+    setIsLoading(true);
     if (mBoxInfo) {
       if (account === undefined || library?.connection === undefined) {
         // TODO : 지갑 연경 창을 띄워 줄 것...
@@ -126,6 +129,7 @@ const SaleCollectibles = () => {
       );
       setRemains(left);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -206,10 +210,15 @@ const SaleCollectibles = () => {
                   {account && library?.connection ? (
                     <button
                       className={'btn-sale-collection'}
+                      disabled={isLoading}
                       // onClick={() => setOpenPaymentWallets(true)}
                       onClick={handleBuyClick}
                     >
-                      Buy Now
+                      {isLoading ? (
+                        <CircularProgress size={30} color={'inherit'} />
+                      ) : (
+                        'Buy Now'
+                      )}
                     </button>
                   ) : (
                     <button
