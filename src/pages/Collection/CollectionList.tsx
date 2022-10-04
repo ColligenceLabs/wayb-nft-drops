@@ -67,33 +67,34 @@ const CollectionList: React.FC<CollectionListProps> = ({
   const [mBoxList, setMBoxList] = useState<MBoxTypes[]>([]);
 
   useEffect(() => {
-    console.log(featuredId);
     const fetchMBoxList = async () => {
       if (featuredId) {
         const res = await getMboxListByFeaturedId(featuredId);
         if (res.status === 200) {
           setMBoxList(res.data.list);
         }
-        console.log(res);
       }
     };
 
     fetchMBoxList();
   }, []);
 
-  useEffect(() => {
-    console.log(mBoxList);
-  }, [mBoxList]);
   return (
     <div className="marketplace">
       <div className="marketplace-collection-tittle">Featured Collectibles</div>
       <div className="marketplace-items">
         {mBoxList.map((item, index) => {
           return (
-            <Link to={`/sale/${item.id}`} key={index}>
+            <Link
+              to={`/sale/${item.id}`}
+              state={{ item: { ...item, companyLogo, companyName } }}
+              key={index}
+            >
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                  <div className="total_item">Total Run: 50</div>
+                  <div className="total_item">
+                    Total Run: {item.totalAmount}
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
                   <div>erc721</div>
