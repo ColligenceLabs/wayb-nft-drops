@@ -1,74 +1,72 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import not_found from '../../assets/img/not_found.gif';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import avatar from '../../assets/img/avatar.png';
-import home_11 from '../../assets/img/home_11.png';
-import home_13_avt from '../../assets/img/home_13_avt.jpg';
 import ic_info from '../../assets/icon/info_pink.svg';
 import ic_search from '../../assets/icon/search.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 import { MBoxTypes } from '../../types/MBoxTypes';
+import { getMboxItemListMboxId } from '../../services/services';
+import { MBoxItemTypes } from '../../types/MBoxItemTypes';
+import MBoxItemCard from '../../components/card/MBoxItemCard';
+import { ImageList, ImageListItem } from '@mui/material';
 
 type MBoxTypesWithCompany = MBoxTypes & {
   companyLogo: string;
   companyName: string;
 };
 
-const list_products = [
+const itemData = [
   {
-    id: 1,
-    owner_name: 'Milwaukee Bucks 1',
-    name: 'Chicago Deer 1',
+    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    title: 'Breakfast',
   },
   {
-    id: 2,
-    owner_name: 'Milwaukee Bucks 2',
-    name: 'Chicago Deer 2',
+    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    title: 'Burger',
   },
   {
-    id: 3,
-    owner_name: 'Milwaukee Bucks 3',
-    name: 'Chicago Deer 3',
+    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    title: 'Camera',
   },
   {
-    id: 4,
-    owner_name: 'Milwaukee Bucks 4',
-    name: 'Chicago Deer 4',
+    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    title: 'Coffee',
   },
   {
-    id: 5,
-    owner_name: 'Milwaukee Bucks 5',
-    name: 'Chicago Deer 5',
+    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    title: 'Hats',
   },
   {
-    id: 6,
-    owner_name: 'Milwaukee Bucks 6',
-    name: 'Chicago Deer 6',
+    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    title: 'Honey',
   },
   {
-    id: 7,
-    owner_name: 'Milwaukee Bucks 7',
-    name: 'Chicago Deer 7',
+    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+    title: 'Basketball',
   },
   {
-    id: 8,
-    owner_name: 'Milwaukee Bucks 8',
-    name: 'Chicago Deer 8',
+    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+    title: 'Fern',
   },
   {
-    id: 9,
-    owner_name: 'Milwaukee Bucks 9',
-    name: 'Chicago Deer 9',
+    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+    title: 'Mushrooms',
   },
   {
-    id: 10,
-    owner_name: 'Milwaukee Bucks 10',
-    name: 'Chicago Deer 10',
+    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+    title: 'Tomato basil',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+    title: 'Sea star',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+    title: 'Bike',
   },
 ];
 
@@ -76,10 +74,15 @@ const SaleCollectibles = () => {
   const location = useLocation();
 
   const [mBoxInfo, setMBoxInfo] = useState<MBoxTypesWithCompany | null>(null);
+  const [mBoxItemList, setMBoxItemList] = useState<MBoxItemTypes[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
   const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
     useState(false);
+  const [puzzleData, setPuzzleData] = useState(() =>
+    Array.from(Array(99).keys())
+  );
+
   const ref = useRef();
   const useOnClickOutside = (ref: any, handler: any) => {
     useEffect(() => {
@@ -101,7 +104,16 @@ const SaleCollectibles = () => {
   useOnClickOutside(ref, () => setModalOpen(false));
 
   useEffect(() => {
-    if (location.state.item) setMBoxInfo(location.state.item);
+    const fetchMboxItemList = async () => {
+      const res = await getMboxItemListMboxId(location.state.item.id);
+      if (res.status === 200) {
+        setMBoxItemList(res.data.list);
+      }
+    };
+    if (location.state.item) {
+      setMBoxInfo(location.state.item);
+      fetchMboxItemList();
+    }
   }, []);
 
   return (
@@ -111,7 +123,15 @@ const SaleCollectibles = () => {
           <div className="price-collection-view-page">
             <div className="price-collection-box">
               <div className="token-showcase-box">
-                <img src={mBoxInfo.revealAnimation} alt="" />
+                {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (
+                  <div>
+                    <video autoPlay={true} loop={true}>
+                      <source src={mBoxInfo.revealAnimation} type="video/mp4" />
+                    </video>
+                  </div>
+                ) : (
+                  <img src={mBoxInfo.revealAnimation} alt="" />
+                )}
               </div>
               <div className="token-details-box">
                 <div>
@@ -190,6 +210,26 @@ const SaleCollectibles = () => {
                   Sold out? No problem! Check out user listings below.
                 </div>
               </div>
+
+              <div className="puzzle-container">
+                <div>
+                  <ImageList className="puzzle" cols={11}>
+                    {mBoxItemList.map((item, index) => (
+                      <ImageListItem key={index}>
+                        <img
+                          src={item.itemImage}
+                          srcSet={item.itemImage}
+                          alt={''}
+                          loading="lazy"
+                        />
+                        {/*<div style={{ position: 'absolute', color: 'white' }}>*/}
+                        {/*  {index}*/}
+                        {/*</div>*/}
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+                </div>
+              </div>
               <div className="userSales">
                 <div className="filter-box">
                   <div className="search-box">
@@ -217,65 +257,71 @@ const SaleCollectibles = () => {
                 </div>
                 <div className="marketplace-items">
                   <div className="list-carousel">
-                    {list_products.map((item, index) => {
-                      return (
-                        <div className="slide-item" key={index}>
-                          <Link to={'/sale'} className="button">
-                            <div className="hot-ollectibles-wrapper">
-                              <div className="header-left hot-ollectibles-item">
-                                <span className="total-run fw-600">
-                                  Total Run: 35000
-                                </span>
-                              </div>
-                              <div className="hot-ollectibles-item">
-                                <div>erc721</div>
-                              </div>
-                              <div className="hot-ollectibles-item">
-                                <div className="img-token">
-                                  <img src={home_11} alt="" />
-                                </div>
-                              </div>
-                              <div className="hot-ollectibles-item">
-                                <div className="wrapper-item">
-                                  <div className="content-left">
-                                    <div className="avatar">
-                                      <img src={home_13_avt} alt="" />
-                                    </div>
-                                    <div className="name-label">Elton John</div>
-                                  </div>
-                                  <div className="content-right">Buy Now</div>
-                                </div>
-                              </div>
-                              <div className="hot-ollectibles-item">
-                                <div className="name-label">
-                                  Elton John Rocket NFT Club Pass
-                                </div>
-                              </div>
-                              <div className="hot-ollectibles-item">
-                                <div className="wrapper-price">
-                                  <div className="price-header font-size-14">
-                                    Price
-                                  </div>
-                                  <div className="current-price font-size-18">
-                                    $29.99
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="hot-ollectibles-item">
-                                <div className="wrapper-remaining">
-                                  <div className="remaining-header font-size-14">
-                                    Remaining{' '}
-                                  </div>
-                                  <div className="quantity-remaining font-size-18">
-                                    26008
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      );
-                    })}
+                    {mBoxItemList.map((item, index) => (
+                      <MBoxItemCard
+                        key={index}
+                        item={item}
+                        mBoxName={mBoxInfo?.title.en}
+                        mBoxImage={mBoxInfo?.packageImage}
+                      />
+                    ))}
+                    {/*{list_products.map((item, index) => (*/}
+                    {/*  <div className="slide-item" key={index}>*/}
+                    {/*    <Link to={'/sale'} className="button">*/}
+                    {/*      <div className="hot-ollectibles-wrapper">*/}
+                    {/*        <div className="header-left hot-ollectibles-item">*/}
+                    {/*          <span className="total-run fw-600">*/}
+                    {/*            Total Run: 35000*/}
+                    {/*          </span>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="hot-ollectibles-item">*/}
+                    {/*          <div>erc721</div>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="hot-ollectibles-item">*/}
+                    {/*          <div className="img-token">*/}
+                    {/*            <img src={home_11} alt="" />*/}
+                    {/*          </div>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="hot-ollectibles-item">*/}
+                    {/*          <div className="wrapper-item">*/}
+                    {/*            <div className="content-left">*/}
+                    {/*              <div className="avatar">*/}
+                    {/*                <img src={home_13_avt} alt="" />*/}
+                    {/*              </div>*/}
+                    {/*              <div className="name-label">Elton John</div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="content-right">Buy Now</div>*/}
+                    {/*          </div>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="hot-ollectibles-item">*/}
+                    {/*          <div className="name-label">*/}
+                    {/*            Elton John Rocket NFT Club Pass*/}
+                    {/*          </div>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="hot-ollectibles-item">*/}
+                    {/*          <div className="wrapper-price">*/}
+                    {/*            <div className="price-header font-size-14">*/}
+                    {/*              Price*/}
+                    {/*            </div>*/}
+                    {/*            <div className="current-price font-size-18">*/}
+                    {/*              $29.99*/}
+                    {/*            </div>*/}
+                    {/*          </div>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="hot-ollectibles-item">*/}
+                    {/*          <div className="wrapper-remaining">*/}
+                    {/*            <div className="remaining-header font-size-14">*/}
+                    {/*              Remaining{' '}*/}
+                    {/*            </div>*/}
+                    {/*            <div className="quantity-remaining font-size-18">*/}
+                    {/*              26008*/}
+                    {/*            </div>*/}
+                    {/*          </div>*/}
+                    {/*        </div>*/}
+                    {/*      </div>*/}
+                    {/*    </Link>*/}
+                    {/*  </div>*/}
+                    {/*))}*/}
                   </div>
                   <div className="not-found">
                     <div>
