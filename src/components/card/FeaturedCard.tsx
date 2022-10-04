@@ -1,6 +1,7 @@
 import React from 'react';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { Link } from 'react-router-dom';
+import { splitString } from '../../utils/splitString';
 
 type FeaturedCardProps = {
   item: FeaturedTypes;
@@ -20,7 +21,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item }) => {
               alt={item.name.en}
             />
           </div>
-          <div className="name-label">{item.name.en}</div>
+          <div className="name-label">{splitString(item.name.en, 20)}</div>
         </div>
       </button>
     </Link>
