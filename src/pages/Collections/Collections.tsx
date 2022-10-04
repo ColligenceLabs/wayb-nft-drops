@@ -13,7 +13,7 @@ const Collections = () => {
 
   useEffect(() => {
     const fetchFeaturedCollections = async () => {
-      const res = await getFeaturedCollections();
+      const res = await getFeaturedCollections(20);
       if (res.data.status === 1) {
         setFeaturedCollections(res.data.data.list);
       }

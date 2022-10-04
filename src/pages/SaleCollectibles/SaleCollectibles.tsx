@@ -9,14 +9,14 @@ import ic_search from '../../assets/icon/search.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { getMboxItemListMboxId } from '../../services/services';
+import { getMboxItemListMboxId, registerBuy } from '../../services/services';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import MBoxItemCard from '../../components/card/MBoxItemCard';
 import { CircularProgress, ImageList, ImageListItem } from '@mui/material';
 import { buyKey, getKeyRemains } from '../../utils/marketTransactions';
 import { parseEther } from 'ethers/lib/utils';
 import contracts from '../../config/constants/contracts';
-import { targetNetwork } from '../../config';
+import { SUCCESS, targetNetwork } from '../../config';
 import { useWeb3React } from '@web3-react/core';
 import { setupNetwork } from '../../utils/wallet';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
@@ -95,13 +95,24 @@ const SaleCollectibles = () => {
         account,
         library
       );
-      const left = await getKeyRemains(
-        mBoxInfo.keyContractAddress,
-        mBoxInfo.boxContractAddress,
-        account,
-        library
-      );
-      setRemains(left);
+
+      if (result === SUCCESS) {
+        const left = await getKeyRemains(
+          mBoxInfo.keyContractAddress,
+          mBoxInfo.boxContractAddress,
+          account,
+          library
+        );
+        setRemains(left);
+
+        const data = {
+          mysterybox_id: mBoxInfo.id,
+          buyer: '',
+          buyer_address: account,
+        };
+
+        await registerBuy(data);
+      }
     }
     setIsLoading(false);
   };
