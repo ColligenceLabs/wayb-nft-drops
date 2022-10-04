@@ -15,9 +15,10 @@ import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { buyKey } from '../../utils/marketTransactions';
 import { parseEther } from 'ethers/lib/utils';
-import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import contracts from '../../config/constants/contracts';
 import { targetNetwork } from '../../config';
+import { useWeb3React } from '@web3-react/core';
+import { setupNetwork } from '../../utils/wallet';
 
 type MBoxTypesWithCompany = MBoxTypes & {
   companyLogo: string;
@@ -80,7 +81,7 @@ const list_products = [
 const SaleCollectibles = () => {
   const location = useLocation();
 
-  const { account, library } = useActiveWeb3React();
+  const { account, library } = useWeb3React();
   const [mBoxInfo, setMBoxInfo] = useState<MBoxTypesWithCompany | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
@@ -112,6 +113,10 @@ const SaleCollectibles = () => {
 
   const handleBuyClick = async (info: MBoxTypesWithCompany) => {
     console.log('=======>', info);
+    if (account === undefined || library?.connection === undefined) {
+      // TODO : 지갑 연경 창을 띄워 줄 것...
+      console.log('### 준호야 지갑연결 창을 띄워 줘... ');
+    }
     const payment = parseEther(((info.price ?? 0) * 1).toString()).toString();
     const result = await buyKey(
       info.boxContractAddress,
