@@ -25,6 +25,7 @@ module.exports = {
         minimumDescriptionLength: 10,
       },
     ],
+    '@typescript-eslint/ban-ts-ignore': 'off',
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
