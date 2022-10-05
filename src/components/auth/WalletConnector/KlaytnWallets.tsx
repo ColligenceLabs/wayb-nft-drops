@@ -50,6 +50,7 @@ const KlaytnWallets = () => {
         await activate(kaikas, undefined, true);
         await dispatch(setActivatingConnector(kaikas));
       }
+      window.localStorage.setItem('walletStatus', 'connected');
     } catch (e) {
       console.log('connect wallet error', e);
     }
