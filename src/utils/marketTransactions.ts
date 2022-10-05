@@ -33,6 +33,7 @@ export async function getKeyBalance(
   account: string | undefined | null,
   library: any
 ): Promise<number> {
+  if (!library) return 0;
   const isKaikas =
     library.connection.url !== 'metamask' ||
     library.connection.url === 'eip-1193:';
@@ -78,6 +79,7 @@ export async function getKeyRemains(
   account: string | undefined | null,
   library: any
 ): Promise<number> {
+  if (!library) return 0;
   const isKaikas =
     library.connection.url !== 'metamask' ||
     library.connection.url === 'eip-1193:';
@@ -130,6 +132,7 @@ export async function getItemBalance(
   account: string | undefined | null,
   library: any
 ): Promise<number> {
+  if (!library) return 0;
   const isKaikas =
     library.connection.url !== 'metamask' ||
     library.connection.url === 'eip-1193:';
@@ -285,6 +288,7 @@ export async function claimMysteryBox(
   account: string | undefined | null,
   library: any
 ): Promise<number> {
+  if (!library) return 0;
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
     library.connection.url !== 'metamask' ||
@@ -364,6 +368,7 @@ export async function buyTicket(
   account: string | undefined | null,
   library: any
 ): Promise<number> {
+  if (!library) return 0;
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
     library.connection.url !== 'metamask' ||
@@ -469,6 +474,7 @@ export async function getTicketCount(
   account: string | undefined | null,
   library: any
 ): Promise<number> {
+  if (!library) return 0;
   const isKaikas =
     library.connection.url !== 'metamask' ||
     library.connection.url === 'eip-1193:';
