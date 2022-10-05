@@ -305,6 +305,23 @@
         }
       }
     }
+    .my-product {
+      //background-color: red;
+      padding: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 5px;
+
+      .product {
+        width: 300px;
+        margin-left: 5px;
+
+        img{
+          width: 100%;
+          //object-fit: cover;
+        }
+      }
+    }
   }
 }
 

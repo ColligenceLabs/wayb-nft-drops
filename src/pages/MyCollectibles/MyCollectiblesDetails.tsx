@@ -20,14 +20,18 @@ import 'react-multi-carousel/lib/styles.css';
 import {
   claimMysteryBox,
   getItemBalance,
+  getItemMetadata,
   getKeyBalance,
+  getKeyMetadata,
 } from '../../utils/marketTransactions';
 import { convSecToString } from '../../utils/convSecToString';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { setApproveForAll } from '../../utils/transactions';
-import { SUCCESS } from '../../config';
 import { CircularProgress } from '@mui/material';
 import CSnackbar from '../../components/common/CSnackbar';
+import axios from 'axios';
+import { ResRevealItemType } from '../../types/ResRevealItemType';
+import { MBoxTypes } from '../../types/MBoxTypes';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -36,11 +40,14 @@ const MyCollectiblesDetails = () => {
   const { account, library } = useActiveWeb3React();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const location = useLocation();
+  const [mboxInfo, setMboxInfo] = useState<MBoxTypes>(location.state.item);
   const [open, setOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
   const [isReveal, setIsReveal] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [revealItems, setRevealItems] = useState<ResRevealItemType[]>([]);
   const [balance, setBalance] = useState(0);
   const [item, setItem] = useState(0);
   const [status, setStatus] = useState(true);
@@ -79,27 +86,15 @@ const MyCollectiblesDetails = () => {
   const handleRevealClick = async () => {
     setIsLoading(true);
 
-    console.log(
-      `location.state.item.keyContractAddress, : ${location.state.item.keyContractAddress}`
-    );
-    console.log(
-      `location.state.item.boxContractAddress, : ${location.state.item.boxContractAddress}`
-    );
-    console.log(
-      `location.state.item.boxContractAddress, : ${location.state.item.boxContractAddress}`
-    );
-    console.log(
-      `location.state.item.balance, : ${location.state.item.balance}`
-    );
     try {
       await setApproveForAll(
-        location.state.item.keyContractAddress,
-        location.state.item.boxContractAddress,
+        mboxInfo.keyContractAddress,
+        mboxInfo.boxContractAddress,
         account,
         library
       );
       const result: number = await claimMysteryBox(
-        location.state.item.boxContractAddress,
+        mboxInfo.boxContractAddress,
         balance,
         account,
         library
@@ -116,6 +111,7 @@ const MyCollectiblesDetails = () => {
         message: 'Success',
       });
       fetchBalance();
+      setIsRevealed(true);
       console.log('success');
     } catch (error) {
       console.log(error);
@@ -167,13 +163,13 @@ const MyCollectiblesDetails = () => {
 
   const fetchBalance = async () => {
     const balance = await getKeyBalance(
-      location.state.item.keyContractAddress,
+      mboxInfo.keyContractAddress,
       account,
       library
     );
 
     const items = await getItemBalance(
-      location.state.item.boxContractAddress,
+      mboxInfo.boxContractAddress,
       account,
       library
     );
@@ -183,10 +179,45 @@ const MyCollectiblesDetails = () => {
     setItem(items);
   };
 
+  const fetchRevealItem = async () => {
+    const items = await getItemBalance(
+      mboxInfo.boxContractAddress,
+      account,
+      library
+    );
+    let tokenURI: string[] = [];
+    if (items > 0) {
+      tokenURI = await getItemMetadata(
+        mboxInfo.boxContractAddress,
+        items,
+        account,
+        library
+      );
+    } else {
+      tokenURI[0] = await getKeyMetadata(
+        mboxInfo.keyContractAddress,
+        account,
+        library
+      );
+    }
+
+    if (tokenURI.length > 0) {
+      const result = await Promise.all(
+        tokenURI.map(async (uri) => {
+          const res = await axios.get(uri);
+          return res.data;
+        })
+      );
+      console.log(result);
+
+      setRevealItems(result);
+    }
+  };
+
   useEffect(() => {
     try {
       fetchBalance();
-      const date = new Date(location.state.item.afterRelease);
+      const date = new Date(mboxInfo.afterRelease);
       const lockup = date.getTime() / 1000; // Launch
 
       if (Date.now() / 1000 >= lockup) {
@@ -200,6 +231,10 @@ const MyCollectiblesDetails = () => {
     // 리빌 버튼 표시 조건
     // reveal.status || reveal.balance === 0 || isLoading
   }, [location, balance]);
+
+  useEffect(() => {
+    fetchRevealItem();
+  }, []);
 
   return (
     <main className="collectibles-details-container">
@@ -264,16 +299,13 @@ const MyCollectiblesDetails = () => {
               </div>
             </div>
             <div className="label-name">
-              Strawberry Shortcake Space Creampop
+              {mboxInfo.title.en}
               <div className="rarity-label">
                 <img src={rare_lg} alt="rare-logo" />
                 RARE
               </div>
             </div>
-            <div className="description-label">
-              {' '}
-              The only thing better than ice cream is ice cream in SPACE!
-            </div>
+            <div className="description-label">{mboxInfo.introduction.en}</div>
             <a
               target="_blank"
               href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
@@ -345,13 +377,13 @@ const MyCollectiblesDetails = () => {
                 </button>
               )}
             </div>
-            <div className="price-history">
-              <div className="price-history-label">
-                <img src={price_history_lg} alt="price-history" />
-                Price History
-              </div>
-              <div className="list-price-history"></div>
-            </div>
+            {/*<div className="price-history">*/}
+            {/*  <div className="price-history-label">*/}
+            {/*    <img src={price_history_lg} alt="price-history" />*/}
+            {/*    Price History*/}
+            {/*  </div>*/}
+            {/*  <div className="list-price-history"></div>*/}
+            {/*</div>*/}
           </div>
         </div>
 
@@ -395,6 +427,15 @@ const MyCollectiblesDetails = () => {
           message={openSnackbar.message}
           handleClose={handleCloseSnackbar}
         />
+      </div>
+      <div className="collectibles-details-wp">
+        <div className="my-product">
+          {revealItems.map((item, index) => (
+            <div className="product">
+              <img src={item.image} alt="" />
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
