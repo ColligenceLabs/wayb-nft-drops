@@ -23,7 +23,10 @@ const Router = () => [
       { path: '/collections', element: <Collections /> },
       { path: '/sale/:id', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },
-      { path: '/my-collectibles/details', element: <MyCollectiblesDetails /> },
+      {
+        path: '/my-collectibles/details/:id',
+        element: <MyCollectiblesDetails />,
+      },
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <PurchaseHistory /> },
       { path: '/series', element: <PurchaseHistoryDetail /> },
