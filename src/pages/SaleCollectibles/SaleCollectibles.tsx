@@ -75,7 +75,6 @@ const SaleCollectibles = () => {
   useOnClickOutside(ref, () => setModalOpen(false));
 
   const handleBuyClick = async () => {
-    console.log('=======>', mBoxInfo);
     setIsLoading(true);
     if (mBoxInfo) {
       const amount = 1;
@@ -107,7 +106,9 @@ const SaleCollectibles = () => {
           buyer_address: account,
         };
 
-        await registerBuy(data);
+        console.log(data);
+        const res = await registerBuy(data);
+        console.log(res);
       }
     }
     setIsLoading(false);

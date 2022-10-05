@@ -30,14 +30,14 @@ const UsernameBox = () => {
           <img src={my_collectibles} alt="My Collectibles" />
           My Collectibles
         </Link>
-        <Link
-          to={'/purchase-history'}
-          className="wallet-button"
-          onClick={closeSidebar}
-        >
-          <img src={purchase_history} alt="Purchase History" />
-          Purchase History
-        </Link>
+        {/*<Link*/}
+        {/*  to={'/purchase-history'}*/}
+        {/*  className="wallet-button"*/}
+        {/*  onClick={closeSidebar}*/}
+        {/*>*/}
+        {/*  <img src={purchase_history} alt="Purchase History" />*/}
+        {/*  Purchase History*/}
+        {/*</Link>*/}
         <Link
           to={'/my-profile'}
           className="wallet-button"
@@ -46,10 +46,10 @@ const UsernameBox = () => {
           <img src={my_profile} alt="My Profile" />
           My Profile
         </Link>
-        <div className="help wallet-button">
-          <img src={help} alt="Help Icon" />
-          Help
-        </div>
+        {/*<div className="help wallet-button">*/}
+        {/*  <img src={help} alt="Help Icon" />*/}
+        {/*  Help*/}
+        {/*</div>*/}
         <div className="wrapper-fanpages">
           <a
             href="https://twitter.com"
