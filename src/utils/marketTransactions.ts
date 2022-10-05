@@ -1418,6 +1418,7 @@ export async function getKeyMetadata(
   account: string | undefined | null,
   library: any
 ): Promise<string> {
+  if (!library) return '';
   const isKaikas =
     library.connection.url !== 'metamask' ||
     library.connection.url === 'eip-1193:';
