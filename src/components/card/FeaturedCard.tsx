@@ -2,6 +2,7 @@ import React from 'react';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { Link } from 'react-router-dom';
 import { splitString } from '../../utils/splitString';
+import LazyImage from '../common/LazyImage';
 
 type FeaturedCardProps = {
   item: FeaturedTypes;
@@ -12,6 +13,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item }) => {
       <button className="grid-item button">
         <div className="banner-image">
           <img src={item.banner} alt="" />
+          {/*<LazyImage src={item.banner} />*/}
         </div>
         <div className="wrapper-content">
           <div className="avatar">

@@ -21,6 +21,7 @@ import { useWeb3React } from '@web3-react/core';
 import { setupNetwork } from '../../utils/wallet';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import Popup from 'reactjs-popup';
+import CSnackbar from '../../components/common/CSnackbar';
 
 type MBoxTypesWithCompany = MBoxTypes & {
   companyLogo: string;
@@ -46,6 +47,19 @@ const SaleCollectibles = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState({
+    open: false,
+    type: '',
+    message: '',
+  });
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar({
+      open: false,
+      type: '',
+      message: '',
+    });
+  };
 
   const closeLogin = () => {
     setLoginOpen(false);
@@ -76,42 +90,57 @@ const SaleCollectibles = () => {
 
   const handleBuyClick = async () => {
     setIsLoading(true);
-    if (mBoxInfo) {
-      const amount = 1;
-      const price = mBoxInfo.price ?? 0;
-      const payment = parseEther((price * amount).toString()).toString();
-      const result = await buyKey(
-        mBoxInfo.boxContractAddress,
-        1,
-        payment,
-        mBoxInfo.quote === 'klay'
-          ? contracts.klay[targetNetwork]
-          : contracts.wklay[targetNetwork],
-        account,
-        library
-      );
-
-      if (result === SUCCESS) {
-        const left = await getKeyRemains(
-          mBoxInfo.keyContractAddress,
+    try {
+      if (mBoxInfo) {
+        const amount = 1;
+        const price = mBoxInfo.price ?? 0;
+        const payment = parseEther((price * amount).toString()).toString();
+        const result = await buyKey(
           mBoxInfo.boxContractAddress,
+          1,
+          payment,
+          mBoxInfo.quote === 'klay'
+            ? contracts.klay[targetNetwork]
+            : contracts.wklay[targetNetwork],
           account,
           library
         );
-        setRemains(left);
 
-        const data = {
-          mysterybox_id: mBoxInfo.id,
-          buyer: '',
-          buyer_address: account,
-        };
+        if (result === SUCCESS) {
+          const left = await getKeyRemains(
+            mBoxInfo.keyContractAddress,
+            mBoxInfo.boxContractAddress,
+            account,
+            library
+          );
+          setRemains(left);
 
-        console.log(data);
-        const res = await registerBuy(data);
-        console.log(res);
+          const data = {
+            mysterybox_id: mBoxInfo.id,
+            buyer: '',
+            buyer_address: account,
+          };
+
+          console.log(data);
+          const res = await registerBuy(data);
+          console.log(res);
+        }
       }
+      setOpenSnackbar({
+        open: true,
+        type: 'success',
+        message: 'Success',
+      });
+    } catch (error) {
+      console.log(error);
+      setOpenSnackbar({
+        open: true,
+        type: 'error',
+        message: 'Failed',
+      });
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -394,6 +423,12 @@ const SaleCollectibles = () => {
               onConfirm={() => setSignupOpen(true)}
             />
           </Popup>
+          <CSnackbar
+            open={openSnackbar.open}
+            type={openSnackbar.type}
+            message={openSnackbar.message}
+            handleClose={handleCloseSnackbar}
+          />
         </div>
       ) : null}
     </main>

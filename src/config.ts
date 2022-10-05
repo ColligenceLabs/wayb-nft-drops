@@ -54,5 +54,5 @@ export const ALT_URL = env.REACT_APP_ALT_URL;
 export const SUCCESS = 1;
 export const FAILURE = 0;
 
-export const targetNetwork = env.REACT_APP_TARGET_NETWORK;
+export const targetNetwork = env.REACT_APP_TARGET_NETWORK_KLAY;
 export const targetNetworkMsg = env.REACT_APP_TARGET_NETWORK_MSG;

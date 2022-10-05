@@ -19,7 +19,7 @@ export function useEagerConnect() {
       if (!connectorId || connectorId === 'injected') {
         injected.isAuthorized().then(async (isAuthorized: boolean) => {
           if (isAuthorized) {
-            await setupNetwork(env.REACT_APP_TARGET_NETWORK ?? 8217);
+            await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
 
             activate(injected, undefined, true).catch(() => {
               setTried(true);
@@ -32,7 +32,7 @@ export function useEagerConnect() {
       }
       if (!connectorId || connectorId === 'kaikas') {
         injected.isAuthorized().then(async (isAuthorized: boolean) => {
-          await setupNetwork(env.REACT_APP_TARGET_NETWORK ?? 8217);
+          await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
 
           // Caution : Kaikas alway return false
           // if (isAuthorized) {

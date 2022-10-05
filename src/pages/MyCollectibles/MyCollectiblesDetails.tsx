@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import ic_show_off from '../../assets/svg/show_off_icon.svg';
 import ic_back from '../../assets/svg/back_icon.svg';
@@ -12,21 +12,131 @@ import ic_sell from '../../assets/svg/sell_icon.svg';
 import WarningForm from 'components/collectibles_modals/warning';
 import SendingForm from '../../components/collectibles_modals/sending';
 import SuccessForm from 'components/collectibles_modals/success';
-
+import { AlertColor } from '@mui/material/Alert';
 import Popup from 'reactjs-popup';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
+import {
+  claimMysteryBox,
+  getItemBalance,
+  getKeyBalance,
+} from '../../utils/marketTransactions';
+import { convSecToString } from '../../utils/convSecToString';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { setApproveForAll } from '../../utils/transactions';
+import { SUCCESS } from '../../config';
+import { CircularProgress } from '@mui/material';
+import CSnackbar from '../../components/common/CSnackbar';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
 
 const MyCollectiblesDetails = () => {
+  const { account, library } = useActiveWeb3React();
+  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const [isReveal, setIsReveal] = useState(false);
+  const [balance, setBalance] = useState(0);
+  const [item, setItem] = useState(0);
+  const [status, setStatus] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState({
+    open: false,
+    type: '',
+    message: '',
+  });
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar({
+      open: false,
+      type: '',
+      message: '',
+    });
+  };
+  const closeWarning = () => {
+    setWarningOpen(false);
+  };
+
+  const closeSending = () => {
+    setSendingOpen(false);
+  };
+
+  const closeSuccess = () => {
+    setSuccessOpen(false);
+  };
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  const handleRevealClick = async () => {
+    setIsLoading(true);
+
+    console.log(
+      `location.state.item.keyContractAddress, : ${location.state.item.keyContractAddress}`
+    );
+    console.log(
+      `location.state.item.boxContractAddress, : ${location.state.item.boxContractAddress}`
+    );
+    console.log(
+      `location.state.item.boxContractAddress, : ${location.state.item.boxContractAddress}`
+    );
+    console.log(
+      `location.state.item.balance, : ${location.state.item.balance}`
+    );
+    try {
+      await setApproveForAll(
+        location.state.item.keyContractAddress,
+        location.state.item.boxContractAddress,
+        account,
+        library
+      );
+      const result: number = await claimMysteryBox(
+        location.state.item.boxContractAddress,
+        balance,
+        account,
+        library
+      );
+      console.log(result);
+      // setOpenSnackbar({
+      //   show: true,
+      //   color: result === SUCCESS ? 'green' : 'red',
+      //   message: result === SUCCESS ? 'Success Reveal.' : 'Failed Reveal',
+      // });
+      setOpenSnackbar({
+        open: true,
+        type: 'success',
+        message: 'Success',
+      });
+      fetchBalance();
+      console.log('success');
+    } catch (error) {
+      console.log(error);
+      setOpenSnackbar({
+        open: true,
+        type: 'error',
+        message: 'Failed.',
+      });
+      // setOpenSnackbar({ show: true, color: 'red', message: 'Failed Reveal.' });
+    }
+    setIsLoading(false);
+  };
+
+  const handleScrollPercent = () => {
+    const positionPercent =
+      (window.pageYOffset /
+        (document.documentElement.offsetHeight - window.innerHeight)) *
+      100;
+    setScrollPercentPosition(positionPercent);
+  };
+
   useEffect(() => {
     const handler = (event: any) => {
       if (!ref.current.contains(event.target)) {
@@ -39,22 +149,6 @@ const MyCollectiblesDetails = () => {
     };
   });
 
-  const closeWarning = () => {
-    setWarningOpen(false);
-  };
-
-  const closeSending = () => {
-    setSendingOpen(false);
-  };
-
-  const closeSuccess = () => {
-    setSuccessOpen(false);
-  };
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
@@ -62,14 +156,7 @@ const MyCollectiblesDetails = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
-  const handleScrollPercent = () => {
-    const positionPercent =
-      (window.pageYOffset /
-        (document.documentElement.offsetHeight - window.innerHeight)) *
-      100;
-    setScrollPercentPosition(positionPercent);
-  };
+
   useEffect(() => {
     window.addEventListener('scroll', handleScrollPercent);
 
@@ -77,6 +164,43 @@ const MyCollectiblesDetails = () => {
       window.removeEventListener('scroll', handleScrollPercent);
     };
   }, []);
+
+  const fetchBalance = async () => {
+    const balance = await getKeyBalance(
+      location.state.item.keyContractAddress,
+      account,
+      library
+    );
+
+    const items = await getItemBalance(
+      location.state.item.boxContractAddress,
+      account,
+      library
+    );
+
+    setBalance(balance);
+    console.log(balance);
+    setItem(items);
+  };
+
+  useEffect(() => {
+    try {
+      fetchBalance();
+      const date = new Date(location.state.item.afterRelease);
+      const lockup = date.getTime() / 1000; // Launch
+
+      if (Date.now() / 1000 >= lockup) {
+        setStatus(false);
+      }
+
+      console.log(status);
+    } catch (e) {
+      console.log(e);
+    }
+    // 리빌 버튼 표시 조건
+    // reveal.status || reveal.balance === 0 || isLoading
+  }, [location, balance]);
+
   return (
     <main className="collectibles-details-container">
       <div className="collectibles-details-wp">
@@ -190,27 +314,36 @@ const MyCollectiblesDetails = () => {
               </div>
             </div>
             <div className="list-trade">
-              <Popup
-                trigger={
-                  <button type="button" className="btn-trade status disabled">
-                    <img src={ic_sell} alt="sell" />
-                    {'Sell on Sweet'}
-                  </button>
-                }
-                position={
-                  scrollPercentPosition < 60 ? 'top center' : 'bottom center'
-                }
-                on={['hover', 'focus']}
-              >
-                <div className="noti-cannot" data-id="tooltip">
-                  This collectible cannot be currently sold on Sweet.
-                </div>{' '}
-              </Popup>
+              {/*<Popup*/}
+              {/*  trigger={*/}
+              {/*    <button type="button" className="btn-trade status disabled">*/}
+              {/*      <img src={ic_sell} alt="sell" />*/}
+              {/*      {'Sell on Sweet'}*/}
+              {/*    </button>*/}
+              {/*  }*/}
+              {/*  position={*/}
+              {/*    scrollPercentPosition < 60 ? 'top center' : 'bottom center'*/}
+              {/*  }*/}
+              {/*  on={['hover', 'focus']}*/}
+              {/*>*/}
+              {/*  <div className="noti-cannot" data-id="tooltip">*/}
+              {/*    This collectible cannot be currently sold on Sweet.*/}
+              {/*  </div>{' '}*/}
+              {/*</Popup>*/}
 
-              <button className="btn-trade status">
-                <img src={ic_trade} alt="trade" />
-                Trade on Sweet
-              </button>
+              {status || balance === 0 ? null : (
+                <button
+                  className="btn-trade status"
+                  onClick={handleRevealClick}
+                >
+                  {isLoading ? (
+                    <CircularProgress size={30} color={'inherit'} />
+                  ) : (
+                    <>Reveal</>
+                  )}
+                  {/*<img src={ic_trade} alt="trade" />*/}
+                </button>
+              )}
             </div>
             <div className="price-history">
               <div className="price-history-label">
@@ -256,6 +389,12 @@ const MyCollectiblesDetails = () => {
         >
           <SuccessForm close={closeSuccess} />
         </Popup>
+        <CSnackbar
+          open={openSnackbar.open}
+          type={openSnackbar.type}
+          message={openSnackbar.message}
+          handleClose={handleCloseSnackbar}
+        />
       </div>
     </main>
   );

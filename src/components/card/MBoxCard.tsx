@@ -10,7 +10,7 @@ type MBoxCardProps = {
 
 const MBoxCard: React.FC<MBoxCardProps> = ({ item }) => {
   return (
-    <Link to={`/my-collectibles/details/${item.id}`}>
+    <Link to={`/my-collectibles/details/${item.id}`} state={{ item }}>
       <div className="item-product">
         <div className="item-product-detail">
           <div className="card">

@@ -25,7 +25,7 @@ const DialogWallets = () => {
   const onClickConnect = async (id: string) => {
     console.log(`Click Wallet Button(id) : ${id}`);
     // Check Blockchain Network first
-    const targetNetwork = env.REACT_APP_TARGET_NETWORK ?? ChainId.KLAYTN;
+    const targetNetwork = env.REACT_APP_TARGET_NETWORK_KLAY ?? ChainId.KLAYTN;
     try {
       if (chainId !== targetNetwork) {
         await setupNetwork(targetNetwork);

@@ -10,7 +10,7 @@ import { evenAllocAbi } from '../config/abi/EventAllocation';
 import env from '../env';
 import { formatEther } from 'taalswap-ethers/lib/utils';
 
-const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK ?? 1001];
+const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 1001];
 const caver = new Caver(rpcUrl);
 const BIG_ZERO: BigNumber = ethers.BigNumber.from('0');
 
@@ -48,6 +48,7 @@ export async function getKeyBalance(
     contract = new ethers.Contract(address, erc721Abi, library?.getSigner());
   }
 
+  console.log(contract);
   let balance;
   let retBalance;
   try {
