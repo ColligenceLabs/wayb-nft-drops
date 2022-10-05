@@ -9,8 +9,14 @@ import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { getMyMBoxList } from '../../services/services';
+import { MBoxTypes } from '../../types/MBoxTypes';
+import MBoxCard from '../../components/card/MBoxCard';
 
 const MyCollectibles = () => {
+  const { account } = useActiveWeb3React();
+  const [myMBoxList, setMyMBoxList] = useState<MBoxTypes[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [appState, setChange] = useState<any>({
     objects: [
@@ -22,14 +28,14 @@ const MyCollectibles = () => {
         id: 2,
         name: 'Oldest',
       },
-      {
-        id: 3,
-        name: 'Title: A-Z',
-      },
-      {
-        id: 4,
-        name: 'Title: Z-A',
-      },
+      // {
+      //   id: 3,
+      //   name: 'Title: A-Z',
+      // },
+      // {
+      //   id: 4,
+      //   name: 'Title: Z-A',
+      // },
     ],
     activeObject: null,
     activeElement: 0,
@@ -136,6 +142,20 @@ const MyCollectibles = () => {
     return false;
   }
 
+  useEffect(() => {
+    const fetchMyMBoxList = async () => {
+      if (account) {
+        const sort = selectedIndex === 0 ? 'ASC' : 'DESC';
+        const res = await getMyMBoxList(account, sort);
+        if (res.data.status === 1) {
+          setMyMBoxList(res.data.data);
+        }
+      }
+    };
+
+    fetchMyMBoxList();
+  }, [account, selectedIndex]);
+
   return (
     <main className="my-wallet-container">
       <div className="wallet-wp">
@@ -148,7 +168,7 @@ const MyCollectibles = () => {
 
         {/* list button sort  */}
         <div className="wallet-sort">
-          <div className="count-label">9 items</div>
+          <div className="count-label">{`${myMBoxList.length} items`}</div>
 
           <div className="sort-box" ref={ref}>
             <span className="sort-selected">
@@ -200,34 +220,37 @@ const MyCollectibles = () => {
 
         {/* item  */}
         <div className="page-grid">
-          {listItems.map((item, index) => {
-            return (
-              <a href="/my-collectibles/details" key={index}>
-                <div className="item-product">
-                  <div className="item-product-detail">
-                    <div className="card">
-                      <img src={home_10_avt} alt="" />
-                    </div>
-                  </div>
+          {myMBoxList.map((item) => (
+            <MBoxCard key={item.id} item={item} />
+          ))}
+          {/*{listItems.map((item, index) => {*/}
+          {/*  return (*/}
+          {/*    <a href="/my-collectibles/details" key={index}>*/}
+          {/*      <div className="item-product">*/}
+          {/*        <div className="item-product-detail">*/}
+          {/*          <div className="card">*/}
+          {/*            <img src={home_10_avt} alt="" />*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
 
-                  <div
-                    className="item-product-detail"
-                    style={{ padding: '0px' }}
-                  >
-                    <div className="box-info">
-                      <div className="box-product-name">
-                        <div className="product-type">Sweet</div>
-                        <div className="product-name">{item.name}</div>
-                      </div>
-                      <img src={item.icon} alt="" />
-                    </div>
-                  </div>
+          {/*        <div*/}
+          {/*          className="item-product-detail"*/}
+          {/*          style={{ padding: '0px' }}*/}
+          {/*        >*/}
+          {/*          <div className="box-info">*/}
+          {/*            <div className="box-product-name">*/}
+          {/*              <div className="product-type">Sweet</div>*/}
+          {/*              <div className="product-name">{item.name}</div>*/}
+          {/*            </div>*/}
+          {/*            <img src={item.icon} alt="" />*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
 
-                  <div className="item-product-detail"></div>
-                </div>
-              </a>
-            );
-          })}
+          {/*        <div className="item-product-detail"></div>*/}
+          {/*      </div>*/}
+          {/*    </a>*/}
+          {/*  );*/}
+          {/*})}*/}
         </div>
       </div>
     </main>

@@ -26,3 +26,9 @@ export const getMboxItemListMboxId = async (id: string) => {
 export const registerBuy = async (data: any) => {
   return await customAxios.post('/api/service/drops', data);
 };
+
+export const getMyMBoxList = async (address: string, sort: string) => {
+  return await customAxios.get(
+    `/api/service/drops?address=${address}&sortBy=createdAt:${sort}`
+  );
+};
