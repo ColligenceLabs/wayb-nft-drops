@@ -22,6 +22,7 @@ import { setupNetwork } from '../../utils/wallet';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import Popup from 'reactjs-popup';
 import CSnackbar from '../../components/common/CSnackbar';
+import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 
 type MBoxTypesWithCompany = MBoxTypes & {
   companyLogo: string;
@@ -44,6 +45,7 @@ const SaleCollectibles = () => {
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
   const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
     useState(false);
+  const [showCountDown, setShowCountDown] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -121,16 +123,16 @@ const SaleCollectibles = () => {
             buyer_address: account,
           };
 
-          console.log(data);
           const res = await registerBuy(data);
-          console.log(res);
+          if (res.data.status === SUCCESS) {
+            setOpenSnackbar({
+              open: true,
+              type: 'success',
+              message: 'Success',
+            });
+          }
         }
       }
-      setOpenSnackbar({
-        open: true,
-        type: 'success',
-        message: 'Success',
-      });
     } catch (error) {
       console.log(error);
       setOpenSnackbar({
@@ -168,6 +170,17 @@ const SaleCollectibles = () => {
     };
     if (account && library?.connection) getAvailability(location.state.item);
   }, [account, library]);
+
+  useEffect(() => {
+    if (mBoxInfo?.afterRelease) {
+      const today = new Date();
+      const targetDate = new Date(mBoxInfo.afterRelease);
+
+      if (today < targetDate) setShowCountDown(true);
+    } else {
+      setShowCountDown(false);
+    }
+  }, [mBoxInfo?.afterRelease]);
 
   return (
     <main className="collection-container" style={{ marginTop: '3rem' }}>
@@ -244,19 +257,28 @@ const SaleCollectibles = () => {
                     <div className="lable-top">Purchase price</div>
                     <div className="lable-bottom fw-600">{`${mBoxInfo.price} ${mBoxInfo.quote}`}</div>
                   </div>
+                  {showCountDown && (
+                    <CountDownTimer
+                      targetDate={new Date(mBoxInfo.afterRelease)}
+                    />
+                  )}
                   {account && library?.connection ? (
-                    <button
-                      className={'btn-sale-collection'}
-                      disabled={isLoading}
-                      // onClick={() => setOpenPaymentWallets(true)}
-                      onClick={handleBuyClick}
-                    >
-                      {isLoading ? (
-                        <CircularProgress size={30} color={'inherit'} />
-                      ) : (
-                        'Buy Now'
+                    <>
+                      {!showCountDown && (
+                        <button
+                          className={'btn-sale-collection'}
+                          disabled={isLoading}
+                          // onClick={() => setOpenPaymentWallets(true)}
+                          onClick={handleBuyClick}
+                        >
+                          {isLoading ? (
+                            <CircularProgress size={30} color={'inherit'} />
+                          ) : (
+                            'Buy Now'
+                          )}
+                        </button>
                       )}
-                    </button>
+                    </>
                   ) : (
                     <button
                       className={'btn-sale-collection'}
