@@ -49,11 +49,17 @@ const SaleCollectibles = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [countDownFinish, setCountDownFinish] = useState(false);
+
   const [openSnackbar, setOpenSnackbar] = useState({
     open: false,
     type: '',
     message: '',
   });
+
+  const handeCheckCountDownFinish = () => {
+    setCountDownFinish(true);
+  };
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -177,10 +183,13 @@ const SaleCollectibles = () => {
       const targetDate = new Date(mBoxInfo.afterRelease);
 
       if (today < targetDate) setShowCountDown(true);
+      else {
+        setShowCountDown(false);
+      }
     } else {
       setShowCountDown(false);
     }
-  }, [mBoxInfo?.afterRelease]);
+  }, [mBoxInfo?.afterRelease, showCountDown, new Date()]);
 
   return (
     <main className="collection-container" style={{ marginTop: '3rem' }}>
@@ -257,14 +266,15 @@ const SaleCollectibles = () => {
                     <div className="lable-top">Purchase price</div>
                     <div className="lable-bottom fw-600">{`${mBoxInfo.price} ${mBoxInfo.quote}`}</div>
                   </div>
-                  {showCountDown && (
+                  {!countDownFinish && (
                     <CountDownTimer
+                      handeCheckCountDownFinish={handeCheckCountDownFinish}
                       targetDate={new Date(mBoxInfo.afterRelease)}
                     />
                   )}
                   {account && library?.connection ? (
                     <>
-                      {!showCountDown && (
+                      {countDownFinish && (
                         <button
                           className={'btn-sale-collection'}
                           disabled={isLoading}

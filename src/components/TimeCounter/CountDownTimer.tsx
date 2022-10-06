@@ -1,14 +1,17 @@
 import { useCountdown } from 'hooks/useCountdown';
-import React from 'react';
-import ExpiredNotice from './ExpiredNotice';
+import React, { useEffect } from 'react';
 import ShowCounter from './ShowCounter';
 import './time_counter.css';
 
-const CountDownTimer = ({ targetDate }: any) => {
-  const [days, hours, minutes, seconds] = useCountdown(targetDate);
+const CountDownTimer = ({ targetDate, handeCheckCountDownFinish }: any) => {
+  const [days, hours, minutes, seconds, timeTotal] = useCountdown(targetDate);
+
+  useEffect(() => {
+    if (timeTotal <= 0) handeCheckCountDownFinish();
+  }, [timeTotal]);
 
   if (days + hours + minutes + seconds <= 0) {
-    return <ExpiredNotice />;
+    return null;
   } else {
     return (
       <ShowCounter
