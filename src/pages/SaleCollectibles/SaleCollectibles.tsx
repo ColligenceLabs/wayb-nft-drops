@@ -18,11 +18,16 @@ import { parseEther } from 'ethers/lib/utils';
 import contracts from '../../config/constants/contracts';
 import { SUCCESS, targetNetwork } from '../../config';
 import { useWeb3React } from '@web3-react/core';
-import { setupNetwork } from '../../utils/wallet';
+import {
+  checkConnectWallet,
+  checkKaikas,
+  getTargetWallet,
+} from '../../utils/wallet';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import Popup from 'reactjs-popup';
 import CSnackbar from '../../components/common/CSnackbar';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
+import { useSelector } from 'react-redux';
 
 type MBoxTypesWithCompany = MBoxTypes & {
   companyLogo: string;
@@ -50,6 +55,8 @@ const SaleCollectibles = () => {
   const [signupOpen, setSignupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [countDownFinish, setCountDownFinish] = useState(false);
+  const wallet = useSelector((state: any) => state.wallet);
+  const { activate } = useWeb3React();
 
   const [openSnackbar, setOpenSnackbar] = useState({
     open: false,
@@ -100,6 +107,18 @@ const SaleCollectibles = () => {
     setIsLoading(true);
     try {
       if (mBoxInfo) {
+        // chainid 로 네트워크 확인(eth, klaytn) 후 해당 지갑 연결 체크
+        const check = await checkConnectWallet(
+          mBoxInfo.chainId,
+          wallet,
+          activate
+        );
+        if (!check) {
+          // 지갑 연결 화면띄우고 종료
+          setIsLoading(false);
+          setLoginOpen(true);
+          return;
+        }
         const amount = 1;
         const price = mBoxInfo.price ?? 0;
         const payment = parseEther((price * amount).toString()).toString();
@@ -174,7 +193,18 @@ const SaleCollectibles = () => {
       );
       setRemains(left);
     };
-    if (account && library?.connection) getAvailability(location.state.item);
+    if (account && library?.connection) {
+      const targetWallet = getTargetWallet(location.state.item.chainId, wallet);
+      const isKaikas = checkKaikas(library);
+      if (
+        (isKaikas && targetWallet === 'metamask') ||
+        (!isKaikas && targetWallet === 'kaikas')
+      ) {
+        checkConnectWallet(location.state.item.chainId, wallet, activate);
+        return;
+      }
+      getAvailability(location.state.item);
+    }
   }, [account, library]);
 
   useEffect(() => {

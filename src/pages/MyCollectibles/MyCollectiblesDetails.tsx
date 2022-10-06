@@ -32,6 +32,13 @@ import CSnackbar from '../../components/common/CSnackbar';
 import axios from 'axios';
 import { ResRevealItemType } from '../../types/ResRevealItemType';
 import { MBoxTypes } from '../../types/MBoxTypes';
+import {
+  checkConnectWallet,
+  checkKaikas,
+  getTargetWallet,
+} from '../../utils/wallet';
+import { useWeb3React } from '@web3-react/core';
+import { useSelector } from 'react-redux';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -59,6 +66,8 @@ const MyCollectiblesDetails = () => {
     type: '',
     message: '',
   });
+  const wallet = useSelector((state: any) => state.wallet);
+  const { activate } = useWeb3React();
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -175,7 +184,7 @@ const MyCollectiblesDetails = () => {
     );
 
     setBalance(balance);
-    console.log(balance);
+    console.log(account, library.connection, balance);
     setItem(items);
   };
 
@@ -216,21 +225,35 @@ const MyCollectiblesDetails = () => {
 
   useEffect(() => {
     try {
-      fetchBalance();
-      const date = new Date(mboxInfo.afterRelease);
-      const lockup = date.getTime() / 1000; // Launch
+      if (account && library?.connection) {
+        const targetWallet = getTargetWallet(
+          location.state.item.chainId,
+          wallet
+        );
+        const isKaikas = checkKaikas(library);
+        if (
+          (isKaikas && targetWallet === 'metamask') ||
+          (!isKaikas && targetWallet === 'kaikas')
+        ) {
+          checkConnectWallet(location.state.item.chainId, wallet, activate);
+          return;
+        }
+        fetchBalance();
+        const date = new Date(mboxInfo.afterRelease);
+        const lockup = date.getTime() / 1000; // Launch
 
-      if (Date.now() / 1000 >= lockup) {
-        setStatus(false);
+        if (Date.now() / 1000 >= lockup) {
+          setStatus(false);
+        }
+
+        console.log(status);
       }
-
-      console.log(status);
     } catch (e) {
       console.log(e);
     }
     // 리빌 버튼 표시 조건
     // reveal.status || reveal.balance === 0 || isLoading
-  }, [location, balance]);
+  }, [location, balance, account, library]);
 
   useEffect(() => {
     fetchRevealItem();

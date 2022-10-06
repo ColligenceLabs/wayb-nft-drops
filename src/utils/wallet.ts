@@ -1,6 +1,6 @@
 import detectEthereumProvider from '@metamask/detect-provider';
 import { ChainId, NETWORK_NAME, SCAN_URL, RPC_URLS } from '../config';
-
+import { injected, kaikas, walletconnect } from '../hooks/connectors';
 let provider: any;
 
 const addNetwork = async (chainId: number | undefined) => {
@@ -158,4 +158,46 @@ export const registerToken = async (
   }
 
   return tokenAdded;
+};
+
+export const getTargetWallet = (chainId: number, wallet: any) => {
+  let targetWallet;
+  if (chainId === 8217 || chainId === 1001) {
+    targetWallet = wallet.klaytn.wallet;
+  } else if (chainId === 1 || chainId === 3) {
+    targetWallet = wallet.ethereum.wallet;
+  } else if (chainId === 56 || chainId === 97) {
+    targetWallet = wallet.binance.wallet;
+  }
+  return targetWallet;
+};
+
+export const checkKaikas = (library: any) => {
+  return (
+    library.connection.url !== 'metamask' ||
+    library.connection.url === 'eip-1193:'
+  );
+};
+
+export const checkConnectWallet = async (
+  chainId: number,
+  wallet: any,
+  activate: any
+) => {
+  const targetWallet = getTargetWallet(chainId, wallet);
+  if (!targetWallet) return false;
+  if (targetWallet === 'metamask') {
+    await activate(injected, undefined, true).catch((e: any) => {
+      console.log(e);
+    });
+  } else if (targetWallet === 'kaikas') {
+    await activate(kaikas, undefined, true).catch((e: any) => {
+      console.log(e);
+    });
+  } else if (targetWallet === 'walletconnect') {
+    const wc = walletconnect(false);
+    await activate(wc);
+  }
+  await setupNetwork(chainId);
+  return true;
 };

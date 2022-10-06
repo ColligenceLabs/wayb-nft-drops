@@ -28,4 +28,6 @@ export type MBoxTypes = {
   paymentAddress: string | null;
   totalAmount: number | null;
   usedAmount: number | null;
+  chainId: number;
+  isCollection: boolean | null;
 };
