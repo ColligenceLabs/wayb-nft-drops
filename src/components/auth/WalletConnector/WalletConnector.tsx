@@ -45,15 +45,15 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
   close,
   onConfirm,
 }) => {
-  const [selectedNetwork, setSelectedNetwork] = useState(0);
+  const [selectedNetwork, setSelectedNetwork] = useState(1);
   const [showTooltip, setShowTooltip] = useState(true);
   const changeNetwork = (id: number) => {
-    if (id === 2) return;
+    if (id === 0 || id === 2) return;
     setSelectedNetwork(id);
   };
 
   const handeTooltip = (show: boolean, id: number) => {
-    if (id === 2) {
+    if (id === 0 || id === 2) {
       if (show) setShowTooltip(show);
       else {
         setShowTooltip(false);
@@ -95,7 +95,11 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
               {NetworkList.map((network: any) => (
                 <button
                   className={`${
-                    selectedNetwork === network.id ? ' active' : ''
+                    selectedNetwork === network.id
+                      ? ' active'
+                      : network.id == 0 || network.id == 2
+                      ? 'unused'
+                      : ''
                   }`}
                   key={network.id}
                   type="button"
@@ -107,7 +111,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
                 >
                   <img src={network.icon}></img>
                   {network.network_name}
-                  {showTooltip && network.id === 2 && (
+                  {showTooltip && (network.id === 2 || network.id === 0) && (
                     <ReactTooltip
                       id={network.network_name}
                       // place="top"

@@ -19,6 +19,12 @@ const slice = createSlice({
   name: 'wallet',
   initialState,
   reducers: {
+    initWallets(state) {
+      state.ethereum = {};
+      state.klaytn = {};
+      state.solana = {};
+      state.binance = {};
+    },
     // HAS ERROR
     hasError(state, action) {
       state.error = action.payload;
@@ -67,6 +73,7 @@ export default slice.reducer;
 
 // Actions
 export const {
+  initWallets,
   hasError,
   setActivatingConnector,
   setBalance,
