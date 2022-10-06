@@ -27,6 +27,7 @@
     "react-modal": "^3.15.1",
     "react-multi-carousel": "^2.8.2",
     "react-phone-input-2": "^2.15.1",
+    "react-player": "^2.10.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.3",
@@ -38,14 +39,14 @@
     "reactstrap-carousel": "^0.0.18",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "sass": "^1.54.9",
     "slick-carousel": "^1.8.1",
     "taalswap-ethers": "^5.5.7",
     "typescript": "^4.8.3",
     "web-vitals": "^2.1.4",
-    "zustand": "^4.1.1",
-    "react-player": "^2.10.0"
+    "zustand": "^4.1.1"
   },
   "scripts": {
     "start": "REACT_APP_PHASE=${PHASE} react-scripts start",
