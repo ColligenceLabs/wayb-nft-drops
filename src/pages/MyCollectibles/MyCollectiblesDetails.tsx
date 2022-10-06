@@ -454,7 +454,7 @@ const MyCollectiblesDetails = () => {
       <div className="collectibles-details-wp">
         <div className="my-product">
           {revealItems.map((item, index) => (
-            <div className="product">
+            <div className="product" key={index}>
               <img src={item.image} alt="" />
             </div>
           ))}
