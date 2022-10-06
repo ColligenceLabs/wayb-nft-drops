@@ -5,15 +5,24 @@ import icon_discord from '../../assets/img/icon_discord.png';
 import icon_telegram from '../../assets/img/icon_telegram.png';
 import wallet_white from '../../assets/icon/wallet_white.svg';
 import my_collectibles from '../../assets/icon/my_collectibles.svg';
-import purchase_history from '../../assets/icon/purchase_history.svg';
 import my_profile from '../../assets/icon/my_profile.svg';
-import help from '../../assets/icon/help.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import { useModalWalletsStore, useSidebarStore } from './AppStore';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { useDispatch } from 'react-redux';
+import { initWallets } from '../../redux/slices/wallet';
 
 const UsernameBox = () => {
+  const { deactivate } = useActiveWeb3React();
   const { updateOpenWallet } = useModalWalletsStore();
   const { closeSidebar } = useSidebarStore();
+  const dispatch = useDispatch();
+
+  const handleClickLogout = async () => {
+    await deactivate();
+    dispatch(initWallets());
+  };
+
   return (
     <div className="user-dropdown-box">
       <div className="close-sidebar">
@@ -91,7 +100,9 @@ const UsernameBox = () => {
           </button>
         </div>
       </div>
-      <div className="logout-btn">Log Out</div>
+      <div className="logout-btn" onClick={handleClickLogout}>
+        Log Out
+      </div>
     </div>
   );
 };
