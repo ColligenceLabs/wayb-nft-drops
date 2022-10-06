@@ -277,12 +277,14 @@ const SaleCollectibles = () => {
                       {countDownFinish && (
                         <button
                           className={'btn-sale-collection'}
-                          disabled={isLoading}
+                          disabled={isLoading || remains === 0}
                           // onClick={() => setOpenPaymentWallets(true)}
                           onClick={handleBuyClick}
                         >
                           {isLoading ? (
                             <CircularProgress size={30} color={'inherit'} />
+                          ) : remains === 0 ? (
+                            'Sold out'
                           ) : (
                             'Buy Now'
                           )}
