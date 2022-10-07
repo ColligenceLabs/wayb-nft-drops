@@ -42,7 +42,6 @@
     gap: 10px;
 
     .logo-header {
-      width: 110px;
       margin-left: 20px;
 
       img {
@@ -56,7 +55,7 @@
       align-items: center;
       height: calc(50px - 5px);
       background-color: #ffffff1a;
-      border-radius: 50vh;
+      border-radius: 5px;
       position: relative;
       flex: 1 1 0%;
 
@@ -151,15 +150,15 @@
       padding: 0 15px;
       // display: none;
       .custom-btn {
-        height: 100%;
-        padding: 0px 20px;
-        font-size: 20px;
-        border-radius: 40px;
-        display: block;
-        width: 100%;
-        color: white;
-        background: linear-gradient(90deg, #2061e2, #b07cfe);
-        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 140px;
+        height: 44px;
+        top: 30px;
+        background: #2f80ed;
+        border-radius: 5px;
 
         .wrapper-btn {
           display: flex;
@@ -168,7 +167,6 @@
 
           .wallets {
             font-size: 16px;
-            text-transform: uppercase;
             font-weight: 500;
           }
         }
@@ -261,7 +259,6 @@
       //   display: none;
       // }
     }
-
   }
   @include Mobile() {
     z-index: 400;

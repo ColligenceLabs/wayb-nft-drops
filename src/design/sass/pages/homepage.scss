@@ -41,7 +41,11 @@
     .home-carousel {
       z-index: 50;
       padding-bottom: 20px;
-
+      .custom-dot {
+        .react-multi-carousel-dot--active button{
+          background: #944FFF;
+        }
+      }
       .slide-item {
         display: flex;
 
@@ -61,7 +65,7 @@
   }
   //section 02
   .section-02 {
-    color: #000000;
+    color: #ffffff;
     width: min(100%, 1460px);
     padding: 0 40px;
     margin: auto;
