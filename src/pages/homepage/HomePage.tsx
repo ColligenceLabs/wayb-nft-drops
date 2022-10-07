@@ -79,6 +79,7 @@ const Homepage = () => {
         <Carousel
           {...carouselOption}
           centerMode={screenSize > 1023}
+          dotListClass="custom-dot"
           containerClass="container-with-dots home-carousel"
           infinite
           responsive={{
@@ -119,7 +120,6 @@ const Homepage = () => {
               See all
             </Link>
           </div>
-
           <div className="grid-container">
             {featuredCollections.map((item: FeaturedTypes, index) => (
               <FeaturedCard key={item.id} item={item} />
