@@ -5,8 +5,22 @@
     padding-top: -20px;
   }
 
-  60% {
+  10% {
     opacity: 0.3;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  40% {
+    opacity: 0.8;
+  }
+
+  60% {
+    opacity: 1;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   100% {
@@ -76,13 +90,17 @@
       }
 
       button {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+          'Helvetica Neue', sans-serif;
         border: none;
         cursor: pointer;
       }
 
       .div-title {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+          'Helvetica Neue', sans-serif;
         display: flex;
         -webkit-box-pack: justify;
         justify-content: space-between;
@@ -94,7 +112,9 @@
         padding-right: 10%;
 
         .title {
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+            'Helvetica Neue', sans-serif;
           font-size: 28px;
           font-weight: 600;
           flex: 1 1 0%;
@@ -142,7 +162,9 @@
       }
 
       .text_switch {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+          'Helvetica Neue', sans-serif;
         height: 50px;
         text-align: center;
         margin: 10px auto 0px;
@@ -150,7 +172,9 @@
         margin-top: 5%;
 
         button {
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+            'Helvetica Neue', sans-serif;
           font-size: 15px;
           font-weight: 600;
           color: white;
@@ -175,7 +199,9 @@
             padding: 3px 10px;
 
             .react-tel-input {
-              font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+              font-family: Poppins, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+                'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
               font-size: 15px;
               position: relative;
               width: 100%;
@@ -219,7 +245,7 @@
             }
 
             .react-tel-input {
-              >input.form-control {
+              > input.form-control {
                 width: 100%;
                 border: none;
                 padding: 0px 0px 0px 35px;
@@ -232,7 +258,9 @@
         }
 
         .button-forgot-password {
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+            'Helvetica Neue', sans-serif;
           font-weight: 100;
           font-size: 14px;
           margin-top: 10px;
@@ -269,7 +297,9 @@
 
           button {
             font-size: 12px;
-            font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+              'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+              'Droid Sans', 'Helvetica Neue', sans-serif;
             color: rgb(65, 65, 65);
             width: 23.5%;
             height: 100%;
@@ -277,12 +307,12 @@
 
             &.active {
               background-color: #797979;
-              color:white;
+              color: white;
             }
 
             &.unused {
               background-color: rgba(121, 121, 121, 0.18);
-              color:white;
+              color: white;
               cursor: default;
             }
 
@@ -304,7 +334,7 @@
             background-color: transparent;
             width: 100%;
             overflow: hidden;
-            display:grid;
+            display: grid;
             grid-template-columns: 1fr 1fr;
             grid-row: auto;
             grid-column-gap: 10px;
@@ -317,7 +347,9 @@
             button {
               font-size: 14px;
               text-align: left;
-              font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+              font-family: Poppins, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+                'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
               color: rgb(0, 0, 0);
               width: 100%;
               height: 50px;
@@ -329,7 +361,7 @@
 
               &.active {
                 background-color: #797979;
-                color:white;
+                color: white;
               }
 
               img {
@@ -355,8 +387,14 @@
         }
 
         .button-login {
-          background: linear-gradient(to left, rgb(103, 129, 249), rgb(227, 100, 190));
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          background: linear-gradient(
+            to left,
+            rgb(103, 129, 249),
+            rgb(227, 100, 190)
+          );
+          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+            'Helvetica Neue', sans-serif;
           width: 100%;
           margin-top: 25px;
           border-radius: 40px;
