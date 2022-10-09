@@ -34,15 +34,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1320px;
+    max-width: 1460px;
     width: 100%;
     position: relative;
     z-index: 10;
     margin: auto;
-    gap: 10px;
+    gap: 15px;
 
     .logo-header {
-      margin-left: 20px;
+      margin-left: 40px;
 
       img {
         width: 100%;
@@ -116,38 +116,27 @@
     }
     // before login PC view
     .btn-login {
-      padding: 0px 15px;
-      margin-right: 20px;
-      border-radius: 40px;
-      background: linear-gradient(90deg, #2061e2, #b07cfe);
-      overflow: hidden;
-      display: none;
       .custom-btn {
-        background-color: transparent;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        text-align: left;
-
+        width: 142px;
+        height: 44px;
+        background: #2f80ed;
+        border-radius: 5px;
+        margin-right: 40px;
+        display: none;
         .custom-text {
-          background-color: transparent;
-          text-transform: uppercase;
-          font-weight: 600;
-          line-height: 50px;
+          font-weight: 700;
           color: white;
         }
       }
     }
     // before login Tablet, Mobile view
     .icon-nav {
-      margin-right: 20px;
+      margin-right: 40px;
       display: none;
     }
     //after login
     .btn-wallets {
       height: 45px;
-      padding: 0 15px;
       // display: none;
       .custom-btn {
         display: flex;
@@ -200,7 +189,7 @@
 
     .username-dropdown {
       background-color: transparent;
-      margin-right: 20px;
+      margin-right: 40px;
       padding: 0;
       // display: none;
     }
@@ -267,7 +256,8 @@
     }
     .main-header-box {
       .logo-header {
-        width: 70px;
+        width: 100px;
+        margin-left: 20px;
         img {
           width: 100%;
         }

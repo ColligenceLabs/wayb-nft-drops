@@ -11,7 +11,7 @@
 
     .content-header {
       width: 100%;
-      max-width: 1320px;
+      max-width: 1460px;
       padding: 90px 40px 30px 40px;
       z-index: 1;
       position: relative;
@@ -42,8 +42,8 @@
       z-index: 50;
       padding-bottom: 20px;
       .custom-dot {
-        .react-multi-carousel-dot--active button{
-          background: #944FFF;
+        .react-multi-carousel-dot--active button {
+          background: #944fff;
         }
       }
       .slide-item {
@@ -70,7 +70,7 @@
     padding: 0 40px;
     margin: auto;
     .featured-collections {
-      margin-bottom: 60px;
+      margin-bottom: 105px;
       .wrapper-header {
         display: flex;
         justify-content: space-between;
