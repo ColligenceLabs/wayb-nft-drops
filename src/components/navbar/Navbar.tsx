@@ -93,8 +93,11 @@ const Navbar = () => {
         </div>
         {/* before login PC view */}
         <div className="btn-login">
-          <button className="custom-btn" onClick={() => setLoginOpen(true)}>
-            <span className="custom-text">log in/ sign up</span>
+          <button
+            className="custom-btn button"
+            onClick={() => setLoginOpen(true)}
+          >
+            <span className="custom-text">Connect Wallet</span>
           </button>
         </div>
         {/* before login Tablet, Mobile view */}
