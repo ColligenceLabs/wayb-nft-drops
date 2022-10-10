@@ -1,0 +1,43 @@
+.arrow-featured-collections {
+  position: relative;
+  .arrow-one {
+    width: 40px;
+    height: 40px;
+    background: rgba($color: #ffffff, $alpha: 0.2);
+    border-radius: 100%;
+    position: absolute;
+    bottom: 95px;
+    left: 0;
+    transform: translateX(-50%);
+    cursor: pointer;
+    &:hover {
+      background: #ffffff;
+    }
+    .arrow-left {
+      img {
+        padding: 9px 0 0 9px;
+      }
+    }
+  }
+  .remove-arrow {
+    display: none;
+  }
+  .arrow-two {
+    width: 40px;
+    height: 40px;
+    background: #35354b;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 95px;
+    right: -15px;
+    cursor: pointer;
+    &:hover {
+      background: #ffffff;
+    }
+    .arrow-right {
+      img {
+        padding: 9px 0 0 9px;
+      }
+    }
+  }
+}
