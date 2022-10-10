@@ -12,6 +12,7 @@ import {
 } from '../../services/services';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import FeaturedCard from '../../components/card/FeaturedCard';
+import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 
 const Homepage = () => {
   const screenSize = useScreenSize();
@@ -120,11 +121,73 @@ const Homepage = () => {
               See all
             </Link>
           </div>
-          <div className="grid-container">
+
+          {featuredCollections && (
+            <Carousel
+              {...carouselOption}
+              arrows={false}
+              renderButtonGroupOutside
+              customButtonGroup={
+                <CustomArrowCarousel lengthArray={featuredCollections.length} />
+              }
+              keyBoardControl
+              removeArrowOnDeviceType=""
+              containerClass="container grid-container"
+              responsive={{
+                desktop: {
+                  breakpoint: {
+                    max: 3000,
+                    min: 1420,
+                  },
+                  items: 5,
+                  partialVisibilityGutter: 40,
+                },
+                mobile: {
+                  breakpoint: {
+                    max: 640,
+                    min: 0,
+                  },
+                  items: 1,
+                  partialVisibilityGutter: 30,
+                },
+                tablet: {
+                  breakpoint: {
+                    max: 1024,
+                    min: 640,
+                  },
+                  items: 2,
+                  partialVisibilityGutter: 30,
+                },
+                laptopLarge: {
+                  breakpoint: {
+                    max: 1420,
+                    min: 1180,
+                  },
+                  items: 4,
+                  partialVisibilityGutter: 30,
+                },
+                laptop: {
+                  breakpoint: {
+                    max: 1180,
+                    min: 1024,
+                  },
+                  items: 3,
+                  partialVisibilityGutter: 30,
+                },
+              }}
+              showDots={false}
+            >
+              {featuredCollections.map((item: FeaturedTypes, index) => (
+                <FeaturedCard key={item.id} item={item} />
+              ))}
+            </Carousel>
+          )}
+          {/* <div className="grid-container">
             {featuredCollections.map((item: FeaturedTypes, index) => (
               <FeaturedCard key={item.id} item={item} />
             ))}
-          </div>
+            
+          </div> */}
         </div>
         {/* Hot Collectibles */}
         <div className="page-grid">
