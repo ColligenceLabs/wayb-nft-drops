@@ -1,3 +1,4 @@
+//arrow carousel featured collections
 .arrow-featured-collections {
   position: relative;
   .arrow-one {
@@ -8,7 +9,7 @@
     position: absolute;
     bottom: 95px;
     left: 0;
-    transform: translateX(-50%);
+    transform: translateX(-40%);
     cursor: pointer;
     &:hover {
       background: #ffffff;
@@ -25,7 +26,7 @@
   .arrow-two {
     width: 40px;
     height: 40px;
-    background: #35354b;
+    background: rgba($color: #ffffff, $alpha: 0.2);
     border-radius: 100%;
     position: absolute;
     bottom: 95px;
@@ -38,6 +39,87 @@
       img {
         padding: 9px 0 0 9px;
       }
+    }
+  }
+  @media (max-width: 1024px) {
+    .arrow-one {
+      left: 15px;
+      }
+      .arrow-two {
+      right: 0;
+      }
+  }
+  @media (max-width: 540px) {
+    .arrow-one {
+    bottom: 118px;
+    left: 20px;
+    }
+    .arrow-two {
+    bottom: 118px;
+    right: 4px;
+    }
+  }
+}
+
+// arrow carousel hot collectibles and free drops
+
+.custom-arrow-carousel {
+  position: relative;
+  .arrow-one {
+    width: 40px;
+    height: 40px;
+    background: rgba($color: #ffffff, $alpha: 0.2);
+    border-radius: 100%;
+    position: absolute;
+    bottom: 190px;
+    left: 0;
+    transform: translateX(-40%);
+    cursor: pointer;
+    &:hover {
+      background: #ffffff;
+    }
+    .arrow-left {
+      img {
+        padding: 9px 0 0 9px;
+      }
+    }
+  }
+  .remove-arrow {
+    display: none;
+  }
+  .arrow-two {
+    width: 40px;
+    height: 40px;
+    background: rgba($color: #ffffff, $alpha: 0.2);
+    border-radius: 100%;
+    position: absolute;
+    bottom: 190px;
+    right: -15px;
+    cursor: pointer;
+    &:hover {
+      background: #ffffff;
+    }
+    .arrow-right {
+      img {
+        padding: 9px 0 0 9px;
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .arrow-one {
+      left: 15px;
+      }
+      .arrow-two {
+      right: 0;
+      }
+  }
+  @media (max-width: 540px) {
+    .arrow-one {
+    bottom: 180px;
+    left: 15px;
+    }
+    .arrow-two {
+    bottom: 180px;
     }
   }
 }

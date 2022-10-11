@@ -12,6 +12,7 @@ import {
 } from '../../services/services';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import FeaturedCard from '../../components/card/FeaturedCard';
+import ArrowCarouselCollections from 'components/common/ArrowCarouselCollections';
 import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 
 const Homepage = () => {
@@ -127,9 +128,7 @@ const Homepage = () => {
               {...carouselOption}
               arrows={false}
               renderButtonGroupOutside
-              customButtonGroup={
-                <CustomArrowCarousel lengthArray={featuredCollections.length} />
-              }
+              customButtonGroup={<ArrowCarouselCollections />}
               keyBoardControl
               removeArrowOnDeviceType=""
               containerClass="container grid-container"
@@ -182,12 +181,6 @@ const Homepage = () => {
               ))}
             </Carousel>
           )}
-          {/* <div className="grid-container">
-            {featuredCollections.map((item: FeaturedTypes, index) => (
-              <FeaturedCard key={item.id} item={item} />
-            ))}
-            
-          </div> */}
         </div>
         {/* Hot Collectibles */}
         <div className="page-grid">
@@ -195,6 +188,9 @@ const Homepage = () => {
           {hotCollectiblesTestData && (
             <Carousel
               {...carouselOption}
+              arrows={false}
+              renderButtonGroupOutside
+              customButtonGroup={<CustomArrowCarousel />}
               keyBoardControl
               removeArrowOnDeviceType=""
               containerClass="container hot-collectibles"
@@ -302,6 +298,9 @@ const Homepage = () => {
           <Carousel
             {...carouselOption}
             keyBoardControl
+            arrows={false}
+            renderButtonGroupOutside
+            customButtonGroup={<CustomArrowCarousel />}
             removeArrowOnDeviceType=""
             containerClass="container hot-collectibles"
             responsive={{

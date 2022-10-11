@@ -92,6 +92,9 @@
         position: relative;
         // margin: 120px auto 60px;
         place-items: center;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
         .react-multi-carousel-item {
           display: flex;
           justify-content: center;
@@ -172,7 +175,8 @@
         margin-bottom: 10px;
       }
       .hot-collectibles {
-        z-index: 21;
+        z-index: 100;
+        position: unset;
         .react-multi-carousel-track {
           .react-multi-carousel-item {
             display: flex;
@@ -406,6 +410,11 @@
           .show-all-item {
             font-size: 14px;
           }
+        }
+      }
+      .page-grid {
+        .title-header {
+          font-size: 22px;
         }
       }
     }
