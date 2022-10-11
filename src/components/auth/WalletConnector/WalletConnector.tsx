@@ -3,6 +3,7 @@ import icon_ethereum from 'assets/img/icon_ethereum.png';
 import icon_klaytn from 'assets/img/icon_klaytn.png';
 import icon_solana from 'assets/img/icon_solana.png';
 import icon_binance from 'assets/img/icon_binance.png';
+import carbon_close from 'assets/icon/carbon_close.svg';
 import EthWallets from './EthWallets';
 import KlaytnWallets from './KlaytnWallets';
 import SolanaWallets from './SolanaWallets';
@@ -71,7 +72,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
         <div className="div-title">
           <div className="title">Connect Wallet</div>
           <button onClick={close} className="button-close">
-            <svg
+            {/* <svg
               className="sc-6c80924e-4 eTDRlh"
               xmlns="http://www.w3.org/2000/svg"
               width="24.329"
@@ -85,46 +86,50 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
                 transform="translate(-5 -5)"
                 fill="#fff"
               ></path>
-            </svg>
+            </svg> */}
+            <img src={carbon_close} alt="Icon close" />
           </button>
         </div>
-
+        <div className="line"></div>
         <form>
           <div className="box-input">
-            <div className="div-wallets_1">
-              {NetworkList.map((network: any) => (
-                <button
-                  className={`${
-                    selectedNetwork === network.id
-                      ? ' active'
-                      : network.id == 0 || network.id == 2
-                      ? 'unused'
-                      : ''
-                  }`}
-                  key={network.id}
-                  type="button"
-                  data-tip
-                  data-for={network.network_name}
-                  onClick={() => changeNetwork(network.id)}
-                  onMouseEnter={() => handeTooltip(true, network.id)}
-                  onMouseLeave={() => handeTooltip(false, network.id)}
-                >
-                  <img src={network.icon}></img>
-                  {network.network_name}
-                  {showTooltip && (network.id === 2 || network.id === 0) && (
-                    <ReactTooltip
-                      id={network.network_name}
-                      // place="top"
-                      effect="solid"
-                      backgroundColor="white"
-                      textColor="black"
-                    >
-                      Coming soon..
-                    </ReactTooltip>
-                  )}
-                </button>
-              ))}
+            <div className="box-top">
+              <div className="div-wallets_1">
+                {NetworkList.map((network: any) => (
+                  <button
+                    className={`${
+                      selectedNetwork === network.id
+                        ? ' active'
+                        : network.id == 0 || network.id == 2
+                        ? 'unused'
+                        : ''
+                    }`}
+                    key={network.id}
+                    type="button"
+                    data-tip
+                    data-for={network.network_name}
+                    onClick={() => changeNetwork(network.id)}
+                    onMouseEnter={() => handeTooltip(true, network.id)}
+                    onMouseLeave={() => handeTooltip(false, network.id)}
+                  >
+                    <img src={network.icon}></img>
+                    {network.network_name}
+                    {showTooltip && (network.id === 2 || network.id === 0) && (
+                      <ReactTooltip
+                        id={network.network_name}
+                        // place="top"
+                        effect="solid"
+                        backgroundColor="white"
+                        textColor="black"
+                      >
+                        Coming soon..
+                      </ReactTooltip>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
+
             {selectedNetwork === 0 && <EthWallets />}
             {selectedNetwork === 1 && <KlaytnWallets />}
             {selectedNetwork === 2 && <SolanaWallets />}

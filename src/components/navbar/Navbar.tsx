@@ -1,11 +1,14 @@
 import React, { MutableRefObject, useRef, useState } from 'react';
 import logo_header from '../../assets/svg/logo_header.svg';
-import icon_twitter from '../../assets/img/icon_twitter.png';
-import icon_discord from '../../assets/img/icon_discord.png';
-import icon_telegram from '../../assets/img/icon_telegram.png';
+// import icon_twitter from '../../assets/img/icon_twitter.png';
+// import icon_discord from '../../assets/img/icon_discord.png';
+import icon_insta from '../../assets/icon/instagram.png';
+import icon_twitter from '../../assets/icon/twitter.png';
+import icon_discord from '../../assets/icon/discord.png';
+
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
-import wallet_white from '../../assets/icon/wallet_white.svg';
+import wallet_blue from '../../assets/icon/wallet_blue.svg';
 import nav_icon from '../../assets/icon/nav_icon.svg';
 import { Link, useLocation } from 'react-router-dom';
 import DialogWallets from 'components/modal/DialogWallets';
@@ -88,7 +91,7 @@ const Navbar = () => {
             <img src={icon_discord} alt="" />
           </a>
           <a href="https://web.telegram.org" target={'_blank'} rel="noreferrer">
-            <img src={icon_telegram} alt="" />
+            <img src={icon_insta} alt="" />
           </a>
         </div>
         {/* before login PC view */}
@@ -116,7 +119,7 @@ const Navbar = () => {
             onClick={() => setLoginOpen(true)}
           >
             <span className="wrapper-btn">
-              <img src={wallet_white} alt="Wallet Icon" />
+              <img src={wallet_blue} alt="Wallet Icon" />
               <span className="wallets">Wallets</span>
             </span>
           </button>

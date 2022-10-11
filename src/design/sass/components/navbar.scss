@@ -26,7 +26,7 @@
     width: 100%;
     height: 100px;
     top: 0px;
-    background: #003577;
+    background: #02021E;
     opacity: 1;
   }
 
@@ -107,7 +107,7 @@
         display: inline-block;
         height: 100%;
         cursor: pointer;
-        width: 28px;
+        width: 32px;
 
         img {
           width: 100%;
@@ -146,7 +146,7 @@
         width: 140px;
         height: 44px;
         top: 30px;
-        background: #2f80ed;
+        background: rgba($color: #ffffff, $alpha: 0.1);
         border-radius: 5px;
 
         .wrapper-btn {
@@ -157,6 +157,7 @@
           .wallets {
             font-size: 16px;
             font-weight: 500;
+            color: #2F8AF5;
           }
         }
       }
@@ -208,6 +209,15 @@
       border-radius: 0px 0px 0px 10px;
       box-shadow: #113577 -5px 5px 20px;
     }
+  }
+  @media (max-width: 1024px) {
+    .main-header-box {
+      gap: 10px;
+      .logo-header {
+        width: 120px;
+      }
+    }
+
   }
   @include Tablet() {
     z-index: 400;
