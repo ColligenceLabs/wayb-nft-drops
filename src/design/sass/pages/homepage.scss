@@ -4,11 +4,11 @@
 // homepage PC
 .home-page {
   min-height: calc(100vh - 50px - 215px - 65px);
+  background: #02021e;
   // section-01
   .section-01 {
     width: 100%;
     margin: 0px auto;
-
     .content-header {
       width: 100%;
       max-width: 1280px;
@@ -70,12 +70,14 @@
     padding: 0 40px;
     margin: auto;
     .featured-collections {
-      margin-bottom: 105px;
+      // margin-bottom: 105px;
+      padding-bottom: 105px;
       .wrapper-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 100px auto 10px;
+        // margin: 100px auto 10px;
+        padding: 100px 0 10px;
         font-weight: 900;
         font-size: 36px;
         white-space: nowrap;
@@ -399,7 +401,7 @@
       }
     }
     .section-02 {
-      margin-top: 50px;
+      // margin-top: 50px;
       .featured-collections {
         .wrapper-header {
           margin: auto;

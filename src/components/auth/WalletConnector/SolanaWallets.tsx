@@ -11,8 +11,10 @@ const SolanaWallets = () => {
       <div className="row">
         {Wallets.map((wallet) => (
           <button key={wallet.id} type="button">
-            <img src={wallet.icon}></img>
-            {wallet.name}
+            <div className="custom-image">
+              <img src={wallet.icon} />
+            </div>
+            <div className="address-wallet">{wallet.name}</div>
           </button>
         ))}
       </div>

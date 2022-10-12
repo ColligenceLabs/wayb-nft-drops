@@ -4,7 +4,7 @@ import not_found from '../../assets/img/not_found.gif';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import ic_info from '../../assets/icon/info_pink.svg';
+import ic_info from '../../assets/icon/info_blue.svg';
 import ic_search from '../../assets/icon/search.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
@@ -222,7 +222,7 @@ const SaleCollectibles = () => {
   }, [mBoxInfo?.afterRelease, showCountDown, new Date()]);
 
   return (
-    <main className="collection-container" style={{ marginTop: '3rem' }}>
+    <main className="collection-container">
       {mBoxInfo ? (
         <div>
           <div className="price-collection-view-page">
@@ -265,7 +265,9 @@ const SaleCollectibles = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="">{mBoxInfo.introduction.en}</div>
+                  <div className="content-collection">
+                    {mBoxInfo.introduction.en}
+                  </div>
                 </div>
                 <div>
                   <a className="authenticity-button">
@@ -372,7 +374,7 @@ const SaleCollectibles = () => {
                     />
                     <input
                       className="marketplace-search-textbox"
-                      placeholder="Search listings…"
+                      placeholder="Search NFT"
                     />
                   </div>
                   <div className="type-filter-box">
