@@ -238,6 +238,7 @@ const SaleCollectibles = () => {
                   <img src={mBoxInfo.revealAnimation} alt="" />
                 )}
               </div>
+              <div className="straight-line"></div>
               <div className="token-details-box">
                 <div>
                   <div className="box-owner-product">
@@ -390,16 +391,16 @@ const SaleCollectibles = () => {
                   </div>
                 </div>
                 <div className="marketplace-items">
+                  {mBoxItemList.map((item, index) => (
+                    <MBoxItemCard
+                      key={index}
+                      item={item}
+                      mBoxName={mBoxInfo?.title.en}
+                      mBoxImage={mBoxInfo?.packageImage}
+                    />
+                  ))}
                   <div className="list-carousel">
-                    {mBoxItemList.map((item, index) => (
-                      <MBoxItemCard
-                        key={index}
-                        item={item}
-                        mBoxName={mBoxInfo?.title.en}
-                        mBoxImage={mBoxInfo?.packageImage}
-                      />
-                    ))}
-                    {/*{list_products.map((item, index) => (*/}
+                    {/* {list_products.map((item, index) => (*/}
                     {/*  <div className="slide-item" key={index}>*/}
                     {/*    <Link to={'/sale'} className="button">*/}
                     {/*      <div className="hot-ollectibles-wrapper">*/}
@@ -455,14 +456,14 @@ const SaleCollectibles = () => {
                     {/*      </div>*/}
                     {/*    </Link>*/}
                     {/*  </div>*/}
-                    {/*))}*/}
+                    {/*))} */}
                   </div>
-                  <div className="not-found">
+                  {/* <div className="not-found">
                     <div>
                       <img src={not_found} alt="" />
                       <div className="token-not-found">No tokens found...</div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
