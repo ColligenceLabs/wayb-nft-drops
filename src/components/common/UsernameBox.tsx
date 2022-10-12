@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import icon_twitter from '../../assets/img/icon_twitter.png';
-import icon_discord from '../../assets/img/icon_discord.png';
-import icon_telegram from '../../assets/img/icon_telegram.png';
-import wallet_white from '../../assets/icon/wallet_white.svg';
+// import icon_twitter from '../../assets/img/icon_twitter.png';
+// import icon_discord from '../../assets/img/icon_discord.png';
+// import icon_telegram from '../../assets/img/icon_telegram.png';
+import icon_insta from '../../assets/icon/instagram.png';
+import icon_twitter from '../../assets/icon/twitter.png';
+import icon_discord from '../../assets/icon/discord.png';
+import wallet_blue from '../../assets/icon/wallet_blue.svg';
 import my_collectibles from '../../assets/icon/my_collectibles.svg';
 import my_profile from '../../assets/icon/my_profile.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
@@ -31,6 +34,20 @@ const UsernameBox = () => {
         </div>
       </div>
       <div className="wrapper-dropdown">
+        <div className="wrapper-wallets">
+          <div
+            className="btn-wallets button"
+            onClick={() => {
+              updateOpenWallet(true);
+              closeSidebar(false);
+            }}
+          >
+            <div className="img-wallet">
+              <img src={wallet_blue} alt="wallet" />
+            </div>
+            <span>Wallets</span>
+          </div>
+        </div>
         <Link
           to={'/my-collectibles'}
           className="wallet-button"
@@ -77,27 +94,13 @@ const UsernameBox = () => {
             <img src={icon_discord} alt="" />
           </a>
           <a
-            href={'https://web.telegram.org'}
+            href={'https://www.instagram.com'}
             target={'_blank'}
             rel="noreferrer"
             className="custom-icon"
           >
-            <img src={icon_telegram} alt="" />
+            <img src={icon_insta} alt="" />
           </a>
-        </div>
-        <div className="wrapper-wallets">
-          <button
-            className="btn-wallets button"
-            onClick={() => {
-              updateOpenWallet(true);
-              closeSidebar(false);
-            }}
-          >
-            <div className="img-wallet">
-              <img src={wallet_white} alt="wallet" />
-            </div>
-            <span>Wallets</span>
-          </button>
         </div>
       </div>
       <div className="logout-btn" onClick={handleClickLogout}>

@@ -44,16 +44,32 @@
     padding: 20px;
     text-transform: uppercase;
     span {
-      background: linear-gradient(
-        90deg,
-        rgb(227, 100, 190),
-        rgb(103, 129, 249)
-      );
-      // background: linear-gradient(90deg, #b07cfe, #2061e2, );
+      background-color: #2F8AF5;
       background-clip: text;
       color: transparent;
       font-weight: 600;
       cursor: pointer;
+    }
+    .wrapper-wallets {
+      display: block;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2F8AF5;
+      // padding: 13px 0;
+
+      .btn-wallets {
+        display: flex;
+        justify-content: flex-start;
+        gap: 5px;
+        height: 25px;
+        .img-wallet {
+          width: 24px;
+          img {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 
@@ -117,11 +133,17 @@
   @include Tablet() {
   }
   //mobile view
+ 
   @include Mobile() {
     transition: all 500ms;
     .wrapper-backdrop {
       width: 55%;
     }
     width: 100%;
+  }
+  @media (max-width: 340px) {
+    .login-signup {
+      font-size: 14px;
+    }
   }
 }

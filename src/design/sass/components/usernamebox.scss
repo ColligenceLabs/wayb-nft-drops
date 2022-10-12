@@ -73,7 +73,7 @@
   }
 
   @include Tablet() {
-    margin-right: 25px;
+    // margin-right: 25px;
 
     .wrapper-dropdown {
       .wrapper-fanpages {
@@ -94,20 +94,19 @@
       .wrapper-wallets {
         display: block;
         width: 100%;
-        border-top: 1px solid #393939;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 13px 0;
+        border-bottom: 1px solid #393939;
+        font-size: 16px;
+        font-weight: 600;
+        color: #2F8AF5;
+        // padding: 13px 0;
 
         .btn-wallets {
           display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-
+          justify-content: flex-start;
+          gap: 5px;
+          height: 35px;
           .img-wallet {
-            width: 22px;
-            margin-right: 10px;
-
+            width: 24px;
             img {
               width: 100%;
             }
@@ -145,19 +144,19 @@
       .wrapper-wallets {
         display: block;
         width: 100%;
-        border-top: 1px solid #393939;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 13px 0;
+        border-bottom: 1px solid #393939;
+        font-size: 16px;
+        font-weight: 600;
+        color: #2F8AF5;
+        height: 35px;
+        // padding: 13px 0;
 
         .btn-wallets {
           display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-
+          justify-content: flex-start;
+          gap: 5px;
           .img-wallet {
-            width: 22px;
-            margin-right: 10px;
+            width: 24px;
 
             img {
               width: 100%;

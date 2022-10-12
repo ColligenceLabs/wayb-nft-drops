@@ -224,7 +224,6 @@
     padding-bottom: 0;
     .main-header-box {
       .search-bar {
-        height: $header-mobile-height;
         .search-icon {
           margin: 0px 5px 0px 20px;
           line-height: 50px;
@@ -246,7 +245,7 @@
       }
       .icon-nav {
         // display: block;
-        margin-right: 20px;
+        margin-right: 40px;
         .button {
           padding: 0;
         }

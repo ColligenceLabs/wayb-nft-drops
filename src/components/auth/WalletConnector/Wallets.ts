@@ -1,16 +1,16 @@
 import icon_metamask from '../../../assets/img/icon_metamask.png';
-import icon_ethereum2 from '../../../assets/img/icon_ethereum2.png';
 import icon_talk from '../../../assets/img/icon_talk.png';
-import icon_klaytn from '../../../assets/img/icon_klaytn.png';
+import icon_kaikas from '../../../assets/img/icon_kaikas.png';
+import icon_walletconnect from '../../../assets/img/icon_walletconnect.png';
 
 export const Wallets = [
   { id: 0, icon: icon_metamask, name: 'Metamask', value: 'metamask' },
   {
     id: 1,
-    icon: icon_ethereum2,
+    icon: icon_walletconnect,
     name: 'Wallet Connector',
     value: 'walletConnector',
   },
   { id: 2, icon: icon_talk, name: 'Talken', value: 'talken' },
-  { id: 3, icon: icon_klaytn, name: 'Kaikas', value: 'kaikas' },
+  { id: 3, icon: icon_kaikas, name: 'Kaikas', value: 'kaikas' },
 ];

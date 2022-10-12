@@ -69,10 +69,14 @@ const KlaytnWallets = () => {
             type="button"
             onClick={() => handleClickWallet(wallet.id, wallet.value)}
           >
-            <img src={wallet.icon}></img>
-            {connectedWallet && connectedWallet.value === wallet.value
-              ? splitAddress(connectedWallet.address)
-              : wallet.name}
+            <div className="custom-image">
+              <img src={wallet.icon} />
+            </div>
+            <div className="address-wallet">
+              {connectedWallet && connectedWallet.value === wallet.value
+                ? splitAddress(connectedWallet.address)
+                : wallet.name}
+            </div>
           </button>
         ))}
       </div>
