@@ -26,7 +26,7 @@
     width: 100%;
     height: 100px;
     top: 0px;
-    background: #02021E;
+    background: #02021e;
     opacity: 1;
   }
 
@@ -157,7 +157,7 @@
           .wallets {
             font-size: 16px;
             font-weight: 500;
-            color: #2F8AF5;
+            color: #2f8af5;
           }
         }
       }
@@ -217,7 +217,6 @@
         width: 120px;
       }
     }
-
   }
   @include Tablet() {
     z-index: 400;
@@ -256,6 +255,55 @@
       // .username-dropdown {
       //   display: none;
       // }
+    }
+  }
+  @media (max-width: 540px) {
+    z-index: 400;
+    .nav-other-page {
+      height: 80px;
+    }
+    .main-header-box {
+      .logo-header {
+        width: 100px;
+        margin-left: 20px;
+        img {
+          width: 100%;
+        }
+      }
+      .search-bar {
+        height: $header-mobile-height;
+        .search-icon {
+          margin: 0px 5px 0px 20px;
+          line-height: 50px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+      .contact-header {
+        display: none;
+      }
+      .fanpage-icons {
+        display: none;
+      }
+      .btn-login {
+        display: none;
+      }
+      .btn-wallets {
+        display: none;
+      }
+      .wrapper-user {
+        display: none;
+      }
+      .username-dropdown {
+        display: none;
+      }
+      .icon-nav {
+        display: block;
+        margin-right: 20px;
+        .button {
+          padding: 0;
+        }
+      }
     }
   }
   @include Mobile() {
