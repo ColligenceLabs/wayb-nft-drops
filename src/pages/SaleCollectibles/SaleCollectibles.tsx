@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import not_found from '../../assets/img/not_found.gif';
+import not_found from '../../assets/img/not_found.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -458,11 +458,13 @@ const SaleCollectibles = () => {
                     {/*  </div>*/}
                     {/*))} */}
                   </div>
+
+                  {/* not found item */}
                   {/* <div className="not-found">
-                    <div>
+                    <div className="image-not-found">
                       <img src={not_found} alt="" />
-                      <div className="token-not-found">No tokens found...</div>
                     </div>
+                    <div className="token-not-found">No tokens found...</div>
                   </div> */}
                 </div>
               </div>
@@ -484,7 +486,7 @@ const SaleCollectibles = () => {
             onClose={closeLogin}
             {...{ overlayStyle, closeOnDocumentClick, lockScroll }}
           >
-            {/* <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} />*/}
+            {/* <LoginForm close={closeLogin} onConfirm={() => setSignupOpen(true)} /> */}
             <WalletConnector
               close={closeLogin}
               onConfirm={() => setSignupOpen(true)}

@@ -626,11 +626,17 @@
       grid-template-columns: repeat(5, 1fr);
       .not-found {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        img {
-          height: 300px;
+        .image-not-found {
+          height: 210px;
           margin-top: 30px;
+          width: 280px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
         .token-not-found {
           margin-top: 10px;
