@@ -32,7 +32,7 @@ const PuzzleCollection = () => {
     return result;
   };
   return (
-    <main className="collection-container">
+    <main className="collection-container min-height-content">
       <div
         className="collection-banner-image"
         style={{

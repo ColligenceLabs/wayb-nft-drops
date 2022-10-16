@@ -9,7 +9,7 @@ import arrow_up_right from '../../assets/icon/arrow_up_right.png';
 const Purchase_History = () => {
   const [sortDate, setSortDate] = useState(false);
   return (
-    <main className="purchase-container">
+    <main className="purchase-container min-height-content">
       <div className="purchase-history-page">
         <div className="purchase-history-header">
           <div>Purchase History</div>

@@ -260,7 +260,7 @@ const MyCollectiblesDetails = () => {
   }, []);
 
   return (
-    <main className="collectibles-details-container">
+    <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
         <div className="product-details">
           <div className="showcase-box">

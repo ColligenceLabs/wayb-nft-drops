@@ -7,6 +7,9 @@
 * {
   box-sizing: border-box;
 }
+.min-height-content {
+  min-height: calc(100vh - 100px - 315px + 11px);
+}
 .main {
   position: relative;
   background-color: #02021e;

@@ -75,7 +75,7 @@ const Collection = () => {
     },
   ];
   return (
-    <main className="collection-container">
+    <main className="collection-container min-height-content">
       {featured ? (
         <>
           <div

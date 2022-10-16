@@ -64,7 +64,7 @@ const Homepage = () => {
   };
 
   return (
-    <div className="home-page">
+    <div className="home-page min-height-content">
       {/* section 01 */}
       <div className="section-01">
         <div className="content-header">

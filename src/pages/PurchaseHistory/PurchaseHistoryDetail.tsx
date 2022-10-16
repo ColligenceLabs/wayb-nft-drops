@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 const Purchase_History_Detail = () => {
   return (
-    <main className="purchase-detail-container">
+    <main className="purchase-detail-container min-height-content">
       <div className="wrapper-purchase-detail">
         <Link to="/purchase-history" className="back-purchase-list">
           <img src={arrow_btn_back} alt="arrow back" />

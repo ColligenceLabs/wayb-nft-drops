@@ -11,17 +11,17 @@ import Delete from './deleteaccount';
 
 const MyProfile = () => {
   return (
-    <main className="profile-container">
+    <main className="profile-container min-height-content">
       <div className="my-profile-page">
-        <div className="my-profile-header">
-          <h1>My profile</h1>
-        </div>
+        <div className="my-profile-header">My Profile</div>
 
         <div className="my-profile-detail">
           <div className="my-profile-leftdetail">
             <div className="my-profile-detail-header">
-              <div>
-                <img src={avatar} alt="avatar" className="avatar" />
+              <div className="wrapper-profile">
+                <div className="avatar">
+                  <img src={avatar} alt="avatar" />
+                </div>
                 <div className="my-profile-name">
                   <div className="fullname">Chainos</div>
                   <div className="username">@Chainos_2022</div>
@@ -45,20 +45,20 @@ const MyProfile = () => {
             <div className="bio"></div>
             <div className="my-profile-contact">
               <div className="contact-detail">
-                <div className="title">😀 Name</div>
+                <div className="title">Name</div>
                 <div className="content">Chainos</div>
               </div>
               <div className="contact-detail">
-                <div className="title">🎂 Birthday</div>
+                <div className="title">Birthday</div>
                 <div className="content">07/05/2018</div>
               </div>
               <div className="contact-detail">
-                <div className="title">📨 Email</div>
+                <div className="title">Email</div>
                 <div className="content">noreply@chainos</div>
               </div>
               <div className="contact-detail">
-                <div className="title">📱 Mobile Phone</div>
-                <div className="content"></div>
+                <div className="title">Mobile Phone</div>
+                <div className="content">0123456789</div>
               </div>
             </div>
           </div>
