@@ -75,7 +75,7 @@ const Navbar = () => {
           <input
             className="input-search"
             type="search-textbox"
-            placeholder="Search NFTs..."
+            placeholder="Search NFT"
           />
         </div>
         <div className="contact-header">

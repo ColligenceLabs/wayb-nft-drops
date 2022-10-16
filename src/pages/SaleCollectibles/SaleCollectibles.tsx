@@ -222,7 +222,7 @@ const SaleCollectibles = () => {
   }, [mBoxInfo?.afterRelease, showCountDown, new Date()]);
 
   return (
-    <main className="collection-container">
+    <main className="collection-container min-height-content">
       {mBoxInfo ? (
         <div>
           <div className="price-collection-view-page">

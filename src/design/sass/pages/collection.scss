@@ -1,12 +1,12 @@
 @import '../helpers/global';
 
 .collection-container {
-  padding: 60px 0;
+  // padding: 60px 0;
   margin: 0px auto;
   max-width: 100vw;
   background: #02021e;
   color: #fff;
-  // padding-bottom: 60px;
+  padding-bottom: 60px;
   a,
   button {
     color: inherit;
@@ -338,7 +338,7 @@
   width: 100%;
   max-width: 1280px;
   margin: 0px auto;
-  padding: 10px 40px;
+  padding: 70px 40px;
 
   .price-collection-box {
     display: flex;
@@ -351,7 +351,7 @@
     .token-showcase-box {
       position: relative;
       width: 500px;
-      height: 500px;
+      height: 600px;
       // border-right: 1px solid $dark-color-primary;
       img {
         display: block;
@@ -518,6 +518,7 @@
     text-align: center;
     font-size: 40px;
     letter-spacing: -1.2px;
+    padding-top: 60px;
   }
 
   .sub-title-sale-by-Collectors {
@@ -1086,9 +1087,9 @@
     }
   }
   .price-collection-view-page {
-    padding: 10px 20px 0 !important;
+    padding: 70px 20px 0;
     .title-sale-by-Collectors {
-      padding: 0 20px;
+      padding: 20px 20px 0;
       font-size: 26px;
     }
     .sub-title-sale-by-Collectors {

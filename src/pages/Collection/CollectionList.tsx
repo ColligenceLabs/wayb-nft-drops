@@ -80,7 +80,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
   }, []);
 
   return (
-    <div className="marketplace">
+    <div className="marketplace min-height-content">
       <div className="marketplace-collection-tittle">Featured Collectibles</div>
       <div className="marketplace-items">
         {mBoxList.map((item, index) => {

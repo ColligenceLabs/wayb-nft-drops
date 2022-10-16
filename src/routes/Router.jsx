@@ -8,7 +8,7 @@ import MyCollectiblesDetails from 'pages/MyCollectibles/MyCollectiblesDetails';
 import Landing from 'pages/Landingpage/LandingPage';
 import LandingLayout from 'components/layouts/studioLayout/LandingLayout';
 import MyCollectibles from 'pages/MyCollectibles/MyCollectibles';
-import Profile from 'pages/MyProfile/MyProfilePC';
+import Profile from 'pages/MyProfile/MyProfile';
 import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistory';
 import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';

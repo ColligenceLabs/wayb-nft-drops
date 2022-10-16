@@ -23,7 +23,7 @@ const Collections = () => {
   }, []);
 
   return (
-    <div className="home-page">
+    <div className="home-page min-height-content">
       <div className="section-02">
         {/* Featured Collections */}
         <div className="featured-collections">

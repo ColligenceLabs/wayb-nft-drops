@@ -2,7 +2,6 @@ import React, { MutableRefObject, useEffect, useState, useRef } from 'react';
 import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
-import ic_dropdown_button_arrow from '../../assets/svg/dropdown_button_arrow.svg';
 import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
 import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
 import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
@@ -157,12 +156,12 @@ const MyCollectibles = () => {
   }, [account, selectedIndex]);
 
   return (
-    <main className="my-wallet-container">
+    <main className="my-wallet-container min-height-content">
       <div className="wallet-wp">
         {/* banner  */}
         <div className="banner">
           <div className="collectibles">
-            <h1 className="banner-title">My Collectibles</h1>
+            <div className="banner-title">My Collectibles</div>
           </div>
         </div>
 
@@ -191,7 +190,25 @@ const MyCollectibles = () => {
               className="sort-dropdown-button"
               onClick={() => setOpen((open) => !open)}
             >
-              <img src={ic_dropdown_button_arrow} alt="" />
+              {/* <img src={ic_dropdown_button_arrow} alt="" /> */}
+              <svg
+                className="sc-196ec885-12 eKhfKP"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18.092"
+                height="11.168"
+                viewBox="0 0 18.092 11.168"
+              >
+                <path
+                  id="Path_46142"
+                  data-name="Path 46142"
+                  d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+                  transform="translate(10860.586 7360.121)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeWidth="3"
+                ></path>
+              </svg>
             </div>
             {open && (
               <ul className="sort-dropdown-box">
