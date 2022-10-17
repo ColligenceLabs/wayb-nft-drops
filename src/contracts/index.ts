@@ -3,6 +3,7 @@ import mysteryBoxData from './MysteryBox.json';
 import whiteListData from './WhiteListNFT.json';
 import subscriptionData from './Subscription.json';
 import evenAllocData from './EvenAllocation.json';
+import collectionData from './Collection.json';
 
 export {
   erc721Data,
@@ -10,4 +11,5 @@ export {
   whiteListData,
   subscriptionData,
   evenAllocData,
+  collectionData,
 };
