@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
-import home_11 from '../../assets/img/home_11.png';
+import home_12 from '../../assets/img/home_12.png';
 
 type PaymentWalletsSuccessProps = {
   show: any;
@@ -23,8 +23,33 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
       overlayClassName="payments-wallets-overlay"
       shouldCloseOnOverlayClick
     >
-      <div className="modal-dialog ">
-        <div className="modal-content">
+      <div className="modal-dialog modal-dialog-pay-success">
+        <div className="header">
+          <div className="title">Great!</div>
+          <div className="close-button" onClick={onHide}>
+            <img src={close_icon} alt="icon close" />
+          </div>
+        </div>
+        <div className="line"></div>
+        <div className="grid-content">
+          <div className="grid-item sub-title">
+            Your purchase was successfull.
+          </div>
+          <div className="grid-item image-success">
+            <img src={home_12} alt="image success" />
+          </div>
+          <div className="grid-item title-image">GENERATIVE MAGIC THE DOG</div>
+          <div className="grid-item sub-image">
+            Congratulations, your token purchase is in progress. It could take
+            up to ten minutes to verify your transaction anh transfer the token
+            to your wallet.
+          </div>
+          <button className="grid-item button button-got-it" onClick={onHide}>
+            Got it!
+          </button>
+        </div>
+
+        {/* <div className="modal-content">
           <div className="modal-header">
             <div className="modal-tittle">
               <div>
@@ -61,7 +86,7 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
               Got It!
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </ReactModal>
   );
