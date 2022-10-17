@@ -1118,7 +1118,7 @@ export async function getItemAmounts(
   address: string,
   account: string | undefined | null,
   library: any
-): Promise<number> {
+): Promise<string[]> {
   const isKaikas =
     library.connection.url !== 'metamask' ||
     library.connection.url === 'eip-1193:';
@@ -1156,6 +1156,52 @@ export async function getItemAmounts(
     console.log('getItemAmounts Error : ', e);
   }
   return itemAmounts;
+}
+
+export async function getItemAmount(
+  address: string,
+  index: number,
+  account: string | undefined | null,
+  library: any
+): Promise<number> {
+  const isKaikas =
+    library.connection.url !== 'metamask' ||
+    library.connection.url === 'eip-1193:';
+
+  console.log(isKaikas);
+  let contract: any;
+  if (isKaikas) {
+    // @ts-ignore : In case of Klaytn Kaikas Wallet
+    const caver = new Caver(window.klaytn);
+    const mboxAbi: AbiItem[] = mysteryBoxAbi as AbiItem[];
+    contract = new caver.klay.Contract(mboxAbi, address);
+  } else {
+    contract = new ethers.Contract(
+      address,
+      mysteryBoxAbi,
+      library?.getSigner()
+    );
+  }
+
+  const itemAmount = 0;
+  try {
+    if (isKaikas) {
+      itemAmount = await contract.methods
+        .itemAmounts(index)
+        .call()
+        .catch(async (err: any) => {
+          console.log('#####', address);
+          console.log('getItemAmount Error : ', err);
+        });
+    } else {
+      const result: BigNumber = await contract.itemAmounts(index);
+      itemAmount = result.toNumber();
+    }
+  } catch (e) {
+    console.log('#####', address);
+    console.log('getItemAmount Error : ', e);
+  }
+  return itemAmount;
 }
 
 export async function getItemRemains(
