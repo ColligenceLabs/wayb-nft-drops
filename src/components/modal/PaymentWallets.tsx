@@ -3,6 +3,8 @@ import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
+import pay_appstore from '../../assets/img/pay_appstore.png';
+import pay_googleplay from '../../assets/img/pay_googleplay.png';
 
 type PaymentWalletsProps = {
   show: any;
@@ -45,8 +47,57 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
       overlayClassName="payments-wallets-overlay"
       shouldCloseOnOverlayClick
     >
-      <div className="modal-dialog ">
-        <div className="modal-content">
+      <div className="modal-dialog">
+        <div className="header">
+          <div className="title">How would you like to pay</div>
+          <div className="close-button" onClick={onHide}>
+            <img src={close_icon} alt="icon close" />
+          </div>
+        </div>
+        <div className="line"></div>
+        <div className="sub-title">
+          Please choose one of the payment methods below.
+        </div>
+        <div className="grid-payments">
+          <div className="payment-box">
+            <div className="pay-item">
+              <img src={pay_creditcard} alt="Credit Card" />
+            </div>
+            <div className="pay-name">Credit Card</div>
+          </div>
+          <div className="payment-box">
+            <div className="pay-item">
+              <img src={pay_crypto} alt="Crypto" />
+            </div>
+            <div className="pay-name">Crypto</div>
+          </div>
+          <div className="payment-box">
+            <div className="pay-item">
+              <img src={pay_appstore} alt="App Store" />
+            </div>
+            <div className="pay-name">App Store</div>
+          </div>
+          <div className="payment-box">
+            <div className="pay-item">
+              <img src={pay_googleplay} alt="Google Play" />
+            </div>
+            <div className="pay-name">Google Play</div>
+          </div>
+        </div>
+        <div className="custom-submit">
+          <button
+            type="submit"
+            className="payments-btn-submit button fw-600"
+            onClick={() => {
+              openPaymentWalletsSuccess();
+              onHide();
+            }}
+          >
+            Continue
+          </button>
+        </div>
+
+        {/* <div className="modal-content">
           <div className="modal-header">
             <div className="modal-tittle">
               <div>
@@ -89,7 +140,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               Continue
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </ReactModal>
   );

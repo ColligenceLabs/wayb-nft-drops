@@ -299,7 +299,7 @@ const SaleCollectibles = () => {
                     <div className="lable-top">Purchase price</div>
                     <div className="lable-bottom fw-600">{`${mBoxInfo.price} ${mBoxInfo.quote}`}</div>
                   </div>
-                  {!countDownFinish && (
+                  {/* {!countDownFinish && (
                     <CountDownTimer
                       handeCheckCountDownFinish={handeCheckCountDownFinish}
                       targetDate={new Date(mBoxInfo.afterRelease)}
@@ -331,21 +331,20 @@ const SaleCollectibles = () => {
                     >
                       Connect Wallet
                     </button>
-                  )}
+                  )} */}
+                  <button
+                    className={'btn-sale-collection'}
+                    disabled={isLoading || remains === 0}
+                    onClick={() => setOpenPaymentWallets(true)}
+                    // onClick={handleBuyClick}
+                  >
+                    Buy Now
+                  </button>
                   {/* <button className="btn-sale-collection disable">Sold out</button> */}
                 </div>
               </div>
             </div>
             <div>
-              <div>
-                <div className="title-sale-by-Collectors fw-600">
-                  For Sale by Collectors
-                </div>
-                <div className="sub-title-sale-by-Collectors fw-600">
-                  Sold out? No problem! Check out user listings below.
-                </div>
-              </div>
-
               <div className="puzzle-container">
                 <div>
                   <ImageList className="puzzle" cols={11}>
@@ -365,8 +364,16 @@ const SaleCollectibles = () => {
                   </ImageList>
                 </div>
               </div>
+              <div>
+                <div className="title-sale-by-Collectors fw-600">
+                  For Sale by Collectors
+                </div>
+                <div className="sub-title-sale-by-Collectors fw-600">
+                  Sold out? No problem! Check out user listings below.
+                </div>
+              </div>
               <div className="userSales">
-                <div className="filter-box">
+                {/* <div className="filter-box">
                   <div className="search-box">
                     <img
                       src={ic_search}
@@ -389,7 +396,7 @@ const SaleCollectibles = () => {
                       <div className=""></div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="marketplace-items">
                   {mBoxItemList.map((item, index) => (
                     <MBoxItemCard

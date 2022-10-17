@@ -70,12 +70,19 @@ const MyProfile = () => {
               </div>
               <div className="item-value">twitter/Chainos</div>
             </div>
-            <Popup modal trigger={<button>Edit Profile</button>}>
-              <>{(close: any) => <Edit close={close} />}</>
+            <Popup
+              modal
+              trigger={
+                (open: any) => <Edit open={open} />
+                // <button>Edit Profile</button>
+              }
+            >
+              {/* <>{(close: any) => <Edit close={close} />}</> */}
             </Popup>
             <Popup
               modal
               trigger={
+                // (open: any) => <Delete open={open} />
                 <button className="delete-account">Delete Account</button>
               }
             >
