@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import not_found from '../../assets/img/not_found.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -178,19 +177,18 @@ const SaleCollectibles = () => {
         if (res.data.list) {
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes, index: number) => {
-              console.log(location.state.item);
-              const remaining = await getItemAmount(
-                location.state.item.boxContractAddress,
-                index,
-                account,
-                library
-              );
-              console.log(`remaining : ${remaining}`);
+              let remaining = null;
+              if (library && library.connection)
+                remaining = await getItemAmount(
+                  location.state.item.boxContractAddress,
+                  index,
+                  account,
+                  library
+                );
 
               return { ...item, remainingAmount: remaining };
             })
           );
-          console.log(newList);
           setMBoxItemList(newList);
         }
         // setMBoxItemList(res.data.list);
@@ -359,10 +357,10 @@ const SaleCollectibles = () => {
             <div>
               <div>
                 <div className="title-sale-by-Collectors fw-600">
-                  For Sale by Collectors
+                  Items in the mystery box
                 </div>
                 <div className="sub-title-sale-by-Collectors fw-600">
-                  Sold out? No problem! Check out user listings below.
+                  You will get one of the items below.
                 </div>
               </div>
 
@@ -417,6 +415,8 @@ const SaleCollectibles = () => {
                       item={item}
                       mBoxName={mBoxInfo?.title.en}
                       mBoxImage={mBoxInfo?.packageImage}
+                      quote={mBoxInfo?.quote}
+                      price={mBoxInfo?.price}
                     />
                   ))}
                   <div className="list-carousel">

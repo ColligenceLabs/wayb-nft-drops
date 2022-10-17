@@ -6,18 +6,24 @@ type MBoxItemCardProps = {
   item: MBoxItemTypes;
   mBoxName: string;
   mBoxImage: string;
+  quote: string | null;
+  price: number | null;
 };
 const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
   item,
   mBoxName,
   mBoxImage,
+  quote,
+  price,
 }) => {
   return (
     <div className="slide-item">
       <Link to={'/sale'} className="button">
         <div className="hot-ollectibles-wrapper">
           <div className="header-left hot-ollectibles-item">
-            <span className="total-run fw-600">Total Run: 35000</span>
+            <span className="total-run fw-600">
+              Total Run: {item.issueAmount}
+            </span>
           </div>
           <div className="hot-ollectibles-item">
             <div>erc721</div>
@@ -44,7 +50,7 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
           <div className="hot-ollectibles-item">
             <div className="wrapper-price">
               <div className="price-header font-size-14">Price</div>
-              <div className="current-price font-size-18">$29.99</div>
+              <div className="current-price font-size-18">{`${quote} ${price}`}</div>
             </div>
           </div>
           <div className="hot-ollectibles-item">

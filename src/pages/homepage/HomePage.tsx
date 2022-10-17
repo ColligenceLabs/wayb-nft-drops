@@ -21,7 +21,7 @@ import account from '../../redux/slices/account';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
 type ExMBoxType = MBoxTypes & {
-  remainingAmount: number;
+  remainingAmount: number | null;
 };
 
 const Homepage = () => {
@@ -54,12 +54,13 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            const remaining = await getItemRemains(
-              item.boxContractAddress,
-              account,
-              library
-            );
-
+            let remaining = null;
+            if (library && library.connection)
+              remaining = await getItemRemains(
+                item.boxContractAddress,
+                account,
+                library
+              );
             return { ...item, remainingAmount: remaining };
           })
         );
@@ -68,7 +69,7 @@ const Homepage = () => {
     };
     fetchSlideData();
     fetchFeaturedCollections();
-    if (library && library.connection) fetchCollectionList();
+    fetchCollectionList();
   }, [library]);
 
   const carouselOption = {
@@ -319,7 +320,7 @@ const Homepage = () => {
                       <div className="wrapper-remaining">
                         <div className="remaining-header">Remaining</div>
                         <div className="quantity-remaining">
-                          {item.remainingAmount}
+                          {item.remainingAmount ? item.remainingAmount : '-'}
                         </div>
                       </div>
                     </div>
