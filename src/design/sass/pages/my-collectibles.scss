@@ -81,7 +81,7 @@
             rgb(18 18 18 / 5%) -5px -5px 10px 10px;
           z-index: 9;
           width: 100px;
-          background-color: white;
+          background-color: #23235c;
           .name-sort-dropdown-box {
             display: flex;
             flex-direction: column;
@@ -92,7 +92,8 @@
               align-items: center;
               padding: 10px 0px;
               border: none;
-              background-color: #fff;
+              background-color: #23235c;
+              color: #ffffff;
             }
             .sort-button:hover {
               // color: rgb(227 100 190);

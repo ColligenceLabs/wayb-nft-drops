@@ -6,17 +6,89 @@
 
   .modal-dialog {
     z-index: 21;
-    padding: 50px;
+    // padding: 50px;
     position: fixed;
     inset: 0px;
-    width: 600px;
-    height: max-content;
+    // width: 600px;
+    // height: max-content;
     margin: auto;
-    border-radius: 30px;
     box-shadow: black -5px 5px 20px;
     background-color: #212121;
     outline: none;
     transition: all 500ms;
+    width: 600px;
+    height: 708px;
+    background: #23235c;
+    border-radius: 30px;
+    .header {
+      position: relative;
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      padding: 24px 0 26px;
+      .title {
+        text-align: center;
+      }
+      .close-button {
+        position: absolute;
+        top: 24px;
+        right: 30px;
+        width: 16px;
+        height: 16px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .sub-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      padding-top: 24px;
+    }
+    .grid-payments {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 24px;
+      padding: 26px 88px 24px;
+      .payment-box {
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        .pay-item {
+          width: 68px;
+          height: 68px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .custom-submit {
+      max-width: 600px;
+      margin: 0 50px;
+      .payments-btn-submit {
+        width: 100%;
+        height: 60px;
+        background: #2f8af5;
+        border-radius: 10px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        color: #ffffff;
+      }
+    }
   }
 
   .modal-header {
@@ -118,7 +190,6 @@
         font-size: 16px;
       }
     }
-
   }
   @media (max-width: 768px) {
     .modal-dialog {
@@ -139,36 +210,53 @@
       }
     }
   }
-  @media (max-width: 520px) {
+  @media (max-width: 540px) {
     .modal-dialog {
-      padding: 20px;
-      .modal-body {
-        .payment-modal-box {
-          gap: 20px;
-          .abc {
-            margin-right: 0;
-            width: 120px;
-            height: 120px;
-            border-radius: 20px;
-            img {
-              width: 70px;
-              height: 70px;
-            }
-          }
-        }
-      }
-      .modal-content {
-        .modal-header {
-          .modal-tittle {
-            margin-top: 30px;
-            .title {
-              padding-bottom: 10px;
-            }
+      padding: 0 20px;
+      .grid-payments {
+        padding: 26px 0px 24px;
+        .payment-box {
+          width: 120px;
+          height: 120px;
+          .pay-item {
+            width: 50px;
+            height: 50px;
           }
         }
       }
     }
-  }
+
+}
+  // @media (max-width: 520px) {
+  //   .modal-dialog {
+  //     padding: 20px;
+  //     .modal-body {
+  //       .payment-modal-box {
+  //         gap: 20px;
+  //         .abc {
+  //           margin-right: 0;
+  //           width: 120px;
+  //           height: 120px;
+  //           border-radius: 20px;
+  //           img {
+  //             width: 70px;
+  //             height: 70px;
+  //           }
+  //         }
+  //       }
+  //     }
+  //     .modal-content {
+  //       .modal-header {
+  //         .modal-tittle {
+  //           margin-top: 30px;
+  //           .title {
+  //             padding-bottom: 10px;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .modal-sm {
