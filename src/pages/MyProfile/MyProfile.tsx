@@ -73,11 +73,11 @@ const MyProfile = () => {
             <Popup
               modal
               trigger={
-                (open: any) => <Edit open={open} />
-                // <button>Edit Profile</button>
+                // (open: any) => <Edit open={open} />
+                <button>Edit Profile</button>
               }
             >
-              {/* <>{(close: any) => <Edit close={close} />}</> */}
+              <>{(close: any) => <Edit close={close} />}</>
             </Popup>
             <Popup
               modal

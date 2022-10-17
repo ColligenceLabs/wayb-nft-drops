@@ -299,7 +299,7 @@ const SaleCollectibles = () => {
                     <div className="lable-top">Purchase price</div>
                     <div className="lable-bottom fw-600">{`${mBoxInfo.price} ${mBoxInfo.quote}`}</div>
                   </div>
-                  {/* {!countDownFinish && (
+                  {!countDownFinish && (
                     <CountDownTimer
                       handeCheckCountDownFinish={handeCheckCountDownFinish}
                       targetDate={new Date(mBoxInfo.afterRelease)}
@@ -331,15 +331,15 @@ const SaleCollectibles = () => {
                     >
                       Connect Wallet
                     </button>
-                  )} */}
-                  <button
+                  )}
+                  {/* <button
                     className={'btn-sale-collection'}
                     disabled={isLoading || remains === 0}
                     onClick={() => setOpenPaymentWallets(true)}
                     // onClick={handleBuyClick}
                   >
                     Buy Now
-                  </button>
+                  </button> */}
                   {/* <button className="btn-sale-collection disable">Sold out</button> */}
                 </div>
               </div>

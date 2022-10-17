@@ -48,45 +48,6 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
             Got it!
           </button>
         </div>
-
-        {/* <div className="modal-content">
-          <div className="modal-header">
-            <div className="modal-tittle">
-              <div>
-                <div className="title">Sweet!</div>
-
-                <div className="sub-title">Your purchase was successful.</div>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="close-button button"
-              onClick={onHide}
-            >
-              <img src={close_icon} alt="Close Icon" />
-            </button>
-          </div>
-          <div className="modal-body">
-            <div className="payment-modal-success-box">
-              <img src={home_11} alt="" />
-            </div>
-            <div className="content-payment-modal-success">
-              <div className="tittle">Strawberry Shortcake Space Creampop </div>
-              <div className="content">
-                Congratulations, your token purchase is in progress, It could
-                take up to ten minutes to verify your transaction and transfer
-                the token to your wallet.
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="payments-btn-submit fw-600"
-              onClick={onHide}
-            >
-              Got It!
-            </button>
-          </div>
-        </div> */}
       </div>
     </ReactModal>
   );
