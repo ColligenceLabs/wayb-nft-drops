@@ -50,7 +50,9 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
           <div className="hot-ollectibles-item">
             <div className="wrapper-remaining">
               <div className="remaining-header font-size-14">Remaining </div>
-              <div className="quantity-remaining font-size-18">26008</div>
+              <div className="quantity-remaining font-size-18">
+                {item.remainingAmount!}
+              </div>
             </div>
           </div>
         </div>

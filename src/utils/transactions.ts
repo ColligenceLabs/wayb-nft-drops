@@ -1183,7 +1183,7 @@ export async function getItemAmount(
     );
   }
 
-  const itemAmount = 0;
+  let itemAmount = 0;
   try {
     if (isKaikas) {
       itemAmount = await contract.methods

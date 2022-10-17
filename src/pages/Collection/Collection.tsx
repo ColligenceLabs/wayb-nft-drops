@@ -91,7 +91,7 @@ const Collection = () => {
                   <img src={featured.image} alt="" draggable={false} />
                   <div className="name">
                     <div className="fullname">{featured.name.en}</div>
-                    <div className="username">username</div>
+                    <div className="username">{featured.company.name.en}</div>
                   </div>
                 </div>
                 <div className="collection-info-right">

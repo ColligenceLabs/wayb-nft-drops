@@ -14,4 +14,5 @@ export interface MBoxItemTypes {
   properties: PropertyTypes[] | null;
   levels: OptionsTypes[] | null;
   stats: OptionsTypes[] | null;
+  remainingAmount?: number | null;
 }

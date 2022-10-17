@@ -28,8 +28,9 @@ import Popup from 'reactjs-popup';
 import CSnackbar from '../../components/common/CSnackbar';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { useSelector } from 'react-redux';
+import { getItemAmount, getItemRemains } from '../../utils/transactions';
 
-type MBoxTypesWithCompany = MBoxTypes & {
+type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
 };
@@ -43,7 +44,7 @@ const SaleCollectibles = () => {
 
   const { account, library } = useWeb3React();
 
-  const [mBoxInfo, setMBoxInfo] = useState<MBoxTypesWithCompany | null>(null);
+  const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
   const [remains, setRemains] = useState(0);
   const [mBoxItemList, setMBoxItemList] = useState<MBoxItemTypes[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -174,17 +175,36 @@ const SaleCollectibles = () => {
     const fetchMboxItemList = async () => {
       const res = await getMboxItemListMboxId(location.state.item.id);
       if (res.status === 200) {
-        setMBoxItemList(res.data.list);
+        if (res.data.list) {
+          const newList = await Promise.all(
+            res.data.list.map(async (item: MBoxTypes, index: number) => {
+              console.log(location.state.item);
+              const remaining = await getItemAmount(
+                location.state.item.boxContractAddress,
+                index,
+                account,
+                library
+              );
+              console.log(`remaining : ${remaining}`);
+
+              return { ...item, remainingAmount: remaining };
+            })
+          );
+          console.log(newList);
+          setMBoxItemList(newList);
+        }
+        // setMBoxItemList(res.data.list);
       }
     };
-    if (location.state.item) {
+
+    if (location.state.item && library && library.connection) {
       setMBoxInfo(location.state.item);
       fetchMboxItemList();
     }
-  }, [location]);
+  }, [location, library]);
 
   useEffect(() => {
-    const getAvailability = async (info: MBoxTypesWithCompany) => {
+    const getAvailability = async (info: ExMBoxType) => {
       const left = await getKeyRemains(
         info.keyContractAddress,
         info.boxContractAddress,

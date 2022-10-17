@@ -18,6 +18,13 @@ export const getMboxListByFeaturedId = async (id: string) => {
   );
 };
 
+export const getCollectionList = async (isCollection?: boolean) => {
+  return await customAxios.get(`/api/service/mysterybox?page=1&limit=100${
+    isCollection ? `&isCollection=${isCollection}` : ''
+  }
+`);
+};
+
 export const getMboxItemListMboxId = async (id: string) => {
   return await customAxios.get(`/api/service/mysterybox/${id}/items?page=1&limit=100
 `);

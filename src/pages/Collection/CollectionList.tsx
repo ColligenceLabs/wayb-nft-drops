@@ -4,11 +4,17 @@ import product from '../../assets/img/product.png';
 import avatar from '../../assets/img/avatar.png';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getMboxListByFeaturedId } from '../../services/services';
+import { getItemAmounts } from 'utils/transactions';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
 type CollectionListProps = {
   featuredId: string | null;
   companyLogo: string;
   companyName: string;
+};
+
+type ExMBoxType = MBoxTypes & {
+  remainingAmount: number;
 };
 
 const list_products = [
@@ -64,14 +70,29 @@ const CollectionList: React.FC<CollectionListProps> = ({
   companyLogo,
   companyName,
 }) => {
-  const [mBoxList, setMBoxList] = useState<MBoxTypes[]>([]);
+  const { account, library, activate } = useActiveWeb3React();
+  const [mBoxList, setMBoxList] = useState<ExMBoxType[]>([]);
 
   useEffect(() => {
     const fetchMBoxList = async () => {
       if (featuredId) {
         const res = await getMboxListByFeaturedId(featuredId);
+
         if (res.status === 200) {
-          setMBoxList(res.data.list);
+          if (res.data.list && library.connection) {
+            const newList = await Promise.all(
+              res.data.list.map(async (item: MBoxTypes) => {
+                const remaining = await getItemAmounts(
+                  item.boxContractAddress,
+                  account,
+                  library
+                );
+                return { ...item, remainingAmount: 2 };
+              })
+            );
+            setMBoxList(newList);
+          }
+          // setMBoxList(res.data.list);
         }
       }
     };
