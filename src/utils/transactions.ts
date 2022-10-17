@@ -8,6 +8,8 @@ import Caver, { AbiItem } from 'caver-js';
 import { evenAllocAbi } from '../config/abi/EventAllocation';
 import env from '../env';
 import tokenAbi from '../config/abi/ERC20Token.json';
+import { collectionAbi } from '../config/abi/Collection';
+import { collectionData } from '../contracts';
 
 const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 1001];
 const caver = new Caver(rpcUrl);
@@ -1247,4 +1249,121 @@ export async function getItemRemains(
     console.log('getItemAmounts Error : ', e);
   }
   return remains;
+}
+
+export async function buyItem(
+  address: string,
+  index: number,
+  amount: number,
+  payment: string,
+  quote: string,
+  account: string | undefined | null,
+  library: any
+): Promise<number> {
+  const gasPrice = await caver.rpc.klay.getGasPrice();
+  const isKaikas =
+    library.connection.url !== 'metamask' ||
+    library.connection.url === 'eip-1193:';
+
+  console.log(isKaikas);
+  let contract: any;
+  if (isKaikas) {
+    // @ts-ignore : In case of Klaytn Kaikas Wallet
+    const caver = new Caver(window.klaytn);
+    const collectionAbi: AbiItem[] = collectionData.abi as AbiItem[];
+    contract = new caver.klay.Contract(collectionAbi, address);
+  } else {
+    contract = new ethers.Contract(
+      address,
+      collectionAbi,
+      library?.getSigner()
+    );
+  }
+
+  let tx;
+  // gasLimit 계산
+  let gasLimit;
+  console.log(contract, amount);
+  if (isKaikas) {
+    if (quote === '0x0000000000000000000000000000000000000000') {
+      gasLimit = await contract.methods.buyItemEth(index, amount).estimateGas({
+        value: payment,
+        from: account,
+      });
+    } else {
+      gasLimit = await contract.methods
+        .buyItemQuote(index, payment, amount)
+        .estimateGas({
+          from: account,
+        });
+    }
+  } else {
+    if (quote === '0x0000000000000000000000000000000000000000') {
+      gasLimit = await contract.estimateGas.buyItemEth(index, amount, {
+        value: payment,
+      });
+    } else {
+      gasLimit = await contract.estimateGas.buyItemQuote(
+        index,
+        payment,
+        amount
+      );
+    }
+  }
+
+  // registerItems 요청
+  let receipt;
+  try {
+    let overrides: Overrides = {
+      from: account,
+      gasLimit: calculateGasMargin(BigNumber.from(gasLimit)),
+    };
+
+    if (isKaikas) {
+      if (quote === '0x0000000000000000000000000000000000000000') {
+        overrides = { ...overrides, value: payment };
+
+        tx = await contract.methods
+          .buyItemEth(index, amount)
+          .send(overrides)
+          .catch(async (err: any) => {
+            return FAILURE;
+          });
+      } else {
+        tx = await contract.methods
+          .buyItemQuote(index, payment, amount)
+          .send(overrides)
+          .catch(async (err: any) => {
+            return FAILURE;
+          });
+      }
+      if (tx?.status) {
+        return SUCCESS;
+      } else return FAILURE;
+    } else {
+      // if (library._network.chainId === 8217)
+      overrides = { ...overrides, gasPrice };
+
+      if (quote === '0x0000000000000000000000000000000000000000') {
+        overrides = { ...overrides, value: payment };
+
+        tx = await contract.buyItemEth(index, amount, overrides);
+      } else {
+        tx = await contract.buyItemQuote(index, payment, amount, overrides);
+      }
+
+      // receipt 대기
+      try {
+        receipt = await tx.wait();
+      } catch (e) {
+        return FAILURE;
+      }
+      if (receipt.status === 1) {
+        return SUCCESS;
+      } else return FAILURE;
+    }
+  } catch (e) {
+    console.log(e);
+    return FAILURE;
+  }
 }
