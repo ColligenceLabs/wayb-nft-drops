@@ -1157,3 +1157,48 @@ export async function getItemAmounts(
   }
   return itemAmounts;
 }
+
+export async function getItemRemains(
+  address: string,
+  account: string | undefined | null,
+  library: any
+): Promise<number> {
+  const isKaikas =
+    library.connection.url !== 'metamask' ||
+    library.connection.url === 'eip-1193:';
+
+  console.log(isKaikas);
+  let contract: any;
+  if (isKaikas) {
+    // @ts-ignore : In case of Klaytn Kaikas Wallet
+    const caver = new Caver(window.klaytn);
+    const mboxAbi: AbiItem[] = mysteryBoxAbi as AbiItem[];
+    contract = new caver.klay.Contract(mboxAbi, address);
+  } else {
+    contract = new ethers.Contract(
+      address,
+      mysteryBoxAbi,
+      library?.getSigner()
+    );
+  }
+
+  let remains = 0;
+  try {
+    if (isKaikas) {
+      remains = await contract.methods
+        .getItemRemains()
+        .call()
+        .catch(async (err: any) => {
+          console.log('#####', address);
+          console.log('getItemAmounts Error : ', err);
+        });
+    } else {
+      const result: BigNumber = await contract.getItemRemains();
+      remains = result.toNumber();
+    }
+  } catch (e) {
+    console.log('#####', address);
+    console.log('getItemAmounts Error : ', e);
+  }
+  return remains;
+}
