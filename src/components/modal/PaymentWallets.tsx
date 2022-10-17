@@ -17,6 +17,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   openPaymentWalletsSuccess,
 }) => {
   const [isModalOpenSuccess, setModalOpenSuccess] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState<number>();
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const ref = useRef();
 
   const useOnClickOutsideSuccess = (ref: any, handler: any) => {
@@ -59,25 +61,49 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           Please choose one of the payment methods below.
         </div>
         <div className="grid-payments">
-          <div className="payment-box">
+          <div
+            className={`payment-box ${selectedPayment === 1 ? 'active' : ''}`}
+            onClick={() => {
+              setSelectedPayment(1);
+              setIsDisabled(false);
+            }}
+          >
             <div className="pay-item">
               <img src={pay_creditcard} alt="Credit Card" />
             </div>
             <div className="pay-name">Credit Card</div>
           </div>
-          <div className="payment-box">
+          <div
+            className={`payment-box ${selectedPayment === 2 ? 'active' : ''}`}
+            onClick={() => {
+              setSelectedPayment(2);
+              setIsDisabled(false);
+            }}
+          >
             <div className="pay-item">
               <img src={pay_crypto} alt="Crypto" />
             </div>
             <div className="pay-name">Crypto</div>
           </div>
-          <div className="payment-box">
+          <div
+            className={`payment-box ${selectedPayment === 3 ? 'active' : ''}`}
+            onClick={() => {
+              setSelectedPayment(3);
+              setIsDisabled(false);
+            }}
+          >
             <div className="pay-item">
               <img src={pay_appstore} alt="App Store" />
             </div>
             <div className="pay-name">App Store</div>
           </div>
-          <div className="payment-box">
+          <div
+            className={`payment-box ${selectedPayment === 4 ? 'active' : ''}`}
+            onClick={() => {
+              setSelectedPayment(4);
+              setIsDisabled(false);
+            }}
+          >
             <div className="pay-item">
               <img src={pay_googleplay} alt="Google Play" />
             </div>
@@ -86,6 +112,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         </div>
         <div className="custom-submit">
           <button
+            disabled={isDisabled}
             type="submit"
             className="payments-btn-submit button fw-600"
             onClick={() => {
@@ -96,51 +123,6 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             Continue
           </button>
         </div>
-
-        {/* <div className="modal-content">
-          <div className="modal-header">
-            <div className="modal-tittle">
-              <div>
-                <div className="title">How would you like to pay?</div>
-
-                <div className="sub-title">
-                  Please choose one of the payment methods below.
-                </div>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="close-button button"
-              onClick={onHide}
-            >
-              <img src={close_icon} alt="" />
-            </button>
-          </div>
-          <div className="modal-body">
-            <div className="payment-modal-box">
-              <div className="credit-card-button abc">
-                <label className="payid-stripe">
-                  <img src={pay_creditcard} alt="" />
-                </label>
-              </div>
-              <div className="crypto-button abc">
-                <label className="payid-coinbase">
-                  <img src={pay_crypto} alt="" />
-                </label>
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="payments-btn-submit fw-600"
-              onClick={() => {
-                openPaymentWalletsSuccess();
-                onHide();
-              }}
-            >
-              Continue
-            </button>
-          </div>
-        </div> */}
       </div>
     </ReactModal>
   );
