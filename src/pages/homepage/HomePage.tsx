@@ -17,7 +17,6 @@ import ArrowCarouselCollections from 'components/common/ArrowCarouselCollections
 import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getItemRemains } from 'utils/transactions';
-import account from '../../redux/slices/account';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
 type ExMBoxType = MBoxTypes & {
@@ -54,6 +53,7 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
+            console.log(item);
             let remaining = null;
             if (library && library.connection)
               remaining = await getItemRemains(
@@ -271,8 +271,15 @@ const Homepage = () => {
             >
               {collectionList.map((item: any, index) => (
                 <Link
-                  to={`/sale/${item.id}`}
-                  state={{ item }}
+                  to={`/collection-sale/${item.id}`}
+                  state={{
+                    item: {
+                      ...item,
+                      companyLogo: item.featured.company.image,
+                      companyName: item.featured.companyId,
+                      quote: item.quote,
+                    },
+                  }}
                   className="button custom-box"
                   key={index}
                 >

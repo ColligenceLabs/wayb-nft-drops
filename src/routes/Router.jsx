@@ -12,6 +12,8 @@ import Profile from 'pages/MyProfile/MyProfile';
 import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistory';
 import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
+import CollectionSale from 'pages/CollectionSale/CollectionSale';
+import CollectionSaleDetail from 'pages/CollectionSale/CollectionSaleDetail';
 
 const Router = () => [
   {
@@ -21,6 +23,8 @@ const Router = () => [
       { path: '/', element: <Homepage /> },
       { path: '/collection/:id', element: <Collection /> },
       { path: '/collections', element: <Collections /> },
+      { path: '/collection-sale/:id', element: <CollectionSale /> },
+      { path: '/collection-sale/sale/:id', element: <CollectionSaleDetail /> },
       { path: '/sale/:id', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },
       {
@@ -30,7 +34,6 @@ const Router = () => [
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <PurchaseHistory /> },
       { path: '/series', element: <PurchaseHistoryDetail /> },
-
       { path: '/puzzle-collection', element: <PuzzleCollection /> },
     ],
   },
