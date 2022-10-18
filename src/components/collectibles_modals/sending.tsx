@@ -8,7 +8,7 @@ type SendingProps = {
 
 const Sending: React.FC<SendingProps> = ({ close, onConfirm }) => (
   <div
-    className="modal_collectibles"
+    className="modal_collectibles sending-modal"
     tabIndex={-1}
     role="dialog"
     aria-modal="true"

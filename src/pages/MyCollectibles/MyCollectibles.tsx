@@ -5,6 +5,7 @@ import home_10_avt from '../../assets/img/home_10_avt.jpg';
 import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
 import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
 import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
+import avatar from '../../assets/img/avatar.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -237,37 +238,40 @@ const MyCollectibles = () => {
 
         {/* item  */}
         <div className="page-grid">
-          {myMBoxList.map((item) => (
+          {/* {myMBoxList.map((item) => (
             <MBoxCard key={item.id} item={item} />
-          ))}
-          {/*{listItems.map((item, index) => {*/}
-          {/*  return (*/}
-          {/*    <a href="/my-collectibles/details" key={index}>*/}
-          {/*      <div className="item-product">*/}
-          {/*        <div className="item-product-detail">*/}
-          {/*          <div className="card">*/}
-          {/*            <img src={home_10_avt} alt="" />*/}
-          {/*          </div>*/}
-          {/*        </div>*/}
+          ))} */}
+          {listItems.map((item, index) => {
+            return (
+              <a href="/my-collectibles/details" key={index}>
+                <div className="item-product">
+                  <div className="item-product-detail">
+                    <div className="card">
+                      <img src={home_10_avt} alt="" />
+                    </div>
+                  </div>
 
-          {/*        <div*/}
-          {/*          className="item-product-detail"*/}
-          {/*          style={{ padding: '0px' }}*/}
-          {/*        >*/}
-          {/*          <div className="box-info">*/}
-          {/*            <div className="box-product-name">*/}
-          {/*              <div className="product-type">Sweet</div>*/}
-          {/*              <div className="product-name">{item.name}</div>*/}
-          {/*            </div>*/}
-          {/*            <img src={item.icon} alt="" />*/}
-          {/*          </div>*/}
-          {/*        </div>*/}
-
-          {/*        <div className="item-product-detail"></div>*/}
-          {/*      </div>*/}
-          {/*    </a>*/}
-          {/*  );*/}
-          {/*})}*/}
+                  <div
+                    className="item-product-detail"
+                    style={{ padding: '0px' }}
+                  >
+                    <div className="box-info">
+                      <div className="box-product-name">
+                        <div className="wrapper-product-type">
+                          <div className="avatar">
+                            <img src={avatar} alt="Avatar" />
+                          </div>
+                          <div className="product-type">Sweet</div>
+                        </div>
+                        <div className="product-name">{item.name}</div>
+                      </div>
+                      <img src={item.icon} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </main>

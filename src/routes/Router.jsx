@@ -24,7 +24,7 @@ const Router = () => [
       { path: '/sale/:id', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },
       {
-        path: '/my-collectibles/details/:id',
+        path: '/my-collectibles/details',
         element: <MyCollectiblesDetails />,
       },
       { path: '/my-profile', element: <Profile /> },
