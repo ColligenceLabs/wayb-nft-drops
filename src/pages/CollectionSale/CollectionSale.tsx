@@ -14,7 +14,7 @@ const CollectionSale = () => {
   const params = useParams();
   const location = useLocation();
   const { account, library } = useWeb3React();
-  const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
+  const [collectionInfo, setCollectionInfo] = useState<ExMBoxType | null>(null);
   const [mBoxItemList, setMBoxItemList] = useState<MBoxItemTypes[]>([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const CollectionSale = () => {
     // };
 
     if (location.state.item && library && library.connection) {
-      setMBoxInfo(location.state.item);
+      setCollectionInfo(location.state.item);
       // fetchMboxItemList();
     }
   }, [location, library]);
@@ -54,17 +54,21 @@ const CollectionSale = () => {
         <div
           className="collection-banner-image"
           style={{
-            backgroundImage: `url("${mBoxInfo?.bannerImage}")`,
+            backgroundImage: `url("${collectionInfo?.bannerImage}")`,
           }}
         ></div>
         <div className="box-collection">
           <div className="collection-details-box">
             <div className="collection-info">
               <div className="collection-info-left">
-                <img src={mBoxInfo?.packageImage} alt="" draggable={false} />
+                <img
+                  src={collectionInfo?.packageImage}
+                  alt=""
+                  draggable={false}
+                />
                 <div className="name">
-                  <div className="fullname">{mBoxInfo?.title.en}</div>
-                  <div className="username">{mBoxInfo?.companyName}</div>
+                  <div className="fullname">{collectionInfo?.title.en}</div>
+                  <div className="username">{collectionInfo?.companyName}</div>
                 </div>
               </div>
               <div className="collection-info-right">
@@ -79,14 +83,15 @@ const CollectionSale = () => {
               </div>
             </div>
             <div className="collection-info-content">
-              <div>{mBoxInfo?.introduction.en}</div>
+              <div>{collectionInfo?.introduction.en}</div>
             </div>
           </div>
           <CollectionSaleItems
             collectionId={params.id}
-            companyLogo={mBoxInfo?.companyLogo}
-            companyName={mBoxInfo?.companyName}
-            quote={mBoxInfo?.quote}
+            collectionInfo={collectionInfo}
+            companyLogo={collectionInfo?.companyLogo}
+            companyName={collectionInfo?.companyName}
+            quote={collectionInfo?.quote}
           />
         </div>
       </>

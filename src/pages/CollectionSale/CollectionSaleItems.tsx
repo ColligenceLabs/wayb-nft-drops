@@ -4,15 +4,21 @@ import { getMboxItemListMboxId } from '../../services/services';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
-import { getItemRemains } from 'utils/transactions';
+import { getItemAmount, getItemRemains } from 'utils/transactions';
 
 type CollectionItemType = MBoxItemTypes & {
   remainingAmount: number;
   price: number;
 };
 
+type ExMBoxType = MBoxTypes & {
+  companyLogo: string;
+  companyName: string;
+};
+
 type CollectionListProps = {
   collectionId: string | undefined;
+  collectionInfo: ExMBoxType | null;
   companyLogo: string | undefined;
   companyName: string | undefined;
   quote: string | null | undefined;
@@ -20,6 +26,7 @@ type CollectionListProps = {
 
 const CollectionSaleItems: React.FC<CollectionListProps> = ({
   collectionId,
+  collectionInfo,
   companyLogo,
   companyName,
   quote,
@@ -36,19 +43,27 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
 
         if (res.data.list && library && library.connection) {
           const newList = await Promise.all(
-            res.data.list.map(async (item: MBoxTypes) => {
-              // console.log(item);
+            res.data.list.map(async (item: MBoxTypes, index: number) => {
+              console.log(item);
               // let remaining = null;
               // if (library && library.connection)
-              //   remaining = await getItemRemains(
+              //   remaining = await getItemAmount(
               //     item.boxContractAddress,
+              //     index,
+              //     2, // 1 = MysteryBox, 2 = Collection
               //     account,
               //     library
               //   );
 
-              return { ...item, remainingAmount: '연동필요' };
+              return {
+                ...item,
+                remainingAmount: 1,
+                index,
+                collectionInfo: collectionInfo,
+              };
             })
           );
+          console.log(newList);
           setCollectionItemList(newList);
         }
       }

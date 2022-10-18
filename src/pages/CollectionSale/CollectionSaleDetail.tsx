@@ -57,6 +57,7 @@ const CollectionSaleDetail = () => {
   const handleBuyClick = async () => {
     setIsLoading(true);
     console.log('buy');
+    console.log(collectionItemInfo);
     setIsLoading(false);
   };
   useEffect(() => {
