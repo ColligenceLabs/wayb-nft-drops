@@ -45,19 +45,19 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes, index: number) => {
               console.log(item);
-              // let remaining = null;
-              // if (library && library.connection)
-              //   remaining = await getItemAmount(
-              //     item.boxContractAddress,
-              //     index,
-              //     2, // 1 = MysteryBox, 2 = Collection
-              //     account,
-              //     library
-              //   );
+              let remaining = null;
+              if (library && library.connection)
+                remaining = await getItemAmount(
+                  collectionInfo?.boxContractAddress,
+                  index,
+                  2, // 1 = MysteryBox, 2 = Collection
+                  account,
+                  library
+                );
 
               return {
                 ...item,
-                remainingAmount: 1,
+                remainingAmount: remaining,
                 index,
                 collectionInfo: collectionInfo,
               };
