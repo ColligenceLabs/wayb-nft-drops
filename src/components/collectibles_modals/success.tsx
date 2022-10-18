@@ -85,8 +85,8 @@ const Success: React.FC<SuccessProps> = ({ close }) => (
       <div className="line line-modal-success"></div>
       <div className="text_small">
         It may takes a few hours to show up in your interval wallet. Please
-        email us at <a className="purple_text">support@sweet.io</a> if you have
-        any question.
+        email us at <a className="purple_text">support@...</a> if you have any
+        question.
       </div>
       <div className="understand">
         <Link to={'/my-collectibles'} className="link">
