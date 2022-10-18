@@ -99,7 +99,7 @@ const MyCollectiblesDetails = () => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const location = useLocation();
   // const [mboxInfo, setMboxInfo] = useState<MBoxTypes>(location.state.item);
-  const [open, setOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -185,13 +185,13 @@ const MyCollectiblesDetails = () => {
   //   setIsLoading(false);
   // };
 
-  const handleScrollPercent = () => {
-    const positionPercent =
-      (window.pageYOffset /
-        (document.documentElement.offsetHeight - window.innerHeight)) *
-      100;
-    setScrollPercentPosition(positionPercent);
-  };
+  // const handleScrollPercent = () => {
+  //   const positionPercent =
+  //     (window.pageYOffset /
+  //       (document.documentElement.offsetHeight - window.innerHeight)) *
+  //     100;
+  //   setScrollPercentPosition(positionPercent);
+  // };
 
   // useEffect(() => {
   //   const handler = (event: any) => {
@@ -343,16 +343,21 @@ const MyCollectiblesDetails = () => {
               <div className="dropdown">
                 <div
                   className="dropdown-button"
-                  onClick={() => setOpen((open) => !open)}
+                  onClick={() =>
+                    setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                  }
                 >
                   <img src={ic_dropdown} alt="dropdown" />
                 </div>
-                {open && (
+                {dropdownOpen && (
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
                       <button
                         className="dropdown-item "
-                        onClick={() => setWarningOpen(true)}
+                        onClick={() => {
+                          setWarningOpen(true);
+                          setDropdownOpen(false);
+                        }}
                       >
                         <img
                           src={ic_send_to_my_wallet}
@@ -431,7 +436,7 @@ const MyCollectiblesDetails = () => {
                 {'Sell on Drop'}
               </button>
               <button type="button" className="btn-trade status">
-                <img src={ic_trade} alt="sell" />
+                <img src={ic_trade} alt="trade" />
                 {'Trade on Drop'}
               </button>
               {/* <Popup
