@@ -246,14 +246,27 @@ const SaleCollectibles = () => {
           <div className="price-collection-view-page">
             <div className="price-collection-box">
               <div className="token-showcase-box">
-                {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (
-                  <div>
-                    <video muted autoPlay playsInline loop>
-                      <source src={mBoxInfo.revealAnimation} type="video/mp4" />
-                    </video>
-                  </div>
+                {mBoxInfo.revealAnimation === null ? (
+                  <img
+                    style={{ objectFit: 'cover' }}
+                    src={mBoxInfo.packageImage}
+                    alt=""
+                  />
                 ) : (
-                  <img src={mBoxInfo.revealAnimation} alt="" />
+                  <>
+                    {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (
+                      <div>
+                        <video muted autoPlay playsInline loop>
+                          <source
+                            src={mBoxInfo.revealAnimation}
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    ) : (
+                      <img src={mBoxInfo.revealAnimation} alt="" />
+                    )}
+                  </>
                 )}
               </div>
               <div className="straight-line"></div>
