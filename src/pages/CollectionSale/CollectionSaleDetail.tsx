@@ -14,6 +14,7 @@ import contracts from '../../config/constants/contracts';
 import { SUCCESS } from '../../config';
 import { getKeyRemains } from '../../utils/marketTransactions';
 import { registerBuy } from '../../services/services';
+import { parseEther } from 'ethers/lib/utils';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   companyLogo: string;
@@ -66,14 +67,24 @@ const CollectionSaleDetail = () => {
     console.log('buy');
     console.log(collectionItemInfo);
     const contract = collectionItemInfo?.collectionInfo?.boxContractAddress;
-    const payment = collectionItemInfo?.collectionInfo?.paymentAddress;
     const quote = collectionItemInfo?.collectionInfo?.quote;
     const index = collectionItemInfo?.index ?? 0;
-    const result = await buyItem(
+    const amount = 1;
+    const payment = parseEther(collectionItemInfo?.price.toString() ?? '0').mul(
+      amount
+    );
+    console.log(
       contract,
       index,
       1,
       payment,
+      quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId]
+    );
+    const result = await buyItem(
+      contract,
+      index,
+      1,
+      payment.toString(),
       quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
       account,
       library
@@ -102,7 +113,9 @@ const CollectionSaleDetail = () => {
         });
       }
     }
+    setIsLoading(false);
   };
+
   useEffect(() => {
     setCollectionItemInfo(location.state.item);
   }, [location.state]);
