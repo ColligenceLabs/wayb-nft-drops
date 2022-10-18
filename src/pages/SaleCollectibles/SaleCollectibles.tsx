@@ -182,6 +182,7 @@ const SaleCollectibles = () => {
                 remaining = await getItemAmount(
                   location.state.item.boxContractAddress,
                   index,
+                  item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
                   account,
                   library
                 );

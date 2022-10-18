@@ -1115,54 +1115,55 @@ export async function approveKIP7(
   }
 }
 
-// get all item's amount at once
-export async function getItemAmounts(
-  address: string,
-  account: string | undefined | null,
-  library: any
-): Promise<string[]> {
-  const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
-
-  console.log(isKaikas);
-  let contract: any;
-  if (isKaikas) {
-    // @ts-ignore : In case of Klaytn Kaikas Wallet
-    const caver = new Caver(window.klaytn);
-    const mboxAbi: AbiItem[] = mysteryBoxAbi as AbiItem[];
-    contract = new caver.klay.Contract(mboxAbi, address);
-  } else {
-    contract = new ethers.Contract(
-      address,
-      mysteryBoxAbi,
-      library?.getSigner()
-    );
-  }
-
-  let itemAmounts = [];
-  try {
-    if (isKaikas) {
-      itemAmounts = await contract.methods
-        .getItemAmounts()
-        .call()
-        .catch(async (err: any) => {
-          console.log('#####', address);
-          console.log('getItemAmounts Error : ', err);
-        });
-    } else {
-      itemAmounts = await contract.getItemAmounts();
-    }
-  } catch (e) {
-    console.log('#####', address);
-    console.log('getItemAmounts Error : ', e);
-  }
-  return itemAmounts;
-}
+// // get all item's amount at once
+// export async function getItemAmounts(
+//   address: string,
+//   account: string | undefined | null,
+//   library: any
+// ): Promise<string[]> {
+//   const isKaikas =
+//     library.connection.url !== 'metamask' ||
+//     library.connection.url === 'eip-1193:';
+//
+//   console.log(isKaikas);
+//   let contract: any;
+//   if (isKaikas) {
+//     // @ts-ignore : In case of Klaytn Kaikas Wallet
+//     const caver = new Caver(window.klaytn);
+//     const mboxAbi: AbiItem[] = mysteryBoxAbi as AbiItem[];
+//     contract = new caver.klay.Contract(mboxAbi, address);
+//   } else {
+//     contract = new ethers.Contract(
+//       address,
+//       mysteryBoxAbi,
+//       library?.getSigner()
+//     );
+//   }
+//
+//   let itemAmounts = [];
+//   try {
+//     if (isKaikas) {
+//       itemAmounts = await contract.methods
+//         .getItemAmounts()
+//         .call()
+//         .catch(async (err: any) => {
+//           console.log('#####', address);
+//           console.log('getItemAmounts Error : ', err);
+//         });
+//     } else {
+//       itemAmounts = await contract.getItemAmounts();
+//     }
+//   } catch (e) {
+//     console.log('#####', address);
+//     console.log('getItemAmounts Error : ', e);
+//   }
+//   return itemAmounts;
+// }
 
 export async function getItemAmount(
   address: string,
   index: number,
+  type: number, // 1 = MysteryBox, 2 = Collection
   account: string | undefined | null,
   library: any
 ): Promise<number> {
@@ -1175,35 +1176,66 @@ export async function getItemAmount(
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
     const caver = new Caver(window.klaytn);
-    const mboxAbi: AbiItem[] = mysteryBoxAbi as AbiItem[];
-    contract = new caver.klay.Contract(mboxAbi, address);
+    let klayAbi: AbiItem[];
+    if (type === 1) {
+      klayAbi = mysteryBoxAbi as AbiItem[];
+    } else {
+      klayAbi = collectionAbi as AbiItem[];
+    }
+    contract = new caver.klay.Contract(klayAbi, address);
   } else {
     contract = new ethers.Contract(
       address,
-      mysteryBoxAbi,
+      type === 1 ? mysteryBoxAbi : collectionAbi,
       library?.getSigner()
     );
   }
 
-  let itemAmount = 0;
+  let remains;
   try {
     if (isKaikas) {
-      itemAmount = await contract.methods
-        .itemAmounts(index)
-        .call()
-        .catch(async (err: any) => {
-          console.log('#####', address);
-          console.log('getItemAmount Error : ', err);
-        });
+      if (type === 1) {
+        remains = await contract.methods
+          .itemAmounts(index)
+          .call()
+          .catch(async (err: any) => {
+            console.log('#####', address);
+            console.log('getItemAmount Error : ', err);
+          });
+      } else {
+        const itemAmount = await contract.methods
+          .itemAmounts(index)
+          .call()
+          .catch(async (err: any) => {
+            console.log('#####', address);
+            console.log('getItemAmount Error : ', err);
+          });
+        const itemSold = await contract.methods
+          .itemSolds(index)
+          .call()
+          .catch(async (err: any) => {
+            console.log('#####', address);
+            console.log('getItemAmount Error : ', err);
+          });
+        remains = itemAmount - itemSold;
+      }
     } else {
-      const result: BigNumber = await contract.itemAmounts(index);
-      itemAmount = result.toNumber();
+      if (type === 1) {
+        const result: BigNumber = await contract.itemAmounts(index);
+        remains = result.toNumber();
+      } else {
+        const result1: BigNumber = await contract.itemAmounts(index);
+        const itemAmount = result1.toNumber();
+        const result2: BigNumber = await contract.itemAmounts(index);
+        const itemSold = result2.toNumber();
+        remains = itemAmount - itemSold;
+      }
     }
   } catch (e) {
     console.log('#####', address);
     console.log('getItemAmount Error : ', e);
   }
-  return itemAmount;
+  return remains;
 }
 
 export async function getItemRemains(
@@ -1238,7 +1270,7 @@ export async function getItemRemains(
         .call()
         .catch(async (err: any) => {
           console.log('#####', address);
-          console.log('getItemAmounts Error : ', err);
+          console.log('getItemRemains Error : ', err);
         });
     } else {
       const result: BigNumber = await contract.getItemRemains();
@@ -1246,7 +1278,7 @@ export async function getItemRemains(
     }
   } catch (e) {
     console.log('#####', address);
-    console.log('getItemAmounts Error : ', e);
+    console.log('getItemRemains Error : ', e);
   }
   return remains;
 }
