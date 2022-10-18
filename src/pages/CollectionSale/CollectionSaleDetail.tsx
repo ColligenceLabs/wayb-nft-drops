@@ -9,12 +9,19 @@ import CSnackbar from '../../components/common/CSnackbar';
 import { useLocation } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { buyItem, getItemAmount } from '../../utils/transactions';
+import contracts from '../../config/constants/contracts';
+import { SUCCESS } from '../../config';
+import { getKeyRemains } from '../../utils/marketTransactions';
+import { registerBuy } from '../../services/services';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   companyLogo: string;
   companyName: string;
   price: number;
   quote: string;
+  index: number;
+  collectionInfo: any;
 };
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
@@ -23,7 +30,7 @@ const lockScroll = true;
 
 const CollectionSaleDetail = () => {
   const location = useLocation();
-  const { account, library } = useActiveWeb3React();
+  const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
@@ -58,7 +65,43 @@ const CollectionSaleDetail = () => {
     setIsLoading(true);
     console.log('buy');
     console.log(collectionItemInfo);
-    setIsLoading(false);
+    const contract = collectionItemInfo?.collectionInfo?.boxContractAddress;
+    const payment = collectionItemInfo?.collectionInfo?.paymentAddress;
+    const quote = collectionItemInfo?.collectionInfo?.quote;
+    const index = collectionItemInfo?.index ?? 0;
+    const result = await buyItem(
+      contract,
+      index,
+      1,
+      payment,
+      quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
+      account,
+      library
+    );
+    if (result === SUCCESS) {
+      // const left = await getItemAmount(
+      //   contract,
+      //   index,
+      //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
+      //   account,
+      //   library
+      // );
+
+      const data = {
+        mysterybox_id: collectionItemInfo?.collectionInfo?.id,
+        buyer: '',
+        buyer_address: account,
+      };
+
+      const res = await registerBuy(data);
+      if (res.data.status === SUCCESS) {
+        setOpenSnackbar({
+          open: true,
+          type: 'success',
+          message: 'Success',
+        });
+      }
+    }
   };
   useEffect(() => {
     setCollectionItemInfo(location.state.item);
