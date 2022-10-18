@@ -167,7 +167,9 @@ const CollectionSaleDetail = () => {
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Availability</div>
-                    <div className="lable-bottom fw-600">{'remains'}</div>
+                    <div className="lable-bottom fw-600">
+                      {collectionItemInfo?.remainingAmount}
+                    </div>
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Token Type</div>
