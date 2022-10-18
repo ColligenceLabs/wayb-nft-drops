@@ -16,7 +16,7 @@ import FeaturedCard from '../../components/card/FeaturedCard';
 import ArrowCarouselCollections from 'components/common/ArrowCarouselCollections';
 import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { getItemAmounts, getItemRemains } from 'utils/transactions';
+import { getItemRemains } from 'utils/transactions';
 import account from '../../redux/slices/account';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
