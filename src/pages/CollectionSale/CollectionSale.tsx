@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { useWeb3React } from '@web3-react/core';
-import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import CollectionSaleItems from './CollectionSaleItems';
 
 type ExMBoxType = MBoxTypes & {
@@ -15,86 +14,64 @@ const CollectionSale = () => {
   const location = useLocation();
   const { account, library } = useWeb3React();
   const [collectionInfo, setCollectionInfo] = useState<ExMBoxType | null>(null);
-  const [mBoxItemList, setMBoxItemList] = useState<MBoxItemTypes[]>([]);
 
   useEffect(() => {
-    // const fetchMboxItemList = async () => {
-    //   const res = await getMboxItemListMboxId(location.state.item.id);
-    //   if (res.status === 200) {
-    //     if (res.data.list) {
-    //       const newList = await Promise.all(
-    //         res.data.list.map(async (item: MBoxTypes, index: number) => {
-    //           let remaining = null;
-    //           if (library && library.connection)
-    //             remaining = await getItemAmount(
-    //               location.state.item.boxContractAddress,
-    //               index,
-    //               item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
-    //               account,
-    //               library
-    //             );
-    //
-    //           return { ...item, remainingAmount: remaining };
-    //         })
-    //       );
-    //       setMBoxItemList(newList);
-    //     }
-    //   }
-    // };
-
     if (location.state.item && library && library.connection) {
       setCollectionInfo(location.state.item);
-      // fetchMboxItemList();
     }
   }, [location, library]);
 
   return (
     <main className="collection-container min-height-content">
-      <>
-        <div
-          className="collection-banner-image"
-          style={{
-            backgroundImage: `url("${collectionInfo?.bannerImage}")`,
-          }}
-        ></div>
-        <div className="box-collection">
-          <div className="collection-details-box">
-            <div className="collection-info">
-              <div className="collection-info-left">
-                <img
-                  src={collectionInfo?.packageImage}
-                  alt=""
-                  draggable={false}
-                />
-                <div className="name">
-                  <div className="fullname">{collectionInfo?.title.en}</div>
-                  <div className="username">{collectionInfo?.companyName}</div>
+      {collectionInfo && (
+        <>
+          <div
+            className="collection-banner-image"
+            style={{
+              backgroundImage: `url("${collectionInfo?.bannerImage}")`,
+            }}
+          ></div>
+          <div className="box-collection">
+            <div className="collection-details-box">
+              <div className="collection-info">
+                <div className="collection-info-left">
+                  <img
+                    src={collectionInfo?.packageImage}
+                    alt=""
+                    draggable={false}
+                  />
+                  <div className="name">
+                    <div className="fullname">{collectionInfo?.title.en}</div>
+                    <div className="username">
+                      {collectionInfo?.companyName}
+                    </div>
+                  </div>
+                </div>
+                <div className="collection-info-right">
+                  <div className="collection-info-right-details">
+                    <div className="value">750</div>
+                    <div className="label">NFTs</div>
+                  </div>
+                  <div className="collection-info-right-details">
+                    <div className="value">723</div>
+                    <div className="label">Followers</div>
+                  </div>
                 </div>
               </div>
-              <div className="collection-info-right">
-                <div className="collection-info-right-details">
-                  <div className="value">750</div>
-                  <div className="label">NFTs</div>
-                </div>
-                <div className="collection-info-right-details">
-                  <div className="value">723</div>
-                  <div className="label">Followers</div>
-                </div>
+              <div className="collection-info-content">
+                <div>{collectionInfo?.introduction.en}</div>
               </div>
             </div>
-            <div className="collection-info-content">
-              <div>{collectionInfo?.introduction.en}</div>
-            </div>
+            <CollectionSaleItems
+              collectionId={params.id}
+              collectionInfo={collectionInfo}
+              companyLogo={collectionInfo?.companyLogo}
+              companyName={collectionInfo?.companyName}
+              quote={collectionInfo?.quote}
+            />
           </div>
-          <CollectionSaleItems
-            collectionId={params.id}
-            collectionInfo={collectionInfo}
-            companyLogo={collectionInfo?.companyLogo}
-            companyName={collectionInfo?.companyName}
-            quote={collectionInfo?.quote}
-          />
-        </div>
-      </>
+        </>
+      )}
     </main>
   );
 };
