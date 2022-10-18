@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import success_icon from '../../assets/img/success.png';
+import success_icon from '../../assets/svg/icon_check.svg';
 import test_collectibles from 'assets/img/collectibles_test.png';
 
 type SuccessProps = {
@@ -9,7 +9,7 @@ type SuccessProps = {
 
 const Success: React.FC<SuccessProps> = ({ close }) => (
   <div
-    className="modal_collectibles"
+    className="modal_collectibles success-modal"
     tabIndex={-1}
     role="dialog"
     aria-modal="true"
@@ -81,7 +81,8 @@ const Success: React.FC<SuccessProps> = ({ close }) => (
         is on its way to 0xF3e34e...f478670B20
       </div>
       {/* <hr size={1} width={'80%'} color={'#363433'}></hr> */}
-      <hr style={{ fontSize: 1, width: '80%', color: '#363433' }}></hr>
+      {/* <hr style={{ fontSize: 1, width: '80%', color: '#363433' }}></hr> */}
+      <div className="line line-modal-success"></div>
       <div className="text_small">
         It may takes a few hours to show up in your interval wallet. Please
         email us at <a className="purple_text">support@sweet.io</a> if you have

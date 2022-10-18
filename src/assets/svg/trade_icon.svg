@@ -1,6 +1,3 @@
-<svg id="_8Otby6" data-name="8Otby6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <defs><clipPath id="clip-path"><path id="Path_85289" data-name="Path 85289" d="M0,0H24V24H0Z" fill="#fff"></path></clipPath></defs>
-    <g id="baseline-compare_arrows-24px">
-        <path id="Path_85288" data-name="Path 85288" d="M9.01,14H2v2H9.01v3L13,15,9.01,11Zm5.98-1V10H22V8H14.99V5L11,9Z" fill="#fff"></path>
-    </g>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 17.0001H16M4 17.0001L7.5 13.5001M4 17.0001L7.5 20.5001M7 7.00006H20M20 7.00006L16.5 3.50006M20 7.00006L16.5 10.5001" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

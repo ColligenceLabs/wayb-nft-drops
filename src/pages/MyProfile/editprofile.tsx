@@ -3,16 +3,16 @@ import avatar from '../../assets/img/avatar.png';
 import edit_blue from '../../assets/img/edit_blue.png';
 
 type editprofileProps = {
-  open: boolean | SetStateAction<any>;
+  close: boolean | SetStateAction<any>;
 };
-const editprofile: React.FC<editprofileProps> = ({ open }) => (
+const editprofile: React.FC<editprofileProps> = ({ close }) => (
   <div className="modal-editprofile">
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="edit-profile-modal-box">
           <div className="title">
             <div className="custom-title">Edit Profile</div>
-            <button className="close" onClick={open}>
+            <button className="close" onClick={close}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
