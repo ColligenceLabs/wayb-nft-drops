@@ -1,7 +1,6 @@
 import React from 'react';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
 import avatar from '../../assets/img/avatar_user.webp';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -70,23 +69,17 @@ const MyProfile = () => {
               </div>
               <div className="item-value">twitter/Chainos</div>
             </div>
-            <Popup
-              modal
-              trigger={
-                // (open: any) => <Edit open={open} />
-                <button>Edit Profile</button>
-              }
-            >
-              <>{(close: any) => <Edit close={close} />}</>
+            <Popup modal trigger={<button>Edit Profile</button>}>
+              {Edit}
             </Popup>
             <Popup
               modal
               trigger={
-                // (open: any) => <Delete open={open} />
                 <button className="delete-account">Delete Account</button>
               }
             >
-              <>{(close: any) => <Delete close={close} />}</>
+              {Delete}
+              {/* <>{(close: any) => <Delete close={close} />}</> */}
             </Popup>
           </div>
         </div>

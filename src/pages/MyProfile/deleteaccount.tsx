@@ -3,7 +3,7 @@ import React, { SetStateAction } from 'react';
 type deleteaccountProps = {
   close: boolean | SetStateAction<any>;
 };
-const deleteaccount: React.FC<deleteaccountProps> = ({ close }) => (
+const deleteaccount: any = (close: any) => (
   <div className="modal-delete-account">
     <div className="modal-overlay">
       <div className="modal-content">

@@ -332,14 +332,6 @@ const SaleCollectibles = () => {
                       Connect Wallet
                     </button>
                   )}
-                  {/* <button
-                    className={'btn-sale-collection'}
-                    disabled={isLoading || remains === 0}
-                    onClick={() => setOpenPaymentWallets(true)}
-                    // onClick={handleBuyClick}
-                  >
-                    Buy Now
-                  </button> */}
                   {/* <button className="btn-sale-collection disable">Sold out</button> */}
                 </div>
               </div>
