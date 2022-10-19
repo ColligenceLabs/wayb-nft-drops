@@ -8,11 +8,16 @@ import home_12 from '../../assets/img/home_12.png';
 type PaymentWalletsSuccessProps = {
   show: any;
   onHide: any;
+  itemInfo: any;
+  isCollection: boolean;
 };
 const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
+  itemInfo,
   show,
   onHide,
+  isCollection,
 }) => {
+  console.log(itemInfo);
   return (
     <ReactModal
       preventScroll={true}
@@ -36,9 +41,14 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
             Your purchase was successfull.
           </div>
           <div className="grid-item image-success">
-            <img src={home_12} alt="image success" />
+            <img
+              src={isCollection ? itemInfo.itemImage : itemInfo.packageImage}
+              alt="image success"
+            />
           </div>
-          <div className="grid-item title-image">GENERATIVE MAGIC THE DOG</div>
+          <div className="grid-item title-image">
+            {isCollection ? itemInfo.name : itemInfo.title.en}
+          </div>
           <div className="grid-item sub-image">
             Congratulations, your token purchase is in progress. It could take
             up to ten minutes to verify your transaction anh transfer the token

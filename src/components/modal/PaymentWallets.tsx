@@ -5,20 +5,57 @@ import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
 import pay_appstore from '../../assets/img/pay_appstore.png';
 import pay_googleplay from '../../assets/img/pay_googleplay.png';
+import { MBoxItemTypes } from '../../types/MBoxItemTypes';
+import { MBoxTypes } from '../../types/MBoxTypes';
+import { parseEther } from 'ethers/lib/utils';
+import contracts from '../../config/constants/contracts';
+import { buyItem } from '../../utils/transactions';
+import { SUCCESS, targetNetwork } from '../../config';
+import { registerBuy } from '../../services/services';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { CircularProgress } from '@mui/material';
+import { checkConnectWallet } from '../../utils/wallet';
+import { buyKey, getKeyRemains } from '../../utils/marketTransactions';
+import { useSelector } from 'react-redux';
+
+type ExMBoxType = MBoxTypes & {
+  companyLogo: string;
+  companyName: string;
+};
+
+type ExMBoxItemTypes = MBoxItemTypes & {
+  collectionInfo: any;
+  companyLogo: string;
+  companyName: string;
+  price: number;
+  quote: string;
+  index: number;
+};
 
 type PaymentWalletsProps = {
   show: any;
   onHide: any;
   openPaymentWalletsSuccess: any;
+  itemInfo: any;
+  isCollection: boolean;
 };
 const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   show,
   onHide,
   openPaymentWalletsSuccess,
+  itemInfo,
+  isCollection,
 }) => {
+  const { account, library, chainId, activate } = useActiveWeb3React();
+  const wallet = useSelector((state: any) => state.wallet);
   const [isModalOpenSuccess, setModalOpenSuccess] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<number>();
+  const [remains, setRemains] = useState(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [isBuying, setIsBuying] = useState(false);
+  const [buyItemInfo, setBuyItemInfo] = useState<
+    ExMBoxItemTypes | ExMBoxType | null
+  >(null);
   const ref = useRef();
 
   const useOnClickOutsideSuccess = (ref: any, handler: any) => {
@@ -39,6 +76,153 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   };
 
   useOnClickOutsideSuccess(ref, () => setModalOpenSuccess(false));
+
+  const handleClickBuy = async () => {
+    setIsBuying(true);
+    let result = false;
+    console.log(selectedPayment);
+    if (selectedPayment === 1) {
+      console.log('purchase with credit card');
+    } else if (selectedPayment === 2) {
+      console.log('purchase with crypto');
+      result = await handleClickCrypto();
+    } else if (selectedPayment === 3) {
+      console.log('purchase with app store');
+    } else {
+      console.log('purchase with google');
+    }
+    setIsBuying(false);
+
+    if (result) {
+      openPaymentWalletsSuccess();
+      onHide();
+    }
+  };
+
+  const handleClickCrypto = async () => {
+    console.log(isCollection);
+    console.log(itemInfo);
+    if (isCollection) {
+      console.log('buy');
+      console.log(itemInfo);
+      const contract = itemInfo?.collectionInfo?.boxContractAddress;
+      const quote = itemInfo?.collectionInfo?.quote;
+      const index = itemInfo?.index ?? 0;
+      const amount = 1;
+      const payment = parseEther(itemInfo?.price.toString() ?? '0').mul(amount);
+      console.log(
+        contract,
+        index,
+        1,
+        payment,
+        quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId]
+      );
+      const result = await buyItem(
+        contract,
+        index,
+        1,
+        payment.toString(),
+        quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
+        account,
+        library
+      );
+      if (result === SUCCESS) {
+        // const left = await getItemAmount(
+        //   contract,
+        //   index,
+        //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
+        //   account,
+        //   library
+        // );
+
+        const data = {
+          mysterybox_id: itemInfo?.collectionInfo?.id,
+          buyer: '',
+          buyer_address: account,
+        };
+
+        const res = await registerBuy(data);
+        if (res.data.status === SUCCESS) {
+          // setOpenSnackbar({
+          //   open: true,
+          //   type: 'success',
+          //   message: 'Success',
+          // });
+          console.log('success');
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      console.log('buy mbox');
+      try {
+        if (itemInfo) {
+          // chainid 로 네트워크 확인(eth, klaytn) 후 해당 지갑 연결 체크
+          const check = await checkConnectWallet(
+            itemInfo.chainId,
+            wallet,
+            activate
+          );
+          if (!check) {
+            // 지갑 연결 화면띄우고 종료
+            // setIsLoading(false);
+            // setLoginOpen(true);
+            return false;
+          }
+          const amount = 1;
+          const price = itemInfo.price ?? 0;
+          const payment = parseEther((price * amount).toString()).toString();
+          const result = await buyKey(
+            itemInfo.boxContractAddress,
+            1,
+            payment,
+            itemInfo.quote === 'klay'
+              ? contracts.klay[targetNetwork]
+              : contracts.wklay[targetNetwork],
+            account,
+            library
+          );
+
+          if (result === SUCCESS) {
+            const left = await getKeyRemains(
+              itemInfo.keyContractAddress,
+              itemInfo.boxContractAddress,
+              account,
+              library
+            );
+            setRemains(left);
+
+            const data = {
+              mysterybox_id: itemInfo.id,
+              buyer: '',
+              buyer_address: account,
+            };
+
+            const res = await registerBuy(data);
+            if (res.data.status === SUCCESS) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    }
+  };
+
+  useEffect(() => {
+    setBuyItemInfo(itemInfo);
+  }, [itemInfo, isCollection]);
   return (
     <ReactModal
       preventScroll={true}
@@ -78,6 +262,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             onClick={() => {
               setSelectedPayment(2);
               setIsDisabled(false);
+              // handleClickCrypto();
             }}
           >
             <div className="pay-item">
@@ -112,15 +297,16 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         </div>
         <div className="custom-submit">
           <button
-            disabled={isDisabled}
+            disabled={isDisabled || isBuying}
             type="submit"
             className="payments-btn-submit button fw-600"
-            onClick={() => {
-              openPaymentWalletsSuccess();
-              onHide();
-            }}
+            onClick={handleClickBuy}
           >
-            Continue
+            {isBuying ? (
+              <CircularProgress size={30} color={'inherit'} />
+            ) : (
+              'Continue'
+            )}
           </button>
         </div>
       </div>

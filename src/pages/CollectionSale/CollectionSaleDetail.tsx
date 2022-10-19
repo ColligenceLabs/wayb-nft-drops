@@ -218,8 +218,8 @@ const CollectionSaleDetail = () => {
                       <button
                         className={'btn-sale-collection'}
                         disabled={isLoading}
-                        // onClick={() => setOpenPaymentWallets(true)}
-                        onClick={handleBuyClick}
+                        onClick={() => setOpenPaymentWallets(true)}
+                        // onClick={handleBuyClick}
                       >
                         {isLoading ? (
                           <CircularProgress size={30} color={'inherit'} />
@@ -401,11 +401,15 @@ const CollectionSaleDetail = () => {
           {/*</div>*/}
         </div>
         <PaymentWallets
+          itemInfo={collectionItemInfo!}
+          isCollection={true}
           show={openPaymentWallets}
           onHide={() => setOpenPaymentWallets(false)}
           openPaymentWalletsSuccess={() => setOpenPaymentWalletsSuccess(true)}
         />
         <PaymentWalletsSuccess
+          itemInfo={collectionItemInfo!}
+          isCollection={true}
           show={openPaymentWalletsSuccess}
           onHide={() => setOpenPaymentWalletsSuccess(false)}
         />
