@@ -39,6 +39,7 @@ const CollectionSaleDetail = () => {
   const [signupOpen, setSignupOpen] = useState(false);
   const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
     useState(false);
+  const [remainingAmount, setRemainingAmount] = useState(0);
   const [collectionItemInfo, setCollectionItemInfo] =
     useState<ExMBoxItemTypes | null>(null);
   const [countDownFinish, setCountDownFinish] = useState(false);
@@ -60,6 +61,22 @@ const CollectionSaleDetail = () => {
     });
   };
 
+  const handleClosePaymentWallet = async () => {
+    setOpenPaymentWalletsSuccess(false);
+    fetchRemaining();
+  };
+
+  const fetchRemaining = async () => {
+    const remaining = await getItemAmount(
+      collectionItemInfo?.collectionInfo.boxContractAddress,
+      collectionItemInfo?.index ? collectionItemInfo?.index : 0,
+      2, // 1 = MysteryBox, 2 = Collection
+      account,
+      library
+    );
+    console.log(`remaining : ${remaining}`);
+    setRemainingAmount(remaining);
+  };
   const closeLogin = () => {
     setLoginOpen(false);
   };
@@ -123,6 +140,7 @@ const CollectionSaleDetail = () => {
 
   useEffect(() => {
     setCollectionItemInfo(location.state.item);
+    setRemainingAmount(location.state.item.remainingAmount);
     console.log(location.state.item);
   }, [location.state]);
 
@@ -186,9 +204,7 @@ const CollectionSaleDetail = () => {
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Availability</div>
-                    <div className="lable-bottom fw-600">
-                      {collectionItemInfo?.remainingAmount}
-                    </div>
+                    <div className="lable-bottom fw-600">{remainingAmount}</div>
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Token Type</div>
@@ -217,12 +233,14 @@ const CollectionSaleDetail = () => {
                     {countDownFinish && (
                       <button
                         className={'btn-sale-collection'}
-                        disabled={isLoading}
+                        disabled={isLoading || remainingAmount === 0}
                         onClick={() => setOpenPaymentWallets(true)}
                         // onClick={handleBuyClick}
                       >
                         {isLoading ? (
                           <CircularProgress size={30} color={'inherit'} />
+                        ) : remainingAmount === 0 ? (
+                          'Sold out'
                         ) : (
                           'Buy Now'
                         )}
@@ -411,7 +429,7 @@ const CollectionSaleDetail = () => {
           itemInfo={collectionItemInfo!}
           isCollection={true}
           show={openPaymentWalletsSuccess}
-          onHide={() => setOpenPaymentWalletsSuccess(false)}
+          onHide={handleClosePaymentWallet}
         />
         <Popup
           modal

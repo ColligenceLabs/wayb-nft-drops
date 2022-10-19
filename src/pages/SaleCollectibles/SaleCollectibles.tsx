@@ -103,71 +103,19 @@ const SaleCollectibles = () => {
 
   useOnClickOutside(ref, () => setModalOpen(false));
 
-  const handleBuyClick = async () => {
-    setIsLoading(true);
-    try {
-      if (mBoxInfo) {
-        // chainid 로 네트워크 확인(eth, klaytn) 후 해당 지갑 연결 체크
-        const check = await checkConnectWallet(
-          mBoxInfo.chainId,
-          wallet,
-          activate
-        );
-        if (!check) {
-          // 지갑 연결 화면띄우고 종료
-          setIsLoading(false);
-          setLoginOpen(true);
-          return;
-        }
-        const amount = 1;
-        const price = mBoxInfo.price ?? 0;
-        const payment = parseEther((price * amount).toString()).toString();
-        const result = await buyKey(
-          mBoxInfo.boxContractAddress,
-          1,
-          payment,
-          mBoxInfo.quote === 'klay'
-            ? contracts.klay[targetNetwork]
-            : contracts.wklay[targetNetwork],
-          account,
-          library
-        );
+  const handleClosePaymentWallet = async () => {
+    setOpenPaymentWalletsSuccess(false);
+    getAvailability(location.state.item);
+  };
 
-        if (result === SUCCESS) {
-          const left = await getKeyRemains(
-            mBoxInfo.keyContractAddress,
-            mBoxInfo.boxContractAddress,
-            account,
-            library
-          );
-          setRemains(left);
-
-          const data = {
-            mysterybox_id: mBoxInfo.id,
-            buyer: '',
-            buyer_address: account,
-          };
-
-          const res = await registerBuy(data);
-          if (res.data.status === SUCCESS) {
-            setOpenSnackbar({
-              open: true,
-              type: 'success',
-              message: 'Success',
-            });
-          }
-        }
-      }
-    } catch (error) {
-      console.log(error);
-      setOpenSnackbar({
-        open: true,
-        type: 'error',
-        message: 'Failed',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  const getAvailability = async (info: ExMBoxType) => {
+    const left = await getKeyRemains(
+      info.keyContractAddress,
+      info.boxContractAddress,
+      account,
+      library
+    );
+    setRemains(left);
   };
 
   useEffect(() => {
@@ -186,7 +134,6 @@ const SaleCollectibles = () => {
                   account,
                   library
                 );
-
               return { ...item, remainingAmount: remaining };
             })
           );
@@ -203,15 +150,6 @@ const SaleCollectibles = () => {
   }, [location, library]);
 
   useEffect(() => {
-    const getAvailability = async (info: ExMBoxType) => {
-      const left = await getKeyRemains(
-        info.keyContractAddress,
-        info.boxContractAddress,
-        account,
-        library
-      );
-      setRemains(left);
-    };
     if (account && library?.connection) {
       const targetWallet = getTargetWallet(location.state.item.chainId, wallet);
       const isKaikas = checkKaikas(library);
@@ -531,7 +469,7 @@ const SaleCollectibles = () => {
             itemInfo={mBoxInfo!}
             isCollection={false}
             show={openPaymentWalletsSuccess}
-            onHide={() => setOpenPaymentWalletsSuccess(false)}
+            onHide={handleClosePaymentWallet}
           />
           <Popup
             modal

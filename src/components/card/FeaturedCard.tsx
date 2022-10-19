@@ -12,7 +12,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item }) => {
     <Link to={`/collection/${item.id}`} className="custom-link">
       <button className="grid-item button">
         <div className="banner-image">
-          <img src={item.banner} alt="" />
+          <img src={item.banner} alt="" style={{ objectFit: 'cover' }} />
           {/*<LazyImage src={item.banner} />*/}
         </div>
         <div className="wrapper-content">
