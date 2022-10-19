@@ -353,7 +353,36 @@ const MyCollectiblesDetails = () => {
             </div>
             <div className="list-trade"></div>
 
-            {mboxInfo?.useRevealLockup ? (
+            {/*{mboxInfo?.useRevealLockup ? (*/}
+            {/*  <>*/}
+            {/*    {!countDownFinish && (*/}
+            {/*      <CountDownTimer*/}
+            {/*        handeCheckCountDownFinish={handeCheckCountDownFinish}*/}
+            {/*        targetDate={new Date(mboxInfo?.afterRelease)}*/}
+            {/*      />*/}
+            {/*    )}*/}
+            {/*  </>*/}
+            {/*) : (*/}
+            {/*  <>*/}
+            {/*    {status || balance === 0 ? null : (*/}
+            {/*      <button*/}
+            {/*        className="btn-trade status"*/}
+            {/*        onClick={handleRevealClick}*/}
+            {/*      >*/}
+            {/*        {isLoading ? (*/}
+            {/*          <CircularProgress size={30} color={'inherit'} />*/}
+            {/*        ) : (*/}
+            {/*          <>*/}
+            {/*            <img src={ic_sell} alt="sell" />*/}
+            {/*            Reveal*/}
+            {/*          </>*/}
+            {/*        )}*/}
+            {/*        /!*<img src={ic_trade} alt="trade" />*!/*/}
+            {/*      </button>*/}
+            {/*    )}*/}
+            {/*  </>*/}
+            {/*)}*/}
+            {mboxInfo?.useRevealLockup && !countDownFinish ? (
               <>
                 {!countDownFinish && (
                   <CountDownTimer
