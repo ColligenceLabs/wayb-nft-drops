@@ -17,7 +17,6 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
   onHide,
   isCollection,
 }) => {
-  console.log(itemInfo);
   return (
     <>
       {itemInfo && (
