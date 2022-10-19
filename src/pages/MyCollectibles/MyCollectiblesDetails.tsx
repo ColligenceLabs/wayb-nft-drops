@@ -237,16 +237,15 @@ const MyCollectiblesDetails = () => {
   }
 
   const fetchBalance = async () => {
-    if (mboxInfo.isCollection !== true) {
+    if (mboxInfo?.isCollection !== true) {
       const balance = await getKeyBalance(
-        mboxInfo.keyContractAddress,
+        mboxInfo?.keyContractAddress,
         account,
         library
       );
 
       setBalance(balance);
     }
-
 
     const items = await getItemBalance(
       mboxInfo?.boxContractAddress,
