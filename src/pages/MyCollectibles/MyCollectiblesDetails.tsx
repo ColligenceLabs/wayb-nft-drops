@@ -1,5 +1,4 @@
 import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
-ic_dropdown;
 import { Link, useLocation } from 'react-router-dom';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
 import gift_token_icon from '../../assets/svg/gift_token_icon.svg';
@@ -40,6 +39,7 @@ import { useWeb3React } from '@web3-react/core';
 import { useSelector } from 'react-redux';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { getRarityToString } from '../../utils/getRarityToString';
+import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -116,7 +116,6 @@ const MyCollectiblesDetails = () => {
         account,
         library
       );
-      console.log(result);
       // setOpenSnackbar({
       //   show: true,
       //   color: result === SUCCESS ? 'green' : 'red',
@@ -129,7 +128,6 @@ const MyCollectiblesDetails = () => {
       });
       fetchBalance();
       setIsRevealed(true);
-      console.log('success');
     } catch (error) {
       console.log(error);
       setOpenSnackbar({
@@ -197,7 +195,6 @@ const MyCollectiblesDetails = () => {
       const result = await Promise.all(
         tokenURI.map(async (uri) => {
           const res = await axios.get(uri);
-          console.log(res.data);
           return res.data;
         })
       );
@@ -349,7 +346,9 @@ const MyCollectiblesDetails = () => {
               </div>
               <div className="item">
                 <div className="label">Network</div>
-                <div className="value">{mboxInfo?.chainId}</div>
+                <div className="value">
+                  {getNetworkNameByChainId(mboxInfo?.chainId)}
+                </div>
               </div>
             </div>
             <div className="list-trade"></div>
