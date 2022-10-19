@@ -15,9 +15,13 @@ import { MBoxTypes } from '../../types/MBoxTypes';
 import MBoxCard from '../../components/card/MBoxCard';
 import { Link } from 'react-router-dom';
 
+type ExMBoxTypes = MBoxTypes & {
+  companyimage: string;
+  companyname: { ko: string; en: string };
+};
 const MyCollectibles = () => {
   const { account } = useActiveWeb3React();
-  const [myMBoxList, setMyMBoxList] = useState<MBoxTypes[]>([]);
+  const [myMBoxList, setMyMBoxList] = useState<ExMBoxTypes[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [appState, setChange] = useState<any>({
     objects: [
@@ -149,7 +153,6 @@ const MyCollectibles = () => {
         const sort = selectedIndex === 0 ? 'ASC' : 'DESC';
         const res = await getMyMBoxList(account, sort);
         if (res.data.status === 1) {
-          console.log(res.data.data);
           setMyMBoxList(res.data.data);
         }
       }
@@ -261,13 +264,15 @@ const MyCollectibles = () => {
                       <div className="box-product-name">
                         <div className="wrapper-product-type">
                           <div className="avatar">
-                            <img src={avatar} alt="Avatar" />
+                            <img src={item.companyimage} alt="Avatar" />
                           </div>
-                          <div className="product-type">Sweet</div>
+                          <div className="product-type">
+                            {item.companyname.en}
+                          </div>
                         </div>
                         <div className="product-name">{item.title.en}</div>
                       </div>
-                      <img src={'item.icon'} alt="" />
+                      <img src={ic_collectible_1} alt="" />
                     </div>
                   </div>
                 </div>
