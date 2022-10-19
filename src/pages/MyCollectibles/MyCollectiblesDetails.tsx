@@ -43,6 +43,7 @@ import {
 import { useWeb3React } from '@web3-react/core';
 import { useSelector } from 'react-redux';
 import { hotCollectiblesTestData } from 'pages/homepage/mockData';
+import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -98,7 +99,7 @@ const MyCollectiblesDetails = () => {
   const { account, library } = useActiveWeb3React();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const location = useLocation();
-  // const [mboxInfo, setMboxInfo] = useState<MBoxTypes>(location.state.item);
+  const [mboxInfo, setMboxInfo] = useState<MBoxTypes | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
@@ -110,6 +111,7 @@ const MyCollectiblesDetails = () => {
   const [item, setItem] = useState(0);
   const [status, setStatus] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [countDownFinish, setCountDownFinish] = useState(false);
   const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState({
@@ -127,6 +129,11 @@ const MyCollectiblesDetails = () => {
       message: '',
     });
   };
+
+  const handeCheckCountDownFinish = () => {
+    setCountDownFinish(true);
+  };
+
   const closeWarning = () => {
     setWarningOpen(false);
   };
@@ -143,47 +150,47 @@ const MyCollectiblesDetails = () => {
     setScrollPosition(position);
   };
 
-  // const handleRevealClick = async () => {
-  //   setIsLoading(true);
+  const handleRevealClick = async () => {
+    setIsLoading(true);
 
-  //   try {
-  //     await setApproveForAll(
-  //       mboxInfo.keyContractAddress,
-  //       mboxInfo.boxContractAddress,
-  //       account,
-  //       library
-  //     );
-  //     const result: number = await claimMysteryBox(
-  //       mboxInfo.boxContractAddress,
-  //       balance,
-  //       account,
-  //       library
-  //     );
-  //     console.log(result);
-  //     // setOpenSnackbar({
-  //     //   show: true,
-  //     //   color: result === SUCCESS ? 'green' : 'red',
-  //     //   message: result === SUCCESS ? 'Success Reveal.' : 'Failed Reveal',
-  //     // });
-  //     setOpenSnackbar({
-  //       open: true,
-  //       type: 'success',
-  //       message: 'Success',
-  //     });
-  //     fetchBalance();
-  //     setIsRevealed(true);
-  //     console.log('success');
-  //   } catch (error) {
-  //     console.log(error);
-  //     setOpenSnackbar({
-  //       open: true,
-  //       type: 'error',
-  //       message: 'Failed.',
-  //     });
-  //     // setOpenSnackbar({ show: true, color: 'red', message: 'Failed Reveal.' });
-  //   }
-  //   setIsLoading(false);
-  // };
+    try {
+      await setApproveForAll(
+        mboxInfo?.keyContractAddress,
+        mboxInfo?.boxContractAddress,
+        account,
+        library
+      );
+      const result: number = await claimMysteryBox(
+        mboxInfo?.boxContractAddress,
+        balance,
+        account,
+        library
+      );
+      console.log(result);
+      // setOpenSnackbar({
+      //   show: true,
+      //   color: result === SUCCESS ? 'green' : 'red',
+      //   message: result === SUCCESS ? 'Success Reveal.' : 'Failed Reveal',
+      // });
+      setOpenSnackbar({
+        open: true,
+        type: 'success',
+        message: 'Success',
+      });
+      fetchBalance();
+      setIsRevealed(true);
+      console.log('success');
+    } catch (error) {
+      console.log(error);
+      setOpenSnackbar({
+        open: true,
+        type: 'error',
+        message: 'Failed.',
+      });
+      // setOpenSnackbar({ show: true, color: 'red', message: 'Failed Reveal.' });
+    }
+    setIsLoading(false);
+  };
 
   // const handleScrollPercent = () => {
   //   const positionPercent =
@@ -221,95 +228,104 @@ const MyCollectiblesDetails = () => {
   //   };
   // }, []);
 
-  // const fetchBalance = async () => {
-  //   const balance = await getKeyBalance(
-  //     mboxInfo.keyContractAddress,
-  //     account,
-  //     library
-  //   );
+  function toStringByFormatting(source: Date) {
+    const year = source.getFullYear();
+    const month = source.getMonth() + 1;
+    const day = source.getDate();
 
-  //   const items = await getItemBalance(
-  //     mboxInfo.boxContractAddress,
-  //     account,
-  //     library
-  //   );
+    return [year, month, day].join('.');
+  }
 
-  //   setBalance(balance);
-  //   console.log(account, library.connection, balance);
-  //   setItem(items);
-  // };
+  const fetchBalance = async () => {
+    const balance = await getKeyBalance(
+      mboxInfo?.keyContractAddress,
+      account,
+      library
+    );
 
-  // const fetchRevealItem = async () => {
-  //   const items = await getItemBalance(
-  //     mboxInfo.boxContractAddress,
-  //     account,
-  //     library
-  //   );
-  //   let tokenURI: string[] = [];
-  //   if (items > 0) {
-  //     tokenURI = await getItemMetadata(
-  //       mboxInfo.boxContractAddress,
-  //       items,
-  //       account,
-  //       library
-  //     );
-  //   } else {
-  //     tokenURI[0] = await getKeyMetadata(
-  //       mboxInfo.keyContractAddress,
-  //       account,
-  //       library
-  //     );
-  //   }
+    const items = await getItemBalance(
+      mboxInfo?.boxContractAddress,
+      account,
+      library
+    );
 
-  //   if (tokenURI.length > 0) {
-  //     const result = await Promise.all(
-  //       tokenURI.map(async (uri) => {
-  //         const res = await axios.get(uri);
-  //         return res.data;
-  //       })
-  //     );
-  //     console.log(result);
+    setBalance(balance);
+    console.log(account, library.connection, balance);
+    setItem(items);
+  };
 
-  //     setRevealItems(result);
-  //   }
-  // };
+  const fetchRevealItem = async () => {
+    const items = await getItemBalance(
+      mboxInfo?.boxContractAddress,
+      account,
+      library
+    );
+    let tokenURI: string[] = [];
+    if (items > 0) {
+      tokenURI = await getItemMetadata(
+        mboxInfo?.boxContractAddress,
+        items,
+        account,
+        library
+      );
+    } else {
+      tokenURI[0] = await getKeyMetadata(
+        mboxInfo?.keyContractAddress,
+        account,
+        library
+      );
+    }
 
-  // useEffect(() => {
-  //   try {
-  //     if (account && library?.connection) {
-  //       const targetWallet = getTargetWallet(
-  //         location.state.item.chainId,
-  //         wallet
-  //       );
-  //       const isKaikas = checkKaikas(library);
-  //       if (
-  //         (isKaikas && targetWallet === 'metamask') ||
-  //         (!isKaikas && targetWallet === 'kaikas')
-  //       ) {
-  //         checkConnectWallet(location.state.item.chainId, wallet, activate);
-  //         return;
-  //       }
-  //       fetchBalance();
-  //       const date = new Date(mboxInfo.afterRelease);
-  //       const lockup = date.getTime() / 1000; // Launch
+    console.log(tokenURI);
+    if (tokenURI.length > 0) {
+      const result = await Promise.all(
+        tokenURI.map(async (uri) => {
+          const res = await axios.get(uri);
+          console.log(res.data);
+          return res.data;
+        })
+      );
 
-  //       if (Date.now() / 1000 >= lockup) {
-  //         setStatus(false);
-  //       }
+      console.log(result);
+      setRevealItems(result);
+    }
+  };
 
-  //       console.log(status);
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  //   // 리빌 버튼 표시 조건
-  //   // reveal.status || reveal.balance === 0 || isLoading
-  // }, [location, balance, account, library]);
+  useEffect(() => {
+    try {
+      if (mboxInfo && account && library?.connection) {
+        const targetWallet = getTargetWallet(mboxInfo?.chainId, wallet);
+        const isKaikas = checkKaikas(library);
+        if (
+          (isKaikas && targetWallet === 'metamask') ||
+          (!isKaikas && targetWallet === 'kaikas')
+        ) {
+          checkConnectWallet(location.state.item.chainId, wallet, activate);
+          return;
+        }
+        fetchBalance();
+        fetchRevealItem();
+        const date = new Date(mboxInfo?.afterRelease);
+        const lockup = date.getTime() / 1000; // Launch
 
-  // useEffect(() => {
-  //   fetchRevealItem();
-  // }, []);
+        if (Date.now() / 1000 >= lockup) {
+          setStatus(false);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    // 리빌 버튼 표시 조건
+    // reveal.status || reveal.balance === 0 || isLoading
+  }, [mboxInfo, balance, account, library]);
 
+  useEffect(() => {
+    if (location.state.item) {
+      setMboxInfo(location.state.item);
+    }
+  }, []);
+
+  console.log(revealItems);
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
@@ -320,11 +336,7 @@ const MyCollectiblesDetails = () => {
         </Link>
         <div className="product-details">
           <div className="showcase-box">
-            <img
-              src="https://collectible.sweet.io/series/1727/image-front.png"
-              alt=""
-              className="thumbnail"
-            />
+            <img src={mboxInfo?.packageImage} alt="" className="thumbnail" />
             {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
           <div className="details-box">
@@ -385,12 +397,8 @@ const MyCollectiblesDetails = () => {
               </div>
             </div>
             <div className="description-label">{mboxInfo.introduction.en}</div> */}
-            <div className="name-product">GENERATIVE MAGIC THE DOG</div>
-            <div className="sub-product">
-              Old Navy’s collection of algorithmically generated, stylistically
-              curated NFTs co-created with Boys & Girls Clubs of America. We
-              invite you to join the pile and spread playfulness with us!
-            </div>
+            <div className="name-product">{mboxInfo?.title.en}</div>
+            <div className="sub-product">{mboxInfo?.introduction.en}</div>
             <a
               target="_blank"
               href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
@@ -403,11 +411,13 @@ const MyCollectiblesDetails = () => {
             <div className="list-item">
               <div className="item">
                 <div className="label">Number</div>
-                <div className="value">49</div>
+                <div className="value">49(?)</div>
               </div>
               <div className="item">
                 <div className="label">Release Date</div>
-                <div className="value">8/29/2022</div>
+                <div className="value">
+                  {toStringByFormatting(new Date(mboxInfo?.releaseDatetime))}
+                </div>
               </div>
               <div className="item">
                 <div className="label">Date Acquired</div>
@@ -415,7 +425,7 @@ const MyCollectiblesDetails = () => {
               </div>
               <div className="item">
                 <div className="label">Total Run</div>
-                <div className="value">2000</div>
+                <div className="value">{mboxInfo?.totalAmount}</div>
               </div>
               <div className="item">
                 <div className="label" data-qa-component="token-type-label">
@@ -427,18 +437,18 @@ const MyCollectiblesDetails = () => {
               </div>
               <div className="item">
                 <div className="label">Network</div>
-                <div className="value">Polygon</div>
+                <div className="value">{mboxInfo?.chainId}</div>
               </div>
             </div>
             <div className="list-trade">
-              <button type="button" className="btn-trade status">
-                <img src={ic_sell} alt="sell" />
-                {'Sell on Drop'}
-              </button>
-              <button type="button" className="btn-trade status">
-                <img src={ic_trade} alt="trade" />
-                {'Trade on Drop'}
-              </button>
+              {/*<button type="button" className="btn-trade status">*/}
+              {/*  <img src={ic_sell} alt="sell" />*/}
+              {/*  {'Sell on Drop'}*/}
+              {/*</button>*/}
+              {/*<button type="button" className="btn-trade status">*/}
+              {/*  <img src={ic_trade} alt="trade" />*/}
+              {/*  {'Trade on Drop'}*/}
+              {/*</button>*/}
               {/* <Popup
                 trigger={
                   <button type="button" className="btn-trade status">
@@ -472,78 +482,160 @@ const MyCollectiblesDetails = () => {
                 </div>{' '}
               </Popup> */}
 
-              {status || balance === 0 ? null : (
-                <button
-                  className="btn-trade status"
-                  // onClick={handleRevealClick}
-                >
-                  {isLoading ? (
-                    <CircularProgress size={30} color={'inherit'} />
-                  ) : (
-                    <>Reveal</>
-                  )}
-                  {/*<img src={ic_trade} alt="trade" />*/}
-                </button>
-              )}
+              {/*{status || balance === 0 ? null : (*/}
+              {/*  <button*/}
+              {/*    className="btn-trade status"*/}
+              {/*    // onClick={handleRevealClick}*/}
+              {/*  >*/}
+              {/*    {isLoading ? (*/}
+              {/*      <CircularProgress size={30} color={'inherit'} />*/}
+              {/*    ) : (*/}
+              {/*      <>*/}
+              {/*        <img src={ic_sell} alt="sell" />*/}
+              {/*        Reveal*/}
+              {/*      </>*/}
+              {/*    )}*/}
+              {/*    /!*<img src={ic_trade} alt="trade" />*!/*/}
+              {/*  </button>*/}
+              {/*)}*/}
             </div>
+            <>
+              {mboxInfo?.useRevealLockup ? (
+                <>
+                  {!countDownFinish && (
+                    <CountDownTimer
+                      handeCheckCountDownFinish={handeCheckCountDownFinish}
+                      targetDate={new Date(mboxInfo?.afterRelease)}
+                    />
+                  )}
+                </>
+              ) : (
+                <>
+                  {status || balance === 0 ? null : (
+                    <button
+                      className="btn-trade status"
+                      onClick={handleRevealClick}
+                    >
+                      {isLoading ? (
+                        <CircularProgress size={30} color={'inherit'} />
+                      ) : (
+                        <>
+                          <img src={ic_sell} alt="sell" />
+                          Reveal
+                        </>
+                      )}
+                      {/*<img src={ic_trade} alt="trade" />*/}
+                    </button>
+                  )}
+                </>
+              )}
+            </>
           </div>
         </div>
         <div className="price-history">
-          <div className="price-history-label">
-            <img src={price_history_lg} alt="price-history" />
-            Price History
-          </div>
-          <div className="list-price-history"></div>
+          {/*<div className="price-history-label">*/}
+          {/*  <img src={price_history_lg} alt="price-history" />*/}
+          {/*  Price History*/}
+          {/*</div>*/}
+          {/*<div className="list-price-history"></div>*/}
         </div>
         <div className="my-revealed-items">My revealed items</div>
         <div className="marketplace-items">
-          {list_products.map((item, index) => {
-            return (
-              <Link to={`/sale/${index}`} key={index}>
-                <div className="item_product">
-                  <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                    <div className="total_item">Total Run: 50</div>
-                  </div>
-                  <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                    <div>erc721</div>
-                  </div>
-                  <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                    <div className="card">
-                      <img src={product} alt="" />
+          {mboxInfo &&
+            revealItems.map((item, index) => {
+              return (
+                <Link to={`/sale/${index}`} key={index}>
+                  <div className="item_product">
+                    <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                      <div className="total_item">Total Run: 50</div>
                     </div>
-                  </div>
-                  <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                    <div className="owner_product">
-                      <div className="owner_product_box">
-                        <span className="owner_product_avatar">
-                          <img src={avatar} alt="" />
-                        </span>
-                        <p className="">{item.owner_name}</p>
+                    <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
+                      <div>erc721</div>
+                    </div>
+                    <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                      <div className="card">
+                        <img src={item.image} alt="" />
                       </div>
-                      <Link to="/sale">
-                        <div className="status ">Buy Now</div>
-                      </Link>
+                    </div>
+                    <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                      <div className="owner_product">
+                        <div className="owner_product_box">
+                          <span className="owner_product_avatar">
+                            <img src={mboxInfo?.packageImage} alt="" />
+                          </span>
+                          <p className="">{mboxInfo?.title.en}</p>
+                        </div>
+                        {/*<Link to="/sale">*/}
+                        {/*  <div className="status ">Buy Now</div>*/}
+                        {/*</Link>*/}
+                      </div>
+                    </div>
+                    <div className="item_product_detail MARKETPLACE_NAME_KEY">
+                      <div className="product_name ">{item.name}</div>
+                    </div>
+                    <div className="item_product_detail MARKETPLACE_BID_KEY">
+                      <div className="box-price">
+                        <div className="price ">Price</div>
+                        <div className="currency ">{`${mboxInfo?.price} ${mboxInfo?.quote}`}</div>
+                      </div>
+                    </div>
+                    <div className="item_product_detail MARKETPLACE_NAME_TIME">
+                      <div>
+                        <div className="remaining ">Rarity</div>
+                        <div className="remaining-total ">{item.rarity}</div>
+                      </div>
                     </div>
                   </div>
-                  <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                    <div className="product_name ">{item.name}</div>
-                  </div>
-                  <div className="item_product_detail MARKETPLACE_BID_KEY">
-                    <div className="box-price">
-                      <div className="price ">Price</div>
-                      <div className="currency ">$50.00</div>
-                    </div>
-                  </div>
-                  <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                    <div>
-                      <div className="remaining ">Remaining</div>
-                      <div className="remaining-total ">0</div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
+          {/*{list_products.map((item, index) => {*/}
+          {/*  return (*/}
+          {/*    <Link to={`/sale/${index}`} key={index}>*/}
+          {/*      <div className="item_product">*/}
+          {/*        <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">*/}
+          {/*          <div className="total_item">Total Run: 50</div>*/}
+          {/*        </div>*/}
+          {/*        <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">*/}
+          {/*          <div>erc721</div>*/}
+          {/*        </div>*/}
+          {/*        <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">*/}
+          {/*          <div className="card">*/}
+          {/*            <img src={product} alt="" />*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*        <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">*/}
+          {/*          <div className="owner_product">*/}
+          {/*            <div className="owner_product_box">*/}
+          {/*              <span className="owner_product_avatar">*/}
+          {/*                <img src={avatar} alt="" />*/}
+          {/*              </span>*/}
+          {/*              <p className="">{item.owner_name}</p>*/}
+          {/*            </div>*/}
+          {/*            <Link to="/sale">*/}
+          {/*              <div className="status ">Buy Now</div>*/}
+          {/*            </Link>*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*        <div className="item_product_detail MARKETPLACE_NAME_KEY">*/}
+          {/*          <div className="product_name ">{item.name}</div>*/}
+          {/*        </div>*/}
+          {/*        <div className="item_product_detail MARKETPLACE_BID_KEY">*/}
+          {/*          <div className="box-price">*/}
+          {/*            <div className="price ">Price</div>*/}
+          {/*            <div className="currency ">$50.00</div>*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*        <div className="item_product_detail MARKETPLACE_NAME_TIME">*/}
+          {/*          <div>*/}
+          {/*            <div className="remaining ">Remaining</div>*/}
+          {/*            <div className="remaining-total ">0</div>*/}
+          {/*          </div>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </Link>*/}
+          {/*  );*/}
+          {/*})}*/}
         </div>
         <Popup
           open={warningOpen}

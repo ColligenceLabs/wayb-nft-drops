@@ -14,12 +14,16 @@ const CountDownTimer = ({ targetDate, handeCheckCountDownFinish }: any) => {
     return null;
   } else {
     return (
-      <ShowCounter
-        days={days}
-        hours={hours}
-        minutes={minutes}
-        seconds={seconds}
-      />
+      <>
+        {!isNaN(seconds) && (
+          <ShowCounter
+            days={days}
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+          />
+        )}
+      </>
     );
   }
 };

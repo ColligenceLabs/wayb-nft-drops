@@ -241,7 +241,7 @@
             justify-content: center;
             position: relative;
             width: 100%;
-            max-width: 350px;
+            //max-width: 350px;
             height: 64px;
             border-radius: 10px;
             padding: 20px;
@@ -287,6 +287,26 @@
             margin-bottom: 10px;
             max-width: 160px;
             width: max-content;
+          }
+        }
+        .btn-trade {
+          display: flex;
+          -webkit-box-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          position: relative;
+          width: 100%;
+          //max-width: 350px;
+          height: 64px;
+          border-radius: 10px;
+          padding: 20px;
+          text-transform: none;
+          font-size: 16px;
+          color: white;
+          background: #2f8af5;
+          img {
+            margin-right: 10px;
           }
         }
       }

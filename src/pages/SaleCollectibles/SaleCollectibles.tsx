@@ -334,7 +334,7 @@ const SaleCollectibles = () => {
                   {!countDownFinish && (
                     <CountDownTimer
                       handeCheckCountDownFinish={handeCheckCountDownFinish}
-                      targetDate={new Date(mBoxInfo.afterRelease)}
+                      targetDate={new Date(mBoxInfo.releaseDatetime)}
                     />
                   )}
                   {account && library?.connection ? (

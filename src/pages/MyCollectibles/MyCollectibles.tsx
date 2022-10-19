@@ -13,6 +13,7 @@ import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { getMyMBoxList } from '../../services/services';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import MBoxCard from '../../components/card/MBoxCard';
+import { Link } from 'react-router-dom';
 
 const MyCollectibles = () => {
   const { account } = useActiveWeb3React();
@@ -148,6 +149,7 @@ const MyCollectibles = () => {
         const sort = selectedIndex === 0 ? 'ASC' : 'DESC';
         const res = await getMyMBoxList(account, sort);
         if (res.data.status === 1) {
+          console.log(res.data.data);
           setMyMBoxList(res.data.data);
         }
       }
@@ -239,8 +241,39 @@ const MyCollectibles = () => {
         {/* item  */}
         <div className="page-grid">
           {/* {myMBoxList.map((item) => (
-            <MBoxCard key={item.id} item={item} />
+            <myMBoxList key={item.id} item={item} />
           ))} */}
+          {myMBoxList.map((item, index) => {
+            return (
+              <Link to="/my-collectibles/details" key={index} state={{ item }}>
+                <div className="item-product">
+                  <div className="item-product-detail">
+                    <div className="card">
+                      <img src={item.packageImage} alt="" />
+                    </div>
+                  </div>
+
+                  <div
+                    className="item-product-detail"
+                    style={{ padding: '0px' }}
+                  >
+                    <div className="box-info">
+                      <div className="box-product-name">
+                        <div className="wrapper-product-type">
+                          <div className="avatar">
+                            <img src={avatar} alt="Avatar" />
+                          </div>
+                          <div className="product-type">Sweet</div>
+                        </div>
+                        <div className="product-name">{item.title.en}</div>
+                      </div>
+                      <img src={'item.icon'} alt="" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
           {listItems.map((item, index) => {
             return (
               <a href="/my-collectibles/details" key={index}>

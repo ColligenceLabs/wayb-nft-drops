@@ -9,8 +9,10 @@ import CSnackbar from '../../components/common/CSnackbar';
 import { useLocation } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
+  collectionInfo: any;
   companyLogo: string;
   companyName: string;
   price: number;
@@ -32,12 +34,16 @@ const CollectionSaleDetail = () => {
     useState(false);
   const [collectionItemInfo, setCollectionItemInfo] =
     useState<ExMBoxItemTypes | null>(null);
-
+  const [countDownFinish, setCountDownFinish] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState({
     open: false,
     type: '',
     message: '',
   });
+
+  const handeCheckCountDownFinish = () => {
+    setCountDownFinish(true);
+  };
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -62,6 +68,7 @@ const CollectionSaleDetail = () => {
   };
   useEffect(() => {
     setCollectionItemInfo(location.state.item);
+    console.log(location.state.item);
   }, [location.state]);
 
   return (
@@ -139,27 +146,33 @@ const CollectionSaleDetail = () => {
                   <div className="lable-top">Purchase price</div>
                   <div className="lable-bottom fw-600">{`${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}</div>
                 </div>
-                {/*{!countDownFinish && (*/}
-                {/*  <CountDownTimer*/}
-                {/*    handeCheckCountDownFinish={handeCheckCountDownFinish}*/}
-                {/*    targetDate={new Date(mBoxInfo.afterRelease)}*/}
-                {/*  />*/}
-                {/*)}*/}
+                {!countDownFinish && (
+                  <CountDownTimer
+                    handeCheckCountDownFinish={handeCheckCountDownFinish}
+                    targetDate={
+                      new Date(
+                        collectionItemInfo?.collectionInfo?.releaseDatetime
+                      )
+                    }
+                  />
+                )}
+
                 {account && library?.connection ? (
                   <>
-                    <button
-                      className={'btn-sale-collection'}
-                      // disabled={isLoading || remains === 0}
-                      disabled={isLoading}
-                      // onClick={() => setOpenPaymentWallets(true)}
-                      onClick={handleBuyClick}
-                    >
-                      {isLoading ? (
-                        <CircularProgress size={30} color={'inherit'} />
-                      ) : (
-                        'Buy Now'
-                      )}
-                    </button>
+                    {countDownFinish && (
+                      <button
+                        className={'btn-sale-collection'}
+                        disabled={isLoading}
+                        // onClick={() => setOpenPaymentWallets(true)}
+                        onClick={handleBuyClick}
+                      >
+                        {isLoading ? (
+                          <CircularProgress size={30} color={'inherit'} />
+                        ) : (
+                          'Buy Now'
+                        )}
+                      </button>
+                    )}
                   </>
                 ) : (
                   <button
@@ -169,6 +182,31 @@ const CollectionSaleDetail = () => {
                     Connect Wallet
                   </button>
                 )}
+
+                {/*{account && library?.connection ? (*/}
+                {/*  <>*/}
+                {/*    <button*/}
+                {/*      className={'btn-sale-collection'}*/}
+                {/*      // disabled={isLoading || remains === 0}*/}
+                {/*      disabled={isLoading}*/}
+                {/*      // onClick={() => setOpenPaymentWallets(true)}*/}
+                {/*      onClick={handleBuyClick}*/}
+                {/*    >*/}
+                {/*      {isLoading ? (*/}
+                {/*        <CircularProgress size={30} color={'inherit'} />*/}
+                {/*      ) : (*/}
+                {/*        'Buy Now'*/}
+                {/*      )}*/}
+                {/*    </button>*/}
+                {/*  </>*/}
+                {/*) : (*/}
+                {/*  <button*/}
+                {/*    className={'btn-sale-collection'}*/}
+                {/*    onClick={() => setLoginOpen(true)}*/}
+                {/*  >*/}
+                {/*    Connect Wallet*/}
+                {/*  </button>*/}
+                {/*)}*/}
                 {/* <button className="btn-sale-collection disable">Sold out</button> */}
               </div>
             </div>
