@@ -24,7 +24,6 @@ type ExMBoxItemTypes = MBoxItemTypes & {
   price: number;
   quote: string;
   index: number;
-  collectionInfo: any;
 };
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
