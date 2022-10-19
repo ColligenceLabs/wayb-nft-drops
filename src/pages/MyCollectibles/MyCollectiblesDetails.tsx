@@ -1,14 +1,17 @@
 import React, { MutableRefObject, useState, useEffect, useRef } from 'react';
+ic_dropdown;
 import { Link, useLocation } from 'react-router-dom';
 import ic_send_to_my_wallet from '../../assets/svg/send_my_wallet_icon.svg';
-import ic_show_off from '../../assets/svg/show_off_icon.svg';
-import ic_back from '../../assets/svg/back_icon.svg';
+import gift_token_icon from '../../assets/svg/gift_token_icon.svg';
 import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import rare_lg from '../../assets/svg/rare_logo.svg';
-import ic_authenticity from '../../assets/svg/authenticity_icon.svg';
+import ic_authenticity from '../../assets/icon/info_blue.svg';
 import price_history_lg from '../../assets/svg/price_history_logo.svg';
 import ic_trade from '../../assets/svg/trade_icon.svg';
 import ic_sell from '../../assets/svg/sell_icon.svg';
+import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
+import product from '../../assets/img/product.png';
+import avatar from '../../assets/img/avatar.png';
 import WarningForm from 'components/collectibles_modals/warning';
 import SendingForm from '../../components/collectibles_modals/sending';
 import SuccessForm from 'components/collectibles_modals/success';
@@ -39,16 +42,64 @@ import {
 } from '../../utils/wallet';
 import { useWeb3React } from '@web3-react/core';
 import { useSelector } from 'react-redux';
+import { hotCollectiblesTestData } from 'pages/homepage/mockData';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
 
+const list_products = [
+  {
+    id: 1,
+    owner_name: 'Milwaukee Bucks 1',
+    name: 'Chicago Deer 1',
+  },
+  {
+    id: 2,
+    owner_name: 'Milwaukee Bucks 2',
+    name: 'Chicago Deer 2',
+  },
+  {
+    id: 3,
+    owner_name: 'Milwaukee Bucks 3',
+    name: 'Chicago Deer 3',
+  },
+  {
+    id: 4,
+    owner_name: 'Milwaukee Bucks 4',
+    name: 'Chicago Deer 4',
+  },
+  {
+    id: 5,
+    owner_name: 'Milwaukee Bucks 5',
+    name: 'Chicago Deer 5',
+  },
+  {
+    id: 6,
+    owner_name: 'Milwaukee Bucks 6',
+    name: 'Chicago Deer 6',
+  },
+  {
+    id: 7,
+    owner_name: 'Milwaukee Bucks 7',
+    name: 'Chicago Deer 7',
+  },
+  {
+    id: 8,
+    owner_name: 'Milwaukee Bucks 8',
+    name: 'Chicago Deer 8',
+  },
+  {
+    id: 9,
+    owner_name: 'Milwaukee Bucks 9',
+    name: 'Chicago Deer 9',
+  },
+];
 const MyCollectiblesDetails = () => {
   const { account, library } = useActiveWeb3React();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const location = useLocation();
-  const [mboxInfo, setMboxInfo] = useState<MBoxTypes>(location.state.item);
-  const [open, setOpen] = useState(false);
+  // const [mboxInfo, setMboxInfo] = useState<MBoxTypes>(location.state.item);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [sendingOpen, setSendingOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -92,183 +143,183 @@ const MyCollectiblesDetails = () => {
     setScrollPosition(position);
   };
 
-  const handleRevealClick = async () => {
-    setIsLoading(true);
+  // const handleRevealClick = async () => {
+  //   setIsLoading(true);
 
-    try {
-      await setApproveForAll(
-        mboxInfo.keyContractAddress,
-        mboxInfo.boxContractAddress,
-        account,
-        library
-      );
-      const result: number = await claimMysteryBox(
-        mboxInfo.boxContractAddress,
-        balance,
-        account,
-        library
-      );
-      console.log(result);
-      // setOpenSnackbar({
-      //   show: true,
-      //   color: result === SUCCESS ? 'green' : 'red',
-      //   message: result === SUCCESS ? 'Success Reveal.' : 'Failed Reveal',
-      // });
-      setOpenSnackbar({
-        open: true,
-        type: 'success',
-        message: 'Success',
-      });
-      fetchBalance();
-      setIsRevealed(true);
-      console.log('success');
-    } catch (error) {
-      console.log(error);
-      setOpenSnackbar({
-        open: true,
-        type: 'error',
-        message: 'Failed.',
-      });
-      // setOpenSnackbar({ show: true, color: 'red', message: 'Failed Reveal.' });
-    }
-    setIsLoading(false);
-  };
+  //   try {
+  //     await setApproveForAll(
+  //       mboxInfo.keyContractAddress,
+  //       mboxInfo.boxContractAddress,
+  //       account,
+  //       library
+  //     );
+  //     const result: number = await claimMysteryBox(
+  //       mboxInfo.boxContractAddress,
+  //       balance,
+  //       account,
+  //       library
+  //     );
+  //     console.log(result);
+  //     // setOpenSnackbar({
+  //     //   show: true,
+  //     //   color: result === SUCCESS ? 'green' : 'red',
+  //     //   message: result === SUCCESS ? 'Success Reveal.' : 'Failed Reveal',
+  //     // });
+  //     setOpenSnackbar({
+  //       open: true,
+  //       type: 'success',
+  //       message: 'Success',
+  //     });
+  //     fetchBalance();
+  //     setIsRevealed(true);
+  //     console.log('success');
+  //   } catch (error) {
+  //     console.log(error);
+  //     setOpenSnackbar({
+  //       open: true,
+  //       type: 'error',
+  //       message: 'Failed.',
+  //     });
+  //     // setOpenSnackbar({ show: true, color: 'red', message: 'Failed Reveal.' });
+  //   }
+  //   setIsLoading(false);
+  // };
 
-  const handleScrollPercent = () => {
-    const positionPercent =
-      (window.pageYOffset /
-        (document.documentElement.offsetHeight - window.innerHeight)) *
-      100;
-    setScrollPercentPosition(positionPercent);
-  };
+  // const handleScrollPercent = () => {
+  //   const positionPercent =
+  //     (window.pageYOffset /
+  //       (document.documentElement.offsetHeight - window.innerHeight)) *
+  //     100;
+  //   setScrollPercentPosition(positionPercent);
+  // };
 
-  useEffect(() => {
-    const handler = (event: any) => {
-      if (!ref.current.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener('mouse-down', handler);
-    return () => {
-      document.removeEventListener('mouse-down', handler);
-    };
-  });
+  // useEffect(() => {
+  //   const handler = (event: any) => {
+  //     if (!ref.current.contains(event.target)) {
+  //       setOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener('mouse-down', handler);
+  //   return () => {
+  //     document.removeEventListener('mouse-down', handler);
+  //   };
+  // });
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScrollPercent);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScrollPercent);
 
-    return () => {
-      window.removeEventListener('scroll', handleScrollPercent);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScrollPercent);
+  //   };
+  // }, []);
 
-  const fetchBalance = async () => {
-    const balance = await getKeyBalance(
-      mboxInfo.keyContractAddress,
-      account,
-      library
-    );
+  // const fetchBalance = async () => {
+  //   const balance = await getKeyBalance(
+  //     mboxInfo.keyContractAddress,
+  //     account,
+  //     library
+  //   );
 
-    const items = await getItemBalance(
-      mboxInfo.boxContractAddress,
-      account,
-      library
-    );
+  //   const items = await getItemBalance(
+  //     mboxInfo.boxContractAddress,
+  //     account,
+  //     library
+  //   );
 
-    setBalance(balance);
-    console.log(account, library.connection, balance);
-    setItem(items);
-  };
+  //   setBalance(balance);
+  //   console.log(account, library.connection, balance);
+  //   setItem(items);
+  // };
 
-  const fetchRevealItem = async () => {
-    const items = await getItemBalance(
-      mboxInfo.boxContractAddress,
-      account,
-      library
-    );
-    let tokenURI: string[] = [];
-    if (items > 0) {
-      tokenURI = await getItemMetadata(
-        mboxInfo.boxContractAddress,
-        items,
-        account,
-        library
-      );
-    } else {
-      tokenURI[0] = await getKeyMetadata(
-        mboxInfo.keyContractAddress,
-        account,
-        library
-      );
-    }
+  // const fetchRevealItem = async () => {
+  //   const items = await getItemBalance(
+  //     mboxInfo.boxContractAddress,
+  //     account,
+  //     library
+  //   );
+  //   let tokenURI: string[] = [];
+  //   if (items > 0) {
+  //     tokenURI = await getItemMetadata(
+  //       mboxInfo.boxContractAddress,
+  //       items,
+  //       account,
+  //       library
+  //     );
+  //   } else {
+  //     tokenURI[0] = await getKeyMetadata(
+  //       mboxInfo.keyContractAddress,
+  //       account,
+  //       library
+  //     );
+  //   }
 
-    if (tokenURI.length > 0) {
-      const result = await Promise.all(
-        tokenURI.map(async (uri) => {
-          const res = await axios.get(uri);
-          return res.data;
-        })
-      );
-      console.log(result);
+  //   if (tokenURI.length > 0) {
+  //     const result = await Promise.all(
+  //       tokenURI.map(async (uri) => {
+  //         const res = await axios.get(uri);
+  //         return res.data;
+  //       })
+  //     );
+  //     console.log(result);
 
-      setRevealItems(result);
-    }
-  };
+  //     setRevealItems(result);
+  //   }
+  // };
 
-  useEffect(() => {
-    try {
-      if (account && library?.connection) {
-        const targetWallet = getTargetWallet(
-          location.state.item.chainId,
-          wallet
-        );
-        const isKaikas = checkKaikas(library);
-        if (
-          (isKaikas && targetWallet === 'metamask') ||
-          (!isKaikas && targetWallet === 'kaikas')
-        ) {
-          checkConnectWallet(location.state.item.chainId, wallet, activate);
-          return;
-        }
-        fetchBalance();
-        const date = new Date(mboxInfo.afterRelease);
-        const lockup = date.getTime() / 1000; // Launch
+  // useEffect(() => {
+  //   try {
+  //     if (account && library?.connection) {
+  //       const targetWallet = getTargetWallet(
+  //         location.state.item.chainId,
+  //         wallet
+  //       );
+  //       const isKaikas = checkKaikas(library);
+  //       if (
+  //         (isKaikas && targetWallet === 'metamask') ||
+  //         (!isKaikas && targetWallet === 'kaikas')
+  //       ) {
+  //         checkConnectWallet(location.state.item.chainId, wallet, activate);
+  //         return;
+  //       }
+  //       fetchBalance();
+  //       const date = new Date(mboxInfo.afterRelease);
+  //       const lockup = date.getTime() / 1000; // Launch
 
-        if (Date.now() / 1000 >= lockup) {
-          setStatus(false);
-        }
+  //       if (Date.now() / 1000 >= lockup) {
+  //         setStatus(false);
+  //       }
 
-        console.log(status);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    // 리빌 버튼 표시 조건
-    // reveal.status || reveal.balance === 0 || isLoading
-  }, [location, balance, account, library]);
+  //       console.log(status);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  //   // 리빌 버튼 표시 조건
+  //   // reveal.status || reveal.balance === 0 || isLoading
+  // }, [location, balance, account, library]);
 
-  useEffect(() => {
-    fetchRevealItem();
-  }, []);
+  // useEffect(() => {
+  //   fetchRevealItem();
+  // }, []);
 
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
+        <Link to={'/my-collectibles'}>
+          <button className="back-button">
+            <img src={arrow_btn_back} alt="arrow back" /> Back
+          </button>
+        </Link>
         <div className="product-details">
           <div className="showcase-box">
-            <Link to={'/my-collectibles'}>
-              <button className="back-button">
-                <img src={ic_back} alt="back-icon" /> Back
-              </button>
-            </Link>
             <img
               src="https://collectible.sweet.io/series/1727/image-front.png"
               alt=""
@@ -276,7 +327,6 @@ const MyCollectiblesDetails = () => {
             />
             {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
-
           <div className="details-box">
             <div className="banner-dropdown" ref={ref}>
               <div className="logo">
@@ -287,48 +337,60 @@ const MyCollectiblesDetails = () => {
                 />
                 <div className="logo-info">
                   <div className="creator">Creator</div>
-                  <div className="name">Sweet</div>
+                  <div className="name">McLaren Racing</div>
                 </div>
               </div>
               <div className="dropdown">
                 <div
                   className="dropdown-button"
-                  onClick={() => setOpen((open) => !open)}
+                  onClick={() =>
+                    setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                  }
                 >
                   <img src={ic_dropdown} alt="dropdown" />
                 </div>
-                {open && (
+                {dropdownOpen && (
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
                       <button
                         className="dropdown-item "
-                        onClick={() => setWarningOpen(true)}
+                        onClick={() => {
+                          setWarningOpen(true);
+                          setDropdownOpen(false);
+                        }}
                       >
                         <img
                           src={ic_send_to_my_wallet}
                           alt="send-to-my-wallet"
                         />
-                        Send to My Wallet
+                        Send to Private Address
                       </button>
                     </li>
                     <li className="list-dropdown-item">
                       <button className="dropdown-item">
-                        <img src={ic_show_off} alt="show-off" />
-                        Show off
+                        <img src={gift_token_icon} alt="gift token icon" />
+                        Gift this token
                       </button>
                     </li>
                   </ul>
                 )}
               </div>
             </div>
-            <div className="label-name">
+            <div className="line-banner"></div>
+            {/* <div className="label-name">
               {mboxInfo.title.en}
               <div className="rarity-label">
                 <img src={rare_lg} alt="rare-logo" />
                 RARE
               </div>
             </div>
-            <div className="description-label">{mboxInfo.introduction.en}</div>
+            <div className="description-label">{mboxInfo.introduction.en}</div> */}
+            <div className="name-product">GENERATIVE MAGIC THE DOG</div>
+            <div className="sub-product">
+              Old Navy’s collection of algorithmically generated, stylistically
+              curated NFTs co-created with Boys & Girls Clubs of America. We
+              invite you to join the pile and spread playfulness with us!
+            </div>
             <a
               target="_blank"
               href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
@@ -369,27 +431,51 @@ const MyCollectiblesDetails = () => {
               </div>
             </div>
             <div className="list-trade">
-              {/*<Popup*/}
-              {/*  trigger={*/}
-              {/*    <button type="button" className="btn-trade status disabled">*/}
-              {/*      <img src={ic_sell} alt="sell" />*/}
-              {/*      {'Sell on Sweet'}*/}
-              {/*    </button>*/}
-              {/*  }*/}
-              {/*  position={*/}
-              {/*    scrollPercentPosition < 60 ? 'top center' : 'bottom center'*/}
-              {/*  }*/}
-              {/*  on={['hover', 'focus']}*/}
-              {/*>*/}
-              {/*  <div className="noti-cannot" data-id="tooltip">*/}
-              {/*    This collectible cannot be currently sold on Sweet.*/}
-              {/*  </div>{' '}*/}
-              {/*</Popup>*/}
+              <button type="button" className="btn-trade status">
+                <img src={ic_sell} alt="sell" />
+                {'Sell on Drop'}
+              </button>
+              <button type="button" className="btn-trade status">
+                <img src={ic_trade} alt="trade" />
+                {'Trade on Drop'}
+              </button>
+              {/* <Popup
+                trigger={
+                  <button type="button" className="btn-trade status">
+                    <img src={ic_sell} alt="sell" />
+                    {'Sell on Drop'}
+                  </button>
+                }
+                position={
+                  scrollPercentPosition < 60 ? 'top center' : 'bottom center'
+                }
+                on={['hover', 'focus']}
+              >
+                <div className="noti-cannot" data-id="tooltip">
+                  This collectible cannot be currently sold on Sweet.
+                </div>{' '}
+              </Popup>
+              <Popup
+                trigger={
+                  <button type="button" className="btn-trade status">
+                    <img src={ic_trade} alt="sell" />
+                    {'Trade on Drop'}
+                  </button>
+                }
+                position={
+                  scrollPercentPosition < 60 ? 'top center' : 'bottom center'
+                }
+                on={['hover', 'focus']}
+              >
+                <div className="noti-cannot" data-id="tooltip">
+                  This collectible cannot be currently sold on Sweet.
+                </div>{' '}
+              </Popup> */}
 
               {status || balance === 0 ? null : (
                 <button
                   className="btn-trade status"
-                  onClick={handleRevealClick}
+                  // onClick={handleRevealClick}
                 >
                   {isLoading ? (
                     <CircularProgress size={30} color={'inherit'} />
@@ -400,16 +486,65 @@ const MyCollectiblesDetails = () => {
                 </button>
               )}
             </div>
-            {/*<div className="price-history">*/}
-            {/*  <div className="price-history-label">*/}
-            {/*    <img src={price_history_lg} alt="price-history" />*/}
-            {/*    Price History*/}
-            {/*  </div>*/}
-            {/*  <div className="list-price-history"></div>*/}
-            {/*</div>*/}
           </div>
         </div>
-
+        <div className="price-history">
+          <div className="price-history-label">
+            <img src={price_history_lg} alt="price-history" />
+            Price History
+          </div>
+          <div className="list-price-history"></div>
+        </div>
+        <div className="my-revealed-items">My revealed items</div>
+        <div className="marketplace-items">
+          {list_products.map((item, index) => {
+            return (
+              <Link to={`/sale/${index}`} key={index}>
+                <div className="item_product">
+                  <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                    <div className="total_item">Total Run: 50</div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
+                    <div>erc721</div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                    <div className="card">
+                      <img src={product} alt="" />
+                    </div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                    <div className="owner_product">
+                      <div className="owner_product_box">
+                        <span className="owner_product_avatar">
+                          <img src={avatar} alt="" />
+                        </span>
+                        <p className="">{item.owner_name}</p>
+                      </div>
+                      <Link to="/sale">
+                        <div className="status ">Buy Now</div>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_NAME_KEY">
+                    <div className="product_name ">{item.name}</div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_BID_KEY">
+                    <div className="box-price">
+                      <div className="price ">Price</div>
+                      <div className="currency ">$50.00</div>
+                    </div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_NAME_TIME">
+                    <div>
+                      <div className="remaining ">Remaining</div>
+                      <div className="remaining-total ">0</div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
         <Popup
           open={warningOpen}
           onClose={closeWarning}
@@ -451,7 +586,7 @@ const MyCollectiblesDetails = () => {
           handleClose={handleCloseSnackbar}
         />
       </div>
-      <div className="collectibles-details-wp">
+      {/* <div className="collectibles-details-wp">
         <div className="my-product">
           {revealItems.map((item, index) => (
             <div className="product" key={index}>
@@ -459,7 +594,7 @@ const MyCollectiblesDetails = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };

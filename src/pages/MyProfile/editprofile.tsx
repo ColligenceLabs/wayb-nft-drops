@@ -1,5 +1,6 @@
 import React, { SetStateAction } from 'react';
 import avatar from '../../assets/img/avatar.png';
+import edit_blue from '../../assets/img/edit_blue.png';
 
 type editprofileProps = {
   close: boolean | SetStateAction<any>;
@@ -10,12 +11,12 @@ const editprofile: React.FC<editprofileProps> = ({ close }) => (
       <div className="modal-content">
         <div className="edit-profile-modal-box">
           <div className="title">
-            <div>Edit Profile</div>
+            <div className="custom-title">Edit Profile</div>
             <button className="close" onClick={close}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24.329"
-                height="24.329"
+                width="16"
+                height="16"
                 viewBox="0 0 24.329 24.329"
               >
                 <path
@@ -28,8 +29,18 @@ const editprofile: React.FC<editprofileProps> = ({ close }) => (
               </svg>
             </button>
           </div>
+          <div className="line line-edit-profile"></div>
           <form>
             <div className="form-content">
+              <div className="content-box photo">
+                <div className="avatar">
+                  <img id="avatar_upload" src={avatar} alt="" />
+                  <input type="file" id="file-upload" accept="image/*" />
+                  <div className="icon-edit">
+                    <img src={edit_blue} alt="icon edit" />
+                  </div>
+                </div>
+              </div>
               <div className="content-box">
                 <div className="content-title">Username</div>
                 <input placeholder="Change Username" />
@@ -39,34 +50,6 @@ const editprofile: React.FC<editprofileProps> = ({ close }) => (
                 <input placeholder="Change Email" />
               </div>
 
-              <div className="content-box photo">
-                <div className="content-title">Edit Profile Photo</div>
-                <div className="avatar">
-                  <img id="avatar_upload" src={avatar} alt="" />
-                  <input type="file" id="file-upload" accept="image/*" />
-                  <svg
-                    id="edit_black_24dp"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="23.278"
-                    height="23.278"
-                    viewBox="0 0 23.278 23.278"
-                  >
-                    <path
-                      id="Path_84725"
-                      data-name="Path 84725"
-                      d="M0,0H23.278V23.278H0Z"
-                      fill="none"
-                    ></path>
-                    <path
-                      id="Path_84726"
-                      data-name="Path 84726"
-                      d="M13.727,8.839l.892.892L5.832,18.519H4.94v-.892l8.788-8.788M17.219,3a.971.971,0,0,0-.679.281L14.765,5.056,18.4,8.693l1.775-1.775a.966.966,0,0,0,0-1.368l-2.27-2.27A.952.952,0,0,0,17.219,3ZM13.727,6.094,3,16.821v3.637H6.637L17.365,9.731Z"
-                      transform="translate(-0.09 -0.09)"
-                      fill="#fff"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
               <button type="submit" className="">
                 Save Changes
               </button>
