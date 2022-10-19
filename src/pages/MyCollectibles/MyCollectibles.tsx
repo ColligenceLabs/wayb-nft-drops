@@ -2,6 +2,7 @@ import React, { MutableRefObject, useEffect, useState, useRef } from 'react';
 import home_08_avt from '../../assets/img/home_08_avt.png';
 import home_09_avt from '../../assets/img/home_09_avt.jpg';
 import home_10_avt from '../../assets/img/home_10_avt.jpg';
+import klaytnIcon from '../../assets/icon/klaytn.png';
 import ic_collectible_1 from '../../assets/svg/icon-collectible-1.svg';
 import ic_collectible_2 from '../../assets/svg/icon-collectible-2.svg';
 import ic_collectible_3 from '../../assets/svg/icon-collectible-3.svg';
@@ -272,42 +273,11 @@ const MyCollectibles = () => {
                         </div>
                         <div className="product-name">{item.title.en}</div>
                       </div>
-                      <img src={ic_collectible_1} alt="" />
+                      <img src={klaytnIcon} alt="" />
                     </div>
                   </div>
                 </div>
               </Link>
-            );
-          })}
-          {listItems.map((item, index) => {
-            return (
-              <a href="/my-collectibles/details" key={index}>
-                <div className="item-product">
-                  <div className="item-product-detail">
-                    <div className="card">
-                      <img src={home_10_avt} alt="" />
-                    </div>
-                  </div>
-
-                  <div
-                    className="item-product-detail"
-                    style={{ padding: '0px' }}
-                  >
-                    <div className="box-info">
-                      <div className="box-product-name">
-                        <div className="wrapper-product-type">
-                          <div className="avatar">
-                            <img src={avatar} alt="Avatar" />
-                          </div>
-                          <div className="product-type">Sweet</div>
-                        </div>
-                        <div className="product-name">{item.name}</div>
-                      </div>
-                      <img src={item.icon} alt="" />
-                    </div>
-                  </div>
-                </div>
-              </a>
             );
           })}
         </div>
