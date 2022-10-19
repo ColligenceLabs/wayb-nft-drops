@@ -1226,7 +1226,7 @@ export async function getItemAmount(
       } else {
         const result1: BigNumber = await contract.itemAmounts(index);
         const itemAmount = result1.toNumber();
-        const result2: BigNumber = await contract.itemAmounts(index);
+        const result2: BigNumber = await contract.itemSolds(index);
         const itemSold = result2.toNumber();
         remains = itemAmount - itemSold;
       }
