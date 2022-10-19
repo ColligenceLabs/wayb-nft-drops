@@ -388,7 +388,7 @@ const SaleCollectibles = () => {
 
               <div className="puzzle-container">
                 <div>
-                  <ImageList className="puzzle" cols={11}>
+                  <ImageList className="puzzle" cols={13}>
                     {mBoxItemList.map((item, index) => (
                       <ImageListItem key={index}>
                         <img
