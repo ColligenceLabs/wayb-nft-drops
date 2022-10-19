@@ -4,6 +4,7 @@ import { MBoxTypes } from '../../types/MBoxTypes';
 import { getMboxListByFeaturedId } from '../../services/services';
 import { getItemRemains } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import CSnackbar from '../../components/common/CSnackbar';
 
 type CollectionListProps = {
   featuredId: string | null;
@@ -22,6 +23,20 @@ const CollectionList: React.FC<CollectionListProps> = ({
 }) => {
   const { account, library, activate } = useActiveWeb3React();
   const [mBoxList, setMBoxList] = useState<ExMBoxType[]>([]);
+
+  const [openSnackbar, setOpenSnackbar] = useState({
+    open: false,
+    type: '',
+    message: '',
+  });
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar({
+      open: false,
+      type: '',
+      message: '',
+    });
+  };
 
   useEffect(() => {
     const fetchMBoxList = async () => {
@@ -44,6 +59,14 @@ const CollectionList: React.FC<CollectionListProps> = ({
               })
             );
             setMBoxList(newList);
+          } else {
+            console.log('!!! Connect Wallet is needed... !!!');
+            setOpenSnackbar({
+              open: true,
+              type: 'error',
+              message:
+                '지갑 연결이 필요합니다! 데이터가 표시되지 않을 수 있습니다.',
+            });
           }
         }
       }
@@ -118,6 +141,12 @@ const CollectionList: React.FC<CollectionListProps> = ({
           );
         })}
       </div>
+      <CSnackbar
+        open={openSnackbar.open}
+        type={openSnackbar.type}
+        message={openSnackbar.message}
+        handleClose={handleCloseSnackbar}
+      />
     </div>
   );
 };
