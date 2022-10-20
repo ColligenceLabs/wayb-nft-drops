@@ -14,6 +14,14 @@ const MyProfile = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
   const navigate = useNavigate();
 
+  function toStringByFormatting(source: Date) {
+    const year = source.getFullYear();
+    const month = source.getMonth() + 1;
+    const day = source.getDate();
+
+    return [year, month, day].join('.');
+  }
+
   useEffect(() => {
     if (dropsAccount.address === '') navigate('/');
   }, [dropsAccount]);
@@ -50,10 +58,12 @@ const MyProfile = () => {
                   <div className="value">15</div>
                   <div className="label">NFTs</div>
                 </div>
-                {/*<div className="Socialsdetail">*/}
-                {/*  <div className="value">300</div>*/}
-                {/*  <div className="label">Followers</div>*/}
-                {/*</div>*/}
+                <div className="Socialsdetail">
+                  <div className="value">
+                    {toStringByFormatting(new Date(dropsAccount.createdAt))}
+                  </div>
+                  <div className="label">Joined</div>
+                </div>
                 {/*<div className="Socialsdetail">*/}
                 {/*  <div className="value">5</div>*/}
                 {/*  <div className="label">Sold</div>*/}
