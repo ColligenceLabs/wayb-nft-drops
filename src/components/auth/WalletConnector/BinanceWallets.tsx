@@ -8,15 +8,40 @@ import {
 } from '../../../redux/slices/wallet';
 import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
+import useCreateToken from '../../../hooks/useCreateToken';
+import { initDropsAccount } from '../../../redux/slices/account';
 
 const BinanceWallets = () => {
   const dispatch = useDispatch();
   const context = useWeb3React();
-  const { activate, account } = context;
+  const { activate, account, library } = context;
   const { binance } = useSelector((state: any) => state.wallet);
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
+  const [doSign, setDoSign] = useState<boolean>(false);
+  const tokenGenerator = useCreateToken(setDoSign);
 
+  useEffect(() => {
+    console.log('aa');
+    console.log(library);
+    console.log(doSign);
+    if (library !== undefined && doSign) {
+      // createToken();
+      dispatch(initDropsAccount());
+      tokenGenerator.createToken().then((res) => {
+        console.log(res);
+        // if (res === 'notIncludeAccount') {
+        //   deactivate();
+        //   console.log('권한이 없습니다. Talken 관리자에게 연락하세요');
+        // } else if (res === 'notRegistered') {
+        //   deactivate();
+        //   console.log(
+        //     '등록되지 않은 사용자입니다. Talken 관리자에게 연락하세요.'
+        //   );
+        // }
+      });
+    }
+  }, [account, library, doSign]);
   useEffect(() => {
     if (walletName !== '' && account !== '') {
       dispatch(setBinance({ wallet: walletName, address: account }));

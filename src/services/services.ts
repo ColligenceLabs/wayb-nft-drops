@@ -1,5 +1,8 @@
-import { customAxios } from './customAxios';
+import { authAxios, customAxios } from './customAxios';
 
+export const getAccount = async () => {
+  return await authAxios.get('/api/service/profile/@me');
+};
 export const getFeaturedList = async () => {
   return await customAxios.get('/api/service/featured?page=1&limit=5');
 };

@@ -8,14 +8,19 @@ import {
   setKlaytn,
 } from '../../../redux/slices/wallet';
 import splitAddress from '../../../utils/splitAddress';
+import useCreateToken from 'hooks/useCreateToken';
+import { initDropsAccount } from '../../../redux/slices/account';
 
 const KlaytnWallets = () => {
   const dispatch = useDispatch();
   const context = useWeb3React();
-  const { activate, account } = context;
+  const { activate, account, library } = context;
   const { klaytn } = useSelector((state: any) => state.wallet);
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
+  const [doSign, setDoSign] = useState<boolean>(false);
+
+  const tokenGenerator = useCreateToken(setDoSign);
 
   useEffect(() => {
     if (walletName !== '' && account !== '') {
@@ -27,6 +32,28 @@ const KlaytnWallets = () => {
     if (klaytn !== undefined)
       setConnectedWallet({ value: klaytn.wallet, address: klaytn.address });
   }, [klaytn]);
+
+  useEffect(() => {
+    console.log('aa');
+    console.log(library);
+    console.log(doSign);
+    if (library !== undefined && doSign) {
+      // createToken();
+      dispatch(initDropsAccount());
+      tokenGenerator.createToken().then((res) => {
+        console.log(res);
+        // if (res === 'notIncludeAccount') {
+        //   deactivate();
+        //   console.log('권한이 없습니다. Talken 관리자에게 연락하세요');
+        // } else if (res === 'notRegistered') {
+        //   deactivate();
+        //   console.log(
+        //     '등록되지 않은 사용자입니다. Talken 관리자에게 연락하세요.'
+        //   );
+        // }
+      });
+    }
+  }, [account, library, doSign]);
 
   const handleClickWallet = async (id: number, value: string) => {
     try {
@@ -51,6 +78,7 @@ const KlaytnWallets = () => {
         await dispatch(setActivatingConnector(kaikas));
       }
       window.localStorage.setItem('walletStatus', 'connected');
+      setDoSign(true);
     } catch (e) {
       console.log('connect wallet error', e);
     }

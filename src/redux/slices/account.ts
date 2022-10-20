@@ -13,7 +13,7 @@ const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    initKlaybayAccount: (state) => {
+    initDropsAccount: (state) => {
       state.account = {
         address: '',
         name: '',
@@ -21,12 +21,12 @@ const accountSlice = createSlice({
         role: '',
       };
     },
-    setKlaybayAccount: (state, action) => {
+    setDropsAccount: (state, action) => {
       state.account = action.payload;
     },
   },
 });
 
-export const { initKlaybayAccount, setKlaybayAccount } = accountSlice.actions;
+export const { initDropsAccount, setDropsAccount } = accountSlice.actions;
 
 export default accountSlice.reducer;
