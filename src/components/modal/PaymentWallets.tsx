@@ -49,7 +49,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   const { account, library, chainId, activate } = useActiveWeb3React();
   const wallet = useSelector((state: any) => state.wallet);
   const [isModalOpenSuccess, setModalOpenSuccess] = useState(false);
-  const [selectedPayment, setSelectedPayment] = useState<number>();
+  const [selectedPayment, setSelectedPayment] = useState<number>(0);
   const [remains, setRemains] = useState(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isBuying, setIsBuying] = useState(false);
@@ -299,13 +299,16 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           <button
             disabled={isDisabled || isBuying}
             type="submit"
-            className="payments-btn-submit button fw-600"
+            className={`payments-btn-submit button fw-600  ${
+              isDisabled || isBuying ? 'disable' : ''
+            }`}
+            // className="payments-btn-submit button fw-600 disable"
             onClick={handleClickBuy}
           >
             {isBuying ? (
               <CircularProgress size={30} color={'inherit'} />
             ) : (
-              'Continue'
+              'Buy Now'
             )}
           </button>
         </div>
