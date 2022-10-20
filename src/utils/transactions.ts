@@ -10,6 +10,7 @@ import env from '../env';
 import tokenAbi from '../config/abi/ERC20Token.json';
 import { collectionAbi } from '../config/abi/Collection';
 import { collectionData } from '../contracts';
+import getSelectedNodeUrl from './getRpcUrl';
 
 const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 1001];
 const caver = new Caver(rpcUrl);
@@ -1279,6 +1280,26 @@ export async function getItemRemains(
   } catch (e) {
     console.log('#####', address);
     console.log('getItemRemains Error : ', e);
+  }
+  return remains;
+}
+
+export async function getItemRemainsNoSigner(
+  address: string,
+  account: string | undefined | null,
+  chainId: number
+): Promise<number> {
+  const provider = ethers.getDefaultProvider(getSelectedNodeUrl(chainId));
+  new ethers.Contract(address, mysteryBoxAbi, provider);
+  const contract = new ethers.Contract(address, mysteryBoxAbi, provider);
+
+  let remains = 0;
+  try {
+    const result: BigNumber = await contract.getItemRemains();
+    remains = result.toNumber();
+  } catch (e) {
+    console.log('#####', address);
+    console.log('getItemRemainsNoSigner Error : ', e);
   }
   return remains;
 }

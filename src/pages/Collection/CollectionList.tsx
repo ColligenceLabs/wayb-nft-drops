@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getMboxListByFeaturedId } from '../../services/services';
-import { getItemRemains } from 'utils/transactions';
+import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CSnackbar from '../../components/common/CSnackbar';
 
@@ -21,7 +21,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
   companyLogo,
   companyName,
 }) => {
-  const { account, library, activate } = useActiveWeb3React();
+  const { account, library, activate, chainId } = useActiveWeb3React();
   const [mBoxList, setMBoxList] = useState<ExMBoxType[]>([]);
 
   const [openSnackbar, setOpenSnackbar] = useState({
@@ -44,30 +44,43 @@ const CollectionList: React.FC<CollectionListProps> = ({
         const res = await getMboxListByFeaturedId(featuredId);
 
         if (res.status === 200) {
-          if (res.data.list && library && library.connection) {
-            const newList = await Promise.all(
-              res.data.list.map(async (item: MBoxTypes) => {
-                let remaining = null;
-                if (library && library.connection)
-                  remaining = await getItemRemains(
-                    item.boxContractAddress,
-                    account,
-                    library
-                  );
+          // TODO : Show list also when a wallet is not collected.
+          // if (res.data.list && library && library.connection) {
+          //   const newList = await Promise.all(
+          //     res.data.list.map(async (item: MBoxTypes) => {
+          //       let remaining = null;
+          //       if (library && library.connection)
+          //         remaining = await getItemRemains(
+          //           item.boxContractAddress,
+          //           account,
+          //           library
+          //         );
+          //
+          //       return { ...item, remainingAmount: remaining };
+          //     })
+          //   );
+          //   setMBoxList(newList);
+          // } else {
+          //   console.log('!!! Connect Wallet is needed... !!!');
+          //   setOpenSnackbar({
+          //     open: true,
+          //     type: 'error',
+          //     message:
+          //       '지갑 연결이 필요합니다! 데이터가 표시되지 않을 수 있습니다.',
+          //   });
+          // }
+          const newList = await Promise.all(
+            res.data.list.map(async (item: MBoxTypes) => {
+              const remaining = await getItemRemainsNoSigner(
+                item.boxContractAddress,
+                account,
+                chainId
+              );
 
-                return { ...item, remainingAmount: remaining };
-              })
-            );
-            setMBoxList(newList);
-          } else {
-            console.log('!!! Connect Wallet is needed... !!!');
-            setOpenSnackbar({
-              open: true,
-              type: 'error',
-              message:
-                '지갑 연결이 필요합니다! 데이터가 표시되지 않을 수 있습니다.',
-            });
-          }
+              return { ...item, remainingAmount: remaining };
+            })
+          );
+          setMBoxList(newList);
         }
       }
     };
