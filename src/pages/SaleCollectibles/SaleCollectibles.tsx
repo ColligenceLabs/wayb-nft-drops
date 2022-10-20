@@ -358,10 +358,10 @@ const SaleCollectibles = () => {
               </div>
               <div>
                 <div className="title-sale-by-Collectors fw-600">
-                  For Sale by Collectors
+                  {/*For Sale by Collectors*/}
                 </div>
                 <div className="sub-title-sale-by-Collectors fw-600">
-                  Sold out? No problem! Check out user listings below.
+                  {/*Sold out? No problem! Check out user listings below.*/}
                 </div>
               </div>
               <div className="userSales">
