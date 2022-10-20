@@ -5,7 +5,7 @@ import edit_blue from '../../assets/img/edit_blue.png';
 type editprofileProps = {
   close: boolean | SetStateAction<any>;
 };
-const editprofile: React.FC<editprofileProps> = ({ close }) => (
+const editprofile: any = (close: any) => (
   <div className="modal-editprofile">
     <div className="modal-overlay">
       <div className="modal-content">

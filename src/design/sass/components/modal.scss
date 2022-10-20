@@ -64,6 +64,7 @@
         align-items: center;
         justify-content: center;
         margin: auto;
+        cursor: pointer;
         .pay-item {
           width: 68px;
           height: 68px;
@@ -74,7 +75,6 @@
         }
       }
       .active {
-        background: rgba(255, 255, 255, 0.5);
         border: 3px solid #2f8af5;
       }
     }

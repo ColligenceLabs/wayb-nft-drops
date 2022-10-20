@@ -40,6 +40,8 @@ import { useSelector } from 'react-redux';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { getRarityToString } from '../../utils/getRarityToString';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
+import { hotCollectiblesTestData } from 'pages/homepage/mockData';
+import useOnClickOutside from 'components/common/useOnClickOutside';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -75,6 +77,7 @@ const MyCollectiblesDetails = () => {
   });
   const wallet = useSelector((state: any) => state.wallet);
   const { activate } = useWeb3React();
+  useOnClickOutside(ref, () => setDropdownOpen(false));
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -282,16 +285,40 @@ const MyCollectiblesDetails = () => {
                           setDropdownOpen(false);
                         }}
                       >
-                        <img
+                        {/* <img
                           src={ic_send_to_my_wallet}
                           alt="send-to-my-wallet"
-                        />
+                        /> */}
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 15V16C18 17.1 17.1 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16C17.1 0 18 0.9 18 2V3H9C8.46957 3 7.96086 3.21071 7.58579 3.58579C7.21071 3.96086 7 4.46957 7 5V13C7 13.5304 7.21071 14.0391 7.58579 14.4142C7.96086 14.7893 8.46957 15 9 15H18ZM9 13H19V5H9V13ZM13 10.5C12.17 10.5 11.5 9.83 11.5 9C11.5 8.17 12.17 7.5 13 7.5C13.83 7.5 14.5 8.17 14.5 9C14.5 9.83 13.83 10.5 13 10.5Z"
+                            fill="white"
+                          />
+                        </svg>
                         Send to Private Address
                       </button>
                     </li>
                     <li className="list-dropdown-item">
                       <button className="dropdown-item">
-                        <img src={gift_token_icon} alt="gift token icon" />
+                        {/* <img src={gift_token_icon} alt="gift token icon" /> */}
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1.75 18.9531C1.75 19.368 2.08516 19.7031 2.5 19.7031H9.20312V10.8906H1.75V18.9531ZM10.7969 19.7031H17.5C17.9148 19.7031 18.25 19.368 18.25 18.9531V10.8906H10.7969V19.7031ZM18.625 5.26562H15.1656C15.4844 4.76406 15.6719 4.16875 15.6719 3.53125C15.6719 1.74766 14.2211 0.296875 12.4375 0.296875C11.4672 0.296875 10.593 0.728125 10 1.40781C9.40703 0.728125 8.53281 0.296875 7.5625 0.296875C5.77891 0.296875 4.32812 1.74766 4.32812 3.53125C4.32812 4.16875 4.51328 4.76406 4.83438 5.26562H1.375C0.960156 5.26562 0.625 5.60078 0.625 6.01562V9.29688H9.20312V5.26562H10.7969V9.29688H19.375V6.01562C19.375 5.60078 19.0398 5.26562 18.625 5.26562ZM9.20312 5.17188H7.5625C6.65781 5.17188 5.92188 4.43594 5.92188 3.53125C5.92188 2.62656 6.65781 1.89062 7.5625 1.89062C8.46719 1.89062 9.20312 2.62656 9.20312 3.53125V5.17188ZM12.4375 5.17188H10.7969V3.53125C10.7969 2.62656 11.5328 1.89062 12.4375 1.89062C13.3422 1.89062 14.0781 2.62656 14.0781 3.53125C14.0781 4.43594 13.3422 5.17188 12.4375 5.17188Z"
+                            fill="white"
+                          />
+                        </svg>
                         Gift this token
                       </button>
                     </li>

@@ -113,7 +113,7 @@
               position: absolute;
               right: 0px;
               flex-direction: column;
-              padding: 16px 20px;
+              padding: 20px 15px;
               margin: 0;
               z-index: 20;
               list-style: none;
@@ -124,14 +124,19 @@
                 font-weight: 500;
                 padding: 10px 0px;
                 .dropdown-item {
-                  img {
+                  svg {
                     margin-bottom: -5px;
-                    margin-right: 5px;
-                    width: 19px;
-                    height: 19px;
+                    margin-right: 12px;
+                    // width: 19px;
+                    // height: 19px;
                   }
                   &:hover {
                     color: #2f8af5;
+                    svg {
+                      path {
+                        fill: #2f8af5;
+                      }
+                    }
                   }
                 }
               }
@@ -259,7 +264,7 @@
             text-align: center;
             border-radius: 12px;
             color: #fff;
-            background-color: #222;
+            background-color: #23235c;
             font-size: 16px;
             border: 1px solid transparent;
             padding: 0px 21px;
@@ -393,7 +398,7 @@
             img {
               width: 100%;
               height: 100%;
-              // object-fit: contain;
+              object-fit: contain;
             }
           }
 
@@ -586,7 +591,7 @@
               text-align: center;
               border-radius: 12px;
               color: #fff;
-              background-color: #222;
+              background-color: #23235c;
               font-size: 16px;
               border: 1px solid transparent;
               padding: 0px 21px;
@@ -730,7 +735,7 @@
   text-align: center;
   border-radius: 12px;
   color: #fff;
-  background-color: #222;
+  background-color: #23235c;
   font-size: 14px;
   border: 1px solid transparent;
   padding: 0px 21px;
