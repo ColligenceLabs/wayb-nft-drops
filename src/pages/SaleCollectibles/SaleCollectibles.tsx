@@ -149,10 +149,8 @@ const SaleCollectibles = () => {
       }
     };
 
-    if (location.state.item && library && library.connection) {
-      setMBoxInfo(location.state.item);
-      fetchMboxItemList();
-    }
+    setMBoxInfo(location.state.item);
+    fetchMboxItemList();
   }, [location, library]);
 
   useEffect(() => {
