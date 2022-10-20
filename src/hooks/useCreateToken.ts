@@ -62,7 +62,7 @@ const useCreateToken = (setDoSign: SetStateAction<any>) => {
         localStorage.setItem('dropsJwtToken', token);
 
         // Check User Role
-        const resp = await getAccount();
+        const resp = await getAccount(token);
         if (resp.data.status === 0) return 'notRegistered';
 
         const studioAccount: StudioAccount = resp.data;

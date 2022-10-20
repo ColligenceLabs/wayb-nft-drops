@@ -1,7 +1,9 @@
 import { authAxios, customAxios } from './customAxios';
 
-export const getAccount = async () => {
-  return await authAxios.get('/api/service/profile/@me');
+export const getAccount = async (token: string) => {
+  return await customAxios.get('/api/service/profile/@me', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export const updateAccount = async (address: string, data: any) => {
