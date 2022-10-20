@@ -27,7 +27,11 @@ import Popup from 'reactjs-popup';
 import CSnackbar from '../../components/common/CSnackbar';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { useSelector } from 'react-redux';
-import { getItemAmount, getItemRemains } from '../../utils/transactions';
+import {
+  getItemAmount,
+  getItemAmountNoSigner,
+  getItemRemains,
+} from '../../utils/transactions';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -41,7 +45,7 @@ const lockScroll = true;
 const SaleCollectibles = () => {
   const location = useLocation();
 
-  const { account, library } = useWeb3React();
+  const { account, library, chainId } = useWeb3React();
 
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
   const [remains, setRemains] = useState(0);
@@ -125,15 +129,17 @@ const SaleCollectibles = () => {
         if (res.data.list) {
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes, index: number) => {
-              let remaining = null;
-              if (library && library.connection)
-                remaining = await getItemAmount(
-                  location.state.item.boxContractAddress,
-                  index,
-                  item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
-                  account,
-                  library
-                );
+              // let remaining = null;
+              // if (library && library.connection)
+              //   remaining = await getItemAmount(
+              const remaining = await getItemAmountNoSigner(
+                location.state.item.boxContractAddress,
+                index,
+                item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
+                account,
+                // library
+                chainId ?? 8217
+              );
               return { ...item, remainingAmount: remaining };
             })
           );

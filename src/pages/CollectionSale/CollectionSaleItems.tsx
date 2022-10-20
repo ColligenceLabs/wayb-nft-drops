@@ -4,7 +4,11 @@ import { getMboxItemListMboxId } from '../../services/services';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
-import { getItemAmount, getItemRemains } from 'utils/transactions';
+import {
+  getItemAmount,
+  getItemAmountNoSigner,
+  getItemRemains,
+} from 'utils/transactions';
 
 type CollectionItemType = MBoxItemTypes & {
   remainingAmount: number;
@@ -31,7 +35,7 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
   companyName,
   quote,
 }) => {
-  const { account, library, activate } = useActiveWeb3React();
+  const { account, library, activate, chainId } = useActiveWeb3React();
   const [collectionItemList, setCollectionItemList] = useState<
     CollectionItemType[]
   >([]);
@@ -45,15 +49,17 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes, index: number) => {
               console.log(item);
-              let remaining = null;
-              if (library && library.connection)
-                remaining = await getItemAmount(
-                  collectionInfo?.boxContractAddress,
-                  index,
-                  2, // 1 = MysteryBox, 2 = Collection
-                  account,
-                  library
-                );
+              // let remaining = null;
+              // if (library && library.connection)
+              //   remaining = await getItemAmount(
+              const remaining = await getItemAmountNoSigner(
+                collectionInfo?.boxContractAddress,
+                index,
+                2, // 1 = MysteryBox, 2 = Collection
+                account,
+                // library
+                chainId
+              );
 
               return {
                 ...item,

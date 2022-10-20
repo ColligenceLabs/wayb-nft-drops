@@ -10,7 +10,11 @@ import { useLocation } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
-import { buyItem, getItemAmount } from '../../utils/transactions';
+import {
+  buyItem,
+  getItemAmount,
+  getItemAmountNoSigner,
+} from '../../utils/transactions';
 import contracts from '../../config/constants/contracts';
 import { SUCCESS } from '../../config';
 import { getKeyRemains } from '../../utils/marketTransactions';
@@ -67,12 +71,19 @@ const CollectionSaleDetail = () => {
   };
 
   const fetchRemaining = async () => {
-    const remaining = await getItemAmount(
+    // const remaining = await getItemAmount(
+    //   collectionItemInfo?.collectionInfo.boxContractAddress,
+    //   collectionItemInfo?.index ? collectionItemInfo?.index : 0,
+    //   2, // 1 = MysteryBox, 2 = Collection
+    //   account,
+    //   library
+    // );
+    const remaining = await getItemAmountNoSigner(
       collectionItemInfo?.collectionInfo.boxContractAddress,
       collectionItemInfo?.index ? collectionItemInfo?.index : 0,
       2, // 1 = MysteryBox, 2 = Collection
       account,
-      library
+      chainId
     );
     console.log(`remaining : ${remaining}`);
     setRemainingAmount(remaining);

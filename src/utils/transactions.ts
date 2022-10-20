@@ -1239,6 +1239,44 @@ export async function getItemAmount(
   return remains;
 }
 
+export async function getItemAmountNoSigner(
+  address: string,
+  index: number,
+  type: number, // 1 = MysteryBox, 2 = Collection
+  account: string | undefined | null,
+  chainId: number
+): Promise<number> {
+  const provider = ethers.getDefaultProvider(getSelectedNodeUrl(chainId));
+  new ethers.Contract(
+    address,
+    type === 1 ? mysteryBoxAbi : collectionAbi,
+    provider
+  );
+  const contract = new ethers.Contract(
+    address,
+    type === 1 ? mysteryBoxAbi : collectionAbi,
+    provider
+  );
+
+  let remains = 0;
+  try {
+    if (type === 1) {
+      const result: BigNumber = await contract.itemAmounts(index);
+      remains = result.toNumber();
+    } else {
+      const result1: BigNumber = await contract.itemAmounts(index);
+      const itemAmount = result1.toNumber();
+      const result2: BigNumber = await contract.itemSolds(index);
+      const itemSold = result2.toNumber();
+      remains = itemAmount - itemSold;
+    }
+  } catch (e) {
+    console.log('#####', address);
+    console.log('getItemAmountNoSigner Error : ', e);
+  }
+  return remains;
+}
+
 export async function getItemRemains(
   address: string,
   account: string | undefined | null,
