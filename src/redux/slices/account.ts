@@ -3,7 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   account: {
     address: '',
+    banner_image: '',
+    createdAt: '',
+    instagram: '',
     name: '',
+    profile_image: '',
+    site: '',
+    twitter: '',
     email: '',
     role: '',
   },
@@ -16,7 +22,13 @@ const accountSlice = createSlice({
     initDropsAccount: (state) => {
       state.account = {
         address: '',
+        banner_image: '',
+        createdAt: '',
+        instagram: '',
         name: '',
+        profile_image: '',
+        site: '',
+        twitter: '',
         email: '',
         role: '',
       };

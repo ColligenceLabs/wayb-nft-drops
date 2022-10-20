@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { SetStateAction } from 'react';
 import useActiveWeb3React from './useActiveWeb3React';
 import { setDropsAccount } from '../redux/slices/account';
+import { useWeb3React } from '@web3-react/core';
 
 interface StudioAccount {
   address: 'string';
@@ -16,10 +17,11 @@ interface StudioAccount {
 }
 
 const useCreateToken = (setDoSign: SetStateAction<any>) => {
-  const { account, library } = useActiveWeb3React();
+  const { account, library } = useWeb3React();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(account);
   const createToken = async () => {
     localStorage.removeItem('dropsJwtToken');
 
@@ -64,6 +66,7 @@ const useCreateToken = (setDoSign: SetStateAction<any>) => {
         if (resp.data.status === 0) return 'notRegistered';
 
         const studioAccount: StudioAccount = resp.data;
+        console.log(resp.data);
         dispatch(setDropsAccount(studioAccount));
       } catch (e) {
         console.log(e);

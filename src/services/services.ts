@@ -3,6 +3,11 @@ import { authAxios, customAxios } from './customAxios';
 export const getAccount = async () => {
   return await authAxios.get('/api/service/profile/@me');
 };
+
+export const updateAccount = async (address: string, data: any) => {
+  return await authAxios.post(`/api/service/profile/${address}`, data);
+};
+
 export const getFeaturedList = async () => {
   return await customAxios.get('/api/service/featured?page=1&limit=5');
 };

@@ -176,7 +176,10 @@
         height: 26px;
 
         img {
-          width: 100%;
+          width: 26px;
+          height: 26px;
+          object-fit: cover;
+          border-radius: 50%;
         }
       }
 

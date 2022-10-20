@@ -12,8 +12,9 @@ import my_profile from '../../assets/icon/my_profile.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import { useModalWalletsStore, useSidebarStore } from './AppStore';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { initWallets } from '../../redux/slices/wallet';
+import { initDropsAccount } from '../../redux/slices/account';
 
 const UsernameBox = () => {
   const { deactivate } = useActiveWeb3React();
@@ -24,6 +25,8 @@ const UsernameBox = () => {
   const handleClickLogout = async () => {
     await deactivate();
     dispatch(initWallets());
+    dispatch(initDropsAccount());
+    localStorage.removeItem('dropsJwtToken');
   };
 
   return (

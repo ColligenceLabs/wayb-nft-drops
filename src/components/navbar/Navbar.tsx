@@ -37,7 +37,8 @@ const Navbar = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const { openSidebar } = useSidebarStore();
   const { updateOpenWallet } = useModalWalletsStore();
-
+  const dropsAccount = useSelector((state: any) => state.account.account);
+  // console.log(dropsAccount);
   useOnClickOutside(ref, () => setModalOpen(false));
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -124,38 +125,50 @@ const Navbar = () => {
             </span>
           </button>
         </div>
-        <div className="wrapper-user">
-          <div className="avatar-user">
-            <img src={avatar_user} alt="profile-avatar" />
-          </div>
-          <p className="user-name">User name</p>
-        </div>
-        <button
-          ref={ref}
-          className="username-dropdown button"
-          onClick={() => setModalOpen(!isModalOpen)}
-        >
-          <svg
-            className="sc-196ec885-12 eKhfKP"
-            xmlns="http://www.w3.org/2000/svg"
-            width="18.092"
-            height="11.168"
-            viewBox="0 0 18.092 11.168"
-          >
-            <path
-              id="Path_46142"
-              data-name="Path 46142"
-              d="M-10858.465-7358l6.925,6.926,6.925-6.926"
-              transform="translate(10860.586 7360.121)"
-              fill="none"
-              stroke="#fff"
-              strokeLinecap="round"
-              strokeWidth="3"
-            ></path>
-          </svg>
-          {/* user dropdown box */}
-          {isModalOpen && <UsernameBox />}
-        </button>
+        {dropsAccount.address !== '' && (
+          <>
+            <div className="wrapper-user">
+              <div className="avatar-user">
+                <img
+                  src={
+                    dropsAccount.profile_image
+                      ? dropsAccount.profile_image
+                      : avatar_user
+                  }
+                  alt="profile-avatar"
+                />
+              </div>
+              <p className="user-name">{dropsAccount.name}</p>
+            </div>
+            <button
+              ref={ref}
+              className="username-dropdown button"
+              onClick={() => setModalOpen(!isModalOpen)}
+            >
+              <svg
+                className="sc-196ec885-12 eKhfKP"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18.092"
+                height="11.168"
+                viewBox="0 0 18.092 11.168"
+              >
+                <path
+                  id="Path_46142"
+                  data-name="Path 46142"
+                  d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+                  transform="translate(10860.586 7360.121)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeWidth="3"
+                ></path>
+              </svg>
+              {/* user dropdown box */}
+              {isModalOpen && <UsernameBox />}
+            </button>
+          </>
+        )}
+
         {/* wallets box */}
         <DialogWallets />
         {/* popup log in  */}

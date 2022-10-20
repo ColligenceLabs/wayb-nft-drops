@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
 import avatar from '../../assets/img/avatar_user.webp';
 import 'slick-carousel/slick/slick.css';
@@ -7,8 +7,16 @@ import 'react-multi-carousel/lib/styles.css';
 import Popup from 'reactjs-popup';
 import Edit from './editprofile';
 import Delete from './deleteaccount';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const MyProfile = () => {
+  const dropsAccount = useSelector((state: any) => state.account.account);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (dropsAccount.address === '') navigate('/');
+  }, [dropsAccount]);
   return (
     <main className="profile-container min-height-content">
       <div className="my-profile-page">
@@ -19,11 +27,22 @@ const MyProfile = () => {
             <div className="my-profile-detail-header">
               <div className="wrapper-profile">
                 <div className="avatar">
-                  <img src={avatar} alt="avatar" />
+                  <img
+                    src={
+                      dropsAccount.profile_image
+                        ? dropsAccount.profile_image
+                        : avatar
+                    }
+                    alt="avatar"
+                  />
                 </div>
                 <div className="my-profile-name">
-                  <div className="fullname">Chainos</div>
-                  <div className="username">@Chainos_2022</div>
+                  <div className="fullname">{dropsAccount.name}</div>
+                  <div className="username">
+                    {dropsAccount.instagram
+                      ? `@${dropsAccount.instagram}`
+                      : '-'}
+                  </div>
                 </div>
               </div>
               <div className="myProfileSocials">
@@ -45,20 +64,20 @@ const MyProfile = () => {
             <div className="my-profile-contact">
               <div className="contact-detail">
                 <div className="title">Name</div>
-                <div className="content">Chainos</div>
+                <div className="content">{dropsAccount.name}</div>
               </div>
-              <div className="contact-detail">
-                <div className="title">Birthday</div>
-                <div className="content">07/05/2018</div>
-              </div>
+              {/*<div className="contact-detail">*/}
+              {/*  <div className="title">Birthday</div>*/}
+              {/*  <div className="content">07/05/2018</div>*/}
+              {/*</div>*/}
               <div className="contact-detail">
                 <div className="title">Email</div>
-                <div className="content">noreply@chainos</div>
+                <div className="content">{dropsAccount.email}</div>
               </div>
-              <div className="contact-detail">
-                <div className="title">Mobile Phone</div>
-                <div className="content">0123456789</div>
-              </div>
+              {/*<div className="contact-detail">*/}
+              {/*  <div className="title">Mobile Phone</div>*/}
+              {/*  <div className="content">0123456789</div>*/}
+              {/*</div>*/}
             </div>
           </div>
           <div className="my-profile-rightdetail">
@@ -67,7 +86,9 @@ const MyProfile = () => {
                 <img src={twitter_icon} alt="" />
                 Twitter
               </div>
-              <div className="item-value">twitter/Chainos</div>
+              <div className="item-value">
+                {dropsAccount.twitter ? `twitter/${dropsAccount.twitter}` : '-'}
+              </div>
             </div>
             <Popup modal trigger={<button>Edit Profile</button>}>
               {Edit}
