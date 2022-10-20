@@ -50,14 +50,14 @@ const MyProfile = () => {
                   <div className="value">15</div>
                   <div className="label">NFTs</div>
                 </div>
-                <div className="Socialsdetail">
-                  <div className="value">300</div>
-                  <div className="label">Followers</div>
-                </div>
-                <div className="Socialsdetail">
-                  <div className="value">5</div>
-                  <div className="label">Sold</div>
-                </div>
+                {/*<div className="Socialsdetail">*/}
+                {/*  <div className="value">300</div>*/}
+                {/*  <div className="label">Followers</div>*/}
+                {/*</div>*/}
+                {/*<div className="Socialsdetail">*/}
+                {/*  <div className="value">5</div>*/}
+                {/*  <div className="label">Sold</div>*/}
+                {/*</div>*/}
               </div>
             </div>
             <div className="bio"></div>
@@ -93,15 +93,15 @@ const MyProfile = () => {
             <Popup modal trigger={<button>Edit Profile</button>}>
               {Edit}
             </Popup>
-            <Popup
-              modal
-              trigger={
-                <button className="delete-account">Delete Account</button>
-              }
-            >
-              {Delete}
-              {/* <>{(close: any) => <Delete close={close} />}</> */}
-            </Popup>
+            {/*<Popup*/}
+            {/*  modal*/}
+            {/*  trigger={*/}
+            {/*    <button className="delete-account">Delete Account</button>*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  {Delete}*/}
+            {/*  /!* <>{(close: any) => <Delete close={close} />}</> *!/*/}
+            {/*</Popup>*/}
           </div>
         </div>
       </div>
