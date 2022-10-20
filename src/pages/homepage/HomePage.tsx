@@ -16,7 +16,7 @@ import FeaturedCard from '../../components/card/FeaturedCard';
 import ArrowCarouselCollections from 'components/common/ArrowCarouselCollections';
 import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { getItemRemains } from 'utils/transactions';
+import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 
 type ExMBoxType = MBoxTypes & {
@@ -24,7 +24,7 @@ type ExMBoxType = MBoxTypes & {
 };
 
 const Homepage = () => {
-  const { account, library } = useActiveWeb3React();
+  const { account, library, chainId } = useActiveWeb3React();
   const screenSize = useScreenSize();
   const [slideData, setSlideData] = useState<FeaturedTypes[]>([]);
   const [featuredCollections, setFeaturedCollections] = useState<
@@ -54,13 +54,15 @@ const Homepage = () => {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
             console.log(item);
-            let remaining = null;
-            if (library && library.connection)
-              remaining = await getItemRemains(
-                item.boxContractAddress,
-                account,
-                library
-              );
+            // let remaining = null;
+            // if (library && library.connection)
+            // remaining = await getItemRemains(
+            const remaining = await getItemRemainsNoSigner(
+              item.boxContractAddress,
+              account,
+              // library
+              chainId
+            );
             return { ...item, remainingAmount: remaining };
           })
         );
