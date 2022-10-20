@@ -425,48 +425,61 @@ const MyCollectiblesDetails = () => {
           {mboxInfo &&
             revealItems.map((item, index) => {
               return (
-                <Link to={`/sale/${index}`} key={index}>
-                  <div className="item_product">
-                    <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                      <div className="total_item">Total Run: 50</div>
-                    </div>
-                    <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                      <div>erc721</div>
-                    </div>
-                    <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                      <div className="card">
+                // <Link to={`/sale/${index}`} key={index}>
+                <div className="item_product" key={index}>
+                  <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                    <div className="total_item">Total Run: 50</div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
+                    <div>erc721</div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                    <div className="card">
+                      {item.extension === 'mp4' ? (
+                        <video
+                          autoPlay
+                          controls
+                          controlsList="nodownload"
+                          muted
+                          loop
+                          width={'100%'}
+                        >
+                          <source src={item.image} type="video/mp4" />
+                        </video>
+                      ) : (
                         <img src={item.image} alt="" />
-                      </div>
+                      )}
                     </div>
-                    <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                      <div className="owner_product">
-                        <div className="owner_product_box">
-                          <span className="owner_product_avatar">
-                            <img src={mboxInfo?.packageImage} alt="" />
-                          </span>
-                          <p className="">{mboxInfo?.title.en}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                      <div className="product_name ">{item.name}</div>
-                    </div>
-                    <div className="item_product_detail MARKETPLACE_BID_KEY">
-                      <div className="box-price">
-                        <div className="price ">Price</div>
-                        <div className="currency ">{`${mboxInfo?.price} ${mboxInfo?.quote}`}</div>
-                      </div>
-                    </div>
-                    <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                      <div>
-                        <div className="remaining ">Rarity</div>
-                        <div className="remaining-total ">
-                          {getRarityToString(item.rarity)}
-                        </div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                    <div className="owner_product">
+                      <div className="owner_product_box">
+                        <span className="owner_product_avatar">
+                          <img src={mboxInfo?.packageImage} alt="" />
+                        </span>
+                        <p className="">{mboxInfo?.title.en}</p>
                       </div>
                     </div>
                   </div>
-                </Link>
+                  <div className="item_product_detail MARKETPLACE_NAME_KEY">
+                    <div className="product_name ">{item.name}</div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_BID_KEY">
+                    <div className="box-price">
+                      <div className="price ">Price</div>
+                      <div className="currency ">{`${mboxInfo?.price} ${mboxInfo?.quote}`}</div>
+                    </div>
+                  </div>
+                  <div className="item_product_detail MARKETPLACE_NAME_TIME">
+                    <div>
+                      <div className="remaining ">Rarity</div>
+                      <div className="remaining-total ">
+                        {getRarityToString(item.rarity)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                // </Link>
               );
             })}
         </div>

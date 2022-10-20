@@ -16,6 +16,7 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
   quote,
   price,
 }) => {
+  console.log(item);
   return (
     <div className="slide-item">
       {/*<Link to={``} className="button">*/}
@@ -30,7 +31,20 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
         </div>
         <div className="hot-ollectibles-item">
           <div className="img-token">
-            <img src={item.itemImage} alt="" />
+            {item.originalImage.split('.').pop() === 'mp4' ? (
+              <video
+                autoPlay
+                controls
+                muted
+                loop
+                controlsList="nodownload"
+                width={'100%'}
+              >
+                <source src={item.originalImage} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={item.itemImage} alt="" />
+            )}
           </div>
         </div>
         <div className="hot-ollectibles-item">

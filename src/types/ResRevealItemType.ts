@@ -3,4 +3,6 @@ export type ResRevealItemType = {
   description: string;
   image: string;
   rarity: number;
+  alt_url: string;
+  extension: string;
 };
