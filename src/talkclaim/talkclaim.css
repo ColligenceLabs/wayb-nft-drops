@@ -113,9 +113,9 @@
 
 .content-box {
     border-radius: 12px;
-    /* background: linear-gradient(93deg,#2161e2,#b07cfe);
-    box-shadow: 10px 14px 5px 0 rgb(228 230 235 / 27%); */
-    /* padding: 30px; */
+    background: linear-gradient(93deg,#2161e2,#b07cfe);
+    box-shadow: 10px 14px 5px 0 rgb(228 230 235 / 27%);
+    padding: 30px;
 }
 
 .content-box > h1 {
