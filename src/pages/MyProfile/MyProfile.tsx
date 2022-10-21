@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
 import avatar from '../../assets/img/avatar_user.webp';
 import 'slick-carousel/slick/slick.css';
@@ -9,9 +9,11 @@ import Edit from './editprofile';
 import Delete from './deleteaccount';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getMyMBoxList } from '../../services/services';
 
 const MyProfile = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
+  const [nNfts, setNNfts] = useState(0);
   const navigate = useNavigate();
 
   function toStringByFormatting(source: Date) {
@@ -21,6 +23,20 @@ const MyProfile = () => {
 
     return [year, month, day].join('.');
   }
+
+  useEffect(() => {
+    const fetchMyNfts = async () => {
+      if (dropsAccount.address) {
+        const res = await getMyMBoxList(dropsAccount.address, 'ASC');
+        console.log(res.data);
+        if (res.data.status === 1) {
+          setNNfts(res.data.data.length);
+        }
+      }
+    };
+
+    fetchMyNfts();
+  }, [dropsAccount]);
 
   useEffect(() => {
     if (dropsAccount.address === '') navigate('/');
@@ -55,7 +71,7 @@ const MyProfile = () => {
               </div>
               <div className="myProfileSocials">
                 <div className="Socialsdetail">
-                  <div className="value">15</div>
+                  <div className="value">{nNfts}</div>
                   <div className="label">NFTs</div>
                 </div>
                 <div className="Socialsdetail">
