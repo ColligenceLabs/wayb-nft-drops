@@ -14,6 +14,8 @@ import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
 import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
 import CollectionSale from 'pages/CollectionSale/CollectionSale';
 import CollectionSaleDetail from 'pages/CollectionSale/CollectionSaleDetail';
+import ClaimTalk from 'talkclaim/ClaimTalk';
+import ClaimOwner from 'talkclaim/ClaimOwner';
 
 const Router = () => [
   {
@@ -41,6 +43,9 @@ const Router = () => [
     element: <LandingLayout />,
     children: [{ path: '/oldnavy', element: <Landing /> }],
   },
+
+  { path: '/claimTalk', element: <ClaimTalk /> },
+  { path: '/admp', element: <ClaimOwner /> },
 ];
 
 export default Router;

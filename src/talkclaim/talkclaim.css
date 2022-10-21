@@ -1,0 +1,204 @@
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.main-app {
+    text-align: center;
+    margin: 100px 50px 0 50px;
+    font-family: 'Poppins';
+}
+
+.cta-button {
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    min-width: 250px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins';
+    cursor: pointer;
+    box-shadow: 0 10px 20px 0 rgb(63 93 152 / 30%);
+}
+.apply-button {
+    font-family: 'Spoqa Han Sans Neo';
+    background: #0d3290;
+}
+.apply-button:disabled {
+    font-family: 'Spoqa Han Sans Neo';
+    background: rgb(202,202,202);
+}
+.apply-button-disabled {
+    font-family: 'Spoqa Han Sans Neo';
+    background: rgb(114, 147, 234);
+}
+
+.connect-wallet-button {
+    background: #0d3290;
+}
+
+.connect-wallet-button:disabled {
+    background: rgb(114, 147, 234);
+}
+
+.claim-button {
+    background: linear-gradient(93deg,black,#0d3290);
+}
+
+.claim-button:disabled {
+    background: rgb(114, 147, 234);
+}
+
+.receive-toggle-div {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.input-box {
+    border-radius: 12px;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    margin: 10px 5px 15px 5px;
+    padding: 0 15px;
+}
+.claim-input {
+    border: white;
+}
+
+.claim-talk-container {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 4px;
+}
+
+.apply-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Spoqa Han Sans Neo';
+    margin-top: -30px;
+}
+
+.apply-container > h1 {
+    font-size: 23px;
+}
+
+.apply-text-div {
+    text-align: left;
+    font-size: 15px;
+}
+
+.apply-text-div > ul {
+    margin-left: -20px;
+}
+
+.apply-text-div > ul > li {
+    margin-bottom: 15px;
+}
+
+.agree-text-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.agree-text-wrap > span > img {
+    width: 20px;
+    height: 20px;
+    margin: 5px 5px -3px 5px;
+}
+
+.content-box {
+    border-radius: 12px;
+    background: linear-gradient(93deg,#2161e2,#b07cfe);
+    box-shadow: 10px 14px 5px 0 rgb(228 230 235 / 27%);
+    padding: 30px;
+}
+
+.content-box > h1 {
+    font-weight: 700;
+}
+
+.button-div {
+    margin: 10px;
+}
+
+.logo-image {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    top: 5px;
+
+}
+
+.logo-box {
+    background: white;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 70px;
+    border-radius: 50%;
+}
+
+.available-text-div {
+    font-weight: 500;
+    font-size: 20px;   
+}
+
+.top-menu-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.top-menu {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    padding: 5px;
+    width: 170px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(34,34,34,0.05);
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.menu-button-active {
+    background: linear-gradient(93deg,#2161e2,#b07cfe);
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.1);
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    width: 100%;
+}
+
+.menu-button-inactive {
+    color: black;
+    padding: 5px;
+    width: 100%;
+}
+
+.apply-button-div {
+    margin-top: 30px;
+}
+
+.apply-balance-div {
+    margin: 30px 0 30px 0;
+    text-align: center;
+    font-weight: 700;
+}
+
+.apply-date-notice-div {
+    font-size: 15px;
+    margin: 10px 0;
+    font-family: 'Spoqa Han Sans Neo';
+}
+
+.apply-header {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 15px 0 5px 0;
+}
