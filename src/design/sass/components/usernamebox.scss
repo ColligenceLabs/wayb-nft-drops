@@ -2,7 +2,7 @@
 
 // user-dropdown-box
 .user-dropdown-box {
-  // width: 220px;
+  width: 220px;
   margin-right: 40px;
   height: auto;
   border-radius: 12px;
@@ -41,7 +41,7 @@
       display: flex;
       align-items: center;
       padding: 10px 0px;
-
+      gap: 10px;
       svg {
         margin-right: 5px;
         width: 25px;
@@ -91,7 +91,7 @@
         border-top: 1px solid #393939;
         display: flex;
         justify-content: space-between;
-        padding: 20px;
+        padding: 20px 0;
 
         .custom-icon {
           width: 28px;
@@ -114,8 +114,9 @@
         .btn-wallets {
           display: flex;
           justify-content: flex-start;
-          gap: 5px;
+          gap: 14px;
           height: 35px;
+          align-items: center;
           .img-wallet {
             width: 24px;
             img {
@@ -141,7 +142,7 @@
         border-top: 1px solid #393939;
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding: 20px 0;
 
         .custom-icon {
           width: 28px;
@@ -165,7 +166,7 @@
         .btn-wallets {
           display: flex;
           justify-content: flex-start;
-          gap: 5px;
+          gap: 14px;
           .img-wallet {
             width: 24px;
 
@@ -184,9 +185,9 @@
     }
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 325px) {
     .wrapper-dropdown {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 }
