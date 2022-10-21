@@ -6,9 +6,9 @@ import icon_insta from '../../assets/icon/instagram.png';
 import icon_twitter from '../../assets/icon/twitter.png';
 import icon_discord from '../../assets/icon/discord.png';
 import close_icon from '../../assets/icon/close_icon.svg';
-import about from '../../assets/icon/about.svg';
-import blog from '../../assets/icon/blog.svg';
-import help from '../../assets/icon/help.svg';
+import about from '../../assets/icon/about_02.svg';
+import blog from '../../assets/icon/blog_02.svg';
+import help from '../../assets/icon/help_02.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
 import UsernameBox from 'components/common/UsernameBox';
 import {
@@ -35,47 +35,35 @@ const SidebarMb = () => {
   const { isOpen, closeSidebar } = useSidebarStore();
   return (
     <div className={`side-bar ${isOpen ? 'show' : ''}`} onClick={closeSidebar}>
-      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+      {/* sidebar before login new design */}
+      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
         <div className="close-sidebar">
           <div className="icon-close" onClick={closeSidebar}>
             <img src={close_icon} alt="Close Icon" />
           </div>
         </div>
-        <div className="login-signup" onClick={() => setLoginOpen(true)}>
-          {/* sidebar before login new design
-          <span>Connect Wallet</span> */}
-
-          {/***  sidebar after login new design ***/}
-
-          <div className="wrapper-wallets">
-            <div
-              className="btn-wallets button"
-              onClick={() => {
-                // updateOpenWallet(true);
-                closeSidebar(false);
-              }}
-            >
-              <div className="img-wallet">
-                <img src={wallet_blue} alt="wallet" />
-              </div>
-              <span>Wallets</span>
-            </div>
-          </div>
+        <div
+          className="login-signup"
+          onClick={() => {
+            setLoginOpen(true);
+            closeSidebar();
+          }}
+        >
+          <span>Connect Wallet</span>
         </div>
-
         <div className="wrapper">
-          <a href="/" className="about button">
+          <a href="/" className="wrapper-item button">
             <img src={about} alt="About Icon" />
             About
           </a>
-          <a href="/" className="blog button">
+          <a href="/" className="wrapper-item button">
             <img src={blog} alt="Blog Icon" />
             Blog
           </a>
-          <div className="help button">
+          <a href="/" className="wrapper-item button">
             <img src={help} alt="Help Icon" />
             Help
-          </div>
+          </a>
         </div>
         <div className="fanpage-icons-sidebar">
           <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
@@ -92,11 +80,11 @@ const SidebarMb = () => {
             <img src={icon_insta} alt="" />
           </a>
         </div>
-      </div>
-      {/* sidebar after login */}
-      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
-        <UsernameBox />
       </div> */}
+      {/* sidebar after login */}
+      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+        <UsernameBox />
+      </div>
 
       {/* popup log in */}
       <Popup

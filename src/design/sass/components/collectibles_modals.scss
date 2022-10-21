@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @keyframes fade-in {
   0% {
     box-shadow: 0 0 0 hsl(0deg 0% 95% / 0%);
@@ -22,15 +23,14 @@
 }
 
 .popup-content {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Poppins,
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   .modal_collectibles {
     animation: 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards fade-in;
-    // min-width: 500px;
-    // max-width: 570px;
     height: max-content;
-    // border-radius: 20px;
     margin: auto;
-    background-color: #212121;
-    padding: 20px;
+    padding: 24px 50px 44px;
     color: white;
     outline: none;
     min-width: 600px;
@@ -58,7 +58,7 @@
       }
 
       .titles {
-        margin-bottom: 20px;
+        padding-bottom: 24px;
         height: 44px;
         display: flex;
 
@@ -67,10 +67,8 @@
         }
 
         .title {
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-            'Helvetica Neue', sans-serif;
-          font-size: 28px;
+          font-size: 26px;
+          font-weight: 700;
           display: flex;
           -webkit-box-align: center;
           align-items: center;
@@ -93,13 +91,14 @@
 
         .close_button {
           position: absolute;
-          top: 10px;
+          top: 0px;
           right: 0px;
           width: fit-content;
 
           .button {
             background-color: transparent;
             border: none;
+            padding: 0;
           }
         }
       }
@@ -110,8 +109,7 @@
         -webkit-box-pack: center;
         justify-content: center;
         width: 100%;
-        padding: 20px 0px 10px;
-        margin: 20px 0px 0px;
+        padding: 24px 0px;
         border-top: 1px solid #ffffff14;
 
         img {
@@ -125,21 +123,16 @@
         color: white;
         font-size: 16px;
         font-weight: 400;
-        padding: 0px 10px;
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-          'Helvetica Neue', sans-serif;
         padding-bottom: 24px;
         .purple_text {
           color: #2f8af5;
-          display: inline-block;
+          // display: inline-block;
           font-size: 16px;
           text-transform: uppercase;
           font-weight: 700;
         }
       }
       .input_address_box {
-        width: 95%;
         margin: auto;
         // padding-top: 24px;
         .input_address {
@@ -158,26 +151,23 @@
       }
 
       .input_address_text {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-          'Helvetica Neue', sans-serif;
         width: 100%;
         display: flex;
         -webkit-box-pack: center;
         justify-content: center;
         -webkit-box-align: center;
         align-items: center;
-        margin-top: 20px;
+        padding-top: 24px;
         color: white;
         font-size: 16px;
         opacity: 0.7;
       }
 
       .text_small {
-        margin-top: 3%;
+        padding-top: 24px;
         display: inline-block;
-        font-size: 11px;
-
+        font-size: 14px;
+        line-height: 16px;
         .purple_text {
           color: #2f8af5;
           display: inline-block;
@@ -185,13 +175,13 @@
       }
 
       .warning {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-          'Helvetica Neue', sans-serif;
-        font-size: 22px;
-        color: #ff6a6a;
-        margin-bottom: 10px;
-
+        font-size: 20px;
+        color: #FC615A;
+        margin-bottom: 24px;
+        display: flex;
+        gap: 8px;
+        text-transform: uppercase;
+        justify-content: center;
         .warning_svg {
           width: 25px;
           height: 25px;
@@ -200,37 +190,27 @@
       }
 
       .warning_text {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-          'Helvetica Neue', sans-serif;
-        font-size: 13px;
-        line-height: 1.4;
-        font-weight: 100;
-        margin: 10px auto;
-        width: 95%;
+        font-size: 14px;
+        line-height: 20px;
+        margin: auto;
         color: white;
+        text-align: justify;
       }
 
       .success {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-          'Helvetica Neue', sans-serif;
         font-size: 24px;
         color: white;
-        margin-bottom: 10px;
+        padding-bottom: 22px;
         font-weight: 700;
-
+        display: flex;
+        justify-content: center;
+        gap: 8px;
         img {
           vertical-align: middle;
-          padding-left: 8px;
         }
       }
 
       .understand {
-        font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-          'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-          'Helvetica Neue', sans-serif;
-        padding: 0px 10px;
         padding-top: 24px;
 
         .link {
@@ -239,10 +219,11 @@
 
         .understand_button {
           border: none;
-          font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+          font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+            Poppins, 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
             'Helvetica Neue', sans-serif;
-          font-size: 20px;
+          font-size: 16px;
+          font-weight: 700;
           cursor: pointer;
           text-transform: none;
           display: flex;
@@ -253,10 +234,9 @@
           position: relative;
           height: 60px;
           border-radius: 10px;
-          margin: 10px 0px;
           width: 100%;
           color: white;
-          padding: 20px;
+          padding: 24px;
           background: #2f8af5;
         }
       }
@@ -296,6 +276,7 @@
       border-radius: 0;
       min-width: auto;
       height: 100%;
+      padding: 24px 20px 44px;
       .contents {
         .titles {
           .title {
@@ -309,10 +290,4 @@
     }
   }
 
-  .close_button {
-    svg {
-      vertical-align: middle;
-      transform: scale(0.7);
-    }
-  }
 }
