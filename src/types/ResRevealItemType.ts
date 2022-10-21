@@ -5,4 +5,5 @@ export type ResRevealItemType = {
   rarity: number;
   alt_url: string;
   extension: string;
+  price: string;
 };

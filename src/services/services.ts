@@ -53,3 +53,9 @@ export const getMyMBoxList = async (address: string, sort: string) => {
     `/api/service/drops?address=${address}&sortBy=createdAt:${sort}`
   );
 };
+
+export const getItemPrice = async (metaLink: string) => {
+  return await customAxios.get(
+    `/api/service/mysterybox/uri-items?uri=${metaLink}`
+  );
+};

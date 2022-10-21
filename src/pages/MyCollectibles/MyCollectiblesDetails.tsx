@@ -42,6 +42,7 @@ import { getRarityToString } from '../../utils/getRarityToString';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import { hotCollectiblesTestData } from 'pages/homepage/mockData';
 import useOnClickOutside from 'components/common/useOnClickOutside';
+import { getItemPrice } from '../../services/services';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
 const lockScroll = true;
@@ -198,6 +199,8 @@ const MyCollectiblesDetails = () => {
       const result = await Promise.all(
         tokenURI.map(async (uri) => {
           const res = await axios.get(uri);
+          const rlt = await getItemPrice(uri);
+          res.data.price = rlt.data.data.price;
           return res.data;
         })
       );
@@ -494,7 +497,7 @@ const MyCollectiblesDetails = () => {
                   <div className="item_product_detail MARKETPLACE_BID_KEY">
                     <div className="box-price">
                       <div className="price ">Price</div>
-                      <div className="currency ">{`${mboxInfo?.price} ${mboxInfo?.quote}`}</div>
+                      <div className="currency ">{`${item?.price} ${mboxInfo?.quote}`}</div>
                     </div>
                   </div>
                   <div className="item_product_detail MARKETPLACE_NAME_TIME">
