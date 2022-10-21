@@ -200,7 +200,7 @@ const MyCollectiblesDetails = () => {
         tokenURI.map(async (uri) => {
           const res = await axios.get(uri);
           const rlt = await getItemPrice(uri);
-          res.data.price = rlt.data.data.price;
+          res.data.price = rlt.data?.data?.price ?? '-';
           return res.data;
         })
       );
@@ -497,7 +497,9 @@ const MyCollectiblesDetails = () => {
                   <div className="item_product_detail MARKETPLACE_BID_KEY">
                     <div className="box-price">
                       <div className="price ">Price</div>
-                      <div className="currency ">{`${item?.price} ${mboxInfo?.quote}`}</div>
+                      <div className="currency ">{`${
+                        mboxInfo.isCollection ? item?.price : mboxInfo.price
+                      } ${mboxInfo?.quote}`}</div>
                     </div>
                   </div>
                   <div className="item_product_detail MARKETPLACE_NAME_TIME">
