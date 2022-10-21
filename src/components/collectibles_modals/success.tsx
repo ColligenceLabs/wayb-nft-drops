@@ -47,18 +47,16 @@ const Success: React.FC<SuccessProps> = ({ close }) => (
         <div className="close_button">
           <button onClick={close} className="button">
             <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              width="24.329"
-              height="24.329"
-              viewBox="0 0 24.329 24.329"
             >
               <path
-                id="Path_84708"
-                data-name="Path 84708"
-                d="M29.329,7.45,26.878,5l-9.714,9.714L7.45,5,5,7.45l9.714,9.714L5,26.878l2.45,2.45,9.714-9.714,9.714,9.714,2.45-2.45-9.714-9.714Z"
-                transform="translate(-5 -5)"
-                fill="#fff"
-              ></path>
+                d="M16 1.4L14.6 0L8 6.6L1.4 0L0 1.4L6.6 8L0 14.6L1.4 16L8 9.4L14.6 16L16 14.6L9.4 8L16 1.4Z"
+                fill="white"
+              />
             </svg>
           </button>
         </div>
@@ -71,7 +69,7 @@ const Success: React.FC<SuccessProps> = ({ close }) => (
         ></img>
       </div>
       <div className="success">
-        Success
+        <div>Success</div>
         <img src={success_icon} alt="" />
       </div>
       <div className="text_sending">

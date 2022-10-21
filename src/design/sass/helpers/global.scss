@@ -8,7 +8,10 @@
   box-sizing: border-box;
 }
 .min-height-content {
-  min-height: calc(100vh - 100px - 315px + 11px);
+  min-height: calc(100vh - 100px - 316px + 10px);
+}
+.min-height-content-landingpage {
+  min-height: calc(100vh - 316px);
 }
 .main {
   position: relative;
