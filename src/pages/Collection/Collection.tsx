@@ -5,6 +5,12 @@ import product from '../../assets/img/product.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
+import etherscan_view from '../../assets/icon/etherscan_view.svg';
+import website_icon from '../../assets/icon/website_icon.svg';
+import icon_discord from '../../assets/img/icon_discord.png';
+import icon_instagram from '../../assets/img/icon_instagram.png';
+import icon_twitter from '../../assets/img/icon_twitter.png';
+
 import { Link, useParams } from 'react-router-dom';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { getFeaturedById } from '../../services/services';
@@ -95,13 +101,38 @@ const Collection = () => {
                   </div>
                 </div>
                 <div className="collection-info-right">
-                  <div className="collection-info-right-details">
-                    <div className="value">750</div>
-                    <div className="label">NFTs</div>
+                  <div className="collection-info-left-details">
+                    <a href="/" className="info-item">
+                      <div className="image-item">
+                        <img src={etherscan_view} alt="Etherscan Icon" />
+                      </div>
+                    </a>
+                    <a href="/" className="info-item">
+                      <div className="image-item">
+                        <img src={website_icon} alt="Website Icon" />
+                      </div>
+                    </a>
+                    <a href="/" className="info-item">
+                      <div className="image-item">
+                        <img src={icon_discord} alt="Discord Icon" />
+                      </div>
+                    </a>
+                    <a href="/" className="info-item">
+                      <div className="image-item">
+                        <img src={icon_instagram} alt="Instagram Icon" />
+                      </div>
+                    </a>
+                    <a href="/" className="info-item">
+                      <div className="image-item">
+                        <img src={icon_twitter} alt="Twitter Icon" />
+                      </div>
+                    </a>
+                    {/* <div className="label">NFTs</div> */}
                   </div>
+                  <div className="line-icon"></div>
                   <div className="collection-info-right-details">
-                    <div className="value">723</div>
-                    <div className="label">Followers</div>
+                    <div className="value">100</div>
+                    <div className="label">NFTs</div>
                   </div>
                 </div>
               </div>
