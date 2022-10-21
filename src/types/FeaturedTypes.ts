@@ -13,7 +13,7 @@ export type FeaturedTypes = {
   banner: string;
   description: { ko: string; en: string };
   manager: string | null;
-  link: [];
+  links: [];
   updatedAt: Date | null;
   createdAt: Date | null;
 };
