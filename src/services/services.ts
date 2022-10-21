@@ -7,7 +7,11 @@ export const getAccount = async (token: string) => {
 };
 
 export const updateAccount = async (address: string, data: any) => {
-  return await authAxios.post(`/api/service/profile/${address}`, data);
+  // return await authAxios.post(`/api/service/profile/${address}`, data);
+  const token = window.localStorage.getItem('dropsJwtToken');
+  return await customAxios.post(`/api/service/profile/${address}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export const getFeaturedList = async () => {
