@@ -11,7 +11,6 @@ import MyCollectibles from 'pages/MyCollectibles/MyCollectibles';
 import Profile from 'pages/MyProfile/MyProfile';
 import PurchaseHistory from 'pages/PurchaseHistory/PurchaseHistory';
 import PurchaseHistoryDetail from 'pages/PurchaseHistory/PurchaseHistoryDetail';
-import PuzzleCollection from 'pages/PuzzleCollection/PuzzleCollection';
 import CollectionSale from 'pages/CollectionSale/CollectionSale';
 import CollectionSaleDetail from 'pages/CollectionSale/CollectionSaleDetail';
 import ClaimTalk from 'talkclaim/ClaimTalk';
@@ -36,7 +35,6 @@ const Router = () => [
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <PurchaseHistory /> },
       { path: '/series', element: <PurchaseHistoryDetail /> },
-      { path: '/puzzle-collection', element: <PuzzleCollection /> },
     ],
   },
   {
