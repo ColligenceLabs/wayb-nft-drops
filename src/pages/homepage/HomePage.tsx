@@ -53,14 +53,9 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            console.log(item);
-            // let remaining = null;
-            // if (library && library.connection)
-            // remaining = await getItemRemains(
             const remaining = await getItemRemainsNoSigner(
               item.boxContractAddress,
               account,
-              // library
               chainId
             );
             return { ...item, remainingAmount: remaining };
@@ -271,71 +266,93 @@ const Homepage = () => {
               }}
               showDots={false}
             >
-              {collectionList.map((item: any, index) => (
-                <Link
-                  to={`/collection-sale/${item.id}`}
-                  state={{
-                    item: {
-                      ...item,
-                      companyLogo: item.featured.company.image,
-                      companyName: item.featured.companyId,
-                      quote: item.quote,
-                    },
-                  }}
-                  className="button custom-box"
-                  key={index}
-                >
-                  <div className="hot-ollectibles-wrapper">
-                    <div className="header-left hot-ollectibles-item">
-                      <span className="total-run">
-                        Total Run: {item.totalAmount}
-                      </span>
-                    </div>
-                    <div className="hot-ollectibles-item">
-                      <div>erc721</div>
-                    </div>
-                    <div className="hot-ollectibles-item">
-                      <div className="img-token">
-                        <img src={item.packageImage} alt="" draggable={false} />
+              {collectionList.map((item: any, index) => {
+                return (
+                  <Link
+                    to={
+                      item.itemAmount === 1 && item.mysteryboxItems
+                        ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
+                        : `/collection-sale/${item.id}`
+                    }
+                    state={
+                      item.itemAmount === 1
+                        ? {
+                            item: {
+                              collectionInfo: item,
+                              ...item.mysteryboxItems[0],
+                              companyLogo: item.featured.company.image,
+                              companyName: item.featured.company.name.en,
+                              quote: item.quote,
+                            },
+                          }
+                        : {
+                            item: {
+                              ...item,
+                              companyLogo: item.featured.company.image,
+                              companyName: item.featured.companyId,
+                              quote: item.quote,
+                            },
+                          }
+                    }
+                    className="button custom-box"
+                    key={index}
+                  >
+                    <div className="hot-ollectibles-wrapper">
+                      <div className="header-left hot-ollectibles-item">
+                        <span className="total-run">
+                          Total Run: {item.totalAmount}
+                        </span>
                       </div>
-                    </div>
-                    <div className="hot-ollectibles-item">
-                      <div className="wrapper-item">
-                        <div className="content-left">
-                          <div className="avatar">
-                            <img
-                              src={item.featured.company.image}
-                              alt=""
-                              draggable={false}
-                            />
+                      <div className="hot-ollectibles-item">
+                        <div>erc721</div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="img-token">
+                          <img
+                            src={item.packageImage}
+                            alt=""
+                            draggable={false}
+                          />
+                        </div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="wrapper-item">
+                          <div className="content-left">
+                            <div className="avatar">
+                              <img
+                                src={item.featured.company.image}
+                                alt=""
+                                draggable={false}
+                              />
+                            </div>
+                            <div className="name-label">{item.title.en}</div>
                           </div>
-                          <div className="name-label">{item.title.en}</div>
-                        </div>
-                        <div className="content-right">Buy Now</div>
-                      </div>
-                    </div>
-                    <div className="hot-ollectibles-item">
-                      <div className="name-label">{item.details}</div>
-                    </div>
-                    <div className="hot-ollectibles-item">
-                      <div className="wrapper-price">
-                        <div className="price-header">Price</div>
-                        <div className="current-price">
-                          {`${item.quote?.toUpperCase()} ${item.price}`}
+                          <div className="content-right">Buy Now</div>
                         </div>
                       </div>
-                    </div>
-                    <div className="hot-ollectibles-item">
-                      <div className="wrapper-remaining">
-                        <div className="remaining-header">Remaining</div>
-                        <div className="quantity-remaining">
-                          {item.remainingAmount ? item.remainingAmount : '-'}
+                      <div className="hot-ollectibles-item">
+                        <div className="name-label">{item.details}</div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="wrapper-price">
+                          <div className="price-header">Price</div>
+                          <div className="current-price">
+                            {`${item.quote?.toUpperCase()} ${item.price}`}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="wrapper-remaining">
+                          <div className="remaining-header">Remaining</div>
+                          <div className="quantity-remaining">
+                            {item.remainingAmount ? item.remainingAmount : '-'}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </Carousel>
           )}
           {/*{hotCollectiblesTestData && (*/}

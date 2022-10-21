@@ -91,7 +91,7 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
             >
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                  <div className="total_item">Total Run: {'1'}</div>
+                  <div className="total_item">Total Run: {'1a'}</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
                   <div>erc721</div>

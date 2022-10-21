@@ -85,7 +85,6 @@ const CollectionSaleDetail = () => {
       account,
       chainId
     );
-    console.log(`remaining : ${remaining}`);
     setRemainingAmount(remaining);
   };
   const closeLogin = () => {
@@ -97,8 +96,6 @@ const CollectionSaleDetail = () => {
 
   const handleBuyClick = async () => {
     setIsLoading(true);
-    console.log('buy');
-    console.log(collectionItemInfo);
     const contract = collectionItemInfo?.collectionInfo?.boxContractAddress;
     const quote = collectionItemInfo?.collectionInfo?.quote;
     const index = collectionItemInfo?.index ?? 0;
@@ -106,13 +103,7 @@ const CollectionSaleDetail = () => {
     const payment = parseEther(collectionItemInfo?.price.toString() ?? '0').mul(
       amount
     );
-    console.log(
-      contract,
-      index,
-      1,
-      payment,
-      quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId]
-    );
+
     const result = await buyItem(
       contract,
       index,
@@ -122,15 +113,8 @@ const CollectionSaleDetail = () => {
       account,
       library
     );
-    if (result === SUCCESS) {
-      // const left = await getItemAmount(
-      //   contract,
-      //   index,
-      //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
-      //   account,
-      //   library
-      // );
 
+    if (result === SUCCESS) {
       const data = {
         mysterybox_id: collectionItemInfo?.collectionInfo?.id,
         buyer: '',
@@ -149,10 +133,25 @@ const CollectionSaleDetail = () => {
     setIsLoading(false);
   };
 
+  const getRemaining = async () => {
+    const remaining = await getItemAmountNoSigner(
+      location.state.item.collectionInfo.boxContractAddress,
+      0,
+      2, // 1 = MysteryBox, 2 = Collection
+      account,
+      // library
+      chainId
+    );
+    setRemainingAmount(remaining);
+  };
+
   useEffect(() => {
     setCollectionItemInfo(location.state.item);
-    setRemainingAmount(location.state.item.remainingAmount);
-    console.log(location.state.item);
+    if (location.state.item.remainingAmount === undefined) {
+      getRemaining();
+    } else {
+      setRemainingAmount(location.state.item.remainingAmount);
+    }
   }, [location.state]);
 
   return (

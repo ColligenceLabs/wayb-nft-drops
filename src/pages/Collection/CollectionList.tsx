@@ -92,15 +92,29 @@ const CollectionList: React.FC<CollectionListProps> = ({
     <div className="marketplace min-height-content">
       <div className="marketplace-collection-tittle">Featured Collectibles</div>
       <div className="marketplace-items">
-        {mBoxList.map((item, index) => {
+        {mBoxList.map((item: any, index) => {
           return (
             <Link
               to={
                 item.isCollection
-                  ? `/collection-sale/${item.id}`
+                  ? item.itemAmount === 1 && item.mysteryboxItems
+                    ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
+                    : `/collection-sale/${item.id}`
                   : `/sale/${item.id}`
               }
-              state={{ item: { ...item, companyLogo, companyName } }}
+              state={
+                item.isCollection && item.itemAmount === 1
+                  ? {
+                      item: {
+                        collectionInfo: item,
+                        ...item.mysteryboxItems[0],
+                        companyLogo,
+                        companyName,
+                        quote: item.quote,
+                      },
+                    }
+                  : { item: { ...item, companyLogo, companyName } }
+              }
               key={index}
             >
               <div className="item_product">
