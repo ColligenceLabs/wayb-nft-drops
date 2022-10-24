@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 .min-height-content {
-  min-height: calc(100vh - 100px - 316px + 10px);
+  min-height: calc(100vh - 100px - 316px + 12px);
 }
 .min-height-content-landingpage {
   min-height: calc(100vh - 316px);
@@ -27,6 +27,7 @@
     left: 0;
     right: 0;
   }
+
   @include Mobile() {
     .background-section01 {
       height: 540px;
@@ -34,7 +35,22 @@
     }
   }
 }
-
+.main-aquarium {
+  position: relative;
+  background-color: #02021e;
+  .background-image-aquarium {
+    position: absolute;
+    background-image: url(../../../assets/img/aquarium_01.png);
+    height: 1000px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% center;
+    color: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
 :root {
   font-family: 'Roboto', sans-serif;
 }

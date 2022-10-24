@@ -1,0 +1,171 @@
+.aquarium1402-1 {
+  // background-image: url(../../../assets/img/aquarium_01.png);
+  // height: 1000px;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: 50% center;
+  // color: #ffffff;
+  .aquarium1402-1-content {
+    // max-width: 1280px;
+    // width: 100%;
+    // height: 100%;
+    // padding: 0 40px;
+    // margin: auto;
+    .section-01 {
+      max-width: 1280px;
+      width: 100%;
+      height: 1000px;
+      padding: 0 40px;
+      margin: auto;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      .header-content {
+        position: relative;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 75px;
+        text-align: center;
+        text-shadow: 0px 0px 60px rgba(0, 0, 0, 0.8);
+        padding-bottom: 243px;
+      }
+      .bottom-content {
+        height: 242px;
+        background: linear-gradient(180deg, rgba(2, 2, 30, 0) 0%, #02021e 100%);
+        .box {
+          position: relative;
+          .wrapper-sounhong {
+            padding: 26px 50px;
+            width: 100%;
+            display: flex;
+            border-radius: 12px;
+            gap: 30px;
+            .avt-sounhong {
+              min-width: 120px;
+              height: 120px;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .about-sounhong {
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 24px;
+              text-align: justify;
+              .about-sidescape {
+                font-weight: 400;
+              }
+            }
+          }
+        }
+        .box::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 30px;
+          padding: 1px;
+          background: linear-gradient(
+            180deg,
+            rgba(107, 106, 106, 1) 0%,
+            rgba(107, 106, 106, 0) 100%
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          height: 200px;
+        }
+      }
+    }
+    .section-02 {
+      height: 950px;
+      background-color: #02021e;
+      color: #ffffff;
+      max-width: 1280px;
+      width: 100%;
+      padding: 0 40px;
+      margin: auto;
+      .wrapper-header {
+        padding: 65px 57px 100px;
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 52px;
+        text-align: center;
+        .content-header {
+          font-weight: 400;
+          color: #aaaaaa;
+          font-size: 16px;
+          line-height: 19px;
+          padding-top: 12px;
+        }
+      }
+      .wrapper-bottom {
+        border: 1px solid #444444;
+        border-radius: 30px;
+        padding: 24px 24px 29px;
+        display: flex;
+        gap: 24px;
+        .image-aquarium {
+          flex: 1 1 100%;
+          width: 564px;
+          height: 366px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .wrapper-infor-nft {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 26px;
+          text-align: justify;
+          .title {
+            font-size: 24px;
+            font-weight: 700;
+          }
+          .btn-buy-now {
+            background: #2f8af5;
+            border-radius: 8px;
+            width: 127px;
+            height: 49px;
+          }
+        }
+      }
+      .vector-background-left {
+        position: absolute;
+        width: 552.07px;
+        height: 804.13px;
+        left: -156.94px;
+        top: 775.49px;
+
+        background: rgba(5, 0, 255, 0.33);
+        filter: blur(200px);
+        transform: rotate(-100.76deg);
+      }
+      .vector-background-right {
+        position: absolute;
+        width: 380.4px;
+        height: 756.35px;
+        right: -220px;
+        top: 1103px;
+        background: rgba(173, 0, 255, 0.35);
+        filter: blur(80.2901px);
+        transform: rotate(15.67deg);
+      }
+    }
+    .wrapper-wave-border {
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      top: 84.4%;
+      bottom: -1.38%;
+      margin: auto;
+      text-align: center;
+      img {
+        width: 100vw;
+      }
+    }
+  }
+}
