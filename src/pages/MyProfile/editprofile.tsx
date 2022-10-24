@@ -121,7 +121,7 @@ const editprofile: any = (close: any) => {
             <div className="line line-edit-profile"></div>
 
             <div className="form-content">
-              <div className="content-box photo">
+              <div className="content-box-edit photo">
                 <div className="avatar">
                   <img
                     id="avatar_upload"
@@ -139,7 +139,7 @@ const editprofile: any = (close: any) => {
                   </div>
                 </div>
               </div>
-              <div className="content-box">
+              <div className="content-box-edit">
                 <div className="content-title">Username</div>
                 <input
                   placeholder="Change Username"
@@ -148,7 +148,7 @@ const editprofile: any = (close: any) => {
                   onChange={handleChangeInputValue}
                 />
               </div>
-              <div className="content-box">
+              <div className="content-box-edit">
                 <div className="content-title">Email address</div>
                 <input
                   placeholder="Change Email"
@@ -157,7 +157,7 @@ const editprofile: any = (close: any) => {
                   onChange={handleChangeInputValue}
                 />
               </div>
-              <div className="content-box">
+              <div className="content-box-edit">
                 <div className="content-title">Twitter ID</div>
                 <input
                   placeholder="Change Twitter"
@@ -166,7 +166,7 @@ const editprofile: any = (close: any) => {
                   onChange={handleChangeInputValue}
                 />
               </div>
-              <div className="content-box">
+              <div className="content-box-edit">
                 <div className="content-title">Instagram ID</div>
                 <input
                   placeholder="Change Twitter"
