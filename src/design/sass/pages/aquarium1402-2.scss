@@ -10,24 +10,24 @@
     // transform: matrix(0.98, 0.17, 0.17, -0.98, 0, 0);
 
     .background-01 {
-      // position: absolute;
-      // width: 2677.19px;
-      // height: 1320.33px;
-      // left: -442.52px;
+      position: absolute;
+      width: 120vw;
+      height: 100%;
+      left: -44.52px;
       // top: 1332.1px;
-      // background: linear-gradient(
-      //   358.64deg,
-      //   rgba(255, 255, 255, 0.2) -62.93%,
-      //   rgba(48, 139, 245, 0.022) 75.03%,
-      //   rgba(47, 138, 245, 0) 75.05%
-      // );
+      background: linear-gradient(
+        358.64deg,
+        rgba(255, 255, 255, 0.2) -62.93%,
+        rgba(48, 139, 245, 0.022) 75.03%,
+        rgba(47, 138, 245, 0) 75.05%
+      );
     }
     .background-image {
       position: absolute;
-      // width: 2223.48px;
-      // height: 1210.07px;
-      left: 40px;
-      top: 1518.65px;
+      width: 100vw;
+      height: 1210.07px;
+      left: 0px;
+      top: 151px;
       background-image: url(../../../assets/img/aquarium02_background.png);
       transform: matrix(0.98, 0.17, 0.17, -0.98, 0, 0);
     }
@@ -59,11 +59,6 @@
         }
         .bottom-content {
           min-height: 242px;
-          background: linear-gradient(
-            180deg,
-            rgba(2, 2, 30, 0) 0%,
-            #02021e 100%
-          );
           .box {
             position: relative;
             .wrapper-sounhong {
@@ -168,16 +163,16 @@
           }
         }
 
-        // .background-wrapper-right01 {
-        //   position: absolute;
-        //   width: 552.07px;
-        //   height: 804.13px;
-        //   left: 869.06px;
-        //   top: 590.49px;
-        //   background: rgba(5, 0, 255, 0.33);
-        //   filter: blur(200px);
-        //   transform: rotate(-100.76deg);
-        // }
+        .background-wrapper-right01 {
+          position: absolute;
+          width: 552.07px;
+          height: auto;
+          left: 869.06px;
+          top: 590.49px;
+          background: rgba(5, 0, 255, 0.33);
+          filter: blur(200px);
+          transform: rotate(-100.76deg);
+        }
         // .background-wrapper-right02 {
         //   position: absolute;
         //   width: 552.07px;
@@ -204,7 +199,6 @@
     .section-02 {
       min-height: 950px;
       height: 100%;
-      background-color: #02021e;
       color: #ffffff;
       max-width: 1280px;
       width: 100%;
