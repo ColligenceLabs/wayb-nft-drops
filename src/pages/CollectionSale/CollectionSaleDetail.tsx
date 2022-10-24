@@ -162,7 +162,7 @@ const CollectionSaleDetail = () => {
             <div className="token-showcase-box">
               <img
                 style={{ objectFit: 'cover' }}
-                src={collectionItemInfo?.itemImage}
+                src={collectionItemInfo?.originalImage}
                 alt=""
               />
             </div>
