@@ -12,7 +12,8 @@ type ENV = {
 };
 
 const development: ENV = {
-  REACT_APP_API_SERVER: 'https://mysterybox-api.dev.tmpcic.studio',
+  // REACT_APP_API_SERVER: 'https://mysterybox-api.dev.tmpcic.studio',
+  REACT_APP_API_SERVER: 'https://nftapi.talken.io',
   REACT_APP_TARGET_NETWORK_KLAY: 1001, // TMP
   REACT_APP_TARGET_NETWORK_ETH: 3,
   REACT_APP_TARGET_NETWORK_BNB: 97,
