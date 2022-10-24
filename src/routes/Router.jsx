@@ -17,6 +17,7 @@ import CollectionSaleDetail from 'pages/CollectionSale/CollectionSaleDetail';
 import ClaimTalk from 'talkclaim/ClaimTalk';
 import ClaimOwner from 'talkclaim/ClaimOwner';
 import Aquarium1402One from 'pages/Landingpage/Aquarium1402-1';
+import Aquarium1402Two from 'pages/Landingpage/Aquarium1402-2';
 
 const Router = () => [
   {
@@ -45,6 +46,7 @@ const Router = () => [
     children: [
       { path: '/oldnavy', element: <Landing /> },
       { path: '/aquarium-1402-1', element: <Aquarium1402One /> },
+      { path: '/aquarium-1402-2', element: <Aquarium1402Two /> },
     ],
   },
 

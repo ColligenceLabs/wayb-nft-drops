@@ -1,16 +1,19 @@
-.aquarium1402-1 {
-  // background-image: url(../../../assets/img/aquarium_01.png);
-  // height: 1000px;
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-position: 50% center;
-  // color: #ffffff;
-  .aquarium1402-1-content {
-    // max-width: 1280px;
-    // width: 100%;
-    // height: 100%;
-    // padding: 0 40px;
-    // margin: auto;
+.main-aquarium-01 {
+  position: relative;
+  background-color: #02021e;
+  .background-image-aquarium {
+    position: absolute;
+    background-image: url(../../../assets/img/aquarium_01.png);
+    height: 1000px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% center;
+    color: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .aquarium1402-1 {
     .section-01 {
       max-width: 1280px;
       width: 100%;
@@ -21,6 +24,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      gap: 243px;
       .header-content {
         position: relative;
         font-weight: 700;
@@ -28,10 +32,9 @@
         line-height: 75px;
         text-align: center;
         text-shadow: 0px 0px 60px rgba(0, 0, 0, 0.8);
-        padding-bottom: 243px;
       }
       .bottom-content {
-        height: 242px;
+        min-height: 242px;
         background: linear-gradient(180deg, rgba(2, 2, 30, 0) 0%, #02021e 100%);
         .box {
           position: relative;
@@ -75,21 +78,22 @@
             linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
-          height: 200px;
+          height: 100%;
         }
       }
     }
     .section-02 {
-      height: 950px;
+      min-height: 950px;
+      height: 100%;
       background-color: #02021e;
       color: #ffffff;
       max-width: 1280px;
       width: 100%;
-      padding: 0 40px;
+      padding: 65px 40px;
       margin: auto;
       .wrapper-header {
-        padding: 65px 57px 100px;
-        font-weight: 700;
+        padding: 0 57px 100px;
+        // font-weight: 700;
         font-size: 44px;
         line-height: 52px;
         text-align: center;
@@ -107,23 +111,26 @@
         padding: 24px 24px 29px;
         display: flex;
         gap: 24px;
+        align-items: center;
         .image-aquarium {
-          flex: 1 1 100%;
-          width: 564px;
-          height: 366px;
+          flex: 1 1 50%;
+          max-width: 564px;
+          max-height: 366px;
+          width: 100%;
+          height: 100%;
           img {
             width: 100%;
             height: 100%;
           }
         }
         .wrapper-infor-nft {
+          flex: 1 1 50%;
           font-weight: 400;
           font-size: 16px;
           line-height: 26px;
           text-align: justify;
           .title {
             font-size: 24px;
-            font-weight: 700;
           }
           .btn-buy-now {
             background: #2f8af5;
@@ -133,38 +140,100 @@
           }
         }
       }
-      .vector-background-left {
-        position: absolute;
-        width: 552.07px;
-        height: 804.13px;
-        left: -156.94px;
-        top: 775.49px;
-
-        background: rgba(5, 0, 255, 0.33);
-        filter: blur(200px);
-        transform: rotate(-100.76deg);
-      }
-      .vector-background-right {
-        position: absolute;
-        width: 380.4px;
-        height: 756.35px;
-        right: -220px;
-        top: 1103px;
-        background: rgba(173, 0, 255, 0.35);
-        filter: blur(80.2901px);
-        transform: rotate(15.67deg);
-      }
+    }
+    .vector-background-left {
+      position: absolute;
+      width: 552.07px;
+      height: 804.13px;
+      left: -156.94px;
+      top: 650px;
+      background: rgba(5, 0, 255, 0.33);
+      filter: blur(200px);
+      transform: rotate(-100.76deg);
+    }
+    .vector-background-right {
+      position: absolute;
+      width: 380.4px;
+      height: 756.35px;
+      left: 1740px;
+      top: 1100px;
+      background: rgba(173, 0, 255, 0.35);
+      filter: blur(80.2901px);
+      transform: rotate(15.67deg);
     }
     .wrapper-wave-border {
       position: absolute;
       left: 0%;
       right: 0%;
-      top: 84.4%;
-      bottom: -1.38%;
+      // top: 84.4%;
+      bottom: -0.5%;
       margin: auto;
       text-align: center;
       img {
         width: 100vw;
+      }
+    }
+    @media (max-width: 768px) {
+      .section-01 {
+        .header-content {
+          font-size: 48px;
+        }
+        .bottom-content {
+          .box {
+            .wrapper-sounhong {
+              padding: 26px 20px;
+            }
+          }
+        }
+      }
+      .section-02 {
+        .wrapper-bottom {
+          flex-direction: column;
+        }
+      }
+      .vector-background-left {
+        width: 420px;
+        left: -250px;
+        top: 600px;
+      }
+      .vector-background-right {
+        left: unset;
+        right: -300px;
+        top: 1400px;
+      }
+    }
+    @media (max-width: 540px) {
+      .section-01 {
+        padding: 0 20px;
+        gap: 200px;
+        .header-content {
+          font-size: 30px;
+          line-height: 48px;
+        }
+        .bottom-content {
+          .box {
+            .wrapper-sounhong {
+              flex-direction: column;
+              gap: 10px;
+              .avt-sounhong {
+                min-width: unset;
+                width: 120px;
+              }
+            }
+          }
+        }
+      }
+      .section-02 {
+        padding: 65px 20px;
+        .wrapper-header {
+          padding: 0 0 80px;
+          font-size: 26px;
+          line-height: 32px;
+        }
+      }
+      .vector-background-right {
+        right: -350px;
+        top: 1500px;
       }
     }
   }
