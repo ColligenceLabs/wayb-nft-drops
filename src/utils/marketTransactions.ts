@@ -9,6 +9,7 @@ import Caver, { AbiItem } from 'caver-js';
 import { evenAllocAbi } from '../config/abi/EventAllocation';
 import env from '../env';
 import { formatEther } from 'taalswap-ethers/lib/utils';
+import { airDropAbi } from '../config/abi/AirDrop';
 
 const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 1001];
 const caver = new Caver(rpcUrl);
@@ -1453,4 +1454,75 @@ export async function getKeyMetadata(
     console.log('getKeyMetadata Error : ', e);
   }
   return tokenURI;
+}
+
+export async function claimAirDrop(
+  airDrop: string, // AirDrop contract address
+  account: string | undefined | null,
+  library: any
+): Promise<number> {
+  const gasPrice = await caver.rpc.klay.getGasPrice();
+  const isKaikas =
+    library.connection.url !== 'metamask' ||
+    library.connection.url === 'eip-1193:';
+
+  console.log(isKaikas);
+  let contract: any;
+  if (isKaikas) {
+    // @ts-ignore : In case of Klaytn Kaikas Wallet
+    const caver = new Caver(window.klaytn);
+    const airAbi: AbiItem[] = airDropAbi as AbiItem[];
+    contract = new caver.klay.Contract(airAbi, airDrop);
+  } else {
+    contract = new ethers.Contract(airDrop, airDropAbi, library?.getSigner());
+  }
+
+  let tx;
+  // gasLimit 계산
+  let gasLimit;
+  console.log(contract);
+  if (isKaikas) {
+    gasLimit = await contract.methods.claim().estimateGas({
+      from: account,
+    });
+  } else gasLimit = await contract.estimateGas.claim();
+
+  // registerItems 요청
+  let receipt;
+  try {
+    let overrides: Overrides = {
+      from: account,
+      gasLimit: calculateGasMargin(BigNumber.from(gasLimit)),
+    };
+
+    if (isKaikas) {
+      tx = await contract.methods
+        .claim()
+        .send(overrides)
+        .catch(async (err: any) => {
+          return FAILURE;
+        });
+      if (tx?.status) {
+        return SUCCESS;
+      } else return FAILURE;
+    } else {
+      // if (library._network.chainId === 8217)
+      overrides = { ...overrides, gasPrice };
+
+      tx = await contract.claim(overrides);
+
+      // receipt 대기
+      try {
+        receipt = await tx.wait();
+      } catch (e) {
+        return FAILURE;
+      }
+      if (receipt.status === 1) {
+        return SUCCESS;
+      } else return FAILURE;
+    }
+  } catch (e) {
+    console.log(e);
+    return FAILURE;
+  }
 }

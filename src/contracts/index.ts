@@ -4,6 +4,7 @@ import whiteListData from './WhiteListNFT.json';
 import subscriptionData from './Subscription.json';
 import evenAllocData from './EvenAllocation.json';
 import collectionData from './Collection.json';
+import airDropData from './AirDrop.json';
 
 export {
   erc721Data,
@@ -12,4 +13,5 @@ export {
   subscriptionData,
   evenAllocData,
   collectionData,
+  airDropData,
 };
