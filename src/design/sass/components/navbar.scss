@@ -137,6 +137,7 @@
     //after login
     .btn-wallets {
       height: 45px;
+      margin-right: 40px;
       // display: none;
       .custom-btn {
         display: flex;
@@ -246,7 +247,7 @@
         display: none;
       }
       .icon-nav {
-        // display: block;
+        display: block;
         margin-right: 40px;
         .button {
           padding: 0;

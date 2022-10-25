@@ -27,6 +27,7 @@ import {
   useSidebarStore,
 } from 'components/common/AppStore';
 import WalletConnector from '../auth/WalletConnector/WalletConnector';
+import useScreenSize from 'components/common/useScreenSize';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -39,6 +40,7 @@ const Navbar = () => {
   const { updateOpenWallet } = useModalWalletsStore();
   const dropsAccount = useSelector((state: any) => state.account.account);
   // console.log(dropsAccount);
+  const screenSize = useScreenSize();
   useOnClickOutside(ref, () => setModalOpen(false));
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -96,22 +98,15 @@ const Navbar = () => {
           </a>
         </div>
         {/* before login PC view */}
-        <div className="btn-login">
+        {/* <div className="btn-login">
           <button
             className="custom-btn button"
             onClick={() => setLoginOpen(true)}
           >
             <span className="custom-text">Connect Wallet</span>
           </button>
-        </div>
-        {/* before login Tablet, Mobile view */}
-        <div className="icon-nav">
-          <button className="button" onClick={openSidebar}>
-            <img src={nav_icon} alt="Navbar Icon" />
-            {/* side bar */}
-          </button>
-          <SidebarMb />
-        </div>
+        </div> */}
+
         {/* after login */}
         <div className="btn-wallets">
           <button
@@ -125,7 +120,7 @@ const Navbar = () => {
             </span>
           </button>
         </div>
-        {dropsAccount.address !== '' && (
+        {dropsAccount.address !== '' && screenSize > 540 ? (
           <>
             <div className="wrapper-user">
               <div className="avatar-user">
@@ -167,6 +162,16 @@ const Navbar = () => {
               {isModalOpen && <UsernameBox />}
             </button>
           </>
+        ) : (
+          screenSize < 769 && (
+            <div className="icon-nav">
+              <button className="button" onClick={openSidebar}>
+                <img src={nav_icon} alt="Navbar Icon" />
+                {/* side bar */}
+              </button>
+              <SidebarMb setLoginSidebar={dropsAccount.address} />
+            </div>
+          )
         )}
 
         {/* wallets box */}
