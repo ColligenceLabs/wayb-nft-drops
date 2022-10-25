@@ -11,6 +11,7 @@ import tokenAbi from '../config/abi/ERC20Token.json';
 import { collectionAbi } from '../config/abi/Collection';
 import { collectionData } from '../contracts';
 import getSelectedNodeUrl from './getRpcUrl';
+import { airDropAbi } from '../config/abi/AirDrop';
 
 const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 1001];
 const caver = new Caver(rpcUrl);
@@ -1242,19 +1243,19 @@ export async function getItemAmount(
 export async function getItemAmountNoSigner(
   address: string,
   index: number,
-  type: number, // 1 = MysteryBox, 2 = Collection
+  type: number, // 1 = MysteryBox, 2 = Collection, 3 = AirDrops
   account: string | undefined | null,
   chainId: number
 ): Promise<number> {
   const provider = ethers.getDefaultProvider(getSelectedNodeUrl(chainId));
   new ethers.Contract(
     address,
-    type === 1 ? mysteryBoxAbi : collectionAbi,
+    type === 1 ? mysteryBoxAbi : type == 2 ? collectionAbi : airDropAbi,
     provider
   );
   const contract = new ethers.Contract(
     address,
-    type === 1 ? mysteryBoxAbi : collectionAbi,
+    type === 1 ? mysteryBoxAbi : type == 2 ? collectionAbi : airDropAbi,
     provider
   );
 
