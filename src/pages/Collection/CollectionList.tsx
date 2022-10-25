@@ -125,9 +125,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
                       </span>
                       <p className="">{companyName}</p>
                     </div>
-                    <Link to="/sale">
-                      <div className="status ">Buy Now</div>
-                    </Link>
+                    <div>
+                      <Link to="/sale">
+                        <div className="status ">Buy Now</div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_KEY">

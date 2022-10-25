@@ -41,7 +41,6 @@ const UsernameBox = () => {
     dispatch(initDropsAccount());
     localStorage.removeItem('dropsJwtToken');
   };
-  console.log(loginOpen, 'loginádsad');
 
   return (
     <div className="user-dropdown-box">

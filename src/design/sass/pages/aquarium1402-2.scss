@@ -310,6 +310,7 @@
       .section-01 {
         padding: 100px 20px;
         .wrapper-left {
+          text-align: center;
           .header-content {
             font-size: 30px;
             line-height: 48px;
@@ -319,8 +320,9 @@
               .wrapper-sounhong {
                 flex-direction: column;
                 gap: 10px;
+                align-items: center;
                 .about-sounhong {
-                  text-align: left;
+                  // text-align: left;
                   .avt-sounhong {
                     min-width: unset;
                     width: 120px;
