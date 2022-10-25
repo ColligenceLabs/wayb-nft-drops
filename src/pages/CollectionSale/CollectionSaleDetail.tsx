@@ -137,7 +137,7 @@ const CollectionSaleDetail = () => {
     const remaining = await getItemAmountNoSigner(
       location.state.item.collectionInfo.boxContractAddress,
       0,
-      2, // 1 = MysteryBox, 2 = Collection
+      location.state.item.collectionInfo.isAirdrop ? 3 : 2, // 1 = MysteryBox, 2 = Collection, 3 = AirDrop
       account,
       // library
       chainId

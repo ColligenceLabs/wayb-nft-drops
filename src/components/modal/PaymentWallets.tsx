@@ -15,7 +15,11 @@ import { registerBuy } from '../../services/services';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { CircularProgress } from '@mui/material';
 import { checkConnectWallet } from '../../utils/wallet';
-import { buyKey, getKeyRemains } from '../../utils/marketTransactions';
+import {
+  buyKey,
+  claimAirDrop,
+  getKeyRemains,
+} from '../../utils/marketTransactions';
 import { useSelector } from 'react-redux';
 
 type ExMBoxType = MBoxTypes & {
@@ -101,60 +105,88 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
 
   const handleClickCrypto = async () => {
     console.log(isCollection);
-    console.log(itemInfo);
+    console.log('itemInfo:', itemInfo);
     if (isCollection) {
-      console.log('buy');
-      console.log(itemInfo);
-      const contract = itemInfo?.collectionInfo?.boxContractAddress;
-      const quote = itemInfo?.collectionInfo?.quote;
-      const index = itemInfo?.index ?? 0;
-      const amount = 1;
-      const payment = parseEther(itemInfo?.price.toString() ?? '0').mul(amount);
-      console.log(
-        contract,
-        index,
-        1,
-        payment,
-        quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId]
-      );
-      const result = await buyItem(
-        contract,
-        index,
-        1,
-        payment.toString(),
-        quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
-        account,
-        library
-      );
-      if (result === SUCCESS) {
-        // const left = await getItemAmount(
-        //   contract,
-        //   index,
-        //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
-        //   account,
-        //   library
-        // );
+      if (!itemInfo.collectionInfo.isAirdrop) {
+        // Collection
+        console.log('buy');
+        console.log(itemInfo);
+        const contract = itemInfo?.collectionInfo?.boxContractAddress;
+        const quote = itemInfo?.collectionInfo?.quote;
+        const index = itemInfo?.index ?? 0;
+        const amount = 1;
+        const payment = parseEther(itemInfo?.price.toString() ?? '0').mul(
+          amount
+        );
+        console.log(
+          contract,
+          index,
+          1,
+          payment,
+          quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId]
+        );
+        const result = await buyItem(
+          contract,
+          index,
+          1,
+          payment.toString(),
+          quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
+          account,
+          library
+        );
+        if (result === SUCCESS) {
+          // const left = await getItemAmount(
+          //   contract,
+          //   index,
+          //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
+          //   account,
+          //   library
+          // );
 
-        const data = {
-          mysterybox_id: itemInfo?.collectionInfo?.id,
-          buyer: '',
-          buyer_address: account,
-        };
+          const data = {
+            mysterybox_id: itemInfo?.collectionInfo?.id,
+            buyer: '',
+            buyer_address: account,
+          };
 
-        const res = await registerBuy(data);
-        if (res.data.status === SUCCESS) {
-          // setOpenSnackbar({
-          //   open: true,
-          //   type: 'success',
-          //   message: 'Success',
-          // });
-          console.log('success');
-          return true;
+          const res = await registerBuy(data);
+          if (res.data.status === SUCCESS) {
+            // setOpenSnackbar({
+            //   open: true,
+            //   type: 'success',
+            //   message: 'Success',
+            // });
+            console.log('success');
+            return true;
+          } else {
+            return false;
+          }
         } else {
           return false;
         }
       } else {
-        return false;
+        // AirDop
+        console.log('claim');
+        console.log(itemInfo);
+        const contract = itemInfo?.collectionInfo?.boxContractAddress;
+        const result = await claimAirDrop(contract, account, library);
+        if (result === SUCCESS) {
+          const data = {
+            mysterybox_id: itemInfo?.collectionInfo?.id,
+            buyer: '',
+            buyer_address: account,
+          };
+
+          const res = await registerBuy(data);
+          if (res.data.status === SUCCESS) {
+            console.log('success');
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
       }
     } else {
       console.log('buy mbox');
