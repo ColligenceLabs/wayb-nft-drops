@@ -3,7 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
 import { hotCollectiblesTestData } from './mockData';
 import {
@@ -26,6 +26,7 @@ type ExMBoxType = MBoxTypes & {
 
 const Homepage = () => {
   const { account, library, chainId } = useActiveWeb3React();
+  const navigate = useNavigate();
   const screenSize = useScreenSize();
   const [slideData, setSlideData] = useState<FeaturedTypes[]>([]);
   const [featuredCollections, setFeaturedCollections] = useState<
@@ -33,10 +34,14 @@ const Homepage = () => {
   >([]);
   const [collectionList, setCollectionList] = useState<ExMBoxType[]>([]);
 
+  const navigateToUrl = (item: FeaturedTypes) => {
+    if (item.eventUrl) window.open(item.eventUrl, '_blank');
+    else navigate(`/collection/${item.id}`);
+  };
+
   useEffect(() => {
     const fetchSlideData = async () => {
       const res = await getEventList();
-      console.log(res.data);
       if (res.data.status === 1) {
         setSlideData(res.data.data.list);
       }
@@ -125,9 +130,18 @@ const Homepage = () => {
           }}
         >
           {slideData !== null &&
-            slideData.map((item: FeaturedTypes, index) => (
-              <div className="slide-item" key={index}>
-                <Link to={'/'} target={'_blank'}>
+            slideData.map((item: FeaturedTypes, index) => {
+              // console.log(item);
+              return (
+                <div
+                  className="slide-item"
+                  key={index}
+                  onClick={() => navigateToUrl(item)}
+                >
+                  {/*<Link*/}
+                  {/*  to={item.eventUrl ? item.eventUrl : '/'}*/}
+                  {/*  target={'_blank'}*/}
+                  {/*>*/}
                   <div>
                     <img
                       // src={screenSize > 520 ? item.image : item.imageMb}
@@ -136,9 +150,10 @@ const Homepage = () => {
                       draggable={false}
                     />
                   </div>
-                </Link>
-              </div>
-            ))}
+                  {/*</Link>*/}
+                </div>
+              );
+            })}
         </Carousel>
       </div>
       {/* section 02 */}

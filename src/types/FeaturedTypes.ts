@@ -17,4 +17,5 @@ export type FeaturedTypes = {
   updatedAt: Date | null;
   createdAt: Date | null;
   eventBanner: string | null;
+  eventUrl: string | null;
 };
