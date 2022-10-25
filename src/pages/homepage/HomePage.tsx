@@ -8,6 +8,7 @@ import useScreenSize from 'components/common/useScreenSize';
 import { hotCollectiblesTestData } from './mockData';
 import {
   getCollectionList,
+  getEventList,
   getFeaturedCollections,
   getFeaturedList,
 } from '../../services/services';
@@ -34,8 +35,8 @@ const Homepage = () => {
 
   useEffect(() => {
     const fetchSlideData = async () => {
-      const res = await getFeaturedList();
-
+      const res = await getEventList();
+      console.log(res.data);
       if (res.data.status === 1) {
         setSlideData(res.data.data.list);
       }
@@ -130,7 +131,7 @@ const Homepage = () => {
                   <div>
                     <img
                       // src={screenSize > 520 ? item.image : item.imageMb}
-                      src={item.banner}
+                      src={item.eventBanner!}
                       alt=""
                       draggable={false}
                     />

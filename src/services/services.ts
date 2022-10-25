@@ -14,6 +14,12 @@ export const updateAccount = async (address: string, data: any) => {
   });
 };
 
+export const getEventList = async () => {
+  return await customAxios.get(
+    '/api/service/featured?page=1&limit=5&isEvent=true'
+  );
+};
+
 export const getFeaturedList = async () => {
   return await customAxios.get('/api/service/featured?page=1&limit=5');
 };

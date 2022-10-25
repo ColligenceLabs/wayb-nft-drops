@@ -16,4 +16,5 @@ export type FeaturedTypes = {
   links: [];
   updatedAt: Date | null;
   createdAt: Date | null;
+  eventBanner: string | null;
 };
