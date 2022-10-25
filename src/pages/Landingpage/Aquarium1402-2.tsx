@@ -1,26 +1,33 @@
 import React from 'react';
 import aquarium_sounhong from '../../assets/img/aquarium_sounhong.png';
 import aquarium_02 from '../../assets/img/aquarium_02.png';
-import group_wave_vector from '../../assets/svg/group_wave_vector.svg';
+import aquarium02_02 from '../../assets/img/aquarium02_02.png';
+import aquarium02_03 from '../../assets/img/aquarium02_03.png';
+import aquarium02_04 from '../../assets/img/aquarium02_04.png';
+import aquarium02_05 from '../../assets/img/aquarium02_05.png';
 
-const Aquarium1402One = () => {
+const Aquarium1402Two = () => {
   return (
-    <div className="main-aquarium-01 min-height-content-landingpage">
-      <div className="background-image-aquarium"></div>
-      <div className="aquarium1402-1">
+    <div className="main-aquarium-02 min-height-content-landingpage">
+      <div className="background-01"></div>
+      <div className="background-image"></div>
+      <div className="background-bottom"></div>
+      <div className="aquarium1402-2">
         <div className="section-01">
-          <div className="header-content">
-            <div>Soun-Hong’s</div>
-            <div>special NFT Collection</div>
-          </div>
-          <div className="bottom-content">
-            <div className="box">
-              <div className="wrapper-sounhong">
-                <div className="avt-sounhong">
-                  <img src={aquarium_sounhong} alt="Avatar Soun-Hong" />
-                </div>
-                <div className="about-sounhong">
-                  <div className="name-sounhong">Soun-Hong</div>
+          <div className="wrapper-left">
+            <div className="header-content">
+              <div>Soun-Hong’s</div>
+              <div>special NFT Collection</div>
+            </div>
+            <div className="bottom-content">
+              <div className="box">
+                <div className="wrapper-sounhong">
+                  <div className="about-sounhong">
+                    <div className="avt-sounhong">
+                      <img src={aquarium_sounhong} alt="Avatar Soun-Hong" />
+                    </div>
+                    <div className="name-sounhong">Soun-Hong</div>
+                  </div>
                   <div className="about-sidescape">
                     ‘Sidescape’ is one of Hong’s artworks that extracts
                     controversial images from the media dealing with social
@@ -33,6 +40,24 @@ const Aquarium1402One = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="wrapper-right">
+            <div className="full-image">
+              <img src={aquarium_02} alt="aquarium image" />
+              <div className="image-top">
+                <img src={aquarium02_02} alt="aquarium" />
+              </div>
+              <div className="image-right">
+                <img src={aquarium02_03} alt="aquarium" />
+              </div>
+              <div className="image-bottom">
+                <img src={aquarium02_04} alt="aquarium" />
+              </div>
+            </div>
+
+            <div className="background-wrapper-right01"></div>
+            <div className="background-wrapper-right02"></div>
+            <div className="background-wrapper-right03"></div>
           </div>
         </div>
         <div className="section-02">
@@ -49,7 +74,7 @@ const Aquarium1402One = () => {
           </div>
           <div className="wrapper-bottom">
             <div className="image-aquarium">
-              <img src={aquarium_02} alt="aquarium 1402" />
+              <img src={aquarium02_05} alt="aquarium 1402" />
             </div>
             <div className="wrapper-infor-nft">
               <div className="title">What you need to know is:</div>
@@ -82,14 +107,9 @@ const Aquarium1402One = () => {
             </div>
           </div>
         </div>
-        <div className="vector-background-left"></div>
-        <div className="vector-background-right"></div>
-        <div className="wrapper-wave-border">
-          <img src={group_wave_vector} alt="Waves" />
-        </div>
       </div>
     </div>
   );
 };
 
-export default Aquarium1402One;
+export default Aquarium1402Two;

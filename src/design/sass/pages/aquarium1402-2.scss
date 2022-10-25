@@ -1,0 +1,376 @@
+.main-aquarium-02 {
+  position: relative;
+  background-color: #02021e;
+  .background-01 {
+    position: absolute;
+    width: 2677.19px;
+    height: 1320.33px;
+    left: -442.52px;
+    top: 350px;
+    background: linear-gradient(
+      358.64deg,
+      rgba(255, 255, 255, 0.2) -62.93%,
+      rgba(48, 139, 245, 0.022) 75.03%,
+      rgba(47, 138, 245, 0) 75.05%
+    );
+    transform: matrix(0.98, 0.17, 0.17, -0.98, 0, 0);
+  }
+  .background-image {
+    position: absolute;
+    width: 2677.19px;
+    height: 1210.07px;
+    left: -442.52px;
+    top: 500px;
+    background-image: url(../../../assets/img/aquarium02_background.png);
+    transform: matrix(0.98, 0.17, 0.17, -0.98, 0, 0);
+    z-index: 10;
+  }
+  .background-bottom {
+    position: absolute;
+    width: 2499.44px;
+    height: 912.02px;
+    left: -259px;
+    top: 891.57px;
+    background: #020231;
+    filter: blur(200px);
+    transform: rotate(-4.33deg);
+  }
+  .aquarium1402-2 {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    position: relative;
+    background-color: #02021e;
+    .section-01 {
+      max-width: 1280px;
+      width: 100%;
+      padding: 225px 40px 190px;
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+      gap: 100px;
+      .wrapper-left {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        flex: 1 1 50%;
+        .header-content {
+          position: relative;
+          font-weight: 700;
+          font-size: 54px;
+          line-height: 64px;
+          text-shadow: 0px 0px 60px rgba(0, 0, 0, 0.8);
+        }
+        .bottom-content {
+          min-height: 242px;
+          .box {
+            position: relative;
+            .wrapper-sounhong {
+              padding: 16px 18px;
+              width: 100%;
+              display: flex;
+              border-radius: 12px;
+              gap: 30px;
+
+              .about-sounhong {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+                text-align: center;
+                .avt-sounhong {
+                  min-width: 120px;
+                  height: 120px;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+                .name-sounhong {
+                  padding-top: 10px;
+                }
+              }
+              .about-sidescape {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18px;
+                text-align: justify;
+              }
+            }
+          }
+          .box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 1px;
+            background: linear-gradient(
+              180deg,
+              rgba(107, 106, 106, 1) 0%,
+              rgba(107, 106, 106, 0) 100%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box,
+              linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            height: 100%;
+          }
+        }
+      }
+      .wrapper-right {
+        // flex: 1 1 50%;
+        position: relative;
+        .full-image {
+          z-index: 20;
+          max-width: 510px;
+          max-height: 331px;
+          width: 100%;
+          height: 100%;
+          position: relative;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+          .image-top {
+            z-index: 20;
+            width: 88px;
+            height: 110px;
+            border-radius: 8px;
+            position: absolute;
+            left: -60px;
+            top: -170px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .image-right {
+            z-index: 20;
+            position: absolute;
+            width: 156px;
+            height: 187px;
+            right: -100px;
+            top: -155px;
+            border-radius: 8px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .image-bottom {
+            z-index: 20;
+            position: absolute;
+            width: 100px;
+            height: 120px;
+            right: -235px;
+            bottom: -40px;
+            border-radius: 8px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+
+        .background-wrapper-right01 {
+          position: absolute;
+          width: 552.07px;
+          height: 804.13px;
+          left: 100px;
+          top: -200px;
+          background: rgba(5, 0, 255, 0.33);
+          filter: blur(200px);
+          transform: rotate(-100.76deg);
+        }
+        .background-wrapper-right02 {
+          position: absolute;
+          width: 552.07px;
+          height: 804.13px;
+          left: -130px;
+          top: -400px;
+          background: rgba(5, 0, 255, 0.33);
+          filter: blur(200px);
+          transform: rotate(-100.76deg);
+        }
+        .background-wrapper-right03 {
+          position: absolute;
+          width: 275.13px;
+          height: 547.04px;
+          left: 480px;
+          top: -170px;
+          background: rgba(173, 0, 255, 0.35);
+          filter: blur(80.2901px);
+          transform: rotate(39.4deg);
+        }
+      }
+    }
+
+    .section-02 {
+      min-height: 950px;
+      height: 100%;
+      color: #ffffff;
+      max-width: 1280px;
+      width: 100%;
+      padding: 65px 40px;
+      margin: auto;
+      .wrapper-header {
+        padding: 0 57px 100px;
+        font-size: 44px;
+        line-height: 52px;
+        text-align: center;
+        .content-header {
+          font-weight: 400;
+          color: #aaaaaa;
+          font-size: 16px;
+          line-height: 19px;
+          padding-top: 12px;
+        }
+      }
+      .wrapper-bottom {
+        border: 1px solid #444444;
+        border-radius: 30px;
+        padding: 24px 24px 29px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        .image-aquarium {
+          flex: 1 1 50%;
+          max-width: 564px;
+          max-height: 366px;
+          width: 100%;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .wrapper-infor-nft {
+          flex: 1 1 50%;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 26px;
+          text-align: justify;
+          .title {
+            font-size: 24px;
+          }
+          .btn-buy-now {
+            background: #2f8af5;
+            border-radius: 8px;
+            width: 127px;
+            height: 49px;
+          }
+        }
+      }
+    }
+    @media (max-width: 1740px) {
+      .section-01 {
+        flex-direction: column;
+        gap: 200px;
+        .wrapper-right {
+          margin: auto;
+        }
+      }
+    }
+    @media (max-width: 1024px) {
+      .section-01 {
+        .wrapper-right {
+          .full-image {
+            .image-bottom {
+              right: -120px;
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: 768px) {
+      .section-01 {
+        .wrapper-right {
+          .full-image {
+            .image-top {
+              left: -20px;
+              top: -150px;
+            }
+            .image-right {
+              right: -20px;
+              top: -130px;
+            }
+            .image-bottom {
+              right: -10px;
+              bottom: -140px;
+            }
+          }
+        }
+      }
+      .section-02 {
+        .wrapper-bottom {
+          flex-direction: column;
+        }
+      }
+    }
+    @media (max-width: 540px) {
+      .section-01 {
+        padding: 100px 20px;
+        .wrapper-left {
+          .header-content {
+            font-size: 30px;
+            line-height: 48px;
+          }
+          .bottom-content {
+            .box {
+              .wrapper-sounhong {
+                flex-direction: column;
+                gap: 10px;
+                .about-sounhong {
+                  text-align: left;
+                  .avt-sounhong {
+                    min-width: unset;
+                    width: 120px;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .wrapper-right {
+          .full-image {
+            .image-top {
+              width: 44px;
+              height: 55px;
+              left: 0px;
+              top: -100px;
+            }
+            .image-right {
+              width: 78px;
+              height: 94px;
+              right: 10px;
+              top: -105px;
+            }
+            .image-bottom {
+              width: 50px;
+              height: 60px;
+              right: 40px;
+              bottom: -90px;
+            }
+          }
+        }
+      }
+      .section-02 {
+        padding: 65px 20px;
+        .wrapper-header {
+          padding: 0 0 80px;
+          font-size: 26px;
+          line-height: 32px;
+        }
+      }
+    }
+    @media (max-width: 320px) {
+      .section-01 {
+        .wrapper-left {
+          .header-content {
+            font-size: 26px;
+            line-height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
