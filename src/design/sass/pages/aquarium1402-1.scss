@@ -166,10 +166,11 @@
       left: 0%;
       right: 0%;
       // top: 84.4%;
-      bottom: -2.5%;
+      bottom: -1.5%;
       margin: auto;
       text-align: center;
-      height: 330px;
+      display: flex;
+      // height: 330px;
       img {
         width: 100vw;
       }
@@ -235,6 +236,17 @@
       .vector-background-right {
         right: -350px;
         top: 1500px;
+      }
+      .wrapper-wave-border {
+        bottom: -0.5%;
+      }
+    }
+    @media (max-width: 320px) {
+      .section-01 {
+        .header-content {
+          font-size: 26px;
+          line-height: 40px;
+        }
       }
     }
   }
