@@ -17,7 +17,7 @@ import {
 } from 'components/common/AppStore';
 import WalletConnector from '../auth/WalletConnector/WalletConnector';
 
-const SidebarMb = () => {
+const SidebarMb = (setLoginSidebar: any) => {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
@@ -33,58 +33,64 @@ const SidebarMb = () => {
   const closeOnDocumentClick = false;
   const lockScroll = true;
   const { isOpen, closeSidebar } = useSidebarStore();
+  console.log(setLoginSidebar, 'setLoginSidebar');
+
   return (
     <div className={`side-bar ${isOpen ? 'show' : ''}`} onClick={closeSidebar}>
       {/* sidebar before login new design */}
-      {/* <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
-        <div className="close-sidebar">
-          <div className="icon-close" onClick={closeSidebar}>
-            <img src={close_icon} alt="Close Icon" />
+      {setLoginSidebar !== '' ? (
+        <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+          <div className="close-sidebar">
+            <div className="icon-close" onClick={closeSidebar}>
+              <img src={close_icon} alt="Close Icon" />
+            </div>
+          </div>
+          <div
+            className="login-signup"
+            onClick={() => {
+              setLoginOpen(true);
+              closeSidebar();
+            }}
+          >
+            <span>Connect Wallet</span>
+          </div>
+          <div className="wrapper">
+            <a href="/" className="wrapper-item button">
+              <img src={about} alt="About Icon" />
+              About
+            </a>
+            <a href="/" className="wrapper-item button">
+              <img src={blog} alt="Blog Icon" />
+              Blog
+            </a>
+            <a href="/" className="wrapper-item button">
+              <img src={help} alt="Help Icon" />
+              Help
+            </a>
+          </div>
+          <div className="fanpage-icons-sidebar">
+            <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
+              <img src={icon_twitter} alt="" />
+            </a>
+            <a href="https://discord.com" target={'_blank'} rel="noreferrer">
+              <img src={icon_discord} alt="" />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target={'_blank'}
+              rel="noreferrer"
+            >
+              <img src={icon_insta} alt="" />
+            </a>
           </div>
         </div>
-        <div
-          className="login-signup"
-          onClick={() => {
-            setLoginOpen(true);
-            closeSidebar();
-          }}
-        >
-          <span>Connect Wallet</span>
+      ) : (
+        <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
+          <UsernameBox />
         </div>
-        <div className="wrapper">
-          <a href="/" className="wrapper-item button">
-            <img src={about} alt="About Icon" />
-            About
-          </a>
-          <a href="/" className="wrapper-item button">
-            <img src={blog} alt="Blog Icon" />
-            Blog
-          </a>
-          <a href="/" className="wrapper-item button">
-            <img src={help} alt="Help Icon" />
-            Help
-          </a>
-        </div>
-        <div className="fanpage-icons-sidebar">
-          <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
-            <img src={icon_twitter} alt="" />
-          </a>
-          <a href="https://discord.com" target={'_blank'} rel="noreferrer">
-            <img src={icon_discord} alt="" />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target={'_blank'}
-            rel="noreferrer"
-          >
-            <img src={icon_insta} alt="" />
-          </a>
-        </div>
-      </div> */}
+      )}
+
       {/* sidebar after login */}
-      <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
-        <UsernameBox />
-      </div>
 
       {/* popup log in */}
       <Popup

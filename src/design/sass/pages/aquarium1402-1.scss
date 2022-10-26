@@ -89,7 +89,7 @@
       color: #ffffff;
       max-width: 1280px;
       width: 100%;
-      padding: 65px 40px;
+      padding: 65px 40px 350px;
       margin: auto;
       .wrapper-header {
         padding: 0 57px 100px;
@@ -175,6 +175,11 @@
         width: 100vw;
       }
     }
+    @media (max-width: 1920px) {
+      .section-02 {
+        padding: 65px 40px;
+      }
+    }
     @media (max-width: 768px) {
       .section-01 {
         .header-content {
@@ -217,9 +222,16 @@
             .wrapper-sounhong {
               flex-direction: column;
               gap: 10px;
+              align-items: center;
               .avt-sounhong {
                 min-width: unset;
                 width: 120px;
+              }
+              .about-sounhong {
+                .name-sounhong {
+                  text-align: center;
+                  padding-bottom: 10px;
+                }
               }
             }
           }
