@@ -21,6 +21,7 @@ import {
   getKeyRemains,
 } from '../../utils/marketTransactions';
 import { useSelector } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -265,7 +266,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
       overlayClassName="payments-wallets-overlay"
       shouldCloseOnOverlayClick
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog" style={{ height: isMobile ? '' : '500px' }}>
         <div className="header">
           <div className="title">How would you like to pay</div>
           <div className="close-button" onClick={onHide}>
@@ -278,11 +279,13 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         </div>
         <div className="grid-payments">
           <div
-            className={`payment-box ${selectedPayment === 1 ? 'active' : ''}`}
-            onClick={() => {
-              setSelectedPayment(1);
-              setIsDisabled(false);
-            }}
+            className={`payment-box disabled ${
+              selectedPayment === 1 ? 'active' : ''
+            }`}
+            // onClick={() => {
+            //   setSelectedPayment(1);
+            //   setIsDisabled(false);
+            // }}
           >
             <div className="pay-item">
               <img src={pay_creditcard} alt="Credit Card" />
@@ -302,30 +305,39 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             </div>
             <div className="pay-name">Crypto</div>
           </div>
-          <div
-            className={`payment-box ${selectedPayment === 3 ? 'active' : ''}`}
-            onClick={() => {
-              setSelectedPayment(3);
-              setIsDisabled(false);
-            }}
-          >
-            <div className="pay-item">
-              <img src={pay_appstore} alt="App Store" />
-            </div>
-            <div className="pay-name">App Store</div>
-          </div>
-          <div
-            className={`payment-box ${selectedPayment === 4 ? 'active' : ''}`}
-            onClick={() => {
-              setSelectedPayment(4);
-              setIsDisabled(false);
-            }}
-          >
-            <div className="pay-item">
-              <img src={pay_googleplay} alt="Google Play" />
-            </div>
-            <div className="pay-name">Google Play</div>
-          </div>
+
+          {isMobile && (
+            <>
+              <div
+                className={`payment-box ${
+                  selectedPayment === 3 ? 'active' : ''
+                }`}
+                onClick={() => {
+                  setSelectedPayment(3);
+                  setIsDisabled(false);
+                }}
+              >
+                <div className="pay-item">
+                  <img src={pay_appstore} alt="App Store" />
+                </div>
+                <div className="pay-name">App Store</div>
+              </div>
+              <div
+                className={`payment-box ${
+                  selectedPayment === 4 ? 'active' : ''
+                }`}
+                onClick={() => {
+                  setSelectedPayment(4);
+                  setIsDisabled(false);
+                }}
+              >
+                <div className="pay-item">
+                  <img src={pay_googleplay} alt="Google Play" />
+                </div>
+                <div className="pay-name">Google Play</div>
+              </div>
+            </>
+          )}
         </div>
         <div className="custom-submit">
           <button
