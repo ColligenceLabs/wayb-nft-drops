@@ -16,10 +16,11 @@ import {
   getItemAmountNoSigner,
 } from '../../utils/transactions';
 import contracts from '../../config/constants/contracts';
-import { SUCCESS } from '../../config';
+import { ChainId, SUCCESS } from '../../config';
 import { getKeyRemains } from '../../utils/marketTransactions';
 import { registerBuy } from '../../services/services';
 import { parseEther } from 'ethers/lib/utils';
+import { getNetworkNameById } from '../../utils/getNetworkNameById';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -217,8 +218,12 @@ const CollectionSaleDetail = () => {
                     <div className="lable-bottom fw-600">{remainingAmount}</div>
                   </div>
                   <div className="box-price-detail-collection">
-                    <div className="lable-top">Token Type</div>
-                    <div className="lable-bottom fw-600">erc721</div>
+                    <div className="lable-top">Network</div>
+                    <div className="lable-bottom fw-600">
+                      {getNetworkNameById(
+                        collectionItemInfo?.collectionInfo.chainId
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

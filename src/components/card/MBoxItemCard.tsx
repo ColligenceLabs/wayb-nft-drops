@@ -16,7 +16,6 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
   quote,
   price,
 }) => {
-  console.log(item);
   return (
     <div className="slide-item">
       {/*<Link to={``} className="button">*/}

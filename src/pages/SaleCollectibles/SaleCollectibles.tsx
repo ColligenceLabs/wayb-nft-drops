@@ -32,6 +32,7 @@ import {
   getItemAmountNoSigner,
   getItemRemains,
 } from '../../utils/transactions';
+import { getNetworkNameById } from '../../utils/getNetworkNameById';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -263,8 +264,10 @@ const SaleCollectibles = () => {
                       <div className="lable-bottom fw-600">{remains}</div>
                     </div>
                     <div className="box-price-detail-collection">
-                      <div className="lable-top">Token Type</div>
-                      <div className="lable-bottom fw-600">erc721</div>
+                      <div className="lable-top">Network</div>
+                      <div className="lable-bottom fw-600">
+                        {getNetworkNameById(mBoxInfo.chainId)}
+                      </div>
                     </div>
                   </div>
                 </div>
