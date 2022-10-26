@@ -11,7 +11,10 @@ import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
 
-const BinanceWallets = () => {
+type BinanceWalletsProps = {
+  close: any;
+};
+const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
   const dispatch = useDispatch();
   const context = useWeb3React();
   const { activate, account, library } = context;
@@ -76,6 +79,7 @@ const BinanceWallets = () => {
         await dispatch(setActivatingConnector(kaikas));
       }
       window.localStorage.setItem('walletStatus', 'connected');
+      close();
     } catch (e) {
       console.log('connect wallet error', e);
     }

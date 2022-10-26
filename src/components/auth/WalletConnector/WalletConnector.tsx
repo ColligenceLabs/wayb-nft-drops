@@ -117,9 +117,9 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
               </div>
             </div>
             {selectedNetwork === 0 && <EthWallets />}
-            {selectedNetwork === 1 && <KlaytnWallets />}
+            {selectedNetwork === 1 && <KlaytnWallets close={close} />}
             {selectedNetwork === 2 && <SolanaWallets />}
-            {selectedNetwork === 3 && <BinanceWallets />}
+            {selectedNetwork === 3 && <BinanceWallets close={close} />}
           </div>
         </form>
       </div>

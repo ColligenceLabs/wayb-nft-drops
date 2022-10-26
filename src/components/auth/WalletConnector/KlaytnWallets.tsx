@@ -11,7 +11,10 @@ import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from 'hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
 
-const KlaytnWallets = () => {
+type KlaytnWalletsProps = {
+  close: any;
+};
+const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   const dispatch = useDispatch();
   const context = useWeb3React();
   const { activate, account, library } = context;
@@ -79,6 +82,7 @@ const KlaytnWallets = () => {
       }
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
+      close();
     } catch (e) {
       console.log('connect wallet error', e);
     }
