@@ -65,44 +65,45 @@ const Footer = () => {
           </div>
           <div className="list-page">
             <div className="content-head">
-              Multi-chain NFT Wallet and NFT Launchpad
+              <div>Multi-chain NFT Suite</div>
+              <div>Talken Wallet, Drops, Studio, and etc..</div>
             </div>
             <div className="social-networks">
-              <a href={'https://medium.com/'}>
-                <div className="social-item">
-                  <img src={medium} alt="" />
-                </div>
-              </a>
-              <a href={'https://twitter.com'}>
-                <div className="social-item">
-                  <img src={icon_twitter} alt="" />
-                </div>
-              </a>
-              <a href={'https://discord.com'}>
+              <a href={'https://discord.gg/S33c5DA9cW'} target="_blank">
                 <div className="social-item">
                   <img src={icon_discord} alt="" />
                 </div>
               </a>
-              <a href={'/'}>
+              <a href={'https://twitter.com/Talken_'} target="_blank">
                 <div className="social-item">
-                  <img src={icon_chat} alt="" />
+                  <img src={icon_twitter} alt="" />
                 </div>
               </a>
-              <a href={'https://www.instagram.com'}>
+              <a href={'https://www.instagram.com/talken_nft'} target="_blank">
                 <div className="social-item">
                   <img src={icon_instagram} alt="" />
                 </div>
               </a>
-              <a href={'https://www.gitbook.com/'}>
+              <a href={'https://docs.talken.io/talken-docs/'} target="_blank">
                 <div className="social-item">
                   <img src={icon_gitbook} alt="" />
                 </div>
               </a>
-              <a href={'https://www.gitbook.com/'}>
+              <a href={'https://talken-io.medium.com/'} target="_blank">
+                <div className="social-item">
+                  <img src={medium} alt="" />
+                </div>
+              </a>
+              <a href={'https://blog.naver.com/talkentalk'} target="_blank">
                 <div className="social-item">
                   <img src={icon_blog} alt="" />
                 </div>
               </a>
+              {/* <a href={'/'} target="_blank">
+                <div className="social-item">
+                  <img src={icon_chat} alt="" />
+                </div>
+              </a> */}
             </div>
           </div>
         </div>
@@ -110,12 +111,18 @@ const Footer = () => {
       <div className="line line-second"></div>
       <div className="footer-bottom">
         <div className="footernote">© 2022 Talken, All Rights Reserved.</div>
-        <div className="contact-us">
-          <div className="icon-contact">
-            <img src={icon_contact} alt="Icon contact" />
+        <a
+          href="https://talkensupport.zendesk.com/hc/en-us/requests/new"
+          className="button"
+          target={'_blank'}
+        >
+          <div className="contact-us">
+            <div className="icon-contact">
+              <img src={icon_contact} alt="Icon contact" />
+            </div>
+            <div>Contact Us</div>
           </div>
-          <div>Contact Us</div>
-        </div>
+        </a>
       </div>
     </div>
   );

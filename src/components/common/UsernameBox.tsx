@@ -53,9 +53,10 @@ const UsernameBox = () => {
         <div className="wrapper-wallets">
           <div
             className="btn-wallets button"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setLoginOpen(true);
-              closeSidebar(false);
+              closeSidebar();
             }}
           >
             <div className="img-wallet">
@@ -183,7 +184,7 @@ const UsernameBox = () => {
         </div> */}
         <div className="wrapper-fanpages">
           <a
-            href="https://twitter.com"
+            href="//twitter.com/Talken_"
             target={'_blank'}
             rel="noreferrer"
             className="custom-icon"
@@ -191,7 +192,7 @@ const UsernameBox = () => {
             <img src={icon_twitter} alt="" />
           </a>
           <a
-            href={'https://discord.com'}
+            href={'//discord.gg/S33c5DA9cW'}
             target={'_blank'}
             rel="noreferrer"
             className="custom-icon"
@@ -199,7 +200,7 @@ const UsernameBox = () => {
             <img src={icon_discord} alt="" />
           </a>
           <a
-            href={'https://www.instagram.com'}
+            href={'//www.instagram.com/talken_nft'}
             target={'_blank'}
             rel="noreferrer"
             className="custom-icon"
@@ -208,7 +209,13 @@ const UsernameBox = () => {
           </a>
         </div>
       </div>
-      <div className="logout-btn" onClick={handleClickLogout}>
+      <div
+        className="logout-btn"
+        onClick={() => {
+          handleClickLogout();
+          closeSidebar();
+        }}
+      >
         Log Out
       </div>
       {/* popup connect wallet */}

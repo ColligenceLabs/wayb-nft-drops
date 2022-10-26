@@ -94,6 +94,7 @@ const Homepage = () => {
     showDots: true,
     slidesToSlide: 1,
     swipeable: true,
+    infinite: true,
   };
 
   return (
@@ -116,7 +117,6 @@ const Homepage = () => {
           centerMode={screenSize > 1023}
           dotListClass="custom-dot"
           containerClass="container-with-dots home-carousel"
-          infinite
           responsive={{
             desktop: {
               breakpoint: {
@@ -448,7 +448,133 @@ const Homepage = () => {
         {/* Free Drops */}
         <div className="page-grid">
           <div className="title-header">Free Drops</div>
-          <Carousel
+          {collectionList && (
+            <Carousel
+              {...carouselOption}
+              arrows={false}
+              renderButtonGroupOutside
+              customButtonGroup={<CustomArrowCarousel />}
+              keyBoardControl
+              removeArrowOnDeviceType=""
+              containerClass="container hot-collectibles"
+              responsive={{
+                desktop: {
+                  breakpoint: {
+                    max: 3000,
+                    min: 1420,
+                  },
+                  items: 5,
+                  partialVisibilityGutter: 40,
+                },
+                mobile: {
+                  breakpoint: {
+                    max: 640,
+                    min: 0,
+                  },
+                  items: 1,
+                  partialVisibilityGutter: 30,
+                },
+                tablet: {
+                  breakpoint: {
+                    max: 1024,
+                    min: 640,
+                  },
+                  items: 2,
+                  partialVisibilityGutter: 30,
+                },
+                laptopLarge: {
+                  breakpoint: {
+                    max: 1420,
+                    min: 1180,
+                  },
+                  items: 4,
+                  partialVisibilityGutter: 30,
+                },
+                laptop: {
+                  breakpoint: {
+                    max: 1180,
+                    min: 1024,
+                  },
+                  items: 3,
+                  partialVisibilityGutter: 30,
+                },
+              }}
+              showDots={false}
+            >
+              {collectionList
+                .filter((item) => item.price === null || item.price === 0)
+                .map((item: any, index) => (
+                  <Link
+                    to={`/collection-sale/${item.id}`}
+                    state={{
+                      item: {
+                        ...item,
+                        companyLogo: item.featured.company.image,
+                        companyName: item.featured.companyId,
+                        quote: item.quote,
+                      },
+                    }}
+                    className="button custom-box"
+                    key={index}
+                  >
+                    <div className="hot-ollectibles-wrapper">
+                      <div className="header-left hot-ollectibles-item">
+                        <span className="total-run">
+                          Total Run: {item.totalAmount}
+                        </span>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div>erc721</div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="img-token">
+                          <img
+                            src={item.packageImage}
+                            alt=""
+                            draggable={false}
+                          />
+                        </div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="wrapper-item">
+                          <div className="content-left">
+                            <div className="avatar">
+                              <img
+                                src={item.featured.company.image}
+                                alt=""
+                                draggable={false}
+                              />
+                            </div>
+                            <div className="name-label">{item.title.en}</div>
+                          </div>
+                          <div className="content-right">Buy Now</div>
+                        </div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="name-label">{item.details}</div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="wrapper-price">
+                          <div className="price-header">Price</div>
+                          <div className="current-price">
+                            {`${item.quote?.toUpperCase()} ${item.price}`}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="wrapper-remaining">
+                          <div className="remaining-header">Remaining</div>
+                          <div className="quantity-remaining">
+                            {item.remainingAmount ? item.remainingAmount : '-'}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+            </Carousel>
+          )}
+          {/* <Carousel
             {...carouselOption}
             keyBoardControl
             arrows={false}
@@ -545,7 +671,7 @@ const Homepage = () => {
                 </div>
               </Link>
             ))}
-          </Carousel>
+          </Carousel> */}
         </div>
       </div>
     </div>
