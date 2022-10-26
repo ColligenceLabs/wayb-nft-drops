@@ -82,18 +82,39 @@ const Navbar = () => {
           />
         </div>
         <div className="contact-header">
-          <a href="/">About</a>
-          <a href="/">Blog</a>
-          <a href="/">Help</a>
+          <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
+            About
+          </a>
+          <a href="https://talken-io.medium.com/" target={'_blank'}>
+            Blog
+          </a>
+          <a
+            href="https://talkensupport.zendesk.com/hc/en-us/requests/new"
+            target={'_blank'}
+          >
+            Help
+          </a>
         </div>
         <div className="fanpage-icons">
-          <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
+          <a
+            href="https://twitter.com/Talken_"
+            target={'_blank'}
+            rel="noreferrer"
+          >
             <img src={icon_twitter} alt="" />
           </a>
-          <a href="https://discord.com" target={'_blank'} rel="noreferrer">
+          <a
+            href="https://discord.gg/S33c5DA9cW"
+            target={'_blank'}
+            rel="noreferrer"
+          >
             <img src={icon_discord} alt="" />
           </a>
-          <a href="https://web.telegram.org" target={'_blank'} rel="noreferrer">
+          <a
+            href="https://www.instagram.com/talken_nft"
+            target={'_blank'}
+            rel="noreferrer"
+          >
             <img src={icon_insta} alt="" />
           </a>
         </div>
@@ -108,7 +129,11 @@ const Navbar = () => {
         </div> */}
 
         {/* after login */}
-        <div className="btn-wallets">
+        <div
+          className={`btn-wallets ${
+            dropsAccount.address === '' ? 'right-40' : ''
+          }`}
+        >
           <button
             className="custom-btn button"
             // onClick={() => updateOpenWallet(true)}
@@ -169,7 +194,7 @@ const Navbar = () => {
                 <img src={nav_icon} alt="Navbar Icon" />
                 {/* side bar */}
               </button>
-              <SidebarMb setLoginSidebar={dropsAccount.address} />
+              <SidebarMb />
             </div>
           )
         )}

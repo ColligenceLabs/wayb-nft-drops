@@ -127,16 +127,24 @@
       }
     }
   }
-
-  @include Mobile() {
-    margin-right: 25px;
-    display: contents;
+  @media (max-width: 540px) {
     .close-sidebar {
       display: block;
     }
-
     .wrapper-dropdown {
       padding: 0 15px;
+    }
+    .logout-btn {
+      width: auto;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+  @include Mobile() {
+    margin-right: 25px;
+
+    .wrapper-dropdown {
+      // padding: 0 15px;
 
       .wrapper-fanpages {
         border-top: 1px solid #393939;
@@ -176,12 +184,6 @@
           }
         }
       }
-    }
-
-    .logout-btn {
-      width: auto;
-      margin-left: 20px;
-      margin-right: 20px;
     }
   }
 

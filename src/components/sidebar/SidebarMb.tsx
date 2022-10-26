@@ -17,7 +17,7 @@ import {
 } from 'components/common/AppStore';
 import WalletConnector from '../auth/WalletConnector/WalletConnector';
 
-const SidebarMb = (setLoginSidebar: any) => {
+const SidebarMb = () => {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
@@ -25,6 +25,7 @@ const SidebarMb = (setLoginSidebar: any) => {
   const closeLogin = () => {
     setLoginOpen(false);
   };
+  const accessToken = localStorage.getItem('dropsJwtToken');
 
   const closeSignup = () => {
     setSignupOpen(false);
@@ -33,12 +34,10 @@ const SidebarMb = (setLoginSidebar: any) => {
   const closeOnDocumentClick = false;
   const lockScroll = true;
   const { isOpen, closeSidebar } = useSidebarStore();
-  console.log(setLoginSidebar, 'setLoginSidebar');
-
   return (
     <div className={`side-bar ${isOpen ? 'show' : ''}`} onClick={closeSidebar}>
       {/* sidebar before login new design */}
-      {setLoginSidebar !== '' ? (
+      {!accessToken ? (
         <div className="wrapper-backdrop" onClick={(e) => e.stopPropagation()}>
           <div className="close-sidebar">
             <div className="icon-close" onClick={closeSidebar}>
@@ -55,28 +54,48 @@ const SidebarMb = (setLoginSidebar: any) => {
             <span>Connect Wallet</span>
           </div>
           <div className="wrapper">
-            <a href="/" className="wrapper-item button">
+            <a
+              href="https://docs.talken.io/talken-docs/"
+              className="wrapper-item button"
+              target={'_blank'}
+            >
               <img src={about} alt="About Icon" />
               About
             </a>
-            <a href="/" className="wrapper-item button">
+            <a
+              href="https://talken-io.medium.com/"
+              className="wrapper-item button"
+              target={'_blank'}
+            >
               <img src={blog} alt="Blog Icon" />
               Blog
             </a>
-            <a href="/" className="wrapper-item button">
+            <a
+              href="//talkensupport.zendesk.com/hc/en-us/requests/new"
+              className="wrapper-item button"
+              target={'_blank'}
+            >
               <img src={help} alt="Help Icon" />
               Help
             </a>
           </div>
           <div className="fanpage-icons-sidebar">
-            <a href="https://twitter.com" target={'_blank'} rel="noreferrer">
+            <a
+              href="https://twitter.com/Talken_"
+              target={'_blank'}
+              rel="noreferrer"
+            >
               <img src={icon_twitter} alt="" />
             </a>
-            <a href="https://discord.com" target={'_blank'} rel="noreferrer">
+            <a
+              href="https://discord.gg/S33c5DA9cW"
+              target={'_blank'}
+              rel="noreferrer"
+            >
               <img src={icon_discord} alt="" />
             </a>
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/talken_nft"
               target={'_blank'}
               rel="noreferrer"
             >
@@ -89,7 +108,6 @@ const SidebarMb = (setLoginSidebar: any) => {
           <UsernameBox />
         </div>
       )}
-
       {/* sidebar after login */}
 
       {/* popup log in */}
