@@ -88,7 +88,7 @@
           justify-content: space-between;
           align-items: center;
           // gap: 24px;
-        
+
           .info-item {
             background: transparent;
             width: 48px;
@@ -101,7 +101,6 @@
             &:hover {
               // transition: all 0.2s ease 0s;
               box-shadow: rgb(145 145 145) 0px 0px 10px 0px;
-
             }
             .image-item {
               width: 24px;
@@ -112,7 +111,6 @@
               }
             }
           }
-          
         }
         .line-icon {
           border: 1px solid #444444;
@@ -387,6 +385,24 @@
       width: 500px;
       height: 600px;
       // border-right: 1px solid $dark-color-primary;
+      .zoom-image {
+        background-color: #2f8af5;
+        border-radius: 16px;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        right: -38px;
+        top: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        svg {
+          fill: #ffffff;
+          width: 23px;
+          height: 23px;
+        }
+      }
       img {
         display: block;
         width: 100%;
@@ -1020,11 +1036,15 @@
   .price-collection-view-page {
     .price-collection-box {
       flex-direction: column;
-
+      padding: 60px 0 40px;
       .token-showcase-box {
         margin: 0;
         position: relative;
         width: 100%;
+        .zoom-image {
+          right: 15px;
+          top: -45px;
+        }
         img {
           border: none;
           -webkit-transform: unset;
