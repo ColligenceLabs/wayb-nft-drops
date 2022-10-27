@@ -252,7 +252,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ close, onConfirm }) => {
                 <img src={icon_solana}></img>Solana
               </button>
               <button type="button">
-                <img src={icon_binance}></img>Binance
+                <img src={icon_binance}></img>BNB Chain
               </button>
             </div>
             <div className="div-wallets_2">
@@ -261,12 +261,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ close, onConfirm }) => {
                   <img src={icon_metamask}></img>Metamask
                 </button>
                 <button type="button">
-                  <img src={icon_ethereum2}></img>Wallet Connector
+                  <img src={icon_ethereum2}></img>Wallet Connect
                 </button>
               </div>
               <div className="row">
                 <button type="button">
-                  <img src={icon_talk}></img>Talken
+                  <img src={icon_talk}></img>Talken Wallet
                 </button>
                 <button type="button">
                   <img src={icon_klaytn}></img>Kaikas
