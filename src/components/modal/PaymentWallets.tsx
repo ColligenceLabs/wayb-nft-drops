@@ -363,9 +363,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               'Buy Now'
             )}
           </button>
-        </div>
-        <div>
-          <Typography>{errMsg}</Typography>
+          <div className="payment-error">
+            <Typography>{errMsg}</Typography>
+          </div>
         </div>
       </div>
     </ReactModal>
