@@ -165,7 +165,40 @@ const CollectionList: React.FC<CollectionListProps> = ({
                       <p className="">{companyName}</p>
                     </div>
                     <div>
-                      <Link to="/sale">
+                      <Link
+                        to={
+                          item.isCollection
+                            ? item.itemAmount === 1 && item.mysteryboxItems
+                              ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
+                              : `/collection-sale/${item.id}`
+                            : item.isAirdrop
+                            ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
+                            : `/sale/${item.id}`
+                        }
+                        state={
+                          item.isCollection && item.itemAmount === 1
+                            ? {
+                                item: {
+                                  collectionInfo: item,
+                                  ...item.mysteryboxItems[0],
+                                  companyLogo,
+                                  companyName,
+                                  quote: item.quote,
+                                },
+                              }
+                            : item.isAirdrop
+                            ? {
+                                item: {
+                                  collectionInfo: item,
+                                  ...item.mysteryboxItems[0],
+                                  companyLogo,
+                                  companyName,
+                                  quote: item.quote,
+                                },
+                              }
+                            : { item: { ...item, companyLogo, companyName } }
+                        }
+                      >
                         <div className="status ">Buy Now</div>
                       </Link>
                     </div>
