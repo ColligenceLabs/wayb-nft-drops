@@ -151,7 +151,7 @@ const MyCollectibles = () => {
   useEffect(() => {
     const fetchMyMBoxList = async () => {
       if (account) {
-        const sort = selectedIndex === 0 ? 'ASC' : 'DESC';
+        const sort = selectedIndex !== 0 ? 'ASC' : 'DESC';
         const res = await getMyMBoxList(account, sort);
         if (res.data.status === 1) {
           setMyMBoxList(res.data.data);

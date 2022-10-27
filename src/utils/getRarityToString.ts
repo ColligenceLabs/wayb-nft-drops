@@ -1,19 +1,19 @@
 export const getRarityToString = (rarity: number) => {
   let result = '';
   switch (rarity) {
-    case 0:
+    case 1:
       result = 'Normal';
       break;
-    case 1:
+    case 2:
       result = 'Rare';
       break;
-    case 2:
+    case 3:
       result = 'Unique';
       break;
-    case 3:
+    case 4:
       result = 'Epic';
       break;
-    case 4:
+    case 5:
       result = 'Legend';
       break;
   }
