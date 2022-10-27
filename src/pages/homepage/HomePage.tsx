@@ -35,8 +35,14 @@ const Homepage = () => {
   const [collectionList, setCollectionList] = useState<ExMBoxType[]>([]);
 
   const navigateToUrl = (item: FeaturedTypes) => {
-    if (item.eventUrl) window.open(item.eventUrl, '_blank');
-    else navigate(`/collection/${item.id}`);
+    if (item.eventUrl) {
+      window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
+    } else {
+      window.open(
+        `/collection/${item.id}`,
+        item.newWindow ? '_blank' : '_self'
+      );
+    }
   };
 
   useEffect(() => {
@@ -131,7 +137,6 @@ const Homepage = () => {
         >
           {slideData !== null &&
             slideData.map((item: FeaturedTypes, index) => {
-              // console.log(item);
               return (
                 <div
                   className="slide-item"
