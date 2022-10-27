@@ -187,12 +187,13 @@ const MyCollectiblesDetails = () => {
         account,
         library
       );
-    } else {
-      tokenURI[0] = await getKeyMetadata(
-        mboxInfo?.keyContractAddress,
-        account,
-        library
-      );
+      // TODO : Comment out to display only revealed items
+      // } else {
+      //   tokenURI[0] = await getKeyMetadata(
+      //     mboxInfo?.keyContractAddress,
+      //     account,
+      //     library
+      //   );
     }
 
     if (tokenURI.length > 0) {
