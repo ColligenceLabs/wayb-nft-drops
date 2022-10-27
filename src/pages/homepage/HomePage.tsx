@@ -358,7 +358,9 @@ const Homepage = () => {
                         <div className="wrapper-price">
                           <div className="price-header">Price</div>
                           <div className="current-price">
-                            {`${item.quote?.toUpperCase()} ${item.price}`}
+                            {`${
+                              item.price ? item.price.toLocaleString() : '-'
+                            } ${item.quote?.toUpperCase()}`}
                           </div>
                         </div>
                       </div>

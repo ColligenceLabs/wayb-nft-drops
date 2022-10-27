@@ -212,7 +212,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
                     <div className="price ">Price</div>
                     <div className="currency ">{`${
                       item.price ? item.price.toLocaleString() : '-'
-                    } ${item.quote}`}</div>
+                    } ${item.quote.toUpperCase()}`}</div>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_TIME">
