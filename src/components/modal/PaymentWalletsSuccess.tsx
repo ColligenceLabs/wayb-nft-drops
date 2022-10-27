@@ -31,7 +31,7 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
         >
           <div className="modal-dialog modal-dialog-pay-success">
             <div className="header">
-              <div className="title">Great!</div>
+              <div className="title">NFT's Drop was successful.</div>
               <div className="close-button" onClick={onHide}>
                 <img src={close_icon} alt="icon close" />
               </div>
@@ -53,9 +53,12 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
                 {isCollection ? itemInfo.name : itemInfo.title.en}
               </div>
               <div className="grid-item sub-image">
-                Congratulations, your token purchase is in progress. It could
-                take up to ten minutes to verify your transaction anh transfer
-                the token to your wallet.
+                Congratulations. NFT's Drop was successful. It may take up to 10
+                minutes to confirm the transaction and transfer the NFT to your
+                wallet.{' '}
+                {itemInfo.isCollection === false
+                  ? '미스처리 박스는 Reveal이 필요합니다. My Collectibles 메뉴에서 Reveal 실핼을 하세요.'
+                  : ''}
               </div>
               <button
                 className="grid-item button button-got-it"
