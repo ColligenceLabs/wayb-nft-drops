@@ -14,7 +14,7 @@ import { buyItem } from '../../utils/transactions';
 import { SUCCESS, targetNetwork } from '../../config';
 import { registerBuy } from '../../services/services';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import { checkConnectWallet } from '../../utils/wallet';
 import {
   buyKey,
@@ -59,6 +59,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   const [remains, setRemains] = useState(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isBuying, setIsBuying] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
   const [buyItemInfo, setBuyItemInfo] = useState<
     ExMBoxItemTypes | ExMBoxType | null
   >(null);
@@ -247,8 +248,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         } else {
           return false;
         }
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
+        if (error.code == '-32603') setErrMsg('Not sufficient Klay balance!');
         return false;
       }
     }
@@ -361,6 +363,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               'Buy Now'
             )}
           </button>
+        </div>
+        <div>
+          <Typography>{errMsg}</Typography>
         </div>
       </div>
     </ReactModal>
