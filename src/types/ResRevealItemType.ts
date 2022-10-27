@@ -6,4 +6,5 @@ export type ResRevealItemType = {
   alt_url: string;
   extension: string;
   price: string;
+  no: number;
 };

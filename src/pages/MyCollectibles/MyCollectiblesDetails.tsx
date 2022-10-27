@@ -20,7 +20,8 @@ import {
   getItemBalance,
   getItemMetadata,
   getKeyBalance,
-  getKeyMetadata,
+  // getKeyMetadata,
+  getTokenIds,
 } from '../../utils/marketTransactions';
 
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
@@ -182,6 +183,7 @@ const MyCollectiblesDetails = () => {
       library
     );
     let tokenURI: string[] = [];
+    let tokenIds: number[] = [];
     if (items > 0) {
       tokenURI = await getItemMetadata(
         mboxInfo?.boxContractAddress,
@@ -196,14 +198,22 @@ const MyCollectiblesDetails = () => {
       //     account,
       //     library
       //   );
+      tokenIds = await getTokenIds(
+        mboxInfo?.boxContractAddress,
+        items,
+        account,
+        library
+      );
     }
 
     if (tokenURI.length > 0) {
       const result = await Promise.all(
-        tokenURI.map(async (uri) => {
+        tokenURI.map(async (uri, index) => {
           const res = await axios.get(uri);
           const rlt = await getItemPrice(uri);
           res.data.price = rlt.data?.data?.price ?? '-';
+          res.data.no = rlt.data?.data?.no;
+          res.data.tokenId = tokenIds[index];
           return res.data;
         })
       );
@@ -473,7 +483,8 @@ const MyCollectiblesDetails = () => {
                 // <Link to={`/sale/${index}`} key={index}>
                 <div className="item_product" key={index}>
                   <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                    <div className="total_item">Total Run: 50</div>
+                    {/*<div className="total_item">Total Run: 50</div>*/}
+                    <div className="total_item">Index: {item.no}</div>
                   </div>
                   <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
                     <div>erc721</div>
