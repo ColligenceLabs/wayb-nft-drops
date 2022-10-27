@@ -191,11 +191,25 @@ const SaleCollectibles = () => {
             <div className="price-collection-box">
               <div className="token-showcase-box">
                 {mBoxInfo.revealAnimation === null ? (
-                  <img
-                    style={{ objectFit: 'cover' }}
-                    src={mBoxInfo.packageImage}
-                    alt=""
-                  />
+                  // <img
+                  //   style={{ objectFit: 'cover' }}
+                  //   src={mBoxInfo.packageImage}
+                  //   alt=""
+                  // />
+                  <>
+                    {mBoxInfo.packageImage.indexOf('.mp4') > -1 ? (
+                      <div>
+                        <video muted autoPlay playsInline loop>
+                          <source
+                            src={mBoxInfo.packageImage}
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    ) : (
+                      <img src={mBoxInfo.packageImage} alt="" />
+                    )}
+                  </>
                 ) : (
                   <>
                     {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (

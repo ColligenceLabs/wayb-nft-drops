@@ -161,11 +161,24 @@ const CollectionSaleDetail = () => {
         <div className="price-collection-view-page">
           <div className="price-collection-box">
             <div className="token-showcase-box">
-              <img
-                style={{ objectFit: 'cover' }}
-                src={collectionItemInfo?.originalImage}
-                alt=""
-              />
+              {/*<img*/}
+              {/*  style={{ objectFit: 'cover' }}*/}
+              {/*  src={collectionItemInfo?.originalImage}*/}
+              {/*  alt=""*/}
+              {/*/>*/}
+              {collectionItemInfo &&
+              collectionItemInfo?.originalImage!.indexOf('.mp4') > -1 ? (
+                <div>
+                  <video muted autoPlay playsInline loop>
+                    <source
+                      src={collectionItemInfo?.originalImage}
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
+              ) : (
+                <img src={collectionItemInfo?.originalImage} alt="" />
+              )}
             </div>
             <div className="straight-line"></div>
             <div className="token-details-box">
