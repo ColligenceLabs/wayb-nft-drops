@@ -153,13 +153,15 @@ const MyCollectiblesDetails = () => {
   }
 
   const fetchBalance = async () => {
-    if (mboxInfo?.isCollection !== true) {
+    if (
+      mboxInfo?.isCollection !== true &&
+      mboxInfo?.keyContractAddress !== null
+    ) {
       const balance = await getKeyBalance(
         mboxInfo?.keyContractAddress,
         account,
         library
       );
-      console.log('-----------', balance);
       setBalance(balance);
     }
 
@@ -367,7 +369,13 @@ const MyCollectiblesDetails = () => {
               </div>
               <div className="item">
                 <div className="label">Date Acquired</div>
-                <div className="value">9/2/2022</div>
+                <div className="value">
+                  {toStringByFormatting(
+                    new Date(
+                      mboxInfo?.createdAt ? mboxInfo.createdAt.toString() : ''
+                    )
+                  )}
+                </div>
               </div>
               <div className="item">
                 <div className="label">Total Run</div>
