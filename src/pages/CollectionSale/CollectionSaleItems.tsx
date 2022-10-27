@@ -110,7 +110,12 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
                       <p className="">{companyName}</p>
                     </div>
                     <div>
-                      <Link to="/sale">
+                      <Link
+                        to={`/collection-sale/sale/${item.id}`}
+                        state={{
+                          item: { ...item, companyLogo, companyName, quote },
+                        }}
+                      >
                         <div className="status ">Buy Now</div>
                       </Link>
                     </div>
