@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import ic_info from '../../assets/icon/info_blue.svg';
 import ic_search from '../../assets/icon/search.svg';
+import close_icon from '../../assets/icon/close_icon.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 import { MBoxTypes } from '../../types/MBoxTypes';
@@ -32,6 +33,7 @@ import {
   getItemAmountNoSigner,
   getItemRemains,
 } from '../../utils/transactions';
+import ReactModal from 'react-modal';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -61,7 +63,7 @@ const SaleCollectibles = () => {
   const [countDownFinish, setCountDownFinish] = useState(false);
   const wallet = useSelector((state: any) => state.wallet);
   const { activate } = useWeb3React();
-
+  const [isZoomImage, setIsZoomImage] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = useState({
     open: false,
     type: '',
@@ -189,12 +191,44 @@ const SaleCollectibles = () => {
           <div className="price-collection-view-page">
             <div className="price-collection-box">
               <div className="token-showcase-box">
+                {/* button zoom image */}
+                <div
+                  className="zoom-image"
+                  onClick={() => setIsZoomImage(true)}
+                >
+                  <svg
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M595.2 96l129.8 129.8-499.2 499.2L96 595.2V928h332.8l-129.8-129.8 499.2-499.2 129.8 129.8V96z"></path>
+                  </svg>
+                </div>
                 {mBoxInfo.revealAnimation === null ? (
-                  <img
-                    style={{ objectFit: 'cover' }}
-                    src={mBoxInfo.packageImage}
-                    alt=""
-                  />
+                  <>
+                    <img
+                      style={{ objectFit: 'cover' }}
+                      src={mBoxInfo.packageImage}
+                      alt=""
+                    />
+                    {/* modal zoom image */}
+                    <ReactModal
+                      isOpen={isZoomImage}
+                      className={'modal-zoom-image'}
+                    >
+                      <div
+                        className="close-modal"
+                        onClick={() => setIsZoomImage(false)}
+                      >
+                        <img src={close_icon} alt="Close Icon" />
+                      </div>
+                      <img
+                        className="image"
+                        src={mBoxInfo.packageImage}
+                        alt=""
+                      />
+                    </ReactModal>
+                  </>
                 ) : (
                   <>
                     {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (
@@ -207,7 +241,26 @@ const SaleCollectibles = () => {
                         </video>
                       </div>
                     ) : (
-                      <img src={mBoxInfo.revealAnimation} alt="" />
+                      <>
+                        <img src={mBoxInfo.revealAnimation} alt="" />
+                        {/* modal zoom image */}
+                        <ReactModal
+                          isOpen={isZoomImage}
+                          className={'modal-zoom-image'}
+                        >
+                          <div
+                            className="close-modal"
+                            onClick={() => setIsZoomImage(false)}
+                          >
+                            <img src={close_icon} alt="Close Icon" />
+                          </div>
+                          <img
+                            className="image"
+                            src={mBoxInfo.revealAnimation}
+                            alt=""
+                          />
+                        </ReactModal>
+                      </>
                     )}
                   </>
                 )}
