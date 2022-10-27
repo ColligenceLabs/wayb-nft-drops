@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
+import pay_creditcard_gray from '../../assets/img/pay-creditcard-gray.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
 import pay_appstore from '../../assets/img/pay_appstore.png';
 import pay_googleplay from '../../assets/img/pay_googleplay.png';
@@ -288,7 +289,12 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             // }}
           >
             <div className="pay-item">
-              <img src={pay_creditcard} alt="Credit Card" />
+              <img
+                // src={pay_creditcard}
+                src={pay_creditcard_gray}
+                alt="Credit Card"
+                style={{ filter: 'contrast(100%)' }}
+              />
             </div>
             <div className="pay-name">Credit Card</div>
           </div>
