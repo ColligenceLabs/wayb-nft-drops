@@ -159,7 +159,7 @@ const MyCollectiblesDetails = () => {
         account,
         library
       );
-
+      console.log('-----------', balance);
       setBalance(balance);
     }
 
@@ -343,11 +343,17 @@ const MyCollectiblesDetails = () => {
             </a>
             <div className="list-item">
               <div className="item">
-                <div className="label">Amount</div>
+                <div className="label">
+                  {mboxInfo?.isCollection
+                    ? 'Amount'
+                    : status || balance !== 0
+                    ? 'Reveal Amount'
+                    : 'Amount'}
+                </div>
                 <div className="value">
                   {mboxInfo?.isCollection
                     ? `${item}`
-                    : status || balance === 0
+                    : status || balance !== 0
                     ? `${balance}`
                     : `${item}`}
                 </div>
