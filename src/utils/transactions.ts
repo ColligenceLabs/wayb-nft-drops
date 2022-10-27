@@ -1047,6 +1047,25 @@ export async function getTotalSupply(
   return totalSupply;
 }
 
+export async function getTotalSupplyNoSigner(
+  address: string,
+  account: string | undefined | null,
+  chainId: number
+): Promise<number> {
+  const provider = ethers.getDefaultProvider(getSelectedNodeUrl(chainId));
+  const contract = new ethers.Contract(address, erc721Abi, provider);
+
+  let totalSupply = 0;
+  try {
+    const result: BigNumber = await contract.totalSupply();
+    totalSupply = result.toNumber();
+  } catch (e) {
+    console.log('#####', address);
+    console.log('getTotalSupplyNoSigner Error : ', e);
+  }
+  return totalSupply;
+}
+
 export async function approveKIP7(
   address: string,
   spender: string,
@@ -1248,11 +1267,6 @@ export async function getItemAmountNoSigner(
   chainId: number
 ): Promise<number> {
   const provider = ethers.getDefaultProvider(getSelectedNodeUrl(chainId));
-  new ethers.Contract(
-    address,
-    type === 1 ? mysteryBoxAbi : type == 2 ? collectionAbi : airDropAbi,
-    provider
-  );
   const contract = new ethers.Contract(
     address,
     type === 1 ? mysteryBoxAbi : type == 2 ? collectionAbi : airDropAbi,
