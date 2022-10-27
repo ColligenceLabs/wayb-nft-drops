@@ -1414,6 +1414,52 @@ export async function getItemMetadata(
   return tokenURI;
 }
 
+export async function getTokenIds(
+  address: string,
+  balance: number,
+  account: string | undefined | null,
+  library: any
+): Promise<number[]> {
+  const isKaikas =
+    library.connection.url !== 'metamask' ||
+    library.connection.url === 'eip-1193:';
+
+  console.log(isKaikas);
+  let contract: any;
+  if (isKaikas) {
+    // @ts-ignore : In case of Klaytn Kaikas Wallet
+    const caver = new Caver(window.klaytn);
+    const keyAbi: AbiItem[] = erc721Abi as AbiItem[];
+    contract = new caver.klay.Contract(keyAbi, address);
+  } else {
+    contract = new ethers.Contract(address, erc721Abi, library?.getSigner());
+  }
+
+  const tokenIds: number[] = [];
+  try {
+    if (isKaikas) {
+      for (let i = 0; i < balance; i++) {
+        tokenIds[i] = await contract.methods
+          .tokenOfOwnerByIndex(account, i)
+          .call()
+          .catch(async (err: any) => {
+            console.log('#####', address, account);
+            console.log('getItemMetadata Error : ', err);
+          });
+      }
+    } else {
+      for (let i = 0; i < balance; i++) {
+        const rlt = await contract.tokenOfOwnerByIndex(account, i);
+        tokenIds[i] = rlt.toNumber();
+      }
+    }
+  } catch (e) {
+    console.log('#####', address, account);
+    console.log('getKeyBalance Error : ', e);
+  }
+  return tokenIds;
+}
+
 export async function getKeyMetadata(
   address: string,
   account: string | undefined | null,
