@@ -97,6 +97,12 @@
         margin: auto;
         color: #ffffff;
       }
+      .payment-error {
+        display: flex;
+        justify-content: center;
+        padding: 15px 0;
+        color: red;
+      }
     }
   }
   //payment wallet success
