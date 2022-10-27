@@ -39,7 +39,7 @@ const Homepage = () => {
       window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
     } else {
       window.open(
-        `/collection/${item.id}`,
+        `/klaytn/featured/${item.id}`,
         item.newWindow ? '_blank' : '_self'
       );
     }
@@ -167,7 +167,7 @@ const Homepage = () => {
         <div className="featured-collections">
           <div className="wrapper-header title-header">
             <div className="header-name">Featured Collections</div>
-            <Link to={'/collections'} className="show-all-item button">
+            <Link to={'/klaytn/featureds'} className="show-all-item button">
               See all
             </Link>
           </div>
@@ -288,12 +288,13 @@ const Homepage = () => {
               showDots={false}
             >
               {collectionList.map((item: any, index) => {
+                console.log(item);
                 return (
                   <Link
                     to={
                       item.itemAmount === 1 && item.mysteryboxItems
-                        ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
-                        : `/collection-sale/${item.id}`
+                        ? `/klaytn/collection/${item.mysteryboxItems[0]?.id}`
+                        : `/klaytn/collections/${item.id}`
                     }
                     state={
                       item.itemAmount === 1

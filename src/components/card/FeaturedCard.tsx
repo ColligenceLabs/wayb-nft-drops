@@ -9,7 +9,7 @@ type FeaturedCardProps = {
 };
 const FeaturedCard: React.FC<FeaturedCardProps> = ({ item }) => {
   return (
-    <Link to={`/collection/${item.id}`} className="custom-link">
+    <Link to={`/klaytn/featured/${item.id}`} className="custom-link">
       <button className="grid-item button">
         <div className="banner-image">
           <img src={item.banner} alt="" style={{ objectFit: 'cover' }} />

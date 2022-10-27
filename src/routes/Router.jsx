@@ -24,15 +24,15 @@ const Router = () => [
     element: <StudioLayout />,
     children: [
       { path: '/', element: <Homepage /> },
-      { path: '/collection/:id', element: <Collection /> },
-      { path: '/collections', element: <Collections /> },
-      { path: '/collection-sale/:id', element: <CollectionSale /> },
-      { path: '/collection-sale/sale/:id', element: <CollectionSaleDetail /> },
+      // { path: '/collection/:id', element: <Collection /> },
+      // { path: '/collections', element: <Collections /> },
+      // { path: '/collection-sale/:id', element: <CollectionSale /> },
+      // { path: '/collection-sale/sale/:id', element: <CollectionSaleDetail /> },
       {
         path: '/collection-sale/sale/single',
         element: <CollectionSaleDetail />,
       },
-      { path: '/sale/:id', element: <SaleCollectibles /> },
+      // { path: '/sale/:id', element: <SaleCollectibles /> },
       { path: '/my-collectibles', element: <MyCollectibles /> },
       {
         path: '/my-collectibles/details',
@@ -41,6 +41,13 @@ const Router = () => [
       { path: '/my-profile', element: <Profile /> },
       { path: '/purchase-history', element: <PurchaseHistory /> },
       { path: '/series', element: <PurchaseHistoryDetail /> },
+
+      { path: '/klaytn/featured/:id', element: <Collection /> },
+      { path: '/klaytn/featureds', element: <Collections /> },
+      { path: '/klaytn/collections/:id', element: <CollectionSale /> },
+      { path: '/klaytn/collection/:id', element: <CollectionSaleDetail /> },
+      { path: '/klaytn/mbox/:id', element: <SaleCollectibles /> },
+      { path: '/klaytn/airdrop/:id', element: <CollectionSaleDetail /> },
     ],
   },
   {
