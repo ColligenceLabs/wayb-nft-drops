@@ -85,7 +85,7 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
         {collectionItemList.map((item, index) => {
           return (
             <Link
-              to={`/collection-sale/sale/${item.id}`}
+              to={`/klaytn/collection/${item.id}`}
               state={{ item: { ...item, companyLogo, companyName, quote } }}
               key={index}
             >
@@ -111,7 +111,7 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
                     </div>
                     <div>
                       <Link
-                        to={`/collection-sale/sale/${item.id}`}
+                        to={`/klaytn/collection/${item.id}`}
                         state={{
                           item: { ...item, companyLogo, companyName, quote },
                         }}

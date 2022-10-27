@@ -98,7 +98,7 @@ const DialogWallets = () => {
               <div className="logo-item logo-talken">
                 <img src={logo_talken} alt="logo talken" />
               </div>
-              Talken
+              Talken Wallet
             </div>
             <div className="wrapper-right">
               <img src={dot_connected} alt="" />

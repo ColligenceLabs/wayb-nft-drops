@@ -200,7 +200,7 @@ const Landing = () => {
                 </div>
               </div>
               <div className="buynow-wrapper">
-                <Link to="/collections" target="_blank">
+                <Link to="/klaytn/featureds" target="_blank">
                   Buy Now
                 </Link>
               </div>
@@ -359,7 +359,7 @@ const Landing = () => {
           </Popup>
         </div>
         <div className="name" id="buy-now-mb">
-          <Link to="/collections" target="_blank" className="Buy-button-mb">
+          <Link to="" target="_blank" className="Buy-button-mb">
             Buy Now
           </Link>
         </div>

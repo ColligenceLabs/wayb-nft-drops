@@ -111,11 +111,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
               to={
                 item.isCollection
                   ? item.itemAmount === 1 && item.mysteryboxItems
-                    ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
-                    : `/collection-sale/${item.id}`
+                    ? `/klaytn/collection/${item.mysteryboxItems[0]?.id}`
+                    : `/klaytn/collections/${item.id}`
                   : item.isAirdrop
-                  ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
-                  : `/sale/${item.id}`
+                  ? `/klaytn/airdrop/${item.mysteryboxItems[0]?.id}`
+                  : `/klaytn/mbox/${item.id}`
               }
               state={
                 item.isCollection && item.itemAmount === 1
@@ -169,11 +169,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
                         to={
                           item.isCollection
                             ? item.itemAmount === 1 && item.mysteryboxItems
-                              ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
-                              : `/collection-sale/${item.id}`
+                              ? `/klaytn/collection/${item.mysteryboxItems[0]?.id}`
+                              : `/klaytn/collections/${item.id}`
                             : item.isAirdrop
-                            ? `/collection-sale/sale/${item.mysteryboxItems[0]?.id}`
-                            : `/sale/${item.id}`
+                            ? `/klaytn/airdrop/${item.mysteryboxItems[0]?.id}`
+                            : `/klaytn/mbox/${item.id}`
                         }
                         state={
                           item.isCollection && item.itemAmount === 1
