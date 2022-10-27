@@ -10,20 +10,12 @@ const ArrowCarouselCollections = ({ next, previous, ...rest }: any) => {
   return (
     <div className="arrow-featured-collections">
       {' '}
-      <div
-        className={`arrow-one ${currentSlide === 0 ? 'remove-arrow' : ''}`}
-        onClick={() => previous()}
-      >
+      <div className={'arrow-one'} onClick={() => previous()}>
         <div className="arrow-left">
           <img src={arrow_left} alt="arrow left" />
         </div>
       </div>
-      <div
-        className={`arrow-two ${
-          currentSlide === totalItems - slidesToShow ? 'remove-arrow' : ''
-        }`}
-        onClick={() => next()}
-      >
+      <div className={'arrow-two'} onClick={() => next()}>
         <div className="arrow-right">
           <img src={arrow_right} alt="arrow right" />
         </div>

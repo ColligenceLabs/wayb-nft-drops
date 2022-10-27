@@ -23,6 +23,11 @@
     height: 100%;
     position: absolute;
     right: 0;
+    .user-dropdown-box {
+      position: unset;
+      width: 100%;
+      padding: 0;
+    }
   }
 
   .close-sidebar {
@@ -128,7 +133,7 @@
   }
   //mobile view
  
-  @include Mobile() {
+  @media (max-width: 540px) {
     transition: all 500ms;
     .wrapper-backdrop {
       width: 55%;
