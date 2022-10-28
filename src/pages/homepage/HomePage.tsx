@@ -139,29 +139,20 @@ const Homepage = () => {
           }}
         >
           {slideData !== null &&
-            slideData.map((item: FeaturedTypes, index) => {
-              return (
-                <div
-                  className="slide-item"
-                  key={index}
-                  onClick={() => navigateToUrl(item)}
-                >
-                  {/*<Link*/}
-                  {/*  to={item.eventUrl ? item.eventUrl : '/'}*/}
-                  {/*  target={'_blank'}*/}
-                  {/*>*/}
+            slideData.map((item: FeaturedTypes, index) => (
+              <div className="slide-item" key={index}>
+                <Link to={'/'} target={'_blank'}>
                   <div>
                     <img
                       // src={screenSize > 520 ? item.image : item.imageMb}
-                      src={item.eventBanner!}
+                      src={item.banner}
                       alt=""
                       draggable={false}
                     />
                   </div>
-                  {/*</Link>*/}
-                </div>
-              );
-            })}
+                </Link>
+              </div>
+            ))}
         </Carousel>
       </div>
       {/* section 02 */}
