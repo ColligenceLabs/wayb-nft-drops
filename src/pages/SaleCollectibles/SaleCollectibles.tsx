@@ -260,30 +260,30 @@ const SaleCollectibles = () => {
                         </video>
                       </div>
                     ) : (
-                        <>
-                          <img
-                              style={{ objectFit: 'cover' }}
-                              src={mBoxInfo.packageImage}
-                              alt=""
-                          />
-                          {/* modal zoom image */}
-                          <ReactModal
-                              isOpen={isZoomImage}
-                              className={'modal-zoom-image'}
+                      <>
+                        <img
+                          style={{ objectFit: 'cover' }}
+                          src={mBoxInfo.packageImage}
+                          alt=""
+                        />
+                        {/* modal zoom image */}
+                        <ReactModal
+                          isOpen={isZoomImage}
+                          className={'modal-zoom-image'}
+                        >
+                          <div
+                            className="close-modal"
+                            onClick={() => setIsZoomImage(false)}
                           >
-                            <div
-                                className="close-modal"
-                                onClick={() => setIsZoomImage(false)}
-                            >
-                              <img src={close_icon} alt="Close Icon" />
-                            </div>
-                            <img
-                                className="image"
-                                src={mBoxInfo.packageImage}
-                                alt=""
-                            />
-                          </ReactModal>
-                        </>
+                            <img src={close_icon} alt="Close Icon" />
+                          </div>
+                          <img
+                            className="image"
+                            src={mBoxInfo.packageImage}
+                            alt=""
+                          />
+                        </ReactModal>
+                      </>
                     )}
                   </>
                 ) : (
