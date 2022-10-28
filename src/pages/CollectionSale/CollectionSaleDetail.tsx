@@ -21,6 +21,7 @@ import { getKeyRemains } from '../../utils/marketTransactions';
 import { getCollectionInfo, registerBuy } from '../../services/services';
 import { parseEther } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
+import { useSelector } from 'react-redux';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -36,7 +37,8 @@ const closeOnDocumentClick = false;
 const lockScroll = true;
 
 const CollectionSaleDetail = () => {
-  const location = useLocation();
+  const dropsAccount = useSelector((state: any) => state.account.account);
+  console.log(dropsAccount);
   const params = useParams();
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
@@ -292,7 +294,9 @@ const CollectionSaleDetail = () => {
                   />
                 )}
 
-                {account && library?.connection ? (
+                {account &&
+                library?.connection &&
+                dropsAccount.address !== '' ? (
                   <>
                     {countDownFinish && (
                       <button

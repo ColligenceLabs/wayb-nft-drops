@@ -43,7 +43,7 @@ const SaleCollectibles = () => {
   const location = useLocation();
   const params = useParams();
   const { account, library, chainId } = useWeb3React();
-
+  const dropsAccount = useSelector((state: any) => state.account.account);
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
   const [remains, setRemains] = useState(0);
   const [mBoxItemList, setMBoxItemList] = useState<MBoxItemTypes[]>([]);
@@ -186,6 +186,7 @@ const SaleCollectibles = () => {
   }, [params, library]);
 
   useEffect(() => {
+    console.log(account);
     if (account && library?.connection && mBoxInfo) {
       const targetWallet = getTargetWallet(mBoxInfo?.chainId, wallet);
       const isKaikas = checkKaikas(library);
@@ -328,7 +329,9 @@ const SaleCollectibles = () => {
                       targetDate={new Date(mBoxInfo.releaseDatetime)}
                     />
                   )}
-                  {account && library?.connection ? (
+                  {account &&
+                  library?.connection &&
+                  dropsAccount.address !== '' ? (
                     <>
                       {countDownFinish && (
                         <button
