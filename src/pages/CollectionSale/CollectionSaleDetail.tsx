@@ -40,7 +40,6 @@ const lockScroll = true;
 
 const CollectionSaleDetail = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
-  console.log(dropsAccount);
   const params = useParams();
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
@@ -188,6 +187,7 @@ const CollectionSaleDetail = () => {
       } else {
         setRemainingAmount(collectionInfo.remainingAmount);
       }
+
       setCollectionItemInfo(data);
     }
   };

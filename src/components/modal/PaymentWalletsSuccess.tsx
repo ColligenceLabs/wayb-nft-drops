@@ -4,6 +4,7 @@ import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
 import home_12 from '../../assets/img/home_12.png';
+import { Link, useNavigate } from 'react-router-dom';
 
 type PaymentWalletsSuccessProps = {
   show: any;
@@ -17,6 +18,38 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
   onHide,
   isCollection,
 }) => {
+  const navigate = useNavigate();
+  const moveToUrl = () => {
+    let stateDate;
+    if (isCollection) {
+      if (itemInfo.collectionInfo.isAirdrop) {
+        stateDate = {
+          ...itemInfo.collectionInfo,
+          companyimage: itemInfo.companyLogo,
+          companyname: { en: itemInfo.companyName, ko: '' },
+        };
+      } else {
+        stateDate = {
+          ...itemInfo.collectionInfo,
+          companyimage: itemInfo.companyLogo,
+          companyname: { en: itemInfo.companyName, ko: '' },
+        };
+      }
+    } else {
+      stateDate = {
+        ...itemInfo,
+        companyimage: itemInfo.featured.company.image,
+        companyname: itemInfo.featured.company.name,
+      };
+    }
+    navigate('/my-collectibles/details', {
+      state: {
+        item: {
+          ...stateDate,
+        },
+      },
+    });
+  };
   return (
     <>
       {itemInfo && (
@@ -60,9 +93,10 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
                   ? '미스처리 박스는 Reveal이 필요합니다. My Collectibles 메뉴에서 Reveal 실핼을 하세요.'
                   : ''}
               </div>
+
               <button
                 className="grid-item button button-got-it"
-                onClick={onHide}
+                onClick={moveToUrl}
               >
                 Got it!
               </button>
