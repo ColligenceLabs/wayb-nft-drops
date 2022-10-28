@@ -30,7 +30,10 @@
       .list-nav {
         display: flex;
         flex-direction: column;
-
+        a {
+          text-decoration: none;
+          color: #ffffff;
+        }
         .nav-item-name {
           margin-top: 0;
           font-size: 16px;
@@ -78,7 +81,7 @@
         gap: 20px;
 
         .social-item {
-          width: 32px;
+          width: 30px;
           opacity: 0.6;
 
           &:hover {
@@ -94,7 +97,6 @@
   }
   .line-second {
     height: 1px;
-    background: rgba(255, 255, 255, 0.25);
     max-width: 1200px;
     margin: 36px auto 22px;
   }
@@ -106,7 +108,7 @@
     margin: auto;
     font-size: 14px;
     // padding-bottom: 28px;
-    padding: 0 40px 28px;
+    padding: 0 40px 76px;
     .contact-us {
       display: flex;
       justify-content: space-between;
@@ -180,7 +182,7 @@
     .footer-bottom {
       flex-direction: column-reverse;
       padding: 0;
-      padding-bottom: 28px;
+      padding-bottom: 32px;
       .contact-us {
         margin-bottom: 16px;
         justify-content: flex-start;

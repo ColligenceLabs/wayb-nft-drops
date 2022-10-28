@@ -159,7 +159,7 @@
       left: 5%;
     }
     .arrow-two {
-      right: 4%;
+      right: 3%;
     }
   }
   // @media (max-width: 1024px) {
@@ -171,6 +171,7 @@
   //   }
   // }
   @media (max-width: 540px) {
+    bottom: 140px;
     .arrow-one {
       left: 10%;
     }
@@ -179,8 +180,7 @@
     }
   }
   @media (max-width: 425px) {
-    bottom: 260px;
-
+    bottom: 200px;
     .arrow-two {
       right: 6%;
     }
