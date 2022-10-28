@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ic_info from '../../assets/icon/info_blue.svg';
+import close_icon from '../../assets/icon/close_icon.svg';
 import { CircularProgress } from '@mui/material';
 import PaymentWallets from '../../components/modal/PaymentWallets';
 import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess';
@@ -22,6 +23,7 @@ import { getCollectionInfo, registerBuy } from '../../services/services';
 import { parseEther } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
+import ReactModal from 'react-modal';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -43,6 +45,7 @@ const CollectionSaleDetail = () => {
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [isZoomImage, setIsZoomImage] = React.useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
   const [openPaymentWalletsSuccess, setOpenPaymentWalletsSuccess] =
@@ -215,7 +218,32 @@ const CollectionSaleDetail = () => {
                   </video>
                 </div>
               ) : (
-                <img src={collectionItemInfo?.originalImage} alt="" />
+                  <>
+                    <img src={collectionItemInfo?.originalImage} alt="" />
+                    {/* modal zoom image */}
+                    <div className="zoom-image" onClick={() => setIsZoomImage(true)}>
+                      <svg
+                          viewBox="0 0 1024 1024"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M595.2 96l129.8 129.8-499.2 499.2L96 595.2V928h332.8l-129.8-129.8 499.2-499.2 129.8 129.8V96z"></path>
+                      </svg>
+                    </div>
+                    <ReactModal isOpen={isZoomImage} className={'modal-zoom-image'}>
+                      <div
+                          className="close-modal"
+                          onClick={() => setIsZoomImage(false)}
+                      >
+                        <img src={close_icon} alt="Close Icon" />
+                      </div>
+                      <img
+                          className="image"
+                          src={collectionItemInfo?.itemImage}
+                          alt=""
+                      />
+                    </ReactModal>
+                  </>
               )}
             </div>
             <div className="straight-line"></div>

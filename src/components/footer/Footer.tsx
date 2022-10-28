@@ -21,40 +21,43 @@ const Footer = () => {
       <div className="wrapper-footer">
         <div className="navbar-footer">
           <nav className="list-nav">
-            <h3 className="nav-item-name">Help</h3>
+            <h3 className="nav-item-name">Product</h3>
             <Link to={'/'} className="nav-item">
-              Contact Us
+              Talken Wallet
             </Link>
             <Link to={'/'} className="nav-item">
-              Help Center
+              Talken Drops
             </Link>
             <Link to={'/'} className="nav-item">
-              FAQ
+              Talken Studio
             </Link>
           </nav>
           <nav className="list-nav">
-            <h3 className="nav-item-name">Sweet</h3>
+            <h3 className="nav-item-name">Governance</h3>
             <Link to={'/'} className="nav-item">
-              Careers
+              Token
             </Link>
-            <Link to={'/'} className="nav-item">
+            {/* <Link to={'/'} className="nav-item">
               Press Inquiries
             </Link>
             <Link to={'/'} className="nav-item">
               Partnerships
-            </Link>
+            </Link> */}
           </nav>
           <nav className="list-nav">
-            <h3 className="nav-item-name">More Infor</h3>
+            <h3 className="nav-item-name">About</h3>
             <Link to={'/'} className="nav-item">
-              Mailing List
+              Contributors
             </Link>
             <Link to={'/'} className="nav-item">
-              Privacy Policy
+              Backers
             </Link>
-            <Link to={'/'} className="nav-item">
+            {/* <Link to={'/'} className="nav-item">
               Terms of Use
-            </Link>
+            </Link> */}
+          </nav>
+          <nav className="list-nav">
+            <h3 className="nav-item-name">Blog</h3>
           </nav>
         </div>
         <div className="footer-right">
@@ -65,8 +68,10 @@ const Footer = () => {
           </div>
           <div className="list-page">
             <div className="content-head">
-              <div>Multi-chain NFT Suite</div>
-              <div>Talken Wallet, Drops, Studio, and etc..</div>
+              <div className="content content-01">Multi-chain NFT Suite</div>
+              <div className="content">
+                Talken Wallet, Drops, Studio, and etc..
+              </div>
             </div>
             <div className="social-networks">
               <a href={'https://discord.gg/S33c5DA9cW'} target="_blank">

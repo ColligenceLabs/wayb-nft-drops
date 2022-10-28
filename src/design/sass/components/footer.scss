@@ -9,7 +9,7 @@
   // min-height: 215px;
   background-color: #02021e;
   .line-first {
-    margin-bottom: 44px;
+    margin-bottom: 36px;
   }
   .wrapper-footer {
     display: flex;
@@ -23,8 +23,8 @@
     .navbar-footer {
       grid-area: navbar-footer;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-column-gap: 152px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 120px;
       // margin-right: 64px;
 
       .list-nav {
@@ -33,13 +33,14 @@
 
         .nav-item-name {
           margin-top: 0;
+          font-size: 16px;
         }
 
         .nav-item {
           text-decoration: none;
           color: #aaaaaa;
-          margin-bottom: 15px;
-          font-size: 15px;
+          margin-bottom: 12px;
+          font-size: 14px;
           text-align: left;
 
           &:hover {
@@ -51,19 +52,25 @@
 
     .logo-footer {
       grid-area: logo-footer;
-      width: 180px;
+      // width: 180px;
 
       img {
-        width: 100%;
+        // width: 100%;
       }
     }
 
     .list-page {
       grid-area: list-page;
       .content-head {
-        font-size: 16px;
+        font-size: 14px;
         color: #aaaaaa;
-        padding: 20px 0 30px 0;
+        padding: 16px 0 20px 0;
+        .content {
+          padding-bottom: 10px;
+        }
+        .content-01 {
+          font-weight: 600;
+        }
       }
       .social-networks {
         display: flex;
@@ -89,7 +96,7 @@
     height: 1px;
     background: rgba(255, 255, 255, 0.25);
     max-width: 1200px;
-    margin: 55px auto 22px;
+    margin: 36px auto 22px;
   }
   .footer-bottom {
     display: flex;
@@ -97,6 +104,7 @@
     color: #aaaaaa;
     max-width: 1280px;
     margin: auto;
+    font-size: 14px;
     // padding-bottom: 28px;
     padding: 0 40px 28px;
     .contact-us {
@@ -104,8 +112,8 @@
       justify-content: space-between;
       gap: 10px;
       .icon-contact {
-        width: 24px;
-        height: 24px;
+        width: 16px;
+        height: 16px;
         opacity: 0.6;
         cursor: pointer;
         img {

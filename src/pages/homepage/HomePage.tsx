@@ -85,7 +85,7 @@ const Homepage = () => {
     additionalTransfrom: 0,
     arrows: true,
     autoPlay: true,
-    autoPlaySpeed: 3000,
+    autoPlaySpeed: 5000,
     draggable: true,
     focusOnSelect: false,
     keyBoardControl: true,
