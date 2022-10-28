@@ -122,21 +122,21 @@ const Homepage = () => {
           </div>
         </div>
         <Carousel
-            {...carouselOption}
-            customButtonGroup={<ArrowCarouselBannerMain />}
-            centerMode={screenSize > 1023}
-            dotListClass="custom-dot"
-            containerClass="container-with-dots home-carousel"
-            responsive={{
-              desktop: {
-                breakpoint: {
-                  max: 3000,
-                  min: 0,
-                },
-                items: 1,
-                partialVisibilityGutter: 40,
+          {...carouselOption}
+          customButtonGroup={<ArrowCarouselBannerMain />}
+          centerMode={screenSize > 1023}
+          dotListClass="custom-dot"
+          containerClass="container-with-dots home-carousel"
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 0,
               },
-            }}
+              items: 1,
+              partialVisibilityGutter: 40,
+            },
+          }}
         >
           {slideData !== null &&
             slideData.map((item: FeaturedTypes, index) => {
