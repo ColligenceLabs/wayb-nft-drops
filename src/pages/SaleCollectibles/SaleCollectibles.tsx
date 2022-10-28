@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import ic_info from '../../assets/icon/info_blue.svg';
-import ic_search from '../../assets/icon/search.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { getMboxItemListMboxId, registerBuy } from '../../services/services';
+import {
+  getMboxItemListMboxId,
+  getMysteryBoxInfo,
+} from '../../services/services';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import MBoxItemCard from '../../components/card/MBoxItemCard';
 import { CircularProgress, ImageList, ImageListItem } from '@mui/material';
-import { buyKey, getKeyRemains } from '../../utils/marketTransactions';
-import { parseEther } from 'ethers/lib/utils';
-import contracts from '../../config/constants/contracts';
-import { SUCCESS, targetNetwork } from '../../config';
+import { getKeyRemains } from '../../utils/marketTransactions';
+import { SUCCESS } from '../../config';
 import { useWeb3React } from '@web3-react/core';
 import {
   checkConnectWallet,
@@ -27,11 +27,7 @@ import Popup from 'reactjs-popup';
 import CSnackbar from '../../components/common/CSnackbar';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { useSelector } from 'react-redux';
-import {
-  getItemAmount,
-  getItemAmountNoSigner,
-  getItemRemains,
-} from '../../utils/transactions';
+import { getItemAmountNoSigner } from '../../utils/transactions';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 
 type ExMBoxType = MBoxTypes & {
@@ -45,7 +41,7 @@ const lockScroll = true;
 
 const SaleCollectibles = () => {
   const location = useLocation();
-
+  const params = useParams();
   const { account, library, chainId } = useWeb3React();
 
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
@@ -123,54 +119,90 @@ const SaleCollectibles = () => {
     setRemains(left);
   };
 
+  // useEffect(() => {
+  //   const fetchMboxItemList = async () => {
+  //     const res = await getMboxItemListMboxId(location.state.item.id);
+  //     if (res.status === 200) {
+  //       if (res.data.list) {
+  //         const newList = await Promise.all(
+  //           res.data.list.map(async (item: MBoxTypes, index: number) => {
+  //             // let remaining = null;
+  //             // if (library && library.connection)
+  //             //   remaining = await getItemAmount(
+  //             const remaining = await getItemAmountNoSigner(
+  //               location.state.item.boxContractAddress,
+  //               index,
+  //               item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
+  //               account,
+  //               // library
+  //               chainId ?? 8217
+  //             );
+  //             return { ...item, remainingAmount: remaining };
+  //           })
+  //         );
+  //         setMBoxItemList(newList);
+  //       }
+  //       // setMBoxItemList(res.data.list);
+  //     }
+  //   };
+  //
+  //   setMBoxInfo(location.state.item);
+  //   fetchMboxItemList();
+  // }, [location, library]);
+
   useEffect(() => {
     const fetchMboxItemList = async () => {
-      const res = await getMboxItemListMboxId(location.state.item.id);
-      if (res.status === 200) {
-        if (res.data.list) {
-          const newList = await Promise.all(
-            res.data.list.map(async (item: MBoxTypes, index: number) => {
-              // let remaining = null;
-              // if (library && library.connection)
-              //   remaining = await getItemAmount(
-              const remaining = await getItemAmountNoSigner(
-                location.state.item.boxContractAddress,
-                index,
-                item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
-                account,
-                // library
-                chainId ?? 8217
-              );
-              return { ...item, remainingAmount: remaining };
-            })
-          );
-          setMBoxItemList(newList);
+      const mboxInfoRes = await getMysteryBoxInfo(params.id!);
+      if (mboxInfoRes.data.status === SUCCESS) {
+        setMBoxInfo(mboxInfoRes.data.data);
+        const mboxItemsRes = await getMboxItemListMboxId(params.id!);
+        if (mboxItemsRes.status === 200) {
+          if (mboxItemsRes.data.list) {
+            const newList = await Promise.all(
+              mboxItemsRes.data.list.map(
+                async (item: MBoxTypes, index: number) => {
+                  // let remaining = null;
+                  // if (library && library.connection)
+                  //   remaining = await getItemAmount(
+                  const remaining = await getItemAmountNoSigner(
+                    mboxInfoRes.data.data.boxContractAddress,
+                    index,
+                    item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
+                    account,
+                    // library
+                    chainId ?? 8217
+                  );
+                  return { ...item, remainingAmount: remaining };
+                }
+              )
+            );
+            setMBoxItemList(newList);
+          }
         }
-        // setMBoxItemList(res.data.list);
       }
     };
 
-    setMBoxInfo(location.state.item);
     fetchMboxItemList();
-  }, [location, library]);
+  }, [params, library]);
 
   useEffect(() => {
-    if (account && library?.connection) {
-      const targetWallet = getTargetWallet(location.state.item.chainId, wallet);
+    if (account && library?.connection && mBoxInfo) {
+      const targetWallet = getTargetWallet(mBoxInfo?.chainId, wallet);
       const isKaikas = checkKaikas(library);
       if (
         (isKaikas && targetWallet === 'metamask') ||
         (!isKaikas && targetWallet === 'kaikas')
       ) {
-        checkConnectWallet(location.state.item.chainId, wallet, activate);
+        checkConnectWallet(mBoxInfo?.chainId, wallet, activate);
         return;
       }
-      getAvailability(location.state.item);
+
+      getAvailability(mBoxInfo);
     }
-  }, [account, library]);
+  }, [account, library, mBoxInfo]);
 
   useEffect(() => {
-    if (mBoxInfo?.afterRelease) {
+    if (mBoxInfo && mBoxInfo?.afterRelease) {
       const today = new Date();
       const targetDate = new Date(mBoxInfo.afterRelease);
 

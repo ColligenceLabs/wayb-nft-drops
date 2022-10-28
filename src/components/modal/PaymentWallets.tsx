@@ -257,8 +257,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   };
 
   useEffect(() => {
-    setBuyItemInfo(itemInfo);
+    if (itemInfo) setBuyItemInfo(itemInfo);
   }, [itemInfo, isCollection]);
+
   return (
     <ReactModal
       preventScroll={true}

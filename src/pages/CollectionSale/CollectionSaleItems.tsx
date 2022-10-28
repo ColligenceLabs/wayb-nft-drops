@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getMboxItemListMboxId } from '../../services/services';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
@@ -35,6 +35,8 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
   companyName,
   quote,
 }) => {
+  const params = useParams();
+
   const { account, library, activate, chainId } = useActiveWeb3React();
   const [collectionItemList, setCollectionItemList] = useState<
     CollectionItemType[]
@@ -48,7 +50,6 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
         if (res.data.list && library && library.connection) {
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes, index: number) => {
-              console.log(item);
               // let remaining = null;
               // if (library && library.connection)
               //   remaining = await getItemAmount(
@@ -69,7 +70,6 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
               };
             })
           );
-          console.log(newList);
           setCollectionItemList(newList);
         }
       }
@@ -85,8 +85,8 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
         {collectionItemList.map((item, index) => {
           return (
             <Link
-              to={`/klaytn/collection/${item.id}`}
-              state={{ item: { ...item, companyLogo, companyName, quote } }}
+              to={`/klaytn/collection/${params.id}/${item.id}`}
+              // state={{ item: { ...item, companyLogo, companyName, quote } }}
               key={index}
             >
               <div className="item_product">
@@ -111,10 +111,10 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
                     </div>
                     <div>
                       <Link
-                        to={`/klaytn/collection/${item.id}`}
-                        state={{
-                          item: { ...item, companyLogo, companyName, quote },
-                        }}
+                        to={`/klaytn/collection/${params.id}/${item.id}`}
+                        // state={{
+                        //   item: { ...item, companyLogo, companyName, quote },
+                        // }}
                       >
                         <div className="status ">Buy Now</div>
                       </Link>

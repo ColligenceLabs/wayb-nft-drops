@@ -111,35 +111,35 @@ const CollectionList: React.FC<CollectionListProps> = ({
               to={
                 item.isCollection
                   ? item.itemAmount === 1 && item.mysteryboxItems
-                    ? `/klaytn/collection/${item.mysteryboxItems[0]?.id}`
+                    ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
                     : `/klaytn/collections/${item.id}`
                   : item.isAirdrop
-                  ? `/klaytn/airdrop/${item.mysteryboxItems[0]?.id}`
+                  ? `/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
                   : `/klaytn/mbox/${item.id}`
               }
-              state={
-                item.isCollection && item.itemAmount === 1
-                  ? {
-                      item: {
-                        collectionInfo: item,
-                        ...item.mysteryboxItems[0],
-                        companyLogo,
-                        companyName,
-                        quote: item.quote,
-                      },
-                    }
-                  : item.isAirdrop
-                  ? {
-                      item: {
-                        collectionInfo: item,
-                        ...item.mysteryboxItems[0],
-                        companyLogo,
-                        companyName,
-                        quote: item.quote,
-                      },
-                    }
-                  : { item: { ...item, companyLogo, companyName } }
-              }
+              // state={
+              //   item.isCollection && item.itemAmount === 1
+              //     ? {
+              //         item: {
+              //           collectionInfo: item,
+              //           ...item.mysteryboxItems[0],
+              //           companyLogo,
+              //           companyName,
+              //           quote: item.quote,
+              //         },
+              //       }
+              //     : item.isAirdrop
+              //     ? {
+              //         item: {
+              //           collectionInfo: item,
+              //           ...item.mysteryboxItems[0],
+              //           companyLogo,
+              //           companyName,
+              //           quote: item.quote,
+              //         },
+              //       }
+              //     : { item: { ...item, companyLogo, companyName } }
+              // }
               key={index}
             >
               <div className="item_product">
@@ -169,35 +169,35 @@ const CollectionList: React.FC<CollectionListProps> = ({
                         to={
                           item.isCollection
                             ? item.itemAmount === 1 && item.mysteryboxItems
-                              ? `/klaytn/collection/${item.mysteryboxItems[0]?.id}`
+                              ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
                               : `/klaytn/collections/${item.id}`
                             : item.isAirdrop
-                            ? `/klaytn/airdrop/${item.mysteryboxItems[0]?.id}`
+                            ? `/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
                             : `/klaytn/mbox/${item.id}`
                         }
-                        state={
-                          item.isCollection && item.itemAmount === 1
-                            ? {
-                                item: {
-                                  collectionInfo: item,
-                                  ...item.mysteryboxItems[0],
-                                  companyLogo,
-                                  companyName,
-                                  quote: item.quote,
-                                },
-                              }
-                            : item.isAirdrop
-                            ? {
-                                item: {
-                                  collectionInfo: item,
-                                  ...item.mysteryboxItems[0],
-                                  companyLogo,
-                                  companyName,
-                                  quote: item.quote,
-                                },
-                              }
-                            : { item: { ...item, companyLogo, companyName } }
-                        }
+                        // state={
+                        //   item.isCollection && item.itemAmount === 1
+                        //     ? {
+                        //         item: {
+                        //           collectionInfo: item,
+                        //           ...item.mysteryboxItems[0],
+                        //           companyLogo,
+                        //           companyName,
+                        //           quote: item.quote,
+                        //         },
+                        //       }
+                        //     : item.isAirdrop
+                        //     ? {
+                        //         item: {
+                        //           collectionInfo: item,
+                        //           ...item.mysteryboxItems[0],
+                        //           companyLogo,
+                        //           companyName,
+                        //           quote: item.quote,
+                        //         },
+                        //       }
+                        //     : { item: { ...item, companyLogo, companyName } }
+                        // }
                       >
                         <div className="status ">Buy Now</div>
                       </Link>

@@ -45,9 +45,15 @@ const Router = () => [
       { path: '/klaytn/featured/:id', element: <Collection /> },
       { path: '/klaytn/featureds', element: <Collections /> },
       { path: '/klaytn/collections/:id', element: <CollectionSale /> },
-      { path: '/klaytn/collection/:id', element: <CollectionSaleDetail /> },
+      {
+        path: '/klaytn/collection/:collectionId/:id',
+        element: <CollectionSaleDetail />,
+      },
       { path: '/klaytn/mbox/:id', element: <SaleCollectibles /> },
-      { path: '/klaytn/airdrop/:id', element: <CollectionSaleDetail /> },
+      {
+        path: '/klaytn/airdrop/:collectionId/:id',
+        element: <CollectionSaleDetail />,
+      },
     ],
   },
   {

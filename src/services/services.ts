@@ -32,6 +32,14 @@ export const getFeaturedById = async (id: string) => {
   return await customAxios.get(`/api/service/featured/${id}`);
 };
 
+export const getMysteryBoxInfo = async (id: string) => {
+  return await customAxios.get(`/api/service/mysterybox/${id}`);
+};
+
+export const getCollectionInfo = async (id: string) => {
+  return await customAxios.get(`/api/service/mysterybox/${id}`);
+};
+
 export const getMboxListByFeaturedId = async (id: string) => {
   return await customAxios.get(
     `/api/service/featured/${id}/mysterybox?page=1&limit=50`

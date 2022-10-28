@@ -293,29 +293,29 @@ const Homepage = () => {
                   <Link
                     to={
                       item.itemAmount === 1 && item.mysteryboxItems
-                        ? `/klaytn/collection/${item.mysteryboxItems[0]?.id}`
+                        ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
                         : `/klaytn/collections/${item.id}`
                     }
-                    state={
-                      item.itemAmount === 1
-                        ? {
-                            item: {
-                              collectionInfo: item,
-                              ...item.mysteryboxItems[0],
-                              companyLogo: item.featured.company.image,
-                              companyName: item.featured.company.name.en,
-                              quote: item.quote,
-                            },
-                          }
-                        : {
-                            item: {
-                              ...item,
-                              companyLogo: item.featured.company.image,
-                              companyName: item.featured.companyId,
-                              quote: item.quote,
-                            },
-                          }
-                    }
+                    // state={
+                    //   item.itemAmount === 1
+                    //     ? {
+                    //         item: {
+                    //           collectionInfo: item,
+                    //           ...item.mysteryboxItems[0],
+                    //           companyLogo: item.featured.company.image,
+                    //           companyName: item.featured.company.name.en,
+                    //           quote: item.quote,
+                    //         },
+                    //       }
+                    //     : {
+                    //         item: {
+                    //           ...item,
+                    //           companyLogo: item.featured.company.image,
+                    //           companyName: item.featured.companyId,
+                    //           quote: item.quote,
+                    //         },
+                    //       }
+                    // }
                     className="button custom-box"
                     key={index}
                   >

@@ -6,7 +6,7 @@ import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess'
 import Popup from 'reactjs-popup';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import CSnackbar from '../../components/common/CSnackbar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
@@ -18,7 +18,7 @@ import {
 import contracts from '../../config/constants/contracts';
 import { ChainId, SUCCESS } from '../../config';
 import { getKeyRemains } from '../../utils/marketTransactions';
-import { registerBuy } from '../../services/services';
+import { getCollectionInfo, registerBuy } from '../../services/services';
 import { parseEther } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 
@@ -37,6 +37,7 @@ const lockScroll = true;
 
 const CollectionSaleDetail = () => {
   const location = useLocation();
+  const params = useParams();
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -134,11 +135,14 @@ const CollectionSaleDetail = () => {
     setIsLoading(false);
   };
 
-  const getRemaining = async () => {
+  const getRemaining = async (
+    boxContractAddress: string,
+    isAirdrop: boolean
+  ) => {
     const remaining = await getItemAmountNoSigner(
-      location.state.item.collectionInfo.boxContractAddress,
+      boxContractAddress,
       0,
-      location.state.item.collectionInfo.isAirdrop ? 3 : 2, // 1 = MysteryBox, 2 = Collection, 3 = AirDrop
+      isAirdrop ? 3 : 2, // 1 = MysteryBox, 2 = Collection, 3 = AirDrop
       account,
       // library
       chainId
@@ -146,14 +150,46 @@ const CollectionSaleDetail = () => {
     setRemainingAmount(remaining);
   };
 
-  useEffect(() => {
-    setCollectionItemInfo(location.state.item);
-    if (location.state.item.remainingAmount === undefined) {
-      getRemaining();
-    } else {
-      setRemainingAmount(location.state.item.remainingAmount);
+  // useEffect(() => {
+  //   console.log(location.state.item);
+  //   setCollectionItemInfo(location.state.item);
+  //   if (location.state.item.remainingAmount === undefined) {
+  //     getRemaining();
+  //   } else {
+  //     setRemainingAmount(location.state.item.remainingAmount);
+  //   }
+  // }, [location.state]);
+
+  const fetchCollectionItemInfo = async () => {
+    const res = await getCollectionInfo(params.collectionId!);
+    if (res.data.status === SUCCESS) {
+      const collectionInfo = res.data.data;
+      const collectionItem = collectionInfo.mysteryboxItems.find(
+        (item: any) => item.id.toString() === params.id
+      );
+
+      const data = {
+        collectionInfo: collectionInfo,
+        ...collectionItem,
+        companyLogo: collectionInfo.featured.company.image,
+        companyName: collectionInfo.featured.company.name.en,
+        quote: collectionInfo.quote,
+      };
+      if (collectionInfo.remainingAmount === undefined) {
+        getRemaining(
+          collectionInfo.boxContractAddress,
+          collectionInfo.isAirdrop
+        );
+      } else {
+        setRemainingAmount(collectionInfo.remainingAmount);
+      }
+      setCollectionItemInfo(data);
     }
-  }, [location.state]);
+  };
+
+  useEffect(() => {
+    fetchCollectionItemInfo();
+  }, [params]);
 
   return (
     <main className="collection-container min-height-content">

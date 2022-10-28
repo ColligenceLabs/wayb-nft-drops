@@ -1,25 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { useWeb3React } from '@web3-react/core';
 import CollectionSaleItems from './CollectionSaleItems';
+import { getCollectionInfo } from '../../services/services';
+import { SUCCESS } from '../../config';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
+  featured: {
+    company: {
+      image: string;
+      name: {
+        ko: string;
+        en: string;
+      };
+    };
+  };
 };
 
 const CollectionSale = () => {
   const params = useParams();
-  const location = useLocation();
-  const { account, library } = useWeb3React();
+  const { library } = useWeb3React();
   const [collectionInfo, setCollectionInfo] = useState<ExMBoxType | null>(null);
 
-  useEffect(() => {
-    if (location.state.item && library && library.connection) {
-      setCollectionInfo(location.state.item);
+  const fetchCollectionInfo = async () => {
+    const res = await getCollectionInfo(params.id!);
+    if (res.data.status === SUCCESS) {
+      setCollectionInfo(res.data.data);
     }
-  }, [location, library]);
+  };
+  // useEffect(() => {
+  //   fetchCollectionInfo();
+  //   console.log(params);
+  //   console.log(location.state.item);
+  //   if (location.state.item && library && library.connection) {
+  //     setCollectionInfo(location.state.item);
+  //   }
+  // }, [location, library]);
+
+  useEffect(() => {
+    fetchCollectionInfo();
+  }, [library]);
 
   return (
     <main className="collection-container min-height-content">
@@ -43,7 +66,7 @@ const CollectionSale = () => {
                   <div className="name">
                     <div className="fullname">{collectionInfo?.title.en}</div>
                     <div className="username">
-                      {collectionInfo?.companyName}
+                      {collectionInfo?.featured.company.name.en}
                     </div>
                   </div>
                 </div>
@@ -65,8 +88,8 @@ const CollectionSale = () => {
             <CollectionSaleItems
               collectionId={params.id}
               collectionInfo={collectionInfo}
-              companyLogo={collectionInfo?.companyLogo}
-              companyName={collectionInfo?.companyName}
+              companyLogo={collectionInfo?.featured.company.image}
+              companyName={collectionInfo?.featured.company.name.en}
               quote={collectionInfo?.quote}
             />
           </div>
