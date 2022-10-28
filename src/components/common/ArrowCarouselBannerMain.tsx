@@ -1,14 +1,9 @@
 import React from 'react';
 import arrow_right from '../../assets/svg/arrow_right.svg';
 import arrow_left from '../../assets/svg/arrow_left.svg';
-
-const ArrowCarouselCollections = ({ next, previous, ...rest }: any) => {
-  const {
-    carouselState: { currentSlide, totalItems, slidesToShow },
-  } = rest;
-
+const ArrowCarouselBannerMain = ({ next, previous }: any) => {
   return (
-    <div className="arrow-featured-collections">
+    <div className="arrow-banner-mainpage">
       <div className={'arrow-one'} onClick={() => previous()}>
         <div className="arrow-left">
           <img src={arrow_left} alt="arrow left" />
@@ -23,4 +18,4 @@ const ArrowCarouselCollections = ({ next, previous, ...rest }: any) => {
   );
 };
 
-export default ArrowCarouselCollections;
+export default ArrowCarouselBannerMain;
