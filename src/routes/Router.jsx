@@ -17,6 +17,7 @@ import ClaimTalk from 'talkclaim/ClaimTalk';
 import ClaimOwner from 'talkclaim/ClaimOwner';
 import Aquarium1402One from 'pages/Landingpage/Aquarium1402-1';
 import Aquarium1402Two from 'pages/Landingpage/Aquarium1402-2';
+import ItemDetails from 'pages/MyCollectibles/ItemDetails';
 
 const Router = () => [
   {
@@ -54,6 +55,7 @@ const Router = () => [
         path: '/klaytn/airdrop/:collectionId/:id',
         element: <CollectionSaleDetail />,
       },
+      { path: '/klaytn/nft/:id', element: <ItemDetails /> },
     ],
   },
   {
