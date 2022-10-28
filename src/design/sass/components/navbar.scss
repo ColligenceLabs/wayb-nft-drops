@@ -3,9 +3,11 @@
 
 //navbar PC view
 .nav-bar {
-  padding-top: 20px;
+  padding-top: 10px;
   color: #ffffff;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 51;
 
   .nav-home {
     position: absolute;
@@ -53,7 +55,7 @@
       display: flex;
       -webkit-box-align: center;
       align-items: center;
-      height: calc(50px - 5px);
+      height: calc(40px - 5px);
       background-color: #ffffff1a;
       border-radius: 5px;
       position: relative;
@@ -73,7 +75,7 @@
         padding: 0px;
         height: 100%;
         color: white;
-        font-size: 100%;
+        font-size: 90%;
         background-color: transparent;
         border: 0px;
         overflow: visible;
@@ -84,7 +86,7 @@
     .contact-header {
       display: flex;
       justify-content: space-between;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       width: 150px;
 
@@ -98,7 +100,7 @@
 
     .fanpage-icons {
       border-left: 1px solid #ffffff;
-      height: 30px;
+      height: 20px;
       display: flex;
       justify-content: space-evenly;
       width: 150px;
@@ -110,7 +112,7 @@
         width: 32px;
 
         img {
-          width: 100%;
+          width: 80%;
         }
       }
     }

@@ -12,7 +12,7 @@
     .content-header {
       width: 100%;
       max-width: 1280px;
-      padding: 90px 40px 30px 40px;
+      padding: 120px 40px 30px 40px;
       z-index: 1;
       position: relative;
       margin: auto auto 150px;
@@ -71,15 +71,15 @@
     margin: auto;
     .featured-collections {
       // margin-bottom: 105px;
-      padding-bottom: 105px;
+      padding-bottom: 85px;
       .wrapper-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         // margin: 100px auto 10px;
-        padding: 100px 0 10px;
+        padding: 80px 0 10px;
         font-weight: 900;
-        font-size: 36px;
+        font-size: 26px;
         white-space: nowrap;
         .show-all-item {
           font-size: 16px;
@@ -163,7 +163,7 @@
               .name-label {
                 margin-top: 50px;
                 margin-bottom: 5px;
-                font-size: 20px;
+                font-size: 16px;
                 letter-spacing: -1px;
                 font-weight: 500;
               }
@@ -176,8 +176,8 @@
     .page-grid {
       .title-header {
         font-weight: 900;
-        font-size: 36px;
-        margin-bottom: 10px;
+        font-size: 26px;
+        margin-bottom: 20px;
       }
       .hot-collectibles {
         z-index: 100;
