@@ -11,9 +11,6 @@
     left: 0;
     transform: translateX(-40%);
     cursor: pointer;
-    &:hover {
-      background: #ffffff;
-    }
     .arrow-left {
       img {
         padding: 9px 0 0 9px;
@@ -32,9 +29,6 @@
     bottom: 95px;
     right: -15px;
     cursor: pointer;
-    &:hover {
-      background: #ffffff;
-    }
     .arrow-right {
       img {
         padding: 9px 0 0 9px;
@@ -44,19 +38,19 @@
   @media (max-width: 1024px) {
     .arrow-one {
       left: 15px;
-      }
-      .arrow-two {
+    }
+    .arrow-two {
       right: 0;
-      }
+    }
   }
   @media (max-width: 540px) {
     .arrow-one {
-    bottom: 118px;
-    left: 20px;
+      bottom: 118px;
+      left: 20px;
     }
     .arrow-two {
-    bottom: 118px;
-    right: 4px;
+      bottom: 118px;
+      right: 4px;
     }
   }
 }
@@ -75,9 +69,6 @@
     left: 0;
     transform: translateX(-40%);
     cursor: pointer;
-    &:hover {
-      background: #ffffff;
-    }
     .arrow-left {
       img {
         padding: 9px 0 0 9px;
@@ -96,9 +87,6 @@
     bottom: 190px;
     right: -15px;
     cursor: pointer;
-    &:hover {
-      background: #ffffff;
-    }
     .arrow-right {
       img {
         padding: 9px 0 0 9px;
@@ -108,18 +96,93 @@
   @media (max-width: 1024px) {
     .arrow-one {
       left: 15px;
-      }
-      .arrow-two {
+    }
+    .arrow-two {
       right: 0;
-      }
+    }
   }
   @media (max-width: 540px) {
     .arrow-one {
-    bottom: 180px;
-    left: 15px;
+      bottom: 180px;
+      left: 15px;
     }
     .arrow-two {
-    bottom: 180px;
+      bottom: 180px;
+    }
+  }
+}
+
+//arrow carousel banner main page
+.arrow-banner-mainpage {
+  position: relative;
+  // max-width: 1280px;
+  width: 100%;
+  margin: auto;
+  z-index: 51;
+  bottom: 180px;
+  .arrow-one {
+    width: 40px;
+    height: 40px;
+    background: rgba($color: #ffffff, $alpha: 0.2);
+    border-radius: 100%;
+    position: absolute;
+    // bottom: 95px;
+    left: 18.5%;
+    transform: translateX(-40%);
+    cursor: pointer;
+    .arrow-left {
+      img {
+        padding: 9px 0 0 9px;
+      }
+    }
+  }
+  .remove-arrow {
+    display: none;
+  }
+  .arrow-two {
+    width: 40px;
+    height: 40px;
+    background: rgba($color: #ffffff, $alpha: 0.2);
+    border-radius: 100%;
+    position: absolute;
+    // bottom: 95px;
+    right: 17.5%;
+    cursor: pointer;
+    .arrow-right {
+      img {
+        padding: 9px 0 0 9px;
+      }
+    }
+  }
+  @media (max-width: 1023px) {
+    .arrow-one {
+      left: 5%;
+    }
+    .arrow-two {
+      right: 4%;
+    }
+  }
+  // @media (max-width: 1024px) {
+  //   .arrow-one {
+  //     left: 15px;
+  //   }
+  //   .arrow-two {
+  //     right: 0;
+  //   }
+  // }
+  @media (max-width: 540px) {
+    .arrow-one {
+      left: 10%;
+    }
+    .arrow-two {
+      right: 7%;
+    }
+  }
+  @media (max-width: 425px) {
+    bottom: 260px;
+
+    .arrow-two {
+      right: 6%;
     }
   }
 }

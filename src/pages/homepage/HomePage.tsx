@@ -20,6 +20,7 @@ import { MBoxTypes } from '../../types/MBoxTypes';
 import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { getPrice } from '../../utils/getPrice';
+import ArrowCarouselBannerMain from 'components/common/ArrowCarouselBannerMain';
 
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
@@ -84,7 +85,7 @@ const Homepage = () => {
 
   const carouselOption = {
     additionalTransfrom: 0,
-    arrows: true,
+    arrows: false,
     autoPlay: true,
     autoPlaySpeed: 5000,
     draggable: true,
@@ -93,7 +94,7 @@ const Homepage = () => {
     minimumTouchDrag: 80,
     pauseOnHover: true,
     renderArrowsWhenDisabled: false,
-    renderButtonGroupOutside: false,
+    renderButtonGroupOutside: true,
     renderDotsOutside: false,
     rewind: false,
     rewindWithAnimation: false,
@@ -121,20 +122,21 @@ const Homepage = () => {
           </div>
         </div>
         <Carousel
-          {...carouselOption}
-          centerMode={screenSize > 1023}
-          dotListClass="custom-dot"
-          containerClass="container-with-dots home-carousel"
-          responsive={{
-            desktop: {
-              breakpoint: {
-                max: 3000,
-                min: 0,
+            {...carouselOption}
+            customButtonGroup={<ArrowCarouselBannerMain />}
+            centerMode={screenSize > 1023}
+            dotListClass="custom-dot"
+            containerClass="container-with-dots home-carousel"
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 0,
+                },
+                items: 1,
+                partialVisibilityGutter: 40,
               },
-              items: 1,
-              partialVisibilityGutter: 40,
-            },
-          }}
+            }}
         >
           {slideData !== null &&
             slideData.map((item: FeaturedTypes, index) => {
@@ -176,8 +178,6 @@ const Homepage = () => {
           {featuredCollections && (
             <Carousel
               {...carouselOption}
-              arrows={false}
-              renderButtonGroupOutside
               customButtonGroup={<ArrowCarouselCollections />}
               keyBoardControl
               removeArrowOnDeviceType=""
@@ -238,8 +238,8 @@ const Homepage = () => {
           {collectionList && (
             <Carousel
               {...carouselOption}
-              arrows={false}
-              renderButtonGroupOutside
+              // arrows={false}
+              // renderButtonGroupOutside
               customButtonGroup={<CustomArrowCarousel />}
               keyBoardControl
               removeArrowOnDeviceType=""
