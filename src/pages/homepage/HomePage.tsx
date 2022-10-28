@@ -121,39 +121,41 @@ const Homepage = () => {
             leading teams, brands, and artists
           </div>
         </div>
-        <Carousel
-          {...carouselOption}
-          customButtonGroup={<ArrowCarouselBannerMain />}
-          centerMode={screenSize > 1023}
-          dotListClass="custom-dot"
-          containerClass="container-with-dots home-carousel"
-          responsive={{
-            desktop: {
-              breakpoint: {
-                max: 3000,
-                min: 0,
+        <div className="carousel-main-page">
+          <Carousel
+            {...carouselOption}
+            customButtonGroup={<ArrowCarouselBannerMain />}
+            centerMode={screenSize > 1023}
+            dotListClass="custom-dot"
+            containerClass="container-with-dots home-carousel"
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 0,
+                },
+                items: 1,
+                partialVisibilityGutter: 40,
               },
-              items: 1,
-              partialVisibilityGutter: 40,
-            },
-          }}
-        >
-          {slideData !== null &&
-            slideData.map((item: FeaturedTypes, index) => (
-              <div className="slide-item" key={index}>
-                <Link to={'/'} target={'_blank'}>
-                  <div>
-                    <img
-                      // src={screenSize > 520 ? item.image : item.imageMb}
-                      src={item.banner}
-                      alt=""
-                      draggable={false}
-                    />
-                  </div>
-                </Link>
-              </div>
-            ))}
-        </Carousel>
+            }}
+          >
+            {slideData !== null &&
+              slideData.map((item: FeaturedTypes, index) => (
+                <div className="slide-item" key={index}>
+                  <Link to={'/'} target={'_blank'}>
+                    <div>
+                      <img
+                        // src={screenSize > 520 ? item.image : item.imageMb}
+                        src={item.banner}
+                        alt=""
+                        draggable={false}
+                      />
+                    </div>
+                  </Link>
+                </div>
+              ))}
+          </Carousel>
+        </div>
       </div>
       {/* section 02 */}
       <div className="section-02">
