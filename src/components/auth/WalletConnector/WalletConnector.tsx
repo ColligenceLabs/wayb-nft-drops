@@ -33,7 +33,7 @@ const NetworkList = [
   {
     id: 3,
     network: 'binance',
-    network_name: 'Binance',
+    network_name: 'BNB Chain',
     icon: icon_binance,
   },
 ];
