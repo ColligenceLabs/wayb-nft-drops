@@ -9,9 +9,9 @@ const CustomArrowCarousel = ({ next, previous, ...rest }: any) => {
 
   return (
     <div className="custom-arrow-carousel">
-      {' '}
       <div
-        className={`arrow-one ${currentSlide === 0 ? 'remove-arrow' : ''}`}
+        className={'arrow-one'}
+        // ${currentSlide === 0 ? 'remove-arrow' : ''}
         onClick={() => previous()}
       >
         <div className="arrow-left">
@@ -19,9 +19,8 @@ const CustomArrowCarousel = ({ next, previous, ...rest }: any) => {
         </div>
       </div>
       <div
-        className={`arrow-two ${
-          currentSlide === totalItems - slidesToShow ? 'remove-arrow' : ''
-        }`}
+        className={'arrow-two'}
+        // ${currentSlide === totalItems - slidesToShow ? 'remove-arrow' : ''}
         onClick={() => next()}
       >
         <div className="arrow-right">

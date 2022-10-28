@@ -240,6 +240,7 @@
             font-size: 18px;
             font-size: 12px;
             font-weight: 700;
+            min-height: 52px;
 
             a {
               box-shadow: none;
@@ -256,6 +257,7 @@
               gap: 4px;
 
               .owner_product_avatar {
+                min-width: 24px;
                 width: 24px;
                 height: 24px;
                 border-radius: 100%;
@@ -287,6 +289,7 @@
             .status {
               color: #944fff;
               text-transform: uppercase;
+              white-space: nowrap;
             }
           }
 
@@ -758,12 +761,14 @@
               font-size: 18px;
               font-weight: 700;
               font-size: 12px;
+              min-height: 52px;
               .content-left {
                 display: flex;
                 -webkit-box-align: center;
                 align-items: center;
                 gap: 4px;
                 .avatar {
+                  min-width: 24px;
                   width: 24px;
                   height: 24px;
                   border-radius: 100%;
@@ -793,6 +798,7 @@
                 font-size: 12px;
                 font-family: BrandonBlack, sans-serif;
                 text-transform: uppercase;
+                white-space: nowrap;
               }
             }
           }

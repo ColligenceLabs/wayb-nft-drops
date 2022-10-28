@@ -18,6 +18,7 @@ import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import ArrowCarouselBannerMain from 'components/common/ArrowCarouselBannerMain';
 
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
@@ -76,7 +77,7 @@ const Homepage = () => {
 
   const carouselOption = {
     additionalTransfrom: 0,
-    arrows: true,
+    arrows: false,
     autoPlay: true,
     autoPlaySpeed: 5000,
     draggable: true,
@@ -85,7 +86,7 @@ const Homepage = () => {
     minimumTouchDrag: 80,
     pauseOnHover: true,
     renderArrowsWhenDisabled: false,
-    renderButtonGroupOutside: false,
+    renderButtonGroupOutside: true,
     renderDotsOutside: false,
     rewind: false,
     rewindWithAnimation: false,
@@ -112,38 +113,41 @@ const Homepage = () => {
             leading teams, brands, and artists
           </div>
         </div>
-        <Carousel
-          {...carouselOption}
-          centerMode={screenSize > 1023}
-          dotListClass="custom-dot"
-          containerClass="container-with-dots home-carousel"
-          responsive={{
-            desktop: {
-              breakpoint: {
-                max: 3000,
-                min: 0,
+        <div className="carousel-main-page">
+          <Carousel
+            {...carouselOption}
+            customButtonGroup={<ArrowCarouselBannerMain />}
+            centerMode={screenSize > 1023}
+            dotListClass="custom-dot"
+            containerClass="container-with-dots home-carousel"
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 0,
+                },
+                items: 1,
+                partialVisibilityGutter: 40,
               },
-              items: 1,
-              partialVisibilityGutter: 40,
-            },
-          }}
-        >
-          {slideData !== null &&
-            slideData.map((item: FeaturedTypes, index) => (
-              <div className="slide-item" key={index}>
-                <Link to={'/'} target={'_blank'}>
-                  <div>
-                    <img
-                      // src={screenSize > 520 ? item.image : item.imageMb}
-                      src={item.banner}
-                      alt=""
-                      draggable={false}
-                    />
-                  </div>
-                </Link>
-              </div>
-            ))}
-        </Carousel>
+            }}
+          >
+            {slideData !== null &&
+              slideData.map((item: FeaturedTypes, index) => (
+                <div className="slide-item" key={index}>
+                  <Link to={'/'} target={'_blank'}>
+                    <div>
+                      <img
+                        // src={screenSize > 520 ? item.image : item.imageMb}
+                        src={item.banner}
+                        alt=""
+                        draggable={false}
+                      />
+                    </div>
+                  </Link>
+                </div>
+              ))}
+          </Carousel>
+        </div>
       </div>
       {/* section 02 */}
       <div className="section-02">
@@ -159,8 +163,6 @@ const Homepage = () => {
           {featuredCollections && (
             <Carousel
               {...carouselOption}
-              arrows={false}
-              renderButtonGroupOutside
               customButtonGroup={<ArrowCarouselCollections />}
               keyBoardControl
               removeArrowOnDeviceType=""
@@ -221,8 +223,8 @@ const Homepage = () => {
           {collectionList && (
             <Carousel
               {...carouselOption}
-              arrows={false}
-              renderButtonGroupOutside
+              // arrows={false}
+              // renderButtonGroupOutside
               customButtonGroup={<CustomArrowCarousel />}
               keyBoardControl
               removeArrowOnDeviceType=""
