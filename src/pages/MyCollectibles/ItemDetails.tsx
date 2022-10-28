@@ -1,38 +1,14 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
-import { MBoxTypes } from '../../types/MBoxTypes';
-import { useWeb3React } from '@web3-react/core';
+import React, { MutableRefObject, useRef, useState } from 'react';
 import testImg from '../../assets/img/collectibles_test.png';
 import testAvatarImg from '../../assets/img/avatar.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import ic_authenticity from '../../assets/icon/info_blue.svg';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
-import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
-import { CircularProgress } from '@mui/material';
-import ic_sell from '../../assets/svg/sell_icon.svg';
-import { getRarityToString } from '../../utils/getRarityToString';
-import Popup from 'reactjs-popup';
-import WarningForm from '../../components/collectibles_modals/warning';
-import SendingForm from '../../components/collectibles_modals/sending';
-import SuccessForm from '../../components/collectibles_modals/success';
-import CSnackbar from '../../components/common/CSnackbar';
-
-type ExMBoxType = MBoxTypes & {
-  companyLogo: string;
-  companyName: string;
-  featured: {
-    company: {
-      image: string;
-      name: {
-        ko: string;
-        en: string;
-      };
-    };
-  };
-};
 
 const CollectionSale = () => {
+  const navigate = useNavigate();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
@@ -48,11 +24,11 @@ const CollectionSale = () => {
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
-        <Link to={'/my-collectibles'}>
-          <button className="back-button">
-            <img src={arrow_btn_back} alt="arrow back" /> Back
-          </button>
-        </Link>
+        {/*<Link to={'/my-collectibles'}>*/}
+        <button className="back-button" onClick={() => navigate(-1)}>
+          <img src={arrow_btn_back} alt="arrow back" /> Back
+        </button>
+        {/*</Link>*/}
         <div className="product-details">
           <div className="showcase-box">
             <img src={testImg} alt="" className="thumbnail" />
