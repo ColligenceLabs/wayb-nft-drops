@@ -339,10 +339,13 @@ const Homepage = () => {
                                 draggable={false}
                               />
                             </div>
-                            <div className="name-label">{item.title.en}</div>
+                            <p className="">{item.featured.company.name.en}</p>
                           </div>
                           <div className="content-right">Buy Now</div>
                         </div>
+                      </div>
+                      <div className="hot-ollectibles-item">
+                        <div className="product-name">{item.title.en}</div>
                       </div>
                       <div className="hot-ollectibles-item">
                         <div className="name-label">{item.details}</div>

@@ -257,7 +257,6 @@
                 -webkit-box-pack: justify;
                 justify-content: space-between;
                 margin-top: auto;
-                margin-bottom: 0.5rem;
                 font-size: 18px;
                 font-weight: 700;
                 font-size: 12px;
@@ -306,6 +305,20 @@
               display: flex;
               justify-content: center;
               text-align: center;
+              .product-name {
+                font-size: 14px;
+                text-align: left;
+                overflow: hidden;
+                width: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: 700;
+              }
+            }
+            .hot-ollectibles-item:nth-child(6) {
+              display: flex;
+              justify-content: center;
+              text-align: center;
               .name-label {
                 margin: 0px 0px 10px;
                 font-size: 14px;
@@ -316,7 +329,7 @@
                 text-overflow: ellipsis;
               }
             }
-            .hot-ollectibles-item:nth-child(6) {
+            .hot-ollectibles-item:nth-child(7) {
               text-align: center;
               background-color: #1b1b34;
               padding: 15px 0px;
@@ -333,7 +346,7 @@
                 }
               }
             }
-            .hot-ollectibles-item:nth-child(7) {
+            .hot-ollectibles-item:nth-child(8) {
               text-align: center;
               background-color: #1b1b34;
               padding: 15px 0px;
