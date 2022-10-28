@@ -19,6 +19,7 @@ import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import { getPrice } from '../../utils/getPrice';
 
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
@@ -358,9 +359,7 @@ const Homepage = () => {
                         <div className="wrapper-price">
                           <div className="price-header">Price</div>
                           <div className="current-price">
-                            {`${
-                              item.price ? item.price.toLocaleString() : '-'
-                            } ${item.quote?.toUpperCase()}`}
+                            {getPrice(item.price, item.quote)}
                           </div>
                         </div>
                       </div>

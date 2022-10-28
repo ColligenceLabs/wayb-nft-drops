@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getPrice } from 'utils/getPrice';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 
 type MBoxItemCardProps = {
@@ -63,7 +64,9 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
         <div className="hot-ollectibles-item">
           <div className="wrapper-price">
             <div className="price-header font-size-14">Price</div>
-            <div className="current-price font-size-18">{`${quote} ${price}`}</div>
+            <div className="current-price font-size-18">
+              {getPrice(Number(price), quote!)}
+            </div>
           </div>
         </div>
         <div className="hot-ollectibles-item">

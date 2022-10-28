@@ -8,6 +8,7 @@ import {
 } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CSnackbar from '../../components/common/CSnackbar';
+import { getPrice } from '../../utils/getPrice';
 
 type CollectionListProps = {
   featuredId: string | null;
@@ -210,9 +211,9 @@ const CollectionList: React.FC<CollectionListProps> = ({
                 <div className="item_product_detail MARKETPLACE_BID_KEY">
                   <div className="box-price">
                     <div className="price ">Price</div>
-                    <div className="currency ">{`${
-                      item.price ? item.price.toLocaleString() : '-'
-                    } ${item.quote.toUpperCase()}`}</div>
+                    <div className="currency ">
+                      {getPrice(item.price, item.quote)}
+                    </div>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_TIME">

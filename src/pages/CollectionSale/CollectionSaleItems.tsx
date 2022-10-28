@@ -9,6 +9,7 @@ import {
   getItemAmountNoSigner,
   getItemRemains,
 } from 'utils/transactions';
+import { getPrice } from '../../utils/getPrice';
 
 type CollectionItemType = MBoxItemTypes & {
   remainingAmount: number;
@@ -127,9 +128,9 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
                 <div className="item_product_detail MARKETPLACE_BID_KEY">
                   <div className="box-price">
                     <div className="price ">Price</div>
-                    <div className="currency ">{`${
-                      item.price ? item.price.toLocaleString() : '-'
-                    } ${quote}`}</div>
+                    <div className="currency ">
+                      {getPrice(item.price, quote!)}
+                    </div>
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_NAME_TIME">
