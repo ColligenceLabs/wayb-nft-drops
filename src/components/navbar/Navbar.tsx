@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, useState } from 'react';
+import React, { MutableRefObject, useRef, useState, useEffect } from 'react';
 import logo_header from '../../assets/svg/logo_header.svg';
 // import icon_twitter from '../../assets/img/icon_twitter.png';
 // import icon_discord from '../../assets/img/icon_discord.png';
@@ -45,6 +45,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
+  const [scroll, setScroll] = useState(false);
   const closeLogin = () => {
     setLoginOpen(false);
   };
@@ -59,9 +60,24 @@ const Navbar = () => {
     setSignupOpen(false);
   };
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY > 66) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
   const location = useLocation();
   return (
-    <div className="nav-bar">
+    <div className={scroll ? 'nav-bar' : 'nav-bar scroll-top'}>
       <div
         className={`${
           location.pathname === '/' ? 'nav-home' : 'nav-other-page'

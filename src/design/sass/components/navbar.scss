@@ -366,6 +366,11 @@
   }
 }
 
+.scroll-top {
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+}
+
 //navbar tablet and mobile
 // .navbar-mb {
 //   //navbar tablet
