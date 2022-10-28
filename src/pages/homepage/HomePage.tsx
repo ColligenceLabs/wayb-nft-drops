@@ -288,7 +288,6 @@ const Homepage = () => {
               showDots={false}
             >
               {collectionList.map((item: any, index) => {
-                console.log(item);
                 return (
                   <Link
                     to={
