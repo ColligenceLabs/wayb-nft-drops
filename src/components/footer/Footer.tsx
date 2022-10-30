@@ -114,7 +114,7 @@ const Footer = () => {
                 Talken Wallet, Drops, Studio, and etc..
               </div>
             </div>
-            {/* <div className="footer-link">
+            <div className="footLink">
               <a
                 target="_blank"
                 href="https://discord.gg/S33c5DA9cW"
@@ -145,38 +145,6 @@ const Footer = () => {
                 href="https://blog.naver.com/talkentalk"
                 className="footLink7"
               ></a>
-            </div> */}
-            <div className="social-networks">
-              <a href={'https://discord.gg/S33c5DA9cW'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_discord} alt="" />
-                </div>
-              </a>
-              <a href={'https://twitter.com/Talken_'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_twitter} alt="" />
-                </div>
-              </a>
-              <a href={'https://www.instagram.com/talken_nft'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_instagram} alt="" />
-                </div>
-              </a>
-              <a href={'https://docs.talken.io/talken-docs/'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_gitbook} alt="" />
-                </div>
-              </a>
-              <a href={'https://talken-io.medium.com/'} target="_blank">
-                <div className="social-item">
-                  <img src={medium} alt="" />
-                </div>
-              </a>
-              <a href={'https://blog.naver.com/talkentalk'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_blog} alt="" />
-                </div>
-              </a>
             </div>
           </div>
         </div>

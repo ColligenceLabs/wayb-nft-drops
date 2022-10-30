@@ -8,10 +8,10 @@
   box-sizing: border-box;
 }
 .min-height-content {
-  min-height: calc(100vh - 100px - 342px + 12px);
+  min-height: calc(100vh - 100px - 338px + 12px);
 }
 .min-height-content-landingpage {
-  min-height: calc(100vh - 342px);
+  min-height: calc(100vh - 338px);
 }
 .main {
   position: relative;
@@ -52,7 +52,11 @@
   position: relative;
   margin: 0 auto 105px;
 }
-
+a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.15s ease 0s, background-color 0.15s ease 0s;
+}
 .hot-ollectibles-wrapper {
   width: 220px;
   height: 390px;
