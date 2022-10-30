@@ -45,7 +45,7 @@
           margin-bottom: 12px;
           font-size: 14px;
           text-align: left;
-
+          transition: color 0.15s ease 0s;
           &:hover {
             color: #ffffff;
           }
@@ -67,7 +67,7 @@
       .content-head {
         font-size: 14px;
         color: #aaaaaa;
-        padding: 16px 0 20px 0;
+        padding: 10px 0;
         .content {
           padding-bottom: 10px;
         }
@@ -75,22 +75,55 @@
           font-weight: 600;
         }
       }
-      .social-networks {
-        display: flex;
-        // justify-content: space-between;
-        gap: 20px;
+      // .social-networks {
+      //   display: flex;
+      //   // justify-content: space-between;
+      //   gap: 20px;
 
-        .social-item {
-          width: 30px;
-          opacity: 0.6;
+      //   .social-item {
+      //     width: 30px;
+      //     opacity: 0.6;
+      //     transition: color 0.15s ease 0s;
+      //     &:hover {
+      //       opacity: 1;
+      //     }
 
-          &:hover {
-            opacity: 1;
-          }
-
-          img {
-            width: 100%;
-          }
+      //     img {
+      //       width: 100%;
+      //     }
+      //   }
+      // }
+      .footLink {
+        // padding: 10px 0 0 0;
+        font-size: 0;
+        a {
+          display: inline-block;
+          width: 46px;
+          height: 46px;
+          background: url('../../../assets/icon/footerlink.png') no-repeat 0
+            10px;
+          background-size: auto 23px;
+          text-decoration: none;
+          transition: color 0.15s ease 0s, background-color 0.15s ease 0s;
+        }
+        .footLink3 {
+          background-position-x: -94px;
+        }
+        .footLink2 {
+          background-position-x: -40px;
+        }
+        .footLink5 {
+          background-position-x: -179px;
+        }
+        .footLink6 {
+          background-position-x: -224px;
+        }
+        .footLink1 {
+          width: 45px;
+          background-position-x: 5px;
+        }
+        .footLink7 {
+          background-position-x: -265px;
         }
       }
     }
@@ -113,6 +146,7 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
+      transition: color 0.15s ease 0s;
       .icon-contact {
         width: 16px;
         height: 16px;
