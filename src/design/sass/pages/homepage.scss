@@ -41,6 +41,8 @@
       .home-carousel {
         z-index: 50;
         padding-bottom: 20px;
+        max-width: 2000px;
+        margin: 0 auto;
         .custom-dot {
           .react-multi-carousel-dot--active button {
             background: #944fff;
@@ -56,8 +58,9 @@
             img {
               border-radius: 20px;
               width: 100%;
-              height: 280px;
+              height: 100%;
               max-height: 280px;
+              max-width: 1036px;
               object-fit: cover;
               cursor: pointer;
             }
@@ -404,9 +407,31 @@
       }
     }
   }
-  @media (max-width: 540px) {
+  @media (max-width: 639px) {
     .section-02 {
       padding: 0 20px;
+      .page-grid {
+        .hot-collectibles {
+          .custom-box {
+            width: 100%;
+            .hot-ollectibles-wrapper {
+              width: 100%;
+              .hot-ollectibles-item:nth-child(3) {
+                .img-token {
+                  width: 90%;
+                  height: 158px;
+                  margin: 32px auto;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       .featured-collections {
         .grid-container {
           grid-template-columns: 1fr;
@@ -416,6 +441,28 @@
             width: 100%;
             .grid-item {
               width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 540px) {
+    .section-01 {
+      .carousel-main-page {
+        .home-carousel {
+          .slide-item {
+            display: flex;
+            & > * {
+              flex: 1 1 100%;
+              margin: 0 20px;
+
+              img {
+                border-radius: 20px;
+                height: 100%;
+                max-height: 188px;
+                width: 100%;
+              }
             }
           }
         }

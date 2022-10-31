@@ -21,22 +21,48 @@ const Footer = () => {
       <div className="wrapper-footer">
         <div className="navbar-footer">
           <nav className="list-nav">
-            <h3 className="nav-item-name">Product</h3>
-            <Link to={'/'} className="nav-item">
+            <a
+              href="https://talken.io/static/intro/a10_Multi_chain.htm"
+              target={'_blank'}
+            >
+              <h3 className="nav-item-name">Product</h3>
+            </a>
+            <a
+              href="https://talken.io/static/intro/a10_Multi_chain.htm"
+              className="nav-item"
+              target={'_blank'}
+            >
               Talken Wallet
-            </Link>
-            <Link to={'/'} className="nav-item">
+            </a>
+            <a
+              href="https://talken.io/static/intro/a10_Multi_chain.htm#a20_NFT_Launchpad"
+              className="nav-item"
+              target={'_blank'}
+            >
               Talken Drops
-            </Link>
-            <Link to={'/'} className="nav-item">
+            </a>
+            <a
+              href="https://talken.io/static/intro/a10_Multi_chain.htm#a30_NFT_Minting"
+              className="nav-item"
+              target={'_blank'}
+            >
               Talken Studio
-            </Link>
+            </a>
           </nav>
           <nav className="list-nav">
-            <h3 className="nav-item-name">Governance</h3>
-            <Link to={'/'} className="nav-item">
+            <a
+              href="https://talken.io/static/intro/b10_DAO.htm"
+              target={'_blank'}
+            >
+              <h3 className="nav-item-name">Governance</h3>
+            </a>
+            <a
+              href="https://talken.io/static/intro/b10_DAO.htm#b20_Token"
+              className="nav-item"
+              target={'_blank'}
+            >
               Token
-            </Link>
+            </a>
             {/* <Link to={'/'} className="nav-item">
               Press Inquiries
             </Link>
@@ -45,19 +71,34 @@ const Footer = () => {
             </Link> */}
           </nav>
           <nav className="list-nav">
-            <h3 className="nav-item-name">About</h3>
-            <Link to={'/'} className="nav-item">
+            <a
+              href="https://talken.io/static/intro/c10_Contributors.htm"
+              target={'_blank'}
+            >
+              <h3 className="nav-item-name">About</h3>
+            </a>
+            <a
+              href="https://talken.io/static/intro/c10_Contributors.htm#c10_Contributors"
+              className="nav-item"
+              target={'_blank'}
+            >
               Contributors
-            </Link>
-            <Link to={'/'} className="nav-item">
+            </a>
+            <a
+              href="https://talken.io/static/intro/c10_Contributors.htm#c20_Partners"
+              className="nav-item"
+              target={'_blank'}
+            >
               Backers
-            </Link>
+            </a>
             {/* <Link to={'/'} className="nav-item">
               Terms of Use
             </Link> */}
           </nav>
           <nav className="list-nav">
-            <h3 className="nav-item-name">Blog</h3>
+            <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
+              <h3 className="nav-item-name">Blog</h3>
+            </a>
           </nav>
         </div>
         <div className="footer-right">
@@ -73,42 +114,37 @@ const Footer = () => {
                 Talken Wallet, Drops, Studio, and etc..
               </div>
             </div>
-            <div className="social-networks">
-              <a href={'https://discord.gg/S33c5DA9cW'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_discord} alt="" />
-                </div>
-              </a>
-              <a href={'https://twitter.com/Talken_'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_twitter} alt="" />
-                </div>
-              </a>
-              <a href={'https://www.instagram.com/talken_nft'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_instagram} alt="" />
-                </div>
-              </a>
-              <a href={'https://docs.talken.io/talken-docs/'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_gitbook} alt="" />
-                </div>
-              </a>
-              <a href={'https://talken-io.medium.com/'} target="_blank">
-                <div className="social-item">
-                  <img src={medium} alt="" />
-                </div>
-              </a>
-              <a href={'https://blog.naver.com/talkentalk'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_blog} alt="" />
-                </div>
-              </a>
-              {/* <a href={'/'} target="_blank">
-                <div className="social-item">
-                  <img src={icon_chat} alt="" />
-                </div>
-              </a> */}
+            <div className="footLink">
+              <a
+                target="_blank"
+                href="https://discord.gg/S33c5DA9cW"
+                className="footLink3"
+              ></a>
+              <a
+                target="_blank"
+                href="https://twitter.com/Talken_"
+                className="footLink2"
+              ></a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/talken_nft"
+                className="footLink5"
+              ></a>
+              <a
+                target="_blank"
+                href="https://docs.talken.io/talken-docs/"
+                className="footLink6"
+              ></a>
+              <a
+                target="_blank"
+                href="https://talken-io.medium.com/"
+                className="footLink1"
+              ></a>
+              <a
+                target="_blank"
+                href="https://blog.naver.com/talkentalk"
+                className="footLink7"
+              ></a>
             </div>
           </div>
         </div>
