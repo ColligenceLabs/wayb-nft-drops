@@ -329,7 +329,7 @@
 
               &.active {
                 background-color: #bae7ff;
-                border: 2px solid #2f8af5;
+                //border: 2px solid #2f8af5;
               }
 
               &.unused {
@@ -339,6 +339,7 @@
               }
               &.focused {
                 //background-color: rgba(121, 121, 121, 0.18);
+                background-color: white;
                 border: 2px solid #2f8af5;
                 cursor: default;
               }
