@@ -104,7 +104,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
 
   return (
     <div className="marketplace min-height-content">
-      <div className="marketplace-collection-tittle">Featured Collectibles</div>
+      <div className="marketplace-collection-tittle">Featured Collections</div>
       <div className="marketplace-items">
         {mBoxList.map((item: any, index) => {
           return (
@@ -146,7 +146,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
                   <div className="total_item">
-                    Total Run: {item.totalAmount}
+                    Total Items: {item.totalAmount}
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">

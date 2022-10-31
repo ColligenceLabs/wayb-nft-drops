@@ -7,11 +7,14 @@ import website_icon from '../../assets/icon/website_icon.svg';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
+import icon_share from '../../assets/img/icon_share.png';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { getFeaturedById } from '../../services/services';
 import CollectionList from './CollectionList';
+import useCopyToClipBoard from 'hooks/useCopyToClipboard';
+import CSnackbar from '../../components/common/CSnackbar';
 
 type LinkTypes = {
   type: string;
@@ -21,7 +24,23 @@ type LinkTypes = {
 
 const Collection = () => {
   const params = useParams();
+
+  const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [featured, setFeatured] = useState<FeaturedTypes | null>(null);
+  const [openSnackbar, setOpenSnackbar] = useState({
+    open: false,
+    type: '',
+    message: '',
+  });
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar({
+      open: false,
+      type: '',
+      message: '',
+    });
+    setCopyResult(false);
+  };
 
   useEffect(() => {
     const fetchFeatured = async () => {
@@ -50,6 +69,14 @@ const Collection = () => {
     if (url === '#') e.preventDefault();
     else window.open(url, '_blank');
   };
+
+  useEffect(() => {
+    setOpenSnackbar({
+      open: copyResult,
+      type: 'success',
+      message: 'copied!',
+    });
+  }, [copyResult]);
 
   return (
     <main className="collection-container min-height-content">
@@ -112,6 +139,7 @@ const Collection = () => {
                         <img src={icon_instagram} alt="Instagram Icon" />
                       </div>
                     </div>
+
                     <div
                       style={{
                         cursor: `${
@@ -125,13 +153,23 @@ const Collection = () => {
                         <img src={icon_twitter} alt="Twitter Icon" />
                       </div>
                     </div>
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => copyToClipBoard(window.location.href)}
+                      className="info-item"
+                    >
+                      <div className="image-item">
+                        <img src={icon_share} alt="Twitter Icon" width="20px" />
+                      </div>
+                    </div>
                     {/* <div className="label">NFTs</div> */}
                   </div>
-                  <div className="line-icon"></div>
-                  <div className="collection-info-right-details">
-                    <div className="value">100</div>
-                    <div className="label">NFTs</div>
-                  </div>
+
+                  {/*<div className="line-icon"></div>*/}
+                  {/*<div className="collection-info-right-details">*/}
+                  {/*  <div className="value">100</div>*/}
+                  {/*  <div className="label">NFTs</div>*/}
+                  {/*</div>*/}
                 </div>
               </div>
               <div className="collection-info-content">
@@ -199,6 +237,12 @@ const Collection = () => {
             {/*  </div>*/}
             {/*</div>*/}
           </div>
+          <CSnackbar
+            open={openSnackbar.open}
+            type={openSnackbar.type}
+            message={openSnackbar.message}
+            handleClose={handleCloseSnackbar}
+          />
         </>
       ) : (
         <div>ife</div>
