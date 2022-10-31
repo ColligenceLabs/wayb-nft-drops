@@ -299,7 +299,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
                 style={{ filter: 'contrast(100%)' }}
               />
             </div>
-            <div className="pay-name">Credit Card</div>
+            <div className="pay-name">Point</div>
           </div>
           <div
             className={`payment-box ${selectedPayment === 2 ? 'active' : ''}`}
