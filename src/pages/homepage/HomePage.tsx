@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
 import { hotCollectiblesTestData } from './mockData';
 import {
+  getAirdropList,
   getCollectionList,
   getEventList,
   getFeaturedCollections,
@@ -35,7 +36,7 @@ const Homepage = () => {
     FeaturedTypes[]
   >([]);
   const [collectionList, setCollectionList] = useState<ExMBoxType[]>([]);
-
+  const [airdropList, setAirdropList] = useState<ExMBoxType[]>([]);
   const navigateToUrl = (item: FeaturedTypes) => {
     if (item.eventUrl) {
       window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
@@ -78,9 +79,28 @@ const Homepage = () => {
         setCollectionList(newList);
       }
     };
+
+    const fetchAirdropList = async () => {
+      const res = await getAirdropList();
+      if (res.data.data.list) {
+        const newList = await Promise.all(
+          res.data.data.list.map(async (item: MBoxTypes) => {
+            const remaining = await getItemRemainsNoSigner(
+              item.boxContractAddress,
+              account,
+              chainId
+            );
+            return { ...item, remainingAmount: remaining };
+          })
+        );
+        setAirdropList(newList);
+      }
+    };
+
     fetchSlideData();
     fetchFeaturedCollections();
     fetchCollectionList();
+    fetchAirdropList();
   }, [library]);
 
   const carouselOption = {
@@ -482,7 +502,7 @@ const Homepage = () => {
         {/* Free Drops */}
         <div className="page-grid">
           <div className="title-header">Free Drops</div>
-          {collectionList && (
+          {airdropList && (
             <Carousel
               {...carouselOption}
               arrows={false}
@@ -535,7 +555,7 @@ const Homepage = () => {
               }}
               showDots={false}
             >
-              {collectionList
+              {airdropList
                 .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => (
                   <Link
@@ -591,7 +611,7 @@ const Homepage = () => {
                         <div className="wrapper-price">
                           <div className="price-header">Price</div>
                           <div className="current-price">
-                            {`${item.quote?.toUpperCase()} ${item.price}`}
+                            {getPrice(item.price, item.quote)}
                           </div>
                         </div>
                       </div>
