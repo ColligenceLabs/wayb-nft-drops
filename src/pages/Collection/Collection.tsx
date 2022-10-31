@@ -42,6 +42,40 @@ const Collection = () => {
     setCopyResult(false);
   };
 
+  const getSnsButtons = () => {
+    if (featured && featured.links) {
+      const test = featured.links.map((link: any) => {
+        return (
+          <div
+            style={{
+              cursor: 'pointer',
+            }}
+            className="info-item"
+            onClick={() => window.open(link.url)}
+          >
+            <div className="image-item">
+              {link.type === 'SITE' && (
+                <img src={website_icon} alt="Website Icon" />
+              )}
+              {link.type === 'DISCORD' && (
+                <img src={icon_discord} alt="Website Icon" />
+              )}
+              {link.type === 'TWITTER' && (
+                <img src={icon_twitter} alt="Website Icon" />
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <img src={icon_instagram} alt="Website Icon" />
+              )}
+            </div>
+          </div>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
+
   useEffect(() => {
     const fetchFeatured = async () => {
       const res = await getFeaturedById(params.id!);
@@ -52,23 +86,6 @@ const Collection = () => {
 
     fetchFeatured();
   }, []);
-
-  const getUrl = (type: string) => {
-    let result;
-    if (featured?.links) {
-      result = featured?.links.find((sns: LinkTypes) => {
-        if (sns.type === type) return sns;
-      });
-    }
-
-    return result ? result['url'] : '#';
-  };
-
-  const moveSns = (e: React.MouseEvent<HTMLDivElement>, type: string) => {
-    const url = getUrl(type);
-    if (url === '#') e.preventDefault();
-    else window.open(url, '_blank');
-  };
 
   useEffect(() => {
     setOpenSnackbar({
@@ -100,59 +117,7 @@ const Collection = () => {
                 </div>
                 <div className="collection-info-right">
                   <div className="collection-info-left-details">
-                    <div
-                      style={{
-                        cursor: `${
-                          getUrl('SITE') === '#' ? 'default' : 'pointer'
-                        }`,
-                      }}
-                      className="info-item"
-                      onClick={(e) => moveSns(e, 'SITE')}
-                    >
-                      <div className="image-item">
-                        <img src={website_icon} alt="Website Icon" />
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        cursor: `${
-                          getUrl('DISCORD') === '#' ? 'default' : 'pointer'
-                        }`,
-                      }}
-                      className="info-item"
-                      onClick={(e) => moveSns(e, 'DISCORD')}
-                    >
-                      <div className="image-item">
-                        <img src={icon_discord} alt="Discord Icon" />
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        cursor: `${
-                          getUrl('INSTAGRAM') === '#' ? 'default' : 'pointer'
-                        }`,
-                      }}
-                      onClick={(e) => moveSns(e, 'INSTAGRAM')}
-                      className="info-item"
-                    >
-                      <div className="image-item">
-                        <img src={icon_instagram} alt="Instagram Icon" />
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        cursor: `${
-                          getUrl('TWITTER') === '#' ? 'default' : 'pointer'
-                        }`,
-                      }}
-                      onClick={(e) => moveSns(e, 'TWITTER')}
-                      className="info-item"
-                    >
-                      <div className="image-item">
-                        <img src={icon_twitter} alt="Twitter Icon" />
-                      </div>
-                    </div>
+                    <>{getSnsButtons()}</>
                     <div
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
