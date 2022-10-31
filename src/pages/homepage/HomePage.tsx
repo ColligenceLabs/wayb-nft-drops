@@ -181,7 +181,7 @@ const Homepage = () => {
         {/* Featured Collections */}
         <div className="featured-collections">
           <div className="wrapper-header title-header">
-            <div className="header-name">Featured Collections</div>
+            <div className="header-name">Featured Creators</div>
             <Link to={'/klaytn/featureds'} className="show-all-item button">
               See all
             </Link>
@@ -246,7 +246,7 @@ const Homepage = () => {
         </div>
         {/* Hot Collectibles */}
         <div className="page-grid">
-          <div className="title-header">Hot Collectibles</div>
+          <div className="title-header">Talken Drops</div>
           {collectionList && (
             <Carousel
               {...carouselOption}
@@ -498,6 +498,10 @@ const Homepage = () => {
           {/*    ))}*/}
           {/*  </Carousel>*/}
           {/*)}*/}
+        </div>
+        {/* Free Drops */}
+        <div className="page-grid">
+          <div className="title-header">Hot Collectibles</div>
         </div>
         {/* Free Drops */}
         <div className="page-grid">
