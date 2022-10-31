@@ -55,7 +55,7 @@ export const getCollectionList = async (isCollection?: boolean) => {
 
 export const getAirdropList = async () => {
   return await customAxios.get(
-    `http://localhost:5001/api/service/mysterybox/airdrops?page=1&limit=5`
+    `/api/service/mysterybox/airdrops?page=1&limit=5`
   );
 };
 
