@@ -47,7 +47,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
   close,
   onConfirm,
 }) => {
-  const [selectedNetwork, setSelectedNetwork] = useState(1);
+  const [selectedNetwork, setSelectedNetwork] = useState(3);
   const [showTooltip, setShowTooltip] = useState(true);
   const wallet = useSelector((state: any) => state.wallet);
   const changeNetwork = (id: number) => {
@@ -87,7 +87,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
       }
 
       if (network.id === selectedNetwork) {
-        className = `${className} focused`;
+        className = className === 'active' ? `${className}` : `focused`;
       }
     }
     return className;

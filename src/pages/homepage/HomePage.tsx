@@ -560,7 +560,7 @@ const Homepage = () => {
               showDots={false}
             >
               {airdropList
-                .filter((item) => item.price === null || item.price === 0)
+                // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
                   return (
                     <Link
@@ -604,10 +604,15 @@ const Homepage = () => {
                                   draggable={false}
                                 />
                               </div>
-                              <div className="name-label">{item.title.en}</div>
+                              <div className="name-label">
+                                {item.featured.company.name.en}
+                              </div>
                             </div>
                             <div className="content-right">Buy Now</div>
                           </div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="product-name">{item.title.en}</div>
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="name-label">{item.details}</div>
