@@ -49,6 +49,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
 }) => {
   const [selectedNetwork, setSelectedNetwork] = useState(1);
   const [showTooltip, setShowTooltip] = useState(true);
+  const wallet = useSelector((state: any) => state.wallet);
   const changeNetwork = (id: number) => {
     if (id === 0 || id === 2) return;
     setSelectedNetwork(id);
@@ -67,6 +68,30 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
     }
   };
 
+  const getClassName = (network: any) => {
+    let className = '';
+    if (network.id == 0 || network.id == 2) className = 'unused';
+    else {
+      if (
+        network.network === 'klaytn' &&
+        wallet.klaytn.address &&
+        wallet.klaytn.address !== ''
+      ) {
+        className = 'active';
+      } else if (
+        network.network === 'binance' &&
+        wallet.binance.address &&
+        wallet.binance.address !== ''
+      ) {
+        className = 'active';
+      }
+
+      if (network.id === selectedNetwork) {
+        className = `${className} focused`;
+      }
+    }
+    return className;
+  };
   return (
     <div className="login_form" tabIndex={-1} role="dialog" aria-modal="true">
       <div className="box-content">
@@ -83,13 +108,14 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
               <div className="div-wallets_1">
                 {NetworkList.map((network: any) => (
                   <button
-                    className={`${
-                      selectedNetwork === network.id
-                        ? ' active'
-                        : network.id == 0 || network.id == 2
-                        ? 'unused'
-                        : ''
-                    }`}
+                    // className={`${
+                    //   selectedNetwork === network.id
+                    //     ? ' active'
+                    //     : network.id == 0 || network.id == 2
+                    //     ? 'unused'
+                    //     : ''
+                    // }`}
+                    className={getClassName(network)}
                     key={network.id}
                     type="button"
                     data-tip
@@ -118,9 +144,9 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
               </div>
             </div>
             {selectedNetwork === 0 && <EthWallets />}
-            {selectedNetwork === 3 && <BinanceWallets close={close} />}
+            {selectedNetwork === 1 && <BinanceWallets close={close} />}
             {selectedNetwork === 2 && <PolygonWallets />}
-            {selectedNetwork === 1 && <KlaytnWallets close={close} />}
+            {selectedNetwork === 3 && <KlaytnWallets close={close} />}
           </div>
         </form>
       </div>
