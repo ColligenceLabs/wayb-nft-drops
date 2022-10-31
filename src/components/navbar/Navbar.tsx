@@ -89,53 +89,54 @@ const Navbar = () => {
             <img src={logo_header} alt="" />
           </Link>
         </div>
-        <div className="search-bar">
+        {/* <div className="search-bar">
           <img src={search_icon} alt="search icon" className="search-icon" />
           <input
             className="input-search"
             type="search-textbox"
             placeholder="Search NFT"
           />
-        </div>
-        <div className="contact-header">
-          <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
-            About
-          </a>
-          <a href="https://talken-io.medium.com/" target={'_blank'}>
-            Blog
-          </a>
-          <a
-            href="https://talkensupport.zendesk.com/hc/en-us/requests/new"
-            target={'_blank'}
-          >
-            Help
-          </a>
-        </div>
-        <div className="fanpage-icons">
-          <a
-            href="https://twitter.com/Talken_"
-            target={'_blank'}
-            rel="noreferrer"
-          >
-            <img src={icon_twitter} alt="" />
-          </a>
-          <a
-            href="https://discord.gg/S33c5DA9cW"
-            target={'_blank'}
-            rel="noreferrer"
-          >
-            <img src={icon_discord} alt="" />
-          </a>
-          <a
-            href="https://www.instagram.com/talken_nft"
-            target={'_blank'}
-            rel="noreferrer"
-          >
-            <img src={icon_insta} alt="" />
-          </a>
-        </div>
-        {/* before login PC view */}
-        {/* <div className="btn-login">
+        </div> */}
+        <div className="nav-right">
+          <div className="contact-header">
+            <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
+              About
+            </a>
+            <a href="https://talken-io.medium.com/" target={'_blank'}>
+              Blog
+            </a>
+            <a
+              href="https://talkensupport.zendesk.com/hc/en-us/requests/new"
+              target={'_blank'}
+            >
+              Help
+            </a>
+          </div>
+          <div className="fanpage-icons">
+            <a
+              href="https://twitter.com/Talken_"
+              target={'_blank'}
+              rel="noreferrer"
+            >
+              <img src={icon_twitter} alt="" />
+            </a>
+            <a
+              href="https://discord.gg/S33c5DA9cW"
+              target={'_blank'}
+              rel="noreferrer"
+            >
+              <img src={icon_discord} alt="" />
+            </a>
+            <a
+              href="https://www.instagram.com/talken_nft"
+              target={'_blank'}
+              rel="noreferrer"
+            >
+              <img src={icon_insta} alt="" />
+            </a>
+          </div>
+          {/* before login PC view */}
+          {/* <div className="btn-login">
           <button
             className="custom-btn button"
             onClick={() => setLoginOpen(true)}
@@ -144,79 +145,81 @@ const Navbar = () => {
           </button>
         </div> */}
 
-        {/* after login */}
-        <div
-          className={`btn-wallets ${
-            dropsAccount.address === '' ? 'right-40' : ''
-          }`}
-        >
-          <button
-            className="custom-btn button"
-            // onClick={() => updateOpenWallet(true)}
-            onClick={() => setLoginOpen(true)}
+          {/* after login */}
+          <div
+            className={`btn-wallets ${
+              dropsAccount.address === '' ? 'right-40' : ''
+            }`}
           >
-            <span className="wrapper-btn">
-              <img src={wallet_blue} alt="Wallet Icon" />
-              <span className="wallets">Wallets</span>
-            </span>
-          </button>
-        </div>
-        {dropsAccount.address !== '' && screenSize > 540 ? (
-          <>
-            <div className="wrapper-user">
-              <div className="avatar-user">
-                <img
-                  src={
-                    dropsAccount.profile_image
-                      ? dropsAccount.profile_image
-                      : avatar_user
-                  }
-                  alt="profile-avatar"
-                />
-              </div>
-              <p className="user-name">{dropsAccount.name}</p>
-            </div>
             <button
-              ref={ref}
-              className="username-dropdown button"
-              onClick={() => setModalOpen(!isModalOpen)}
+              className="custom-btn button"
+              // onClick={() => updateOpenWallet(true)}
+              onClick={() => setLoginOpen(true)}
             >
-              <svg
-                className="sc-196ec885-12 eKhfKP"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18.092"
-                height="11.168"
-                viewBox="0 0 18.092 11.168"
-              >
-                <path
-                  id="Path_46142"
-                  data-name="Path 46142"
-                  d="M-10858.465-7358l6.925,6.926,6.925-6.926"
-                  transform="translate(10860.586 7360.121)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeWidth="3"
-                ></path>
-              </svg>
-              {/* user dropdown box */}
-              {isModalOpen && <UsernameBox />}
+              <span className="wrapper-btn">
+                <img src={wallet_blue} alt="Wallet Icon" />
+                <span className="wallets">Wallets</span>
+              </span>
             </button>
-          </>
-        ) : (
-          screenSize < 769 && (
-            <div className="icon-nav">
-              <button className="button" onClick={openSidebar}>
-                <img src={nav_icon} alt="Navbar Icon" />
-                {/* side bar */}
+          </div>
+          {dropsAccount.address !== '' && screenSize > 540 ? (
+            <>
+              <div className="wrapper-user">
+                <div className="avatar-user">
+                  <img
+                    src={
+                      dropsAccount.profile_image
+                        ? dropsAccount.profile_image
+                        : avatar_user
+                    }
+                    alt="profile-avatar"
+                  />
+                </div>
+                <p className="user-name">{dropsAccount.name}</p>
+              </div>
+              <button
+                ref={ref}
+                className="username-dropdown button"
+                onClick={() => setModalOpen(!isModalOpen)}
+              >
+                <svg
+                  className="sc-196ec885-12 eKhfKP"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18.092"
+                  height="11.168"
+                  viewBox="0 0 18.092 11.168"
+                  opacity="0.8"
+                >
+                  <path
+                    id="Path_46142"
+                    data-name="Path 46142"
+                    d="M-10858.465-7358l6.925,6.926,6.925-6.926"
+                    transform="translate(10860.586 7360.121)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeWidth="3"
+                  ></path>
+                </svg>
+                {/* user dropdown box */}
+                {isModalOpen && <UsernameBox />}
               </button>
-              <SidebarMb />
-            </div>
-          )
-        )}
+            </>
+          ) : (
+            screenSize < 769 && (
+              <div className="icon-nav">
+                <button className="button" onClick={openSidebar}>
+                  <img src={nav_icon} alt="Navbar Icon" />
+                  {/* side bar */}
+                </button>
+                <SidebarMb />
+              </div>
+            )
+          )}
 
-        {/* wallets box */}
-        <DialogWallets />
+          {/* wallets box */}
+          <DialogWallets />
+        </div>
         {/* popup log in  */}
         <Popup
           modal

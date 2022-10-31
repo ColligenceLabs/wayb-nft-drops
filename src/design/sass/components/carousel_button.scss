@@ -43,7 +43,7 @@
       right: 0;
     }
   }
-  @media (max-width: 540px) {
+  @media (max-width: 639px) {
     .arrow-one {
       bottom: 118px;
       left: 20px;
@@ -114,12 +114,13 @@
 
 //arrow carousel banner main page
 .arrow-banner-mainpage {
-  position: relative;
-  // max-width: 1280px;
+  position: absolute;
   width: 100%;
+  height: 50px;
   margin: auto;
   z-index: 51;
-  bottom: 180px;
+  display: flex;
+  align-items: center;
   .arrow-one {
     width: 40px;
     height: 40px;
@@ -171,7 +172,7 @@
   //   }
   // }
   @media (max-width: 540px) {
-    bottom: 140px;
+    // bottom: 140px;
     .arrow-one {
       left: 10%;
     }
@@ -180,7 +181,7 @@
     }
   }
   @media (max-width: 425px) {
-    bottom: 200px;
+    // bottom: 200px;
     .arrow-two {
       right: 6%;
     }
