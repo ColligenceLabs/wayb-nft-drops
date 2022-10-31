@@ -209,9 +209,7 @@ const Collection = () => {
             handleClose={handleCloseSnackbar}
           />
         </>
-      ) : (
-        <div>ife</div>
-      )}
+      ) : null}
     </main>
   );
 };
