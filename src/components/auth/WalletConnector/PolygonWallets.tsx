@@ -5,7 +5,7 @@ import icon_talk from '../../../assets/img/icon_talk.png';
 import icon_klaytn from '../../../assets/img/icon_klaytn.png';
 import { Wallets } from './Wallets';
 
-const SolanaWallets = () => {
+const PolygonWallets = () => {
   return (
     <div className="div-wallets_2">
       <div className="row">
@@ -22,4 +22,4 @@ const SolanaWallets = () => {
   );
 };
 
-export default SolanaWallets;
+export default PolygonWallets;

@@ -3,10 +3,11 @@ import icon_ethereum from 'assets/img/icon_ethereum.png';
 import icon_klaytn from 'assets/img/icon_klaytn.png';
 import icon_solana from 'assets/img/icon_solana.png';
 import icon_binance from 'assets/img/icon_binance.png';
+import icon_polygon from 'assets/icon/icon_polygon.png';
 import carbon_close from 'assets/icon/carbon_close.svg';
 import EthWallets from './EthWallets';
 import KlaytnWallets from './KlaytnWallets';
-import SolanaWallets from './SolanaWallets';
+import PolygonWallets from './PolygonWallets';
 import BinanceWallets from './BinanceWallets';
 import { useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -20,21 +21,21 @@ const NetworkList = [
   },
   {
     id: 1,
-    network: 'klaytn',
-    network_name: 'Klaytn',
-    icon: icon_klaytn,
-  },
-  {
-    id: 2,
-    network: 'solana',
-    network_name: 'Solana',
-    icon: icon_solana,
-  },
-  {
-    id: 3,
     network: 'binance',
     network_name: 'BNB Chain',
     icon: icon_binance,
+  },
+  {
+    id: 2,
+    network: 'polygon',
+    network_name: 'Polygon',
+    icon: icon_polygon,
+  },
+  {
+    id: 3,
+    network: 'klaytn',
+    network_name: 'Klaytn',
+    icon: icon_klaytn,
   },
 ];
 
@@ -117,9 +118,9 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
               </div>
             </div>
             {selectedNetwork === 0 && <EthWallets />}
-            {selectedNetwork === 1 && <KlaytnWallets close={close} />}
-            {selectedNetwork === 2 && <SolanaWallets />}
             {selectedNetwork === 3 && <BinanceWallets close={close} />}
+            {selectedNetwork === 2 && <PolygonWallets />}
+            {selectedNetwork === 1 && <KlaytnWallets close={close} />}
           </div>
         </form>
       </div>
