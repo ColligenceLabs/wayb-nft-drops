@@ -557,75 +557,80 @@ const Homepage = () => {
             >
               {airdropList
                 .filter((item) => item.price === null || item.price === 0)
-                .map((item: any, index) => (
-                  <Link
-                    to={`/collection-sale/${item.id}`}
-                    state={{
-                      item: {
-                        ...item,
-                        companyLogo: item.featured.company.image,
-                        companyName: item.featured.companyId,
-                        quote: item.quote,
-                      },
-                    }}
-                    className="button custom-box"
-                    key={index}
-                  >
-                    <div className="hot-ollectibles-wrapper">
-                      <div className="header-left hot-ollectibles-item">
-                        <span className="total-run">
-                          Total Run: {item.totalAmount}
-                        </span>
-                      </div>
-                      <div className="hot-ollectibles-item">
-                        <div>erc721</div>
-                      </div>
-                      <div className="hot-ollectibles-item">
-                        <div className="img-token">
-                          <img
-                            src={item.packageImage}
-                            alt=""
-                            draggable={false}
-                          />
+                .map((item: any, index) => {
+                  console.log(item);
+                  return (
+                    <Link
+                      to={`/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
+                      state={{
+                        item: {
+                          ...item,
+                          companyLogo: item.featured.company.image,
+                          companyName: item.featured.companyId,
+                          quote: item.quote,
+                        },
+                      }}
+                      className="button custom-box"
+                      key={index}
+                    >
+                      <div className="hot-ollectibles-wrapper">
+                        <div className="header-left hot-ollectibles-item">
+                          <span className="total-run">
+                            Total Run: {item.totalAmount}
+                          </span>
                         </div>
-                      </div>
-                      <div className="hot-ollectibles-item">
-                        <div className="wrapper-item">
-                          <div className="content-left">
-                            <div className="avatar">
-                              <img
-                                src={item.featured.company.image}
-                                alt=""
-                                draggable={false}
-                              />
+                        <div className="hot-ollectibles-item">
+                          <div>erc721</div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="img-token">
+                            <img
+                              src={item.packageImage}
+                              alt=""
+                              draggable={false}
+                            />
+                          </div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="wrapper-item">
+                            <div className="content-left">
+                              <div className="avatar">
+                                <img
+                                  src={item.featured.company.image}
+                                  alt=""
+                                  draggable={false}
+                                />
+                              </div>
+                              <div className="name-label">{item.title.en}</div>
                             </div>
-                            <div className="name-label">{item.title.en}</div>
-                          </div>
-                          <div className="content-right">Buy Now</div>
-                        </div>
-                      </div>
-                      <div className="hot-ollectibles-item">
-                        <div className="name-label">{item.details}</div>
-                      </div>
-                      <div className="hot-ollectibles-item">
-                        <div className="wrapper-price">
-                          <div className="price-header">Price</div>
-                          <div className="current-price">
-                            {getPrice(item.price, item.quote)}
+                            <div className="content-right">Buy Now</div>
                           </div>
                         </div>
-                      </div>
-                      <div className="hot-ollectibles-item">
-                        <div className="wrapper-remaining">
-                          <div className="remaining-header">Remaining</div>
-                          <div className="quantity-remaining">
-                            {item.remainingAmount ? item.remainingAmount : '-'}
+                        <div className="hot-ollectibles-item">
+                          <div className="name-label">{item.details}</div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="wrapper-price">
+                            <div className="price-header">Price</div>
+                            <div className="current-price">
+                              {getPrice(item.price, item.quote)}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="wrapper-remaining">
+                            <div className="remaining-header">Remaining</div>
+                            <div className="quantity-remaining">
+                              {item.remainingAmount
+                                ? item.remainingAmount
+                                : '-'}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
             </Carousel>
           )}
           {/* <Carousel
