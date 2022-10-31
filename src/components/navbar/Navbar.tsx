@@ -5,7 +5,10 @@ import logo_header from '../../assets/svg/logo_header.svg';
 import icon_insta from '../../assets/icon/instagram.png';
 import icon_twitter from '../../assets/icon/twitter.png';
 import icon_discord from '../../assets/icon/discord.png';
-
+import icon_ethereum from '../../assets/img/icon_ethereum.png';
+import icon_binance from '../../assets/img/icon_binance.png';
+import icon_solana from '../../assets/img/icon_solana.png';
+import icon_klaytn from '../../assets/img/icon_klaytn.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
@@ -160,6 +163,20 @@ const Navbar = () => {
                 <img src={wallet_blue} alt="Wallet Icon" />
                 <span className="wallets">Wallets</span>
               </span>
+            </button>
+          </div>
+          <div className="wallet-connected">
+            <button type="button" className="item-wallet button">
+              <img src={icon_ethereum} />
+            </button>
+            <button type="button" className="item-wallet button">
+              <img src={icon_binance} />
+            </button>
+            <button type="button" className="item-wallet button">
+              <img src={icon_solana} />
+            </button>
+            <button type="button" className="item-wallet button">
+              <img src={icon_klaytn} />
             </button>
           </div>
           {dropsAccount.address !== '' && screenSize > 540 ? (
