@@ -326,10 +326,13 @@
               align-items: center;
               justify-content: center;
               gap: 8px;
-
+              background-color: rgba(121, 121, 121, 0.18);
+              color: white;
               &.active {
                 background-color: #bae7ff;
                 //border: 2px solid #2f8af5;
+                //color: rgba(121, 121, 121, 0.8);;
+                color: white;
               }
 
               &.unused {
@@ -340,8 +343,8 @@
               &.focused {
                 //background-color: rgba(121, 121, 121, 0.18);
                 background-color: white;
-                border: 2px solid #2f8af5;
-                cursor: default;
+                //border: 2px solid #2f8af5;
+                color: rgba(121, 121, 121, 0.8);;
               }
               .custom-image {
                 width: 24px;
