@@ -83,7 +83,7 @@ const UsernameBox = () => {
               fill="white"
             />
           </svg>
-          My Collectibles
+          My Collections
         </Link>
         {/* <Link
           to={'/purchase-history'}
