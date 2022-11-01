@@ -72,28 +72,12 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         console.log(`click ${id}, this is Wallet Connector (Klaytn)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
-        try {
-          await activate(wc, undefined, true);
-        } catch (e) {
-          setErrMsg(
-            `모바일 지갑의 네트워크를 ${
-              env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
-            }(으)로 변경하세요.`
-          );
-        }
+        await activate(wc, undefined, true);
       } else if (id === 2) {
         console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
         const wc = walletconnect(true);
-        try {
-          await activate(wc, undefined, true);
-        } catch (e) {
-          setErrMsg(
-            `모바일 지갑의 네트워크를 ${
-              env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
-            }(으)로 변경하세요.`
-          );
-        }
+        await activate(wc, undefined, true);
       } else {
         console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
@@ -102,9 +86,14 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       }
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
-      if (errMsg.length == 0) close();
+      close();
     } catch (e) {
       console.log('connect wallet error', e);
+      setErrMsg(
+        `모바일 지갑의 네트워크를 ${
+          env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
+        }(으)로 변경하세요.`
+      );
     }
   };
   return (
