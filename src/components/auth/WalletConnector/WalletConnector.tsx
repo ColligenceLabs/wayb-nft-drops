@@ -87,7 +87,7 @@ const WalletConnector: React.FC<WalletConnectorProp> = ({
       }
 
       if (network.id === selectedNetwork) {
-        className = `${className} focused`;
+        className = className === 'active' ? `${className}` : `focused`;
       }
     }
     return className;

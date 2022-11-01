@@ -7,8 +7,9 @@ import icon_twitter from '../../assets/icon/twitter.png';
 import icon_discord from '../../assets/icon/discord.png';
 import icon_ethereum from '../../assets/img/icon_ethereum.png';
 import icon_binance from '../../assets/img/icon_binance.png';
-import icon_solana from '../../assets/img/icon_solana.png';
+import icon_polygon from 'assets/icon/icon_polygon.png';
 import icon_klaytn from '../../assets/img/icon_klaytn.png';
+import icon_polygon from '../../assets/icon/icon_polygon.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
@@ -31,6 +32,9 @@ import {
 } from 'components/common/AppStore';
 import WalletConnector from '../auth/WalletConnector/WalletConnector';
 import useScreenSize from 'components/common/useScreenSize';
+import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import splitAddress from '../../utils/splitAddress';
+import { splitString } from '../../utils/splitString';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -42,6 +46,8 @@ const Navbar = () => {
   const { openSidebar } = useSidebarStore();
   const { updateOpenWallet } = useModalWalletsStore();
   const dropsAccount = useSelector((state: any) => state.account.account);
+  const wallets = useSelector((state: any) => state.wallet);
+  const { account } = useActiveWeb3React();
   // console.log(dropsAccount);
   const screenSize = useScreenSize();
   useOnClickOutside(ref, () => setModalOpen(false));
@@ -139,33 +145,31 @@ const Navbar = () => {
             </a>
           </div>
           {/* before login PC view */}
-          {/* <div className="btn-login">
-          <button
-            className="custom-btn button"
-            onClick={() => setLoginOpen(true)}
-          >
-            <span className="custom-text">Connect Wallet</span>
-          </button>
-        </div> */}
+          {/*  /!* <div className="btn-login">*/}
+          {/*  <button*/}
+          {/*    className="custom-btn button"*/}
+          {/*    onClick={() => setLoginOpen(true)}*/}
+          {/*  >*/}
+          {/*    <span className="custom-text">Connect Wallet</span>*/}
+          {/*  </button>*/}
+          {/*</div> *!/*/}
 
           {/* after login */}
-          <div
-            className={`btn-wallets ${
-              dropsAccount.address === '' ? 'right-40' : ''
-            }`}
-          >
-            <button
-              className="custom-btn button"
-              // onClick={() => updateOpenWallet(true)}
+
+          {dropsAccount.address !== '' && account ? (
+            // getWalletButtons()
+            <div
+              className="wallet-connected"
               onClick={() => setLoginOpen(true)}
             >
+<<<<<<< HEAD
               <span className="wrapper-btn">
                 <img src={wallet_blue} alt="Wallet Icon" />
                 <span className="wallets">Wallets</span>
               </span>
             </button>
           </div>
-          <div className="wallet-connected">
+          {/* <div className="wallet-connected">
             <button type="button" className="item-wallet button">
               <img src={icon_ethereum} />
             </button>
@@ -173,12 +177,60 @@ const Navbar = () => {
               <img src={icon_binance} />
             </button>
             <button type="button" className="item-wallet button">
-              <img src={icon_solana} />
+              <img src={icon_polygon} />
             </button>
             <button type="button" className="item-wallet button">
               <img src={icon_klaytn} />
             </button>
-          </div>
+          </div> */}
+=======
+              {wallets.ethereum.address && wallets.ethereum.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_ethereum} />
+                </button>
+              )}
+              {wallets.binance.address && wallets.binance.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_binance} />
+                </button>
+              )}
+              {/*{wallets.solana.address && wallets.solana.address !== '' && (*/}
+              {/*  <button type="button" className="item-wallet button">*/}
+              {/*    <img src={icon_solana} />*/}
+              {/*  </button>*/}
+              {/*)}*/}
+              {wallets.polygon.address && wallets.polygon.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_polygon} />
+                </button>
+              )}
+              {wallets.klaytn.address && wallets.klaytn.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_klaytn} />
+                </button>
+              )}
+              <p className="account">{splitAddress(account)}</p>
+            </div>
+          ) : (
+            <div
+              className={`btn-wallets ${
+                dropsAccount.address === '' ? 'right-40' : ''
+              }`}
+            >
+              <button
+                className="custom-btn button"
+                // onClick={() => updateOpenWallet(true)}
+                onClick={() => setLoginOpen(true)}
+              >
+                <span className="wrapper-btn">
+                  <img src={wallet_blue} alt="Wallet Icon" />
+                  <span className="wallets">Wallets</span>
+                </span>
+              </button>
+            </div>
+          )}
+
+>>>>>>> main
           {dropsAccount.address !== '' && screenSize > 540 ? (
             <>
               <div className="wrapper-user">
@@ -192,7 +244,7 @@ const Navbar = () => {
                     alt="profile-avatar"
                   />
                 </div>
-                <p className="user-name">{dropsAccount.name}</p>
+                <p className="user-name">{splitString(dropsAccount.name)}</p>
               </div>
               <button
                 ref={ref}
