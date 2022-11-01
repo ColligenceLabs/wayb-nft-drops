@@ -10,6 +10,7 @@ import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
+import env from '../../../env';
 
 type BinanceWalletsProps = {
   close: any;
@@ -22,6 +23,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
   const [doSign, setDoSign] = useState<boolean>(false);
+  const [errMsg, setErrMsg] = useState('');
   const tokenGenerator = useCreateToken(setDoSign);
 
   useEffect(() => {
@@ -68,10 +70,28 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         console.log(`click ${id}, this is Wallet Connector (Binance)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
-        await activate(wc, undefined, true);
+        try {
+          await activate(wc, undefined, true);
+        } catch (e) {
+          setErrMsg(
+            `모바일 지갑의 네트워크를 ${
+              env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
+            }(으)로 변경하세요.`
+          );
+        }
       } else if (id === 2) {
         console.log(`click ${id}, this is Talken (Binance)`);
         // setWalletName('talken');
+        const wc = walletconnect(true);
+        try {
+          await activate(wc, undefined, true);
+        } catch (e) {
+          setErrMsg(
+            `모바일 지갑의 네트워크를 ${
+              env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
+            }(으)로 변경하세요.`
+          );
+        }
       } else {
         console.log(`click ${id}, this is Kaikas (Binance)`);
         // setWalletName('kaikas');
@@ -79,7 +99,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         await dispatch(setActivatingConnector(kaikas));
       }
       window.localStorage.setItem('walletStatus', 'connected');
-      close();
+      if (errMsg.length == 0) close();
     } catch (e) {
       console.log('connect wallet error', e);
     }
@@ -109,6 +129,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
           </button>
         ))}
       </div>
+      {errMsg}
     </div>
   );
 };
