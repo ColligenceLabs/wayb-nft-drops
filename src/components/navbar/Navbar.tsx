@@ -7,9 +7,8 @@ import icon_twitter from '../../assets/icon/twitter.png';
 import icon_discord from '../../assets/icon/discord.png';
 import icon_ethereum from '../../assets/img/icon_ethereum.png';
 import icon_binance from '../../assets/img/icon_binance.png';
-import icon_solana from '../../assets/img/icon_solana.png';
+import icon_polygon from 'assets/icon/icon_polygon.png';
 import icon_klaytn from '../../assets/img/icon_klaytn.png';
-import icon_polygon from '../../assets/icon/icon_polygon.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
@@ -34,6 +33,7 @@ import WalletConnector from '../auth/WalletConnector/WalletConnector';
 import useScreenSize from 'components/common/useScreenSize';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import splitAddress from '../../utils/splitAddress';
+import { splitString } from '../../utils/splitString';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -220,7 +220,7 @@ const Navbar = () => {
                     alt="profile-avatar"
                   />
                 </div>
-                <p className="user-name">{dropsAccount.name}</p>
+                <p className="user-name">{splitString(dropsAccount.name)}</p>
               </div>
               <button
                 ref={ref}
