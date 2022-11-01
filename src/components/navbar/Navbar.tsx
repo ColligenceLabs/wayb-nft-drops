@@ -9,7 +9,6 @@ import icon_ethereum from '../../assets/img/icon_ethereum.png';
 import icon_binance from '../../assets/img/icon_binance.png';
 import icon_polygon from 'assets/icon/icon_polygon.png';
 import icon_klaytn from '../../assets/img/icon_klaytn.png';
-import icon_polygon from '../../assets/icon/icon_polygon.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
@@ -162,28 +161,6 @@ const Navbar = () => {
               className="wallet-connected"
               onClick={() => setLoginOpen(true)}
             >
-<<<<<<< HEAD
-              <span className="wrapper-btn">
-                <img src={wallet_blue} alt="Wallet Icon" />
-                <span className="wallets">Wallets</span>
-              </span>
-            </button>
-          </div>
-          {/* <div className="wallet-connected">
-            <button type="button" className="item-wallet button">
-              <img src={icon_ethereum} />
-            </button>
-            <button type="button" className="item-wallet button">
-              <img src={icon_binance} />
-            </button>
-            <button type="button" className="item-wallet button">
-              <img src={icon_polygon} />
-            </button>
-            <button type="button" className="item-wallet button">
-              <img src={icon_klaytn} />
-            </button>
-          </div> */}
-=======
               {wallets.ethereum.address && wallets.ethereum.address !== '' && (
                 <button type="button" className="item-wallet button">
                   <img src={icon_ethereum} />
@@ -230,7 +207,6 @@ const Navbar = () => {
             </div>
           )}
 
->>>>>>> main
           {dropsAccount.address !== '' && screenSize > 540 ? (
             <>
               <div className="wrapper-user">
