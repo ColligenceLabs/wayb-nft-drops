@@ -7,7 +7,7 @@
   background: #02021e;
   color: #fff;
   padding-bottom: 60px;
-  padding-top:66px;
+  padding-top: 66px;
   a,
   button {
     color: inherit;
@@ -1023,23 +1023,6 @@
         }
       }
     }
-
-    .marketplace {
-      width: 100%;
-
-      .marketplace-items {
-        grid-template-columns: repeat(1, 1fr);
-
-        .item_product {
-          width: 100%;
-          .item_product_detail {
-            .card {
-              width: 80%;
-            }
-          }
-        }
-      }
-    }
   }
 
   .price-collection-view-page {
@@ -1117,6 +1100,30 @@
 
           .hot-ollectibles-wrapper {
             // width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 639px) {
+  .box-collection {
+    .marketplace {
+      width: 100%;
+      .marketplace-items {
+        grid-template-columns: repeat(1, 1fr);
+
+        .item_product {
+          height: auto;
+          width: 100%;
+          .item_product_detail {
+            .card {
+              width: 80%;
+              height: 250px;
+            }
+          }
+          .item_product_detail:nth-child(3) {
+            padding: 10px 12px;
           }
         }
       }
