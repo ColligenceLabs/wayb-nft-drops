@@ -34,6 +34,7 @@ import WalletConnector from '../auth/WalletConnector/WalletConnector';
 import useScreenSize from 'components/common/useScreenSize';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import splitAddress from '../../utils/splitAddress';
+import { splitString } from '../../utils/splitString';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -220,7 +221,7 @@ const Navbar = () => {
                     alt="profile-avatar"
                   />
                 </div>
-                <p className="user-name">{dropsAccount.name}</p>
+                <p className="user-name">{splitString(dropsAccount.name)}</p>
               </div>
               <button
                 ref={ref}
