@@ -191,7 +191,9 @@ const Navbar = () => {
           ) : (
             <div
               className={`btn-wallets ${
-                dropsAccount.address === '' ? 'right-40' : ''
+                dropsAccount.address === '' && screenSize > 768
+                  ? 'right-40'
+                  : ''
               }`}
             >
               <button
