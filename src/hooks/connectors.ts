@@ -1,6 +1,6 @@
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { InjectedConnector as KlaytnConnector } from 'klaytn-connector';
-import { InjectedConnector as AbcConnector } from 'klaytn-connector';
+import { InjectedConnector as AbcConnector } from 'abc-connector';
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector';
 import { ChainId, RPC_URLS } from '../config';
 
