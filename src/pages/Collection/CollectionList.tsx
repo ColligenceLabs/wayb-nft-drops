@@ -9,6 +9,7 @@ import {
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CSnackbar from '../../components/common/CSnackbar';
 import { getPrice } from '../../utils/getPrice';
+import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 
 type CollectionListProps = {
   featuredId: string | null;
@@ -150,7 +151,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div>erc721</div>
+                  <div>{getNetworkNameByChainId(item.chainId)}</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card">

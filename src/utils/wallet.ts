@@ -173,10 +173,10 @@ export const getTargetWallet = (chainId: number, wallet: any) => {
 };
 
 export const checkKaikas = (library: any) => {
-  return (
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:'
-  );
+  return library.provider.isWalletConnect
+    ? false
+    : library.connection.url !== 'metamask' ||
+        library.connection.url === 'eip-1193:';
 };
 
 export const checkConnectWallet = async (

@@ -10,6 +10,7 @@ import {
 import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from 'hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
+import env from '../../../env';
 
 type KlaytnWalletsProps = {
   close: any;
@@ -22,6 +23,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
   const [doSign, setDoSign] = useState<boolean>(false);
+  const [errMsg, setErrMsg] = useState('');
 
   const tokenGenerator = useCreateToken(setDoSign);
 
@@ -67,13 +69,15 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
-        console.log(`click ${id}, this is Wallet Connector (Klaytn)`);
+        console.log(`click ${id}, this is Wallet Connect (Klaytn)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
         console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
+        const wc = walletconnect(true);
+        await activate(wc, undefined, true);
       } else {
         console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
@@ -83,8 +87,15 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
       close();
-    } catch (e) {
-      console.log('connect wallet error', e);
+    } catch (e: any) {
+      console.log('connect wallet error : ', e);
+      const error: string = e.message;
+      if (error.includes('Unsupported'))
+        setErrMsg(
+          `모바일 지갑의 네트워크를 ${
+            env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
+          }(으)로 변경하세요.`
+        );
     }
   };
   return (
@@ -112,6 +123,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
           </button>
         ))}
       </div>
+      <div className="error-message">{errMsg}</div>
     </div>
   );
 };

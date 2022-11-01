@@ -13,6 +13,7 @@ const initialState = {
   klaytn: {},
   solana: {},
   binance: {},
+  polygon: {},
 };
 
 const slice = createSlice({
@@ -24,6 +25,7 @@ const slice = createSlice({
       state.klaytn = {};
       state.solana = {};
       state.binance = {};
+      state.polygon = {};
     },
     // HAS ERROR
     hasError(state, action) {
@@ -58,6 +60,10 @@ const slice = createSlice({
       state.solana = action.payload;
     },
 
+    setPolygon(state, action) {
+      state.polygon = action.payload;
+    },
+
     setEthereum(state, action) {
       state.ethereum = action.payload;
     },
@@ -83,6 +89,7 @@ export const {
   setSolana,
   setEthereum,
   setBinance,
+  setPolygon,
 } = slice.actions;
 
 // ----------------------------------------------------------------------

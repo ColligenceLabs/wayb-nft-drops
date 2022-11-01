@@ -10,6 +10,7 @@ import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
+import env from '../../../env';
 
 type BinanceWalletsProps = {
   close: any;
@@ -22,6 +23,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
   const [doSign, setDoSign] = useState<boolean>(false);
+  const [errMsg, setErrMsg] = useState('');
   const tokenGenerator = useCreateToken(setDoSign);
 
   useEffect(() => {
@@ -65,13 +67,15 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
-        console.log(`click ${id}, this is Wallet Connector (Binance)`);
+        console.log(`click ${id}, this is Wallet Connect (Binance)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
         console.log(`click ${id}, this is Talken (Binance)`);
         // setWalletName('talken');
+        const wc = walletconnect(true);
+        await activate(wc, undefined, true);
       } else {
         console.log(`click ${id}, this is Kaikas (Binance)`);
         // setWalletName('kaikas');
@@ -80,8 +84,17 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
       }
       window.localStorage.setItem('walletStatus', 'connected');
       close();
-    } catch (e) {
+    } catch (e: any) {
       console.log('connect wallet error', e);
+      const error: string = e.message;
+      if (error.includes('Unsupported'))
+        setErrMsg(
+          `모바일 지갑의 네트워크를 ${
+            env.REACT_APP_TARGET_NETWORK_BNB === 97
+              ? 'BSC Testnet'
+              : 'BSC Mainnet'
+          }(으)로 변경하세요.`
+        );
     }
   };
   return (
@@ -109,6 +122,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
           </button>
         ))}
       </div>
+      {errMsg}
     </div>
   );
 };
