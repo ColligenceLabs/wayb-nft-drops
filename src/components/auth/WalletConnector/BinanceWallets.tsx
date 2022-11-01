@@ -90,7 +90,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
       if (error.includes('Unsupported'))
         setErrMsg(
           `모바일 지갑의 네트워크를 ${
-            env.REACT_APP_TARGET_NETWORK_KLAY === 97
+            env.REACT_APP_TARGET_NETWORK_BNB === 97
               ? 'BSC Testnet'
               : 'BSC Mainnet'
           }(으)로 변경하세요.`
