@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import background from '../../assets/img/home_01.png';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -128,8 +129,8 @@ const Homepage = () => {
 
   return (
     <div className="home-page min-height-content">
-      {/* section 01 */}
-      <div className="section-01">
+      {/* <div className="section001">
+        <img src={background} alt="" />
         <div className="content-header">
           <div className="text-head">
             OFFICIALLY <br />
@@ -141,39 +142,59 @@ const Homepage = () => {
             leading teams, brands, and artists
           </div>
         </div>
-        <div className="carousel-main-page">
-          <Carousel
-            {...carouselOption}
-            customButtonGroup={<ArrowCarouselBannerMain />}
-            centerMode={screenSize > 1023}
-            dotListClass="custom-dot"
-            containerClass="container-with-dots home-carousel"
-            responsive={{
-              desktop: {
-                breakpoint: {
-                  max: 3000,
-                  min: 0,
+      </div> */}
+      {/* section 01 */}
+      <div className="section-01">
+        <div className="background-section-01">
+          <img src={background} alt="" />
+        </div>
+        <div className="wrapper-section01">
+          <div className="content-header">
+            <div className="text-head">
+              OFFICIALLY <br />
+              LICENSED
+            </div>
+            <div className="text-bottom">
+              NFTs and Collectibles from the world&apos;s
+              <br />
+              leading teams, brands, and artists
+            </div>
+          </div>
+          <div className="carousel-main-page">
+            <Carousel
+              {...carouselOption}
+              customButtonGroup={<ArrowCarouselBannerMain />}
+              renderButtonGroupOutside={false}
+              centerMode={screenSize > 1023}
+              dotListClass="custom-dot"
+              containerClass="container-with-dots home-carousel"
+              responsive={{
+                desktop: {
+                  breakpoint: {
+                    max: 3000,
+                    min: 0,
+                  },
+                  items: 1,
+                  partialVisibilityGutter: 40,
                 },
-                items: 1,
-                partialVisibilityGutter: 40,
-              },
-            }}
-          >
-            {slideData !== null &&
-              slideData.map((item: FeaturedTypes, index) => {
-                return (
-                  <div
-                    className="slide-item"
-                    key={index}
-                    onClick={() => navigateToUrl(item)}
-                  >
-                    <div>
-                      <img src={item.eventBanner!} alt="" draggable={false} />
+              }}
+            >
+              {slideData !== null &&
+                slideData.map((item: FeaturedTypes, index) => {
+                  return (
+                    <div
+                      className="slide-item"
+                      key={index}
+                      onClick={() => navigateToUrl(item)}
+                    >
+                      <div>
+                        <img src={item.eventBanner!} alt="" draggable={false} />
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-          </Carousel>
+                  );
+                })}
+            </Carousel>
+          </div>
         </div>
       </div>
       {/* section 02 */}

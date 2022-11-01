@@ -13,7 +13,7 @@
   .nav-home {
     position: absolute;
     width: 100%;
-    height: 150px;
+    height: 66px;
     top: 0px;
     background-image: linear-gradient(
       rgb(0, 0, 0),
@@ -27,7 +27,7 @@
   .nav-other-page {
     position: absolute;
     width: 100%;
-    // height: 100px;
+    // height: 100px;s
     top: 0px;
     background: #02021e;
     opacity: 1;
@@ -53,155 +53,184 @@
       }
     }
 
-    .search-bar {
+    // .search-bar {
+    //   display: flex;
+    //   -webkit-box-align: center;
+    //   align-items: center;
+    //   height: calc(40px - 5px);
+    //   background-color: #ffffff1a;
+    //   border-radius: 5px;
+    //   position: relative;
+    //   flex: 1 1 0%;
+
+    //   .search-icon {
+    //     margin: 0px 5px 0px 20px;
+    //     line-height: 50px;
+    //     width: 18px;
+    //     height: 18px;
+    //   }
+
+    //   .input-search {
+    //     width: calc(100% - 60px);
+    //     display: block;
+    //     margin: 0px -15px 0px 0px;
+    //     padding: 0px;
+    //     height: 100%;
+    //     color: white;
+    //     font-size: 90%;
+    //     background-color: transparent;
+    //     border: 0px;
+    //     overflow: visible;
+    //     outline: none;
+    //   }
+    // }
+    .nav-right {
       display: flex;
-      -webkit-box-align: center;
       align-items: center;
-      height: calc(40px - 5px);
-      background-color: #ffffff1a;
-      border-radius: 5px;
-      position: relative;
-      flex: 1 1 0%;
-
-      .search-icon {
-        margin: 0px 5px 0px 20px;
-        line-height: 50px;
-        width: 18px;
-        height: 18px;
-      }
-
-      .input-search {
-        width: calc(100% - 60px);
-        display: block;
-        margin: 0px -15px 0px 0px;
-        padding: 0px;
-        height: 100%;
-        color: white;
-        font-size: 90%;
-        background-color: transparent;
-        border: 0px;
-        overflow: visible;
-        outline: none;
-      }
-    }
-
-    .contact-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 600;
-      width: 150px;
-
-      a {
-        color: #ffffff;
-        text-decoration: none;
-        cursor: pointer;
-        font: inherit;
-      }
-    }
-
-    .fanpage-icons {
-      border-left: 1px solid #ffffff;
-      height: 20px;
-      display: flex;
-      justify-content: space-evenly;
-      width: 150px;
-      flex-shrink: 0;
-      a {
-        display: inline-block;
-        height: 100%;
-        cursor: pointer;
-        width: 32px;
-
-        img {
-          width: 80%;
-        }
-      }
-    }
-    // before login PC view
-    .btn-login {
-      .custom-btn {
-        width: 142px;
-        height: 44px;
-        background: #2f80ed;
-        border-radius: 5px;
-        margin-right: 40px;
-        display: none;
-        .custom-text {
-          font-weight: 700;
-          color: white;
-        }
-      }
-    }
-    // before login Tablet, Mobile view
-    .icon-nav {
-      margin-right: 40px;
-      display: none;
-    }
-    //after login
-    .btn-wallets {
-      height: 45px;
-      // margin-right: 40px;
-      // display: none;
-      .custom-btn {
+      gap: 15px;
+      .contact-header {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        width: 140px;
-        height: 40px;
-        top: 30px;
-        background: #323232;
-        border-radius: 5px;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: 600;
+        width: 150px;
 
-        .wrapper-btn {
-          display: flex;
-          align-items: center;
-          gap: 5px;
+        a {
+          color: #ffffff;
+          text-decoration: none;
+          cursor: pointer;
+          font: inherit;
+        }
+      }
 
-          .wallets {
-            font-size: 16px;
-            font-weight: 500;
-            color: #4c9cf9
+      .fanpage-icons {
+        border-left: 1px solid #ffffff;
+        height: 20px;
+        display: flex;
+        justify-content: space-evenly;
+        width: 150px;
+        flex-shrink: 0;
+        a {
+          display: inline-block;
+          height: 100%;
+          cursor: pointer;
+          width: 32px;
+
+          img {
+            width: 80%;
           }
         }
       }
-    }
-    .wrapper-user {
-      display: flex;
-      align-items: center;
-      background-color: transparent;
-      position: relative;
-      align-self: center;
-      gap: 10px;
-      // display: none;
+      // before login PC view
+      .btn-login {
+        .custom-btn {
+          width: 142px;
+          height: 44px;
+          background: #2f80ed;
+          border-radius: 5px;
+          margin-right: 40px;
+          display: none;
+          .custom-text {
+            font-weight: 700;
+            color: white;
+          }
+        }
+      }
+      // before login Tablet, Mobile view
+      .icon-nav {
+        margin-right: 40px;
+        display: none;
+      }
+      //after login
+      .btn-wallets {
+        height: 45px;
+        opacity: 0.8;
+        // margin-right: 40px;
+        // display: none;
+        .custom-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          width: 140px;
+          height: 45px;
+          top: 30px;
+          background: #323232;
+          border-radius: 5px;
 
-      .avatar-user {
-        width: 26px;
-        height: 26px;
+          .wrapper-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
 
-        img {
+            .wallets {
+              font-size: 16px;
+              font-weight: 500;
+              color: #4c9cf9;
+            }
+          }
+        }
+      }
+      .wallet-connected {
+        width: 180px;
+        height: 45px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #113577;
+        padding: 0 10px;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        // opacity: 0.8;
+        .item-wallet {
+          width: 36px;
+          height: 36px;
+          border-radius: 100%;
+          background-color: #ffffff;
+          opacity: 0.8;
+          img {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+      .wrapper-user {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        position: relative;
+        align-self: center;
+        gap: 10px;
+        opacity: 0.8;
+        // display: none;
+
+        .avatar-user {
           width: 26px;
           height: 26px;
-          object-fit: cover;
-          border-radius: 50%;
-          background-color: #ffffff;
+
+          img {
+            width: 26px;
+            height: 26px;
+            object-fit: cover;
+            border-radius: 50%;
+            background-color: #ffffff;
+          }
+        }
+
+        .user-name {
+          font-weight: 500;
+          line-height: 36px;
+          order: 1;
+          white-space: nowrap;
         }
       }
 
-      .user-name {
-        font-weight: 500;
-        line-height: 36px;
-        order: 1;
-        white-space: nowrap;
+      .username-dropdown {
+        background-color: transparent;
+        margin-right: 40px;
+        padding: 0;
+        // display: none;
       }
-    }
-
-    .username-dropdown {
-      background-color: transparent;
-      margin-right: 40px;
-      padding: 0;
-      // display: none;
     }
 
     //modal wallets box
@@ -219,14 +248,14 @@
       box-shadow: #113577 -5px 5px 20px;
     }
   }
-  @media (max-width: 1024px) {
-    .main-header-box {
-      gap: 10px;
-      .logo-header {
-        width: 120px;
-      }
-    }
-  }
+  // @media (max-width: 1024px) {
+  //   .main-header-box {
+  //     gap: 10px;
+  //     .logo-header {
+  //       width: 120px;
+  //     }
+  //   }
+  // }
   @include Tablet() {
     z-index: 400;
     padding-bottom: 0;
@@ -273,7 +302,7 @@
     }
     .main-header-box {
       .logo-header {
-        width: 100px;
+        // width: 100px;
         margin-left: 20px;
         img {
           width: 100%;
@@ -288,29 +317,31 @@
           height: 18px;
         }
       }
-      .contact-header {
-        display: none;
-      }
-      .fanpage-icons {
-        display: none;
-      }
-      .btn-login {
-        display: none;
-      }
-      .btn-wallets {
-        display: none;
-      }
-      .wrapper-user {
-        display: none;
-      }
-      .username-dropdown {
-        display: none;
-      }
-      .icon-nav {
-        display: block;
-        margin-right: 20px;
-        .button {
-          padding: 0;
+      .nav-right {
+        .contact-header {
+          display: none;
+        }
+        .fanpage-icons {
+          display: none;
+        }
+        .btn-login {
+          display: none;
+        }
+        .btn-wallets {
+          display: none;
+        }
+        .wrapper-user {
+          display: none;
+        }
+        .username-dropdown {
+          display: none;
+        }
+        .icon-nav {
+          display: block;
+          margin-right: 20px;
+          .button {
+            padding: 0;
+          }
         }
       }
     }
@@ -322,7 +353,7 @@
     }
     .main-header-box {
       .logo-header {
-        width: 100px;
+        // width: 100px;
         margin-left: 20px;
         img {
           width: 100%;
@@ -367,8 +398,8 @@
 }
 
 .scroll-top {
-    -webkit-backdrop-filter: blur(0);
-    backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
 }
 
 //navbar tablet and mobile

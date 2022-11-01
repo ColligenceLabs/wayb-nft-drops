@@ -8,7 +8,7 @@ const StudioLayout = () => {
   return (
     <>
       <div className={`${location.pathname === '/' ? 'main' : ''}`}>
-        <div className="background-section01"></div>
+        {/* <div className="background-section01"></div> */}
         <Navbar />
         <Outlet />
         <Footer />
