@@ -9,6 +9,7 @@ import useScreenSize from 'components/common/useScreenSize';
 import { hotCollectiblesTestData } from './mockData';
 import {
   getAirdropList,
+  getCollectibleList,
   getCollectionList,
   getEventList,
   getFeaturedCollections,
@@ -23,6 +24,9 @@ import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { getPrice } from '../../utils/getPrice';
 import ArrowCarouselBannerMain from 'components/common/ArrowCarouselBannerMain';
+import { getRarityToString } from '../../utils/getRarityToString';
+import { getNetworkNameByChainId } from 'utils/getNetworkNameByChainId';
+import { getNetworkNameById } from '../../utils/getNetworkNameById';
 
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
@@ -37,6 +41,7 @@ const Homepage = () => {
     FeaturedTypes[]
   >([]);
   const [collectionList, setCollectionList] = useState<ExMBoxType[]>([]);
+  const [collectibleList, setCollectibleList] = useState<ExMBoxType[]>([]);
   const [airdropList, setAirdropList] = useState<ExMBoxType[]>([]);
   const navigateToUrl = (item: FeaturedTypes) => {
     if (item.eventUrl) {
@@ -81,6 +86,21 @@ const Homepage = () => {
       }
     };
 
+    const fetchCollectibleList = async () => {
+      const res = await getCollectibleList();
+      if (res.data.data) {
+        const newList = await Promise.all(
+          res.data.data.map(async (item: any) => {
+            const id = Math.floor(
+              Math.random() * item.mysteryboxItems[0].issueAmount
+            );
+            return { ...item, itemId: id };
+          })
+        );
+        setCollectibleList(newList);
+      }
+    };
+
     const fetchAirdropList = async () => {
       const res = await getAirdropList();
       if (res.data.data.list) {
@@ -100,6 +120,7 @@ const Homepage = () => {
 
     fetchSlideData();
     fetchFeaturedCollections();
+    fetchCollectibleList();
     fetchCollectionList();
     fetchAirdropList();
   }, [library]);
@@ -265,7 +286,7 @@ const Homepage = () => {
             </Carousel>
           )}
         </div>
-        {/* Hot Collectibles */}
+
         <div className="page-grid">
           <div className="title-header">Talken Drops</div>
           {collectionList && (
@@ -359,7 +380,7 @@ const Homepage = () => {
                         </span>
                       </div>
                       <div className="hot-ollectibles-item">
-                        <div>erc721</div>
+                        <div>{getNetworkNameById(item.chainId)}</div>
                       </div>
                       <div className="hot-ollectibles-item">
                         <div className="img-token">
@@ -523,6 +544,144 @@ const Homepage = () => {
         {/* Free Drops */}
         <div className="page-grid">
           <div className="title-header">Hot Collectibles</div>
+          {collectibleList && (
+            <Carousel
+              {...carouselOption}
+              arrows={false}
+              renderButtonGroupOutside
+              customButtonGroup={<CustomArrowCarousel />}
+              keyBoardControl
+              removeArrowOnDeviceType=""
+              containerClass="container hot-collectibles"
+              responsive={{
+                desktop: {
+                  breakpoint: {
+                    max: 3000,
+                    min: 1420,
+                  },
+                  items: 5,
+                  partialVisibilityGutter: 40,
+                },
+                mobile: {
+                  breakpoint: {
+                    max: 640,
+                    min: 0,
+                  },
+                  items: 1,
+                  partialVisibilityGutter: 30,
+                },
+                tablet: {
+                  breakpoint: {
+                    max: 1024,
+                    min: 640,
+                  },
+                  items: 2,
+                  partialVisibilityGutter: 30,
+                },
+                laptopLarge: {
+                  breakpoint: {
+                    max: 1420,
+                    min: 1180,
+                  },
+                  items: 4,
+                  partialVisibilityGutter: 30,
+                },
+                laptop: {
+                  breakpoint: {
+                    max: 1180,
+                    min: 1024,
+                  },
+                  items: 3,
+                  partialVisibilityGutter: 30,
+                },
+              }}
+              showDots={false}
+            >
+              {collectibleList
+                // .filter((item) => item.price === null || item.price === 0)
+                .map((item: any, index) => {
+                  return (
+                    <Link
+                      to={`/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
+                      state={{
+                        item: {
+                          ...item,
+                          companyLogo: item.featured.company.image,
+                          companyName: item.featured.companyId,
+                          quote: item.quote,
+                        },
+                      }}
+                      className="button custom-box"
+                      key={index}
+                    >
+                      <div className="hot-ollectibles-wrapper">
+                        <div className="header-left hot-ollectibles-item">
+                          <span className="total-run">
+                            {`#${item.itemId}/${item.mysteryboxItems[0]?.issueAmount}`}
+                          </span>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div>{getNetworkNameById(item.chainId)}</div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="img-token">
+                            <img
+                              src={item.mysteryboxItems[0]?.imageLink}
+                              alt=""
+                              draggable={false}
+                            />
+                          </div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="wrapper-item">
+                            <div className="content-left">
+                              <div className="avatar">
+                                <img
+                                  src={item.packageImage}
+                                  alt=""
+                                  draggable={false}
+                                />
+                              </div>
+                              <div className="name-label">
+                                {item.featured.company.name.en}
+                              </div>
+                            </div>
+                            <div className="content-right">Buy Now</div>
+                          </div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="product-name">
+                            {item.mysteryboxItems[0]?.name}
+                          </div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="name-label">{item.details}</div>
+                        </div>
+                        <div className="hot-ollectibles-item">
+                          <div className="wrapper-price">
+                            <div className="price-header">Price</div>
+                            <div className="current-price">
+                              {getPrice(item.price, item.quote)}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="hot-ollectibles-item">
+                          <div className="wrapper-remaining">
+                            <div className="remaining-header">Rarity</div>
+                            <div className="quantity-remaining">
+                              {getRarityToString(
+                                item.mysteryboxItems[0].rarity
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </Carousel>
+          )}
         </div>
         {/* Free Drops */}
         <div className="page-grid">
@@ -604,7 +763,7 @@ const Homepage = () => {
                           </span>
                         </div>
                         <div className="hot-ollectibles-item">
-                          <div>erc721</div>
+                          <div>{getNetworkNameById(item.chainId)}</div>
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
