@@ -88,7 +88,9 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
       console.log('connect wallet error', e);
       setErrMsg(
         `모바일 지갑의 네트워크를 ${
-          env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
+          env.REACT_APP_TARGET_NETWORK_KLAY === 97
+            ? 'BSC Testnet'
+            : 'BSC Mainnet'
         }(으)로 변경하세요.`
       );
     }
