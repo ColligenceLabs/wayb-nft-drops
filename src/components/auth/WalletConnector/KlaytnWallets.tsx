@@ -87,13 +87,15 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
       close();
-    } catch (e) {
-      console.log('connect wallet error', e);
-      setErrMsg(
-        `모바일 지갑의 네트워크를 ${
-          env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
-        }(으)로 변경하세요.`
-      );
+    } catch (e: any) {
+      console.log('connect wallet error : ', e);
+      const error: string = e.message;
+      if (error.includes('Unsupported'))
+        setErrMsg(
+          `모바일 지갑의 네트워크를 ${
+            env.REACT_APP_TARGET_NETWORK_KLAY === 1001 ? 'Baobab' : 'Cypress'
+          }(으)로 변경하세요.`
+        );
     }
   };
   return (
