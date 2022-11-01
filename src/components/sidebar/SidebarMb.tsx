@@ -44,7 +44,7 @@ const SidebarMb = () => {
               <img src={close_icon} alt="Close Icon" />
             </div>
           </div>
-          <div
+          {/* <div
             className="login-signup"
             onClick={() => {
               setLoginOpen(true);
@@ -52,7 +52,7 @@ const SidebarMb = () => {
             }}
           >
             <span>Connect Wallet</span>
-          </div>
+          </div> */}
           <div className="wrapper">
             <a
               href="https://docs.talken.io/talken-docs/"

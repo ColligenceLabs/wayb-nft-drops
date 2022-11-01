@@ -28,7 +28,7 @@ const Collections = () => {
         {/* Featured Collections */}
         <div className="featured-collections">
           <div className="wrapper-header title-header">
-            <div className="header-name">All Featured</div>
+            <div className="header-name">All Creators</div>
           </div>
           <div className="grid-container">
             {featuredCollections.map((item: FeaturedTypes, index) => (

@@ -1,6 +1,6 @@
 import detectEthereumProvider from '@metamask/detect-provider';
 import { ChainId, NETWORK_NAME, SCAN_URL, RPC_URLS } from '../config';
-import { injected, kaikas, walletconnect } from '../hooks/connectors';
+import { injected, kaikas, abc, walletconnect } from '../hooks/connectors';
 let provider: any;
 
 const addNetwork = async (chainId: number | undefined) => {

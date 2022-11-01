@@ -50,7 +50,7 @@ const UsernameBox = () => {
         </div>
       </div>
       <div className="wrapper-dropdown">
-        <div className="wrapper-wallets">
+        {/* <div className="wrapper-wallets">
           <div
             className="btn-wallets button"
             onClick={(e) => {
@@ -64,7 +64,7 @@ const UsernameBox = () => {
             </div>
             <div>Wallets</div>
           </div>
-        </div>
+        </div> */}
         <Link
           to={'/my-collectibles'}
           className="wallet-button"
