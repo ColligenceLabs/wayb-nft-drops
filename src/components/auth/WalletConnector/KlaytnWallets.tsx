@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Wallets } from './Wallets';
 import { useDispatch, useSelector } from 'react-redux';
 import { useWeb3React } from '@web3-react/core';
-import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
+import {
+  injected,
+  kaikas,
+  abc,
+  walletconnect,
+} from '../../../hooks/connectors';
 import {
   setActivatingConnector,
   setKlaytn,

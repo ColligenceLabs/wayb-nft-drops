@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
 
-import { injected, kaikas, walletconnect } from './connectors';
+import { injected, kaikas, abc, walletconnect } from './connectors';
 import env from '../env';
 import useActiveWeb3React from './useActiveWeb3React';
 import { setupNetwork } from '../utils/wallet';
