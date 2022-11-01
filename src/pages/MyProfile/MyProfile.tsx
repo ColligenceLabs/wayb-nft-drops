@@ -26,7 +26,13 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchMyNfts = async () => {
-      const talkenUid = '';
+      const talkenData = localStorage.getItem('talken.data');
+      let _talkenData;
+      let talkenUid = '';
+      if (talkenData) {
+        _talkenData = JSON.parse(talkenData);
+        talkenUid = _talkenData.uid;
+      }
       if (dropsAccount.address) {
         const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
         console.log(res.data);
