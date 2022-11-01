@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import background from '../../assets/img/home_01.png';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
 import { hotCollectiblesTestData } from './mockData';
 import {
@@ -53,6 +53,30 @@ const Homepage = () => {
       );
     }
   };
+
+  function useQuery() {
+    const { search } = useLocation();
+    return useMemo(() => new URLSearchParams(search), [search]);
+  }
+
+  const params = useQuery();
+  const uid = params.get('uid');
+  const ethAddress = params.get('ethAddress');
+
+  const storeTalkenData = (uid: string, ethAddress: string) => {
+    console.log('param is', uid);
+    console.log('eth is', ethAddress);
+    const storeSet = { uid: uid, ethAddress: ethAddress.toLowerCase() };
+    const _storeSet = JSON.stringify(storeSet);
+    localStorage.setItem('talken.data', _storeSet);
+  };
+
+  useEffect(() => {
+    if (uid && ethAddress) {
+      storeTalkenData(uid, ethAddress);
+    }
+    navigate('/');
+  }, []);
 
   useEffect(() => {
     const fetchSlideData = async () => {
