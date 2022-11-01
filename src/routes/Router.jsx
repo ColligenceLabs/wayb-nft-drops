@@ -55,7 +55,10 @@ const Router = () => [
         path: '/klaytn/airdrop/:collectionId/:id',
         element: <CollectionSaleDetail />,
       },
-      { path: '/klaytn/nft/:id', element: <ItemDetails /> },
+      {
+        path: '/klaytn/:contractAddress/:itemNo/:id',
+        element: <ItemDetails />,
+      },
     ],
   },
   {

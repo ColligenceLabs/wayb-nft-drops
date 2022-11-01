@@ -602,7 +602,7 @@ const Homepage = () => {
                 .map((item: any, index) => {
                   return (
                     <Link
-                      to={`/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
+                      to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
                       state={{
                         item: {
                           ...item,
