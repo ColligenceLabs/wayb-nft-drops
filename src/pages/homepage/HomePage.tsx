@@ -161,7 +161,7 @@ const Homepage = () => {
     pauseOnHover: true,
     renderArrowsWhenDisabled: false,
     renderButtonGroupOutside: true,
-    renderDotsOutside: false,
+    renderDotsOutside: true,
     rewind: false,
     rewindWithAnimation: false,
     rtl: false,
@@ -193,18 +193,19 @@ const Homepage = () => {
         <div className="background-section-01">
           <img src={background} alt="" />
         </div>
-        <div className="wrapper-section01">
-          <div className="content-header">
-            <div className="text-head">
-              OFFICIALLY <br />
-              LICENSED
-            </div>
-            <div className="text-bottom">
-              NFTs and Collectibles from the world&apos;s
-              <br />
-              leading teams, brands, and artists
-            </div>
+        {/* <img src={background} alt="" /> */}
+        <div className="content-header">
+          <div className="text-head">
+            OFFICIALLY <br />
+            LICENSED
           </div>
+          <div className="text-bottom">
+            NFTs and Collectibles from the world&apos;s
+            <br />
+            leading teams, brands, and artists
+          </div>
+        </div>
+        <div>
           <div className="carousel-main-page">
             <Carousel
               {...carouselOption}
@@ -241,6 +242,9 @@ const Homepage = () => {
             </Carousel>
           </div>
         </div>
+        {/* <div className="wrapper-section01">
+          
+        </div> */}
       </div>
       {/* section 02 */}
       <div className="section-02">
