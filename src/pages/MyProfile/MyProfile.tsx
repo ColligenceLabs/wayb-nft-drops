@@ -26,8 +26,15 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchMyNfts = async () => {
+      const talkenData = localStorage.getItem('talken.data');
+      let _talkenData;
+      let talkenUid = null;
+      if (talkenData) {
+        _talkenData = JSON.parse(talkenData);
+        talkenUid = _talkenData.uid;
+      }
       if (dropsAccount.address) {
-        const res = await getMyMBoxList(dropsAccount.address, 'ASC');
+        const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
         console.log(res.data);
         if (res.data.status === 1) {
           setNNfts(res.data.data.length);

@@ -64,8 +64,6 @@ const Homepage = () => {
   const ethAddress = params.get('ethAddress');
 
   const storeTalkenData = (uid: string, ethAddress: string) => {
-    console.log('param is', uid);
-    console.log('eth is', ethAddress);
     const storeSet = { uid: uid, ethAddress: ethAddress.toLowerCase() };
     const _storeSet = JSON.stringify(storeSet);
     localStorage.setItem('talken.data', _storeSet);

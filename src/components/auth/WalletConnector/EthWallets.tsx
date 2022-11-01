@@ -6,7 +6,12 @@ import {
   setEthereum,
   setActivatingConnector,
 } from '../../../redux/slices/wallet';
-import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
+import {
+  injected,
+  kaikas,
+  abc,
+  walletconnect,
+} from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 
 const EthWallets = () => {
