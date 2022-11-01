@@ -7,7 +7,7 @@ import icon_twitter from '../../assets/icon/twitter.png';
 import icon_discord from '../../assets/icon/discord.png';
 import icon_ethereum from '../../assets/img/icon_ethereum.png';
 import icon_binance from '../../assets/img/icon_binance.png';
-import icon_solana from '../../assets/img/icon_solana.png';
+import icon_polygon from 'assets/icon/icon_polygon.png';
 import icon_klaytn from '../../assets/img/icon_klaytn.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
@@ -165,7 +165,7 @@ const Navbar = () => {
               </span>
             </button>
           </div>
-          <div className="wallet-connected">
+          {/* <div className="wallet-connected">
             <button type="button" className="item-wallet button">
               <img src={icon_ethereum} />
             </button>
@@ -173,12 +173,12 @@ const Navbar = () => {
               <img src={icon_binance} />
             </button>
             <button type="button" className="item-wallet button">
-              <img src={icon_solana} />
+              <img src={icon_polygon} />
             </button>
             <button type="button" className="item-wallet button">
               <img src={icon_klaytn} />
             </button>
-          </div>
+          </div> */}
           {dropsAccount.address !== '' && screenSize > 540 ? (
             <>
               <div className="wrapper-user">
