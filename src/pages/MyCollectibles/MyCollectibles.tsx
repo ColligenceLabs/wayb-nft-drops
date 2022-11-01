@@ -150,9 +150,10 @@ const MyCollectibles = () => {
 
   useEffect(() => {
     const fetchMyMBoxList = async () => {
+      const talkenUid = '';
       if (account) {
         const sort = selectedIndex !== 0 ? 'ASC' : 'DESC';
-        const res = await getMyMBoxList(account, sort);
+        const res = await getMyMBoxList(account, talkenUid, sort);
         if (res.data.status === 1) {
           setMyMBoxList(res.data.data);
         }
