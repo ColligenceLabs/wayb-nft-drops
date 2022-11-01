@@ -123,7 +123,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
           </button>
         ))}
       </div>
-      {errMsg}
+      <div className="error-message">{errMsg}</div>
     </div>
   );
 };
