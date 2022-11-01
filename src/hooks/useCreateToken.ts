@@ -26,9 +26,10 @@ const useCreateToken = (setDoSign: SetStateAction<any>) => {
     localStorage.removeItem('dropsJwtToken');
 
     if (library !== undefined) {
-      const isKaikas =
-        library?.connection.url !== 'metamask' ||
-        library?.connection.url === 'eip-1193:';
+      const isKaikas = library.provider.isWalletConnect
+        ? false
+        : library?.connection.url !== 'metamask' ||
+          library?.connection.url === 'eip-1193:';
 
       try {
         let token;
