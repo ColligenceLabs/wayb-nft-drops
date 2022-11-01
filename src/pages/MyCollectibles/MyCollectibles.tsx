@@ -152,7 +152,7 @@ const MyCollectibles = () => {
     const fetchMyMBoxList = async () => {
       const talkenData = localStorage.getItem('talken.data');
       let _talkenData;
-      let talkenUid = '';
+      let talkenUid = null;
       if (talkenData) {
         _talkenData = JSON.parse(talkenData);
         talkenUid = _talkenData.uid;
