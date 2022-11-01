@@ -33,6 +33,7 @@ import {
 import WalletConnector from '../auth/WalletConnector/WalletConnector';
 import useScreenSize from 'components/common/useScreenSize';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
+import splitAddress from '../../utils/splitAddress';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -185,7 +186,7 @@ const Navbar = () => {
                   <img src={icon_klaytn} />
                 </button>
               )}
-              <p className="account">{account?.substring(0, 4)}</p>
+              <p className="account">{splitAddress(account)}</p>
             </div>
           ) : (
             <div
