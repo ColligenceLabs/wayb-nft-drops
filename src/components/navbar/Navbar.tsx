@@ -82,39 +82,6 @@ const Navbar = () => {
     }
   };
 
-  const getWalletButtons = () => {
-    return (
-      <div className="wallet-connected" onClick={() => setLoginOpen(true)}>
-        {wallets.ethereum.address && wallets.ethereum.address !== '' && (
-          <button type="button" className="item-wallet button">
-            <img src={icon_ethereum} />
-          </button>
-        )}
-        {wallets.binance.address && wallets.binance.address !== '' && (
-          <button type="button" className="item-wallet button">
-            <img src={icon_binance} />
-          </button>
-        )}
-        {/*{wallets.solana.address && wallets.solana.address !== '' && (*/}
-        {/*  <button type="button" className="item-wallet button">*/}
-        {/*    <img src={icon_solana} />*/}
-        {/*  </button>*/}
-        {/*)}*/}
-        {wallets.polygon.address && wallets.polygon.address !== '' && (
-          <button type="button" className="item-wallet button">
-            <img src={icon_polygon} />
-          </button>
-        )}
-        {wallets.klaytn.address && wallets.klaytn.address !== '' && (
-          <button type="button" className="item-wallet button">
-            <img src={icon_klaytn} />
-          </button>
-        )}
-        <p className="account">{account?.substring(0, 4)}</p>
-      </div>
-    );
-  };
-
   const location = useLocation();
   return (
     <div className={scroll ? 'nav-bar' : 'nav-bar scroll-top'}>
@@ -176,19 +143,50 @@ const Navbar = () => {
             </a>
           </div>
           {/* before login PC view */}
-          {/* <div className="btn-login">
-          <button
-            className="custom-btn button"
-            onClick={() => setLoginOpen(true)}
-          >
-            <span className="custom-text">Connect Wallet</span>
-          </button>
-        </div> */}
+          {/*  /!* <div className="btn-login">*/}
+          {/*  <button*/}
+          {/*    className="custom-btn button"*/}
+          {/*    onClick={() => setLoginOpen(true)}*/}
+          {/*  >*/}
+          {/*    <span className="custom-text">Connect Wallet</span>*/}
+          {/*  </button>*/}
+          {/*</div> *!/*/}
 
           {/* after login */}
 
           {dropsAccount.address !== '' && account ? (
-            getWalletButtons()
+            // getWalletButtons()
+            <div
+              className="wallet-connected"
+              onClick={() => setLoginOpen(true)}
+            >
+              {wallets.ethereum.address && wallets.ethereum.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_ethereum} />
+                </button>
+              )}
+              {wallets.binance.address && wallets.binance.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_binance} />
+                </button>
+              )}
+              {/*{wallets.solana.address && wallets.solana.address !== '' && (*/}
+              {/*  <button type="button" className="item-wallet button">*/}
+              {/*    <img src={icon_solana} />*/}
+              {/*  </button>*/}
+              {/*)}*/}
+              {wallets.polygon.address && wallets.polygon.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_polygon} />
+                </button>
+              )}
+              {wallets.klaytn.address && wallets.klaytn.address !== '' && (
+                <button type="button" className="item-wallet button">
+                  <img src={icon_klaytn} />
+                </button>
+              )}
+              <p className="account">{account?.substring(0, 4)}</p>
+            </div>
           ) : (
             <div
               className={`btn-wallets ${
