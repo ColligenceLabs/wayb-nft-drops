@@ -6,7 +6,12 @@ import {
   setActivatingConnector,
   setBinance,
 } from '../../../redux/slices/wallet';
-import { injected, kaikas, walletconnect } from '../../../hooks/connectors';
+import {
+  injected,
+  kaikas,
+  abc,
+  walletconnect,
+} from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
