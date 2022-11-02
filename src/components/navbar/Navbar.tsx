@@ -222,7 +222,9 @@ const Navbar = () => {
                     alt="profile-avatar"
                   />
                 </div>
-                <p className="user-name">{splitString(dropsAccount.name)}</p>
+                <p className="user-name mb-0">
+                  {splitString(dropsAccount.name)}
+                </p>
               </div>
               <button
                 ref={ref}
