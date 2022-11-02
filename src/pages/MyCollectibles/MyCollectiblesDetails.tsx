@@ -345,15 +345,15 @@ const MyCollectiblesDetails = () => {
             <div className="line-banner"></div>
             <div className="name-product">{mboxInfo?.title.en}</div>
             <div className="sub-product">{mboxInfo?.introduction.en}</div>
-            <a
-              target="_blank"
-              href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
-              className="authenticity-button"
-              rel="noreferrer"
-            >
-              <img src={ic_authenticity} alt="authenticity-icon" />
-              Authenticity
-            </a>
+            {/*<a*/}
+            {/*  target="_blank"*/}
+            {/*  href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"*/}
+            {/*  className="authenticity-button"*/}
+            {/*  rel="noreferrer"*/}
+            {/*>*/}
+            {/*  <img src={ic_authenticity} alt="authenticity-icon" />*/}
+            {/*  Authenticity*/}
+            {/*</a>*/}
             <div className="list-item">
               <div className="item">
                 <div className="label">
@@ -388,7 +388,7 @@ const MyCollectiblesDetails = () => {
                 </div>
               </div>
               <div className="item">
-                <div className="label">Total Run</div>
+                <div className="label">Total Items</div>
                 <div className="value">{mboxInfo?.totalAmount}</div>
               </div>
               <div className="item">
