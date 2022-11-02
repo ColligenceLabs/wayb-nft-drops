@@ -23,7 +23,7 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
       <div className="hot-ollectibles-wrapper">
         <div className="header-left hot-ollectibles-item">
           <span className="total-run fw-600">
-            Total Run: {item.issueAmount}
+            Total Items: {item.issueAmount}
           </span>
         </div>
         <div className="hot-ollectibles-item">

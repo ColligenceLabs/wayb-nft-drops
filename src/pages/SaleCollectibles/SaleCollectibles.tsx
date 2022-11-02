@@ -354,16 +354,16 @@ const SaleCollectibles = () => {
                     {mBoxInfo.introduction.en}
                   </div>
                 </div>
-                <div>
-                  <a className="authenticity-button">
-                    <img src={ic_info} style={{ marginRight: '5px' }} alt="" />{' '}
-                    Authenticity
-                  </a>
-                </div>
+                {/*<div>*/}
+                {/*  <a className="authenticity-button">*/}
+                {/*    <img src={ic_info} style={{ marginRight: '5px' }} alt="" />{' '}*/}
+                {/*    Authenticity*/}
+                {/*  </a>*/}
+                {/*</div>*/}
                 <div>
                   <div className="box-price-collection">
                     <div className="box-price-detail-collection">
-                      <div className="lable-top">Total Run</div>
+                      <div className="lable-top">Total Items</div>
                       <div className="lable-bottom fw-600">
                         {mBoxInfo.totalAmount}
                       </div>

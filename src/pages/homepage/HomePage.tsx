@@ -245,7 +245,7 @@ const Homepage = () => {
           </div>
         </div>
         {/* <div className="wrapper-section01">
-          
+
         </div> */}
       </div>
       {/* section 02 */}
@@ -408,7 +408,7 @@ const Homepage = () => {
                     <div className="hot-ollectibles-wrapper">
                       <div className="header-left hot-ollectibles-item">
                         <span className="total-run">
-                          Total Run: {item.totalAmount}
+                          Total Items: {item.totalAmount}
                         </span>
                       </div>
                       <div className="hot-ollectibles-item">
@@ -793,7 +793,7 @@ const Homepage = () => {
                       <div className="hot-ollectibles-wrapper">
                         <div className="header-left hot-ollectibles-item">
                           <span className="total-run">
-                            Total Run: {item.totalAmount}
+                            Total Items: {item.totalAmount}
                           </span>
                         </div>
                         <div className="hot-ollectibles-item">
@@ -822,7 +822,7 @@ const Homepage = () => {
                                 {item.featured.company.name.en}
                               </div>
                             </div>
-                            <div className="content-right">Buy Now</div>
+                            <div className="content-right">Get Now</div>
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">

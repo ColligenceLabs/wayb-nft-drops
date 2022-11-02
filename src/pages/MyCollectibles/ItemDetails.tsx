@@ -16,6 +16,8 @@ const CollectionSale = () => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
+  const [showProperties, setShowProperties] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   function toStringByFormatting(source: Date) {
     const year = source.getFullYear();
@@ -39,6 +41,85 @@ const CollectionSale = () => {
               <img src={testImg} alt="" className="thumbnail" />
               {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
             </div>
+            <div className="dropdown-change-color">
+              <div className="dropdown-properties">
+                <div className="wrapper-change-properties">
+                  <div className="content-left">
+                    <div className="image-properties">
+                      <img src={icon_properties} alt="Properties" />
+                    </div>
+                    <div className="title-properties">Properties</div>
+                  </div>
+                  <div className="icon-arrow">
+                    <img src={arrow_dropdown} alt="" />
+                  </div>
+                </div>
+                <div className="wrapper-content-properties">
+                  <div className="item-properties">
+                    <div className="content-01">Accessory</div>
+                    <div className="content-02">Attributes</div>
+                    <div className="content-03">35% have this trait</div>
+                  </div>
+                  <div className="item-properties">
+                    <div className="content-01">Accessory</div>
+                    <div className="content-02">Attributes</div>
+                    <div className="content-03">35% have this trait</div>
+                  </div>
+                  <div className="item-properties">
+                    <div className="content-01">Accessory</div>
+                    <div className="content-02">Attributes</div>
+                    <div className="content-03">35% have this trait</div>
+                  </div>
+                  <div className="item-properties">
+                    <div className="content-01">Accessory</div>
+                    <div className="content-02">Attributes</div>
+                    <div className="content-03">35% have this trait</div>
+                  </div>
+                  <div className="item-properties">
+                    <div className="content-01">Accessory</div>
+                    <div className="content-02">Attributes</div>
+                    <div className="content-03">35% have this trait</div>
+                  </div>
+                  <div className="item-properties">
+                    <div className="content-01">Accessory</div>
+                    <div className="content-02">Attributes</div>
+                    <div className="content-03">35% have this trait</div>
+                  </div>
+                </div>
+              </div>
+              <div className="dropdown-details">
+                <div className="wrapper-head-details">
+                  <div className="content-left">
+                    <div className="image-details">
+                      <img src={icon_details} alt="Details" />
+                    </div>
+                    <div className="title-details">Details</div>
+                  </div>
+                  <div className="icon-arrow">
+                    <img src={arrow_dropdown} alt="" />
+                  </div>
+                </div>
+                <div className="wrapper-content-details">
+                  <div className="wrapper-name">
+                    <div className="name">Contract Address</div>
+                    <div className="name">Token ID</div>
+                    <div className="name">Token Standard</div>
+                    <div className="name">Chain</div>
+                    <div className="name">Last Updated</div>
+                    <div className="name">Creator Earnings</div>
+                  </div>
+                  <div className="wrapper-info-name">
+                    <div className="info-name">0x12...ab12</div>
+                    <div className="info-name">1515</div>
+                    <div className="info-name">ERC-721</div>
+                    <div className="info-name">Etharium</div>
+                    <div className="info-name">Username</div>
+                    <div className="info-name">5%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* <Accordion
               className="wrapper-change-details"
               defaultActiveKey={['0']}
@@ -196,15 +277,15 @@ const CollectionSale = () => {
             <div className="line-banner"></div>
             <div className="name-product">{'Item Name'}</div>
             <div className="sub-product">{'Item Description'}</div>
-            <a
-              target="_blank"
-              href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"
-              className="authenticity-button"
-              rel="noreferrer"
-            >
-              <img src={ic_authenticity} alt="authenticity-icon" />
-              Authenticity
-            </a>
+            {/*<a*/}
+            {/*  target="_blank"*/}
+            {/*  href="https://polygonscan.com/token/0xF3e34e2022029A7eCb38d7373f7171f478670B20?a=48"*/}
+            {/*  className="authenticity-button"*/}
+            {/*  rel="noreferrer"*/}
+            {/*>*/}
+            {/*  <img src={ic_authenticity} alt="authenticity-icon" />*/}
+            {/*  Authenticity*/}
+            {/*</a>*/}
             <div className="list-item">
               <div className="item">
                 <div className="label">{'Amount'}</div>
@@ -219,7 +300,7 @@ const CollectionSale = () => {
                 <div className="value">{toStringByFormatting(new Date())}</div>
               </div>
               <div className="item">
-                <div className="label">Total Run</div>
+                <div className="label">Total Items</div>
                 <div className="value">{'10'}</div>
               </div>
               <div className="item">

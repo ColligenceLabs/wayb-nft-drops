@@ -48,7 +48,7 @@ const Purchase_History_Detail = () => {
           <div className="infoContainer">
             <div className="collectible-info-boxes">
               <div className="info">
-                <p className="title">Total Run</p>
+                <p className="title">Total Items</p>
                 <p className="value">2000</p>
               </div>
               <div className="info">
