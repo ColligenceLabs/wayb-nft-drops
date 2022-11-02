@@ -27,6 +27,7 @@ import ArrowCarouselBannerMain from 'components/common/ArrowCarouselBannerMain';
 import { getRarityToString } from '../../utils/getRarityToString';
 import { getNetworkNameByChainId } from 'utils/getNetworkNameByChainId';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
+import Skeleton from 'components/common/skeleton/Skeleton';
 
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
@@ -172,20 +173,6 @@ const Homepage = () => {
 
   return (
     <div className="home-page min-height-content">
-      {/* <div className="section001">
-        <img src={background} alt="" />
-        <div className="content-header">
-          <div className="text-head">
-            OFFICIALLY <br />
-            LICENSED
-          </div>
-          <div className="text-bottom">
-            NFTs and Collectibles from the world&apos;s
-            <br />
-            leading teams, brands, and artists
-          </div>
-        </div>
-      </div> */}
       {/* section 01 */}
       <div className="section-01">
         <div className="background-section-01">
@@ -223,20 +210,37 @@ const Homepage = () => {
                 },
               }}
             >
-              {slideData !== null &&
-                slideData.map((item: FeaturedTypes, index) => {
-                  return (
-                    <div
-                      className="slide-item"
-                      key={index}
-                      onClick={() => navigateToUrl(item)}
-                    >
+              {slideData.length
+                ? slideData.map((item: FeaturedTypes, index) => {
+                    return (
+                      <div
+                        className="slide-item"
+                        key={index}
+                        onClick={() => navigateToUrl(item)}
+                      >
+                        <div>
+                          <img
+                            src={item.eventBanner!}
+                            alt=""
+                            draggable={false}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })
+                : [1, 2, 3].map((item) => (
+                    <div className="slide-item" key={item}>
                       <div>
-                        <img src={item.eventBanner!} alt="" draggable={false} />
+                        <Skeleton
+                          style={{
+                            width: '100%',
+                            aspectRatio: '24/7',
+                            height: 'unset',
+                          }}
+                        />
                       </div>
                     </div>
-                  );
-                })}
+                  ))}
             </Carousel>
           </div>
         </div>
@@ -255,75 +259,77 @@ const Homepage = () => {
             </Link>
           </div>
 
-          {featuredCollections && (
-            <Carousel
-              {...carouselOption}
-              customButtonGroup={<ArrowCarouselCollections />}
-              keyBoardControl
-              removeArrowOnDeviceType=""
-              containerClass="container grid-container"
-              responsive={{
-                desktop: {
-                  breakpoint: {
-                    max: 3000,
-                    min: 1420,
-                  },
-                  items: 5,
-                  partialVisibilityGutter: 40,
+          <Carousel
+            {...carouselOption}
+            customButtonGroup={<ArrowCarouselCollections />}
+            keyBoardControl
+            removeArrowOnDeviceType=""
+            containerClass="grid-container"
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 1420,
                 },
-                mobile: {
-                  breakpoint: {
-                    max: 640,
-                    min: 0,
-                  },
-                  items: 1,
-                  partialVisibilityGutter: 30,
+                items: 5,
+                partialVisibilityGutter: 40,
+              },
+              mobile: {
+                breakpoint: {
+                  max: 640,
+                  min: 0,
                 },
-                tablet: {
-                  breakpoint: {
-                    max: 1024,
-                    min: 640,
-                  },
-                  items: 2,
-                  partialVisibilityGutter: 30,
+                items: 1,
+                partialVisibilityGutter: 30,
+              },
+              tablet: {
+                breakpoint: {
+                  max: 1024,
+                  min: 640,
                 },
-                laptopLarge: {
-                  breakpoint: {
-                    max: 1420,
-                    min: 1180,
-                  },
-                  items: 4,
-                  partialVisibilityGutter: 30,
+                items: 2,
+                partialVisibilityGutter: 30,
+              },
+              laptopLarge: {
+                breakpoint: {
+                  max: 1420,
+                  min: 1180,
                 },
-                laptop: {
-                  breakpoint: {
-                    max: 1180,
-                    min: 1024,
-                  },
-                  items: 3,
-                  partialVisibilityGutter: 30,
+                items: 4,
+                partialVisibilityGutter: 30,
+              },
+              laptop: {
+                breakpoint: {
+                  max: 1180,
+                  min: 1024,
                 },
-              }}
-              showDots={false}
-            >
-              {featuredCollections.map((item: FeaturedTypes, index) => (
-                <FeaturedCard key={item.id} item={item} />
-              ))}
-            </Carousel>
-          )}
+                items: 3,
+                partialVisibilityGutter: 30,
+              },
+            }}
+            showDots={false}
+          >
+            {featuredCollections?.length
+              ? featuredCollections.map((item: FeaturedTypes, index) => (
+                  <FeaturedCard key={item.id} item={item} />
+                ))
+              : [1, 2, 3, 4, 5].map((item) => (
+                  <div className="custom-link">
+                    <Skeleton key={item} />
+                  </div>
+                ))}
+          </Carousel>
         </div>
 
         <div className="page-grid">
           <div className="title-header">Talken Drops</div>
-          {collectionList && (
+          {!!collectionList?.length && (
             <Carousel
               {...carouselOption}
-              // arrows={false}
-              // renderButtonGroupOutside
               customButtonGroup={<CustomArrowCarousel />}
               keyBoardControl
               removeArrowOnDeviceType=""
-              containerClass="container hot-collectibles"
+              containerClass="hot-collectibles"
               responsive={{
                 desktop: {
                   breakpoint: {
@@ -427,7 +433,9 @@ const Homepage = () => {
                                 draggable={false}
                               />
                             </div>
-                            <p className="">{item.featured.company.name.en}</p>
+                            <p className="mb-0 mt-0">
+                              {item.featured.company.name.en}
+                            </p>
                           </div>
                           <div className="content-right">Buy Now</div>
                         </div>
@@ -570,7 +578,7 @@ const Homepage = () => {
         {/* Free Drops */}
         <div className="page-grid">
           <div className="title-header">Hot Collectibles</div>
-          {collectibleList && (
+          {!!collectibleList?.length && (
             <Carousel
               {...carouselOption}
               arrows={false}
@@ -578,7 +586,7 @@ const Homepage = () => {
               customButtonGroup={<CustomArrowCarousel />}
               keyBoardControl
               removeArrowOnDeviceType=""
-              containerClass="container hot-collectibles"
+              containerClass="hot-collectibles"
               responsive={{
                 desktop: {
                   breakpoint: {
@@ -712,7 +720,7 @@ const Homepage = () => {
         {/* Free Drops */}
         <div className="page-grid">
           <div className="title-header">Free Drops</div>
-          {airdropList && (
+          {!!airdropList?.length && (
             <Carousel
               {...carouselOption}
               arrows={false}
@@ -720,7 +728,7 @@ const Homepage = () => {
               customButtonGroup={<CustomArrowCarousel />}
               keyBoardControl
               removeArrowOnDeviceType=""
-              containerClass="container hot-collectibles"
+              containerClass="hot-collectibles"
               responsive={{
                 desktop: {
                   breakpoint: {

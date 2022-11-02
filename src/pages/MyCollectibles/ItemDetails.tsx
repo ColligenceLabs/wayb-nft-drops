@@ -5,7 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import ic_authenticity from '../../assets/icon/info_blue.svg';
+import icon_properties from '../../assets/svg/icon_properties.svg';
+import icon_details from '../../assets/svg/icon_details.svg';
+import arrow_dropdown from '../../assets/svg/icon_dropdown.svg';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
+import { Accordion } from 'react-bootstrap';
 
 const CollectionSale = () => {
   const navigate = useNavigate();
@@ -22,7 +26,7 @@ const CollectionSale = () => {
   }
 
   return (
-    <main className="collectibles-details-container min-height-content">
+    <main className="collectibles-item-details-container min-height-content">
       <div className="collectibles-details-wp">
         {/*<Link to={'/my-collectibles'}>*/}
         <button className="back-button" onClick={() => navigate(-1)}>
@@ -30,10 +34,96 @@ const CollectionSale = () => {
         </button>
         {/*</Link>*/}
         <div className="product-details">
-          <div className="showcase-box">
-            <img src={testImg} alt="" className="thumbnail" />
-            {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
+          <div className="wrapper-left">
+            <div className="showcase-box">
+              <img src={testImg} alt="" className="thumbnail" />
+              {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
+            </div>
+            {/* <Accordion
+              className="wrapper-change-details"
+              defaultActiveKey={['0']}
+              alwaysOpen
+            >
+              <Accordion.Item eventKey="0" className="item wrapper-properties">
+                <Accordion.Header className="header header-properties">
+                  <div className="content-left">
+                    <div className="image-properties">
+                      <img src={icon_properties} alt="Properties" />
+                    </div>
+                    <div className="title-properties">Properties</div>
+                  </div>
+                </Accordion.Header>
+                <Accordion.Body>
+                  <div className="wrapper-content-properties">
+                    <div className="item-properties">
+                      <div className="content-01">Accessory</div>
+                      <div className="content-02">Attributes</div>
+                      <div className="content-03">35% have this trait</div>
+                    </div>
+                    <div className="item-properties">
+                      <div className="content-01">Accessory</div>
+                      <div className="content-02">Attributes</div>
+                      <div className="content-03">35% have this trait</div>
+                    </div>
+                    <div className="item-properties">
+                      <div className="content-01">Accessory</div>
+                      <div className="content-02">Attributes</div>
+                      <div className="content-03">35% have this trait</div>
+                    </div>
+                    <div className="item-properties">
+                      <div className="content-01">Accessory</div>
+                      <div className="content-02">Attributes</div>
+                      <div className="content-03">35% have this trait</div>
+                    </div>
+                    <div className="item-properties">
+                      <div className="content-01">Accessory</div>
+                      <div className="content-02">Attributes</div>
+                      <div className="content-03">35% have this trait</div>
+                    </div>
+                    <div className="item-properties">
+                      <div className="content-01">Accessory</div>
+                      <div className="content-02">Attributes</div>
+                      <div className="content-03">35% have this trait</div>
+                    </div>
+                  </div>
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="1" className="item wrapper-details">
+                <Accordion.Header className="header header-details">
+                  <div className="content-left">
+                    <div className="image-details">
+                      <img src={icon_details} alt="Details" />
+                    </div>
+                    <div className="title-details">Details</div>
+                  </div>
+                  <div className="icon-arrow">
+                    <img src={arrow_dropdown} alt="" />
+                  </div>
+                </Accordion.Header>
+                <Accordion.Body>
+                  <div className="wrapper-content-details">
+                    <div className="wrapper-name">
+                      <div className="name">Contract Address</div>
+                      <div className="name">Token ID</div>
+                      <div className="name">Token Standard</div>
+                      <div className="name">Chain</div>
+                      <div className="name">Last Updated</div>
+                      <div className="name">Creator Earnings</div>
+                    </div>
+                    <div className="wrapper-info-name">
+                      <div className="info-name">0x12...ab12</div>
+                      <div className="info-name">1515</div>
+                      <div className="info-name">ERC-721</div>
+                      <div className="info-name">Etharium</div>
+                      <div className="info-name">Username</div>
+                      <div className="info-name">5%</div>
+                    </div>
+                  </div>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion> */}
           </div>
+
           <div className="details-box">
             <div className="banner-dropdown" ref={ref}>
               <div className="logo">
@@ -56,7 +146,7 @@ const CollectionSale = () => {
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
                       <button
-                        className="dropdown-item "
+                        className="dropdown-item-nft "
                         onClick={() => {
                           setWarningOpen(true);
                           setDropdownOpen(false);
@@ -82,7 +172,7 @@ const CollectionSale = () => {
                       </button>
                     </li>
                     <li className="list-dropdown-item">
-                      <button className="dropdown-item">
+                      <button className="dropdown-item-nft">
                         {/* <img src={gift_token_icon} alt="gift token icon" /> */}
                         <svg
                           width="20"
