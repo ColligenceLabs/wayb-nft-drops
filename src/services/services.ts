@@ -87,3 +87,16 @@ export const getItemPrice = async (metaLink: string) => {
     `/api/service/mysterybox/uri-items?uri=${metaLink}`
   );
 };
+
+export const getClaimableCount = async (
+  mysteryBoxId: number,
+  buyer: string
+) => {
+  return await customAxios.get(
+    `/api/service/drops/claimableCount?mysteryBoxId=${mysteryBoxId}&buyer=${buyer}`
+  );
+};
+
+export const requestClaim = async (data: any) => {
+  return await customAxios.post('/api/service/drops/requestClaim', data);
+};
