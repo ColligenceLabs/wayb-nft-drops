@@ -814,7 +814,7 @@ const Homepage = () => {
                                 {item.featured.company.name.en}
                               </div>
                             </div>
-                            <div className="content-right">Buy Now</div>
+                            <div className="content-right">Get Now</div>
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">
