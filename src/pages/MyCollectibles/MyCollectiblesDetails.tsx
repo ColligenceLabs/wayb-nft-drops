@@ -42,7 +42,11 @@ import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { getRarityToString } from '../../utils/getRarityToString';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
-import { getItemPrice } from '../../services/services';
+import {
+  getItemPrice,
+  getClaimableCount,
+  requestClaim,
+} from '../../services/services';
 import { getPrice } from '../../utils/getPrice';
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -67,6 +71,7 @@ const MyCollectiblesDetails = () => {
   const [revealItems, setRevealItems] = useState<ResRevealItemType[]>([]);
   const [balance, setBalance] = useState(0);
   const [item, setItem] = useState(0);
+  const [claimableCount, setClaimableCount] = useState(0);
   const [status, setStatus] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [countDownFinish, setCountDownFinish] = useState(false);
@@ -145,6 +150,42 @@ const MyCollectiblesDetails = () => {
     setIsLoading(false);
   };
 
+  const handleClaimClick = async () => {
+    setIsLoading(true);
+    try {
+      const talkenData = localStorage.getItem('talken.data');
+      let _talkenData;
+      let talkenUid = null,
+        talkenEthAddress = null;
+      if (talkenData) {
+        _talkenData = JSON.parse(talkenData);
+        talkenUid = _talkenData.uid;
+        talkenEthAddress = _talkenData.ethAddress;
+      }
+      const data = {
+        mysterybox_id: mboxInfo?.id,
+        buyer: talkenUid,
+        buyer_address: talkenEthAddress,
+        contract: mboxInfo?.boxContractAddress,
+      };
+      const res = await requestClaim(data);
+      setOpenSnackbar({
+        open: true,
+        type: 'success',
+        message: 'Success',
+      });
+      fetchBalance();
+    } catch (error) {
+      console.log(error);
+      setOpenSnackbar({
+        open: true,
+        type: 'error',
+        message: 'Failed.',
+      });
+    }
+    setIsLoading(false);
+  };
+
   function toStringByFormatting(source: Date) {
     const year = source.getFullYear();
     const month = source.getMonth() + 1;
@@ -174,6 +215,21 @@ const MyCollectiblesDetails = () => {
 
     console.log(account, library.connection, balance);
     setItem(items);
+
+    const talkenData = localStorage.getItem('talken.data');
+    let _talkenData;
+    let talkenUid = null;
+    if (talkenData) {
+      _talkenData = JSON.parse(talkenData);
+      talkenUid = _talkenData.uid;
+    }
+    if (talkenUid) {
+      const claimableCount = await getClaimableCount(
+        mboxInfo?.id || 0,
+        talkenUid
+      );
+      setClaimableCount(claimableCount.data?.data || 0);
+    }
   };
 
   const fetchRevealItem = async () => {
@@ -448,7 +504,19 @@ const MyCollectiblesDetails = () => {
               </>
             ) : (
               <>
-                {status || balance === 0 ? null : (
+                {claimableCount > 0 ? (
+                  <button
+                    className="btn-trade status"
+                    onClick={handleClaimClick}
+                  >
+                    {isLoading ? (
+                      <CircularProgress size={30} color={'inherit'} />
+                    ) : (
+                      <>Claim</>
+                    )}
+                    {/*<img src={ic_trade} alt="trade" />*/}
+                  </button>
+                ) : status || balance === 0 ? null : (
                   <button
                     className="btn-trade status"
                     onClick={handleRevealClick}
