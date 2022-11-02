@@ -567,6 +567,18 @@
       }
     }
 
+    .token-details-box {
+      .airdrop-condition {
+        margin-top: 30px;
+        span {
+          color: red;
+        }
+        li {
+          list-style-type: none
+        }
+      }
+
+    }
     .token-details-box > div {
       margin-bottom: 20px;
     }

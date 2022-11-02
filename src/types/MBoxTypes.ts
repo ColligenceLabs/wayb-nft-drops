@@ -30,6 +30,7 @@ export type MBoxTypes = {
   usedAmount: number | null;
   chainId: number;
   isCollection: boolean | null;
+  isAirdrop: boolean | null;
   featured?: {
     company: { image: string; name: { en: string; ko: string } };
     companyId: string;
