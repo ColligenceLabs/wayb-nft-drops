@@ -7,7 +7,7 @@ import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess'
 import Popup from 'reactjs-popup';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import CSnackbar from '../../components/common/CSnackbar';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
@@ -24,6 +24,7 @@ import { parseEther } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
+import { MBoxTypes } from '../../types/MBoxTypes';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -164,6 +165,20 @@ const CollectionSaleDetail = () => {
   //   }
   // }, [location.state]);
 
+  const getItemUrl = (infoId: number, itemId: number, item: MBoxTypes) => {
+    let url = '/';
+    if (item.isCollection === false) {
+      if (item.isAirdrop === false) {
+        url = `/klaytn/mbox/${item.id}`;
+      } else {
+        url = `/klaytn/airdrop/${item.id}`;
+      }
+    } else {
+      url = `/klaytn/collection/${infoId}/${item.id}`;
+    }
+    return url;
+  };
+
   const fetchCollectionItemInfo = async () => {
     const res = await getCollectionInfo(params.collectionId!);
     if (res.data.status === SUCCESS) {
@@ -187,7 +202,6 @@ const CollectionSaleDetail = () => {
       } else {
         setRemainingAmount(collectionInfo.remainingAmount);
       }
-
       setCollectionItemInfo(data);
     }
   };
@@ -312,6 +326,35 @@ const CollectionSaleDetail = () => {
                   </div>
                 </div>
               </div>
+              {collectionItemInfo?.collectionInfo.isCollection === false &&
+                collectionItemInfo?.collectionInfo.isAirdrop === true && (
+                  <div className="airdrop-condition">
+                    {collectionItemInfo?.collectionInfo.useAndCondition ? (
+                      <span>아래 항목을 모두 보유해야 구매 가능합니다.</span>
+                    ) : (
+                      <span>
+                        아래 항목 중 하나 이상 보유해야 구매 가능합니다.{' '}
+                      </span>
+                    )}
+                    <ul>
+                      {collectionItemInfo?.collectionInfo.whitelists &&
+                        collectionItemInfo?.collectionInfo.whitelists.map(
+                          (item: MBoxTypes) => (
+                            // <Link
+                            //   to={getItemUrl(
+                            //     collectionItemInfo.infoId,
+                            //     collectionItemInfo.id!,
+                            //     item
+                            //   )}
+                            // >
+                            <li key={item.id}>{item.title.en}</li>
+                            // </Link>
+                          )
+                        )}
+                    </ul>
+                  </div>
+                )}
+              <div></div>
               <div>
                 <div className="box-purchase-price">
                   <div className="lable-top">Purchase price</div>
