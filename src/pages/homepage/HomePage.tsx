@@ -626,6 +626,7 @@ const Homepage = () => {
               {collectibleList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
+                  console.log(item);
                   return (
                     <Link
                       to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
@@ -652,7 +653,7 @@ const Homepage = () => {
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
                             <img
-                              src={item.mysteryboxItems[0]?.imageLink}
+                              src={item.mysteryboxItems[0]?.itemImage}
                               alt=""
                               draggable={false}
                             />
