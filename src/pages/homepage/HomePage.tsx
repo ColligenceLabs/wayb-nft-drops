@@ -101,7 +101,13 @@ const Homepage = () => {
               account,
               chainId
             );
-            return { ...item, remainingAmount: remaining };
+            const milliseconds =
+              new Date().getTime() - Date.parse(item.releaseDatetime);
+            return {
+              ...item,
+              remainingAmount: remaining,
+              onsale: milliseconds >= 0 ? true : false,
+            };
           })
         );
         setCollectionList(newList);
@@ -116,7 +122,13 @@ const Homepage = () => {
             const id = Math.floor(
               Math.random() * item.mysteryboxItems[0].issueAmount
             );
-            return { ...item, itemId: id };
+            const milliseconds =
+              new Date().getTime() - Date.parse(item.releaseDatetime);
+            return {
+              ...item,
+              itemId: id,
+              onsale: milliseconds >= 0 ? true : false,
+            };
           })
         );
         setCollectibleList(newList);
@@ -133,7 +145,13 @@ const Homepage = () => {
               account,
               chainId
             );
-            return { ...item, remainingAmount: remaining };
+            const milliseconds =
+              new Date().getTime() - Date.parse(item.releaseDatetime);
+            return {
+              ...item,
+              remainingAmount: remaining,
+              onsale: milliseconds >= 0 ? true : false,
+            };
           })
         );
         setAirdropList(newList);
@@ -429,7 +447,9 @@ const Homepage = () => {
                             </div>
                             <p className="">{item.featured.company.name.en}</p>
                           </div>
-                          <div className="content-right">Buy Now</div>
+                          <div className="content-right">
+                            {item.onsale ? 'Buy Now' : 'Waiting'}
+                          </div>
                         </div>
                       </div>
                       <div className="hot-ollectibles-item">
@@ -673,7 +693,9 @@ const Homepage = () => {
                                 {item.featured.company.name.en}
                               </div>
                             </div>
-                            <div className="content-right">Buy Now</div>
+                            <div className="content-right">
+                              {item.onsale ? 'Buy Now' : 'Waiting'}
+                            </div>
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">
@@ -815,7 +837,9 @@ const Homepage = () => {
                                 {item.featured.company.name.en}
                               </div>
                             </div>
-                            <div className="content-right">Get Now</div>
+                            <div className="content-right">
+                              {item.onsale ? 'Get Now' : 'Waiting'}
+                            </div>
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">
