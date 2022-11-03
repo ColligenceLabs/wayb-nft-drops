@@ -284,7 +284,9 @@ const CollectionSaleDetail = () => {
                 </div>
               </div>
               <div>
-                <div className="btn-buy-now">Buy Now</div>
+                <div className="btn-buy-now">
+                  {collectionItemInfo?.price === 0 ? 'Get Now' : 'Buy Now'}
+                </div>
               </div>
               <div>
                 <div className="box-name-collection">
