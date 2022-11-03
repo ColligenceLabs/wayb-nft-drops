@@ -72,13 +72,14 @@ const CollectionSale = () => {
                 </div>
                 <div className="collection-info-right">
                   <div className="collection-info-right-details">
-                    <div className="value">750</div>
+                    <div className="value">{collectionInfo?.totalAmount}</div>
                     <div className="label">NFTs</div>
                   </div>
-                  <div className="collection-info-right-details">
-                    <div className="value">723</div>
-                    <div className="label">Followers</div>
-                  </div>
+                  {/* TODO : SNS icons */}
+                  {/*<div className="collection-info-right-details">*/}
+                  {/*  <div className="value">723</div>*/}
+                  {/*  <div className="label">Followers</div>*/}
+                  {/*</div>*/}
                 </div>
               </div>
               <div className="collection-info-content">
