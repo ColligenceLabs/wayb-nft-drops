@@ -186,7 +186,9 @@ const CollectionSaleDetail = () => {
       const collectionItem = collectionInfo.mysteryboxItems.find(
         (item: any) => item.id.toString() === params.id
       );
-
+      const milliseconds =
+        new Date().getTime() - Date.parse(collectionInfo.releaseDatetime);
+      collectionInfo.onsale = milliseconds >= 0 ? true : false;
       const data = {
         collectionInfo: collectionInfo,
         ...collectionItem,
@@ -285,7 +287,11 @@ const CollectionSaleDetail = () => {
               </div>
               <div>
                 <div className="btn-buy-now">
-                  {collectionItemInfo?.price === 0 ? 'Get Now' : 'Buy Now'}
+                  {collectionItemInfo?.collectionInfo.onsale
+                    ? collectionItemInfo?.price === 0
+                      ? 'Get Now'
+                      : 'Buy Now'
+                    : 'Waiting'}
                 </div>
               </div>
               <div>
