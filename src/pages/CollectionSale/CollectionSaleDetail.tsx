@@ -126,6 +126,7 @@ const CollectionSaleDetail = () => {
         mysterybox_id: collectionItemInfo?.collectionInfo?.id,
         buyer: '',
         buyer_address: account,
+        isSent: true,
       };
 
       const res = await registerBuy(data);
