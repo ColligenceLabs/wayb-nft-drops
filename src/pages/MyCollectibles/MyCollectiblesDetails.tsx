@@ -162,11 +162,15 @@ const MyCollectiblesDetails = () => {
         talkenUid = _talkenData.uid;
         talkenEthAddress = _talkenData.ethAddress;
       }
+      const signature = await library
+        .getSigner()
+        .signMessage(`${talkenUid} Claims ${claimableCount}NFTs`);
       const data = {
         mysterybox_id: mboxInfo?.id,
         buyer: talkenUid,
         buyer_address: talkenEthAddress,
         contract: mboxInfo?.boxContractAddress,
+        signature,
       };
       const res = await requestClaim(data);
       setOpenSnackbar({
