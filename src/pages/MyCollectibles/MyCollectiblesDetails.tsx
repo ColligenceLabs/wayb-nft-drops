@@ -377,7 +377,12 @@ const MyCollectiblesDetails = () => {
                       </button>
                     </li>
                     <li className="list-dropdown-item">
-                      <button className="dropdown-item-nft">
+                      <button
+                        className="dropdown-item-nft"
+                        onClick={() => {
+                          setDropdownOpen(false);
+                        }}
+                      >
                         {/* <img src={gift_token_icon} alt="gift token icon" /> */}
                         <svg
                           width="20"

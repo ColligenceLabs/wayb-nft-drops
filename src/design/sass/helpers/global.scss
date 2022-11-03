@@ -96,6 +96,14 @@ a {
 .on-show {
   display: block;
 }
+.ds-flex {
+  display: flex;
+}
+@media (max-width: 1024px) {
+  .hide-max-1024px {
+    display: none;
+  }
+}
 @include Mobile() {
   .hidden-mobile {
     display: none !important;
