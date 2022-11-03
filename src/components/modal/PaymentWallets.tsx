@@ -150,6 +150,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             mysterybox_id: itemInfo?.collectionInfo?.id,
             buyer: '',
             buyer_address: account,
+            isSent: true,
           };
 
           const res = await registerBuy(data);
@@ -178,6 +179,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             mysterybox_id: itemInfo?.collectionInfo?.id,
             buyer: '',
             buyer_address: account,
+            isSent: true,
           };
 
           const res = await registerBuy(data);
@@ -234,6 +236,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               mysterybox_id: itemInfo.id,
               buyer: '',
               buyer_address: account,
+              isSent: true,
             };
 
             const res = await registerBuy(data);
