@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 import pay_creditcard from '../../assets/img/pay-creditcard.png';
 import pay_creditcard_gray from '../../assets/img/pay-creditcard-gray.png';
+import pay_talken_credit from '../../assets/img/pay_talken_credit.png';
 import pay_crypto from '../../assets/img/pay-crypto.png';
 import pay_appstore from '../../assets/img/pay_appstore.png';
 import pay_googleplay from '../../assets/img/pay_googleplay.png';
@@ -294,15 +295,16 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             //   setIsDisabled(false);
             // }}
           >
-            <div className="pay-item">
+            <div className="pay-item pay-talken">
               <img
                 // src={pay_creditcard}
-                src={pay_creditcard_gray}
+                // src={pay_creditcard_gray}
+                src={pay_talken_credit}
                 alt="Credit Card"
                 style={{ filter: 'contrast(100%)' }}
               />
             </div>
-            <div className="pay-name">Point</div>
+            <div className="pay-name">Talken Credit</div>
           </div>
           <div
             className={`payment-box ${selectedPayment === 2 ? 'active' : ''}`}
