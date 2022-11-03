@@ -351,7 +351,7 @@ const MyCollectiblesDetails = () => {
                   <ul className="dropdown-box">
                     <li className="list-dropdown-item">
                       <button
-                        className="dropdown-item "
+                        className="dropdown-item-nft "
                         onClick={() => {
                           setWarningOpen(true);
                           setDropdownOpen(false);
@@ -377,7 +377,7 @@ const MyCollectiblesDetails = () => {
                       </button>
                     </li>
                     <li className="list-dropdown-item">
-                      <button className="dropdown-item">
+                      <button className="dropdown-item-nft">
                         {/* <img src={gift_token_icon} alt="gift token icon" /> */}
                         <svg
                           width="20"

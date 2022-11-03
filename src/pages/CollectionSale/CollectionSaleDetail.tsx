@@ -233,7 +233,7 @@ const CollectionSaleDetail = () => {
                 </div>
               ) : (
                 <>
-                  <img src={collectionItemInfo?.originalImage} alt="" />
+                  <img src={collectionItemInfo?.itemImage} alt="" />
                   {/* modal zoom image */}
                   <div
                     className="zoom-image"
@@ -259,7 +259,7 @@ const CollectionSaleDetail = () => {
                     </div>
                     <img
                       className="image"
-                      src={collectionItemInfo?.itemImage}
+                      src={collectionItemInfo?.originalImage}
                       alt=""
                     />
                   </ReactModal>
