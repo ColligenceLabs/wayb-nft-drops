@@ -201,7 +201,9 @@ const CollectionList: React.FC<CollectionListProps> = ({
                         //     : { item: { ...item, companyLogo, companyName } }
                         // }
                       >
-                        <div className="status ">Buy Now</div>
+                        <div className="status ">
+                          {item.price ? 'Buy Now' : 'Get Now'}
+                        </div>
                       </Link>
                     </div>
                   </div>
