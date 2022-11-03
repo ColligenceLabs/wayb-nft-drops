@@ -14,6 +14,7 @@ import { getPrice } from '../../utils/getPrice';
 type CollectionItemType = MBoxItemTypes & {
   remainingAmount: number;
   price: number;
+  onsale: boolean;
 };
 
 type ExMBoxType = MBoxTypes & {
@@ -117,7 +118,9 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
                         //   item: { ...item, companyLogo, companyName, quote },
                         // }}
                       >
-                        <div className="status ">Buy Now</div>
+                        <div className="status ">
+                          {item.onsale ? 'Buy Now' : 'Waiting'}
+                        </div>
                       </Link>
                     </div>
                   </div>

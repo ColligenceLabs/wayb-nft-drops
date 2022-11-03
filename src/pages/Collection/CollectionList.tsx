@@ -91,10 +91,17 @@ const CollectionList: React.FC<CollectionListProps> = ({
                 );
                 remaining = item.totalAmount ? item.totalAmount - sold : 0;
               }
+              const milliseconds =
+                new Date().getTime() - Date.parse(item.releaseDatetime);
 
-              return { ...item, remainingAmount: remaining };
+              return {
+                ...item,
+                remainingAmount: remaining,
+                onsale: milliseconds >= 0 ? true : false,
+              };
             })
           );
+          console.log('=====', newList);
           setMBoxList(newList);
         }
       }
@@ -201,7 +208,13 @@ const CollectionList: React.FC<CollectionListProps> = ({
                         //     : { item: { ...item, companyLogo, companyName } }
                         // }
                       >
-                        <div className="status ">Buy Now</div>
+                        <div className="status ">
+                          {item.onsale
+                            ? item.price
+                              ? 'Buy Now'
+                              : 'Get Now'
+                            : 'Waiting'}
+                        </div>
                       </Link>
                     </div>
                   </div>
