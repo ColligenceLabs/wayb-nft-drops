@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -43,6 +43,7 @@ const lockScroll = true;
 const SaleCollectibles = () => {
   const location = useLocation();
   const params = useParams();
+  const navigate = useNavigate();
   const { account, library, chainId } = useWeb3React();
   const dropsAccount = useSelector((state: any) => state.account.account);
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
@@ -118,6 +119,10 @@ const SaleCollectibles = () => {
       library
     );
     setRemains(left);
+  };
+
+  const moveToFeatured = () => {
+    if (mBoxInfo) navigate(`/klaytn/featured/${mBoxInfo.featuredId}`);
   };
 
   useEffect(() => {
@@ -282,7 +287,7 @@ const SaleCollectibles = () => {
               </div>
               <div className="straight-line"></div>
               <div className="token-details-box">
-                <div>
+                <div onClick={moveToFeatured}>
                   <div className="box-owner-product">
                     <button className="btn-avatar-owner-product">
                       <img

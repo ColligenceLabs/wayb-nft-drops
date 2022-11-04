@@ -35,4 +35,5 @@ export type MBoxTypes = {
     company: { image: string; name: { en: string; ko: string } };
     companyId: string;
   };
+  featuredId: string | null;
 };

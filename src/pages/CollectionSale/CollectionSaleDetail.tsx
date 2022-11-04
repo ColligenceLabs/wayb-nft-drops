@@ -7,7 +7,7 @@ import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess'
 import Popup from 'reactjs-popup';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import CSnackbar from '../../components/common/CSnackbar';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
@@ -42,6 +42,7 @@ const lockScroll = true;
 const CollectionSaleDetail = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
   const params = useParams();
+  const navigate = useNavigate();
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -180,6 +181,12 @@ const CollectionSaleDetail = () => {
     return url;
   };
 
+  const moveToFeatured = () => {
+    navigate(
+      `/klaytn/featured/${collectionItemInfo?.collectionInfo.featuredId}`
+    );
+  };
+
   const fetchCollectionItemInfo = async () => {
     const res = await getCollectionInfo(params.collectionId!);
     if (res.data.status === SUCCESS) {
@@ -271,7 +278,7 @@ const CollectionSaleDetail = () => {
             </div>
             <div className="straight-line"></div>
             <div className="token-details-box">
-              <div>
+              <div onClick={moveToFeatured}>
                 <div className="box-owner-product">
                   <button className="btn-avatar-owner-product">
                     <img
