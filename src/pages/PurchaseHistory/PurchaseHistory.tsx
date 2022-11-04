@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import arrow_blue from '../../assets/icon/arrow_blue.png';
 import arrow_up_right from '../../assets/icon/arrow_up_right.png';
 import { useSelector } from 'react-redux';
 import { getFeaturedById, getHistory } from '../../services/services';
 import { splitString } from '../../utils/splitString';
+import { moveToScope } from '../../utils/moveToScope';
 
 const Purchase_History = () => {
+  const navigate = useNavigate();
   const [sortDate, setSortDate] = useState(false);
   const [history, setHistory] = useState<any[]>([]);
   const { klaytn, binance } = useSelector((state: any) => state.wallet);
@@ -21,6 +23,25 @@ const Purchase_History = () => {
 
     return [year, month, day].join('.');
   }
+
+  const moveToUrl = (item: any) => {
+    console.log(item);
+    let url;
+    if (item.mysteryboxInfo.isCollection) {
+      console.log('collection');
+      url = `/klaytn/collections/${item.mysteryboxInfo.id}`;
+    } else {
+      if (item.mysteryboxInfo.isAirdrop) {
+        console.log('airdrop');
+        url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
+      } else {
+        console.log('mbox');
+        url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
+      }
+    }
+
+    navigate(url);
+  };
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -37,13 +58,13 @@ const Purchase_History = () => {
           drops = drops.concat(res.data.data.drops);
         }
       }
+      console.log(drops);
       setHistory(drops);
     };
 
     fetchHistory();
   }, [klaytn, binance]);
 
-  console.log('=========>', history);
   return (
     <main className="purchase-container min-height-content">
       <div className="purchase-history-page">
@@ -75,16 +96,19 @@ const Purchase_History = () => {
           {history &&
             history.map((drop: any) => {
               return (
-                <div className="purchase-history-content">
+                <div key={drop.id} className="purchase-history-content">
                   <div className="table-row">
                     <div className="value purchase_date">
                       {toStringByFormatting(new Date(drop.createdAt))}
                     </div>
                     <div className="value payment_type">Crypto</div>
                     <div className="value nft">
-                      <a className="campaign_name" href="#">
+                      <div
+                        className="campaign_name"
+                        onClick={() => moveToUrl(drop)}
+                      >
                         {drop.mysteryboxInfo.title.en}
-                      </a>
+                      </div>
                       {/*<Link to="/series" className="name">*/}
                       {/*  It&apos;s a race to the finish!*/}
                       {/*</Link>*/}
@@ -103,7 +127,16 @@ const Purchase_History = () => {
                     </div>
                     <div className="icon value">
                       <a href="#">
-                        <div className="arrow-up-right">
+                        <div
+                          className="arrow-up-right"
+                          onClick={() => {
+                            if (drop.txHash)
+                              moveToScope(
+                                drop.mysteryboxInfo.chainId,
+                                drop.txHash
+                              );
+                          }}
+                        >
                           <img src={arrow_up_right} alt="arrow up right" />
                         </div>
                       </a>
