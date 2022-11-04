@@ -130,7 +130,7 @@ const CollectionSaleDetail = () => {
         isSent: true,
         txHash: result?.txHash,
         price: collectionItemInfo?.price,
-        itemId: collectionItemInfo?.no,
+        itemId: collectionItemInfo?.id,
       };
 
       const res = await registerBuy(data);
