@@ -85,7 +85,7 @@ const UsernameBox = () => {
           </svg>
           My Collections
         </Link>
-        {/* <Link
+        <Link
           to={'/purchase-history'}
           className="wallet-button"
           onClick={closeSidebar}
@@ -146,7 +146,7 @@ const UsernameBox = () => {
             </defs>
           </svg>
           Purchase History
-        </Link> */}
+        </Link>
         <Link
           to={'/my-profile'}
           className="wallet-button"
