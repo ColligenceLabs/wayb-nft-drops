@@ -654,9 +654,6 @@ const Homepage = () => {
               {collectibleList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
-                  console.log(
-                    item?.mysteryboxItems[0]?.originalImage.split('.').pop()
-                  );
                   return (
                     <Link
                       to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
@@ -700,7 +697,7 @@ const Homepage = () => {
                               </video>
                             ) : item?.mysteryboxItems[0]?.originalImage
                                 .split('.')
-                                .pop() === 'mp4' ? (
+                                .pop() === 'gif' ? (
                               <img
                                 src={item.mysteryboxItems[0]?.originalImage}
                                 alt=""
