@@ -154,7 +154,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             isSent: true,
             txHash: result?.txHash,
             price: itemInfo?.price,
-            itemId: collectionItemInfo?.no,
+            itemId: itemInfo?.no,
           };
 
           const res = await registerBuy(data);
