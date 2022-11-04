@@ -25,17 +25,13 @@ const Purchase_History = () => {
   }
 
   const moveToUrl = (item: any) => {
-    console.log(item);
     let url;
     if (item.mysteryboxInfo.isCollection) {
-      console.log('collection');
       url = `/klaytn/collection/${item.mysteryBoxId}/${item.itemId}`;
     } else {
       if (item.mysteryboxInfo.isAirdrop) {
-        console.log('airdrop');
-        url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
+        url = `/klaytn/airdrop/${item.mysteryBoxId}/${item.itemId}`;
       } else {
-        console.log('mbox');
         url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
       }
     }
@@ -58,7 +54,6 @@ const Purchase_History = () => {
           drops = drops.concat(res.data.data.drops);
         }
       }
-      console.log(drops);
       setHistory(drops);
     };
 
