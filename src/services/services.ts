@@ -28,6 +28,10 @@ export const getFeaturedCollections = async (limit: number) => {
   return await customAxios.get(`/api/service/featured?page=1&limit=${limit}`);
 };
 
+export const getFeaturedCollectionsInfinite = async (page: number) => {
+  return await customAxios.get(`/api/service/featured?page=${page}&limit=8`);
+};
+
 export const getFeaturedById = async (id: string) => {
   return await customAxios.get(`/api/service/featured/${id}`);
 };

@@ -3,8 +3,6 @@ import { useLocation, useParams } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import ic_info from '../../assets/icon/info_blue.svg';
-import ic_search from '../../assets/icon/search.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import PaymentWallets from 'components/modal/PaymentWallets';
 import PaymentWalletsSuccess from 'components/modal/PaymentWalletsSuccess';
@@ -30,11 +28,7 @@ import CSnackbar from '../../components/common/CSnackbar';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
 import { useSelector } from 'react-redux';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
-import {
-  getItemAmount,
-  getItemAmountNoSigner,
-  getItemRemains,
-} from '../../utils/transactions';
+import { getItemAmountNoSigner } from '../../utils/transactions';
 import ReactModal from 'react-modal';
 
 type ExMBoxType = MBoxTypes & {
@@ -126,37 +120,6 @@ const SaleCollectibles = () => {
     setRemains(left);
   };
 
-  // useEffect(() => {
-  //   const fetchMboxItemList = async () => {
-  //     const res = await getMboxItemListMboxId(location.state.item.id);
-  //     if (res.status === 200) {
-  //       if (res.data.list) {
-  //         const newList = await Promise.all(
-  //           res.data.list.map(async (item: MBoxTypes, index: number) => {
-  //             // let remaining = null;
-  //             // if (library && library.connection)
-  //             //   remaining = await getItemAmount(
-  //             const remaining = await getItemAmountNoSigner(
-  //               location.state.item.boxContractAddress,
-  //               index,
-  //               item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
-  //               account,
-  //               // library
-  //               chainId ?? 8217
-  //             );
-  //             return { ...item, remainingAmount: remaining };
-  //           })
-  //         );
-  //         setMBoxItemList(newList);
-  //       }
-  //       // setMBoxItemList(res.data.list);
-  //     }
-  //   };
-  //
-  //   setMBoxInfo(location.state.item);
-  //   fetchMboxItemList();
-  // }, [location, library]);
-
   useEffect(() => {
     const fetchMboxItemList = async () => {
       const mboxInfoRes = await getMysteryBoxInfo(params.id!);
@@ -168,15 +131,11 @@ const SaleCollectibles = () => {
             const newList = await Promise.all(
               mboxItemsRes.data.list.map(
                 async (item: MBoxTypes, index: number) => {
-                  // let remaining = null;
-                  // if (library && library.connection)
-                  //   remaining = await getItemAmount(
                   const remaining = await getItemAmountNoSigner(
                     mboxInfoRes.data.data.boxContractAddress,
                     index,
                     item?.isCollection === true ? 2 : 1, // 1 = MysteryBox, 2 = Collection
                     account,
-                    // library
                     chainId ?? 8217
                   );
                   return { ...item, remainingAmount: remaining };
@@ -193,7 +152,6 @@ const SaleCollectibles = () => {
   }, [params, library]);
 
   useEffect(() => {
-    console.log(account);
     if (account && library?.connection && mBoxInfo) {
       const targetWallet = getTargetWallet(mBoxInfo?.chainId, wallet);
       const isKaikas = checkKaikas(library);
@@ -328,13 +286,13 @@ const SaleCollectibles = () => {
                   <div className="box-owner-product">
                     <button className="btn-avatar-owner-product">
                       <img
-                        src={mBoxInfo.companyLogo}
-                        alt={mBoxInfo.companyName}
+                        src={mBoxInfo.featured?.company.image}
+                        alt={mBoxInfo.featured?.company.name.en}
                       />
                     </button>
                     <div className="name-owner-product">
                       <button className="btn-name-owner-product">
-                        {mBoxInfo.companyName}
+                        {mBoxInfo.featured?.company.name.en}
                       </button>
                     </div>
                   </div>
