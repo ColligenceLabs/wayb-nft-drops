@@ -29,7 +29,7 @@ const Purchase_History = () => {
     let url;
     if (item.mysteryboxInfo.isCollection) {
       console.log('collection');
-      url = `/klaytn/collections/${item.mysteryboxInfo.id}`;
+      url = `/klaytn/collection/${item.mysteryBoxId}/${item.itemId}`;
     } else {
       if (item.mysteryboxInfo.isAirdrop) {
         console.log('airdrop');
