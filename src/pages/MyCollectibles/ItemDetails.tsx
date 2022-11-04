@@ -1,7 +1,7 @@
 import React, { MutableRefObject, useRef, useState } from 'react';
 import testImg from '../../assets/img/collectibles_test.png';
 import testAvatarImg from '../../assets/img/avatar.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import ic_authenticity from '../../assets/icon/info_blue.svg';
@@ -18,6 +18,8 @@ import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 
 const CollectionSale = () => {
+  const params = useParams();
+
   const navigate = useNavigate();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -141,7 +143,7 @@ const CollectionSale = () => {
                     </div>
                     <div className="item-details">
                       <div className="name">Token ID</div>
-                      <div className="info-name">1515</div>
+                      <div className="info-name">{params.id}</div>
                     </div>
                     <div className="item-details">
                       <div className="name">Token Standard</div>
@@ -149,7 +151,7 @@ const CollectionSale = () => {
                     </div>
                     <div className="item-details">
                       <div className="name">Chain</div>
-                      <div className="info-name">Etharium</div>
+                      <div className="info-name">Klaytn</div>
                     </div>
                     <div className="item-details">
                       <div className="name">Last Updated</div>
@@ -338,8 +340,8 @@ const CollectionSale = () => {
             {/*</a>*/}
             <div className="list-item">
               <div className="item">
-                <div className="label">{'Amount'}</div>
-                <div className="value">{'1a'}</div>
+                <div className="label">Token ID</div>
+                <div className="value">{params.id}</div>
               </div>
               <div className="item">
                 <div className="label">Release Date</div>
