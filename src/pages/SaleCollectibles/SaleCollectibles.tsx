@@ -454,6 +454,8 @@ const SaleCollectibles = () => {
                     <MBoxItemCard
                       key={index}
                       item={item}
+                      mBoxInfo={mBoxInfo}
+                      chainId={mBoxInfo?.chainId}
                       mBoxName={mBoxInfo?.title.en}
                       mBoxImage={mBoxInfo?.packageImage}
                       quote={mBoxInfo?.quote}
