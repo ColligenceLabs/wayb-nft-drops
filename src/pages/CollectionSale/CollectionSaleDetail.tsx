@@ -412,6 +412,8 @@ const CollectionSaleDetail = () => {
                           <CircularProgress size={30} color={'inherit'} />
                         ) : remainingAmount === 0 ? (
                           'Sold out'
+                        ) : collectionItemInfo?.price === 0 ? (
+                          'Get Now'
                         ) : (
                           'Buy Now'
                         )}

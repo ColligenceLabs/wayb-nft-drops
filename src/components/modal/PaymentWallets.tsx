@@ -178,12 +178,15 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         console.log(itemInfo);
         const contract = itemInfo?.collectionInfo?.boxContractAddress;
         const result = await claimAirDrop(contract, account, library);
-        if (result === SUCCESS) {
+        if (result.status === SUCCESS) {
           const data = {
             mysterybox_id: itemInfo?.collectionInfo?.id,
             buyer: '',
             buyer_address: account,
             isSent: true,
+            txHash: result.txHash,
+            price: 0,
+            itemId: itemInfo.id,
           };
 
           const res = await registerBuy(data);
