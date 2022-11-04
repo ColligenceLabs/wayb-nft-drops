@@ -654,7 +654,9 @@ const Homepage = () => {
               {collectibleList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
-                  console.log(item);
+                  console.log(
+                    item?.mysteryboxItems[0]?.originalImage.split('.').pop()
+                  );
                   return (
                     <Link
                       to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
@@ -680,11 +682,37 @@ const Homepage = () => {
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
-                            <img
-                              src={item.mysteryboxItems[0]?.itemImage}
-                              alt=""
-                              draggable={false}
-                            />
+                            {item?.mysteryboxItems[0]?.originalImage
+                              .split('.')
+                              .pop() === 'mp4' ? (
+                              <video
+                                autoPlay
+                                controls
+                                muted
+                                loop
+                                controlsList="nodownload"
+                                width={'100%'}
+                              >
+                                <source
+                                  src={item?.mysteryboxItems[0]?.originalImage}
+                                  type="video/mp4"
+                                />
+                              </video>
+                            ) : item?.mysteryboxItems[0]?.originalImage
+                                .split('.')
+                                .pop() === 'mp4' ? (
+                              <img
+                                src={item.mysteryboxItems[0]?.originalImage}
+                                alt=""
+                                draggable={false}
+                              />
+                            ) : (
+                              <img
+                                src={item.mysteryboxItems[0]?.itemImage}
+                                alt=""
+                                draggable={false}
+                              />
+                            )}
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">
@@ -692,7 +720,7 @@ const Homepage = () => {
                             <div className="content-left">
                               <div className="avatar">
                                 <img
-                                  src={item.packageImage}
+                                  src={item.featured.company.image}
                                   alt=""
                                   draggable={false}
                                 />
