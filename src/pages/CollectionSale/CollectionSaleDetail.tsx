@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ic_info from '../../assets/icon/info_blue.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
+import icon_seemore from '../../assets/icon/icon_seemore.png';
 import { CircularProgress } from '@mui/material';
 import PaymentWallets from '../../components/modal/PaymentWallets';
 import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess';
@@ -25,6 +26,7 @@ import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import { MBoxTypes } from '../../types/MBoxTypes';
+import { hotCollectiblesTestData } from 'pages/homepage/mockData';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -275,6 +277,12 @@ const CollectionSaleDetail = () => {
                       src={collectionItemInfo?.originalImage}
                       alt=""
                     />
+                    {/* <div style={{ width: '100%', height: '100%' }}>
+                      <div>Close</div>
+                      <div>
+
+                      </div>
+                    </div> */}
                   </ReactModal>
                 </>
               )}
@@ -347,22 +355,24 @@ const CollectionSaleDetail = () => {
               </div>
               {collectionItemInfo?.collectionInfo.isCollection === false &&
                 collectionItemInfo?.collectionInfo.isAirdrop === true && (
-                  <div className="airdrop-condition">
-                    {collectionItemInfo?.collectionInfo.whitelists.length >
-                    0 ? (
-                      collectionItemInfo?.collectionInfo.useAndCondition ? (
-                        <span>
-                          Please purchase all of the NFTs below first.
-                        </span>
+                  <>
+                    <div className="airdrop-condition">
+                      {collectionItemInfo?.collectionInfo.whitelists.length >
+                      0 ? (
+                        collectionItemInfo?.collectionInfo.useAndCondition ? (
+                          <span>
+                            Please purchase all of the NFTs below first.
+                          </span>
+                        ) : (
+                          <span>
+                            Please purchase at least one of the NFTs below
+                            first.{' '}
+                          </span>
+                        )
                       ) : (
-                        <span>
-                          Please purchase at least one of the NFTs below first.{' '}
-                        </span>
-                      )
-                    ) : (
-                      ''
-                    )}
-                    <ul>
+                        ''
+                      )}
+                      {/* <ul>
                       {collectionItemInfo?.collectionInfo.whitelists &&
                         collectionItemInfo?.collectionInfo.whitelists.map(
                           (item: MBoxTypes) => (
@@ -377,8 +387,27 @@ const CollectionSaleDetail = () => {
                             // </Link>
                           )
                         )}
-                    </ul>
-                  </div>
+                    </ul> */}
+                    </div>
+                    <div className="grid-list-nft">
+                      {hotCollectiblesTestData
+                        .filter((item, index) => index < 3)
+                        .map((item: any, index) => (
+                          <div className="grid-item-nft" key={index}>
+                            <div className="image-nft">
+                              <img src={item.image} alt={item.nameLabel} />
+                            </div>
+                            <div className="title-nft">{item.nameLabel}</div>
+                          </div>
+                        ))}
+                    </div>
+                    <button className="see-more button">
+                      <div className="title-see-more">See more</div>
+                      <div className="icon-see-more">
+                        <img src={icon_seemore} alt="icon see more" />
+                      </div>
+                    </button>
+                  </>
                 )}
               <div></div>
               <div>
