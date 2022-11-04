@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import testImg from '../../assets/img/collectibles_test.png';
 import testAvatarImg from '../../assets/img/avatar.png';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -16,6 +16,15 @@ import icon_share from '../../assets/img/icon_share.png';
 import arrow_dropdown from '../../assets/svg/icon_dropdown.svg';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
+import { getMysteryBoxInfo } from '../../services/services';
+import { SUCCESS } from '../../config';
+import { MBoxTypes } from '../../types/MBoxTypes';
+import { useWeb3React } from '@web3-react/core';
+
+type ExMBoxType = MBoxTypes & {
+  companyLogo: string;
+  companyName: string;
+};
 
 const CollectionSale = () => {
   const params = useParams();
@@ -28,6 +37,9 @@ const CollectionSale = () => {
   const [showDetails, setShowDetails] = useState(false);
   useOnClickOutside(ref, () => setDropdownOpen(false));
 
+  const { account, library, chainId } = useWeb3React();
+  const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
+
   function toStringByFormatting(source: Date) {
     const year = source.getFullYear();
     const month = source.getMonth() + 1;
@@ -36,6 +48,20 @@ const CollectionSale = () => {
     return [year, month, day].join('.');
   }
 
+  console.log('===>', params);
+
+  useEffect(() => {
+    const fetchMboxItemList = async () => {
+      const mboxInfoRes = await getMysteryBoxInfo(params.contractAddress!);
+      if (mboxInfoRes.data.status === SUCCESS) {
+        setMBoxInfo(mboxInfoRes.data.data);
+      }
+    };
+
+    fetchMboxItemList();
+  }, [params, library]);
+
+  console.log('=====>', mBoxInfo);
   return (
     <main className="collectibles-item-details-container min-height-content">
       <div className="collectibles-details-wp">
