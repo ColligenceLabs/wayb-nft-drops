@@ -18,5 +18,6 @@ export type FeaturedTypes = {
   createdAt: Date | null;
   eventBanner: string | null;
   eventUrl: string | null;
+  eventMobileBanner: string | null;
   newWindow: boolean;
 };
