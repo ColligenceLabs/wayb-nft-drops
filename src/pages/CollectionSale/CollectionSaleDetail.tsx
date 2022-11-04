@@ -345,12 +345,19 @@ const CollectionSaleDetail = () => {
               {collectionItemInfo?.collectionInfo.isCollection === false &&
                 collectionItemInfo?.collectionInfo.isAirdrop === true && (
                   <div className="airdrop-condition">
-                    {collectionItemInfo?.collectionInfo.useAndCondition ? (
-                      <span>아래 항목을 모두 보유해야 구매 가능합니다.</span>
+                    {collectionItemInfo?.collectionInfo.whitelists.length >
+                    0 ? (
+                      collectionItemInfo?.collectionInfo.useAndCondition ? (
+                        <span>
+                          Please purchase all of the NFTs below first.
+                        </span>
+                      ) : (
+                        <span>
+                          Please purchase at least one of the NFTs below first.{' '}
+                        </span>
+                      )
                     ) : (
-                      <span>
-                        아래 항목 중 하나 이상 보유해야 구매 가능합니다.{' '}
-                      </span>
+                      ''
                     )}
                     <ul>
                       {collectionItemInfo?.collectionInfo.whitelists &&
