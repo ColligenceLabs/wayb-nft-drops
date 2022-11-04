@@ -122,12 +122,14 @@ const CollectionSaleDetail = () => {
       library
     );
 
-    if (result === SUCCESS) {
+    if (result.status === SUCCESS) {
       const data = {
         mysterybox_id: collectionItemInfo?.collectionInfo?.id,
         buyer: '',
         buyer_address: account,
         isSent: true,
+        txHash: result?.txHash,
+        price: collectionItemInfo?.price,
       };
 
       const res = await registerBuy(data);
