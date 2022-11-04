@@ -90,7 +90,7 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
                 minutes to confirm the transaction and transfer the NFT to your
                 wallet.{' '}
                 {itemInfo.isCollection === false
-                  ? '미스처리 박스는 Reveal이 필요합니다. My Collectibles 메뉴에서 Reveal 실핼을 하세요.'
+                  ? 'Mystery Box requires Reveal. Launch Reveal from the My Collection menu.'
                   : ''}
               </div>
 
