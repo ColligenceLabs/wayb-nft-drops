@@ -177,26 +177,35 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         console.log('claim');
         console.log(itemInfo);
         const contract = itemInfo?.collectionInfo?.boxContractAddress;
-        const result = await claimAirDrop(contract, account, library);
-        if (result.status === SUCCESS) {
-          const data = {
-            mysterybox_id: itemInfo?.collectionInfo?.id,
-            buyer: '',
-            buyer_address: account,
-            isSent: true,
-            txHash: result.txHash,
-            price: 0,
-            itemId: itemInfo.id,
-          };
+        try {
+          const result = await claimAirDrop(contract, account, library);
+          if (result.status === SUCCESS) {
+            const data = {
+              mysterybox_id: itemInfo?.collectionInfo?.id,
+              buyer: '',
+              buyer_address: account,
+              isSent: true,
+              txHash: result.txHash,
+              price: 0,
+              itemId: itemInfo.id,
+            };
 
-          const res = await registerBuy(data);
-          if (res.data.status === SUCCESS) {
-            console.log('success');
-            return true;
+            const res = await registerBuy(data);
+            if (res.data.status === SUCCESS) {
+              console.log('success');
+              return true;
+            } else {
+              return false;
+            }
           } else {
             return false;
           }
-        } else {
+        } catch (error: any) {
+          if (
+            error.data.message ===
+            'execution reverted: should buy all collections before'
+          )
+            setErrMsg('Free claim condition is not fulfilled!');
           return false;
         }
       }
