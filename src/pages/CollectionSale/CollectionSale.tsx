@@ -5,6 +5,7 @@ import { useWeb3React } from '@web3-react/core';
 import CollectionSaleItems from './CollectionSaleItems';
 import { getCollectionInfo } from '../../services/services';
 import { SUCCESS } from '../../config';
+import { useMediaQuery } from 'react-responsive';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -23,6 +24,10 @@ type ExMBoxType = MBoxTypes & {
 const CollectionSale = () => {
   const params = useParams();
   const { library } = useWeb3React();
+  const isMobile = useMediaQuery({
+    query: '(max-width: 640px)',
+  });
+
   const [collectionInfo, setCollectionInfo] = useState<ExMBoxType | null>(null);
 
   const fetchCollectionInfo = async () => {
@@ -51,7 +56,11 @@ const CollectionSale = () => {
           <div
             className="collection-banner-image"
             style={{
-              backgroundImage: `url("${collectionInfo?.bannerImage}")`,
+              backgroundImage: `url("${
+                isMobile && collectionInfo?.mobileBanner
+                  ? collectionInfo?.mobileBanner
+                  : collectionInfo?.bannerImage
+              }")`,
             }}
           ></div>
           <div className="box-collection">

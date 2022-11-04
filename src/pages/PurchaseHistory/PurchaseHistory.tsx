@@ -1,13 +1,65 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import arrow_blue from '../../assets/icon/arrow_blue.png';
 import arrow_up_right from '../../assets/icon/arrow_up_right.png';
+import { useSelector } from 'react-redux';
+import { getFeaturedById, getHistory } from '../../services/services';
+import { splitString } from '../../utils/splitString';
+import { moveToScope } from '../../utils/moveToScope';
 
 const Purchase_History = () => {
+  const navigate = useNavigate();
   const [sortDate, setSortDate] = useState(false);
+  const [history, setHistory] = useState<any[]>([]);
+  const { klaytn, binance } = useSelector((state: any) => state.wallet);
+
+  function toStringByFormatting(source: Date) {
+    const year = source.getFullYear();
+    const month = source.getMonth() + 1;
+    const day = source.getDate();
+
+    return [year, month, day].join('.');
+  }
+
+  const moveToUrl = (item: any) => {
+    let url;
+    if (item.mysteryboxInfo.isCollection) {
+      url = `/klaytn/collection/${item.mysteryBoxId}/${item.itemId}`;
+    } else {
+      if (item.mysteryboxInfo.isAirdrop) {
+        url = `/klaytn/airdrop/${item.mysteryBoxId}/${item.itemId}`;
+      } else {
+        url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
+      }
+    }
+
+    navigate(url);
+  };
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      let drops: React.SetStateAction<any[]> = [];
+      if (klaytn?.address) {
+        const res = await getHistory(klaytn?.address);
+        if (res.status === 200) {
+          drops = drops.concat(res.data.data.drops);
+        }
+      }
+      if (binance?.address) {
+        const res = await getHistory(binance?.address);
+        if (res.status === 200) {
+          drops = drops.concat(res.data.data.drops);
+        }
+      }
+      setHistory(drops);
+    };
+
+    fetchHistory();
+  }, [klaytn, binance]);
+
   return (
     <main className="purchase-container min-height-content">
       <div className="purchase-history-page">
@@ -36,78 +88,58 @@ const Purchase_History = () => {
               <div className="icon value"></div>
             </div>
           </div>
-          <div className="purchase-history-content">
-            <div className="table-row">
-              <div className="value purchase_date">Sep 2 ,2022</div>
-              <div className="value payment_type">Web Purchase</div>
-              <div className="value nft">
-                <a className="campaign_name" href="#">
-                  Racecarpop 4
-                </a>
-                <Link to="/series" className="name">
-                  It&apos;s a race to the finish!
-                </Link>
-              </div>
-              <div className="value amount">$8.99</div>
-              <div className="value blockchain">Polygon</div>
-              <div className="value explorer_url">0xF3...0B20</div>
-              <div className="icon value">
-                <a href="#">
-                  <div className="arrow-up-right">
-                    <img src={arrow_up_right} alt="arrow up right" />
+          {history &&
+            history.map((drop: any) => {
+              return (
+                <div key={drop.id} className="purchase-history-content">
+                  <div className="table-row">
+                    <div className="value purchase_date">
+                      {toStringByFormatting(new Date(drop.createdAt))}
+                    </div>
+                    <div className="value payment_type">Crypto</div>
+                    <div className="value nft">
+                      <div
+                        className="campaign_name"
+                        onClick={() => moveToUrl(drop)}
+                      >
+                        {drop.mysteryboxInfo.title.en}
+                      </div>
+                      {/*<Link to="/series" className="name">*/}
+                      {/*  It&apos;s a race to the finish!*/}
+                      {/*</Link>*/}
+                    </div>
+                    <div className="value amount">
+                      {drop.price ?? '0'} {drop.mysteryboxInfo.quote}
+                    </div>
+                    <div className="value blockchain">
+                      {drop.mysteryboxInfo.chainId === 1001 ||
+                      drop.mysteryboxInfo.chainId === 8217
+                        ? 'Klaytn'
+                        : 'Binance'}
+                    </div>
+                    <div className="value explorer_url">
+                      {drop.txHash ? splitString(drop.txHash) : ''}
+                    </div>
+                    <div className="icon value">
+                      <a href="#">
+                        <div
+                          className="arrow-up-right"
+                          onClick={() => {
+                            if (drop.txHash)
+                              moveToScope(
+                                drop.mysteryboxInfo.chainId,
+                                drop.txHash
+                              );
+                          }}
+                        >
+                          <img src={arrow_up_right} alt="arrow up right" />
+                        </div>
+                      </a>
+                    </div>
                   </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="purchase-history-content">
-            <div className="table-row">
-              <div className="value purchase_date">Sep 2 ,2022</div>
-              <div className="value payment_type">Web Purchase</div>
-              <div className="value nft">
-                <a className="campaign_name" href="#">
-                  Be Rewarded !
-                </a>
-                <Link to="/series" className="name">
-                  Strawberry Shortcake
-                </Link>
-              </div>
-              <div className="value amount">$1.99</div>
-              <div className="value blockchain">Polygon</div>
-              <div className="value explorer_url">48...48</div>
-              <div className="icon value">
-                <a href="#">
-                  <div className="arrow-up-right">
-                    <img src={arrow_up_right} alt="arrow up right" />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="purchase-history-content">
-            <div className="table-row">
-              <div className="value purchase_date">Sep 2 ,2022</div>
-              <div className="value payment_type">Web Purchase</div>
-              <div className="value nft">
-                <a className="campaign_name" href="#">
-                  Ketchupop!
-                </a>
-                <Link to="/series" className="name">
-                  Let&apos;s ketchup some time!
-                </Link>
-              </div>
-              <div className="value amount">$19.99</div>
-              <div className="value blockchain">Polygon</div>
-              <div className="value explorer_url">5V...0G8V</div>
-              <div className="icon value">
-                <a href="#">
-                  <div className="arrow-up-right">
-                    <img src={arrow_up_right} alt="arrow up right" />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </main>

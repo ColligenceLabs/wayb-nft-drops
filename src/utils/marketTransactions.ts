@@ -21,6 +21,11 @@ export function calculateGasMargin(value: BigNumber) {
     .div(BigNumber.from(10000));
 }
 
+interface txResult {
+  status: number;
+  txHash: string;
+}
+
 interface Overrides {
   value?: string | number;
   from: string | null | undefined;
@@ -178,7 +183,7 @@ export async function buyKey(
   quote: string,
   account: string | undefined | null,
   library: any
-): Promise<number> {
+): Promise<txResult> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
     library.connection.url !== 'metamask' ||
@@ -200,6 +205,8 @@ export async function buyKey(
   }
 
   let tx;
+  const result: txResult = { status: 0, txHash: '' };
+
   // gasLimit 계산
   let gasLimit;
   console.log(contract, amount);
@@ -253,8 +260,12 @@ export async function buyKey(
           });
       }
       if (tx?.status) {
-        return SUCCESS;
-      } else return FAILURE;
+        result.status = SUCCESS;
+        result.txHash = tx.transactionHash;
+      } else {
+        result.status = FAILURE;
+      }
+      return result;
     } else {
       // if (library._network.chainId === 8217)
       overrides = { ...overrides, gasPrice };
@@ -271,15 +282,20 @@ export async function buyKey(
       try {
         receipt = await tx.wait();
       } catch (e) {
-        return FAILURE;
+        result.status = FAILURE;
       }
       if (receipt.status === 1) {
-        return SUCCESS;
-      } else return FAILURE;
+        result.status = SUCCESS;
+        result.txHash = receipt.transactionHash;
+      } else {
+        result.status = FAILURE;
+      }
+      return result;
     }
   } catch (e) {
     console.log(e);
-    return FAILURE;
+    result.status = FAILURE;
+    return result;
   }
 }
 
@@ -1506,7 +1522,7 @@ export async function claimAirDrop(
   airDrop: string, // AirDrop contract address
   account: string | undefined | null,
   library: any
-): Promise<number> {
+): Promise<txResult> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
     library.connection.url !== 'metamask' ||
@@ -1535,6 +1551,7 @@ export async function claimAirDrop(
 
   // registerItems 요청
   let receipt;
+  const result: txResult = { status: 0, txHash: '' };
   try {
     let overrides: Overrides = {
       from: account,
@@ -1546,11 +1563,15 @@ export async function claimAirDrop(
         .claim()
         .send(overrides)
         .catch(async (err: any) => {
-          return FAILURE;
+          result.status = FAILURE;
         });
       if (tx?.status) {
-        return SUCCESS;
-      } else return FAILURE;
+        result.status = SUCCESS;
+        result.txHash = tx.transactionHash;
+      } else {
+        result.status = FAILURE;
+      }
+      return result;
     } else {
       // if (library._network.chainId === 8217)
       overrides = { ...overrides, gasPrice };
@@ -1561,14 +1582,19 @@ export async function claimAirDrop(
       try {
         receipt = await tx.wait();
       } catch (e) {
-        return FAILURE;
+        result.status = FAILURE;
       }
       if (receipt.status === 1) {
-        return SUCCESS;
-      } else return FAILURE;
+        result.status = SUCCESS;
+        result.txHash = receipt.transactionHash;
+      } else {
+        result.status = FAILURE;
+      }
+      return result;
     }
   } catch (e) {
     console.log(e);
-    return FAILURE;
+    result.status = FAILURE;
+    return result;
   }
 }

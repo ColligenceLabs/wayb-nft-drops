@@ -1,7 +1,7 @@
-import React, { MutableRefObject, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import testImg from '../../assets/img/collectibles_test.png';
 import testAvatarImg from '../../assets/img/avatar.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import ic_authenticity from '../../assets/icon/info_blue.svg';
@@ -16,8 +16,19 @@ import icon_share from '../../assets/img/icon_share.png';
 import arrow_dropdown from '../../assets/svg/icon_dropdown.svg';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
+import { getMysteryBoxInfo } from '../../services/services';
+import { SUCCESS } from '../../config';
+import { MBoxTypes } from '../../types/MBoxTypes';
+import { useWeb3React } from '@web3-react/core';
+
+type ExMBoxType = MBoxTypes & {
+  companyLogo: string;
+  companyName: string;
+};
 
 const CollectionSale = () => {
+  const params = useParams();
+
   const navigate = useNavigate();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -25,6 +36,9 @@ const CollectionSale = () => {
   const [showProperties, setShowProperties] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   useOnClickOutside(ref, () => setDropdownOpen(false));
+
+  const { account, library, chainId } = useWeb3React();
+  const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
 
   function toStringByFormatting(source: Date) {
     const year = source.getFullYear();
@@ -34,6 +48,20 @@ const CollectionSale = () => {
     return [year, month, day].join('.');
   }
 
+  console.log('===>', params);
+
+  useEffect(() => {
+    const fetchMboxItemList = async () => {
+      const mboxInfoRes = await getMysteryBoxInfo(params.contractAddress!);
+      if (mboxInfoRes.data.status === SUCCESS) {
+        setMBoxInfo(mboxInfoRes.data.data);
+      }
+    };
+
+    fetchMboxItemList();
+  }, [params, library]);
+
+  console.log('=====>', mBoxInfo);
   return (
     <main className="collectibles-item-details-container min-height-content">
       <div className="collectibles-details-wp">
@@ -141,7 +169,7 @@ const CollectionSale = () => {
                     </div>
                     <div className="item-details">
                       <div className="name">Token ID</div>
-                      <div className="info-name">1515</div>
+                      <div className="info-name">{params.id}</div>
                     </div>
                     <div className="item-details">
                       <div className="name">Token Standard</div>
@@ -149,7 +177,7 @@ const CollectionSale = () => {
                     </div>
                     <div className="item-details">
                       <div className="name">Chain</div>
-                      <div className="info-name">Etharium</div>
+                      <div className="info-name">Klaytn</div>
                     </div>
                     <div className="item-details">
                       <div className="name">Last Updated</div>
@@ -338,8 +366,8 @@ const CollectionSale = () => {
             {/*</a>*/}
             <div className="list-item">
               <div className="item">
-                <div className="label">{'Amount'}</div>
-                <div className="value">{'1a'}</div>
+                <div className="label">Token ID</div>
+                <div className="value">{params.id}</div>
               </div>
               <div className="item">
                 <div className="label">Release Date</div>

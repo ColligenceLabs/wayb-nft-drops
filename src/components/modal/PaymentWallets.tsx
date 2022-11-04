@@ -138,7 +138,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           account,
           library
         );
-        if (result === SUCCESS) {
+        if (result.status === SUCCESS) {
           // const left = await getItemAmount(
           //   contract,
           //   index,
@@ -152,6 +152,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             buyer: '',
             buyer_address: account,
             isSent: true,
+            txHash: result?.txHash,
+            price: itemInfo?.price,
+            itemId: itemInfo?.id,
           };
 
           const res = await registerBuy(data);
@@ -175,12 +178,15 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         console.log(itemInfo);
         const contract = itemInfo?.collectionInfo?.boxContractAddress;
         const result = await claimAirDrop(contract, account, library);
-        if (result === SUCCESS) {
+        if (result.status === SUCCESS) {
           const data = {
             mysterybox_id: itemInfo?.collectionInfo?.id,
             buyer: '',
             buyer_address: account,
             isSent: true,
+            txHash: result.txHash,
+            price: 0,
+            itemId: itemInfo.id,
           };
 
           const res = await registerBuy(data);
@@ -224,7 +230,7 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             library
           );
 
-          if (result === SUCCESS) {
+          if (result.status === SUCCESS) {
             const left = await getKeyRemains(
               itemInfo.keyContractAddress,
               itemInfo.boxContractAddress,
@@ -238,6 +244,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               buyer: '',
               buyer_address: account,
               isSent: true,
+              txHash: result?.txHash,
+              price: itemInfo.price,
             };
 
             const res = await registerBuy(data);

@@ -28,6 +28,7 @@ export type MBoxTypes = {
   paymentAddress: string | null;
   totalAmount: number | null;
   usedAmount: number | null;
+  mobileBanner: string | null;
   chainId: number;
   isCollection: boolean | null;
   isAirdrop: boolean | null;
@@ -35,4 +36,5 @@ export type MBoxTypes = {
     company: { image: string; name: { en: string; ko: string } };
     companyId: string;
   };
+  featuredId: string | null;
 };

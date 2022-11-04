@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ic_info from '../../assets/icon/info_blue.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
+import icon_seemore from '../../assets/icon/icon_seemore.png';
 import { CircularProgress } from '@mui/material';
 import PaymentWallets from '../../components/modal/PaymentWallets';
 import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess';
 import Popup from 'reactjs-popup';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import CSnackbar from '../../components/common/CSnackbar';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
@@ -25,6 +26,7 @@ import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import { MBoxTypes } from '../../types/MBoxTypes';
+import { hotCollectiblesTestData } from 'pages/homepage/mockData';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -42,6 +44,7 @@ const lockScroll = true;
 const CollectionSaleDetail = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
   const params = useParams();
+  const navigate = useNavigate();
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -121,12 +124,15 @@ const CollectionSaleDetail = () => {
       library
     );
 
-    if (result === SUCCESS) {
+    if (result.status === SUCCESS) {
       const data = {
         mysterybox_id: collectionItemInfo?.collectionInfo?.id,
         buyer: '',
         buyer_address: account,
         isSent: true,
+        txHash: result?.txHash,
+        price: collectionItemInfo?.price,
+        itemId: collectionItemInfo?.id,
       };
 
       const res = await registerBuy(data);
@@ -178,6 +184,12 @@ const CollectionSaleDetail = () => {
       url = `/klaytn/collection/${infoId}/${item.id}`;
     }
     return url;
+  };
+
+  const moveToFeatured = () => {
+    navigate(
+      `/klaytn/featured/${collectionItemInfo?.collectionInfo.featuredId}`
+    );
   };
 
   const fetchCollectionItemInfo = async () => {
@@ -265,13 +277,19 @@ const CollectionSaleDetail = () => {
                       src={collectionItemInfo?.originalImage}
                       alt=""
                     />
+                    {/* <div style={{ width: '100%', height: '100%' }}>
+                      <div>Close</div>
+                      <div>
+
+                      </div>
+                    </div> */}
                   </ReactModal>
                 </>
               )}
             </div>
             <div className="straight-line"></div>
             <div className="token-details-box">
-              <div>
+              <div onClick={moveToFeatured}>
                 <div className="box-owner-product">
                   <button className="btn-avatar-owner-product">
                     <img
@@ -337,15 +355,24 @@ const CollectionSaleDetail = () => {
               </div>
               {collectionItemInfo?.collectionInfo.isCollection === false &&
                 collectionItemInfo?.collectionInfo.isAirdrop === true && (
-                  <div className="airdrop-condition">
-                    {collectionItemInfo?.collectionInfo.useAndCondition ? (
-                      <span>아래 항목을 모두 보유해야 구매 가능합니다.</span>
-                    ) : (
-                      <span>
-                        아래 항목 중 하나 이상 보유해야 구매 가능합니다.{' '}
-                      </span>
-                    )}
-                    <ul>
+                  <>
+                    <div className="airdrop-condition">
+                      {collectionItemInfo?.collectionInfo.whitelists.length >
+                      0 ? (
+                        collectionItemInfo?.collectionInfo.useAndCondition ? (
+                          <span>
+                            Please purchase all of the NFTs below first.
+                          </span>
+                        ) : (
+                          <span>
+                            Please purchase at least one of the NFTs below
+                            first.{' '}
+                          </span>
+                        )
+                      ) : (
+                        ''
+                      )}
+                      {/* <ul>
                       {collectionItemInfo?.collectionInfo.whitelists &&
                         collectionItemInfo?.collectionInfo.whitelists.map(
                           (item: MBoxTypes) => (
@@ -360,8 +387,27 @@ const CollectionSaleDetail = () => {
                             // </Link>
                           )
                         )}
-                    </ul>
-                  </div>
+                    </ul> */}
+                    </div>
+                    <div className="grid-list-nft">
+                      {hotCollectiblesTestData
+                        .filter((item, index) => index < 3)
+                        .map((item: any, index) => (
+                          <div className="grid-item-nft" key={index}>
+                            <div className="image-nft">
+                              <img src={item.image} alt={item.nameLabel} />
+                            </div>
+                            <div className="title-nft">{item.nameLabel}</div>
+                          </div>
+                        ))}
+                    </div>
+                    <button className="see-more button">
+                      <div className="title-see-more">See more</div>
+                      <div className="icon-see-more">
+                        <img src={icon_seemore} alt="icon see more" />
+                      </div>
+                    </button>
+                  </>
                 )}
               <div></div>
               <div>
@@ -395,6 +441,8 @@ const CollectionSaleDetail = () => {
                           <CircularProgress size={30} color={'inherit'} />
                         ) : remainingAmount === 0 ? (
                           'Sold out'
+                        ) : collectionItemInfo?.price === 0 ? (
+                          'Get Now'
                         ) : (
                           'Buy Now'
                         )}

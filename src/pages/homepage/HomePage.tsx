@@ -28,6 +28,8 @@ import { getRarityToString } from '../../utils/getRarityToString';
 import { getNetworkNameByChainId } from 'utils/getNetworkNameByChainId';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import Skeleton from 'components/common/skeleton/Skeleton';
+import { isMobile } from 'react-device-detect';
+import { useMediaQuery } from 'react-responsive';
 
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
@@ -35,6 +37,9 @@ type ExMBoxType = MBoxTypes & {
 
 const Homepage = () => {
   const { account, library, chainId } = useActiveWeb3React();
+  const isMobile = useMediaQuery({
+    query: '(max-width: 640px)',
+  });
   const navigate = useNavigate();
   const screenSize = useScreenSize();
   const [slideData, setSlideData] = useState<FeaturedTypes[]>([]);
@@ -81,6 +86,7 @@ const Homepage = () => {
     const fetchSlideData = async () => {
       const res = await getEventList();
       if (res.data.status === 1) {
+        console.log(res.data.data.list);
         setSlideData(res.data.data.list);
       }
     };
@@ -238,7 +244,11 @@ const Homepage = () => {
                       >
                         <div>
                           <img
-                            src={item.eventBanner!}
+                            src={
+                              isMobile && item.eventMobileBanner
+                                ? item.eventMobileBanner
+                                : item.eventBanner!
+                            }
                             alt=""
                             draggable={false}
                           />
@@ -654,7 +664,6 @@ const Homepage = () => {
               {collectibleList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
-                  console.log(item);
                   return (
                     <Link
                       to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
@@ -680,11 +689,37 @@ const Homepage = () => {
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
-                            <img
-                              src={item.mysteryboxItems[0]?.itemImage}
-                              alt=""
-                              draggable={false}
-                            />
+                            {item?.mysteryboxItems[0]?.originalImage
+                              .split('.')
+                              .pop() === 'mp4' ? (
+                              <video
+                                autoPlay
+                                controls
+                                muted
+                                loop
+                                controlsList="nodownload"
+                                width={'100%'}
+                              >
+                                <source
+                                  src={item?.mysteryboxItems[0]?.originalImage}
+                                  type="video/mp4"
+                                />
+                              </video>
+                            ) : item?.mysteryboxItems[0]?.originalImage
+                                .split('.')
+                                .pop() === 'gif' ? (
+                              <img
+                                src={item.mysteryboxItems[0]?.originalImage}
+                                alt=""
+                                draggable={false}
+                              />
+                            ) : (
+                              <img
+                                src={item.mysteryboxItems[0]?.itemImage}
+                                alt=""
+                                draggable={false}
+                              />
+                            )}
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">
@@ -692,7 +727,7 @@ const Homepage = () => {
                             <div className="content-left">
                               <div className="avatar">
                                 <img
-                                  src={item.packageImage}
+                                  src={item.featured.company.image}
                                   alt=""
                                   draggable={false}
                                 />
