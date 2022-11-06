@@ -13,7 +13,7 @@ const MBoxCard: React.FC<MBoxCardProps> = ({ item }) => {
     <Link to={`/my-collectibles/details/${item.id}`} state={{ item }}>
       <div className="item-product">
         <div className="item-product-detail">
-          <div className="card">
+          <div className="card-image">
             <img src={item.packageImage} alt="" />
           </div>
         </div>

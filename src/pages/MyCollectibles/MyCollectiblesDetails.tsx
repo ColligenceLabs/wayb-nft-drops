@@ -567,7 +567,7 @@ const MyCollectiblesDetails = () => {
                       <div>erc721</div>
                     </div>
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                      <div className="card">
+                      <div className="card-image">
                         {item.extension === 'mp4' ? (
                           <video
                             autoPlay

@@ -259,7 +259,7 @@ const MyCollectibles = () => {
               <Link to="/my-collectibles/details" key={index} state={{ item }}>
                 <div className="item-product">
                   <div className="item-product-detail">
-                    <div className="card">
+                    <div className="card-image">
                       <img src={item.packageImage} alt="" />
                     </div>
                   </div>

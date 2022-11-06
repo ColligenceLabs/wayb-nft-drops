@@ -99,7 +99,7 @@ const CollectionSaleItems: React.FC<CollectionListProps> = ({
                   <div>erc721</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
+                  <div className="card-image">
                     <img src={item.itemImage} alt="" />
                   </div>
                 </div>

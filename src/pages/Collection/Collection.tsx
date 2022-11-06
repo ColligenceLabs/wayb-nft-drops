@@ -163,8 +163,7 @@ const Collection = () => {
             {/*              <div>erc721</div>*/}
             {/*            </div>*/}
             {/*            <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">*/}
-            {/*              <div className="card">*/}
-            {/*                <img src={product} alt="" />*/}
+            {/*              <div className="card-image alt="" />*/}
             {/*              </div>*/}
             {/*            </div>*/}
             {/*            <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">*/}
