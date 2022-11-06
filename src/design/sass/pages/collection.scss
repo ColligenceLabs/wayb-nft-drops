@@ -203,12 +203,10 @@
         display: flex;
         flex-flow: row wrap;
         border-radius: 15px;
-        background-color: rgba(255, 255, 255, 0.08);
         overflow: hidden;
         transition: transform 0.15s ease-in-out 0s;
         cursor: pointer;
         margin: 0px;
-        border-radius: 8px;
 
         .item_product_detail {
           width: 100%;
@@ -244,7 +242,7 @@
             font-size: 18px;
             font-size: 12px;
             font-weight: 700;
-            min-height: 52px;
+            // min-height: 52px;
 
             a {
               box-shadow: none;
@@ -298,7 +296,7 @@
           }
 
           .product_name {
-            margin-bottom: 10px;
+            margin: 12px 0 10px;
             font-size: 14px;
             text-align: left;
             overflow: hidden;
@@ -335,7 +333,7 @@
         .item_product_detail:nth-child(1) {
           width: auto;
           font-size: 12px;
-          margin: 10px 0px 5px;
+          margin: 10px 0px 0px;
           padding: 0px 0px 0px 15px;
           flex: 1 1 0%;
         }
@@ -343,7 +341,7 @@
         .item_product_detail:nth-child(2) {
           width: auto;
           text-align: right;
-          margin: 10px 0px 5px;
+          margin: 10px 0px 0px;
           color: #aaaaaa;
           font-size: 12px;
           padding-left: 0px;
@@ -822,11 +820,10 @@
               -webkit-box-pack: justify;
               justify-content: space-between;
               margin-top: auto;
-              margin-bottom: 0.5rem;
+              margin: 0 12px;
               font-size: 18px;
               font-weight: 700;
               font-size: 12px;
-              min-height: 52px;
               .content-left {
                 display: flex;
                 -webkit-box-align: center;
@@ -872,7 +869,7 @@
             justify-content: center;
             text-align: center;
             .name-label {
-              margin: 0px 0px 10px;
+              margin: 12px;
               font-size: 14px;
               text-align: left;
               overflow: hidden;
@@ -1179,7 +1176,6 @@
 @media (max-width: 639px) {
   .box-collection {
     .marketplace {
-      width: 100%;
       .marketplace-items {
         grid-template-columns: repeat(1, 1fr);
         a {
@@ -1193,9 +1189,12 @@
               width: 80%;
               height: 250px;
             }
+            .product_name {
+              white-space: unset;
+            }
           }
           .item_product_detail:nth-child(3) {
-            padding: 10px 12px;
+            padding: 15px 12px 10px;
           }
         }
       }
@@ -1212,15 +1211,20 @@
             height: auto;
             .hot-ollectibles-item:nth-child(3) {
               .img-token {
-                width: 90%;
+                width: 80%;
                 height: 250px;
-                margin: 10px auto;
+                margin: 15px auto 10px;
                 img,
                 video {
                   width: 100%;
                   height: 100%;
                   object-fit: contain;
                 }
+              }
+            }
+            .hot-ollectibles-item:nth-child(5) {
+              .product-name {
+                white-space: unset;
               }
             }
           }
@@ -1231,7 +1235,7 @@
       .token-details-box {
         .grid-list-nft {
           grid-template-columns: repeat(2, 1fr);
-        } 
+        }
       }
     }
   }
@@ -1544,6 +1548,14 @@
           .box-price-detail-collection {
             .lable-bottom {
               font-size: 22px;
+            }
+          }
+        }
+        .grid-list-nft {
+          .grid-item-nft {
+            .image-nft {
+              width: 100px;
+              height: 100px;
             }
           }
         }

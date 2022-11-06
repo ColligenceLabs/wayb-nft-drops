@@ -30,7 +30,7 @@ const Collections = () => {
           <div className="wrapper-header title-header">
             <div className="header-name">All Creators</div>
           </div>
-          <div className="grid-container">
+          <div className="grid-container-featured">
             {featuredCollections.map((item: FeaturedTypes, index) => (
               <FeaturedCard key={item.id} item={item} />
             ))}

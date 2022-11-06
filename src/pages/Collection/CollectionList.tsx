@@ -168,10 +168,10 @@ const CollectionList: React.FC<CollectionListProps> = ({
                 <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
                   <div className="owner_product">
                     <div className="owner_product_box">
-                      <span className="owner_product_avatar">
+                      <div className="owner_product_avatar">
                         <img src={companyLogo} alt="" />
-                      </span>
-                      <p className="">{companyName}</p>
+                      </div>
+                      <div className="">{companyName}</div>
                     </div>
                     <div>
                       <Link
