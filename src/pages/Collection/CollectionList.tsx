@@ -161,7 +161,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
                   <div>{getNetworkNameByChainId(item.chainId)}</div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card">
+                  <div className="card-image">
                     <img src={item.packageImage} alt="" />
                   </div>
                 </div>

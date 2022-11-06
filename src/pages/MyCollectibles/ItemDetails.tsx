@@ -13,13 +13,13 @@ import icon_discord from '../../assets/img/icon_discord.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
 import icon_share from '../../assets/img/icon_share.png';
-import arrow_dropdown from '../../assets/svg/icon_dropdown.svg';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import { getMysteryBoxInfo } from '../../services/services';
 import { SUCCESS } from '../../config';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { useWeb3React } from '@web3-react/core';
+import { Accordion } from 'react-bootstrap';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -77,31 +77,17 @@ const CollectionSale = () => {
               {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
             </div>
             {/* dropdown change color */}
-            <div className="dropdown-change-color">
-              <div className="dropdown-properties">
-                <div
-                  className="wrapper-change-properties"
-                  onClick={() => setShowProperties(!showProperties)}
-                >
+            <Accordion>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>
                   <div className="content-left">
                     <div className="image-properties">
                       <img src={icon_properties} alt="Properties" />
                     </div>
                     <div className="title-properties">Properties</div>
                   </div>
-                  <div
-                    className={`icon-arrow ${
-                      showProperties === true ? 'asc' : ''
-                    }`}
-                  >
-                    <img src={arrow_dropdown} alt="" />
-                  </div>
-                </div>
-                <div
-                  className={`wrapper-content-properties ${
-                    showProperties === true ? 'show' : ''
-                  }`}
-                >
+                </Accordion.Header>
+                <Accordion.Body className="accordion-properties">
                   <div className="padding-content">
                     <div className="item-properties">
                       <div className="content-01">Accessory</div>
@@ -134,34 +120,18 @@ const CollectionSale = () => {
                       <div className="content-03">35% have this trait</div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="dropdown-details">
-                <div
-                  className={`wrapper-head-details ${
-                    showDetails === true ? 'border-bottom' : ''
-                  }`}
-                  onClick={() => setShowDetails(!showDetails)}
-                >
+                </Accordion.Body>
+              </Accordion.Item>
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>
                   <div className="content-left">
                     <div className="image-details">
                       <img src={icon_details} alt="Details" />
                     </div>
                     <div className="title-details">Details</div>
                   </div>
-                  <div
-                    className={`icon-arrow ${
-                      showDetails === true ? 'asc' : ''
-                    }`}
-                  >
-                    <img src={arrow_dropdown} alt="" />
-                  </div>
-                </div>
-                <div
-                  className={`wrapper-content-details ${
-                    showDetails === true ? 'show' : ''
-                  }`}
-                >
+                </Accordion.Header>
+                <Accordion.Body className="accordion-details">
                   <div className="padding-content">
                     <div className="item-details">
                       <div className="name">Contract Address</div>
@@ -188,9 +158,9 @@ const CollectionSale = () => {
                       <div className="info-name">5%</div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </div>
 
           <div className="details-box">
@@ -449,7 +419,7 @@ const CollectionSale = () => {
         {/*              <div>erc721</div>*/}
         {/*            </div>*/}
         {/*            <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">*/}
-        {/*              <div className="card">*/}
+        {/*              <div className="card-image">*/}
         {/*                {item.extension === 'mp4' ? (*/}
         {/*                  <video*/}
         {/*                    autoPlay*/}
