@@ -292,7 +292,7 @@ const Homepage = () => {
             customButtonGroup={<ArrowCarouselCollections />}
             keyBoardControl
             removeArrowOnDeviceType=""
-            containerClass="grid-container"
+            containerClass="grid-container-featured"
             responsive={{
               desktop: {
                 breakpoint: {
@@ -461,9 +461,9 @@ const Homepage = () => {
                                 draggable={false}
                               />
                             </div>
-                            <p className="mb-0 mt-0">
+                            <div className="mb-0 mt-0">
                               {item.featured.company.name.en}
-                            </p>
+                            </div>
                           </div>
                           <div className="content-right">
                             {item.onsale ? 'Buy Now' : 'Waiting'}
@@ -473,9 +473,9 @@ const Homepage = () => {
                       <div className="hot-ollectibles-item">
                         <div className="product-name">{item.title.en}</div>
                       </div>
-                      <div className="hot-ollectibles-item">
+                      {/* <div className="hot-ollectibles-item">
                         <div className="name-label">{item.details}</div>
-                      </div>
+                      </div> */}
                       <div className="hot-ollectibles-item">
                         <div className="wrapper-price">
                           <div className="price-header">Price</div>
@@ -746,9 +746,9 @@ const Homepage = () => {
                             {item.mysteryboxItems[0]?.name}
                           </div>
                         </div>
-                        <div className="hot-ollectibles-item">
+                        {/* <div className="hot-ollectibles-item">
                           <div className="name-label">{item.details}</div>
-                        </div>
+                        </div> */}
                         <div className="hot-ollectibles-item">
                           <div className="wrapper-price">
                             <div className="price-header">Price</div>
@@ -888,9 +888,9 @@ const Homepage = () => {
                         <div className="hot-ollectibles-item">
                           <div className="product-name">{item.title.en}</div>
                         </div>
-                        <div className="hot-ollectibles-item">
+                        {/* <div className="hot-ollectibles-item">
                           <div className="name-label">{item.details}</div>
-                        </div>
+                        </div> */}
                         <div className="hot-ollectibles-item">
                           <div className="wrapper-price">
                             <div className="price-header">Price</div>
