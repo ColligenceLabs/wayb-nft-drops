@@ -211,7 +211,10 @@ const Navbar = () => {
 
           {dropsAccount.address !== '' && screenSize > 540 ? (
             <>
-              <div className="wrapper-user">
+              <div
+                className="wrapper-user"
+                onClick={() => setModalOpen(!isModalOpen)}
+              >
                 <div className="avatar-user">
                   <img
                     src={
@@ -226,11 +229,7 @@ const Navbar = () => {
                   {splitString(dropsAccount.name)}
                 </p>
               </div>
-              <button
-                ref={ref}
-                className="username-dropdown button"
-                onClick={() => setModalOpen(!isModalOpen)}
-              >
+              <button ref={ref} className="username-dropdown button">
                 <svg
                   className="sc-196ec885-12 eKhfKP"
                   xmlns="http://www.w3.org/2000/svg"

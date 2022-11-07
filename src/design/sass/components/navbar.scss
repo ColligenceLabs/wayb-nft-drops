@@ -144,7 +144,7 @@
       //after login
       .btn-wallets {
         height: 45px;
-        opacity: 0.8;
+        //opacity: 0.8;
         // margin-right: 40px;
         // display: none;
         .custom-btn {
@@ -155,7 +155,7 @@
           width: 140px;
           height: 45px;
           top: 30px;
-          background: #323232;
+          //background: #2F8AF5;
           border-radius: 5px;
 
           .wrapper-btn {
@@ -163,10 +163,13 @@
             align-items: center;
             gap: 5px;
 
+            img {
+              color: #ffffff;
+            }
             .wallets {
               font-size: 16px;
               font-weight: 500;
-              color: #4c9cf9;
+              color: #ffffff;
             }
           }
         }
@@ -176,7 +179,7 @@
         height: 45px;
         display: flex;
         justify-content: space-around;
-        background-color: #113577;
+        //background-color: #113577;
         padding: 0 2.5px;
         align-items: center;
         border-radius: 5px;
@@ -188,14 +191,14 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 28px;
-          height: 28px;
+          width: 23px;
+          height: 23px;
           border-radius: 100%;
           background-color: #ffffff;
           opacity: 0.8;
           img {
-            width: 22px;
-            height: 22px;
+            width: 18px;
+            height: 18px;
           }
         }
         .account {
@@ -212,6 +215,7 @@
         gap: 10px;
         opacity: 0.8;
         // display: none;
+        cursor: pointer;
 
         .avatar-user {
           width: 26px;
