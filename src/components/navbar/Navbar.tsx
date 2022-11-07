@@ -202,8 +202,8 @@ const Navbar = () => {
                 onClick={() => setLoginOpen(true)}
               >
                 <span className="wrapper-btn">
-                  <img src={wallet_blue} alt="Wallet Icon" />
-                  <span className="wallets">Wallets</span>
+                  {/* <img src={wallet_blue} alt="Wallet Icon" /> */}
+                  <span className="wallets">Connect Wallet</span>
                 </span>
               </button>
             </div>
