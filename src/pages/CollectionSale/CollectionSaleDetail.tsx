@@ -48,6 +48,7 @@ const CollectionSaleDetail = () => {
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [seeMore, setSeeMore] = useState(false);
   const [isZoomImage, setIsZoomImage] = React.useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
@@ -369,9 +370,7 @@ const CollectionSaleDetail = () => {
                             first.{' '}
                           </span>
                         )
-                      ) : (
-                        ''
-                      )}
+                      ) : null}
                       {/* <ul>
                       {collectionItemInfo?.collectionInfo.whitelists &&
                         collectionItemInfo?.collectionInfo.whitelists.map(
@@ -389,24 +388,42 @@ const CollectionSaleDetail = () => {
                         )}
                     </ul> */}
                     </div>
-                    <div className="grid-list-nft">
-                      {hotCollectiblesTestData
-                        .filter((item, index) => index < 3)
-                        .map((item: any, index) => (
-                          <div className="grid-item-nft" key={index}>
-                            <div className="image-nft">
-                              <img src={item.image} alt={item.nameLabel} />
+                    {collectionItemInfo?.collectionInfo.whitelists && (
+                      <>
+                        <div className="grid-list-nft">
+                          {collectionItemInfo?.collectionInfo.whitelists &&
+                            collectionItemInfo?.collectionInfo.whitelists
+                              .filter((item: MBoxTypes, index: number) =>
+                                seeMore ? item : index < 3
+                              )
+                              .map((item: MBoxTypes) => (
+                                <div className="grid-item-nft" key={item.id}>
+                                  <div className="image-nft">
+                                    <img
+                                      src={item.packageImage}
+                                      alt={item.title.en}
+                                    />
+                                  </div>
+                                  <div className="title-nft">
+                                    {item.title.en}
+                                  </div>
+                                </div>
+                              ))}
+                        </div>
+                        {collectionItemInfo?.collectionInfo.whitelists.length >
+                          3 && (
+                          <button
+                            className="see-more button"
+                            onClick={() => setSeeMore((cur) => !cur)}
+                          >
+                            <div className="title-see-more">See more</div>
+                            <div className="icon-see-more">
+                              <img src={icon_seemore} alt="icon see more" />
                             </div>
-                            <div className="title-nft">{item.nameLabel}</div>
-                          </div>
-                        ))}
-                    </div>
-                    <button className="see-more button">
-                      <div className="title-see-more">See more</div>
-                      <div className="icon-see-more">
-                        <img src={icon_seemore} alt="icon see more" />
-                      </div>
-                    </button>
+                          </button>
+                        )}
+                      </>
+                    )}
                   </>
                 )}
               <div></div>
