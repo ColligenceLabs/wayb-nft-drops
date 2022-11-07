@@ -105,7 +105,7 @@
 
       .fanpage-icons {
         border-left: 1px solid #ffffff;
-        height: 20px;
+        height: 24px;
         display: flex;
         justify-content: space-evenly;
         width: 150px;
@@ -232,7 +232,8 @@
 
         .user-name {
           font-weight: 500;
-          line-height: 36px;
+          font-size: 16px;
+          line-height: 35px;
           order: 1;
           white-space: nowrap;
         }
