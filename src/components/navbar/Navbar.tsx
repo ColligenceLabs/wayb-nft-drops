@@ -12,6 +12,8 @@ import icon_klaytn from '../../assets/img/icon_klaytn.png';
 import avatar_user from '../../assets/img/avatar_user.webp';
 import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
+import wallet_white from '../../assets/icon/wallet_white.svg';
+
 import nav_icon from '../../assets/icon/nav_icon.svg';
 import { Link, useLocation } from 'react-router-dom';
 import DialogWallets from 'components/modal/DialogWallets';
@@ -202,7 +204,7 @@ const Navbar = () => {
                 onClick={() => setLoginOpen(true)}
               >
                 <span className="wrapper-btn">
-                  <img src={wallet_blue} alt="Wallet Icon" />
+                  <img src={wallet_white} alt="Wallet Icon" />
                   <span className="wallets">Wallets</span>
                 </span>
               </button>
@@ -211,7 +213,10 @@ const Navbar = () => {
 
           {dropsAccount.address !== '' && screenSize > 540 ? (
             <>
-              <div className="wrapper-user">
+              <div
+                className="wrapper-user"
+                onClick={() => setModalOpen(!isModalOpen)}
+              >
                 <div className="avatar-user">
                   <img
                     src={
@@ -226,11 +231,7 @@ const Navbar = () => {
                   {splitString(dropsAccount.name)}
                 </p>
               </div>
-              <button
-                ref={ref}
-                className="username-dropdown button"
-                onClick={() => setModalOpen(!isModalOpen)}
-              >
+              <button ref={ref} className="username-dropdown button">
                 <svg
                   className="sc-196ec885-12 eKhfKP"
                   xmlns="http://www.w3.org/2000/svg"

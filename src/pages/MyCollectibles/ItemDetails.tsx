@@ -20,12 +20,13 @@ import { SUCCESS } from '../../config';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { useWeb3React } from '@web3-react/core';
 import { Accordion } from 'react-bootstrap';
-
+import Carousel from 'react-multi-carousel';
+import { hotCollectiblesTestData } from '../homepage/mockData';
+import ArrowCarouselItemDetails from 'components/common/ArrowCarouselItemDetails';
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
 };
-
 const CollectionSale = () => {
   const params = useParams();
 
@@ -77,7 +78,7 @@ const CollectionSale = () => {
               {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
             </div>
             {/* dropdown change color */}
-            <Accordion>
+            <Accordion defaultActiveKey={['0']} alwaysOpen>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
                   <div className="content-left">
@@ -364,8 +365,126 @@ const CollectionSale = () => {
                 <div className="value">{getNetworkNameByChainId(1001)}</div>
               </div>
             </div>
-            <div className="list-trade"></div>
-
+            {/* <div className="list-trade"></div> */}
+            <div className="wrapper-user-details">
+              <div className="title-details">이 아이템이 속한 컬렉션</div>
+              <div className="wrapper-content-details">
+                <div className="wrapper-user">
+                  <div className="avt-user">
+                    <img src={testAvatarImg} alt="icon avatar" />
+                  </div>
+                  <div className="user-name">Unnamed</div>
+                </div>
+                <div className="details-info">
+                  Welcome to Relief Herb Club, the second NFT project of 'Repo',
+                  a beauty brand that believes that herbs save the world.
+                </div>
+              </div>
+            </div>
+            <div className="wrapper-other-items">
+              <div className="wrapper-head">
+                <div className="title-items">Other Items</div>
+                <div className="seemore-otheritems">See more</div>
+              </div>
+              <Carousel
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlay
+                autoPlaySpeed={5000}
+                dotListClass="dot-other-items"
+                centerMode={false}
+                className="carousel-other-items"
+                customButtonGroup={<ArrowCarouselItemDetails />}
+                draggable
+                focusOnSelect={false}
+                infinite
+                itemClass=""
+                keyBoardControl
+                minimumTouchDrag={80}
+                pauseOnHover
+                renderArrowsWhenDisabled={false}
+                renderButtonGroupOutside={false}
+                renderDotsOutside={true}
+                responsive={{
+                  desktop: {
+                    breakpoint: {
+                      max: 3000,
+                      min: 1024,
+                    },
+                    items: 5,
+                    partialVisibilityGutter: 40,
+                  },
+                  mobileBigLarge: {
+                    breakpoint: {
+                      max: 600,
+                      min: 460,
+                    },
+                    items: 4,
+                    partialVisibilityGutter: 30,
+                  },
+                  mobileLarge: {
+                    breakpoint: {
+                      max: 461,
+                      min: 376,
+                    },
+                    items: 3,
+                    partialVisibilityGutter: 30,
+                  },
+                  mobileMedium: {
+                    breakpoint: {
+                      max: 375,
+                      min: 0,
+                    },
+                    items: 2,
+                    partialVisibilityGutter: 30,
+                  },
+                  tablet: {
+                    breakpoint: {
+                      max: 1024,
+                      min: 601,
+                    },
+                    items: 5,
+                    partialVisibilityGutter: 30,
+                  },
+                  laptop: {
+                    breakpoint: {
+                      max: 1100,
+                      min: 850,
+                    },
+                    items: 4,
+                    partialVisibilityGutter: 30,
+                  },
+                  tabletLarge: {
+                    breakpoint: {
+                      max: 849,
+                      min: 769,
+                    },
+                    items: 3,
+                    partialVisibilityGutter: 30,
+                  },
+                }}
+                rewind={false}
+                rewindWithAnimation={false}
+                rtl={false}
+                shouldResetAutoplay
+                showDots={true}
+                sliderClass=""
+                slidesToSlide={1}
+                swipeable
+              >
+                {hotCollectiblesTestData.map((item, index) => {
+                  return (
+                    <Link to="/" className="item-other button" key={index}>
+                      <div className="item-image">
+                        <img src={item.image} alt="Image Item" />
+                      </div>
+                      <div className="id-card">#{item.quantityRemaining}</div>
+                      <div className="price-item">{item.currentPrice}pKLAY</div>
+                    </Link>
+                  );
+                })}
+              </Carousel>
+            </div>
             {/*{mboxInfo?.useRevealLockup && !countDownFinish ? (*/}
             {/*  <>*/}
             {/*    {!countDownFinish && (*/}

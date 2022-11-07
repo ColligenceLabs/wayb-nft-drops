@@ -20,4 +20,5 @@ export type FeaturedTypes = {
   eventUrl: string | null;
   eventMobileBanner: string | null;
   newWindow: boolean;
+  mobileBanner: string | null;
 };

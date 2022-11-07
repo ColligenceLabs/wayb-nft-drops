@@ -175,7 +175,7 @@ const Homepage = () => {
   const carouselOption = {
     additionalTransfrom: 0,
     arrows: false,
-    autoPlay: true,
+    autoPlay: false,
     autoPlaySpeed: 5000,
     draggable: true,
     focusOnSelect: false,
@@ -693,6 +693,7 @@ const Homepage = () => {
                               .split('.')
                               .pop() === 'mp4' ? (
                               <video
+                                playsInline
                                 autoPlay
                                 controls
                                 muted

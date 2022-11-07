@@ -12,7 +12,11 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item }) => {
     <Link to={`/klaytn/featured/${item.id}`} className="custom-link">
       <button className="grid-item button">
         <div className="banner-image">
-          <img src={item.banner} alt="" style={{ objectFit: 'cover' }} />
+          <img
+            src={item.mobileBanner ? item.mobileBanner : item.banner}
+            alt=""
+            style={{ objectFit: 'cover' }}
+          />
           {/*<LazyImage src={item.banner} />*/}
         </div>
         <div className="wrapper-content">

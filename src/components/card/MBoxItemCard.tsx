@@ -40,6 +40,7 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
           <div className="img-token">
             {item.originalImage.split('.').pop() === 'mp4' ? (
               <video
+                playsInline
                 autoPlay
                 controls
                 muted
