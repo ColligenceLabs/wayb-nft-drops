@@ -200,7 +200,7 @@
   }
 }
 .ReactModal__Body--open {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 #root {
   isolation: isolate;

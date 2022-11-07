@@ -62,7 +62,7 @@ const PaymentWalletsSuccess: React.FC<PaymentWalletsSuccessProps> = ({
           overlayClassName="payments-wallets-overlay"
           shouldCloseOnOverlayClick
         >
-          <div className="modal-dialog modal-dialog-pay-success">
+          <div className="modal-dialog-payment modal-dialog-pay-success">
             <div className="header">
               <div className="title">NFT Drop was successful.</div>
               <div className="close-button" onClick={onHide}>
