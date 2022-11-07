@@ -16,7 +16,7 @@
       display: flex;
       -webkit-box-pack: justify;
       justify-content: space-between;
-      padding-top: 35px;
+      padding-top: 80px;
       padding-bottom: 25px;
       border-bottom: 1px solid #444444;
       font-size: 36px;
@@ -100,6 +100,10 @@
             margin-bottom: 3px;
             font-size: 15px;
             color: rgb(155, 154, 154);
+            &:hover {
+              color:white;
+              cursor: pointer;
+            }
           }
           .name {
             line-height: 19px;
@@ -340,7 +344,7 @@
     width: 100%;
     .purchase-history-header {
       // padding: 20px 0 15px 10px;
-      font-size: 32px;
+      font-size: 36px;
     }
     // .purchase-history-body {
     //   padding: 0 25px;

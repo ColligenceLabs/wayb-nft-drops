@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ic_info from '../../assets/icon/info_blue.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
+import icon_seemore from '../../assets/icon/icon_seemore.png';
+import icon_close_seemore from '../../assets/icon/icon_close_seemore.png';
 import { CircularProgress } from '@mui/material';
 import PaymentWallets from '../../components/modal/PaymentWallets';
 import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess';
@@ -25,6 +27,7 @@ import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import { MBoxTypes } from '../../types/MBoxTypes';
+import { hotCollectiblesTestData } from 'pages/homepage/mockData';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -46,6 +49,7 @@ const CollectionSaleDetail = () => {
   const { account, library, chainId } = useActiveWeb3React();
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [seeMore, setSeeMore] = useState(false);
   const [isZoomImage, setIsZoomImage] = React.useState(false);
   const [openPaymentWallets, setOpenPaymentWallets] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
@@ -130,6 +134,7 @@ const CollectionSaleDetail = () => {
         isSent: true,
         txHash: result?.txHash,
         price: collectionItemInfo?.price,
+        itemId: collectionItemInfo?.id,
       };
 
       const res = await registerBuy(data);
@@ -274,6 +279,12 @@ const CollectionSaleDetail = () => {
                       src={collectionItemInfo?.originalImage}
                       alt=""
                     />
+                    {/* <div style={{ width: '100%', height: '100%' }}>
+                      <div>Close</div>
+                      <div>
+
+                      </div>
+                    </div> */}
                   </ReactModal>
                 </>
               )}
@@ -346,22 +357,22 @@ const CollectionSaleDetail = () => {
               </div>
               {collectionItemInfo?.collectionInfo.isCollection === false &&
                 collectionItemInfo?.collectionInfo.isAirdrop === true && (
-                  <div className="airdrop-condition">
-                    {collectionItemInfo?.collectionInfo.whitelists.length >
-                    0 ? (
-                      collectionItemInfo?.collectionInfo.useAndCondition ? (
-                        <span>
-                          Please purchase all of the NFTs below first.
-                        </span>
-                      ) : (
-                        <span>
-                          Please purchase at least one of the NFTs below first.{' '}
-                        </span>
-                      )
-                    ) : (
-                      ''
-                    )}
-                    <ul>
+                  <>
+                    <div className="airdrop-condition">
+                      {collectionItemInfo?.collectionInfo.whitelists.length >
+                      0 ? (
+                        collectionItemInfo?.collectionInfo.useAndCondition ? (
+                          <span>
+                            Please purchase all of the NFTs below first.
+                          </span>
+                        ) : (
+                          <span>
+                            Please purchase at least one of the NFTs below
+                            first.{' '}
+                          </span>
+                        )
+                      ) : null}
+                      {/* <ul>
                       {collectionItemInfo?.collectionInfo.whitelists &&
                         collectionItemInfo?.collectionInfo.whitelists.map(
                           (item: MBoxTypes) => (
@@ -376,8 +387,51 @@ const CollectionSaleDetail = () => {
                             // </Link>
                           )
                         )}
-                    </ul>
-                  </div>
+                    </ul> */}
+                    </div>
+                    {collectionItemInfo?.collectionInfo.whitelists && (
+                      <>
+                        <div className="grid-list-nft">
+                          {collectionItemInfo?.collectionInfo.whitelists &&
+                            collectionItemInfo?.collectionInfo.whitelists
+                              .filter((item: MBoxTypes, index: number) =>
+                                seeMore ? item : index < 3
+                              )
+                              .map((item: MBoxTypes) => (
+                                <div className="grid-item-nft" key={item.id}>
+                                  <div className="image-nft">
+                                    <img
+                                      src={item.packageImage}
+                                      alt={item.title.en}
+                                    />
+                                  </div>
+                                  <div className="title-nft">
+                                    {item.title.en}
+                                  </div>
+                                </div>
+                              ))}
+                        </div>
+                        {collectionItemInfo?.collectionInfo.whitelists.length >
+                          3 && (
+                          <button
+                            className="see-more button"
+                            onClick={() => setSeeMore((cur) => !cur)}
+                          >
+                            <div className="title-see-more">See more</div>
+                            <div className="icon-see-more">
+                              <img src={icon_seemore} alt="icon see more" />
+                            </div>
+                            {/* <div className="icon-close-seemore">
+                              <img
+                                src={icon_close_seemore}
+                                alt="close see more"
+                              />
+                            </div> */}
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </>
                 )}
               <div></div>
               <div>
@@ -411,6 +465,8 @@ const CollectionSaleDetail = () => {
                           <CircularProgress size={30} color={'inherit'} />
                         ) : remainingAmount === 0 ? (
                           'Sold out'
+                        ) : collectionItemInfo?.price === 0 ? (
+                          'Get Now'
                         ) : (
                           'Buy Now'
                         )}

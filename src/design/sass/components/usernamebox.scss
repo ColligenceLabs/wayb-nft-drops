@@ -38,6 +38,7 @@
       text-decoration: none;
       color: white;
       font-weight: 500;
+      font-size: 14px;
       display: flex;
       align-items: center;
       padding: 10px 0px;
@@ -189,7 +190,7 @@
 
   @media (max-width: 325px) {
     .wrapper-dropdown {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }

@@ -146,11 +146,12 @@
           cursor: pointer;
           margin: 0px;
           padding: 20px;
+          gap: 20px;
           .item-product-detail {
             width: 100%;
             // padding: 0px 15px;
             border-right: none;
-            .card {
+            .card-image {
               text-align: center;
               width: 242px;
               height: 242px;
@@ -166,7 +167,6 @@
               justify-content: space-between;
               margin-top: auto;
               font-size: 18px;
-              padding-top: 20px;
               .box-product-name {
                 display: block;
                 margin-top: auto;
@@ -254,6 +254,24 @@
     .wallet-wp {
       .page-grid {
         grid-template-columns: repeat(1, 1fr);
+        a {
+          .item-product {
+            width: 100%;
+            height: auto;
+            .item-product-detail {
+              .card-image {
+                width: 100%;
+              }
+              .box-info {
+                .box-product-name {
+                  .product-name {
+                    white-space: unset;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

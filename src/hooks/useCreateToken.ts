@@ -43,9 +43,9 @@ const useCreateToken = (setDoSign: SetStateAction<any>) => {
             //        에러 = unknown account #0 (operation="getAddress", code=UNSUPPORTED_OPERATION
             // async () => await library.getSigner().signMessage(account),
             {
-              domain: 'klaybay.io',
+              domain: 'talken.io',
               expires_in: '1 days',
-              statement: 'Klaybay Studio Sign In',
+              statement: 'Talken Studio Sign In',
               wallet: 'kaikas',
             }
           );
@@ -54,9 +54,9 @@ const useCreateToken = (setDoSign: SetStateAction<any>) => {
           token = await Web3Token.sign(
             async (msg: string) => await library.getSigner().signMessage(msg),
             {
-              domain: 'klaybay.io',
+              domain: 'talken.io',
               expires_in: '1 days',
-              statement: 'Klaybay Studio Sign In',
+              statement: 'Talken Studio Sign In',
             }
           );
         }

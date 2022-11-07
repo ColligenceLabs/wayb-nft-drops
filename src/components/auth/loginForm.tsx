@@ -256,7 +256,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ close, onConfirm }) => {
               </button>
             </div>
             <div className="div-wallets_2">
-              <div className="row">
+              <div className="row-wallet">
                 <button type="button">
                   <img src={icon_metamask}></img>Metamask
                 </button>

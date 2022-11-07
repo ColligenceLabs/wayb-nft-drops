@@ -4,7 +4,7 @@
   background: rgb(0, 0, 0, 0.75);
   color: #ffffff;
 
-  .modal-dialog {
+  .modal-dialog-payment {
     z-index: 21;
     // padding: 50px;
     position: fixed;
@@ -281,7 +281,7 @@
     }
   }
   @include Tablet_Mobile {
-    .modal-dialog {
+    .modal-dialog-payment {
       height: -webkit-fill-available;
       border-radius: 0px;
       margin: 0px;
@@ -294,7 +294,7 @@
   }
 
   @media (max-width: 540px) {
-    .modal-dialog {
+    .modal-dialog-payment {
       padding: 0 20px;
       .header {
         font-size: 18px;
@@ -338,10 +338,8 @@
   border-radius: 0px;
   outline: none;
   padding: 20px;
-  width: 100%;
-  height: 100%;
-  max-width: 100vw;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   .close-modal {
@@ -367,9 +365,16 @@
       padding-bottom: 50px;
     }
   }
+  @media (max-width: 540px) {
+    .image {
+      width: 100%;
+      padding-top: 0;
+      padding-bottom: 150px;
+    }
+  }
 }
 // @media (max-width: 768px) {
-//   .modal-dialog {
+//   .modal-dialog-payment {
 //     .modal-content {
 //       .modal-header {
 //         .modal-tittle {

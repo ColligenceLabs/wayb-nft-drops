@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getPrice } from 'utils/getPrice';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
+import { getNetworkNameById } from '../../utils/getNetworkNameById';
+import { MBoxTypes } from '../../types/MBoxTypes';
 
 type MBoxItemCardProps = {
   item: MBoxItemTypes;
+  chainId: number;
+  mBoxInfo: MBoxTypes;
   mBoxName: string;
   mBoxImage: string;
   quote: string | null;
@@ -12,11 +16,14 @@ type MBoxItemCardProps = {
 };
 const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
   item,
+  chainId,
   mBoxName,
+  mBoxInfo,
   mBoxImage,
   quote,
   price,
 }) => {
+  console.log(mBoxInfo);
   return (
     <div className="slide-item">
       {/*<Link to={``} className="button">*/}
@@ -27,12 +34,13 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
           </span>
         </div>
         <div className="hot-ollectibles-item">
-          <div>erc721</div>
+          <div>{getNetworkNameById(chainId)}</div>
         </div>
         <div className="hot-ollectibles-item">
           <div className="img-token">
             {item.originalImage.split('.').pop() === 'mp4' ? (
               <video
+                playsInline
                 autoPlay
                 controls
                 muted
@@ -51,9 +59,11 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
           <div className="wrapper-item">
             <div className="content-left">
               <div className="avatar">
-                <img src={mBoxImage} alt="" />
+                <img src={mBoxInfo.featured?.company.image} alt="" />
               </div>
-              <div className="name-label">{mBoxName}</div>
+              <div className="name-label">
+                {mBoxInfo.featured?.company.name.en}
+              </div>
             </div>
             <div className="content-right">Buy Now</div>
           </div>

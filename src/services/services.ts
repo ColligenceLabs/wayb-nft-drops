@@ -102,7 +102,9 @@ export const getClaimableCount = async (
 };
 
 export const getHistory = async (address: string) => {
-  return await customAxios.get(`/api/service/drops/history?address=${address}`);
+  return await customAxios.get(
+    `/api/service/drops/history?address=${address}&limit=100`
+  );
 };
 
 export const requestClaim = async (data: any) => {
