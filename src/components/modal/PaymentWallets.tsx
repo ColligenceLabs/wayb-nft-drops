@@ -291,7 +291,10 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
       overlayClassName="payments-wallets-overlay"
       shouldCloseOnOverlayClick
     >
-      <div className="modal-dialog" style={{ height: isMobile ? '' : '500px' }}>
+      <div
+        className="modal-dialog-payment"
+        style={{ height: isMobile ? '' : '500px' }}
+      >
         <div className="header">
           <div className="title">How would you like to pay</div>
           <div className="close-button" onClick={onHide}>

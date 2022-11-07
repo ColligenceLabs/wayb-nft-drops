@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ic_info from '../../assets/icon/info_blue.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import icon_seemore from '../../assets/icon/icon_seemore.png';
+import icon_close_seemore from '../../assets/icon/icon_close_seemore.png';
 import { CircularProgress } from '@mui/material';
 import PaymentWallets from '../../components/modal/PaymentWallets';
 import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess';
@@ -420,6 +421,12 @@ const CollectionSaleDetail = () => {
                             <div className="icon-see-more">
                               <img src={icon_seemore} alt="icon see more" />
                             </div>
+                            {/* <div className="icon-close-seemore">
+                              <img
+                                src={icon_close_seemore}
+                                alt="close see more"
+                              />
+                            </div> */}
                           </button>
                         )}
                       </>

@@ -15,6 +15,7 @@ import { getFeaturedById } from '../../services/services';
 import CollectionList from './CollectionList';
 import useCopyToClipBoard from 'hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
+import { useMediaQuery } from 'react-responsive';
 
 type LinkTypes = {
   type: string;
@@ -24,7 +25,9 @@ type LinkTypes = {
 
 const Collection = () => {
   const params = useParams();
-
+  const isMobile = useMediaQuery({
+    query: '(max-width: 640px)',
+  });
   const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [featured, setFeatured] = useState<FeaturedTypes | null>(null);
   const [openSnackbar, setOpenSnackbar] = useState({
@@ -102,7 +105,9 @@ const Collection = () => {
           <div
             className="collection-banner-image"
             style={{
-              backgroundImage: `url("${featured.banner}")`,
+              backgroundImage: `url("${
+                isMobile ? featured.mobileBanner : featured.banner
+              }")`,
             }}
           ></div>
           <div className="box-collection">

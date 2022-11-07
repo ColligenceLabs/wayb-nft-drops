@@ -614,9 +614,17 @@
         font-size: 12px;
         font-weight: 700;
         width: 100%;
-        align-items: center;
+        // align-items: center;
         justify-content: center;
         .icon-see-more {
+          width: 16px;
+          height: 16px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .icon-close-seemore {
           width: 16px;
           height: 16px;
           img {
@@ -1459,7 +1467,7 @@
           justify-content: flex-start;
           gap: 20px;
           .collection-info-right-details {
-            text-align: start;
+            // text-align: start;
             padding: 0;
           }
           .line-icon {
@@ -1516,7 +1524,7 @@
           justify-content: flex-start;
           gap: 20px;
           .collection-info-right-details {
-            text-align: start;
+            // text-align: start;
             padding: 0;
           }
           .line-icon {

@@ -105,7 +105,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   };
   return (
     <div className="div-wallets_2">
-      <div className="row">
+      <div className="row-wallet">
         {Wallets.map((wallet) => (
           <button
             key={wallet.id}
