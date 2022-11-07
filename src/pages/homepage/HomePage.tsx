@@ -693,6 +693,7 @@ const Homepage = () => {
                               .split('.')
                               .pop() === 'mp4' ? (
                               <video
+                                playsInline
                                 autoPlay
                                 controls
                                 muted

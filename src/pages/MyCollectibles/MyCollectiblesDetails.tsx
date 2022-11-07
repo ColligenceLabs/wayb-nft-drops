@@ -570,6 +570,7 @@ const MyCollectiblesDetails = () => {
                       <div className="card-image">
                         {item.extension === 'mp4' ? (
                           <video
+                            playsInline
                             autoPlay
                             controls
                             controlsList="nodownload"
