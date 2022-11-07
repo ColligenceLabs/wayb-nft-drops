@@ -272,9 +272,14 @@
                       .custom-link-sns {
                         display: flex;
                         gap: 12px;
+                        color: #ffffff;
+                        align-items: center;
                         .image-sns {
                           width: 20px;
                           height: 20px;
+                        }
+                        &:hover {
+                          color: #2f8af5;
                         }
                       }
                     }

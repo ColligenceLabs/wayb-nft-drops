@@ -152,7 +152,7 @@ const CollectionSale = () => {
                     </div>
                     <div className="item-details">
                       <div className="name">Last Updated</div>
-                      <div className="info-name">Username</div>
+                      <div className="info-name">07/11/2022</div>
                     </div>
                     <div className="item-details">
                       <div className="name">Creator Earnings</div>
@@ -218,7 +218,7 @@ const CollectionSale = () => {
                     {dropdownOpen && (
                       <ul className="dropdown-box">
                         <li className="list-dropdown-item on-hide">
-                          <button className="dropdown-item-nft ">
+                          <button className="dropdown-item-nft  button">
                             <a href="/" className="custom-link-sns">
                               <div className="image-sns">
                                 <img src={klaytn_white} alt="website icon" />
@@ -228,7 +228,7 @@ const CollectionSale = () => {
                           </button>
                         </li>
                         <li className="list-dropdown-item on-hide">
-                          <button className="dropdown-item-nft ">
+                          <button className="dropdown-item-nft  button">
                             <a href="/" className="custom-link-sns">
                               <div className="image-sns">
                                 <img src={website_icon} alt="website icon" />
@@ -238,7 +238,7 @@ const CollectionSale = () => {
                           </button>
                         </li>
                         <li className="list-dropdown-item on-hide">
-                          <button className="dropdown-item-nft ">
+                          <button className="dropdown-item-nft  button">
                             <a href="/" className="custom-link-sns">
                               <div className="image-sns">
                                 <img src={icon_discord} alt="website icon" />
@@ -248,7 +248,7 @@ const CollectionSale = () => {
                           </button>
                         </li>
                         <li className="list-dropdown-item on-hide">
-                          <button className="dropdown-item-nft ">
+                          <button className="dropdown-item-nft  button">
                             <a href="/" className="custom-link-sns">
                               <div className="image-sns">
                                 <img src={icon_twitter} alt="website icon" />
@@ -258,7 +258,7 @@ const CollectionSale = () => {
                           </button>
                         </li>
                         <li className="list-dropdown-item on-hide">
-                          <button className="dropdown-item-nft ">
+                          <button className="dropdown-item-nft  button">
                             <a href="/" className="custom-link-sns">
                               <div className="image-sns">
                                 <img src={icon_instagram} alt="website icon" />
@@ -269,7 +269,7 @@ const CollectionSale = () => {
                         </li>
                         <li className="list-dropdown-item ds-flex">
                           <button
-                            className="dropdown-item-nft "
+                            className="dropdown-item-nft  button"
                             onClick={() => {
                               setWarningOpen(true);
                               setDropdownOpen(false);
@@ -296,7 +296,7 @@ const CollectionSale = () => {
                         </li>
                         <li className="list-dropdown-item ds-flex">
                           <button
-                            className="dropdown-item-nft"
+                            className="dropdown-item-nft button"
                             onClick={() => {
                               setDropdownOpen(false);
                             }}
