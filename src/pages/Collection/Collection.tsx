@@ -128,7 +128,10 @@ const Collection = () => {
                     {/*  <div className="label">NFTs</div>*/}
                     {/*</div>*/}
                   </div>
-                  <div className="line-icon"></div>
+                  {featured.links && featured.links.length > 0 && (
+                    <div className="line-icon" />
+                  )}
+
                   <div className="collection-info-left-details">
                     <div
                       style={{ cursor: 'pointer' }}
