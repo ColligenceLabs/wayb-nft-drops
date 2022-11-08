@@ -1290,7 +1290,7 @@
   .price-collection-view-page {
     padding: 10px 20px 0;
     .price-collection-box {
-      padding: 0px 0 40px;
+      padding: 0px 0 0px;
       border: unset;
       .token-showcase-box {
         height: auto;
@@ -1298,8 +1298,8 @@
           padding: 20px 0 50px;
         }
         video {
-          padding-top: 20px;
-          padding-bottom: 20px;
+          padding-top: 10px;
+          padding-bottom: 15px;
         }
         .zoom-image {
           right: 10px;
