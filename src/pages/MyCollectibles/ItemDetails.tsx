@@ -26,6 +26,8 @@ import { getPrice } from '../../utils/getPrice';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { moveToScope } from '../../utils/moveToScope';
+import ReactModal from 'react-modal';
+import close_icon from '../../assets/icon/close_icon.svg';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -168,9 +170,9 @@ const CollectionSale = () => {
     fetchMboxItemList();
   }, [params, library]);
 
-  useEffect(() => {
-    if (itemInfo) console.log(itemInfo);
-  }, [itemInfo]);
+  // useEffect(() => {
+  //   if (itemInfo) console.log(itemInfo);
+  // }, [itemInfo]);
 
   return (
     <main className="collectibles-item-details-container min-height-content">
@@ -182,7 +184,19 @@ const CollectionSale = () => {
           <div className="product-details">
             <div className="wrapper-left">
               <div className="showcase-box">
-                <img src={itemInfo.itemImage} alt="" className="thumbnail" />
+                {/*<img src={itemInfo.itemImage} alt="" className="thumbnail" />*/}
+                {itemInfo.originalImage.split('.').pop() === 'mp4' ? (
+                  <video muted autoPlay playsInline loop className="thumbnail">
+                    <source src={itemInfo.originalImage} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    className="thumbnail"
+                    style={{ objectFit: 'cover' }}
+                    src={itemInfo.itemImage}
+                    alt=""
+                  />
+                )}
                 {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
               </div>
               {/* dropdown change color */}
