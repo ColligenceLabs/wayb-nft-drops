@@ -1295,14 +1295,16 @@
       .token-showcase-box {
         height: auto;
         img {
-          padding: 100px 0 50px;
+          padding: 20px 0 50px;
         }
         video {
-          padding-top: 50px;
+          padding-top: 20px;
+          padding-bottom: 20px;
         }
         .zoom-image {
           right: 10px;
           top: 30px;
+          display: none;
         }
       }
       .token-details-box {

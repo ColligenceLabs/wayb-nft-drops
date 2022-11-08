@@ -96,7 +96,6 @@ const Collection = () => {
       message: 'copied!',
     });
   }, [copyResult]);
-
   return (
     <main className="collection-container min-height-content">
       {featured ? (
@@ -105,7 +104,8 @@ const Collection = () => {
             className="collection-banner-image"
             style={{
               backgroundImage: `url("${
-                isMobile ? featured.mobileBanner : featured.banner
+                // isMobile ? featured.mobileBanner : featured.banner
+                featured.banner
               }")`,
             }}
           ></div>
