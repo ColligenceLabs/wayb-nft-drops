@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
-// import etherscan_view from '../../assets/icon/etherscan_view.svg';
 import website_icon from '../../assets/icon/website_icon.svg';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_share from '../../assets/img/icon_share.png';
 
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { getFeaturedById } from '../../services/services';
 import CollectionList from './CollectionList';
@@ -47,7 +46,7 @@ const Collection = () => {
 
   const getSnsButtons = () => {
     if (featured && featured.links) {
-      const test = featured.links.map((link: any) => {
+      const test = featured.links.map((link: LinkTypes) => {
         return (
           <div
             style={{
@@ -117,12 +116,20 @@ const Collection = () => {
                   <img src={featured.image} alt="" draggable={false} />
                   <div className="name">
                     <div className="fullname">{featured.name.en}</div>
-                    <div className="username">{featured.company.name.en}</div>
+                    {/*<div className="username">{featured.company.name.en}</div>*/}
                   </div>
                 </div>
                 <div className="collection-info-right">
                   <div className="collection-info-left-details">
                     <>{getSnsButtons()}</>
+
+                    {/*<div className="collection-info-right-details">*/}
+                    {/*  <div className="value">100</div>*/}
+                    {/*  <div className="label">NFTs</div>*/}
+                    {/*</div>*/}
+                  </div>
+                  <div className="line-icon"></div>
+                  <div className="collection-info-left-details">
                     <div
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
@@ -132,14 +139,7 @@ const Collection = () => {
                         <img src={icon_share} alt="Twitter Icon" width="20px" />
                       </div>
                     </div>
-                    {/* <div className="label">NFTs</div> */}
                   </div>
-
-                  {/*<div className="line-icon"></div>*/}
-                  {/*<div className="collection-info-right-details">*/}
-                  {/*  <div className="value">100</div>*/}
-                  {/*  <div className="label">NFTs</div>*/}
-                  {/*</div>*/}
                 </div>
               </div>
               <div className="collection-info-content">
