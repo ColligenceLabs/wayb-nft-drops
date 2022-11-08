@@ -26,6 +26,7 @@ import { getPrice } from '../../utils/getPrice';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { moveToScope } from '../../utils/moveToScope';
+
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
@@ -185,7 +186,8 @@ const CollectionSale = () => {
                 {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
               </div>
               {/* dropdown change color */}
-              <Accordion defaultActiveKey={['0']} alwaysOpen>
+              {/*<Accordion defaultActiveKey={['0']} alwaysOpen>*/}
+              <Accordion alwaysOpen>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
                     <div className="content-left">
@@ -456,7 +458,7 @@ const CollectionSale = () => {
                     Token Type
                   </div>
                   <div className="value" data-qa-component="token-type-value">
-                    erc721 - 연동
+                    erc721
                   </div>
                 </div>
                 <div className="item">
