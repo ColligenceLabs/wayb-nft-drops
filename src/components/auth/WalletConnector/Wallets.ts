@@ -8,7 +8,7 @@ export const Wallets = [
   {
     id: 1,
     icon: icon_walletconnect,
-    name: 'Wallet Connect',
+    name: 'WalletConnect',
     value: 'walletConnector',
   },
   { id: 2, icon: icon_talk, name: 'Talken Wallet', value: 'talken' },

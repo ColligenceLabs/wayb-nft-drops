@@ -7,4 +7,5 @@ export type ResRevealItemType = {
   extension: string;
   price: string;
   no?: number;
+  tokenId?: number;
 };

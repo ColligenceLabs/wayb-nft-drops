@@ -49,7 +49,7 @@ const DialogWallets = () => {
         // await activate(wc, undefined, true);
         // window.localStorage.setItem('wallet', 'walletconnect');
       } else if (id === '2') {
-        console.log('click Wallet Connect');
+        console.log('click WalletConnect');
       }
       // todo 인중 후 데이터 처리
       // dispatch(setCompany(testCompanyInfo));
