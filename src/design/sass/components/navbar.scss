@@ -21,7 +21,7 @@
       rgba(0, 0, 0, 0.75),
       rgba(0, 0, 0, 0)
     );
-    opacity: 0.4;
+    opacity: 0.6;
   }
 
   .nav-other-page {
@@ -110,6 +110,7 @@
         justify-content: space-evenly;
         width: 150px;
         flex-shrink: 0;
+        padding-top: 2px;
         a {
           display: inline-block;
           height: 100%;
@@ -191,8 +192,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 23px;
-          height: 23px;
+          width: 22px;
+          height: 22px;
           border-radius: 100%;
           background-color: #ffffff;
           opacity: 0.8;
@@ -218,12 +219,12 @@
         cursor: pointer;
 
         .avatar-user {
-          width: 26px;
-          height: 26px;
+          width: 22px;
+          height: 22px;
 
           img {
-            width: 26px;
-            height: 26px;
+            width: 22px;
+            height: 22px;
             object-fit: cover;
             border-radius: 50%;
             background-color: #ffffff;
@@ -242,6 +243,7 @@
       .username-dropdown {
         background-color: transparent;
         margin-right: 40px;
+        margin-top: 2px;
         padding: 0;
         // display: none;
       }
