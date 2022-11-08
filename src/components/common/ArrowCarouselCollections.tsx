@@ -2,14 +2,9 @@ import React from 'react';
 import arrow_right from '../../assets/svg/arrow_right.svg';
 import arrow_left from '../../assets/svg/arrow_left.svg';
 
-const ArrowCarouselCollections = ({
-  next,
-  previous,
-  goToSlide,
-  ...rest
-}: any) => {
+const ArrowCarouselCollections = ({ goToSlide, ...rest }: any) => {
   const {
-    carouselState: { currentSlide, totalItems, slidesToShow },
+    carouselState: { currentSlide, slidesToShow },
   } = rest;
   return (
     <div className="arrow-featured-collections">

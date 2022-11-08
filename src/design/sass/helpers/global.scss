@@ -68,6 +68,11 @@ a {
   margin: 0px;
   // box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
   border: 1px solid #444444;
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+    border: 1px solid #2f8af5;
+  }
 }
 .hot-ollectibles-item {
   width: 100%;
