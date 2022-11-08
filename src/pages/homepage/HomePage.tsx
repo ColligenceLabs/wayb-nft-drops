@@ -190,7 +190,7 @@ const Homepage = () => {
     rtl: false,
     shouldResetAutoplay: true,
     showDots: true,
-    slidesToSlide: 1,
+    // slidesToSlide: 1,
     swipeable: true,
     infinite: true,
   };
