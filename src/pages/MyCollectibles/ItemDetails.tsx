@@ -666,11 +666,16 @@ const CollectionSale = () => {
           {/*            <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">*/}
           {/*              <div className="owner_product">*/}
           {/*                <div className="owner_product_box">*/}
-          {/*                  <span className="owner_product_avatar">*/}
+          {/*                  <div className="owner_product_avatar">*/}
           {/*                    <img src={mboxInfo?.packageImage} alt="" />*/}
-          {/*                  </span>*/}
-          {/*                  <p className="">{mboxInfo?.title.en}</p>*/}
+          {/*                  </div>*/}
+          {/*                  <div className="">{mboxInfo?.title.en}</d>*/}
           {/*                </div>*/}
+          {/* <div> */}
+          {/* <Link to="/sale"> */}
+          {/* <div className="status ">Buy Now</div> */}
+          {/* </Link> */}
+          {/* </div> */}
           {/*              </div>*/}
           {/*            </div>*/}
           {/*            <div className="item_product_detail MARKETPLACE_NAME_KEY">*/}
