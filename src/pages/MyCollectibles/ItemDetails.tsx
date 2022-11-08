@@ -26,6 +26,9 @@ import { getPrice } from '../../utils/getPrice';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { moveToScope } from '../../utils/moveToScope';
+import ReactModal from 'react-modal';
+import close_icon from '../../assets/icon/close_icon.svg';
+
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
@@ -68,13 +71,19 @@ const CollectionSale = () => {
   }
 
   const handleClickSeeMore = () => {
-    if (mBoxInfo?.isCollection) {
-      navigate(`/klaytn/collections/${mBoxInfo.id}`);
-    } else {
-      if (mBoxInfo?.isAirdrop) {
-        console.log('airdrop');
+    if (mBoxInfo) {
+      if (mBoxInfo?.isCollection) {
+        navigate(`/klaytn/collections/${mBoxInfo.id}`);
       } else {
-        console.log('mbox');
+        if (mBoxInfo?.isAirdrop) {
+          if (mBoxInfo?.mysteryboxItems && mBoxInfo?.mysteryboxItems[0].id) {
+            navigate(
+              `/klaytn/airdrop/${mBoxInfo.id}/${mBoxInfo?.mysteryboxItems[0].id}`
+            );
+          }
+        } else {
+          navigate(`/klaytn/mbox/${mBoxInfo.id}`);
+        }
       }
     }
   };
@@ -167,9 +176,9 @@ const CollectionSale = () => {
     fetchMboxItemList();
   }, [params, library]);
 
-  useEffect(() => {
-    if (itemInfo) console.log(itemInfo);
-  }, [itemInfo]);
+  // useEffect(() => {
+  //   if (mBoxInfo) console.log(mBoxInfo);
+  // }, [mBoxInfo]);
 
   return (
     <main className="collectibles-item-details-container min-height-content">
@@ -181,11 +190,24 @@ const CollectionSale = () => {
           <div className="product-details">
             <div className="wrapper-left">
               <div className="showcase-box">
-                <img src={itemInfo.itemImage} alt="" className="thumbnail" />
+                {/*<img src={itemInfo.itemImage} alt="" className="thumbnail" />*/}
+                {itemInfo.originalImage.split('.').pop() === 'mp4' ? (
+                  <video muted autoPlay playsInline loop className="thumbnail">
+                    <source src={itemInfo.originalImage} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    className="thumbnail"
+                    style={{ objectFit: 'cover' }}
+                    src={itemInfo.itemImage}
+                    alt=""
+                  />
+                )}
                 {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
               </div>
               {/* dropdown change color */}
-              <Accordion defaultActiveKey={['0']} alwaysOpen>
+              {/*<Accordion defaultActiveKey={['0']} alwaysOpen>*/}
+              <Accordion alwaysOpen>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
                     <div className="content-left">
@@ -456,7 +478,7 @@ const CollectionSale = () => {
                     Token Type
                   </div>
                   <div className="value" data-qa-component="token-type-value">
-                    erc721 - 연동
+                    erc721
                   </div>
                 </div>
                 <div className="item">

@@ -42,7 +42,7 @@ const EthWallets = () => {
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
-        console.log(`click ${id}, this is Wallet Connect (Ethereum)`);
+        console.log(`click ${id}, this is WalletConnect (Ethereum)`);
         // setWalletName(value);
         const wc = walletconnect(true);
         await activate(wc, undefined, true);

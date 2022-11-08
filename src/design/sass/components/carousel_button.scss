@@ -127,8 +127,8 @@
     border-radius: 100%;
     position: absolute;
     // bottom: 95px;
-    left: 18.5%;
-    transform: translateX(-40%);
+    left: 17.5%;
+    // transform: translateX(-40%);
     cursor: pointer;
     .arrow-left {
       img {
@@ -154,37 +154,53 @@
       }
     }
   }
-  @media (max-width: 1023px) {
+  @media (min-width: 2000px) {
     .arrow-one {
-      left: 5%;
+      left: 18.5%;
     }
     .arrow-two {
-      right: 3%;
+      right: 18.5%;
     }
   }
-  // @media (max-width: 1024px) {
-  //   .arrow-one {
-  //     left: 15px;
-  //   }
-  //   .arrow-two {
-  //     right: 0;
-  //   }
-  // }
-  @media (max-width: 540px) {
-    // bottom: 140px;
+  @media (max-width: 1440px) {
     .arrow-one {
-      left: 10%;
+      left: 7%;
     }
     .arrow-two {
       right: 7%;
     }
   }
-  @media (max-width: 425px) {
-    // bottom: 200px;
+  @media (max-width: 1024px) {
+    .arrow-one {
+      left: 4%;
+    }
     .arrow-two {
-      right: 6%;
+      right: 4%;
     }
   }
+  @media (max-width: 768px) {
+    .arrow-one {
+      left: 5%;
+    }
+    .arrow-two {
+      right: 5%;
+    }
+  }
+  // @media (max-width: 540px) {
+  //   // bottom: 140px;
+  //   .arrow-one {
+  //     left: 4%;
+  //   }
+  //   .arrow-two {
+  //     right: 4%;
+  //   }
+  // }
+  // @media (max-width: 425px) {
+  //   // bottom: 200px;
+  //   .arrow-two {
+  //     right: 10%;
+  //   }
+  // }
 }
 //arrow carousel item details
 .arrow-item-details {

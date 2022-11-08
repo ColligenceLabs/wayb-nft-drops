@@ -74,7 +74,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
-        console.log(`click ${id}, this is Wallet Connect (Klaytn)`);
+        console.log(`click ${id}, this is WalletConnect (Klaytn)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
