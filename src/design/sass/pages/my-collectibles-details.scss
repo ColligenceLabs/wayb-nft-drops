@@ -376,7 +376,7 @@
         transition: transform 0.15s ease-in-out 0s;
         cursor: pointer;
         margin: 0px;
-        owner_product .item_product_detail {
+        .item_product_detail {
           width: 100%;
           padding: 0px 12px;
           border-right: none;
@@ -500,7 +500,7 @@
           width: auto;
           font-size: 12px;
           margin: 10px 0px 0px;
-          padding: 0px 0px 0px 15px;
+          padding: 0px 0px 0px 12px;
           flex: 1 1 0%;
         }
 

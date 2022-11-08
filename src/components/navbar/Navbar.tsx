@@ -231,7 +231,11 @@ const Navbar = () => {
                   {splitString(dropsAccount.name)}
                 </p>
               </div>
-              <button ref={ref} className="username-dropdown button">
+              <button
+                ref={ref}
+                className="username-dropdown button"
+                onClick={() => setModalOpen(!isModalOpen)}
+              >
                 <svg
                   className="sc-196ec885-12 eKhfKP"
                   xmlns="http://www.w3.org/2000/svg"

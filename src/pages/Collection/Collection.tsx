@@ -174,10 +174,10 @@ const Collection = () => {
             {/*            <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">*/}
             {/*              <div className="owner_product">*/}
             {/*                <div className="owner_product_box">*/}
-            {/*                  <span className="owner_product_avatar">*/}
+            {/*                  <div className="owner_product_avatar">*/}
             {/*                    <img src={avatar} alt="" />*/}
-            {/*                  </span>*/}
-            {/*                  <p className="">{item.owner_name}</p>*/}
+            {/*                  </div>*/}
+            {/*                  <div className="">{item.owner_name}</div>*/}
             {/*                </div>*/}
             {/*                <Link to="/sale">*/}
             {/*                  <div className="status ">Buy Now</div>*/}
