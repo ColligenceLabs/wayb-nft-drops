@@ -385,6 +385,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           >
             {isBuying ? (
               <CircularProgress size={30} color={'inherit'} />
+            ) : buyItemInfo?.price === 0 ? (
+              'Get Now'
             ) : (
               'Buy Now'
             )}
