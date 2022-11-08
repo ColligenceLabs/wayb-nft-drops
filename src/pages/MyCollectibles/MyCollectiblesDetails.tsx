@@ -48,6 +48,7 @@ import {
   requestClaim,
 } from '../../services/services';
 import { getPrice } from '../../utils/getPrice';
+import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -278,7 +279,7 @@ const MyCollectiblesDetails = () => {
           return res.data;
         })
       );
-
+      console.log(result);
       setRevealItems(result);
     }
   };
@@ -558,7 +559,10 @@ const MyCollectiblesDetails = () => {
           {mboxInfo &&
             revealItems.map((item, index) => {
               return (
-                <Link to={`/klaytn/nft/${index}`} key={index}>
+                <Link
+                  to={`/klaytn/${mboxInfo.boxContractAddress}/${item.no}/${item.tokenId}`}
+                  key={index}
+                >
                   <div className="item_product" key={index}>
                     <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
                       {/*<div className="total_item">Total Run: 50</div>*/}

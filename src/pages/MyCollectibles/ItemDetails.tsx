@@ -71,13 +71,19 @@ const CollectionSale = () => {
   }
 
   const handleClickSeeMore = () => {
-    if (mBoxInfo?.isCollection) {
-      navigate(`/klaytn/collections/${mBoxInfo.id}`);
-    } else {
-      if (mBoxInfo?.isAirdrop) {
-        console.log('airdrop');
+    if (mBoxInfo) {
+      if (mBoxInfo?.isCollection) {
+        navigate(`/klaytn/collections/${mBoxInfo.id}`);
       } else {
-        console.log('mbox');
+        if (mBoxInfo?.isAirdrop) {
+          if (mBoxInfo?.mysteryboxItems && mBoxInfo?.mysteryboxItems[0].id) {
+            navigate(
+              `/klaytn/airdrop/${mBoxInfo.id}/${mBoxInfo?.mysteryboxItems[0].id}`
+            );
+          }
+        } else {
+          navigate(`/klaytn/mbox/${mBoxInfo.id}`);
+        }
       }
     }
   };
@@ -171,8 +177,8 @@ const CollectionSale = () => {
   }, [params, library]);
 
   // useEffect(() => {
-  //   if (itemInfo) console.log(itemInfo);
-  // }, [itemInfo]);
+  //   if (mBoxInfo) console.log(mBoxInfo);
+  // }, [mBoxInfo]);
 
   return (
     <main className="collectibles-item-details-container min-height-content">
