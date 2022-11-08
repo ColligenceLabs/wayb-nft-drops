@@ -3,6 +3,12 @@ import ic_info from '../../assets/icon/info_blue.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import icon_seemore from '../../assets/icon/icon_seemore.png';
 import icon_close_seemore from '../../assets/icon/icon_close_seemore.png';
+import klaytn_white from '../../assets/icon/klaytn_white.png';
+import website_icon from '../../assets/icon/website_icon.svg';
+import icon_discord from '../../assets/img/icon_discord.png';
+import icon_twitter from '../../assets/img/icon_twitter.png';
+import icon_instagram from '../../assets/img/icon_instagram.png';
+import icon_share from '../../assets/img/icon_share.png';
 import { CircularProgress } from '@mui/material';
 import PaymentWallets from '../../components/modal/PaymentWallets';
 import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess';
@@ -291,6 +297,38 @@ const CollectionSaleDetail = () => {
             </div>
             <div className="straight-line"></div>
             <div className="token-details-box">
+              <div className="list-sns">
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={klaytn_white} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={website_icon} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={icon_discord} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={icon_twitter} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={icon_instagram} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={icon_share} alt="website icon" />
+                  </div>
+                </div>
+              </div>
               <div onClick={moveToFeatured}>
                 <div className="box-owner-product">
                   <button className="btn-avatar-owner-product">

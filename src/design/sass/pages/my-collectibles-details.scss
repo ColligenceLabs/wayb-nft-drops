@@ -215,6 +215,7 @@
             text-transform: uppercase;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            justify-content: space-between;
             .label {
               font-size: 12px;
               color: #944fff;
@@ -364,6 +365,11 @@
         border-radius: 15px;
         // box-shadow: 0 0 5px 5px #f0ebfc;
         border: 1px solid #444444;
+        &:hover {
+          transform: scale(1.05);
+          transition: 0.5s;
+          border: 1px solid #2f8af5;
+        }
       }
 
       .item_product {

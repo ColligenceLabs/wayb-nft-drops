@@ -512,7 +512,7 @@ const CollectionSale = () => {
                 <Carousel
                   additionalTransfrom={0}
                   arrows={false}
-                  autoPlay
+                  autoPlay={false}
                   autoPlaySpeed={5000}
                   dotListClass="dot-other-items"
                   centerMode={false}
