@@ -342,7 +342,7 @@ const Homepage = () => {
                   <FeaturedCard key={item.id} item={item} />
                 ))
               : [1, 2, 3, 4, 5].map((item) => (
-                  <div className="custom-link">
+                  <div className="custom-link" key={item}>
                     <Skeleton key={item} />
                   </div>
                 ))}

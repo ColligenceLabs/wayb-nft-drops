@@ -1,3 +1,5 @@
+import { MBoxItemTypes } from './MBoxItemTypes';
+
 export type MBoxTypes = {
   id: number | null;
   title: { ko: string; en: string };
@@ -37,4 +39,5 @@ export type MBoxTypes = {
     companyId: string;
   };
   featuredId: string | null;
+  mysteryboxItems?: MBoxItemTypes[] | null;
 };
