@@ -140,7 +140,7 @@ const editprofile: any = (close: any) => {
                 </div>
               </div>
               <div className="content-box-edit">
-                <div className="content-title">Username</div>
+                <div className="content-title">Nickname</div>
                 <input
                   placeholder="Change Username"
                   name="name"
