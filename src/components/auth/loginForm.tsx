@@ -261,7 +261,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ close, onConfirm }) => {
                   <img src={icon_metamask}></img>Metamask
                 </button>
                 <button type="button">
-                  <img src={icon_ethereum2}></img>Wallet Connect
+                  <img src={icon_ethereum2}></img>WalletConnect
                 </button>
               </div>
               <div className="row">
