@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
 import close_icon from '../../assets/icon/close_icon.svg';
+import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import klaytn_white from '../../assets/icon/klaytn_white.png';
 import website_icon from '../../assets/icon/website_icon.svg';
 import icon_discord from '../../assets/img/icon_discord.png';
@@ -36,6 +37,7 @@ import { useSelector } from 'react-redux';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { getItemAmountNoSigner } from '../../utils/transactions';
 import ReactModal from 'react-modal';
+import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -73,6 +75,13 @@ const SaleCollectibles = () => {
     message: '',
   });
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [warningOpen, setWarningOpen] = useState(false);
+  const refdropdown = useRef() as MutableRefObject<HTMLDivElement>;
+  useOnClickOutsideDropdown(refdropdown, () => setDropdownOpen(false));
+  const closeWarning = () => {
+    setWarningOpen(false);
+  };
   const handeCheckCountDownFinish = () => {
     setCountDownFinish(true);
   };
@@ -110,7 +119,7 @@ const SaleCollectibles = () => {
     }, [ref, handler]);
   };
 
-  useOnClickOutside(ref, () => setModalOpen(false));
+  // useOnClickOutside(ref, () => setModalOpen(false));
 
   const handleClosePaymentWallet = async () => {
     setOpenPaymentWalletsSuccess(false);
@@ -293,53 +302,122 @@ const SaleCollectibles = () => {
               </div>
               <div className="straight-line"></div>
               <div className="token-details-box">
-                <div className="list-sns">
-                  <div className="custom-sns">
-                    <div className="image-sns">
-                      <img src={klaytn_white} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns">
-                    <div className="image-sns">
-                      <img src={website_icon} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns">
-                    <div className="image-sns">
-                      <img src={icon_discord} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns">
-                    <div className="image-sns">
-                      <img src={icon_twitter} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns">
-                    <div className="image-sns">
-                      <img src={icon_instagram} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns">
-                    <div className="image-sns">
-                      <img src={icon_share} alt="website icon" />
-                    </div>
-                  </div>
-                </div>
-                <div onClick={moveToFeatured}>
-                  <div className="box-owner-product">
-                    <button className="btn-avatar-owner-product">
-                      <img
-                        src={mBoxInfo.featured?.company.image}
-                        alt={mBoxInfo.featured?.company.name.en}
-                      />
-                    </button>
-                    <div className="name-owner-product">
-                      <button className="btn-name-owner-product">
-                        {mBoxInfo.featured?.company.name.en}
+                <div className="wrapper-head-token">
+                  <div onClick={moveToFeatured}>
+                    <div className="box-owner-product">
+                      <button className="btn-avatar-owner-product">
+                        <img
+                          src={mBoxInfo.featured?.company.image}
+                          alt={mBoxInfo.featured?.company.name.en}
+                        />
                       </button>
+                      <div className="name-owner-product">
+                        <div className="creator-title">Creator</div>
+                        <button className="btn-name-owner-product">
+                          {mBoxInfo.featured?.company.name.en}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="list-sns">
+                    <div className="custom-sns hide-max-540px">
+                      <div className="image-sns">
+                        <img src={klaytn_white} alt="website icon" />
+                      </div>
+                    </div>
+                    <div className="custom-sns hide-max-540px">
+                      <div className="image-sns">
+                        <img src={website_icon} alt="website icon" />
+                      </div>
+                    </div>
+                    <div className="custom-sns hide-max-540px">
+                      <div className="image-sns">
+                        <img src={icon_discord} alt="website icon" />
+                      </div>
+                    </div>
+                    <div className="custom-sns hide-max-540px">
+                      <div className="image-sns">
+                        <img src={icon_twitter} alt="website icon" />
+                      </div>
+                    </div>
+                    <div className="custom-sns hide-max-540px">
+                      <div className="image-sns">
+                        <img src={icon_instagram} alt="website icon" />
+                      </div>
+                    </div>
+                    <div className="custom-sns">
+                      <div className="image-sns">
+                        <img src={icon_share} alt="website icon" />
+                      </div>
+                    </div>
+                    <div className="dropdown hide-min-540px" ref={refdropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && (
+                        <ul className="dropdown-box">
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={klaytn_white} alt="website icon" />
+                                </div>
+                                Etherscan Link
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={website_icon} alt="website icon" />
+                                </div>
+                                Website
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={icon_discord} alt="website icon" />
+                                </div>
+                                Discord
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={icon_twitter} alt="website icon" />
+                                </div>
+                                Twitter
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img
+                                    src={icon_instagram}
+                                    alt="website icon"
+                                  />
+                                </div>
+                                Instagram
+                              </a>
+                            </button>
+                          </li>
+                        </ul>
+                      )}
                     </div>
                   </div>
                 </div>
+
                 <div>
                   <div className="btn-buy-now">Buy Now</div>
                 </div>
