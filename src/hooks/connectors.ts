@@ -19,7 +19,7 @@ export const abc = new AbcConnector({
 export const walletconnect = (useQR: boolean) => {
   // const chainId = parseInt(targetNetwork, 16);
   return new WalletConnectConnector({
-    supportedChainIds: [ChainId.TMP, ChainId.BAOBAB, ChainId.KLAYTN],
+    // supportedChainIds: [ChainId.TMP, ChainId.BAOBAB, ChainId.KLAYTN],
     // rpc: { [chainId]: RPC_URLS[chainId] },
     rpc: {
       [ChainId.TMP]: RPC_URLS[ChainId.TMP],
