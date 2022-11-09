@@ -7,6 +7,12 @@ import ic_authenticity from '../../assets/icon/info_blue.svg';
 // import price_history_lg from '../../assets/svg/price_history_logo.svg';
 // import ic_trade from '../../assets/svg/trade_icon.svg';
 import ic_sell from '../../assets/svg/sell_icon.svg';
+import klaytn_white from '../../assets/icon/klaytn_white.png';
+import website_icon from '../../assets/icon/website_icon.svg';
+import icon_discord from '../../assets/img/icon_discord.png';
+import icon_twitter from '../../assets/img/icon_twitter.png';
+import icon_instagram from '../../assets/img/icon_instagram.png';
+import icon_share from '../../assets/img/icon_share.png';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import WarningForm from 'components/collectibles_modals/warning';
 import SendingForm from '../../components/collectibles_modals/sending';
@@ -344,7 +350,101 @@ const MyCollectiblesDetails = () => {
                   <div className="name">{mboxInfo?.companyname.en}</div>
                 </div>
               </div>
-              <div className="dropdown">
+              <div className="list-sns">
+                <div className="custom-sns hide-max-540px">
+                  <div className="image-sns">
+                    <img src={klaytn_white} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns hide-max-540px">
+                  <div className="image-sns">
+                    <img src={website_icon} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns hide-max-540px">
+                  <div className="image-sns">
+                    <img src={icon_discord} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns hide-max-540px">
+                  <div className="image-sns">
+                    <img src={icon_twitter} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns hide-max-540px">
+                  <div className="image-sns">
+                    <img src={icon_instagram} alt="website icon" />
+                  </div>
+                </div>
+                <div className="custom-sns">
+                  <div className="image-sns">
+                    <img src={icon_share} alt="website icon" />
+                  </div>
+                </div>
+                <div className="dropdown hide-min-540px">
+                  <div
+                    className="dropdown-button"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                  >
+                    <img src={ic_dropdown} alt="dropdown" />
+                  </div>
+                  {dropdownOpen && (
+                    <ul className="dropdown-box">
+                      <li className="list-dropdown-item">
+                        <button className="dropdown-item-nft  button">
+                          <a href="/" className="custom-link-sns">
+                            <div className="image-sns">
+                              <img src={klaytn_white} alt="website icon" />
+                            </div>
+                            Etherscan Link
+                          </a>
+                        </button>
+                      </li>
+                      <li className="list-dropdown-item">
+                        <button className="dropdown-item-nft  button">
+                          <a href="/" className="custom-link-sns">
+                            <div className="image-sns">
+                              <img src={website_icon} alt="website icon" />
+                            </div>
+                            Website
+                          </a>
+                        </button>
+                      </li>
+                      <li className="list-dropdown-item">
+                        <button className="dropdown-item-nft  button">
+                          <a href="/" className="custom-link-sns">
+                            <div className="image-sns">
+                              <img src={icon_discord} alt="website icon" />
+                            </div>
+                            Discord
+                          </a>
+                        </button>
+                      </li>
+                      <li className="list-dropdown-item">
+                        <button className="dropdown-item-nft  button">
+                          <a href="/" className="custom-link-sns">
+                            <div className="image-sns">
+                              <img src={icon_twitter} alt="website icon" />
+                            </div>
+                            Twitter
+                          </a>
+                        </button>
+                      </li>
+                      <li className="list-dropdown-item">
+                        <button className="dropdown-item-nft  button">
+                          <a href="/" className="custom-link-sns">
+                            <div className="image-sns">
+                              <img src={icon_instagram} alt="website icon" />
+                            </div>
+                            Instagram
+                          </a>
+                        </button>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </div>
+              {/* <div className="dropdown">
                 <div
                   className="dropdown-button"
                   onClick={() =>
@@ -363,10 +463,10 @@ const MyCollectiblesDetails = () => {
                           setDropdownOpen(false);
                         }}
                       >
-                        {/* <img
+                        <img
                           src={ic_send_to_my_wallet}
                           alt="send-to-my-wallet"
-                        /> */}
+                        />
                         <svg
                           width="19"
                           height="18"
@@ -379,7 +479,7 @@ const MyCollectiblesDetails = () => {
                             fill="white"
                           />
                         </svg>
-                        Send to Private Address
+                        Send to My Wallet
                       </button>
                     </li>
                     <li className="list-dropdown-item">
@@ -389,7 +489,7 @@ const MyCollectiblesDetails = () => {
                           setDropdownOpen(false);
                         }}
                       >
-                        {/* <img src={gift_token_icon} alt="gift token icon" /> */}
+                        <img src={gift_token_icon} alt="gift token icon" />
                         <svg
                           width="20"
                           height="20"
@@ -407,7 +507,7 @@ const MyCollectiblesDetails = () => {
                     </li>
                   </ul>
                 )}
-              </div>
+              </div> */}
             </div>
             <div className="line-banner"></div>
             <div className="name-product">{mboxInfo?.title.en}</div>
