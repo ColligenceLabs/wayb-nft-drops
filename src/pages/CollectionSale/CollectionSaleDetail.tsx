@@ -1,9 +1,7 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
-import ic_info from '../../assets/icon/info_blue.svg';
 import close_icon from '../../assets/icon/close_icon.svg';
 import icon_seemore from '../../assets/icon/icon_seemore.png';
 import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
-import icon_close_seemore from '../../assets/icon/icon_close_seemore.png';
 import klaytn_white from '../../assets/icon/klaytn_white.png';
 import website_icon from '../../assets/icon/website_icon.svg';
 import icon_discord from '../../assets/img/icon_discord.png';
@@ -16,26 +14,27 @@ import PaymentWalletsSuccess from '../../components/modal/PaymentWalletsSuccess'
 import Popup from 'reactjs-popup';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
 import CSnackbar from '../../components/common/CSnackbar';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CountDownTimer from '../../components/TimeCounter/CountDownTimer';
-import {
-  buyItem,
-  getItemAmount,
-  getItemAmountNoSigner,
-} from '../../utils/transactions';
+import { buyItem, getItemAmountNoSigner } from '../../utils/transactions';
 import contracts from '../../config/constants/contracts';
-import { ChainId, SUCCESS } from '../../config';
-import { getKeyRemains } from '../../utils/marketTransactions';
-import { getCollectionInfo, registerBuy } from '../../services/services';
+import { SUCCESS } from '../../config';
+import {
+  getCollectionInfo,
+  getFeaturedById,
+  registerBuy,
+} from '../../services/services';
 import { parseEther } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { hotCollectiblesTestData } from 'pages/homepage/mockData';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
+import { FeaturedTypes } from '../../types/FeaturedTypes';
+import { moveToScope } from '../../utils/moveToScope';
+import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -44,6 +43,12 @@ type ExMBoxItemTypes = MBoxItemTypes & {
   price: number;
   quote: string;
   index: number;
+};
+
+type LinkTypes = {
+  type: string;
+  url: string;
+  useExternalUrl: boolean;
 };
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
@@ -55,6 +60,8 @@ const CollectionSaleDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { account, library, chainId } = useActiveWeb3React();
+  const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
+
   const [isLoading, setIsLoading] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
@@ -66,6 +73,7 @@ const CollectionSaleDetail = () => {
   const [remainingAmount, setRemainingAmount] = useState(0);
   const [collectionItemInfo, setCollectionItemInfo] =
     useState<ExMBoxItemTypes | null>(null);
+  const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
   const [countDownFinish, setCountDownFinish] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState({
     open: false,
@@ -178,15 +186,56 @@ const CollectionSaleDetail = () => {
     setRemainingAmount(remaining);
   };
 
-  // useEffect(() => {
-  //   console.log(location.state.item);
-  //   setCollectionItemInfo(location.state.item);
-  //   if (location.state.item.remainingAmount === undefined) {
-  //     getRemaining();
-  //   } else {
-  //     setRemainingAmount(location.state.item.remainingAmount);
-  //   }
-  // }, [location.state]);
+  const getSnsButtons = () => {
+    if (featuredInfo && featuredInfo.links) {
+      const test = featuredInfo.links.map((link: LinkTypes) => {
+        return (
+          <>
+            {link.type === 'SITE' && (
+              <div
+                className="custom-sns hide-max-540px"
+                onClick={() => window.open(link.url)}
+              >
+                <div className="image-sns">
+                  <img src={website_icon} alt="website icon" />
+                </div>
+              </div>
+            )}
+            {link.type === 'SITE' && (
+              <div
+                className="custom-sns hide-max-540px"
+                onClick={() => window.open(link.url)}
+              >
+                <div className="image-sns">
+                  <img src={icon_discord} alt="website icon" />
+                </div>
+              </div>
+            )}
+            {link.type === 'SITE' && (
+              <div
+                className="custom-sns hide-max-540px"
+                onClick={() => window.open(link.url)}
+              >
+                <div className="image-sns">
+                  <img src={icon_twitter} alt="website icon" />
+                </div>
+              </div>
+            )}
+            {link.type === 'SITE' && (
+              <div className="custom-sns hide-max-540px">
+                <div className="image-sns">
+                  <img src={icon_instagram} alt="website icon" />
+                </div>
+              </div>
+            )}
+          </>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
 
   const getItemUrl = (infoId: number, itemId: number, item: MBoxTypes) => {
     let url = '/';
@@ -233,9 +282,21 @@ const CollectionSaleDetail = () => {
       } else {
         setRemainingAmount(collectionInfo.remainingAmount);
       }
+      const featuredInfoRes = await getFeaturedById(res.data.data.featuredId);
+      if (featuredInfoRes.data !== '') {
+        setFeaturedInfo(featuredInfoRes.data);
+      }
       setCollectionItemInfo(data);
     }
   };
+
+  useEffect(() => {
+    setOpenSnackbar({
+      open: copyResult,
+      type: 'success',
+      message: 'copied!',
+    });
+  }, [copyResult]);
 
   useEffect(() => {
     fetchCollectionItemInfo();
@@ -247,11 +308,6 @@ const CollectionSaleDetail = () => {
         <div className="price-collection-view-page">
           <div className="price-collection-box">
             <div className="token-showcase-box">
-              {/*<img*/}
-              {/*  style={{ objectFit: 'cover' }}*/}
-              {/*  src={collectionItemInfo?.originalImage}*/}
-              {/*  alt=""*/}
-              {/*/>*/}
               {collectionItemInfo &&
               collectionItemInfo?.originalImage!.indexOf('.mp4') > -1 ? (
                 <div>
@@ -293,12 +349,6 @@ const CollectionSaleDetail = () => {
                       src={collectionItemInfo?.originalImage}
                       alt=""
                     />
-                    {/* <div style={{ width: '100%', height: '100%' }}>
-                      <div>Close</div>
-                      <div>
-
-                      </div>
-                    </div> */}
                   </ReactModal>
                 </>
               )}
@@ -322,32 +372,26 @@ const CollectionSaleDetail = () => {
                 </div>
                 <div className="list-sns">
                   <div className="custom-sns hide-max-540px">
-                    <div className="image-sns">
+                    <div
+                      className="image-sns"
+                      onClick={() =>
+                        moveToScope(
+                          collectionItemInfo?.collectionInfo.chainId,
+                          collectionItemInfo?.collectionInfo
+                            ?.boxContractAddress,
+                          true
+                        )
+                      }
+                    >
                       <img src={klaytn_white} alt="website icon" />
                     </div>
                   </div>
-                  <div className="custom-sns hide-max-540px">
-                    <div className="image-sns">
-                      <img src={website_icon} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns hide-max-540px">
-                    <div className="image-sns">
-                      <img src={icon_discord} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns hide-max-540px">
-                    <div className="image-sns">
-                      <img src={icon_twitter} alt="website icon" />
-                    </div>
-                  </div>
-                  <div className="custom-sns hide-max-540px">
-                    <div className="image-sns">
-                      <img src={icon_instagram} alt="website icon" />
-                    </div>
-                  </div>
+                  {getSnsButtons()}
                   <div className="custom-sns">
-                    <div className="image-sns">
+                    <div
+                      className="image-sns"
+                      onClick={() => copyToClipBoard(window.location.href)}
+                    >
                       <img src={icon_share} alt="website icon" />
                     </div>
                   </div>
@@ -364,12 +408,12 @@ const CollectionSaleDetail = () => {
                       <ul className="dropdown-box">
                         <li className="list-dropdown-item">
                           <button className="dropdown-item-nft  button">
-                            <a href="/" className="custom-link-sns">
-                              <div className="image-sns">
-                                <img src={klaytn_white} alt="website icon" />
-                              </div>
-                              Etherscan Link
-                            </a>
+                            {/*<a href="/" className="custom-link-sns">*/}
+                            <div className="image-sns">
+                              <img src={klaytn_white} alt="website icon" />
+                            </div>
+                            Etherscan Link
+                            {/*</a>*/}
                           </button>
                         </li>
                         <li className="list-dropdown-item">
@@ -483,22 +527,6 @@ const CollectionSaleDetail = () => {
                           </span>
                         )
                       ) : null}
-                      {/* <ul>
-                      {collectionItemInfo?.collectionInfo.whitelists &&
-                        collectionItemInfo?.collectionInfo.whitelists.map(
-                          (item: MBoxTypes) => (
-                            // <Link
-                            //   to={getItemUrl(
-                            //     collectionItemInfo.infoId,
-                            //     collectionItemInfo.id!,
-                            //     item
-                            //   )}
-                            // >
-                            <li key={item.id}>{item.title.en}</li>
-                            // </Link>
-                          )
-                        )}
-                    </ul> */}
                     </div>
                     {collectionItemInfo?.collectionInfo.whitelists && (
                       <>
@@ -532,12 +560,6 @@ const CollectionSaleDetail = () => {
                             <div className="icon-see-more">
                               <img src={icon_seemore} alt="icon see more" />
                             </div>
-                            {/* <div className="icon-close-seemore">
-                              <img
-                                src={icon_close_seemore}
-                                alt="close see more"
-                              />
-                            </div> */}
                           </button>
                         )}
                       </>
@@ -592,168 +614,9 @@ const CollectionSaleDetail = () => {
                     Connect Wallet
                   </button>
                 )}
-
-                {/*{account && library?.connection ? (*/}
-                {/*  <>*/}
-                {/*    <button*/}
-                {/*      className={'btn-sale-collection'}*/}
-                {/*      // disabled={isLoading || remains === 0}*/}
-                {/*      disabled={isLoading}*/}
-                {/*      // onClick={() => setOpenPaymentWallets(true)}*/}
-                {/*      onClick={handleBuyClick}*/}
-                {/*    >*/}
-                {/*      {isLoading ? (*/}
-                {/*        <CircularProgress size={30} color={'inherit'} />*/}
-                {/*      ) : (*/}
-                {/*        'Buy Now'*/}
-                {/*      )}*/}
-                {/*    </button>*/}
-                {/*  </>*/}
-                {/*) : (*/}
-                {/*  <button*/}
-                {/*    className={'btn-sale-collection'}*/}
-                {/*    onClick={() => setLoginOpen(true)}*/}
-                {/*  >*/}
-                {/*    Connect Wallet*/}
-                {/*  </button>*/}
-                {/*)}*/}
-                {/* <button className="btn-sale-collection disable">Sold out</button> */}
               </div>
             </div>
           </div>
-          {/*<div>*/}
-          {/*  <div>*/}
-          {/*    <div className="title-sale-by-Collectors fw-600">*/}
-          {/*      Items in the mystery box*/}
-          {/*    </div>*/}
-          {/*    <div className="sub-title-sale-by-Collectors fw-600">*/}
-          {/*      You will get one of the items below.*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*  <div className="puzzle-container">*/}
-          {/*    <div>*/}
-          {/*      <ImageList className="puzzle" cols={11}>*/}
-          {/*        {mBoxItemList.map((item, index) => (*/}
-          {/*          <ImageListItem key={index}>*/}
-          {/*            <img*/}
-          {/*              src={item.itemImage}*/}
-          {/*              srcSet={item.itemImage}*/}
-          {/*              alt={''}*/}
-          {/*              loading="lazy"*/}
-          {/*            />*/}
-          {/*            /!*<div style={{ position: 'absolute', color: 'white' }}>*!/*/}
-          {/*            /!*  {index}*!/*/}
-          {/*            /!*</div>*!/*/}
-          {/*          </ImageListItem>*/}
-          {/*        ))}*/}
-          {/*      </ImageList>*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*  <div className="userSales">*/}
-          {/*    <div className="filter-box">*/}
-          {/*      <div className="search-box">*/}
-          {/*        <img*/}
-          {/*          src={ic_search}*/}
-          {/*          style={{ margin: '0px 5px 0px 20px' }}*/}
-          {/*          alt=""*/}
-          {/*        />*/}
-          {/*        <input*/}
-          {/*          className="marketplace-search-textbox"*/}
-          {/*          placeholder="Search NFT"*/}
-          {/*        />*/}
-          {/*      </div>*/}
-          {/*      <div className="type-filter-box">*/}
-          {/*        <div className="type-filter-box-left">*/}
-          {/*          <div className="type-filter-item active">All</div>*/}
-          {/*          <div className="type-filter-item">Buy Now</div>*/}
-          {/*          <div className="type-filter-item">Auction</div>*/}
-          {/*        </div>*/}
-          {/*        <div className="type-filter-box-right">*/}
-          {/*          <div className="dropdown-sort-type-collection"></div>*/}
-          {/*          <div className=""></div>*/}
-          {/*        </div>*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*    <div className="marketplace-items">*/}
-          {/*      {mBoxItemList.map((item, index) => (*/}
-          {/*        <MBoxItemCard*/}
-          {/*          key={index}*/}
-          {/*          item={item}*/}
-          {/*          mBoxName={mBoxInfo?.title.en}*/}
-          {/*          mBoxImage={mBoxInfo?.packageImage}*/}
-          {/*          quote={mBoxInfo?.quote}*/}
-          {/*          price={mBoxInfo?.price}*/}
-          {/*        />*/}
-          {/*      ))}*/}
-          {/*      <div className="list-carousel">*/}
-          {/*        {list_products.map((item, index) => (*/}
-          {/*          <div className="slide-item" key={index}>*/}
-          {/*            <Link to={'/sale'} className="button">*/}
-          {/*              <div className="hot-ollectibles-wrapper">*/}
-          {/*                <div className="header-left hot-ollectibles-item">*/}
-          {/*                  <span className="total-run fw-600">*/}
-          {/*                    Total Run: 35000*/}
-          {/*                  </span>*/}
-          {/*                </div>*/}
-          {/*                <div className="hot-ollectibles-item">*/}
-          {/*                  <div>erc721</div>*/}
-          {/*                </div>*/}
-          {/*                <div className="hot-ollectibles-item">*/}
-          {/*                  <div className="img-token">*/}
-          {/*                    <img src={home_11} alt="" />*/}
-          {/*                  </div>*/}
-          {/*                </div>*/}
-          {/*                <div className="hot-ollectibles-item">*/}
-          {/*                  <div className="wrapper-item">*/}
-          {/*                    <div className="content-left">*/}
-          {/*                      <div className="avatar">*/}
-          {/*                        <img src={home_13_avt} alt="" />*/}
-          {/*                      </div>*/}
-          {/*                      <div className="name-label">Elton John</div>*/}
-          {/*                    </div>*/}
-          {/*                    <div className="content-right">Buy Now</div>*/}
-          {/*                  </div>*/}
-          {/*                </div>*/}
-          {/*                <div className="hot-ollectibles-item">*/}
-          {/*                  <div className="name-label">*/}
-          {/*                    Elton John Rocket NFT Club Pass*/}
-          {/*                  </div>*/}
-          {/*                </div>*/}
-          {/*                <div className="hot-ollectibles-item">*/}
-          {/*                  <div className="wrapper-price">*/}
-          {/*                    <div className="price-header font-size-14">*/}
-          {/*                      Price*/}
-          {/*                    </div>*/}
-          {/*                    <div className="current-price font-size-18">*/}
-          {/*                      $29.99*/}
-          {/*                    </div>*/}
-          {/*                  </div>*/}
-          {/*                </div>*/}
-          {/*                <div className="hot-ollectibles-item">*/}
-          {/*                  <div className="wrapper-remaining">*/}
-          {/*                    <div className="remaining-header font-size-14">*/}
-          {/*                      Remaining{' '}*/}
-          {/*                    </div>*/}
-          {/*                    <div className="quantity-remaining font-size-18">*/}
-          {/*                      26008*/}
-          {/*                    </div>*/}
-          {/*                  </div>*/}
-          {/*                </div>*/}
-          {/*              </div>*/}
-          {/*            </Link>*/}
-          {/*          </div>*/}
-          {/*        ))}*/}
-          {/*      </div>*/}
-          {/*      /!* not found item *!/*/}
-          {/*      /!*<div className="not-found">*!/*/}
-          {/*      /!*  <div className="image-not-found">*!/*/}
-          {/*      /!*    <img src={not_found} alt="" />*!/*/}
-          {/*      /!*  </div>*!/*/}
-          {/*      /!*  <div className="token-not-found">No tokens found...</div>*!/*/}
-          {/*      /!*</div>*!/*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
         </div>
         <PaymentWallets
           itemInfo={collectionItemInfo!}

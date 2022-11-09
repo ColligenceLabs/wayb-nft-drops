@@ -327,11 +327,11 @@ const MyCollectiblesDetails = () => {
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
-        <Link to={'/my-collectibles'}>
+        {/* <Link to={'/my-collectibles'}>
           <button className="back-button">
             <img src={arrow_btn_back} alt="arrow back" /> Back
           </button>
-        </Link>
+        </Link> */}
         <div className="product-details">
           <div className="showcase-box">
             <img src={mboxInfo?.packageImage} alt="" className="thumbnail" />
@@ -696,7 +696,7 @@ const MyCollectiblesDetails = () => {
                           <div className="owner_product_avatar">
                             <img src={mboxInfo?.packageImage} alt="" />
                           </div>
-                          <div className="">{mboxInfo?.title.en}</div>
+                          <div className="">{mboxInfo?.companyname.en}</div>
                         </div>
                         <div>
                           <Link to="/sale">
