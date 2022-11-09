@@ -96,7 +96,7 @@ const MyProfile = () => {
             <div className="bio"></div>
             <div className="my-profile-contact">
               <div className="contact-detail">
-                <div className="title">Name</div>
+                <div className="title">Nickname</div>
                 <div className="content">{dropsAccount.name}</div>
               </div>
               {/*<div className="contact-detail">*/}
