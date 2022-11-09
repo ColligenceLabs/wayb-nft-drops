@@ -175,7 +175,7 @@ const MyCollectibles = () => {
         {/* banner  */}
         <div className="banner">
           <div className="collectibles">
-            <div className="banner-title">My Collectibles</div>
+            <div className="banner-title">My Collections</div>
           </div>
         </div>
 

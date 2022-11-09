@@ -554,7 +554,7 @@ const MyCollectiblesDetails = () => {
           {/*</div>*/}
           {/*<div className="list-price-history"></div>*/}
         </div>
-        <div className="my-revealed-items">My revealed items</div>
+        <div className="my-revealed-items">My items</div>
         <div className="marketplace-items">
           {mboxInfo &&
             revealItems.map((item, index) => {
