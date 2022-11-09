@@ -147,7 +147,7 @@
     }
     .collection-info-content {
       color: #aaaaaa;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 
@@ -601,6 +601,9 @@
         padding: 20px;
         color: $white-color-primary;
         background: #2f8af5;
+      }
+      .btn-sale-collection:disabled {
+        background: #565656;
       }
     }
 

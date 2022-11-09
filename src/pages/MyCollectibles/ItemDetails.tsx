@@ -184,9 +184,9 @@ const CollectionSale = () => {
     <main className="collectibles-item-details-container min-height-content">
       {mBoxInfo && itemInfo && (
         <div className="collectibles-details-wp">
-          <button className="back-button" onClick={() => navigate(-1)}>
+          {/* <button className="back-button" onClick={() => navigate(-1)}>
             <img src={arrow_btn_back} alt="arrow back" /> Back
-          </button>
+          </button> */}
           <div className="product-details">
             <div className="wrapper-left">
               <div className="showcase-box">
@@ -488,7 +488,9 @@ const CollectionSale = () => {
               </div>
               {/* <div className="list-trade"></div> */}
               <div className="wrapper-user-details">
-                <div className="title-details">이 아이템이 속한 컬렉션</div>
+                <div className="title-details">
+                  Collection this item belongs to
+                </div>
                 <div className="wrapper-content-details">
                   <div className="wrapper-user">
                     <div className="avt-user">
