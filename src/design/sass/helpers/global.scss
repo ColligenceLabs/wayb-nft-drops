@@ -106,6 +106,17 @@ a {
     display: none;
   }
 }
+@media (max-width: 540px) {
+  .hide-max-540px {
+    display: none !important;
+  }
+}
+@media (min-width: 540px) {
+  .hide-min-540px {
+    display: none;
+  }
+}
+
 @include Mobile() {
   .hidden-mobile {
     display: none !important;

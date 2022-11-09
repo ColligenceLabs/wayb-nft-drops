@@ -46,11 +46,11 @@
   @media (max-width: 639px) {
     .arrow-one {
       bottom: 118px;
-      left: 20px;
+      left: 2%;
     }
     .arrow-two {
       bottom: 118px;
-      right: 4px;
+      right: -2%;
     }
   }
 }
@@ -104,10 +104,11 @@
   @media (max-width: 639px) {
     .arrow-one {
       bottom: 220px;
-      left: 15px;
+      left: 2%;
     }
     .arrow-two {
       bottom: 220px;
+      right: -2%;
     }
   }
 }
@@ -180,10 +181,10 @@
   }
   @media (max-width: 768px) {
     .arrow-one {
-      left: 5%;
+      left: 2%;
     }
     .arrow-two {
-      right: 5%;
+      right: 2%;
     }
   }
   // @media (max-width: 540px) {
