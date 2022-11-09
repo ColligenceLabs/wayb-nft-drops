@@ -497,6 +497,7 @@
             img {
               border-radius: 15px;
               width: 100%;
+              max-height: 280px;
               height: 280px;
             }
           }
@@ -575,8 +576,8 @@
 
               img {
                 border-radius: 20px;
-                height: 100%;
-                max-height: 200px;
+                height: 280px;
+                max-height: 280px;
                 width: 100%;
               }
             }
