@@ -550,7 +550,7 @@ const CollectionSale = () => {
                   rewindWithAnimation={false}
                   rtl={false}
                   shouldResetAutoplay
-                  showDots={true}
+                  showDots={false}
                   // slidesToSlide={1}
                   swipeable
                   infinite
