@@ -21,4 +21,5 @@ export type FeaturedTypes = {
   eventMobileBanner: string | null;
   newWindow: boolean;
   mobileBanner: string | null;
+  totalAmount: number | null;
 };
