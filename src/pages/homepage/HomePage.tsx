@@ -488,7 +488,9 @@ const Homepage = () => {
                         <div className="wrapper-remaining">
                           <div className="remaining-header">Remaining</div>
                           <div className="quantity-remaining">
-                            {item.remainingAmount ? item.remainingAmount : '-'}
+                            {!item.isSoldOut && item.remainingAmount
+                              ? item.remainingAmount
+                              : '-'}
                           </div>
                         </div>
                       </div>
@@ -904,7 +906,7 @@ const Homepage = () => {
                           <div className="wrapper-remaining">
                             <div className="remaining-header">Remaining</div>
                             <div className="quantity-remaining">
-                              {item.remainingAmount
+                              {!item.isSoldOut && item.remainingAmount
                                 ? item.remainingAmount
                                 : '-'}
                             </div>
