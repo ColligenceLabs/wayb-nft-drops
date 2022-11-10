@@ -85,22 +85,12 @@
           }
         }
       }
-      &:hover {
-        .arrow-banner-mainpage {
-          .arrow-one {
-            background: #ffffff;
-          }
-          .arrow-two {
-            background: #ffffff;
-          }
-        }
-      }
     }
   }
   //section 02
   .section-02 {
     color: #ffffff;
-    width: min(100%, 1280px);
+    width: $page-content-width;
     padding: 0 40px;
     margin: auto;
     .featured-collections {
@@ -510,7 +500,7 @@
         .hot-collectibles {
           .custom-box {
             width: 100%;
-            margin: 0 10px;
+            margin: 10px;
             .hot-ollectibles-wrapper {
               width: 100%;
               height: auto;
@@ -540,7 +530,7 @@
         .grid-container-featured {
           grid-template-columns: 1fr;
           .custom-link {
-            margin: 0px 10px;
+            margin: 10px;
             height: 260px;
             width: 100%;
             .grid-item {
