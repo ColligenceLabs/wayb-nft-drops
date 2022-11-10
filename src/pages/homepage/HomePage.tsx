@@ -222,7 +222,7 @@ const Homepage = () => {
               renderButtonGroupOutside={false}
               centerMode={screenSize > 1023}
               dotListClass="custom-dot"
-              containerClass="container-with-dots home-carousel"
+              containerClass="container-with-dots home-carousel banner-main-carousel"
               responsive={{
                 desktop: {
                   breakpoint: {
@@ -695,7 +695,7 @@ const Homepage = () => {
                               <video
                                 playsInline
                                 autoPlay
-                                controls
+                                // controls
                                 muted
                                 loop
                                 controlsList="nodownload"

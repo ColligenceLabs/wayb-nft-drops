@@ -1,4 +1,5 @@
 //arrow carousel featured collections
+@import '../helpers/variables';
 .arrow-featured-collections {
   position: relative;
   .arrow-one {
@@ -46,11 +47,11 @@
   @media (max-width: 639px) {
     .arrow-one {
       bottom: 118px;
-      left: 2%;
+      left: 5px;
     }
     .arrow-two {
       bottom: 118px;
-      right: -2%;
+      right: -10px;
     }
   }
 }
@@ -104,32 +105,25 @@
   @media (max-width: 639px) {
     .arrow-one {
       bottom: 220px;
-      left: 2%;
+      left: 5px;
     }
     .arrow-two {
       bottom: 220px;
-      right: -2%;
+      right: -10px;
     }
   }
 }
-
 //arrow carousel banner main page
-.arrow-banner-mainpage {
-  position: absolute;
-  width: 100%;
-  margin: auto;
-  z-index: 51;
-  display: flex;
-  align-items: center;
+.banner-main-carousel {
+  $temp: calc((100% - min(calc(100% - 80px), 1200px)) / 2);
   .arrow-one {
     width: 40px;
     height: 40px;
     background: rgba($color: #ffffff, $alpha: 0.2);
     border-radius: 100%;
     position: absolute;
-    // bottom: 95px;
-    left: 17.5%;
-    // transform: translateX(-40%);
+    left: $temp;
+    transform: translateX(-40%);
     cursor: pointer;
     .arrow-left {
       img {
@@ -137,17 +131,14 @@
       }
     }
   }
-  .remove-arrow {
-    display: none;
-  }
   .arrow-two {
     width: 40px;
     height: 40px;
     background: rgba($color: #ffffff, $alpha: 0.2);
     border-radius: 100%;
     position: absolute;
-    // bottom: 95px;
-    right: 17.5%;
+    right: $temp;
+    transform: translateX(40%);
     cursor: pointer;
     .arrow-right {
       img {
@@ -155,54 +146,33 @@
       }
     }
   }
-  @media (min-width: 2000px) {
-    .arrow-one {
-      left: 18.5%;
-    }
-    .arrow-two {
-      right: 18.5%;
-    }
-  }
-  @media (max-width: 1440px) {
-    .arrow-one {
-      left: 7%;
-    }
-    .arrow-two {
-      right: 7%;
-    }
-  }
   @media (max-width: 1024px) {
     .arrow-one {
-      left: 4%;
+      left: 55px;
     }
     .arrow-two {
-      right: 4%;
+      right: 40px;
+      transform: unset;
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 639px) {
     .arrow-one {
-      left: 2%;
+      left: 25px;
     }
     .arrow-two {
-      right: 2%;
+      right: 10px;
     }
   }
-  // @media (max-width: 540px) {
-  //   // bottom: 140px;
-  //   .arrow-one {
-  //     left: 4%;
-  //   }
-  //   .arrow-two {
-  //     right: 4%;
-  //   }
-  // }
-  // @media (max-width: 425px) {
-  //   // bottom: 200px;
-  //   .arrow-two {
-  //     right: 10%;
-  //   }
-  // }
+  &:hover {
+    .arrow-one {
+      background: #ffffff;
+    }
+    .arrow-two {
+      background: #ffffff;
+    }
+  }
 }
+
 //arrow carousel item details
 .arrow-item-details {
   position: absolute;
@@ -242,35 +212,4 @@
       }
     }
   }
-  // @media (max-width: 1023px) {
-  //   .arrow-one {
-  //     left: 5%;
-  //   }
-  //   .arrow-two {
-  //     right: 3%;
-  //   }
-  // }
-  // @media (max-width: 1024px) {
-  //   .arrow-one {
-  //     left: 15px;
-  //   }
-  //   .arrow-two {
-  //     right: 0;
-  //   }
-  // }
-  // @media (max-width: 540px) {
-  //   // bottom: 140px;
-  //   .arrow-one {
-  //     left: 10%;
-  //   }
-  //   .arrow-two {
-  //     right: 7%;
-  //   }
-  // }
-  // @media (max-width: 425px) {
-  //   // bottom: 200px;
-  //   .arrow-two {
-  //     right: 6%;
-  //   }
-  // }
 }
