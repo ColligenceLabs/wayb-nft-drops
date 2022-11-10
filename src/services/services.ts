@@ -110,3 +110,9 @@ export const getHistory = async (address: string) => {
 export const requestClaim = async (data: any) => {
   return await customAxios.post('/api/service/drops/requestClaim', data);
 };
+
+export const getRandomItemListByCompanyId = async (companyId: string) => {
+  return await customAxios.post(
+    `/api/service/company/${companyId}/random-items`
+  );
+};
