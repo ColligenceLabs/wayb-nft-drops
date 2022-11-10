@@ -41,8 +41,9 @@ export async function getKeyBalance(
 ): Promise<number> {
   if (!library) return 0;
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -87,8 +88,9 @@ export async function getKeyRemains(
 ): Promise<number> {
   if (!library) return 0;
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -140,8 +142,9 @@ export async function getItemBalance(
 ): Promise<number> {
   if (!library) return 0;
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -186,8 +189,9 @@ export async function buyKey(
 ): Promise<txResult> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -308,8 +312,9 @@ export async function claimMysteryBox(
   if (!library) return 0;
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -388,8 +393,9 @@ export async function buyTicket(
   if (!library) return 0;
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -493,8 +499,9 @@ export async function getTicketCount(
 ): Promise<number> {
   if (!library) return 0;
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -535,8 +542,9 @@ export async function getMyTickets(
   library: any
 ): Promise<number> {
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -578,8 +586,9 @@ export async function getMyWin(
   library: any
 ): Promise<number> {
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
 
@@ -630,8 +639,9 @@ export async function claimEvenAllocation(
 ): Promise<[number, string]> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -741,8 +751,9 @@ export async function staking(
 ): Promise<number> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -847,8 +858,9 @@ export async function unStaking(
 ): Promise<number> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -925,8 +937,9 @@ export async function claimSubscription(
 ): Promise<[number, string]> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1037,8 +1050,9 @@ export async function getLeastFund(
 ): Promise<string> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1084,8 +1098,9 @@ export async function getTotalFund(
 ): Promise<string> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1131,8 +1146,9 @@ export async function getMyFund(
 ): Promise<string> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1180,8 +1196,9 @@ export async function getParticipants(
 ): Promise<number> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1231,8 +1248,9 @@ export async function getAllocated(
 ): Promise<boolean> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1280,8 +1298,9 @@ export async function getClaimed(
 ): Promise<boolean> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1328,8 +1347,9 @@ export async function getBooking(
 ): Promise<any[]> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1373,8 +1393,9 @@ export async function getItemMetadata(
   library: any
 ): Promise<string[]> {
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1437,8 +1458,9 @@ export async function getTokenIds(
   library: any
 ): Promise<number[]> {
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1483,8 +1505,9 @@ export async function getKeyMetadata(
 ): Promise<string> {
   if (!library) return '';
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -1525,8 +1548,9 @@ export async function claimAirDrop(
 ): Promise<txResult> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
   const isKaikas =
-    library.connection.url !== 'metamask' ||
-    library.connection.url === 'eip-1193:';
+    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
+    (library.connection.url !== 'metamask' ||
+      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
