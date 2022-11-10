@@ -1694,3 +1694,14 @@
     }
   }
 }
+@media (max-width: 320px) {
+  .price-collection-view-page {
+    .price-collection-box {
+      .token-details-box {
+        .btn-sale-collection {
+          font-size: 26px;
+        }
+      }
+    }
+  }
+}

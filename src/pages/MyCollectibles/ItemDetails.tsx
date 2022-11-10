@@ -1,5 +1,6 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import see_collection from '../../assets/icon/see_collection.png';
 import icon_properties from '../../assets/svg/icon_properties.svg';
 import icon_details from '../../assets/svg/icon_details.svg';
 import klaytn_white from '../../assets/icon/klaytn_white.png';
@@ -520,8 +521,14 @@ const CollectionSale = () => {
                     </div>
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
-                  <div className="details-info">{mBoxInfo.introduction.en}</div>
+                  <div className="wrapper-see-collection">
+                    <div className="image-see-collection">
+                      <img src={see_collection} alt="Icon See Collection" />
+                    </div>
+                    <div className="title">See this collection</div>
+                  </div>
                 </div>
+                <div className="details-info">{mBoxInfo.introduction.en}</div>
               </div>
               <div className="wrapper-other-items">
                 <div className="wrapper-head">
@@ -614,9 +621,14 @@ const CollectionSale = () => {
                           <div className="item-image">
                             <img src={item.itemImage} alt="Image Item" />
                           </div>
-                          <div className="id-card">{item.name}</div>
-                          <div className="price-item">
-                            {getPrice(Number(mBoxInfo.price), mBoxInfo.quote!)}
+                          <div className="info-item-detail">
+                            <div className="id-card">{item.name}</div>
+                            <div className="price-item">
+                              {getPrice(
+                                Number(mBoxInfo.price),
+                                mBoxInfo.quote!
+                              )}
+                            </div>
                           </div>
                         </Link>
                       );

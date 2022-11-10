@@ -206,7 +206,7 @@ const CollectionSaleDetail = () => {
           <>
             {link.type === 'SITE' && (
               <div
-                className="custom-sns hide-max-540px"
+                className="custom-sns hide-max-1024px"
                 onClick={() => window.open(link.url)}
               >
                 <div className="image-sns">
@@ -216,7 +216,7 @@ const CollectionSaleDetail = () => {
             )}
             {link.type === 'SITE' && (
               <div
-                className="custom-sns hide-max-540px"
+                className="custom-sns hide-max-1024px"
                 onClick={() => window.open(link.url)}
               >
                 <div className="image-sns">
@@ -226,7 +226,7 @@ const CollectionSaleDetail = () => {
             )}
             {link.type === 'SITE' && (
               <div
-                className="custom-sns hide-max-540px"
+                className="custom-sns hide-max-1024px"
                 onClick={() => window.open(link.url)}
               >
                 <div className="image-sns">
@@ -235,7 +235,7 @@ const CollectionSaleDetail = () => {
               </div>
             )}
             {link.type === 'SITE' && (
-              <div className="custom-sns hide-max-540px">
+              <div className="custom-sns hide-max-1024px">
                 <div className="image-sns">
                   <img src={icon_instagram} alt="website icon" />
                 </div>
@@ -384,7 +384,7 @@ const CollectionSaleDetail = () => {
                   </div>
                 </div>
                 <div className="list-sns">
-                  <div className="custom-sns hide-max-540px">
+                  <div className="custom-sns hide-max-1024px">
                     <div
                       className="image-sns"
                       onClick={() =>
@@ -408,7 +408,7 @@ const CollectionSaleDetail = () => {
                       <img src={icon_share} alt="website icon" />
                     </div>
                   </div>
-                  <div className="dropdown hide-min-540px" ref={refDropdown}>
+                  {/* <div className="dropdown hide-max-1024px" ref={refDropdown}>
                     <div
                       className="dropdown-button"
                       onClick={() =>
@@ -471,7 +471,7 @@ const CollectionSaleDetail = () => {
                         </li>
                       </ul>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div>
