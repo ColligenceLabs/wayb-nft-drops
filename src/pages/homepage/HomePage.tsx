@@ -695,7 +695,7 @@ const Homepage = () => {
                               <video
                                 playsInline
                                 autoPlay
-                                controls
+                                // controls
                                 muted
                                 loop
                                 controlsList="nodownload"

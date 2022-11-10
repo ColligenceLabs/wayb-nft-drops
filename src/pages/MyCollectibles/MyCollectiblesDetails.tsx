@@ -677,7 +677,7 @@ const MyCollectiblesDetails = () => {
                           <video
                             playsInline
                             autoPlay
-                            controls
+                            // controls
                             controlsList="nodownload"
                             muted
                             loop
