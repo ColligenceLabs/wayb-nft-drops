@@ -26,7 +26,7 @@ import {
   getFeaturedById,
   registerBuy,
 } from '../../services/services';
-import { parseEther } from 'ethers/lib/utils';
+import { parseEther, parseUnits } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
@@ -35,6 +35,7 @@ import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
+import { BigNumber } from 'ethers';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -134,16 +135,28 @@ const CollectionSaleDetail = () => {
     const quote = collectionItemInfo?.collectionInfo?.quote;
     const index = collectionItemInfo?.index ?? 0;
     const amount = 1;
-    const payment = parseEther(collectionItemInfo?.price.toString() ?? '0').mul(
-      amount
-    );
 
+    let quoteToken: string;
+    let payment: BigNumber;
+    if (quote === 'klay' || quote === 'wklay') {
+      quoteToken =
+        quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId];
+      payment = parseEther(collectionItemInfo?.price.toString() ?? '0').mul(
+        amount
+      );
+    } else if (quote === 'usdt' || quote === 'usdc') {
+      quoteToken =
+        quote === 'usdt' ? contracts.usdt[chainId] : contracts.usdc[chainId];
+      payment = parseUnits(collectionItemInfo?.price.toString() ?? '0', 6).mul(
+        amount
+      );
+    }
     const result = await buyItem(
       contract,
       index,
       1,
-      payment.toString(),
-      quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
+      payment!.toString(),
+      quoteToken!,
       account,
       library
     );
