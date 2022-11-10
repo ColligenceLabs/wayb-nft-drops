@@ -81,8 +81,8 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       } else if (id === 2) {
         console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
-        const wc = walletconnect(true);
-        await activate(wc, undefined, true);
+        await activate(injected, undefined, true);
+        dispatch(setActivatingConnector(injected));
       } else {
         console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
