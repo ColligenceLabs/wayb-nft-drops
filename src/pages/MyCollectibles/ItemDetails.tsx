@@ -1,6 +1,5 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import icon_properties from '../../assets/svg/icon_properties.svg';
 import icon_details from '../../assets/svg/icon_details.svg';
 import klaytn_white from '../../assets/icon/klaytn_white.png';
@@ -11,7 +10,11 @@ import icon_instagram from '../../assets/img/icon_instagram.png';
 import icon_share from '../../assets/img/icon_share.png';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
-import { getFeaturedById, getMysteryBoxInfo } from '../../services/services';
+import {
+  getFeaturedById,
+  getMysteryBoxInfo,
+  getRandomItemListByCompanyId,
+} from '../../services/services';
 import { SUCCESS } from '../../config';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { useWeb3React } from '@web3-react/core';
@@ -33,6 +36,34 @@ type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
 };
+
+type ExMBoxItemTypes = MBoxItemTypes & {
+  boxContractAddress: string;
+};
+
+const carouselOption = {
+  additionalTransfrom: 0,
+  arrows: false,
+  autoPlay: false,
+  autoPlaySpeed: 5000,
+  draggable: true,
+  focusOnSelect: false,
+  keyBoardControl: true,
+  minimumTouchDrag: 80,
+  pauseOnHover: true,
+  renderArrowsWhenDisabled: false,
+  renderButtonGroupOutside: true,
+  renderDotsOutside: true,
+  rewind: false,
+  rewindWithAnimation: false,
+  rtl: false,
+  shouldResetAutoplay: true,
+  showDots: true,
+  // slidesToSlide: 1,
+  swipeable: true,
+  infinite: true,
+};
+
 const CollectionSale = () => {
   const params = useParams();
 
@@ -44,7 +75,9 @@ const CollectionSale = () => {
 
   const { library } = useWeb3React();
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
-  const [mBoxItems, setMBoxItems] = useState<MBoxItemTypes[] | null>(null);
+  const [randomItems, setRandomItems] = useState<ExMBoxItemTypes[] | null>(
+    null
+  );
   const [itemInfo, setItemInfo] = useState<MBoxItemTypes | null>(null);
   const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
   const [openSnackbar, setOpenSnackbar] = useState({
@@ -144,18 +177,6 @@ const CollectionSale = () => {
     const fetchMboxItemList = async () => {
       const mboxInfoRes = await getMysteryBoxInfo(params.contractAddress!);
       if (mboxInfoRes.data.status === SUCCESS) {
-        const mbxItemList = await Promise.all(
-          mboxInfoRes.data.data.mysteryboxItems?.map(
-            async (item: MBoxItemTypes) => {
-              const id = Math.floor(Math.random() * item.issueAmount!);
-              return {
-                ...item,
-                id: id,
-              };
-            }
-          )
-        );
-
         const item = mboxInfoRes.data.data.mysteryboxItems.filter(
           (item: MBoxItemTypes) => item.no.toString() === params.itemNo
         );
@@ -167,18 +188,19 @@ const CollectionSale = () => {
         if (featuredRes.data !== '') {
           setFeaturedInfo(featuredRes.data);
         }
+
+        const randomItemsRes = await getRandomItemListByCompanyId(
+          mboxInfoRes.data.data.featured.companyId
+        );
+
         setMBoxInfo(mboxInfoRes.data.data);
         setItemInfo({ ...item[0] });
-        setMBoxItems(mbxItemList);
+        setRandomItems(randomItemsRes.data.data);
       }
     };
 
     fetchMboxItemList();
   }, [params, library]);
-
-  // useEffect(() => {
-  //   if (mBoxInfo) console.log(mBoxInfo);
-  // }, [mBoxInfo]);
 
   return (
     <main className="collectibles-item-details-container min-height-content">
@@ -516,92 +538,76 @@ const CollectionSale = () => {
                   arrows={false}
                   autoPlay={false}
                   autoPlaySpeed={5000}
-                  dotListClass="dot-other-items"
-                  centerMode={false}
-                  className="carousel-other-items"
-                  customButtonGroup={<ArrowCarouselItemDetails />}
                   draggable
                   focusOnSelect={false}
-                  infinite
-                  itemClass=""
                   keyBoardControl
                   minimumTouchDrag={80}
                   pauseOnHover
                   renderArrowsWhenDisabled={false}
                   renderButtonGroupOutside={false}
                   renderDotsOutside={true}
-                  responsive={{
-                    desktop: {
-                      breakpoint: {
-                        max: 3000,
-                        min: 1024,
-                      },
-                      items: 5,
-                      partialVisibilityGutter: 40,
-                    },
-                    mobileBigLarge: {
-                      breakpoint: {
-                        max: 600,
-                        min: 460,
-                      },
-                      items: 4,
-                      partialVisibilityGutter: 30,
-                    },
-                    mobileLarge: {
-                      breakpoint: {
-                        max: 461,
-                        min: 376,
-                      },
-                      items: 3,
-                      partialVisibilityGutter: 30,
-                    },
-                    mobileMedium: {
-                      breakpoint: {
-                        max: 375,
-                        min: 0,
-                      },
-                      items: 2,
-                      partialVisibilityGutter: 30,
-                    },
-                    tablet: {
-                      breakpoint: {
-                        max: 1024,
-                        min: 601,
-                      },
-                      items: 5,
-                      partialVisibilityGutter: 30,
-                    },
-                    laptop: {
-                      breakpoint: {
-                        max: 1100,
-                        min: 850,
-                      },
-                      items: 4,
-                      partialVisibilityGutter: 30,
-                    },
-                    tabletLarge: {
-                      breakpoint: {
-                        max: 849,
-                        min: 769,
-                      },
-                      items: 3,
-                      partialVisibilityGutter: 30,
-                    },
-                  }}
                   rewind={false}
                   rewindWithAnimation={false}
                   rtl={false}
                   shouldResetAutoplay
                   showDots={true}
-                  sliderClass=""
-                  slidesToSlide={1}
+                  // slidesToSlide={1}
                   swipeable
+                  infinite
+                  customButtonGroup={<ArrowCarouselItemDetails />}
+                  removeArrowOnDeviceType=""
+                  dotListClass="dot-other-items"
+                  // centerMode={false}
+                  className="carousel-other-items"
+                  // itemClass=""
+                  responsive={{
+                    desktop: {
+                      breakpoint: {
+                        max: 3000,
+                        min: 1420,
+                      },
+                      items: 5,
+                      partialVisibilityGutter: 40,
+                    },
+                    mobile: {
+                      breakpoint: {
+                        max: 640,
+                        min: 0,
+                      },
+                      items: 1,
+                      partialVisibilityGutter: 30,
+                    },
+                    tablet: {
+                      breakpoint: {
+                        max: 1024,
+                        min: 640,
+                      },
+                      items: 2,
+                      partialVisibilityGutter: 30,
+                    },
+                    laptopLarge: {
+                      breakpoint: {
+                        max: 1420,
+                        min: 1180,
+                      },
+                      items: 4,
+                      partialVisibilityGutter: 30,
+                    },
+                    laptop: {
+                      breakpoint: {
+                        max: 1180,
+                        min: 1024,
+                      },
+                      items: 3,
+                      partialVisibilityGutter: 30,
+                    },
+                  }}
                 >
-                  {mBoxItems &&
-                    mBoxItems.map((item, index) => {
+                  {randomItems &&
+                    randomItems.map((item, index) => {
                       return (
                         <Link
-                          to={`/klaytn/${mBoxInfo.boxContractAddress}/${item.no}/${item.id}`}
+                          to={`/klaytn/${item.boxContractAddress}/${item.no}/${item.id}`}
                           className="item-other button"
                           key={index}
                         >

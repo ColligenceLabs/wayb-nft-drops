@@ -112,7 +112,7 @@ export const requestClaim = async (data: any) => {
 };
 
 export const getRandomItemListByCompanyId = async (companyId: string) => {
-  return await customAxios.post(
+  return await customAxios.get(
     `/api/service/company/${companyId}/random-items`
   );
 };
