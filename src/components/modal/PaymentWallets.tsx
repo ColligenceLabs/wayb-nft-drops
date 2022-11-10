@@ -9,10 +9,10 @@ import pay_appstore from '../../assets/img/pay_appstore.png';
 import pay_googleplay from '../../assets/img/pay_googleplay.png';
 import { MBoxItemTypes } from '../../types/MBoxItemTypes';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { parseEther } from 'ethers/lib/utils';
+import { parseEther, parseUnits } from 'ethers/lib/utils';
 import contracts from '../../config/constants/contracts';
-import { buyItem } from '../../utils/transactions';
-import { SUCCESS, targetNetwork } from '../../config';
+import { approveKIP7, buyItem } from '../../utils/transactions';
+import { FAILURE, SUCCESS, targetNetwork } from '../../config';
 import { registerBuy } from '../../services/services';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { CircularProgress, Typography } from '@mui/material';
@@ -24,6 +24,7 @@ import {
 } from '../../utils/marketTransactions';
 import { useSelector } from 'react-redux';
 import { isMobile } from 'react-device-detect';
+import { BigNumber } from 'ethers';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -119,22 +120,43 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         const quote = itemInfo?.collectionInfo?.quote;
         const index = itemInfo?.index ?? 0;
         const amount = 1;
-        const payment = parseEther(itemInfo?.price.toString() ?? '0').mul(
-          amount
-        );
-        console.log(
-          contract,
-          index,
-          1,
-          payment,
-          quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId]
-        );
+
+        let quoteToken: string;
+        let payment: BigNumber;
+        if (quote === 'klay' || quote === 'wklay') {
+          quoteToken =
+            quote === 'klay'
+              ? contracts.klay[chainId]
+              : contracts.wklay[chainId];
+          payment = parseEther(itemInfo?.price.toString() ?? '0').mul(amount);
+        } else if (quote === 'usdt' || quote === 'usdc') {
+          quoteToken =
+            quote === 'usdt'
+              ? contracts.usdt[chainId]
+              : contracts.usdc[chainId];
+          payment = parseUnits(itemInfo?.price.toString() ?? '0', 6).mul(
+            amount
+          );
+        }
+
+        if (quote !== 'klay') {
+          const rlt = await approveKIP7(
+            quoteToken!,
+            contract,
+            payment!.toString(),
+            account,
+            library
+          );
+          if (rlt === FAILURE) return false;
+        }
+
+        console.log(contract, index, 1, payment!.toString(), quoteToken!);
         const result = await buyItem(
           contract,
           index,
           1,
-          payment.toString(),
-          quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
+          payment!.toString(),
+          quoteToken!,
           account,
           library
         );
@@ -227,14 +249,40 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           }
           const amount = 1;
           const price = itemInfo.price ?? 0;
-          const payment = parseEther((price * amount).toString()).toString();
+          const quote = itemInfo.quote;
+
+          let quoteToken: string;
+          let payment: BigNumber;
+          if (quote === 'klay' || quote === 'wklay') {
+            quoteToken =
+              quote === 'klay'
+                ? contracts.klay[chainId]
+                : contracts.wklay[chainId];
+            payment = parseEther(price.toString() ?? '0').mul(amount);
+          } else if (quote === 'usdt' || quote === 'usdc') {
+            quoteToken =
+              quote === 'usdt'
+                ? contracts.usdt[chainId]
+                : contracts.usdc[chainId];
+            payment = parseUnits(price.toString() ?? '0', 6).mul(amount);
+          }
+
+          if (quote !== 'klay') {
+            const rlt = await approveKIP7(
+              quoteToken!,
+              itemInfo.boxContractAddress,
+              payment!.toString(),
+              account,
+              library
+            );
+            if (rlt === FAILURE) return false;
+          }
+
           const result = await buyKey(
             itemInfo.boxContractAddress,
             1,
-            payment,
-            itemInfo.quote === 'klay'
-              ? contracts.klay[targetNetwork]
-              : contracts.wklay[targetNetwork],
+            payment!.toString(),
+            quoteToken!,
             account,
             library
           );

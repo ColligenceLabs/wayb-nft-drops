@@ -52,9 +52,12 @@ import {
   getItemPrice,
   getClaimableCount,
   requestClaim,
+  getFeaturedById,
 } from '../../services/services';
 import { getPrice } from '../../utils/getPrice';
-import { MBoxItemTypes } from '../../types/MBoxItemTypes';
+import { FeaturedTypes } from '../../types/FeaturedTypes';
+import { moveToScope } from '../../utils/moveToScope';
+import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -85,6 +88,8 @@ const MyCollectiblesDetails = () => {
   const [countDownFinish, setCountDownFinish] = useState(false);
   const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
+  const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [openSnackbar, setOpenSnackbar] = useState({
     open: false,
     type: '',
@@ -158,6 +163,50 @@ const MyCollectiblesDetails = () => {
     setIsLoading(false);
   };
 
+  const getSnsButtons = () => {
+    if (featuredInfo && featuredInfo.links) {
+      const test = featuredInfo.links.map((link: any) => {
+        return (
+          <div onClick={() => window.open(link.url)}>
+            {link.type === 'SITE' && (
+              <div className="custom-sns hide-max-1024px">
+                <div className="image-sns">
+                  <img src={website_icon} alt="website icon" />
+                </div>
+              </div>
+            )}
+
+            {link.type === 'DISCORD' && (
+              <div className="custom-sns hide-max-1024px">
+                <div className="image-sns">
+                  <img src={icon_discord} alt="website icon" />
+                </div>
+              </div>
+            )}
+
+            {link.type === 'TWITTER' && (
+              <div className="custom-sns hide-max-1024px">
+                <div className="image-sns">
+                  <img src={icon_twitter} alt="website icon" />
+                </div>
+              </div>
+            )}
+            {link.type === 'INSTAGRAM' && (
+              <div className="custom-sns hide-max-1024px">
+                <div className="image-sns">
+                  <img src={icon_instagram} alt="website icon" />
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
+
   const handleClaimClick = async () => {
     setIsLoading(true);
     try {
@@ -168,7 +217,7 @@ const MyCollectiblesDetails = () => {
       if (talkenData) {
         _talkenData = JSON.parse(talkenData);
         talkenUid = _talkenData.uid;
-        talkenEthAddress = _talkenData.ethAddress;
+        talkenEthAddress = account?.toLowerCase();
       }
       const signature = await library
         .getSigner()
@@ -324,6 +373,20 @@ const MyCollectiblesDetails = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      if (mboxInfo?.featuredId) {
+        const featuredRes = await getFeaturedById(mboxInfo.featuredId);
+        if (featuredRes.data !== '') {
+          setFeaturedInfo(featuredRes.data);
+        }
+      }
+    };
+
+    fetchFeatured();
+  }, [mboxInfo]);
+
+  console.log('mbox???', featuredInfo);
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
@@ -463,10 +526,6 @@ const MyCollectiblesDetails = () => {
                           setDropdownOpen(false);
                         }}
                       >
-                        <img
-                          src={ic_send_to_my_wallet}
-                          alt="send-to-my-wallet"
-                        />
                         <svg
                           width="19"
                           height="18"
@@ -489,7 +548,6 @@ const MyCollectiblesDetails = () => {
                           setDropdownOpen(false);
                         }}
                       >
-                        <img src={gift_token_icon} alt="gift token icon" />
                         <svg
                           width="20"
                           height="20"
