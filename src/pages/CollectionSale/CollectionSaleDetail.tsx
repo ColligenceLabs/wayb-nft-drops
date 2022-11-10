@@ -500,7 +500,7 @@ const CollectionSaleDetail = () => {
                     <div className="lable-top">Availability</div>
                     <div className="lable-bottom fw-600">
                       {collectionItemInfo?.collectionInfo.isSoldOut
-                        ? 'Sold Out'
+                        ? '0'
                         : remainingAmount}
                     </div>
                   </div>

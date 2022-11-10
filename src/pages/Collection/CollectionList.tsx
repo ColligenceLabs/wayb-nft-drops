@@ -234,7 +234,9 @@ const CollectionList: React.FC<CollectionListProps> = ({
                   <div>
                     <div className="remaining ">Remaining</div>
                     <div className="remaining-total ">
-                      {item.remainingAmount}
+                      {!item.isSoldOut && item.remainingAmount
+                        ? item.remainingAmount
+                        : '-'}
                     </div>
                   </div>
                 </div>
