@@ -320,27 +320,27 @@ const SaleCollectibles = () => {
                     </div>
                   </div>
                   <div className="list-sns">
-                    <div className="custom-sns hide-max-540px">
+                    <div className="custom-sns hide-max-1024px">
                       <div className="image-sns">
                         <img src={klaytn_white} alt="website icon" />
                       </div>
                     </div>
-                    <div className="custom-sns hide-max-540px">
+                    <div className="custom-sns hide-max-1024px">
                       <div className="image-sns">
                         <img src={website_icon} alt="website icon" />
                       </div>
                     </div>
-                    <div className="custom-sns hide-max-540px">
+                    <div className="custom-sns hide-max-1024px">
                       <div className="image-sns">
                         <img src={icon_discord} alt="website icon" />
                       </div>
                     </div>
-                    <div className="custom-sns hide-max-540px">
+                    <div className="custom-sns hide-max-1024px">
                       <div className="image-sns">
                         <img src={icon_twitter} alt="website icon" />
                       </div>
                     </div>
-                    <div className="custom-sns hide-max-540px">
+                    <div className="custom-sns hide-max-1024px">
                       <div className="image-sns">
                         <img src={icon_instagram} alt="website icon" />
                       </div>
@@ -349,71 +349,6 @@ const SaleCollectibles = () => {
                       <div className="image-sns">
                         <img src={icon_share} alt="website icon" />
                       </div>
-                    </div>
-                    <div className="dropdown hide-min-540px" ref={refdropdown}>
-                      <div
-                        className="dropdown-button"
-                        onClick={() => setDropdownOpen(!dropdownOpen)}
-                      >
-                        <img src={ic_dropdown} alt="dropdown" />
-                      </div>
-                      {dropdownOpen && (
-                        <ul className="dropdown-box">
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={klaytn_white} alt="website icon" />
-                                </div>
-                                Etherscan Link
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={website_icon} alt="website icon" />
-                                </div>
-                                Website
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={icon_discord} alt="website icon" />
-                                </div>
-                                Discord
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={icon_twitter} alt="website icon" />
-                                </div>
-                                Twitter
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img
-                                    src={icon_instagram}
-                                    alt="website icon"
-                                  />
-                                </div>
-                                Instagram
-                              </a>
-                            </button>
-                          </li>
-                        </ul>
-                      )}
                     </div>
                   </div>
                 </div>

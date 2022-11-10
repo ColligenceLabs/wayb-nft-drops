@@ -26,7 +26,7 @@ import {
   getFeaturedById,
   registerBuy,
 } from '../../services/services';
-import { parseEther } from 'ethers/lib/utils';
+import { parseEther, parseUnits } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
@@ -35,6 +35,7 @@ import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
+import { BigNumber } from 'ethers';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -134,16 +135,28 @@ const CollectionSaleDetail = () => {
     const quote = collectionItemInfo?.collectionInfo?.quote;
     const index = collectionItemInfo?.index ?? 0;
     const amount = 1;
-    const payment = parseEther(collectionItemInfo?.price.toString() ?? '0').mul(
-      amount
-    );
 
+    let quoteToken: string;
+    let payment: BigNumber;
+    if (quote === 'klay' || quote === 'wklay') {
+      quoteToken =
+        quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId];
+      payment = parseEther(collectionItemInfo?.price.toString() ?? '0').mul(
+        amount
+      );
+    } else if (quote === 'usdt' || quote === 'usdc') {
+      quoteToken =
+        quote === 'usdt' ? contracts.usdt[chainId] : contracts.usdc[chainId];
+      payment = parseUnits(collectionItemInfo?.price.toString() ?? '0', 6).mul(
+        amount
+      );
+    }
     const result = await buyItem(
       contract,
       index,
       1,
-      payment.toString(),
-      quote === 'klay' ? contracts.klay[chainId] : contracts.wklay[chainId],
+      payment!.toString(),
+      quoteToken!,
       account,
       library
     );
@@ -193,7 +206,7 @@ const CollectionSaleDetail = () => {
           <>
             {link.type === 'SITE' && (
               <div
-                className="custom-sns hide-max-540px"
+                className="custom-sns hide-max-1024px"
                 onClick={() => window.open(link.url)}
               >
                 <div className="image-sns">
@@ -203,7 +216,7 @@ const CollectionSaleDetail = () => {
             )}
             {link.type === 'SITE' && (
               <div
-                className="custom-sns hide-max-540px"
+                className="custom-sns hide-max-1024px"
                 onClick={() => window.open(link.url)}
               >
                 <div className="image-sns">
@@ -213,7 +226,7 @@ const CollectionSaleDetail = () => {
             )}
             {link.type === 'SITE' && (
               <div
-                className="custom-sns hide-max-540px"
+                className="custom-sns hide-max-1024px"
                 onClick={() => window.open(link.url)}
               >
                 <div className="image-sns">
@@ -222,7 +235,7 @@ const CollectionSaleDetail = () => {
               </div>
             )}
             {link.type === 'SITE' && (
-              <div className="custom-sns hide-max-540px">
+              <div className="custom-sns hide-max-1024px">
                 <div className="image-sns">
                   <img src={icon_instagram} alt="website icon" />
                 </div>
@@ -371,7 +384,7 @@ const CollectionSaleDetail = () => {
                   </div>
                 </div>
                 <div className="list-sns">
-                  <div className="custom-sns hide-max-540px">
+                  <div className="custom-sns hide-max-1024px">
                     <div
                       className="image-sns"
                       onClick={() =>
@@ -395,7 +408,7 @@ const CollectionSaleDetail = () => {
                       <img src={icon_share} alt="website icon" />
                     </div>
                   </div>
-                  <div className="dropdown hide-min-540px" ref={refDropdown}>
+                  {/* <div className="dropdown hide-max-1024px" ref={refDropdown}>
                     <div
                       className="dropdown-button"
                       onClick={() =>
@@ -408,12 +421,12 @@ const CollectionSaleDetail = () => {
                       <ul className="dropdown-box">
                         <li className="list-dropdown-item">
                           <button className="dropdown-item-nft  button">
-                            {/*<a href="/" className="custom-link-sns">*/}
-                            <div className="image-sns">
-                              <img src={klaytn_white} alt="website icon" />
-                            </div>
-                            Etherscan Link
-                            {/*</a>*/}
+                            <a href="/" className="custom-link-sns">
+                              <div className="image-sns">
+                                <img src={klaytn_white} alt="website icon" />
+                              </div>
+                              Etherscan Link
+                            </a>
                           </button>
                         </li>
                         <li className="list-dropdown-item">
@@ -458,7 +471,7 @@ const CollectionSaleDetail = () => {
                         </li>
                       </ul>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div>
@@ -498,7 +511,11 @@ const CollectionSaleDetail = () => {
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Availability</div>
-                    <div className="lable-bottom fw-600">{remainingAmount}</div>
+                    <div className="lable-bottom fw-600">
+                      {collectionItemInfo?.collectionInfo.isSoldOut
+                        ? '0'
+                        : remainingAmount}
+                    </div>
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Network</div>
@@ -590,13 +607,18 @@ const CollectionSaleDetail = () => {
                     {countDownFinish && (
                       <button
                         className={'btn-sale-collection'}
-                        disabled={isLoading || remainingAmount === 0}
+                        disabled={
+                          isLoading ||
+                          remainingAmount === 0 ||
+                          collectionItemInfo?.collectionInfo.isSoldOut
+                        }
                         onClick={() => setOpenPaymentWallets(true)}
                         // onClick={handleBuyClick}
                       >
                         {isLoading ? (
                           <CircularProgress size={30} color={'inherit'} />
-                        ) : remainingAmount === 0 ? (
+                        ) : remainingAmount === 0 ||
+                          collectionItemInfo?.collectionInfo.isSoldOut ? (
                           'Sold out'
                         ) : collectionItemInfo?.price === 0 ? (
                           'Get Now'
