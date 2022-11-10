@@ -421,12 +421,12 @@ const CollectionSaleDetail = () => {
                       <ul className="dropdown-box">
                         <li className="list-dropdown-item">
                           <button className="dropdown-item-nft  button">
-                            {/*<a href="/" className="custom-link-sns">*/}
-                            <div className="image-sns">
-                              <img src={klaytn_white} alt="website icon" />
-                            </div>
-                            Etherscan Link
-                            {/*</a>*/}
+                            <a href="/" className="custom-link-sns">
+                              <div className="image-sns">
+                                <img src={klaytn_white} alt="website icon" />
+                              </div>
+                              Etherscan Link
+                            </a>
                           </button>
                         </li>
                         <li className="list-dropdown-item">
@@ -511,7 +511,11 @@ const CollectionSaleDetail = () => {
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Availability</div>
-                    <div className="lable-bottom fw-600">{remainingAmount}</div>
+                    <div className="lable-bottom fw-600">
+                      {collectionItemInfo?.collectionInfo.isSoldOut
+                        ? '0'
+                        : remainingAmount}
+                    </div>
                   </div>
                   <div className="box-price-detail-collection">
                     <div className="lable-top">Network</div>
@@ -603,13 +607,18 @@ const CollectionSaleDetail = () => {
                     {countDownFinish && (
                       <button
                         className={'btn-sale-collection'}
-                        disabled={isLoading || remainingAmount === 0}
+                        disabled={
+                          isLoading ||
+                          remainingAmount === 0 ||
+                          collectionItemInfo?.collectionInfo.isSoldOut
+                        }
                         onClick={() => setOpenPaymentWallets(true)}
                         // onClick={handleBuyClick}
                       >
                         {isLoading ? (
                           <CircularProgress size={30} color={'inherit'} />
-                        ) : remainingAmount === 0 ? (
+                        ) : remainingAmount === 0 ||
+                          collectionItemInfo?.collectionInfo.isSoldOut ? (
                           'Sold out'
                         ) : collectionItemInfo?.price === 0 ? (
                           'Get Now'
