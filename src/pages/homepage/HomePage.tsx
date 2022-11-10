@@ -67,17 +67,16 @@ const Homepage = () => {
 
   const params = useQuery();
   const uid = params.get('uid');
-  const ethAddress = params.get('ethAddress');
 
-  const storeTalkenData = (uid: string, ethAddress: string) => {
-    const storeSet = { uid: uid, ethAddress: ethAddress.toLowerCase() };
+  const storeTalkenData = (uid: string) => {
+    const storeSet = { uid: uid };
     const _storeSet = JSON.stringify(storeSet);
     localStorage.setItem('talken.data', _storeSet);
   };
 
   useEffect(() => {
-    if (uid && ethAddress) {
-      storeTalkenData(uid, ethAddress);
+    if (uid) {
+      storeTalkenData(uid);
     }
     navigate('/');
   }, []);

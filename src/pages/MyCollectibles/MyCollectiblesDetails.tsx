@@ -168,7 +168,7 @@ const MyCollectiblesDetails = () => {
       if (talkenData) {
         _talkenData = JSON.parse(talkenData);
         talkenUid = _talkenData.uid;
-        talkenEthAddress = _talkenData.ethAddress;
+        talkenEthAddress = account?.toLowerCase();
       }
       const signature = await library
         .getSigner()
