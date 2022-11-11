@@ -397,14 +397,18 @@
           }
           .wrapper-content-details {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
             gap: 16px;
-            margin-top: 16px;
+            margin: 16px 0;
             .wrapper-user {
               display: flex;
-              gap: 20px;
+              gap: 8px;
               align-items: center;
+              font-size: 14px;
+              font-weight: 700;
               .avt-user {
+                min-width: 40px;
                 width: 40px;
                 height: 40px;
                 img {
@@ -415,13 +419,33 @@
                   background: #ffffff;
                 }
               }
+              .user-name {
+                text-align: left;
+              }
             }
-            .details-info {
-              font-size: 16px;
-              line-height: 24px;
-              color: #aaaaaa;
-              text-align: left;
+            .wrapper-see-collection {
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-size: 12px;
+              color: #2f8af5;
+              .image-see-collection {
+                width: 16px;
+                img {
+                  width: 100%;
+                }
+              }
+              .title {
+                white-space: nowrap;
+              }
             }
+          }
+          .details-info {
+            font-size: 16px;
+            line-height: 24px;
+            color: #aaaaaa;
+            text-align: justify;
           }
         }
         .wrapper-other-items {
@@ -466,13 +490,18 @@
                   border-radius: 8px;
                 }
               }
-              .id-card {
-                font-size: 12px;
-                color: #aaaaaa;
-              }
-              .price-item {
-                font-weight: 700;
-                font-size: 14px;
+              .info-item-detail {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .id-card {
+                  font-size: 12px;
+                  color: #aaaaaa;
+                }
+                .price-item {
+                  font-weight: 700;
+                  font-size: 14px;
+                }
               }
             }
             &:hover {
@@ -1058,11 +1087,39 @@
             -webkit-box-align: center;
             align-items: center;
           }
+          .wrapper-user-details {
+            .wrapper-content-details {
+              .wrapper-user {
+                font-size: 12px;
+              }
+            }
+            .details-info {
+              font-size: 14px;
+            }
+          }
         }
       }
     }
   }
 }
+@media (max-width: 1024px) {
+  .collectibles-item-details-container {
+    .collectibles-details-wp {
+      .product-details {
+        .details-box {
+          .wrapper-user-details {
+            .wrapper-content-details {
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: flex-start;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 360px) {
   .collectibles-item-details-container {
     .collectibles-details-wp {
@@ -1107,12 +1164,16 @@
               }
             }
           }
+          .wrapper-user-details {
+            .title-details {
+              font-size: 14px;
+            }
+          }
         }
       }
     }
   }
 }
-
 .noti-cannot {
   max-width: 200px;
   text-align: center;
