@@ -116,6 +116,11 @@ a {
     display: none;
   }
 }
+@media (min-width: 1025px) {
+  .hide-min-1025px {
+    display: none !important;
+  }
+}
 
 @include Mobile() {
   .hidden-mobile {

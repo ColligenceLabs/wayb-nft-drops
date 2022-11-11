@@ -101,6 +101,15 @@ export const getClaimableCount = async (
   );
 };
 
+export const getFreeDroppedCount = async (
+  mysteryBoxId: number,
+  buyerAddress: string
+) => {
+  return await customAxios.get(
+    `/api/service/drops/freeDroppedCount?mysteryBoxId=${mysteryBoxId}&buyerAddress=${buyerAddress}`
+  );
+};
+
 export const getHistory = async (address: string) => {
   return await customAxios.get(
     `/api/service/drops/history?address=${address}&limit=100`

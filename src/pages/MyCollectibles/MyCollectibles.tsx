@@ -181,7 +181,7 @@ const MyCollectibles = () => {
 
         {/* list button sort  */}
         <div className="wallet-sort">
-          <div className="count-label">{`${myMBoxList.length} items`}</div>
+          <div className="count-label">{`${myMBoxList.length} collections`}</div>
 
           <div className="sort-box" ref={ref}>
             <span className="sort-selected">
