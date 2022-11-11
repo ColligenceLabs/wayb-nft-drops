@@ -393,7 +393,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             <div className="pay-name">Crypto</div>
           </div>
 
-          {isMobile && (
+          {/* don't show app store, google button */}
+          {/* {isMobile && ( */}
+          {false && (
             <>
               <div
                 className={`payment-box ${

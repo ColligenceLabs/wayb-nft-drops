@@ -202,7 +202,7 @@ const CollectionSale = () => {
 
     fetchMboxItemList();
   }, [params, library]);
-
+  console.log('>>>><<<<', itemInfo);
   return (
     <main className="collectibles-item-details-container min-height-content">
       {mBoxInfo && itemInfo && (
@@ -521,12 +521,16 @@ const CollectionSale = () => {
                     </div>
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
-                  <div className="wrapper-see-collection">
-                    <div className="image-see-collection">
-                      <img src={see_collection} alt="Icon See Collection" />
+                  <Link
+                    to={`/klaytn/collection/${itemInfo.infoId}/${itemInfo.id}`}
+                  >
+                    <div className="wrapper-see-collection">
+                      <div className="image-see-collection">
+                        <img src={see_collection} alt="Icon See Collection" />
+                      </div>
+                      <div className="title">See this collection</div>
                     </div>
-                    <div className="title">See this collection</div>
-                  </div>
+                  </Link>
                 </div>
                 <div className="details-info">{mBoxInfo.introduction.en}</div>
               </div>
