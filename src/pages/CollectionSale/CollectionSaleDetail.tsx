@@ -334,7 +334,7 @@ const CollectionSaleDetail = () => {
   useEffect(() => {
     checkFreedropAble();
   }, [account, collectionItemInfo]);
-  
+
   return (
     <main className="collection-container min-height-content">
       <div>
