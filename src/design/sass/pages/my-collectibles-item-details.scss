@@ -405,6 +405,8 @@
               display: flex;
               gap: 8px;
               align-items: center;
+              font-size: 14px;
+              font-weight: 700;
               .avt-user {
                 min-width: 40px;
                 width: 40px;
@@ -416,6 +418,9 @@
                   object-fit: cover;
                   background: #ffffff;
                 }
+              }
+              .user-name {
+                text-align: left;
               }
             }
             .wrapper-see-collection {
@@ -430,6 +435,9 @@
                 img {
                   width: 100%;
                 }
+              }
+              .title {
+                white-space: nowrap;
               }
             }
           }
@@ -1078,6 +1086,30 @@
             flex-direction: column;
             -webkit-box-align: center;
             align-items: center;
+          }
+          .wrapper-user-details {
+            .wrapper-content-details {
+              .wrapper-user {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .collectibles-item-details-container {
+    .collectibles-details-wp {
+      .product-details {
+        .details-box {
+          .wrapper-user-details {
+            .wrapper-content-details {
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: flex-start;
+            }
           }
         }
       }
