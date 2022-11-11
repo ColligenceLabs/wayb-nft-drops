@@ -1093,6 +1093,9 @@
                 font-size: 12px;
               }
             }
+            .details-info {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -1116,23 +1119,7 @@
     }
   }
 }
-@media (max-width: 362px) {
-  .collectibles-item-details-container {
-    .collectibles-details-wp {
-      .product-details {
-        .details-box {
-          .wrapper-user-details {
-            .wrapper-content-details {
-              flex-direction: column;
-              justify-content: flex-start;
-              align-items: flex-start;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+
 @media (max-width: 360px) {
   .collectibles-item-details-container {
     .collectibles-details-wp {
@@ -1177,12 +1164,16 @@
               }
             }
           }
+          .wrapper-user-details {
+            .title-details {
+              font-size: 14px;
+            }
+          }
         }
       }
     }
   }
 }
-
 .noti-cannot {
   max-width: 200px;
   text-align: center;
