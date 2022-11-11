@@ -200,50 +200,32 @@ const CollectionSaleDetail = () => {
     );
     setRemainingAmount(remaining);
   };
-
   const getSnsButtons = () => {
     if (featuredInfo && featuredInfo.links) {
       const test = featuredInfo.links.map((link: LinkTypes) => {
         return (
-          <>
-            {link.type === 'SITE' && (
-              <div
-                className="custom-sns hide-max-1024px"
-                onClick={() => window.open(link.url)}
-              >
-                <div className="image-sns">
-                  <img src={website_icon} alt="website icon" />
-                </div>
-              </div>
-            )}
-            {link.type === 'SITE' && (
-              <div
-                className="custom-sns hide-max-1024px"
-                onClick={() => window.open(link.url)}
-              >
-                <div className="image-sns">
-                  <img src={icon_discord} alt="website icon" />
-                </div>
-              </div>
-            )}
-            {link.type === 'SITE' && (
-              <div
-                className="custom-sns hide-max-1024px"
-                onClick={() => window.open(link.url)}
-              >
-                <div className="image-sns">
-                  <img src={icon_twitter} alt="website icon" />
-                </div>
-              </div>
-            )}
-            {link.type === 'SITE' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_instagram} alt="website icon" />
-                </div>
-              </div>
-            )}
-          </>
+          <div
+            style={{
+              cursor: 'pointer',
+            }}
+            className="info-item hide-max-1024px"
+            onClick={() => window.open(link.url)}
+          >
+            <div className="image-item hide-max-1024px">
+              {link.type === 'SITE' && (
+                <img src={website_icon} alt="Website Icon" />
+              )}
+              {link.type === 'DISCORD' && (
+                <img src={icon_discord} alt="Website Icon" />
+              )}
+              {link.type === 'TWITTER' && (
+                <img src={icon_twitter} alt="Website Icon" />
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <img src={icon_instagram} alt="Website Icon" />
+              )}
+            </div>
+          </div>
         );
       });
       return test;
@@ -397,13 +379,13 @@ const CollectionSaleDetail = () => {
                     />
                   </button>
                   <div className="name-owner-product">
-                    <div className="creator-title">Creator</div>
+                    <div className="creator-title">Creator ádas</div>
                     <button className="btn-name-owner-product">
                       {collectionItemInfo?.companyName}
                     </button>
                   </div>
                 </div>
-                <div className="list-sns">
+                {/* <div className="list-sns">
                   <div className="custom-sns hide-max-1024px">
                     <div
                       className="image-sns"
@@ -420,15 +402,7 @@ const CollectionSaleDetail = () => {
                     </div>
                   </div>
                   {getSnsButtons()}
-                  <div className="custom-sns">
-                    <div
-                      className="image-sns"
-                      onClick={() => copyToClipBoard(window.location.href)}
-                    >
-                      <img src={icon_share} alt="website icon" />
-                    </div>
-                  </div>
-                  {/* <div className="dropdown hide-max-1024px" ref={refDropdown}>
+                  <div className="dropdown hide-min-540px" ref={refDropdown}>
                     <div
                       className="dropdown-button"
                       onClick={() =>
@@ -491,7 +465,123 @@ const CollectionSaleDetail = () => {
                         </li>
                       </ul>
                     )}
-                  </div> */}
+                  </div>
+                  <div className="bar-list-sns"></div>
+                  <div className="custom-sns">
+                    <div
+                      className="image-sns"
+                      onClick={() => copyToClipBoard(window.location.href)}
+                    >
+                      <img src={icon_share} alt="website icon" />
+                    </div>
+                  </div>
+                </div> */}
+                <div className="collection-info-right">
+                  <div className="collection-info-left-details">
+                    <div className="info-item hide-max-1024px">
+                      <div
+                        className="image-item"
+                        onClick={() =>
+                          moveToScope(
+                            collectionItemInfo?.collectionInfo.chainId,
+                            collectionItemInfo?.collectionInfo
+                              ?.boxContractAddress,
+                            true
+                          )
+                        }
+                      >
+                        <img src={klaytn_white} alt="website icon" />
+                      </div>
+                    </div>
+                    <>{getSnsButtons()}</>
+
+                    {/*<div className="collection-info-right-details">*/}
+                    {/*  <div className="value">100</div>*/}
+                    {/*  <div className="label">NFTs</div>*/}
+                    {/*</div>*/}
+                    <div className="dropdown hide-min-1025px" ref={refDropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() =>
+                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                        }
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && (
+                        <ul className="dropdown-box">
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={klaytn_white} alt="website icon" />
+                                </div>
+                                Etherscan Link
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={website_icon} alt="website icon" />
+                                </div>
+                                Website
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={icon_discord} alt="website icon" />
+                                </div>
+                                Discord
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={icon_twitter} alt="website icon" />
+                                </div>
+                                Twitter
+                              </a>
+                            </button>
+                          </li>
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img
+                                    src={icon_instagram}
+                                    alt="website icon"
+                                  />
+                                </div>
+                                Instagram
+                              </a>
+                            </button>
+                          </li>
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                  {featuredInfo?.links && featuredInfo?.links.length > 0 && (
+                    <div className="line-icon" />
+                  )}
+
+                  <div className="collection-info-left-details">
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => copyToClipBoard(window.location.href)}
+                      className="info-item"
+                    >
+                      <div className="image-item">
+                        <img src={icon_share} alt="Twitter Icon" width="20px" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div>
