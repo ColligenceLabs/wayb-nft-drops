@@ -25,6 +25,7 @@ import {
   getCollectionInfo,
   getFeaturedById,
   registerBuy,
+  getFreeDroppedCount,
 } from '../../services/services';
 import { parseEther, parseUnits } from 'ethers/lib/utils';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
@@ -83,6 +84,7 @@ const CollectionSaleDetail = () => {
   });
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
+  const [freedropAble, setFreedropAble] = useState(false);
   const closeWarning = () => {
     setWarningOpen(false);
   };
@@ -303,6 +305,20 @@ const CollectionSaleDetail = () => {
     }
   };
 
+  const checkFreedropAble = async () => {
+    if (account) {
+      const freedropAbleRes = await getFreeDroppedCount(
+        collectionItemInfo?.collectionInfo?.id,
+        account
+      );
+      if (freedropAbleRes.data != '') {
+        if (freedropAbleRes.data?.data === 0) {
+          setFreedropAble(true);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     setOpenSnackbar({
       open: copyResult,
@@ -315,6 +331,10 @@ const CollectionSaleDetail = () => {
     fetchCollectionItemInfo();
   }, [params]);
 
+  useEffect(() => {
+    checkFreedropAble();
+  }, [account, collectionItemInfo]);
+  
   return (
     <main className="collection-container min-height-content">
       <div>
@@ -475,13 +495,15 @@ const CollectionSaleDetail = () => {
                 </div>
               </div>
               <div>
-                <div className="btn-buy-now">
-                  {collectionItemInfo?.collectionInfo.onsale
-                    ? collectionItemInfo?.price === 0
-                      ? 'Get Now'
-                      : 'Buy Now'
-                    : 'Waiting'}
-                </div>
+                {freedropAble && (
+                  <div className="btn-buy-now">
+                    {collectionItemInfo?.collectionInfo.onsale
+                      ? collectionItemInfo?.price === 0
+                        ? 'Get Now'
+                        : 'Buy Now'
+                      : 'Waiting'}
+                  </div>
+                )}
               </div>
               <div>
                 <div className="box-name-collection">
@@ -604,7 +626,7 @@ const CollectionSaleDetail = () => {
                 library?.connection &&
                 dropsAccount.address !== '' ? (
                   <>
-                    {countDownFinish && (
+                    {countDownFinish && freedropAble && (
                       <button
                         className={'btn-sale-collection'}
                         disabled={
