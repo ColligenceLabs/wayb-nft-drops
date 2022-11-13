@@ -233,6 +233,59 @@ const CollectionSaleDetail = () => {
       return null;
     }
   };
+  const getSnsButtonsPopup = () => {
+    if (featuredInfo && featuredInfo.links) {
+      const test = featuredInfo.links.map((link: LinkTypes) => {
+        return (
+          <li
+            className="list-dropdown-item"
+            onClick={() => window.open(link.url)}
+          >
+            <button
+              className="dropdown-item-nft  button"
+              style={{ cursor: 'pointer' }}
+            >
+              {link.type === 'SITE' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={website_icon} alt="website icon" />
+                  </div>
+                  Website
+                </div>
+              )}
+              {link.type === 'DISCORD' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_discord} alt="website icon" />
+                  </div>
+                  Discord
+                </div>
+              )}
+              {link.type === 'TWITTER' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_twitter} alt="website icon" />
+                  </div>
+                  Twitter
+                </div>
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_instagram} alt="website icon" />
+                  </div>
+                  Instagram
+                </div>
+              )}
+            </button>
+          </li>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
 
   const getItemUrl = (infoId: number, itemId: number, item: MBoxTypes) => {
     let url = '/';
@@ -379,7 +432,7 @@ const CollectionSaleDetail = () => {
                     />
                   </button>
                   <div className="name-owner-product">
-                    <div className="creator-title">Creator ádas</div>
+                    <div className="creator-title">Creator</div>
                     <button className="btn-name-owner-product">
                       {collectionItemInfo?.companyName}
                     </button>
@@ -481,6 +534,7 @@ const CollectionSaleDetail = () => {
                     <div className="info-item hide-max-1024px">
                       <div
                         className="image-item"
+                        style={{ cursor: 'pointer' }}
                         onClick={() =>
                           moveToScope(
                             collectionItemInfo?.collectionInfo.chainId,
@@ -494,11 +548,6 @@ const CollectionSaleDetail = () => {
                       </div>
                     </div>
                     <>{getSnsButtons()}</>
-
-                    {/*<div className="collection-info-right-details">*/}
-                    {/*  <div className="value">100</div>*/}
-                    {/*  <div className="label">NFTs</div>*/}
-                    {/*</div>*/}
                     <div className="dropdown hide-min-1025px" ref={refDropdown}>
                       <div
                         className="dropdown-button"
@@ -520,57 +569,12 @@ const CollectionSaleDetail = () => {
                               </a>
                             </button>
                           </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={website_icon} alt="website icon" />
-                                </div>
-                                Website
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={icon_discord} alt="website icon" />
-                                </div>
-                                Discord
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={icon_twitter} alt="website icon" />
-                                </div>
-                                Twitter
-                              </a>
-                            </button>
-                          </li>
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img
-                                    src={icon_instagram}
-                                    alt="website icon"
-                                  />
-                                </div>
-                                Instagram
-                              </a>
-                            </button>
-                          </li>
+                          <>{getSnsButtonsPopup}</>
                         </ul>
                       )}
                     </div>
                   </div>
-                  {featuredInfo?.links && featuredInfo?.links.length > 0 && (
-                    <div className="line-icon" />
-                  )}
-
+                  <div className="line-icon" />
                   <div className="collection-info-left-details">
                     <div
                       style={{ cursor: 'pointer' }}
