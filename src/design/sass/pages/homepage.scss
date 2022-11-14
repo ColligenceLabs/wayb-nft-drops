@@ -50,6 +50,9 @@
         font-style: normal;
         font-weight: 500;
       }
+      .text-head-mobile {
+        display: none;
+      }
     }
     .carousel-main-page {
       margin-top: 200px;
@@ -557,6 +560,10 @@
         }
         .text-bottom {
           font-size: 14px;
+          max-width: 280px;
+        }
+        .text-head-pc {
+          display: none;
         }
       }
       .carousel-main-page {

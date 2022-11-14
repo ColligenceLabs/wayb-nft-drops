@@ -205,9 +205,11 @@ const Homepage = () => {
         <div className="content-header">
           <div className="text-head">Talken Drops</div>
           <div className="text-bottom">
-            Check out NFTs and Collectibles from popular teams,
-            <br />
-            famous brands and world renown artists
+            Check out NFTs and Collectibles from popular teams,&nbsp;
+            <br className="text-head-pc" />
+            famous brands and&nbsp;
+            <br className="text-head-mobile" />
+            world renown artists
           </div>
         </div>
         <div>
