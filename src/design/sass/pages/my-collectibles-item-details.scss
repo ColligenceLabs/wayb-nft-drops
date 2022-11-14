@@ -208,6 +208,7 @@
                 font-size: 18px;
                 line-height: 16px;
                 font-weight: 700;
+                text-align: left;
               }
             }
           }
@@ -1230,10 +1231,21 @@
       .product-details {
         .details-box {
           .wrapper-user-details {
+            .title-details {
+              text-align: center;
+            }
             .wrapper-content-details {
               flex-direction: column;
-              justify-content: flex-start;
-              align-items: flex-start;
+              justify-content: center;
+              align-items: center;
+              .wrapper-user {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+              }
+            }
+            .details-info {
+              text-align: center;
             }
           }
         }
@@ -1289,6 +1301,18 @@
           .wrapper-user-details {
             .title-details {
               font-size: 14px;
+            }
+          }
+          .banner-dropdown {
+            .logo {
+              .logo-info {
+                .name {
+                  font-size: 14px;
+                }
+              }
+            }
+            .collection-info-right {
+              gap: 0;
             }
           }
         }
