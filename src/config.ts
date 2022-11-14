@@ -45,7 +45,7 @@ export const RPC_URLS = {
   [ChainId.BSCMAINNET]: 'https://bsc-dataseed.binance.org',
   [ChainId.BSCMAINNET]: 'https://data-seed-prebsc-1-s1.binance.org:8545',
   [ChainId.BAOBAB]: 'https://api.baobab.klaytn.net:8651',
-  [ChainId.KLAYTN]: 'https://public-en.kaikas.io/v1/cypress',
+  [ChainId.KLAYTN]: 'https://public-node-api.klaytnapi.com/v1/cypress',
   [ChainId.TMP]: 'https://klaytn.dev.tmpcic.studio',
 };
 
