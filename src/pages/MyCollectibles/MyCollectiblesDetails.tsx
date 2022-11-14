@@ -374,6 +374,14 @@ const MyCollectiblesDetails = () => {
   }, []);
 
   useEffect(() => {
+    setOpenSnackbar({
+      open: copyResult,
+      type: 'success',
+      message: 'copied!',
+    });
+  }, [copyResult]);
+
+  useEffect(() => {
     const fetchFeatured = async () => {
       if (mboxInfo?.featuredId) {
         const featuredRes = await getFeaturedById(mboxInfo.featuredId);
@@ -414,36 +422,49 @@ const MyCollectiblesDetails = () => {
                 </div>
               </div>
               <div className="list-sns">
-                <div className="custom-sns hide-max-1024px">
+                <div
+                  className="custom-sns hide-max-1024px"
+                  onClick={() =>
+                    moveToScope(
+                      mboxInfo?.chainId,
+                      mboxInfo?.boxContractAddress,
+                      true
+                    )
+                  }
+                >
                   <div className="image-sns">
                     <img src={klaytn_white} alt="website icon" />
                   </div>
                 </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={website_icon} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={icon_discord} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={icon_twitter} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={icon_instagram} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns">
-                  <div className="image-sns">
-                    <img src={icon_share} alt="website icon" />
-                  </div>
-                </div>
+                {getSnsButtons()}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={website_icon} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_discord} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_twitter} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_instagram} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*  className="custom-sns"*/}
+                {/*  onClick={() => copyToClipBoard(window.location.href)}*/}
+                {/*>*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_share} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
               </div>
               {/* <div className="dropdown">
                 <div
