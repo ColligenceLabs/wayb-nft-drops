@@ -379,6 +379,14 @@ const MyCollectiblesDetails = () => {
   }, []);
 
   useEffect(() => {
+    setOpenSnackbar({
+      open: copyResult,
+      type: 'success',
+      message: 'copied!',
+    });
+  }, [copyResult]);
+
+  useEffect(() => {
     const fetchFeatured = async () => {
       if (mboxInfo?.featuredId) {
         const featuredRes = await getFeaturedById(mboxInfo.featuredId);
@@ -505,63 +513,50 @@ const MyCollectiblesDetails = () => {
                   <div className="name">{mboxInfo?.companyname.en}</div>
                 </div>
               </div>
-              {/* list sns icon */}
-              <div className="collection-info-right">
-                <div className="collection-info-left-details">
-                  <div className="info-item hide-max-1024px">
-                    <div
-                      className="image-item"
-                      style={{ cursor: 'pointer' }}
-                      // onClick={() =>
-                      //   moveToScope(
-                      //     mboxInfo?.chainId,
-                      //     mboxInfo?.boxContractAddress,
-                      //     true
-                      //   )
-                      // }
-                    >
-                      <img src={klaytn_white} alt="website icon" />
-                    </div>
-                  </div>
-                  <>{getSnsButtons()}</>
-                  <div className="dropdown hide-min-1025px" ref={refDropdown}>
-                    <div
-                      className="dropdown-button"
-                      onClick={() =>
-                        setDropdownOpen((dropdownOpen) => !dropdownOpen)
-                      }
-                    >
-                      <img src={ic_dropdown} alt="dropdown" />
-                    </div>
-                    {dropdownOpen && (
-                      <ul className="dropdown-box">
-                        <li className="list-dropdown-item">
-                          <button className="dropdown-item-nft  button">
-                            <a href="/" className="custom-link-sns">
-                              <div className="image-sns">
-                                <img src={klaytn_white} alt="website icon" />
-                              </div>
-                              Etherscan Link
-                            </a>
-                          </button>
-                        </li>
-                        <>{getSnsButtonsPopup}</>
-                      </ul>
-                    )}
+              <div className="list-sns">
+                <div
+                  className="custom-sns hide-max-1024px"
+                  onClick={() =>
+                    moveToScope(
+                      mboxInfo?.chainId,
+                      mboxInfo?.boxContractAddress,
+                      true
+                    )
+                  }
+                >
+                  <div className="image-sns">
+                    <img src={klaytn_white} alt="website icon" />
                   </div>
                 </div>
-                <div className="line-icon" />
-                <div className="collection-info-left-details">
-                  <div
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => copyToClipBoard(window.location.href)}
-                    className="info-item"
-                  >
-                    <div className="image-item">
-                      <img src={icon_share} alt="Twitter Icon" width="20px" />
-                    </div>
-                  </div>
-                </div>
+                {getSnsButtons()}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={website_icon} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_discord} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_twitter} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_instagram} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*  className="custom-sns"*/}
+                {/*  onClick={() => copyToClipBoard(window.location.href)}*/}
+                {/*>*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_share} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
               </div>
               {/* <div className="dropdown">
                 <div
