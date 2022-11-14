@@ -203,14 +203,13 @@ const Homepage = () => {
         </div>
         {/* <img src={background} alt="" /> */}
         <div className="content-header">
-          <div className="text-head">
-            OFFICIALLY <br />
-            LICENSED
-          </div>
+          <div className="text-head">Talken Drops</div>
           <div className="text-bottom">
-            NFTs and Collectibles from the world&apos;s
-            <br />
-            leading teams, brands, and artists
+            Check out NFTs and Collectibles from popular teams,&nbsp;
+            <br className="text-head-pc" />
+            famous brands&nbsp;
+            <br className="text-head-mobile" />
+            and world renown artists
           </div>
         </div>
         <div>
@@ -221,7 +220,7 @@ const Homepage = () => {
               renderButtonGroupOutside={false}
               centerMode={screenSize > 1023}
               dotListClass="custom-dot"
-              containerClass="container-with-dots home-carousel"
+              containerClass="container-with-dots home-carousel banner-main-carousel"
               responsive={{
                 desktop: {
                   breakpoint: {

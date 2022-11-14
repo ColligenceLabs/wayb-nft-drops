@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
+import icon_insta_realistic from '../../assets/svg/icon_insta_realistic.svg';
 import avatar from '../../assets/img/avatar_user.webp';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,7 +10,7 @@ import Edit from './editprofile';
 import Delete from './deleteaccount';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getMyMBoxList } from '../../services/services';
+import { getHistory, getMyMBoxList } from '../../services/services';
 
 const MyProfile = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
@@ -34,10 +35,11 @@ const MyProfile = () => {
         talkenUid = _talkenData.uid;
       }
       if (dropsAccount.address) {
-        const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
+        // const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
+        const res = await getHistory(dropsAccount.address);
         console.log(res.data);
         if (res.data.status === 1) {
-          setNNfts(res.data.data.length);
+          setNNfts(res.data.data.drops.length);
         }
       }
     };
@@ -68,18 +70,16 @@ const MyProfile = () => {
                   />
                 </div>
                 <div className="my-profile-name">
-                  <div className="fullname">{dropsAccount.name}</div>
+                  <div className="fullname">Nickname</div>
                   <div className="username">
-                    {dropsAccount.instagram
-                      ? `@${dropsAccount.instagram}`
-                      : '-'}
+                    {dropsAccount.name ? dropsAccount.name : '-'}
                   </div>
                 </div>
               </div>
               <div className="myProfileSocials">
                 <div className="Socialsdetail">
                   <div className="value">{nNfts}</div>
-                  <div className="label">NFTs</div>
+                  <div className="label">Collections</div>
                 </div>
                 <div className="Socialsdetail">
                   <div className="value">
@@ -95,17 +95,19 @@ const MyProfile = () => {
             </div>
             <div className="bio"></div>
             <div className="my-profile-contact">
-              <div className="contact-detail">
+              {/* <div className="contact-detail">
                 <div className="title">Nickname</div>
                 <div className="content">{dropsAccount.name}</div>
-              </div>
+              </div> */}
               {/*<div className="contact-detail">*/}
               {/*  <div className="title">Birthday</div>*/}
               {/*  <div className="content">07/05/2018</div>*/}
               {/*</div>*/}
               <div className="contact-detail">
                 <div className="title">Email</div>
-                <div className="content">{dropsAccount.email}</div>
+                <div className="content">
+                  {dropsAccount.email ? dropsAccount.email : '-'}
+                </div>
               </div>
               {/*<div className="contact-detail">*/}
               {/*  <div className="title">Mobile Phone</div>*/}
@@ -116,11 +118,20 @@ const MyProfile = () => {
           <div className="my-profile-rightdetail">
             <div className="my-profile-rightdetail-item">
               <div className="item-label">
-                <img src={twitter_icon} alt="" />
+                <img src={twitter_icon} alt="Icon Twitter" />
                 Twitter
               </div>
               <div className="item-value">
                 {dropsAccount.twitter ? `twitter/${dropsAccount.twitter}` : '-'}
+              </div>
+            </div>
+            <div className="my-profile-rightdetail-item">
+              <div className="item-label">
+                <img src={icon_insta_realistic} alt="Icon Instagram" />
+                Instagram
+              </div>
+              <div className="item-value">
+                {dropsAccount.instagram ? `@${dropsAccount.instagram}` : '-'}
               </div>
             </div>
             <Popup modal trigger={<button>Edit Profile</button>}>

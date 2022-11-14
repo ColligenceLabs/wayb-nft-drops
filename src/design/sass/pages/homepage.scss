@@ -44,11 +44,14 @@
 
       .text-bottom {
         font-size: 22px;
-        max-width: 480px;
+        max-width: 530px;
         // margin-bottom: 30px;
         // font-family: venn, sans-serif;
         font-style: normal;
         font-weight: 500;
+      }
+      .text-head-mobile {
+        display: none;
       }
     }
     .carousel-main-page {
@@ -85,22 +88,12 @@
           }
         }
       }
-      &:hover {
-        .arrow-banner-mainpage {
-          .arrow-one {
-            background: #ffffff;
-          }
-          .arrow-two {
-            background: #ffffff;
-          }
-        }
-      }
     }
   }
   //section 02
   .section-02 {
     color: #ffffff;
-    width: min(100%, 1280px);
+    width: $page-content-width;
     padding: 0 40px;
     margin: auto;
     .featured-collections {
@@ -206,6 +199,10 @@
                 font-size: 16px;
                 letter-spacing: -1px;
                 font-weight: 500;
+              }
+              
+              .total-item {
+                font-size: 14px;
               }
             }
           }
@@ -510,7 +507,7 @@
         .hot-collectibles {
           .custom-box {
             width: 100%;
-            margin: 0 10px;
+            margin: 10px;
             .hot-ollectibles-wrapper {
               width: 100%;
               height: auto;
@@ -540,7 +537,7 @@
         .grid-container-featured {
           grid-template-columns: 1fr;
           .custom-link {
-            margin: 0px 10px;
+            margin: 10px;
             height: 260px;
             width: 100%;
             .grid-item {
@@ -563,6 +560,13 @@
         }
         .text-bottom {
           font-size: 14px;
+          max-width: 280px;
+        }
+        .text-head-pc {
+          display: none;
+        }
+        .text-head-mobile {
+          display: block;
         }
       }
       .carousel-main-page {

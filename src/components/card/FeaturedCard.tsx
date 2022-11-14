@@ -28,7 +28,9 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ item }) => {
             />
           </div>
           <div className="name-label">{splitString(item.name.en, 20)}</div>
-          <div># of items: {item?.totalAmount ?? 0}</div>
+          <div className="total-item">
+            Total Items: {item?.totalAmount ?? 0}
+          </div>
         </div>
       </button>
     </Link>

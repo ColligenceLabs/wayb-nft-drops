@@ -149,49 +149,54 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           );
           if (rlt === FAILURE) return false;
         }
-
         console.log(contract, index, 1, payment!.toString(), quoteToken!);
-        const result = await buyItem(
-          contract,
-          index,
-          1,
-          payment!.toString(),
-          quoteToken!,
-          account,
-          library
-        );
-        if (result.status === SUCCESS) {
-          // const left = await getItemAmount(
-          //   contract,
-          //   index,
-          //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
-          //   account,
-          //   library
-          // );
+        try {
+          const result = await buyItem(
+            contract,
+            index,
+            1,
+            payment!.toString(),
+            quoteToken!,
+            account,
+            library
+          );
+          if (result.status === SUCCESS) {
+            // const left = await getItemAmount(
+            //   contract,
+            //   index,
+            //   collectionItemInfo?.collectionInfo?.isCollection === true ? 2 : 1,
+            //   account,
+            //   library
+            // );
 
-          const data = {
-            mysterybox_id: itemInfo?.collectionInfo?.id,
-            buyer: '',
-            buyer_address: account,
-            isSent: true,
-            txHash: result?.txHash,
-            price: itemInfo?.price,
-            itemId: itemInfo?.id,
-          };
+            const data = {
+              mysterybox_id: itemInfo?.collectionInfo?.id,
+              buyer: '',
+              buyer_address: account,
+              isSent: true,
+              txHash: result?.txHash,
+              price: itemInfo?.price,
+              itemId: itemInfo?.id,
+            };
 
-          const res = await registerBuy(data);
-          if (res.data.status === SUCCESS) {
-            // setOpenSnackbar({
-            //   open: true,
-            //   type: 'success',
-            //   message: 'Success',
-            // });
-            console.log('success');
-            return true;
+            const res = await registerBuy(data);
+            if (res.data.status === SUCCESS) {
+              // setOpenSnackbar({
+              //   open: true,
+              //   type: 'success',
+              //   message: 'Success',
+              // });
+              console.log('success');
+              return true;
+            } else {
+              return false;
+            }
           } else {
             return false;
           }
-        } else {
+        } catch (e: any) {
+          console.log(e);
+          if (e.code == '-32603') setErrMsg('Not sufficient Klay balance!');
           return false;
         }
       } else {
@@ -388,7 +393,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             <div className="pay-name">Crypto</div>
           </div>
 
-          {isMobile && (
+          {/* don't show app store, google button */}
+          {/* {isMobile && ( */}
+          {false && (
             <>
               <div
                 className={`payment-box ${
