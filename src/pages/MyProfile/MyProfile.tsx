@@ -72,7 +72,7 @@ const MyProfile = () => {
                 <div className="my-profile-name">
                   <div className="fullname">Nickname</div>
                   <div className="username">
-                    {dropsAccount.instagram ? dropsAccount.instagram : '-'}
+                    {dropsAccount.name ? dropsAccount.name : '-'}
                   </div>
                 </div>
               </div>
