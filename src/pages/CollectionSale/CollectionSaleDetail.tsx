@@ -286,7 +286,6 @@ const CollectionSaleDetail = () => {
       return null;
     }
   };
-
   const getSnsMobileButtons = () => {
     return (
       <ul className="dropdown-box">
