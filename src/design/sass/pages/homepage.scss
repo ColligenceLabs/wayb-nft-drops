@@ -44,11 +44,14 @@
 
       .text-bottom {
         font-size: 22px;
-        max-width: 480px;
+        max-width: 530px;
         // margin-bottom: 30px;
         // font-family: venn, sans-serif;
         font-style: normal;
         font-weight: 500;
+      }
+      .text-head-mobile {
+        display: none;
       }
     }
     .carousel-main-page {
@@ -557,6 +560,13 @@
         }
         .text-bottom {
           font-size: 14px;
+          max-width: 280px;
+        }
+        .text-head-pc {
+          display: none;
+        }
+        .text-head-mobile {
+          display: block;
         }
       }
       .carousel-main-page {

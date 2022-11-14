@@ -72,7 +72,7 @@ const MyProfile = () => {
                 <div className="my-profile-name">
                   <div className="fullname">Nickname</div>
                   <div className="username">
-                    {dropsAccount.instagram ? dropsAccount.instagram : '-'}
+                    {dropsAccount.name ? dropsAccount.name : '-'}
                   </div>
                 </div>
               </div>
@@ -122,7 +122,13 @@ const MyProfile = () => {
                 Twitter
               </div>
               <div className="item-value">
-                {dropsAccount.twitter ? `twitter/${dropsAccount.twitter}` : '-'}
+                <a
+                  href={`${dropsAccount.twitter ? dropsAccount.twitter : ''}`}
+                  target="_blank"
+                  className="custom-link-sns"
+                >
+                  {dropsAccount.twitter ? `${dropsAccount.twitter}` : '-'}
+                </a>
               </div>
             </div>
             <div className="my-profile-rightdetail-item">
@@ -131,7 +137,15 @@ const MyProfile = () => {
                 Instagram
               </div>
               <div className="item-value">
-                {dropsAccount.instagram ? `@${dropsAccount.instagram}` : '-'}
+                <a
+                  href={`${
+                    dropsAccount.instagram ? dropsAccount.instagram : ''
+                  }`}
+                  target="_blank"
+                  className="custom-link-sns"
+                >
+                  {dropsAccount.instagram ? `${dropsAccount.instagram}` : '-'}
+                </a>
               </div>
             </div>
             <Popup modal trigger={<button>Edit Profile</button>}>
