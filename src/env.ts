@@ -39,7 +39,8 @@ const production: ENV = {
   // REACT_APP_TARGET_NETWORK_SOL:
   REACT_APP_TREASURY: '0x1424C82f9Cb4BeeaD8294087aa731A0c4FB2767D',
 };
-
+console.log('77777777777777', process.env.REACT_APP_PHASE);
+console.log('88888888888888', production);
 const env =
   process.env.REACT_APP_PHASE === 'staging'
     ? staging
