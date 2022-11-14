@@ -457,7 +457,7 @@ const SaleCollectibles = () => {
                                       alt="website icon"
                                     />
                                   </div>
-                                  Etherscan Link
+                                  Explorer
                                 </a>
                               </button>
                             </li>
