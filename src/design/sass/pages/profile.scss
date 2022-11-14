@@ -147,7 +147,7 @@
         }
       }
       .my-profile-rightdetail {
-        margin-left: 30px;
+        // margin-left: 30px;
         .my-profile-rightdetail-item {
           margin-bottom: 20px;
           min-width: 220px;
@@ -164,6 +164,12 @@
           .item-value {
             font-size: 16px;
             color: #2f8af5;
+            .custom-link-sns {
+              color: #2f8af5;
+              // &:hover {
+              //   color: #2f8af5;
+              // }
+            }
           }
         }
         button {
@@ -290,9 +296,9 @@
               background: rgba($color: #ffffff, $alpha: 0.1);
               border-radius: 10px;
             }
-            .wrapper-username {
+            .wrapper-input {
               position: relative;
-              .image-check-username {
+              .image-check-validate {
                 position: absolute;
                 top: 0;
                 right: 15px;
@@ -386,6 +392,9 @@
             height: 60px;
             background: #2f8af5;
             border-radius: 10px;
+          }
+          .disabled-button {
+            background: #565656;
           }
         }
       }
@@ -561,7 +570,7 @@
       }
     }
     .my-profile-rightdetail {
-      margin: 20px 0 0 5px !important;
+      // margin: 20px 0 0 5px !important;
     }
   }
 }

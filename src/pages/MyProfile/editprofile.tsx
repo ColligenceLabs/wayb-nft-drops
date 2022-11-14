@@ -28,7 +28,8 @@ const editprofile: any = (close: any) => {
     type: '',
     message: '',
   });
-
+  const [isCheckName, setIsCheckName] = useState(false);
+  const [isCheckEmail, setIsCheckEmail] = useState(false);
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
       open: false,
@@ -60,6 +61,16 @@ const editprofile: any = (close: any) => {
     else if (name === 'email') setEmail(value);
     else if (name === 'twitter') setTwitter(value);
     else if (name === 'instagram') setInstagram(value);
+    if (name === 'name') {
+      const regex = /^[a-zA-Z0-9-]*$/;
+      const checkName = regex.test(value);
+      !checkName ? setIsCheckName(true) : setIsCheckName(false);
+    }
+    if (name === 'email') {
+      const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+      const checkEmail = regex.test(value);
+      !checkEmail ? setIsCheckEmail(true) : setIsCheckEmail(false);
+    }
   };
 
   const handleClickSave = async () => {
@@ -142,7 +153,7 @@ const editprofile: any = (close: any) => {
               </div>
               <div className="content-box-edit">
                 <div className="content-title">Nickname</div>
-                <span className="wrapper-username">
+                <span className="wrapper-input">
                   <input
                     placeholder="Change Username"
                     name="name"
@@ -150,21 +161,33 @@ const editprofile: any = (close: any) => {
                     onChange={handleChangeInputValue}
                     className="custom-input input-change-username"
                   />
-                  <div className="image-check-username">
-                    <img src={check_success} alt="Icon Check" />
-                    {/* <img src={check_error} alt="Icon Check" /> */}
+                  <div className="image-check-validate">
+                    {!isCheckName && name !== '' ? (
+                      <img src={check_success} alt="Icon Check" />
+                    ) : (
+                      <img src={check_error} alt="Icon Check" />
+                    )}
                   </div>
                 </span>
               </div>
               <div className="content-box-edit">
                 <div className="content-title">Email address</div>
-                <input
-                  placeholder="Change Email"
-                  name="email"
-                  value={email}
-                  onChange={handleChangeInputValue}
-                  className="custom-input"
-                />
+                <span className="wrapper-input">
+                  <input
+                    placeholder="Change Email"
+                    name="email"
+                    value={email}
+                    onChange={handleChangeInputValue}
+                    className="custom-input"
+                  />
+                  <div className="image-check-validate">
+                    {!isCheckEmail && name !== '' ? (
+                      <img src={check_success} alt="Icon Check" />
+                    ) : (
+                      <img src={check_error} alt="Icon Check" />
+                    )}
+                  </div>
+                </span>
               </div>
               <div className="content-box-edit">
                 <div className="content-title">Twitter ID</div>
@@ -187,7 +210,17 @@ const editprofile: any = (close: any) => {
                 />
               </div>
 
-              <button onClick={handleClickSave}>
+              <button
+                onClick={handleClickSave}
+                disabled={
+                  isCheckName || name === '' || isCheckEmail || email === ''
+                }
+                className={
+                  isCheckName || name === '' || isCheckEmail || email === ''
+                    ? 'disabled-button'
+                    : ''
+                }
+              >
                 {isLoading ? (
                   <CircularProgress size={30} color={'inherit'} />
                 ) : (
