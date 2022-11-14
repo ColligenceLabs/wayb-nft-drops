@@ -9,6 +9,7 @@ import icon_discord from '../../assets/img/icon_discord.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
 import icon_share from '../../assets/img/icon_share.png';
+import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import { getNetworkNameByChainId } from '../../utils/getNetworkNameByChainId';
 import useOnClickOutside from 'components/common/useOnClickOutside';
 import {
@@ -30,12 +31,19 @@ import { getPrice } from '../../utils/getPrice';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { moveToScope } from '../../utils/moveToScope';
+import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
   companyName: string;
+};
+
+type LinkTypes = {
+  type: string;
+  url: string;
+  useExternalUrl: boolean;
 };
 
 type ExMBoxItemTypes = MBoxItemTypes & {
@@ -124,39 +132,29 @@ const CollectionSale = () => {
 
   const getSnsButtons = () => {
     if (featuredInfo && featuredInfo.links) {
-      const test = featuredInfo.links.map((link: any) => {
+      const test = featuredInfo.links.map((link: LinkTypes) => {
         return (
-          <div onClick={() => window.open(link.url)}>
-            {link.type === 'SITE' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={website_icon} alt="website icon" />
-                </div>
-              </div>
-            )}
-
-            {link.type === 'DISCORD' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_discord} alt="website icon" />
-                </div>
-              </div>
-            )}
-
-            {link.type === 'TWITTER' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_twitter} alt="website icon" />
-                </div>
-              </div>
-            )}
-            {link.type === 'INSTAGRAM' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_instagram} alt="website icon" />
-                </div>
-              </div>
-            )}
+          <div
+            style={{
+              cursor: 'pointer',
+            }}
+            className="info-item hide-max-1024px"
+            onClick={() => window.open(link.url)}
+          >
+            <div className="image-item hide-max-1024px">
+              {link.type === 'SITE' && (
+                <img src={website_icon} alt="Website Icon" />
+              )}
+              {link.type === 'DISCORD' && (
+                <img src={icon_discord} alt="Website Icon" />
+              )}
+              {link.type === 'TWITTER' && (
+                <img src={icon_twitter} alt="Website Icon" />
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <img src={icon_instagram} alt="Website Icon" />
+              )}
+            </div>
           </div>
         );
       });
@@ -165,7 +163,59 @@ const CollectionSale = () => {
       return null;
     }
   };
-
+  const getSnsButtonsPopup = () => {
+    if (featuredInfo && featuredInfo.links) {
+      const test = featuredInfo.links.map((link: LinkTypes) => {
+        return (
+          <li
+            className="list-dropdown-item"
+            onClick={() => window.open(link.url)}
+          >
+            <button
+              className="dropdown-item-nft  button"
+              style={{ cursor: 'pointer' }}
+            >
+              {link.type === 'SITE' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={website_icon} alt="website icon" />
+                  </div>
+                  Website
+                </div>
+              )}
+              {link.type === 'DISCORD' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_discord} alt="website icon" />
+                  </div>
+                  Discord
+                </div>
+              )}
+              {link.type === 'TWITTER' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_twitter} alt="website icon" />
+                  </div>
+                  Twitter
+                </div>
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_instagram} alt="website icon" />
+                  </div>
+                  Instagram
+                </div>
+              )}
+            </button>
+          </li>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
   useEffect(() => {
     setOpenSnackbar({
       open: copyResult,
@@ -202,6 +252,8 @@ const CollectionSale = () => {
 
     fetchMboxItemList();
   }, [params, library]);
+  const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
+  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   console.log('>>>><<<<', itemInfo);
   return (
     <main className="collectibles-item-details-container min-height-content">
@@ -317,150 +369,63 @@ const CollectionSale = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="list-sns">
-                  <div
-                    className="custom-sns hide-max-1024px"
-                    onClick={() =>
-                      moveToScope(
-                        mBoxInfo.chainId,
-                        mBoxInfo?.boxContractAddress,
-                        true
-                      )
-                    }
-                  >
-                    <div className="image-sns">
-                      <img src={klaytn_white} alt="website icon" />
+                {/* list sns icon */}
+                <div className="collection-info-right">
+                  <div className="collection-info-left-details">
+                    <div className="info-item hide-max-1024px">
+                      <div
+                        className="image-item"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          moveToScope(
+                            mBoxInfo.chainId,
+                            mBoxInfo?.boxContractAddress,
+                            true
+                          )
+                        }
+                      >
+                        <img src={klaytn_white} alt="website icon" />
+                      </div>
+                    </div>
+                    <>{getSnsButtons()}</>
+                    <div className="dropdown hide-min-1025px" ref={refDropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() =>
+                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                        }
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && (
+                        <ul className="dropdown-box">
+                          <li className="list-dropdown-item">
+                            <button className="dropdown-item-nft  button">
+                              <a href="/" className="custom-link-sns">
+                                <div className="image-sns">
+                                  <img src={klaytn_white} alt="website icon" />
+                                </div>
+                                Etherscan Link
+                              </a>
+                            </button>
+                          </li>
+                          <>{getSnsButtonsPopup}</>
+                        </ul>
+                      )}
                     </div>
                   </div>
-                  {getSnsButtons()}
-                  <div className="custom-sns">
+                  <div className="line-icon" />
+                  <div className="collection-info-left-details">
                     <div
-                      className="image-sns"
+                      style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
+                      className="info-item"
                     >
-                      <img src={icon_share} alt="website icon" />
+                      <div className="image-item">
+                        <img src={icon_share} alt="Twitter Icon" width="20px" />
+                      </div>
                     </div>
                   </div>
-                  {/*<div className="custom-sns">*/}
-                  {/*  <div className="dropdown">*/}
-                  {/*    <div*/}
-                  {/*      className="dropdown-button"*/}
-                  {/*      onClick={() =>*/}
-                  {/*        setDropdownOpen((dropdownOpen) => !dropdownOpen)*/}
-                  {/*      }*/}
-                  {/*    >*/}
-                  {/*      <img src={ic_dropdown} alt="dropdown" />*/}
-                  {/*    </div>*/}
-                  {/*    {dropdownOpen && (*/}
-                  {/*      <ul className="dropdown-box">*/}
-                  {/*        <li className="list-dropdown-item on-hide">*/}
-                  {/*          <button className="dropdown-item-nft  button">*/}
-                  {/*            <a href="/" className="custom-link-sns">*/}
-                  {/*              <div className="image-sns">*/}
-                  {/*                <img src={klaytn_white} alt="website icon" />*/}
-                  {/*              </div>*/}
-                  {/*              Etherscan Link*/}
-                  {/*            </a>*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*        <li className="list-dropdown-item on-hide">*/}
-                  {/*          <button className="dropdown-item-nft  button">*/}
-                  {/*            <a href="/" className="custom-link-sns">*/}
-                  {/*              <div className="image-sns">*/}
-                  {/*                <img src={website_icon} alt="website icon" />*/}
-                  {/*              </div>*/}
-                  {/*              Website*/}
-                  {/*            </a>*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*        <li className="list-dropdown-item on-hide">*/}
-                  {/*          <button className="dropdown-item-nft  button">*/}
-                  {/*            <a href="/" className="custom-link-sns">*/}
-                  {/*              <div className="image-sns">*/}
-                  {/*                <img src={icon_discord} alt="website icon" />*/}
-                  {/*              </div>*/}
-                  {/*              Discord*/}
-                  {/*            </a>*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*        <li className="list-dropdown-item on-hide">*/}
-                  {/*          <button className="dropdown-item-nft  button">*/}
-                  {/*            <a href="/" className="custom-link-sns">*/}
-                  {/*              <div className="image-sns">*/}
-                  {/*                <img src={icon_twitter} alt="website icon" />*/}
-                  {/*              </div>*/}
-                  {/*              Twitter*/}
-                  {/*            </a>*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*        <li className="list-dropdown-item on-hide">*/}
-                  {/*          <button className="dropdown-item-nft  button">*/}
-                  {/*            <a href="/" className="custom-link-sns">*/}
-                  {/*              <div className="image-sns">*/}
-                  {/*                <img*/}
-                  {/*                  src={icon_instagram}*/}
-                  {/*                  alt="website icon"*/}
-                  {/*                />*/}
-                  {/*              </div>*/}
-                  {/*              Instagram*/}
-                  {/*            </a>*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*        <li className="list-dropdown-item ds-flex">*/}
-                  {/*          <button*/}
-                  {/*            className="dropdown-item-nft  button"*/}
-                  {/*            onClick={() => {*/}
-                  {/*              setWarningOpen(true);*/}
-                  {/*              setDropdownOpen(false);*/}
-                  {/*            }}*/}
-                  {/*          >*/}
-                  {/*            /!* <img*/}
-                  {/*        src={ic_send_to_my_wallet}*/}
-                  {/*        alt="send-to-my-wallet"*/}
-                  {/*      /> *!/*/}
-                  {/*            <svg*/}
-                  {/*              width="19"*/}
-                  {/*              height="18"*/}
-                  {/*              viewBox="0 0 19 18"*/}
-                  {/*              fill="none"*/}
-                  {/*              xmlns="http://www.w3.org/2000/svg"*/}
-                  {/*            >*/}
-                  {/*              <path*/}
-                  {/*                d="M18 15V16C18 17.1 17.1 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16C17.1 0 18 0.9 18 2V3H9C8.46957 3 7.96086 3.21071 7.58579 3.58579C7.21071 3.96086 7 4.46957 7 5V13C7 13.5304 7.21071 14.0391 7.58579 14.4142C7.96086 14.7893 8.46957 15 9 15H18ZM9 13H19V5H9V13ZM13 10.5C12.17 10.5 11.5 9.83 11.5 9C11.5 8.17 12.17 7.5 13 7.5C13.83 7.5 14.5 8.17 14.5 9C14.5 9.83 13.83 10.5 13 10.5Z"*/}
-                  {/*                fill="white"*/}
-                  {/*              />*/}
-                  {/*            </svg>*/}
-                  {/*            Send to Private Address*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*        <li className="list-dropdown-item ds-flex">*/}
-                  {/*          <button*/}
-                  {/*            className="dropdown-item-nft button"*/}
-                  {/*            onClick={() => {*/}
-                  {/*              setDropdownOpen(false);*/}
-                  {/*            }}*/}
-                  {/*          >*/}
-                  {/*            /!* <img src={gift_token_icon} alt="gift token icon" /> *!/*/}
-                  {/*            <svg*/}
-                  {/*              width="20"*/}
-                  {/*              height="20"*/}
-                  {/*              viewBox="0 0 20 20"*/}
-                  {/*              fill="none"*/}
-                  {/*              xmlns="http://www.w3.org/2000/svg"*/}
-                  {/*            >*/}
-                  {/*              <path*/}
-                  {/*                d="M1.75 18.9531C1.75 19.368 2.08516 19.7031 2.5 19.7031H9.20312V10.8906H1.75V18.9531ZM10.7969 19.7031H17.5C17.9148 19.7031 18.25 19.368 18.25 18.9531V10.8906H10.7969V19.7031ZM18.625 5.26562H15.1656C15.4844 4.76406 15.6719 4.16875 15.6719 3.53125C15.6719 1.74766 14.2211 0.296875 12.4375 0.296875C11.4672 0.296875 10.593 0.728125 10 1.40781C9.40703 0.728125 8.53281 0.296875 7.5625 0.296875C5.77891 0.296875 4.32812 1.74766 4.32812 3.53125C4.32812 4.16875 4.51328 4.76406 4.83438 5.26562H1.375C0.960156 5.26562 0.625 5.60078 0.625 6.01562V9.29688H9.20312V5.26562H10.7969V9.29688H19.375V6.01562C19.375 5.60078 19.0398 5.26562 18.625 5.26562ZM9.20312 5.17188H7.5625C6.65781 5.17188 5.92188 4.43594 5.92188 3.53125C5.92188 2.62656 6.65781 1.89062 7.5625 1.89062C8.46719 1.89062 9.20312 2.62656 9.20312 3.53125V5.17188ZM12.4375 5.17188H10.7969V3.53125C10.7969 2.62656 11.5328 1.89062 12.4375 1.89062C13.3422 1.89062 14.0781 2.62656 14.0781 3.53125C14.0781 4.43594 13.3422 5.17188 12.4375 5.17188Z"*/}
-                  {/*                fill="white"*/}
-                  {/*              />*/}
-                  {/*            </svg>*/}
-                  {/*            Gift this token*/}
-                  {/*          </button>*/}
-                  {/*        </li>*/}
-                  {/*      </ul>*/}
-                  {/*    )}*/}
-                  {/*  </div>*/}
-                  {/*</div>*/}
                 </div>
               </div>
               <div className="line-banner"></div>
@@ -521,8 +486,9 @@ const CollectionSale = () => {
                     </div>
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
-                  <Link
-                    to={`/klaytn/collection/${itemInfo.infoId}/${itemInfo.id}`}
+                  <div
+                    // to={`/klaytn/collection/${itemInfo.infoId}/${itemInfo.id}`}
+                    onClick={handleClickSeeMore}
                   >
                     <div className="wrapper-see-collection">
                       <div className="image-see-collection">
@@ -530,19 +496,19 @@ const CollectionSale = () => {
                       </div>
                       <div className="title">See this collection</div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
                 <div className="details-info">{mBoxInfo.introduction.en}</div>
               </div>
               <div className="wrapper-other-items">
                 <div className="wrapper-head">
                   <div className="title-items">Other Items</div>
-                  <div
+                  <Link
                     className="seemore-otheritems"
-                    onClick={handleClickSeeMore}
+                    to={`/klaytn/featured/${mBoxInfo.featured?.companyId}`}
                   >
                     See more
-                  </div>
+                  </Link>
                 </div>
                 <Carousel
                   additionalTransfrom={0}

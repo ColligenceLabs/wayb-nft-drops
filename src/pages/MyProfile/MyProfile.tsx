@@ -9,7 +9,7 @@ import Edit from './editprofile';
 import Delete from './deleteaccount';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getMyMBoxList } from '../../services/services';
+import { getHistory, getMyMBoxList } from '../../services/services';
 
 const MyProfile = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
@@ -34,10 +34,11 @@ const MyProfile = () => {
         talkenUid = _talkenData.uid;
       }
       if (dropsAccount.address) {
-        const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
+        // const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
+        const res = await getHistory(dropsAccount.address);
         console.log(res.data);
         if (res.data.status === 1) {
-          setNNfts(res.data.data.length);
+          setNNfts(res.data.data.drops.length);
         }
       }
     };
@@ -69,11 +70,11 @@ const MyProfile = () => {
                 </div>
                 <div className="my-profile-name">
                   <div className="fullname">{dropsAccount.name}</div>
-                  <div className="username">
-                    {dropsAccount.instagram
-                      ? `@${dropsAccount.instagram}`
-                      : '-'}
-                  </div>
+                  {/*<div className="username">*/}
+                  {/*  {dropsAccount.instagram*/}
+                  {/*    ? `@${dropsAccount.instagram}`*/}
+                  {/*    : '-'}*/}
+                  {/*</div>*/}
                 </div>
               </div>
               <div className="myProfileSocials">
@@ -121,6 +122,15 @@ const MyProfile = () => {
               </div>
               <div className="item-value">
                 {dropsAccount.twitter ? `twitter/${dropsAccount.twitter}` : '-'}
+              </div>
+            </div>
+            <div className="my-profile-rightdetail-item">
+              <div className="item-label">
+                <img src={twitter_icon} alt="" />
+                Instagram
+              </div>
+              <div className="item-value">
+                {dropsAccount.instagram ? `@${dropsAccount.instagram}` : '-'}
               </div>
             </div>
             <Popup modal trigger={<button>Edit Profile</button>}>

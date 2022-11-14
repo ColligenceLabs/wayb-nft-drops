@@ -1,5 +1,5 @@
 export const moveToScope = (
-  chainId: number,
+  chainId: number | undefined,
   txHash: string | null,
   isContract?: boolean
 ) => {

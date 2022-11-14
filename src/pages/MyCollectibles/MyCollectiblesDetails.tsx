@@ -58,6 +58,7 @@ import { getPrice } from '../../utils/getPrice';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
+import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -67,7 +68,11 @@ type ExMBoxTypes = MBoxTypes & {
   companyimage: string;
   companyname: { ko: string; en: string };
 };
-
+type LinkTypes = {
+  type: string;
+  url: string;
+  useExternalUrl: boolean;
+};
 const MyCollectiblesDetails = () => {
   const { account, library } = useActiveWeb3React();
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
@@ -163,49 +168,49 @@ const MyCollectiblesDetails = () => {
     setIsLoading(false);
   };
 
-  const getSnsButtons = () => {
-    if (featuredInfo && featuredInfo.links) {
-      const test = featuredInfo.links.map((link: any) => {
-        return (
-          <div onClick={() => window.open(link.url)}>
-            {link.type === 'SITE' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={website_icon} alt="website icon" />
-                </div>
-              </div>
-            )}
+  // const getSnsButtons = () => {
+  //   if (featuredInfo && featuredInfo.links) {
+  //     const test = featuredInfo.links.map((link: any) => {
+  //       return (
+  //         <div onClick={() => window.open(link.url)}>
+  //           {link.type === 'SITE' && (
+  //             <div className="custom-sns hide-max-1024px">
+  //               <div className="image-sns">
+  //                 <img src={website_icon} alt="website icon" />
+  //               </div>
+  //             </div>
+  //           )}
 
-            {link.type === 'DISCORD' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_discord} alt="website icon" />
-                </div>
-              </div>
-            )}
+  //           {link.type === 'DISCORD' && (
+  //             <div className="custom-sns hide-max-1024px">
+  //               <div className="image-sns">
+  //                 <img src={icon_discord} alt="website icon" />
+  //               </div>
+  //             </div>
+  //           )}
 
-            {link.type === 'TWITTER' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_twitter} alt="website icon" />
-                </div>
-              </div>
-            )}
-            {link.type === 'INSTAGRAM' && (
-              <div className="custom-sns hide-max-1024px">
-                <div className="image-sns">
-                  <img src={icon_instagram} alt="website icon" />
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      });
-      return test;
-    } else {
-      return null;
-    }
-  };
+  //           {link.type === 'TWITTER' && (
+  //             <div className="custom-sns hide-max-1024px">
+  //               <div className="image-sns">
+  //                 <img src={icon_twitter} alt="website icon" />
+  //               </div>
+  //             </div>
+  //           )}
+  //           {link.type === 'INSTAGRAM' && (
+  //             <div className="custom-sns hide-max-1024px">
+  //               <div className="image-sns">
+  //                 <img src={icon_instagram} alt="website icon" />
+  //               </div>
+  //             </div>
+  //           )}
+  //         </div>
+  //       );
+  //     });
+  //     return test;
+  //   } else {
+  //     return null;
+  //   }
+  // };
 
   const handleClaimClick = async () => {
     setIsLoading(true);
@@ -374,6 +379,14 @@ const MyCollectiblesDetails = () => {
   }, []);
 
   useEffect(() => {
+    setOpenSnackbar({
+      open: copyResult,
+      type: 'success',
+      message: 'copied!',
+    });
+  }, [copyResult]);
+
+  useEffect(() => {
     const fetchFeatured = async () => {
       if (mboxInfo?.featuredId) {
         const featuredRes = await getFeaturedById(mboxInfo.featuredId);
@@ -385,7 +398,94 @@ const MyCollectiblesDetails = () => {
 
     fetchFeatured();
   }, [mboxInfo]);
-
+  const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
+  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  const getSnsButtons = () => {
+    if (featuredInfo && featuredInfo.links) {
+      const test = featuredInfo.links.map((link: LinkTypes) => {
+        return (
+          <div
+            style={{
+              cursor: 'pointer',
+            }}
+            className="info-item hide-max-1024px"
+            onClick={() => window.open(link.url)}
+          >
+            <div className="image-item hide-max-1024px">
+              {link.type === 'SITE' && (
+                <img src={website_icon} alt="Website Icon" />
+              )}
+              {link.type === 'DISCORD' && (
+                <img src={icon_discord} alt="Website Icon" />
+              )}
+              {link.type === 'TWITTER' && (
+                <img src={icon_twitter} alt="Website Icon" />
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <img src={icon_instagram} alt="Website Icon" />
+              )}
+            </div>
+          </div>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
+  const getSnsButtonsPopup = () => {
+    if (featuredInfo && featuredInfo.links) {
+      const test = featuredInfo.links.map((link: LinkTypes) => {
+        return (
+          <li
+            className="list-dropdown-item"
+            onClick={() => window.open(link.url)}
+          >
+            <button
+              className="dropdown-item-nft  button"
+              style={{ cursor: 'pointer' }}
+            >
+              {link.type === 'SITE' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={website_icon} alt="website icon" />
+                  </div>
+                  Website
+                </div>
+              )}
+              {link.type === 'DISCORD' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_discord} alt="website icon" />
+                  </div>
+                  Discord
+                </div>
+              )}
+              {link.type === 'TWITTER' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_twitter} alt="website icon" />
+                  </div>
+                  Twitter
+                </div>
+              )}
+              {link.type === 'INSTAGRAM' && (
+                <div className="custom-link-sns">
+                  <div className="image-sns">
+                    <img src={icon_instagram} alt="website icon" />
+                  </div>
+                  Instagram
+                </div>
+              )}
+            </button>
+          </li>
+        );
+      });
+      return test;
+    } else {
+      return null;
+    }
+  };
   console.log('mbox???', featuredInfo);
   return (
     <main className="collectibles-details-container min-height-content">
@@ -414,36 +514,49 @@ const MyCollectiblesDetails = () => {
                 </div>
               </div>
               <div className="list-sns">
-                <div className="custom-sns hide-max-1024px">
+                <div
+                  className="custom-sns hide-max-1024px"
+                  onClick={() =>
+                    moveToScope(
+                      mboxInfo?.chainId,
+                      mboxInfo?.boxContractAddress,
+                      true
+                    )
+                  }
+                >
                   <div className="image-sns">
                     <img src={klaytn_white} alt="website icon" />
                   </div>
                 </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={website_icon} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={icon_discord} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={icon_twitter} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns hide-max-1024px">
-                  <div className="image-sns">
-                    <img src={icon_instagram} alt="website icon" />
-                  </div>
-                </div>
-                <div className="custom-sns">
-                  <div className="image-sns">
-                    <img src={icon_share} alt="website icon" />
-                  </div>
-                </div>
+                {getSnsButtons()}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={website_icon} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_discord} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_twitter} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div className="custom-sns hide-max-1024px">*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_instagram} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*  className="custom-sns"*/}
+                {/*  onClick={() => copyToClipBoard(window.location.href)}*/}
+                {/*>*/}
+                {/*  <div className="image-sns">*/}
+                {/*    <img src={icon_share} alt="website icon" />*/}
+                {/*  </div>*/}
+                {/*</div>*/}
               </div>
               {/* <div className="dropdown">
                 <div
