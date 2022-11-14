@@ -9,7 +9,7 @@ import Edit from './editprofile';
 import Delete from './deleteaccount';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getMyMBoxList } from '../../services/services';
+import { getHistory, getMyMBoxList } from '../../services/services';
 
 const MyProfile = () => {
   const dropsAccount = useSelector((state: any) => state.account.account);
@@ -34,10 +34,11 @@ const MyProfile = () => {
         talkenUid = _talkenData.uid;
       }
       if (dropsAccount.address) {
-        const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
+        // const res = await getMyMBoxList(dropsAccount.address, talkenUid, 'ASC');
+        const res = await getHistory(dropsAccount.address);
         console.log(res.data);
         if (res.data.status === 1) {
-          setNNfts(res.data.data.length);
+          setNNfts(res.data.data.drops.length);
         }
       }
     };
