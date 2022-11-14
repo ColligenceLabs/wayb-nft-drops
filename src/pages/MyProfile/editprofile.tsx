@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDropsAccount } from '../../redux/slices/account';
 import { CircularProgress } from '@mui/material';
 import ic_sell from '../../assets/svg/sell_icon.svg';
+import check_success from '../../assets/icon/check_success.png';
+import check_error from '../../assets/icon/check_error.png';
 import CSnackbar from '../../components/common/CSnackbar';
-
 type editprofileProps = {
   close: boolean | SetStateAction<any>;
 };
@@ -141,12 +142,19 @@ const editprofile: any = (close: any) => {
               </div>
               <div className="content-box-edit">
                 <div className="content-title">Nickname</div>
-                <input
-                  placeholder="Change Username"
-                  name="name"
-                  value={name}
-                  onChange={handleChangeInputValue}
-                />
+                <span className="wrapper-username">
+                  <input
+                    placeholder="Change Username"
+                    name="name"
+                    value={name}
+                    onChange={handleChangeInputValue}
+                    className="custom-input input-change-username"
+                  />
+                  <div className="image-check-username">
+                    <img src={check_success} alt="Icon Check" />
+                    {/* <img src={check_error} alt="Icon Check" /> */}
+                  </div>
+                </span>
               </div>
               <div className="content-box-edit">
                 <div className="content-title">Email address</div>
@@ -155,6 +163,7 @@ const editprofile: any = (close: any) => {
                   name="email"
                   value={email}
                   onChange={handleChangeInputValue}
+                  className="custom-input"
                 />
               </div>
               <div className="content-box-edit">
@@ -164,6 +173,7 @@ const editprofile: any = (close: any) => {
                   name="twitter"
                   value={twitter}
                   onChange={handleChangeInputValue}
+                  className="custom-input"
                 />
               </div>
               <div className="content-box-edit">
@@ -173,6 +183,7 @@ const editprofile: any = (close: any) => {
                   name="instagram"
                   value={instagram}
                   onChange={handleChangeInputValue}
+                  className="custom-input"
                 />
               </div>
 
