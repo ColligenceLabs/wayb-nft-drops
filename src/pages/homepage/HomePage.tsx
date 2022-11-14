@@ -203,14 +203,11 @@ const Homepage = () => {
         </div>
         {/* <img src={background} alt="" /> */}
         <div className="content-header">
-          <div className="text-head">
-            OFFICIALLY <br />
-            LICENSED
-          </div>
+          <div className="text-head">Talken Drops</div>
           <div className="text-bottom">
-            NFTs and Collectibles from the world&apos;s
+            Check out NFTs and Collectibles from popular teams,
             <br />
-            leading teams, brands, and artists
+            famous brands and world renown artists
           </div>
         </div>
         <div>
