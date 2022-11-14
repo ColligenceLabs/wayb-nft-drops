@@ -549,7 +549,7 @@ const MyCollectiblesDetails = () => {
                               <div className="image-sns">
                                 <img src={klaytn_white} alt="website icon" />
                               </div>
-                              Etherscan Link
+                              Explorer
                             </a>
                           </button>
                         </li>
