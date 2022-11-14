@@ -486,8 +486,9 @@ const CollectionSale = () => {
                     </div>
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
-                  <Link
-                    to={`/klaytn/collection/${itemInfo.infoId}/${itemInfo.id}`}
+                  <div
+                    // to={`/klaytn/collection/${itemInfo.infoId}/${itemInfo.id}`}
+                    onClick={handleClickSeeMore}
                   >
                     <div className="wrapper-see-collection">
                       <div className="image-see-collection">
@@ -495,19 +496,19 @@ const CollectionSale = () => {
                       </div>
                       <div className="title">See this collection</div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
                 <div className="details-info">{mBoxInfo.introduction.en}</div>
               </div>
               <div className="wrapper-other-items">
                 <div className="wrapper-head">
                   <div className="title-items">Other Items</div>
-                  <div
+                  <Link
                     className="seemore-otheritems"
-                    onClick={handleClickSeeMore}
+                    to={`/klaytn/featured/${mBoxInfo.featured?.companyId}`}
                   >
                     See more
-                  </div>
+                  </Link>
                 </div>
                 <Carousel
                   additionalTransfrom={0}
