@@ -32,7 +32,7 @@ const staging: ENV = {
 };
 
 const production: ENV = {
-  REACT_APP_API_SERVER: 'https://nftapi.talken.io',
+  REACT_APP_API_SERVER: 'https://nftapifff.talken.io',
   REACT_APP_TARGET_NETWORK_KLAY: 8217, // TMP
   REACT_APP_TARGET_NETWORK_ETH: 1,
   REACT_APP_TARGET_NETWORK_BNB: 56,
