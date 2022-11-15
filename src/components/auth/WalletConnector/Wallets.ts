@@ -4,7 +4,7 @@ import icon_kaikas from '../../../assets/img/icon_kaikas.png';
 import icon_walletconnect from '../../../assets/img/icon_walletconnect.png';
 
 export const Wallets = [
-  { id: 0, icon: icon_metamask, name: 'Metamask', value: 'metamask' },
+  { id: 0, icon: icon_metamask, name: 'MetaMask', value: 'metamask' },
   {
     id: 1,
     icon: icon_walletconnect,
