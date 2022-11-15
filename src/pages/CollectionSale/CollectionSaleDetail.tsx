@@ -440,7 +440,7 @@ const CollectionSaleDetail = () => {
                 </div>
               ) : (
                 <>
-                  <img src={collectionItemInfo?.itemImage} alt="" />
+                  <img src={collectionItemInfo?.originalImage} alt="" />
                   {/* modal zoom image */}
                   <div
                     className="zoom-image"
