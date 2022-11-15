@@ -258,6 +258,68 @@ const CollectionSale = () => {
             <img src={arrow_btn_back} alt="arrow back" /> Back
           </button> */}
           <div className="product-details">
+            <div className="details-box-mobile">
+              <div className="banner-dropdown" ref={ref}>
+                <div className="logo">
+                  <img
+                    src={mBoxInfo.featured?.company.image}
+                    alt={mBoxInfo.featured?.company.name.en}
+                    className="logo-img"
+                  />
+                  <div className="logo-info">
+                    <div className="creator">Creator</div>
+                    <div className="name">
+                      {mBoxInfo.featured?.company.name.en}
+                    </div>
+                  </div>
+                </div>
+                {/* list sns icon */}
+                <div className="collection-info-right">
+                  <div className="collection-info-left-details">
+                    <div className="info-item hide-max-1024px">
+                      <div
+                        className="image-item"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          moveToScope(
+                            mBoxInfo.chainId,
+                            mBoxInfo?.boxContractAddress,
+                            true
+                          )
+                        }
+                      >
+                        <img src={klaytn_white} alt="website icon" />
+                      </div>
+                    </div>
+                    {getSnsButtons()}
+                    <div className="dropdown hide-min-1025px" ref={refDropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() =>
+                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                        }
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && getSnsMobileButtons()}
+                    </div>
+                  </div>
+                  <div className="line-icon" />
+                  <div className="collection-info-left-details">
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => copyToClipBoard(window.location.href)}
+                      className="info-item"
+                    >
+                      <div className="image-item">
+                        <img src={icon_share} alt="Twitter Icon" width="20px" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="line-banner"></div>
+            </div>
             <div className="wrapper-left">
               <div className="showcase-box">
                 {/*<img src={itemInfo.itemImage} alt="" className="thumbnail" />*/}
