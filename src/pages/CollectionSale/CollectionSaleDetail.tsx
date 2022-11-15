@@ -427,6 +427,68 @@ const CollectionSaleDetail = () => {
       <div>
         <div className="price-collection-view-page">
           <div className="price-collection-box">
+            <div className="token-details-box-mobile">
+              <div className="wrapper-head-token">
+                <div className="box-owner-product" onClick={moveToFeatured}>
+                  <button className="btn-avatar-owner-product">
+                    <img
+                      src={collectionItemInfo?.companyLogo}
+                      alt={collectionItemInfo?.companyName}
+                    />
+                  </button>
+                  <div className="name-owner-product">
+                    <div className="creator-title">Creator</div>
+                    <button className="btn-name-owner-product">
+                      {collectionItemInfo?.companyName}
+                    </button>
+                  </div>
+                </div>
+                <div className="collection-info-right">
+                  <div className="collection-info-left-details">
+                    <div className="info-item hide-max-1024px">
+                      <div
+                        className="image-item"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          moveToScope(
+                            collectionItemInfo?.collectionInfo.chainId,
+                            collectionItemInfo?.collectionInfo
+                              ?.boxContractAddress,
+                            true
+                          )
+                        }
+                      >
+                        <img src={klaytn_white} alt="website icon" />
+                      </div>
+                    </div>
+                    {getSnsButtons()}
+                    <div className="dropdown hide-min-1025px" ref={refDropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() =>
+                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                        }
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && getSnsMobileButtons()}
+                    </div>
+                  </div>
+                  <div className="line-icon" />
+                  <div className="collection-info-left-details">
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => copyToClipBoard(window.location.href)}
+                      className="info-item"
+                    >
+                      <div className="image-item">
+                        <img src={icon_share} alt="Twitter Icon" width="20px" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="token-showcase-box">
               {collectionItemInfo &&
               collectionItemInfo?.originalImage!.indexOf('.mp4') > -1 ? (
@@ -440,7 +502,7 @@ const CollectionSaleDetail = () => {
                 </div>
               ) : (
                 <>
-                  <img src={collectionItemInfo?.itemImage} alt="" />
+                  <img src={collectionItemInfo?.originalImage} alt="" />
                   {/* modal zoom image */}
                   <div
                     className="zoom-image"
@@ -535,6 +597,7 @@ const CollectionSaleDetail = () => {
                   </div>
                 </div>
               </div>
+              <div className="bottom-line" />
               <div>
                 {freedropAble && (
                   <div className="btn-buy-now">

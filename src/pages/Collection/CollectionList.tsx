@@ -162,7 +162,21 @@ const CollectionList: React.FC<CollectionListProps> = ({
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
-                    <img src={item.packageImage} alt="" />
+                    {item.packageImage.split('.').pop() === 'mp4' ? (
+                      <video
+                        playsInline
+                        autoPlay
+                        controls
+                        muted
+                        loop
+                        controlsList="nodownload"
+                        width={'100%'}
+                      >
+                        <source src={item.packageImage} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img src={item.packageImage} alt="" draggable={false} />
+                    )}
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">

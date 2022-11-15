@@ -59,6 +59,7 @@ import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
+import moment from 'moment';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -224,9 +225,13 @@ const MyCollectiblesDetails = () => {
         talkenUid = _talkenData.uid;
         talkenEthAddress = account?.toLowerCase();
       }
-      const signature = await library
-        .getSigner()
-        .signMessage(`${talkenUid} Claims ${claimableCount}NFTs`);
+      const message = `apps.talken.io wants you to sign in with your Ethereum account.
+
+Talken Drops Signature Request
+
+Type: Claim
+NFTs: ${claimableCount}`;
+      const signature = await library.getSigner().signMessage(message);
       const data = {
         mysterybox_id: mboxInfo?.id,
         buyer: talkenUid,
@@ -493,7 +498,21 @@ const MyCollectiblesDetails = () => {
         </Link> */}
         <div className="product-details">
           <div className="showcase-box">
-            <img src={mboxInfo?.packageImage} alt="" className="thumbnail" />
+            {mboxInfo?.packageImage.split('.').pop() === 'mp4' ? (
+              <video
+                playsInline
+                autoPlay
+                controls
+                muted
+                loop
+                controlsList="nodownload"
+                width={'100%'}
+              >
+                <source src={mboxInfo?.packageImage} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={mboxInfo?.packageImage} alt="" draggable={false} />
+            )}
             {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
           <div className="details-box">

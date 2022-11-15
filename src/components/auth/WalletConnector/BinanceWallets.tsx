@@ -81,11 +81,13 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         // setWalletName('talken');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
-      } else {
+      } else if (id === 3) {
         console.log(`click ${id}, this is Kaikas (Binance)`);
         // setWalletName('kaikas');
         await activate(kaikas, undefined, true);
         await dispatch(setActivatingConnector(kaikas));
+      } else {
+        console.log('abc wallet');
       }
       window.localStorage.setItem('walletStatus', 'connected');
       close();
