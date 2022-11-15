@@ -250,7 +250,6 @@ const CollectionSale = () => {
   }, [params, library]);
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
   useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
-  console.log('>>>><<<<', itemInfo);
   return (
     <main className="collectibles-item-details-container min-height-content">
       {mBoxInfo && itemInfo && (
@@ -270,7 +269,7 @@ const CollectionSale = () => {
                   <img
                     className="thumbnail"
                     style={{ objectFit: 'cover' }}
-                    src={itemInfo.itemImage}
+                    src={itemInfo.originalImage}
                     alt=""
                   />
                 )}
@@ -464,7 +463,7 @@ const CollectionSale = () => {
                 <div className="wrapper-content-details">
                   <div className="wrapper-user">
                     <div className="avt-user">
-                      <img src={mBoxInfo.packageImage} alt="icon avatar" />
+                      <img src={itemInfo.itemImage} alt="icon avatar" />
                     </div>
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
@@ -503,7 +502,7 @@ const CollectionSale = () => {
                   minimumTouchDrag={80}
                   pauseOnHover
                   renderArrowsWhenDisabled={false}
-                  renderButtonGroupOutside={false}
+                  renderButtonGroupOutside={true}
                   renderDotsOutside={true}
                   rewind={false}
                   rewindWithAnimation={false}

@@ -298,14 +298,32 @@
             }
             .wrapper-input {
               position: relative;
+
               .image-check-validate {
                 position: absolute;
                 top: 0;
                 right: 15px;
                 width: 14px;
+
                 img {
                   width: 100%;
                 }
+              }
+            }
+            .duplicate-wrapper {
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              //text-align: right;
+              //padding: 0px 15px;
+              color: red;
+              .duplicate-info-icon {
+                font-size: 16px;
+                margin-right: 2px;
+              }
+              .duplicate-info {
+                font-size: 16px;
               }
             }
 

@@ -160,6 +160,10 @@
                 height: 100%;
                 object-fit: contain;
               }
+              video {
+                max-height: 242px;
+                width: 100%;
+              }
             }
             .box-info {
               display: flex;
