@@ -634,14 +634,14 @@
                 }
               }
             }
-            &:hover {
-              .arrow-item-details {
-                .arrow-one {
-                  background: #ffffff;
-                }
-                .arrow-two {
-                  background: #ffffff;
-                }
+          }
+          &:hover {
+            .arrow-item-details {
+              .arrow-one {
+                opacity: 1;
+              }
+              .arrow-two {
+                opacity: 1;
               }
             }
           }
