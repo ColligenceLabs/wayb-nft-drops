@@ -59,6 +59,7 @@ import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
+import moment from 'moment';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -224,9 +225,14 @@ const MyCollectiblesDetails = () => {
         talkenUid = _talkenData.uid;
         talkenEthAddress = account?.toLowerCase();
       }
-      const signature = await library
-        .getSigner()
-        .signMessage(`${talkenUid} Claims ${claimableCount}NFTs`);
+      const signature = await library.getSigner()
+        .signMessage(`apps.talken.io wants you to sign in with your Ethereum account.
+
+        Talken Drops Signature Request
+        
+        Type: Claim
+        NFTs: ${claimableCount}
+        Issued At: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
       const data = {
         mysterybox_id: mboxInfo?.id,
         buyer: talkenUid,
