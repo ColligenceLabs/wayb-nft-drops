@@ -502,7 +502,7 @@ const CollectionSale = () => {
                   minimumTouchDrag={80}
                   pauseOnHover
                   renderArrowsWhenDisabled={false}
-                  renderButtonGroupOutside={false}
+                  renderButtonGroupOutside={true}
                   renderDotsOutside={true}
                   rewind={false}
                   rewindWithAnimation={false}

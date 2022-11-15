@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { MutableRefObject, useRef, useEffect, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -7,7 +7,7 @@ import icon_discord from '../../assets/img/icon_discord.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
 import icon_twitter from '../../assets/img/icon_twitter.png';
 import icon_share from '../../assets/img/icon_share.png';
-
+import ic_dropdown from '../../assets/svg/dropdown_button_dots.svg';
 import { useParams } from 'react-router-dom';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { getFeaturedById } from '../../services/services';
@@ -15,6 +15,7 @@ import CollectionList from './CollectionList';
 import useCopyToClipBoard from 'hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { useMediaQuery } from 'react-responsive';
+import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 
 type LinkTypes = {
   type: string;
@@ -34,6 +35,7 @@ const Collection = () => {
     type: '',
     message: '',
   });
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -52,7 +54,7 @@ const Collection = () => {
             style={{
               cursor: 'pointer',
             }}
-            className="info-item"
+            className="info-item hide-max-540px"
             onClick={() => window.open(link.url)}
           >
             <div className="image-item">
@@ -77,7 +79,41 @@ const Collection = () => {
       return null;
     }
   };
-
+  const getSnsMobileButtons = () => {
+    return (
+      <ul className="dropdown-box">
+        {featured &&
+          featured.links.map((link: LinkTypes) => (
+            <li className="list-dropdown-item">
+              <button className="dropdown-item-nft  button">
+                <a href={link.url} target="_blank" className="custom-link-sns">
+                  <div className="image-sns">
+                    {link.type === 'SITE' && (
+                      <img src={website_icon} alt="Website Icon" />
+                    )}
+                    {link.type === 'DISCORD' && (
+                      <img src={icon_discord} alt="Website Icon" />
+                    )}
+                    {link.type === 'TWITTER' && (
+                      <img src={icon_twitter} alt="Website Icon" />
+                    )}
+                    {link.type === 'INSTAGRAM' && (
+                      <img src={icon_instagram} alt="Website Icon" />
+                    )}
+                  </div>
+                  {link.type === 'SITE' && 'Website'}
+                  {link.type === 'DISCORD' && 'Discord'}
+                  {link.type === 'TWITTER' && 'Twitter'}
+                  {link.type === 'INSTAGRAM' && 'Instagram'}
+                </a>
+              </button>
+            </li>
+          ))}
+      </ul>
+    );
+  };
+  const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
+  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   useEffect(() => {
     const fetchFeatured = async () => {
       const res = await getFeaturedById(params.id!);
@@ -127,6 +163,17 @@ const Collection = () => {
                     {/*  <div className="value">100</div>*/}
                     {/*  <div className="label">NFTs</div>*/}
                     {/*</div>*/}
+                    <div className="dropdown hide-min-540px" ref={refDropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() =>
+                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                        }
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && getSnsMobileButtons()}
+                    </div>
                   </div>
                   {featured.links && featured.links.length > 0 && (
                     <div className="line-icon" />
