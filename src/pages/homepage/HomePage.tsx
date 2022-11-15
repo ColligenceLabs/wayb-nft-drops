@@ -442,11 +442,28 @@ const Homepage = () => {
                       </div>
                       <div className="hot-ollectibles-item">
                         <div className="img-token">
-                          <img
-                            src={item.packageImage}
-                            alt=""
-                            draggable={false}
-                          />
+                          {item.packageImage.split('.').pop() === 'mp4' ? (
+                            <video
+                              playsInline
+                              autoPlay
+                              controls
+                              muted
+                              loop
+                              controlsList="nodownload"
+                              width={'100%'}
+                            >
+                              <source
+                                src={item.packageImage}
+                                type="video/mp4"
+                              />
+                            </video>
+                          ) : (
+                            <img
+                              src={item.packageImage}
+                              alt=""
+                              draggable={false}
+                            />
+                          )}
                         </div>
                       </div>
                       <div className="hot-ollectibles-item">
@@ -860,11 +877,28 @@ const Homepage = () => {
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
-                            <img
-                              src={item.packageImage}
-                              alt=""
-                              draggable={false}
-                            />
+                            {item.packageImage.split('.').pop() === 'mp4' ? (
+                              <video
+                                playsInline
+                                autoPlay
+                                controls
+                                muted
+                                loop
+                                controlsList="nodownload"
+                                width={'100%'}
+                              >
+                                <source
+                                  src={item.packageImage}
+                                  type="video/mp4"
+                                />
+                              </video>
+                            ) : (
+                              <img
+                                src={item.packageImage}
+                                alt=""
+                                draggable={false}
+                              />
+                            )}
                           </div>
                         </div>
                         <div className="hot-ollectibles-item">

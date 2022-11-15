@@ -286,6 +286,58 @@ const CollectionSaleDetail = () => {
       return null;
     }
   };
+  const getSnsMobileButtons = () => {
+    return (
+      <ul className="dropdown-box">
+        <li className="list-dropdown-item">
+          <button
+            className="dropdown-item-nft  button"
+            onClick={() =>
+              moveToScope(
+                collectionItemInfo?.collectionInfo.chainId,
+                collectionItemInfo?.collectionInfo?.boxContractAddress,
+                true
+              )
+            }
+          >
+            <div className="custom-link-sns">
+              <div className="image-sns">
+                <img src={klaytn_white} alt="website icon" />
+              </div>
+              Explorer
+            </div>
+          </button>
+        </li>
+        {featuredInfo &&
+          featuredInfo.links.map((link: LinkTypes) => (
+            <li className="list-dropdown-item">
+              <button className="dropdown-item-nft  button">
+                <a href={link.url} target="_blank" className="custom-link-sns">
+                  <div className="image-sns">
+                    {link.type === 'SITE' && (
+                      <img src={website_icon} alt="Website Icon" />
+                    )}
+                    {link.type === 'DISCORD' && (
+                      <img src={icon_discord} alt="Website Icon" />
+                    )}
+                    {link.type === 'TWITTER' && (
+                      <img src={icon_twitter} alt="Website Icon" />
+                    )}
+                    {link.type === 'INSTAGRAM' && (
+                      <img src={icon_instagram} alt="Website Icon" />
+                    )}
+                  </div>
+                  {link.type === 'SITE' && 'Website'}
+                  {link.type === 'DISCORD' && 'Discord'}
+                  {link.type === 'TWITTER' && 'Twitter'}
+                  {link.type === 'INSTAGRAM' && 'Instagram'}
+                </a>
+              </button>
+            </li>
+          ))}
+      </ul>
+    );
+  };
 
   const getItemUrl = (infoId: number, itemId: number, item: MBoxTypes) => {
     let url = '/';
@@ -388,7 +440,7 @@ const CollectionSaleDetail = () => {
                 </div>
               ) : (
                 <>
-                  <img src={collectionItemInfo?.itemImage} alt="" />
+                  <img src={collectionItemInfo?.originalImage} alt="" />
                   {/* modal zoom image */}
                   <div
                     className="zoom-image"
@@ -456,7 +508,7 @@ const CollectionSaleDetail = () => {
                         <img src={klaytn_white} alt="website icon" />
                       </div>
                     </div>
-                    <>{getSnsButtons()}</>
+                    {getSnsButtons()}
                     <div className="dropdown hide-min-1025px" ref={refDropdown}>
                       <div
                         className="dropdown-button"
@@ -466,21 +518,7 @@ const CollectionSaleDetail = () => {
                       >
                         <img src={ic_dropdown} alt="dropdown" />
                       </div>
-                      {dropdownOpen && (
-                        <ul className="dropdown-box">
-                          <li className="list-dropdown-item">
-                            <button className="dropdown-item-nft  button">
-                              <a href="/" className="custom-link-sns">
-                                <div className="image-sns">
-                                  <img src={klaytn_white} alt="website icon" />
-                                </div>
-                                Explorer
-                              </a>
-                            </button>
-                          </li>
-                          <>{getSnsButtonsPopup()}</>
-                        </ul>
-                      )}
+                      {dropdownOpen && getSnsMobileButtons()}
                     </div>
                   </div>
                   <div className="line-icon" />

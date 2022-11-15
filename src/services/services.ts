@@ -125,3 +125,10 @@ export const getRandomItemListByCompanyId = async (companyId: string) => {
     `/api/service/company/${companyId}/random-items`
   );
 };
+
+export const nicknameDuplicateCheck = async (nickname: string) => {
+  const token = window.localStorage.getItem('dropsJwtToken');
+  return await customAxios.get(`/api/account/name/duplicate?name=${nickname}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
