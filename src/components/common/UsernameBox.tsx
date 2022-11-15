@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import icon_twitter from '../../assets/img/icon_twitter.png';
 // import icon_discord from '../../assets/img/icon_discord.png';
 // import icon_telegram from '../../assets/img/icon_telegram.png';
@@ -41,6 +41,8 @@ const UsernameBox = () => {
     dispatch(initDropsAccount());
     localStorage.removeItem('dropsJwtToken');
   };
+  const navigate = useNavigate();
+  console.log(navigate, 'navigateLogout');
 
   return (
     <div className="user-dropdown-box">
@@ -214,6 +216,7 @@ const UsernameBox = () => {
         onClick={() => {
           handleClickLogout();
           closeSidebar();
+          navigate('/');
         }}
       >
         Log Out
