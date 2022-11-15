@@ -948,6 +948,7 @@
         .details-box-mobile {
           display: block;
           margin: 0px auto;
+          width: 90%;
           .banner-dropdown {
             display: flex;
             -webkit-box-align: center;
@@ -1272,6 +1273,12 @@
         }
         .details-box {
           margin: 0px auto;
+          .logo {
+            display: none;
+          }
+          .collection-info-right {
+            display: none;
+          }
           .label-name {
             padding: 0px;
             margin-bottom: 20px;
