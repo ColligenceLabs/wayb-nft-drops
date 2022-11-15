@@ -60,6 +60,13 @@
           height: 100%;
           object-fit: contain;
         }
+        img {
+          width: 100%;
+        }
+        video {
+          width: 100%;
+          max-height: 500px;
+        }
       }
 
       .details-box {
@@ -794,6 +801,13 @@
           .thumbnail {
             width: 100%;
           }
+          img {
+            width: 100%;
+          }
+          video {
+            width: 100%;
+            max-height: 500px;
+          }
         }
         .details-box {
           margin: 60px auto;
@@ -920,6 +934,13 @@
           }
           .thumbnail {
             height: auto;
+          }
+          img {
+            width: 100%;
+          }
+          video {
+            width: 100%;
+            max-height: 500px;
           }
         }
         .details-box {
