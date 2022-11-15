@@ -88,7 +88,7 @@
       .collection-info-right {
         display: flex;
         -webkit-box-pack: center;
-        justify-content: center;
+        justify-content: flex-end;
         gap: 5px;
         .collection-info-left-details {
           display: flex;
@@ -1393,7 +1393,6 @@
     .collection-details-box {
       .collection-info {
         margin: 0;
-        flex-wrap: wrap;
         .collection-info-left {
           display: flex;
 
@@ -1404,6 +1403,7 @@
           }
           .name {
             padding: 0px 10px;
+            width: 170px;
           }
         }
         .collection-info-right {
@@ -2121,6 +2121,7 @@
           }
           .name {
             padding: 0px 10px;
+            width: 170px;
           }
         }
       }
@@ -2153,6 +2154,7 @@
           }
           .name {
             padding: 0px 10px;
+            width: 170px;
             .fullname {
               font-size: 18px;
             }
@@ -2203,6 +2205,7 @@
 
           .name {
             padding: 0px;
+            width: 170px;
             margin-top: 0;
             .username {
               font-size: 16px;
