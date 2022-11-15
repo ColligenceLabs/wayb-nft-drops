@@ -1,7 +1,9 @@
 import React, { ChangeEvent, SetStateAction, useEffect, useState } from 'react';
 import avatar from '../../assets/img/avatar.png';
 import edit_blue from '../../assets/img/edit_blue.png';
-import { updateAccount } from '../../services/services';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorIcon from '@mui/icons-material/Error';
+import { nicknameDuplicateCheck, updateAccount } from '../../services/services';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDropsAccount } from '../../redux/slices/account';
 import { CircularProgress } from '@mui/material';
@@ -9,6 +11,7 @@ import ic_sell from '../../assets/svg/sell_icon.svg';
 import check_success from '../../assets/icon/check_success.png';
 import check_error from '../../assets/icon/check_error.png';
 import CSnackbar from '../../components/common/CSnackbar';
+import { SUCCESS } from '../../config';
 type editprofileProps = {
   close: boolean | SetStateAction<any>;
 };
@@ -29,7 +32,9 @@ const editprofile: any = (close: any) => {
     message: '',
   });
   const [isCheckName, setIsCheckName] = useState(false);
+  const [isDuplicateName, setIsDuplicateName] = useState(false);
   const [isCheckEmail, setIsCheckEmail] = useState(false);
+
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
       open: false,
@@ -70,6 +75,19 @@ const editprofile: any = (close: any) => {
       const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
       const checkEmail = regex.test(value);
       !checkEmail ? setIsCheckEmail(true) : setIsCheckEmail(false);
+    }
+  };
+
+  const handleOnBlur = async () => {
+    if (name === dropsAccount.name) {
+      setIsDuplicateName(false);
+      return;
+    }
+    const res = await nicknameDuplicateCheck(name);
+    if (res.data.status !== SUCCESS) {
+      setIsDuplicateName(true);
+    } else {
+      setIsDuplicateName(false);
     }
   };
 
@@ -159,16 +177,25 @@ const editprofile: any = (close: any) => {
                     name="name"
                     value={name}
                     onChange={handleChangeInputValue}
+                    onBlur={handleOnBlur}
                     className="custom-input input-change-username"
                   />
-                  <div className="image-check-validate">
-                    {!isCheckName && name !== '' ? (
-                      <img src={check_success} alt="Icon Check" />
-                    ) : (
-                      <img src={check_error} alt="Icon Check" />
-                    )}
-                  </div>
+                  {/*<div className="image-check-validate">*/}
+                  {/*  {!isDuplicateName && name !== '' ? (*/}
+                  {/*    <img src={check_success} alt="Icon Check" />*/}
+                  {/*  ) : (*/}
+                  {/*    <img src={check_error} alt="Icon Check" />*/}
+                  {/*  )}*/}
+                  {/*</div>*/}
                 </span>
+                {isDuplicateName && (
+                  <div className="duplicate-wrapper">
+                    <ErrorIcon className="duplicate-info-icon" />
+                    <span className="duplicate-info">
+                      That nickname is duplicated. Try another.
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="content-box-edit">
                 <div className="content-title">Email address</div>
@@ -180,13 +207,13 @@ const editprofile: any = (close: any) => {
                     onChange={handleChangeInputValue}
                     className="custom-input"
                   />
-                  <div className="image-check-validate">
-                    {!isCheckEmail && name !== '' ? (
-                      <img src={check_success} alt="Icon Check" />
-                    ) : (
-                      <img src={check_error} alt="Icon Check" />
-                    )}
-                  </div>
+                  {/*<div className="image-check-validate">*/}
+                  {/*  {!isCheckEmail && name !== '' ? (*/}
+                  {/*    <img src={check_success} alt="Icon Check" />*/}
+                  {/*  ) : (*/}
+                  {/*    <img src={check_error} alt="Icon Check" />*/}
+                  {/*  )}*/}
+                  {/*</div>*/}
                 </span>
               </div>
               <div className="content-box-edit">
@@ -213,10 +240,18 @@ const editprofile: any = (close: any) => {
               <button
                 onClick={handleClickSave}
                 disabled={
-                  isCheckName || name === '' || isCheckEmail || email === ''
+                  isCheckName ||
+                  name === '' ||
+                  isCheckEmail ||
+                  email === '' ||
+                  isDuplicateName
                 }
                 className={
-                  isCheckName || name === '' || isCheckEmail || email === ''
+                  isCheckName ||
+                  name === '' ||
+                  isCheckEmail ||
+                  email === '' ||
+                  isDuplicateName
                     ? 'disabled-button'
                     : ''
                 }
