@@ -852,7 +852,6 @@ const Homepage = () => {
               {airdropList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
-                  console.log('item::?', item);
                   return (
                     <Link
                       to={`/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
