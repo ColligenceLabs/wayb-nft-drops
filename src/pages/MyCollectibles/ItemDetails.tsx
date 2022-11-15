@@ -270,7 +270,7 @@ const CollectionSale = () => {
                   <img
                     className="thumbnail"
                     style={{ objectFit: 'cover' }}
-                    src={itemInfo.itemImage}
+                    src={itemInfo.originalImage}
                     alt=""
                   />
                 )}
@@ -464,7 +464,7 @@ const CollectionSale = () => {
                 <div className="wrapper-content-details">
                   <div className="wrapper-user">
                     <div className="avt-user">
-                      <img src={mBoxInfo.packageImage} alt="icon avatar" />
+                      <img src={itemInfo.itemImage} alt="icon avatar" />
                     </div>
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
