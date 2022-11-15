@@ -260,7 +260,21 @@ const MyCollectibles = () => {
                 <div className="item-product">
                   <div className="item-product-detail">
                     <div className="card-image">
-                      <img src={item.packageImage} alt="" />
+                      {item.packageImage.split('.').pop() === 'mp4' ? (
+                        <video
+                          playsInline
+                          autoPlay
+                          controls
+                          muted
+                          loop
+                          controlsList="nodownload"
+                          width={'100%'}
+                        >
+                          <source src={item.packageImage} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <img src={item.packageImage} alt="" draggable={false} />
+                      )}
                     </div>
                   </div>
 

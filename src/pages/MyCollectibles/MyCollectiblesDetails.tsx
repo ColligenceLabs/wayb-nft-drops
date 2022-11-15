@@ -493,7 +493,21 @@ const MyCollectiblesDetails = () => {
         </Link> */}
         <div className="product-details">
           <div className="showcase-box">
-            <img src={mboxInfo?.packageImage} alt="" className="thumbnail" />
+            {mboxInfo?.packageImage.split('.').pop() === 'mp4' ? (
+              <video
+                playsInline
+                autoPlay
+                controls
+                muted
+                loop
+                controlsList="nodownload"
+                width={'100%'}
+              >
+                <source src={mboxInfo?.packageImage} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={mboxInfo?.packageImage} alt="" draggable={false} />
+            )}
             {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
           </div>
           <div className="details-box">
