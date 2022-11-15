@@ -35,6 +35,20 @@ const editprofile: any = (close: any) => {
   const [isDuplicateName, setIsDuplicateName] = useState(false);
   const [isCheckEmail, setIsCheckEmail] = useState(false);
 
+  const initAccountData = () => {
+    if (dropsAccount.address !== '') {
+      console.log('asdf');
+      setName(dropsAccount.name);
+      setEmail(dropsAccount.email);
+      setPreviewLogo(dropsAccount.profile_image);
+      setTwitter(dropsAccount.twitter);
+      setInstagram(dropsAccount.instagram);
+      setIsCheckName(false);
+      setIsDuplicateName(false);
+      setIsCheckEmail(false);
+    }
+  };
+
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
       open: false,
@@ -55,6 +69,11 @@ const editprofile: any = (close: any) => {
         resolve();
       };
     });
+  };
+
+  const handleClose = () => {
+    initAccountData();
+    close();
   };
 
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -115,14 +134,8 @@ const editprofile: any = (close: any) => {
   };
 
   useEffect(() => {
-    if (dropsAccount.address !== '') {
-      setName(dropsAccount.name);
-      setEmail(dropsAccount.email);
-      setPreviewLogo(dropsAccount.profile_image);
-      setTwitter(dropsAccount.twitter);
-      setInstagram(dropsAccount.instagram);
-    }
-  }, []);
+    initAccountData();
+  }, [dropsAccount]);
 
   return (
     <div className="modal-editprofile">
@@ -131,7 +144,7 @@ const editprofile: any = (close: any) => {
           <div className="edit-profile-modal-box">
             <div className="title">
               <div className="custom-title">Edit Profile</div>
-              <button className="close" onClick={close}>
+              <button className="close" onClick={handleClose}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
