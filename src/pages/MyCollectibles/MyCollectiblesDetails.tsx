@@ -225,19 +225,19 @@ const MyCollectiblesDetails = () => {
         talkenUid = _talkenData.uid;
         talkenEthAddress = account?.toLowerCase();
       }
-      const signature = await library.getSigner()
-        .signMessage(`apps.talken.io wants you to sign in with your Ethereum account.
+      const message = `apps.talken.io wants you to sign in with your Ethereum account.
 
-        Talken Drops Signature Request
-        
-        Type: Claim
-        NFTs: ${claimableCount}
-        Issued At: ${moment().format('YYYY-MM-DD HH:mm:ss')}`);
+      Talken Drops Signature Request
+      
+      Type: Claim
+      NFTs: ${claimableCount}`;
+      const signature = await library.getSigner().signMessage(message);
       const data = {
         mysterybox_id: mboxInfo?.id,
         buyer: talkenUid,
         buyer_address: talkenEthAddress,
         contract: mboxInfo?.boxContractAddress,
+        message,
         signature,
       };
       const res = await requestClaim(data);
