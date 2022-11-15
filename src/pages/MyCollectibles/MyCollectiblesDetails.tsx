@@ -433,58 +433,54 @@ const MyCollectiblesDetails = () => {
       return null;
     }
   };
-  const getSnsButtonsPopup = () => {
-    if (featuredInfo && featuredInfo.links) {
-      const test = featuredInfo.links.map((link: LinkTypes) => {
-        return (
-          <li
-            className="list-dropdown-item"
-            onClick={() => window.open(link.url)}
+
+  const getSnsMobileButtons = () => {
+    return (
+      <ul className="dropdown-box">
+        <li className="list-dropdown-item">
+          <button
+            className="dropdown-item-nft  button"
+            onClick={() =>
+              moveToScope(mboxInfo?.chainId, mboxInfo?.boxContractAddress, true)
+            }
           >
-            <button
-              className="dropdown-item-nft  button"
-              style={{ cursor: 'pointer' }}
-            >
-              {link.type === 'SITE' && (
-                <div className="custom-link-sns">
+            <div className="custom-link-sns">
+              <div className="image-sns">
+                <img src={klaytn_white} alt="website icon" />
+              </div>
+              Explorer
+            </div>
+          </button>
+        </li>
+        {featuredInfo &&
+          featuredInfo.links.map((link: LinkTypes) => (
+            <li className="list-dropdown-item">
+              <button className="dropdown-item-nft  button">
+                <a href={link.url} target="_blank" className="custom-link-sns">
                   <div className="image-sns">
-                    <img src={website_icon} alt="website icon" />
+                    {link.type === 'SITE' && (
+                      <img src={website_icon} alt="Website Icon" />
+                    )}
+                    {link.type === 'DISCORD' && (
+                      <img src={icon_discord} alt="Website Icon" />
+                    )}
+                    {link.type === 'TWITTER' && (
+                      <img src={icon_twitter} alt="Website Icon" />
+                    )}
+                    {link.type === 'INSTAGRAM' && (
+                      <img src={icon_instagram} alt="Website Icon" />
+                    )}
                   </div>
-                  Website
-                </div>
-              )}
-              {link.type === 'DISCORD' && (
-                <div className="custom-link-sns">
-                  <div className="image-sns">
-                    <img src={icon_discord} alt="website icon" />
-                  </div>
-                  Discord
-                </div>
-              )}
-              {link.type === 'TWITTER' && (
-                <div className="custom-link-sns">
-                  <div className="image-sns">
-                    <img src={icon_twitter} alt="website icon" />
-                  </div>
-                  Twitter
-                </div>
-              )}
-              {link.type === 'INSTAGRAM' && (
-                <div className="custom-link-sns">
-                  <div className="image-sns">
-                    <img src={icon_instagram} alt="website icon" />
-                  </div>
-                  Instagram
-                </div>
-              )}
-            </button>
-          </li>
-        );
-      });
-      return test;
-    } else {
-      return null;
-    }
+                  {link.type === 'SITE' && 'Website'}
+                  {link.type === 'DISCORD' && 'Discord'}
+                  {link.type === 'TWITTER' && 'Twitter'}
+                  {link.type === 'INSTAGRAM' && 'Instagram'}
+                </a>
+              </button>
+            </li>
+          ))}
+      </ul>
+    );
   };
   console.log('mbox???', featuredInfo);
   return (
@@ -531,7 +527,7 @@ const MyCollectiblesDetails = () => {
                       <img src={klaytn_white} alt="website icon" />
                     </div>
                   </div>
-                  <>{getSnsButtons()}</>
+                  {getSnsButtons()}
                   <div className="dropdown hide-min-1025px" ref={refDropdown}>
                     <div
                       className="dropdown-button"
@@ -541,21 +537,7 @@ const MyCollectiblesDetails = () => {
                     >
                       <img src={ic_dropdown} alt="dropdown" />
                     </div>
-                    {dropdownOpen && (
-                      <ul className="dropdown-box">
-                        <li className="list-dropdown-item">
-                          <button className="dropdown-item-nft  button">
-                            <a href="/" className="custom-link-sns">
-                              <div className="image-sns">
-                                <img src={klaytn_white} alt="website icon" />
-                              </div>
-                              Explorer
-                            </a>
-                          </button>
-                        </li>
-                        <>{getSnsButtonsPopup}</>
-                      </ul>
-                    )}
+                    {dropdownOpen && getSnsMobileButtons()}
                   </div>
                 </div>
                 <div className="line-icon" />
