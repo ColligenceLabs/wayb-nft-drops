@@ -6,29 +6,24 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
-import { hotCollectiblesTestData } from './mockData';
 import {
   getAirdropList,
   getCollectibleList,
   getCollectionList,
   getEventList,
   getFeaturedCollections,
-  getFeaturedList,
 } from '../../services/services';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import FeaturedCard from '../../components/card/FeaturedCard';
 import ArrowCarouselCollections from 'components/common/ArrowCarouselCollections';
 import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { getPrice } from '../../utils/getPrice';
 import ArrowCarouselBannerMain from 'components/common/ArrowCarouselBannerMain';
 import { getRarityToString } from '../../utils/getRarityToString';
-import { getNetworkNameByChainId } from 'utils/getNetworkNameByChainId';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import Skeleton from 'components/common/skeleton/Skeleton';
-import { isMobile } from 'react-device-detect';
 import { useMediaQuery } from 'react-responsive';
 
 type ExMBoxType = MBoxTypes & {
