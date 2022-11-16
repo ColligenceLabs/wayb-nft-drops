@@ -16,7 +16,11 @@ import { FAILURE, SUCCESS, targetNetwork } from '../../config';
 import { registerBuy } from '../../services/services';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { CircularProgress, Typography } from '@mui/material';
-import { checkConnectWallet } from '../../utils/wallet';
+import {
+  checkConnectWallet,
+  checkKaikasWallet,
+  getTargetNetworkName,
+} from '../../utils/wallet';
 import {
   buyKey,
   claimAirDrop,
@@ -252,6 +256,10 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             // setLoginOpen(true);
             return false;
           }
+          const isKaikas = checkKaikasWallet(
+            wallet,
+            getTargetNetworkName(itemInfo.chainId) ?? ''
+          );
           const amount = 1;
           const price = itemInfo.price ?? 0;
           const quote = itemInfo.quote;
@@ -297,7 +305,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               itemInfo.keyContractAddress,
               itemInfo.boxContractAddress,
               account,
-              library
+              library,
+              isKaikas
             );
             setRemains(left);
 

@@ -192,7 +192,7 @@ export const checkKaikas = (library: any) => {
 };
 
 export const checkKaikasWallet = (wallet: any, network: string) => {
-  if (wallet[network].wallet === 'kaikas') return true;
+  if (wallet[network]?.wallet === 'kaikas') return true;
   return false;
 };
 

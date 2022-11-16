@@ -37,13 +37,10 @@ interface Overrides {
 export async function getKeyBalance(
   address: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
   if (!library) return 0;
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -84,13 +81,10 @@ export async function getKeyRemains(
   address: string,
   mysteryBox: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
   if (!library) return 0;
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
 
   console.log(isKaikas);
   let contract: any;
@@ -138,14 +132,10 @@ export async function getKeyRemains(
 export async function getItemBalance(
   address: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
   if (!library) return 0;
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
-
   console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
