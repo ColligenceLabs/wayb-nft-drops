@@ -34,6 +34,7 @@ import { moveToScope } from '../../utils/moveToScope';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
+import env from '../../env';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -80,7 +81,7 @@ const CollectionSale = () => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  useOnClickOutside(ref, () => setDropdownOpen(false));
+  // useOnClickOutside(ref, () => setDropdownOpen(false));
 
   const { library } = useWeb3React();
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
@@ -249,7 +250,7 @@ const CollectionSale = () => {
     fetchMboxItemList();
   }, [params, library]);
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   return (
     <main className="collectibles-item-details-container min-height-content">
       {mBoxInfo && itemInfo && (
@@ -514,7 +515,11 @@ const CollectionSale = () => {
                 </div>
                 <div className="item">
                   <div className="label">Network</div>
-                  <div className="value">{getNetworkNameByChainId(1001)}</div>
+                  <div className="value">
+                    {getNetworkNameByChainId(
+                      env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217
+                    )}
+                  </div>
                 </div>
               </div>
               {/* <div className="list-trade"></div> */}

@@ -89,7 +89,7 @@ const CollectionSaleDetail = () => {
     setWarningOpen(false);
   };
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   const handeCheckCountDownFinish = () => {
     setCountDownFinish(true);
   };

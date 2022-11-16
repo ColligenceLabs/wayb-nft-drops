@@ -103,7 +103,7 @@ const MyCollectiblesDetails = () => {
   });
   const wallet = useSelector((state: any) => state.wallet);
   const { activate } = useWeb3React();
-  useOnClickOutside(ref, () => setDropdownOpen(false));
+  // useOnClickOutside(ref, () => setDropdownOpen(false));
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -404,7 +404,7 @@ NFTs: ${claimableCount}`;
     fetchFeatured();
   }, [mboxInfo]);
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   const getSnsButtons = () => {
     if (featuredInfo && featuredInfo.links) {
       const test = featuredInfo.links.map((link: LinkTypes) => {

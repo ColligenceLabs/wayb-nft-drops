@@ -13,7 +13,7 @@ import { collectionData } from '../contracts';
 import getSelectedNodeUrl from './getRpcUrl';
 import { airDropAbi } from '../config/abi/AirDrop';
 
-const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 1001];
+const rpcUrl = RPC_URLS[env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217];
 const caver = new Caver(rpcUrl);
 
 export function calculateGasMargin(value: BigNumber) {

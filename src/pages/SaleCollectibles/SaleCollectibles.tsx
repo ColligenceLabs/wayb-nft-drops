@@ -85,7 +85,7 @@ const SaleCollectibles = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const refdropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refdropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refdropdown, () => setDropdownOpen(false));
   const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
 
   const closeWarning = () => {
