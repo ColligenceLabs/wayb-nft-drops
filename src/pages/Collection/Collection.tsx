@@ -163,17 +163,22 @@ const Collection = () => {
                     {/*  <div className="value">100</div>*/}
                     {/*  <div className="label">NFTs</div>*/}
                     {/*</div>*/}
-                    <div className="dropdown hide-min-540px" ref={refDropdown}>
+                    {featured.links && featured.links.length > 0 && (
                       <div
-                        className="dropdown-button"
-                        onClick={() =>
-                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
-                        }
+                        className="dropdown hide-min-540px"
+                        ref={refDropdown}
                       >
-                        <img src={ic_dropdown} alt="dropdown" />
+                        <div
+                          className="dropdown-button"
+                          onClick={() =>
+                            setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                          }
+                        >
+                          <img src={ic_dropdown} alt="dropdown" />
+                        </div>
+                        {dropdownOpen && getSnsMobileButtons()}
                       </div>
-                      {dropdownOpen && getSnsMobileButtons()}
-                    </div>
+                    )}
                   </div>
                   {featured.links && featured.links.length > 0 && (
                     <div className="line-icon" />
