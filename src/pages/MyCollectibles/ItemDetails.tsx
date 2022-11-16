@@ -380,7 +380,6 @@ const CollectionSale = () => {
                         <div className="name">Contract Address</div>
                         <div
                           className="info-name"
-                          style={{ cursor: 'pointer' }}
                           onClick={() =>
                             moveToScope(
                               mBoxInfo?.chainId,
@@ -394,7 +393,16 @@ const CollectionSale = () => {
                       </div>
                       <div className="item-details">
                         <div className="name">Token ID</div>
-                        <div className="info-name">{params.id}</div>
+                        <div
+                          className="info-name"
+                          onClick={() =>
+                            window.open(
+                              `https://www.klaytnfinder.io/nft/${mBoxInfo?.boxContractAddress}/${params.id}`
+                            )
+                          }
+                        >
+                          {params.id}
+                        </div>
                       </div>
                       <div className="item-details">
                         <div className="name">Token Standard</div>
