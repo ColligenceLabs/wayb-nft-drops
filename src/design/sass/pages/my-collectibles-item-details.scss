@@ -172,6 +172,14 @@
                     .info-name {
                       color: #2f8af5;
                       font-weight: 600;
+                      cursor: pointer;
+                    }
+                  }
+                  &:nth-child(2){
+                    .info-name {
+                      color: #2f8af5;
+                      font-weight: 600;
+                      cursor: pointer;
                     }
                   }
                 }
