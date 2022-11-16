@@ -50,6 +50,7 @@ const MyProfile = () => {
   useEffect(() => {
     if (dropsAccount.address === '') navigate('/');
   }, [dropsAccount]);
+  console.log('dra????', dropsAccount);
   return (
     <main className="profile-container min-height-content">
       <div className="my-profile-page">
@@ -123,7 +124,9 @@ const MyProfile = () => {
               </div>
               <div className="item-value">
                 <a
-                  href={`${dropsAccount.twitter ? dropsAccount.twitter : ''}`}
+                  href={`https://twitter.com/${
+                    dropsAccount.twitter ? dropsAccount.twitter : ''
+                  }`}
                   target="_blank"
                   className="custom-link-sns"
                 >
@@ -138,7 +141,7 @@ const MyProfile = () => {
               </div>
               <div className="item-value">
                 <a
-                  href={`${
+                  href={`https://instagram.com/${
                     dropsAccount.instagram ? dropsAccount.instagram : ''
                   }`}
                   target="_blank"
