@@ -90,6 +90,9 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         await dispatch(setActivatingConnector(kaikas));
       } else {
         console.log('abc wallet');
+        // setWalletName('abc');
+        await activate(abc, undefined, true);
+        dispatch(setActivatingConnector(abc));
       }
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
