@@ -86,7 +86,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         // console.log('abc wallet');
         // setWalletName('abc');
         await activate(abc, undefined, true);
-        dispatch(setActivatingConnector(abc));
+        await dispatch(setActivatingConnector(abc));
       }
       window.localStorage.setItem('walletStatus', 'connected');
       close();
