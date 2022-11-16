@@ -34,6 +34,7 @@ import { moveToScope } from '../../utils/moveToScope';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
+import env from '../../env';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -514,7 +515,11 @@ const CollectionSale = () => {
                 </div>
                 <div className="item">
                   <div className="label">Network</div>
-                  <div className="value">{getNetworkNameByChainId(1001)}</div>
+                  <div className="value">
+                    {getNetworkNameByChainId(
+                      env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217
+                    )}
+                  </div>
                 </div>
               </div>
               {/* <div className="list-trade"></div> */}
