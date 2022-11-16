@@ -50,7 +50,6 @@ const MyProfile = () => {
   useEffect(() => {
     if (dropsAccount.address === '') navigate('/');
   }, [dropsAccount]);
-  console.log('dra????', dropsAccount);
   return (
     <main className="profile-container min-height-content">
       <div className="my-profile-page">

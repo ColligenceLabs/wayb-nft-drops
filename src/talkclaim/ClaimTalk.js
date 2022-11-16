@@ -67,7 +67,6 @@ const ClaimTalk = () => {
           signer
         );
         let claimBalanceTxn = await claimerContract.getMyBalance(account);
-        // console.log('claimBalanceTxn:::', parseFloat(claimBalanceTxn))
         setAvailableBalance(ethers.utils.formatEther(claimBalanceTxn));
 
         let lsPendingTxHashes =
@@ -619,7 +618,6 @@ const ClaimTalk = () => {
         <button style={{background: 'white',border: 'none',color: 'white'}}
           onClick={async () => {
             try {
-              console.log('TESET!!!')
               let balanceUrl = `http://localhost:3000/cmu/api/user/account/balance`;
               let balanceUrlRes = await Axios.get(balanceUrl, { withCredentials: true }).catch((error) => {alert(error);});
               alert(typeof balanceUrlRes === 'object' ? JSON.stringify(balanceUrlRes) : balanceUrlRes);
@@ -637,7 +635,6 @@ const ClaimTalk = () => {
             try {
               const { ethereum } = window;
               if (ethereum) {
-                console.log('TESET!!!')
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
                 //if (ethereum.networkVersion !== '1' && ethereum.networkVersion !== '0x1' && ethereum.networkVersion !== '0x01') return alert('Please change to Ethereum mainnet');
                 const currentAddress = accounts[0];

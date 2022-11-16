@@ -23,7 +23,6 @@ const DialogWallets = () => {
   const { activate, chainId, account } = context;
 
   const onClickConnect = async (id: string) => {
-    console.log(`Click Wallet Button(id) : ${id}`);
     // Check Blockchain Network first
     const targetNetwork = env.REACT_APP_TARGET_NETWORK_KLAY ?? ChainId.KLAYTN;
     try {
@@ -40,7 +39,6 @@ const DialogWallets = () => {
         // await activate(injected, undefined, true);
         // dispatch(setActivatingConnector(injected));
         // window.localStorage.setItem('wallet', 'injected');
-        console.log('click Talken Wallet');
       } else if (id === '1') {
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));

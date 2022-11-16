@@ -23,7 +23,6 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
   const navigate = useNavigate();
   const wallet = useSelector((state: any) => state.wallet);
 
-  console.log(account);
   const createToken = async () => {
     localStorage.removeItem('dropsJwtToken');
 
@@ -66,7 +65,6 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
         if (resp.data.status === 0) return 'notRegistered';
 
         const studioAccount: StudioAccount = resp.data;
-        console.log(resp.data);
         dispatch(setDropsAccount(studioAccount));
       } catch (e) {
         console.log(e);

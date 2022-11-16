@@ -65,7 +65,7 @@ export async function registerItems(
   let tx;
   // gasLimit 계산
   let gasLimit;
-  console.log(contract, uris, amounts);
+
   if (isKaikas) {
     gasLimit = await contract.methods.registerItems(uris, amounts).estimateGas({
       from: account,
@@ -422,7 +422,6 @@ export async function requestRandomNumber(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -450,8 +449,7 @@ export async function requestRandomNumber(
   let gasLimit;
   // const rndFeet = parseUnits('1', 'eth').toString();
   // const rndFee = ethers.utils.parseEther('1.0').toString();
-  console.log(rndFee);
-  console.log(contract);
+
   if (isKaikas) {
     gasLimit = await contract.methods.requestRandomNumber().estimateGas({
       from: account,
@@ -545,14 +543,13 @@ export async function addWhitelist(
     };
 
     if (isKaikas) {
-      console.log('1111', gasLimit);
       tx = await contract.methods
         .addWhitelist(whitelist, round)
         .send(overrides)
         .catch(async (err: any) => {
           return FAILURE;
         });
-      console.log('2222', tx);
+
       if (tx?.status) {
         return SUCCESS;
       } else return FAILURE;
@@ -666,7 +663,6 @@ export async function setSubscription(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -755,7 +751,6 @@ export async function setLaunch(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -831,7 +826,6 @@ export async function allocation(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -849,7 +843,6 @@ export async function allocation(
   let tx;
   // gasLimit 계산
   let gasLimit;
-  console.log(contract);
   if (isKaikas) {
     gasLimit = await contract.methods.allocation().estimateGas({
       from: account,
@@ -980,7 +973,6 @@ export async function estimateRandomizeFee(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1034,7 +1026,6 @@ export async function getTotalSupply(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1213,7 +1204,6 @@ export async function getItemAmount(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1323,7 +1313,6 @@ export async function getItemRemains(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1394,7 +1383,6 @@ export async function buyItem(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet

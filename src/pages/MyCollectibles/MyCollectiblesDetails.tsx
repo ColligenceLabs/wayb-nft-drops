@@ -503,7 +503,6 @@ NFTs: ${claimableCount}`;
       </ul>
     );
   };
-  console.log('mbox???', featuredInfo);
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
