@@ -40,6 +40,8 @@ import { MBoxTypes } from '../../types/MBoxTypes';
 import {
   checkConnectWallet,
   checkKaikas,
+  checkKaikasWallet,
+  getTargetNetworkName,
   getTargetWallet,
 } from '../../utils/wallet';
 import { useWeb3React } from '@web3-react/core';
@@ -354,7 +356,8 @@ NFTs: ${claimableCount}`;
     try {
       if (mboxInfo && account && library?.connection) {
         const targetWallet = getTargetWallet(mboxInfo?.chainId, wallet);
-        const isKaikas = checkKaikas(library);
+        const network = getTargetNetworkName(mboxInfo?.chainId) ?? '';
+        const isKaikas = checkKaikasWallet(wallet, network);
         if (
           (isKaikas && targetWallet === 'metamask') ||
           (!isKaikas && targetWallet === 'kaikas')

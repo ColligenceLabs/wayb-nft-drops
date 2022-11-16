@@ -30,7 +30,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   const [doSign, setDoSign] = useState<boolean>(false);
   const [errMsg, setErrMsg] = useState('');
 
-  const tokenGenerator = useCreateToken(setDoSign);
+  const tokenGenerator = useCreateToken(setDoSign, 'klaytn');
 
   useEffect(() => {
     if (walletName !== '' && account !== '') {

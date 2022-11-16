@@ -29,7 +29,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
   const [doSign, setDoSign] = useState<boolean>(false);
   const [errMsg, setErrMsg] = useState('');
-  const tokenGenerator = useCreateToken(setDoSign);
+  const tokenGenerator = useCreateToken(setDoSign, 'binance');
 
   useEffect(() => {
     if (library !== undefined && doSign) {

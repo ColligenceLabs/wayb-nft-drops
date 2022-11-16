@@ -27,6 +27,8 @@ import { useWeb3React } from '@web3-react/core';
 import {
   checkConnectWallet,
   checkKaikas,
+  checkKaikasWallet,
+  getTargetNetworkName,
   getTargetWallet,
 } from '../../utils/wallet';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
@@ -183,7 +185,8 @@ const SaleCollectibles = () => {
   useEffect(() => {
     if (account && library?.connection && mBoxInfo) {
       const targetWallet = getTargetWallet(mBoxInfo?.chainId, wallet);
-      const isKaikas = checkKaikas(library);
+      const network = getTargetNetworkName(mBoxInfo?.chainId) ?? '';
+      const isKaikas = checkKaikasWallet(wallet, network);
       if (
         (isKaikas && targetWallet === 'metamask') ||
         (!isKaikas && targetWallet === 'kaikas')
