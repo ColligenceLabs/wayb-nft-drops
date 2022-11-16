@@ -245,7 +245,9 @@ NFTs: ${claimableCount}`;
         type: 'success',
         message: 'Success',
       });
-      fetchBalance();
+      setTimeout(() => {
+        fetchBalance();
+      }, 10000);
     } catch (error) {
       console.log(error);
       setOpenSnackbar({
@@ -936,7 +938,7 @@ NFTs: ${claimableCount}`;
                       <div className="owner_product">
                         <div className="owner_product_box">
                           <div className="owner_product_avatar">
-                            <img src={mboxInfo?.packageImage} alt="" />
+                            <img src={mboxInfo?.companyimage} alt="" />
                           </div>
                           <div className="">{mboxInfo?.companyname.en}</div>
                         </div>
