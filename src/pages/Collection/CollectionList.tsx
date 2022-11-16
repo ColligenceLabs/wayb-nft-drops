@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getMboxListByFeaturedId } from '../../services/services';
-import {
-  getItemRemainsNoSigner,
-  getTotalSupplyNoSigner,
-} from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CSnackbar from '../../components/common/CSnackbar';
 import { getPrice } from '../../utils/getPrice';
@@ -76,21 +72,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
           // }
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes) => {
-              let remaining = 0;
-              let sold = 0;
-              remaining = await getItemRemainsNoSigner(
-                item.boxContractAddress,
-                account,
-                chainId
-              );
-              if (item.keyContractAddress !== null) {
-                sold = await getTotalSupplyNoSigner(
-                  item.keyContractAddress,
-                  account,
-                  chainId
-                );
-                remaining = item.totalAmount ? item.totalAmount - sold : 0;
-              }
+              const remaining = item.totalAmount! - item.soldAmount;
               const milliseconds =
                 new Date().getTime() - Date.parse(item.releaseDatetime);
 
