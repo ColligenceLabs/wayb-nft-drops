@@ -89,7 +89,6 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   const handleClickBuy = async () => {
     setIsBuying(true);
     let result = false;
-    console.log(selectedPayment);
     if (selectedPayment === 1) {
       console.log('purchase with credit card');
     } else if (selectedPayment === 2) {
@@ -109,13 +108,9 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   };
 
   const handleClickCrypto = async () => {
-    console.log(isCollection);
-    console.log('itemInfo:', itemInfo);
     if (isCollection) {
       if (!itemInfo.collectionInfo.isAirdrop) {
         // Collection
-        console.log('buy');
-        console.log(itemInfo);
         const contract = itemInfo?.collectionInfo?.boxContractAddress;
         const quote = itemInfo?.collectionInfo?.quote;
         const index = itemInfo?.index ?? 0;
@@ -149,7 +144,6 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
           );
           if (rlt === FAILURE) return false;
         }
-        console.log(contract, index, 1, payment!.toString(), quoteToken!);
         try {
           const result = await buyItem(
             contract,

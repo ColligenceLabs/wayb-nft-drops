@@ -37,7 +37,6 @@ const editprofile: any = (close: any) => {
 
   const initAccountData = () => {
     if (dropsAccount.address !== '') {
-      console.log('asdf');
       setName(dropsAccount.name);
       setEmail(dropsAccount.email);
       setPreviewLogo(dropsAccount.profile_image);

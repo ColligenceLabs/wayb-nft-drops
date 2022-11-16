@@ -44,14 +44,10 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   }, [klaytn]);
 
   useEffect(() => {
-    console.log('aa');
-    console.log(library);
-    console.log(doSign);
     if (library !== undefined && doSign) {
       // createToken();
       dispatch(initDropsAccount());
       tokenGenerator.createToken().then((res) => {
-        console.log(res);
         // if (res === 'notIncludeAccount') {
         //   deactivate();
         //   console.log('권한이 없습니다. Talken 관리자에게 연락하세요');
@@ -69,27 +65,27 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
     try {
       setWalletName(value);
       if (id === 0) {
-        console.log(`click ${id}, this is Metamask (Klaytn)`);
+        // console.log(`click ${id}, this is Metamask (Klaytn)`);
         // setWalletName('metamask');
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
-        console.log(`click ${id}, this is WalletConnect (Klaytn)`);
+        // console.log(`click ${id}, this is WalletConnect (Klaytn)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
-        console.log(`click ${id}, this is Talken (Klaytn)`);
+        // console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 3) {
-        console.log(`click ${id}, this is Kaikas (Klaytn)`);
+        // console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
         await activate(kaikas, undefined, true);
         await dispatch(setActivatingConnector(kaikas));
       } else {
-        console.log('abc wallet');
+        // console.log('abc wallet');
         // setWalletName('abc');
         await activate(abc, undefined, true);
         dispatch(setActivatingConnector(abc));

@@ -45,7 +45,6 @@ export async function getKeyBalance(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -56,7 +55,6 @@ export async function getKeyBalance(
     contract = new ethers.Contract(address, erc721Abi, library?.getSigner());
   }
 
-  console.log(contract);
   let balance;
   let retBalance;
   try {
@@ -92,7 +90,6 @@ export async function getKeyRemains(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -146,7 +143,6 @@ export async function getItemBalance(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -193,7 +189,6 @@ export async function buyKey(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -316,7 +311,6 @@ export async function claimMysteryBox(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -397,7 +391,6 @@ export async function buyTicket(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -503,7 +496,6 @@ export async function getTicketCount(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -546,7 +538,6 @@ export async function getMyTickets(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -589,8 +580,6 @@ export async function getMyWin(
     library.provider.bridge !== 'https://bridge.walletconnect.org' &&
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
-
-  console.log(isKaikas);
 
   let contract: any;
   if (isKaikas) {
@@ -643,7 +632,6 @@ export async function claimEvenAllocation(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -755,7 +743,6 @@ export async function staking(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -862,7 +849,6 @@ export async function unStaking(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -941,7 +927,6 @@ export async function claimSubscription(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1054,7 +1039,6 @@ export async function getLeastFund(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1102,7 +1086,6 @@ export async function getTotalFund(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1150,7 +1133,6 @@ export async function getMyFund(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1200,7 +1182,6 @@ export async function getParticipants(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1252,7 +1233,6 @@ export async function getAllocated(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1302,7 +1282,6 @@ export async function getClaimed(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1351,7 +1330,6 @@ export async function getBooking(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1397,7 +1375,6 @@ export async function getItemMetadata(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1462,7 +1439,6 @@ export async function getTokenIds(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1509,7 +1485,6 @@ export async function getKeyMetadata(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1552,7 +1527,6 @@ export async function claimAirDrop(
     (library.connection.url !== 'metamask' ||
       library.connection.url === 'eip-1193:');
 
-  console.log(isKaikas);
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1566,7 +1540,6 @@ export async function claimAirDrop(
   let tx;
   // gasLimit 계산
   let gasLimit;
-  console.log(contract);
   if (isKaikas) {
     gasLimit = await contract.methods.claim().estimateGas({
       from: account,
