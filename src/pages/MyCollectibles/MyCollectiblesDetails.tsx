@@ -112,7 +112,6 @@ const MyCollectiblesDetails = () => {
     if (!wallet || !mboxInfo) return;
     const network = getTargetNetworkName(mboxInfo?.chainId) ?? '';
     const checkKaikas = checkKaikasWallet(wallet, network);
-    console.log('=====>', checkKaikas);
     setIsKaikas(checkKaikas);
   }, [mboxInfo, wallet]);
 
