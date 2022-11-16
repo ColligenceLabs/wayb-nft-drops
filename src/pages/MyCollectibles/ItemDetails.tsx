@@ -249,7 +249,7 @@ const CollectionSale = () => {
     fetchMboxItemList();
   }, [params, library]);
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   return (
     <main className="collectibles-item-details-container min-height-content">
       {mBoxInfo && itemInfo && (

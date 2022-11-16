@@ -113,7 +113,7 @@ const Collection = () => {
     );
   };
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   useEffect(() => {
     const fetchFeatured = async () => {
       const res = await getFeaturedById(params.id!);
