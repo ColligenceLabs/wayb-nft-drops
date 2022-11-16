@@ -81,7 +81,7 @@ const CollectionSale = () => {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
   const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  useOnClickOutside(ref, () => setDropdownOpen(false));
+  // useOnClickOutside(ref, () => setDropdownOpen(false));
 
   const { library } = useWeb3React();
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
