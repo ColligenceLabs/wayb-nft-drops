@@ -331,7 +331,7 @@ const CollectionSale = () => {
                 ) : (
                   <img
                     className="thumbnail"
-                    style={{ objectFit: 'cover' }}
+                    // style={{ objectFit: 'cover' }}
                     src={itemInfo.originalImage}
                     alt=""
                   />
@@ -378,7 +378,17 @@ const CollectionSale = () => {
                     <div className="padding-content">
                       <div className="item-details">
                         <div className="name">Contract Address</div>
-                        <div className="info-name">
+                        <div
+                          className="info-name"
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            moveToScope(
+                              mBoxInfo?.chainId,
+                              mBoxInfo?.boxContractAddress,
+                              true
+                            )
+                          }
+                        >
                           {splitAddress(mBoxInfo.boxContractAddress)}
                         </div>
                       </div>
@@ -396,16 +406,16 @@ const CollectionSale = () => {
                           {getNetworkNameById(mBoxInfo.chainId)}
                         </div>
                       </div>
-                      <div className="item-details">
+                      {/* <div className="item-details">
                         <div className="name">Last Updated</div>
                         <div className="info-name">
                           {toStringByFormatting(new Date(mBoxInfo.updatedAt!))}
                         </div>
-                      </div>
-                      <div className="item-details">
+                      </div> */}
+                      {/* <div className="item-details">
                         <div className="name">Creator Earnings</div>
                         <div className="info-name">2.5%</div>
-                      </div>
+                      </div> */}
                     </div>
                   </Accordion.Body>
                 </Accordion.Item>
