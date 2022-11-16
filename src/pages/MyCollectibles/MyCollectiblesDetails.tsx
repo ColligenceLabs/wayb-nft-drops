@@ -245,9 +245,8 @@ NFTs: ${claimableCount}`;
         type: 'success',
         message: 'Success',
       });
-      setTimeout(() => {
-        fetchBalance();
-      }, 10000);
+      fetchBalance();
+      fetchRevealItem();
     } catch (error) {
       console.log(error);
       setOpenSnackbar({
