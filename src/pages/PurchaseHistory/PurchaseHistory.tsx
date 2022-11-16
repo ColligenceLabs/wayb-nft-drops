@@ -8,6 +8,7 @@ import arrow_up_right from '../../assets/icon/arrow_up_right.png';
 import { useSelector } from 'react-redux';
 import { getFeaturedById, getHistory } from '../../services/services';
 import { splitString } from '../../utils/splitString';
+import splitAddress from '../../utils/splitAddress';
 import { moveToScope } from '../../utils/moveToScope';
 
 const Purchase_History = () => {
@@ -118,7 +119,7 @@ const Purchase_History = () => {
                         : 'Binance'}
                     </div>
                     <div className="value explorer_url">
-                      {drop.txHash ? splitString(drop.txHash) : ''}
+                      {drop.txHash ? splitAddress(drop.txHash) : ''}
                     </div>
                     <div className="icon value">
                       <a href="#">
