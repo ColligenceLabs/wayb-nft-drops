@@ -102,11 +102,13 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            const remaining = await getItemRemainsNoSigner(
-              item.boxContractAddress,
-              account,
-              chainId
-            );
+            // const remainFrChain = await getItemRemainsNoSigner(
+            //   item.boxContractAddress,
+            //   account,
+            //   chainId
+            // );
+            const remaining = item.totalAmount! - item.soldAmount!;
+            // console.log('MBox, Collections ===>', remainFrChain, remaining);
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
@@ -146,11 +148,13 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            const remaining = await getItemRemainsNoSigner(
-              item.boxContractAddress,
-              account,
-              chainId
-            );
+            // const remainFrChain = await getItemRemainsNoSigner(
+            //   item.boxContractAddress,
+            //   account,
+            //   chainId
+            // );
+            const remaining = item.totalAmount! - item.soldAmount!;
+            // console.log('AirDrop ===>', remainFrChain, remaining);
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {

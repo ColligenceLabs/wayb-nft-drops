@@ -40,4 +40,5 @@ export type MBoxTypes = {
   };
   featuredId: string | null;
   mysteryboxItems?: MBoxItemTypes[] | null;
+  soldAmount: number;
 };
