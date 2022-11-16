@@ -403,7 +403,7 @@ const SaleCollectibles = () => {
                     ) : (
                       <>
                         <img
-                          style={{ objectFit: 'cover' }}
+                          // style={{ objectFit: 'cover' }}
                           src={mBoxInfo.packageImage}
                           alt=""
                         />
