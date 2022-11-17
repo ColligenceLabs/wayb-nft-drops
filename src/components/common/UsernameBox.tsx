@@ -42,7 +42,6 @@ const UsernameBox = () => {
     localStorage.removeItem('dropsJwtToken');
   };
   const navigate = useNavigate();
-  console.log(navigate, 'navigateLogout');
 
   return (
     <div className="user-dropdown-box">

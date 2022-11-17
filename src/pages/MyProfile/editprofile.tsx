@@ -12,6 +12,8 @@ import check_success from '../../assets/icon/check_success.png';
 import check_error from '../../assets/icon/check_error.png';
 import CSnackbar from '../../components/common/CSnackbar';
 import { SUCCESS } from '../../config';
+import makeBlockie from 'ethereum-blockies-base64';
+
 type editprofileProps = {
   close: boolean | SetStateAction<any>;
 };
@@ -37,7 +39,6 @@ const editprofile: any = (close: any) => {
 
   const initAccountData = () => {
     if (dropsAccount.address !== '') {
-      console.log('asdf');
       setName(dropsAccount.name);
       setEmail(dropsAccount.email);
       setPreviewLogo(dropsAccount.profile_image);
@@ -168,7 +169,11 @@ const editprofile: any = (close: any) => {
                 <div className="avatar">
                   <img
                     id="avatar_upload"
-                    src={previewLogo ? previewLogo : avatar}
+                    src={
+                      previewLogo
+                        ? previewLogo
+                        : makeBlockie(dropsAccount.address)
+                    }
                     alt=""
                   />
                   <input

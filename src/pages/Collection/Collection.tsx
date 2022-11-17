@@ -16,6 +16,7 @@ import useCopyToClipBoard from 'hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { useMediaQuery } from 'react-responsive';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
+import ReactTooltip from 'react-tooltip';
 
 type LinkTypes = {
   type: string;
@@ -59,18 +60,62 @@ const Collection = () => {
           >
             <div className="image-item">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
           </div>
         );
       });
@@ -113,7 +158,7 @@ const Collection = () => {
     );
   };
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   useEffect(() => {
     const fetchFeatured = async () => {
       const res = await getFeaturedById(params.id!);
@@ -129,7 +174,7 @@ const Collection = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
   return (
@@ -163,17 +208,22 @@ const Collection = () => {
                     {/*  <div className="value">100</div>*/}
                     {/*  <div className="label">NFTs</div>*/}
                     {/*</div>*/}
-                    <div className="dropdown hide-min-540px" ref={refDropdown}>
+                    {featured.links && featured.links.length > 0 && (
                       <div
-                        className="dropdown-button"
-                        onClick={() =>
-                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
-                        }
+                        className="dropdown hide-min-540px"
+                        ref={refDropdown}
                       >
-                        <img src={ic_dropdown} alt="dropdown" />
+                        <div
+                          className="dropdown-button"
+                          onClick={() =>
+                            setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                          }
+                        >
+                          <img src={ic_dropdown} alt="dropdown" />
+                        </div>
+                        {dropdownOpen && getSnsMobileButtons()}
                       </div>
-                      {dropdownOpen && getSnsMobileButtons()}
-                    </div>
+                    )}
                   </div>
                   {featured.links && featured.links.length > 0 && (
                     <div className="line-icon" />
@@ -184,10 +234,18 @@ const Collection = () => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
                       className="info-item"
+                      data-for="tooltip-copy"
+                      data-tip
                     >
                       <div className="image-item">
                         <img src={icon_share} alt="Twitter Icon" width="20px" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-copy"
+                        getContent={(dataTip) => 'Copy'}
+                        type={'light'}
+                        offset={{ top: 25 }}
+                      />
                     </div>
                   </div>
                 </div>

@@ -14,6 +14,7 @@ import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
 import wallet_white from '../../assets/icon/wallet_white.svg';
 
+import makeBlockie from 'ethereum-blockies-base64';
 import nav_icon from '../../assets/icon/nav_icon.svg';
 import { Link, useLocation } from 'react-router-dom';
 import DialogWallets from 'components/modal/DialogWallets';
@@ -109,11 +110,14 @@ const Navbar = () => {
         </div> */}
         <div className="nav-right">
           <div className="contact-header">
-            <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
+            <a href="https://talken.io/" target={'_blank'}>
               About
             </a>
             <a href="https://talken-io.medium.com/" target={'_blank'}>
               Blog
+            </a>
+            <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
+              Docs
             </a>
             <a
               href="https://talkensupport.zendesk.com/hc/en-us/requests/new"
@@ -215,14 +219,14 @@ const Navbar = () => {
             <>
               <div
                 className="wrapper-user"
-                onClick={() => setModalOpen(!isModalOpen)}
+                onMouseEnter={() => setModalOpen(true)}
               >
                 <div className="avatar-user">
                   <img
                     src={
                       dropsAccount.profile_image
                         ? dropsAccount.profile_image
-                        : avatar_user
+                        : makeBlockie(dropsAccount.address)
                     }
                     alt="profile-avatar"
                   />

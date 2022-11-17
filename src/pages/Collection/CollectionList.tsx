@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MBoxTypes } from '../../types/MBoxTypes';
 import { getMboxListByFeaturedId } from '../../services/services';
-import {
-  getItemRemainsNoSigner,
-  getTotalSupplyNoSigner,
-} from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import CSnackbar from '../../components/common/CSnackbar';
 import { getPrice } from '../../utils/getPrice';
@@ -76,21 +72,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
           // }
           const newList = await Promise.all(
             res.data.list.map(async (item: MBoxTypes) => {
-              let remaining = 0;
-              let sold = 0;
-              remaining = await getItemRemainsNoSigner(
-                item.boxContractAddress,
-                account,
-                chainId
-              );
-              if (item.keyContractAddress !== null) {
-                sold = await getTotalSupplyNoSigner(
-                  item.keyContractAddress,
-                  account,
-                  chainId
-                );
-                remaining = item.totalAmount ? item.totalAmount - sold : 0;
-              }
+              const remaining = item.totalAmount! - item.soldAmount;
               const milliseconds =
                 new Date().getTime() - Date.parse(item.releaseDatetime);
 
@@ -120,11 +102,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
               to={
                 item.isCollection
                   ? item.itemAmount === 1 && item.mysteryboxItems
-                    ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
-                    : `/klaytn/collections/${item.id}`
+                    ? `/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
+                    : `/collections/${item.id}`
                   : item.isAirdrop
-                  ? `/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
-                  : `/klaytn/mbox/${item.id}`
+                  ? `/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
+                  : `/mbox/${item.id}`
               }
               // state={
               //   item.isCollection && item.itemAmount === 1
@@ -158,7 +140,9 @@ const CollectionList: React.FC<CollectionListProps> = ({
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div>{getNetworkNameByChainId(item.chainId)}</div>
+                  <div style={{ textTransform: 'capitalize' }}>
+                    {getNetworkNameByChainId(item.chainId)}
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
@@ -192,11 +176,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
                         to={
                           item.isCollection
                             ? item.itemAmount === 1 && item.mysteryboxItems
-                              ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
-                              : `/klaytn/collections/${item.id}`
+                              ? `/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
+                              : `/collections/${item.id}`
                             : item.isAirdrop
-                            ? `/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
-                            : `/klaytn/mbox/${item.id}`
+                            ? `/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
+                            : `/mbox/${item.id}`
                         }
                         // state={
                         //   item.isCollection && item.itemAmount === 1
@@ -250,7 +234,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
                     <div className="remaining-total ">
                       {!item.isSoldOut && item.remainingAmount
                         ? item.remainingAmount
-                        : '-'}
+                        : 'Sold Out'}
                     </div>
                   </div>
                 </div>

@@ -200,7 +200,7 @@ const Landing = () => {
                 </div>
               </div>
               <div className="buynow-wrapper">
-                <Link to="/klaytn/featureds" target="_blank">
+                <Link to="/creators" target="_blank">
                   Buy Now
                 </Link>
               </div>

@@ -27,6 +27,8 @@ import { useWeb3React } from '@web3-react/core';
 import {
   checkConnectWallet,
   checkKaikas,
+  checkKaikasWallet,
+  getTargetNetworkName,
   getTargetWallet,
 } from '../../utils/wallet';
 import WalletConnector from '../../components/auth/WalletConnector/WalletConnector';
@@ -41,6 +43,7 @@ import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import { moveToScope } from 'utils/moveToScope';
 import { FeaturedTypes } from 'types/FeaturedTypes';
 import useCopyToClipBoard from 'hooks/useCopyToClipboard';
+import ReactTooltip from 'react-tooltip';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -85,7 +88,7 @@ const SaleCollectibles = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const refdropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refdropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refdropdown, () => setDropdownOpen(false));
   const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
 
   const closeWarning = () => {
@@ -136,17 +139,22 @@ const SaleCollectibles = () => {
   };
 
   const getAvailability = async (info: ExMBoxType) => {
+    const isKaikas = checkKaikasWallet(
+      wallet,
+      getTargetNetworkName(info?.chainId) ?? ''
+    );
     const left = await getKeyRemains(
       info.keyContractAddress,
       info.boxContractAddress,
       account,
-      library
+      library,
+      isKaikas
     );
     setRemains(left);
   };
 
   const moveToFeatured = () => {
-    if (mBoxInfo) navigate(`/klaytn/featured/${mBoxInfo.featuredId}`);
+    if (mBoxInfo) navigate(`/creator/${mBoxInfo.featuredId}`);
   };
 
   useEffect(() => {
@@ -183,7 +191,8 @@ const SaleCollectibles = () => {
   useEffect(() => {
     if (account && library?.connection && mBoxInfo) {
       const targetWallet = getTargetWallet(mBoxInfo?.chainId, wallet);
-      const isKaikas = checkKaikas(library);
+      const network = getTargetNetworkName(mBoxInfo?.chainId) ?? '';
+      const isKaikas = checkKaikasWallet(wallet, network);
       if (
         (isKaikas && targetWallet === 'metamask') ||
         (!isKaikas && targetWallet === 'kaikas')
@@ -222,18 +231,62 @@ const SaleCollectibles = () => {
           >
             <div className="image-item hide-max-1024px">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
           </div>
         );
       });
@@ -299,6 +352,77 @@ const SaleCollectibles = () => {
         <div>
           <div className="price-collection-view-page">
             <div className="price-collection-box">
+              <div className="token-details-box-mobile">
+                <div className="wrapper-head-token">
+                  <div onClick={moveToFeatured}>
+                    <div className="box-owner-product">
+                      <button className="btn-avatar-owner-product">
+                        <img
+                          src={mBoxInfo.featured?.company.image}
+                          alt={mBoxInfo.featured?.company.name.en}
+                        />
+                      </button>
+                      <div className="name-owner-product">
+                        <div className="creator-title">Creator</div>
+                        <button className="btn-name-owner-product">
+                          {mBoxInfo.featured?.company.name.en}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  {/* list sns icon */}
+                  <div className="collection-info-right">
+                    <div className="collection-info-left-details">
+                      <div className="info-item hide-max-1024px">
+                        <div
+                          className="image-item"
+                          style={{ cursor: 'pointer' }}
+                          onClick={() =>
+                            moveToScope(
+                              mBoxInfo.chainId,
+                              mBoxInfo?.boxContractAddress,
+                              true
+                            )
+                          }
+                        >
+                          <img src={klaytn_white} alt="website icon" />
+                        </div>
+                      </div>
+                      {getSnsButtons()}
+                      <div
+                        className="dropdown hide-min-1025px"
+                        ref={refDropdown}
+                      >
+                        <div
+                          className="dropdown-button"
+                          onClick={() =>
+                            setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                          }
+                        >
+                          <img src={ic_dropdown} alt="dropdown" />
+                        </div>
+                        {dropdownOpen && getSnsMobileButtons()}
+                      </div>
+                    </div>
+                    <div className="line-icon" />
+                    <div className="collection-info-left-details">
+                      <div
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => copyToClipBoard(window.location.href)}
+                        className="info-item"
+                      >
+                        <div className="image-item">
+                          <img
+                            src={icon_share}
+                            alt="Twitter Icon"
+                            width="20px"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="token-showcase-box">
                 {/* button zoom image */}
                 <div
@@ -332,7 +456,7 @@ const SaleCollectibles = () => {
                     ) : (
                       <>
                         <img
-                          style={{ objectFit: 'cover' }}
+                          // style={{ objectFit: 'cover' }}
                           src={mBoxInfo.packageImage}
                           alt=""
                         />
@@ -425,9 +549,17 @@ const SaleCollectibles = () => {
                               true
                             )
                           }
+                          data-for="tooltip-explorer"
+                          data-tip
                         >
                           <img src={klaytn_white} alt="website icon" />
                         </div>
+                        <ReactTooltip
+                          id="tooltip-explorer"
+                          getContent={(dataTip) => 'Explorer'}
+                          type={'light'}
+                          offset={{ top: 25 }}
+                        />
                       </div>
                       {getSnsButtons()}
                       <div
@@ -451,6 +583,8 @@ const SaleCollectibles = () => {
                         style={{ cursor: 'pointer' }}
                         onClick={() => copyToClipBoard(window.location.href)}
                         className="info-item"
+                        data-for="tooltip-copy"
+                        data-tip
                       >
                         <div className="image-item">
                           <img
@@ -459,11 +593,17 @@ const SaleCollectibles = () => {
                             width="20px"
                           />
                         </div>
+                        <ReactTooltip
+                          id="tooltip-copy"
+                          getContent={(dataTip) => 'Copy'}
+                          type={'light'}
+                          offset={{ top: 25 }}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
-
+                <div className="bottom-line" />
                 <div>
                   <div className="btn-buy-now">Buy Now</div>
                 </div>
@@ -498,9 +638,12 @@ const SaleCollectibles = () => {
                       <div className="lable-bottom fw-600">{remains}</div>
                     </div>
                     <div className="box-price-detail-collection">
-                      <div className="lable-top">Network</div>
-                      <div className="lable-bottom fw-600">
-                        {getNetworkNameById(mBoxInfo.chainId)}
+                      <div className="lable-top">Chain</div>
+                      <div
+                        className="lable-bottom fw-600"
+                        style={{ textTransform: 'capitalize' }}
+                      >
+                        {getNetworkNameById(mBoxInfo.chainId)?.toLowerCase()}
                       </div>
                     </div>
                   </div>
@@ -508,7 +651,11 @@ const SaleCollectibles = () => {
                 <div>
                   <div className="box-purchase-price">
                     <div className="lable-top">Purchase price</div>
-                    <div className="lable-bottom fw-600">{`${mBoxInfo.price} ${mBoxInfo.quote}`}</div>
+                    <div className="lable-bottom fw-600">
+                      {mBoxInfo?.price === 0
+                        ? 'FREE'
+                        : `${mBoxInfo?.price} ${mBoxInfo?.quote}`}
+                    </div>
                   </div>
                   {!countDownFinish && (
                     <CountDownTimer

@@ -160,7 +160,7 @@ export const registerToken = async (
   return tokenAdded;
 };
 
-export const getTargetWallet = (chainId: number, wallet: any) => {
+export const getTargetWallet = (chainId: number | undefined, wallet: any) => {
   let targetWallet;
   if (chainId === 8217 || chainId === 1001) {
     targetWallet = wallet.klaytn.wallet;
@@ -172,6 +172,18 @@ export const getTargetWallet = (chainId: number, wallet: any) => {
   return targetWallet;
 };
 
+export const getTargetNetworkName = (chainId: number | undefined) => {
+  let targetNetwork;
+  if (chainId === 8217 || chainId === 1001) {
+    targetNetwork = 'klaytn';
+  } else if (chainId === 1 || chainId === 3) {
+    targetNetwork = 'ethereum';
+  } else if (chainId === 56 || chainId === 97) {
+    targetNetwork = 'binance';
+  }
+  return targetNetwork;
+};
+
 export const checkKaikas = (library: any) => {
   return library.provider.isWalletConnect
     ? false
@@ -179,8 +191,13 @@ export const checkKaikas = (library: any) => {
         library.connection.url === 'eip-1193:';
 };
 
+export const checkKaikasWallet = (wallet: any, network: string) => {
+  if (wallet[network]?.wallet === 'kaikas') return true;
+  return false;
+};
+
 export const checkConnectWallet = async (
-  chainId: number,
+  chainId: number | undefined,
   wallet: any,
   activate: any
 ) => {
@@ -197,6 +214,10 @@ export const checkConnectWallet = async (
   } else if (targetWallet === 'walletconnect') {
     const wc = walletconnect(false);
     await activate(wc);
+  } else if (targetWallet === 'abcWallet') {
+    await activate(abc, undefined, true).catch((e: any) => {
+      console.log(e);
+    });
   }
   await setupNetwork(chainId);
   return true;

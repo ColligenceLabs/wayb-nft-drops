@@ -16,7 +16,11 @@ import { FAILURE, SUCCESS, targetNetwork } from '../../config';
 import { registerBuy } from '../../services/services';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { CircularProgress, Typography } from '@mui/material';
-import { checkConnectWallet } from '../../utils/wallet';
+import {
+  checkConnectWallet,
+  checkKaikasWallet,
+  getTargetNetworkName,
+} from '../../utils/wallet';
 import {
   buyKey,
   claimAirDrop,
@@ -89,7 +93,6 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   const handleClickBuy = async () => {
     setIsBuying(true);
     let result = false;
-    console.log(selectedPayment);
     if (selectedPayment === 1) {
       console.log('purchase with credit card');
     } else if (selectedPayment === 2) {
@@ -109,13 +112,13 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
   };
 
   const handleClickCrypto = async () => {
-    console.log(isCollection);
-    console.log('itemInfo:', itemInfo);
+    const isKaikas = checkKaikasWallet(
+      wallet,
+      getTargetNetworkName(itemInfo.chainId) ?? ''
+    );
     if (isCollection) {
       if (!itemInfo.collectionInfo.isAirdrop) {
         // Collection
-        console.log('buy');
-        console.log(itemInfo);
         const contract = itemInfo?.collectionInfo?.boxContractAddress;
         const quote = itemInfo?.collectionInfo?.quote;
         const index = itemInfo?.index ?? 0;
@@ -145,11 +148,11 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             contract,
             payment!.toString(),
             account,
-            library
+            library,
+            isKaikas
           );
           if (rlt === FAILURE) return false;
         }
-        console.log(contract, index, 1, payment!.toString(), quoteToken!);
         try {
           const result = await buyItem(
             contract,
@@ -158,7 +161,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             payment!.toString(),
             quoteToken!,
             account,
-            library
+            library,
+            isKaikas
           );
           if (result.status === SUCCESS) {
             // const left = await getItemAmount(
@@ -205,7 +209,12 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
         console.log(itemInfo);
         const contract = itemInfo?.collectionInfo?.boxContractAddress;
         try {
-          const result = await claimAirDrop(contract, account, library);
+          const result = await claimAirDrop(
+            contract,
+            account,
+            library,
+            isKaikas
+          );
           if (result.status === SUCCESS) {
             const data = {
               mysterybox_id: itemInfo?.collectionInfo?.id,
@@ -278,7 +287,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               itemInfo.boxContractAddress,
               payment!.toString(),
               account,
-              library
+              library,
+              isKaikas
             );
             if (rlt === FAILURE) return false;
           }
@@ -289,7 +299,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
             payment!.toString(),
             quoteToken!,
             account,
-            library
+            library,
+            isKaikas
           );
 
           if (result.status === SUCCESS) {
@@ -297,7 +308,8 @@ const PaymentWallets: React.FC<PaymentWalletsProps> = ({
               itemInfo.keyContractAddress,
               itemInfo.boxContractAddress,
               account,
-              library
+              library,
+              isKaikas
             );
             setRemains(left);
 

@@ -7,6 +7,7 @@ import {
   kaikas,
   abc,
   walletconnect,
+  talkenwallet,
 } from '../../../hooks/connectors';
 import {
   setActivatingConnector,
@@ -16,6 +17,7 @@ import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from 'hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
 import env from '../../../env';
+import { isMobile } from 'react-device-detect';
 
 type KlaytnWalletsProps = {
   close: any;
@@ -23,14 +25,14 @@ type KlaytnWalletsProps = {
 const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   const dispatch = useDispatch();
   const context = useWeb3React();
-  const { activate, account, library } = context;
+  const { activate, account, library, deactivate } = context;
   const { klaytn } = useSelector((state: any) => state.wallet);
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
   const [doSign, setDoSign] = useState<boolean>(false);
   const [errMsg, setErrMsg] = useState('');
 
-  const tokenGenerator = useCreateToken(setDoSign);
+  const tokenGenerator = useCreateToken(setDoSign, 'klaytn');
 
   useEffect(() => {
     if (walletName !== '' && account !== '') {
@@ -44,23 +46,17 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   }, [klaytn]);
 
   useEffect(() => {
-    console.log('aa');
-    console.log(library);
-    console.log(doSign);
     if (library !== undefined && doSign) {
       // createToken();
       dispatch(initDropsAccount());
       tokenGenerator.createToken().then((res) => {
-        console.log(res);
-        // if (res === 'notIncludeAccount') {
-        //   deactivate();
-        //   console.log('권한이 없습니다. Talken 관리자에게 연락하세요');
-        // } else if (res === 'notRegistered') {
-        //   deactivate();
-        //   console.log(
-        //     '등록되지 않은 사용자입니다. Talken 관리자에게 연락하세요.'
-        //   );
-        // }
+        if (res === 'userDenied') {
+          deactivate();
+          dispatch(setKlaytn({}));
+          console.log('서명을 거부하였습니다. 다시 시도해주세요.');
+          return;
+        }
+        close();
       });
     }
   }, [account, library, doSign]);
@@ -69,29 +65,39 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
     try {
       setWalletName(value);
       if (id === 0) {
-        console.log(`click ${id}, this is Metamask (Klaytn)`);
+        // console.log(`click ${id}, this is Metamask (Klaytn)`);
         // setWalletName('metamask');
         await activate(injected, undefined, true);
         dispatch(setActivatingConnector(injected));
       } else if (id === 1) {
-        console.log(`click ${id}, this is WalletConnect (Klaytn)`);
+        // console.log(`click ${id}, this is WalletConnect (Klaytn)`);
         // setWalletName('walletConnector');
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
-        console.log(`click ${id}, this is Talken (Klaytn)`);
+        // console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
-        await activate(injected, undefined, true);
-        dispatch(setActivatingConnector(injected));
-      } else {
-        console.log(`click ${id}, this is Kaikas (Klaytn)`);
+        if (isMobile) {
+          await activate(injected, undefined, true);
+          dispatch(setActivatingConnector(injected));
+        } else {
+          const wc = talkenwallet(true);
+          await activate(wc, undefined, true);
+          await dispatch(setActivatingConnector(wc));
+        }
+      } else if (id === 3) {
+        // console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
         await activate(kaikas, undefined, true);
         await dispatch(setActivatingConnector(kaikas));
+      } else {
+        // console.log('abc wallet');
+        // setWalletName('abc');
+        await activate(abc, undefined, true);
+        await dispatch(setActivatingConnector(abc));
       }
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
-      close();
     } catch (e: any) {
       console.log('connect wallet error : ', e);
       const error: string = e.message;

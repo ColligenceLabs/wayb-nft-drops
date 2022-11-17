@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Caver from 'caver-js';
 import Web3Token from 'web3-token';
 import { getAccount } from '../services/services';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { SetStateAction } from 'react';
 import useActiveWeb3React from './useActiveWeb3React';
 import { setDropsAccount } from '../redux/slices/account';
 import { useWeb3React } from '@web3-react/core';
+import { checkKaikas, checkKaikasWallet } from '../utils/wallet';
 
 interface StudioAccount {
   address: 'string';
@@ -16,20 +17,17 @@ interface StudioAccount {
   role: 'string';
 }
 
-const useCreateToken = (setDoSign: SetStateAction<any>) => {
+const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
   const { account, library } = useWeb3React();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const wallet = useSelector((state: any) => state.wallet);
 
-  console.log(account);
   const createToken = async () => {
     localStorage.removeItem('dropsJwtToken');
 
     if (library !== undefined) {
-      const isKaikas = library.provider.isWalletConnect
-        ? false
-        : library?.connection.url !== 'metamask' ||
-          library?.connection.url === 'eip-1193:';
+      const isKaikas = checkKaikasWallet(wallet, network);
 
       try {
         let token;
@@ -67,10 +65,10 @@ const useCreateToken = (setDoSign: SetStateAction<any>) => {
         if (resp.data.status === 0) return 'notRegistered';
 
         const studioAccount: StudioAccount = resp.data;
-        console.log(resp.data);
         dispatch(setDropsAccount(studioAccount));
-      } catch (e) {
+      } catch (e: any) {
         console.log(e);
+        if (e.code === 4001) return 'userDenied';
         return null;
       }
     }

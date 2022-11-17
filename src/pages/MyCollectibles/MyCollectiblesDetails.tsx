@@ -40,6 +40,8 @@ import { MBoxTypes } from '../../types/MBoxTypes';
 import {
   checkConnectWallet,
   checkKaikas,
+  checkKaikasWallet,
+  getTargetNetworkName,
   getTargetWallet,
 } from '../../utils/wallet';
 import { useWeb3React } from '@web3-react/core';
@@ -60,6 +62,7 @@ import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import moment from 'moment';
+import ReactTooltip from 'react-tooltip';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -94,6 +97,7 @@ const MyCollectiblesDetails = () => {
   const [countDownFinish, setCountDownFinish] = useState(false);
   const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isKaikas, setIsKaikas] = useState(false);
   const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
   const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [openSnackbar, setOpenSnackbar] = useState({
@@ -103,7 +107,14 @@ const MyCollectiblesDetails = () => {
   });
   const wallet = useSelector((state: any) => state.wallet);
   const { activate } = useWeb3React();
-  useOnClickOutside(ref, () => setDropdownOpen(false));
+  // useOnClickOutside(ref, () => setDropdownOpen(false));
+
+  useEffect(() => {
+    if (!wallet || !mboxInfo) return;
+    const network = getTargetNetworkName(mboxInfo?.chainId) ?? '';
+    const checkKaikas = checkKaikasWallet(wallet, network);
+    setIsKaikas(checkKaikas);
+  }, [mboxInfo, wallet]);
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -137,13 +148,15 @@ const MyCollectiblesDetails = () => {
         mboxInfo?.keyContractAddress,
         mboxInfo?.boxContractAddress,
         account,
-        library
+        library,
+        isKaikas
       );
       const result: number = await claimMysteryBox(
         mboxInfo?.boxContractAddress,
         balance,
         account,
-        library
+        library,
+        isKaikas
       );
       // setOpenSnackbar({
       //   show: true,
@@ -227,17 +240,16 @@ const MyCollectiblesDetails = () => {
       }
       const message = `apps.talken.io wants you to sign in with your Ethereum account.
 
-      Talken Drops Signature Request
-      
-      Type: Claim
-      NFTs: ${claimableCount}`;
+Talken Drops Signature Request
+
+Type: Claim
+NFTs: ${claimableCount}`;
       const signature = await library.getSigner().signMessage(message);
       const data = {
         mysterybox_id: mboxInfo?.id,
         buyer: talkenUid,
         buyer_address: talkenEthAddress,
         contract: mboxInfo?.boxContractAddress,
-        message,
         signature,
       };
       const res = await requestClaim(data);
@@ -247,6 +259,7 @@ const MyCollectiblesDetails = () => {
         message: 'Success',
       });
       fetchBalance();
+      fetchRevealItem();
     } catch (error) {
       console.log(error);
       setOpenSnackbar({
@@ -274,7 +287,8 @@ const MyCollectiblesDetails = () => {
       const balance = await getKeyBalance(
         mboxInfo?.keyContractAddress,
         account,
-        library
+        library,
+        isKaikas
       );
       setBalance(balance);
     }
@@ -282,7 +296,8 @@ const MyCollectiblesDetails = () => {
     const items = await getItemBalance(
       mboxInfo?.boxContractAddress,
       account,
-      library
+      library,
+      isKaikas
     );
 
     console.log(account, library.connection, balance);
@@ -308,7 +323,8 @@ const MyCollectiblesDetails = () => {
     const items = await getItemBalance(
       mboxInfo?.boxContractAddress,
       account,
-      library
+      library,
+      isKaikas
     );
     let tokenURI: string[] = [];
     let tokenIds: number[] = [];
@@ -317,7 +333,8 @@ const MyCollectiblesDetails = () => {
         mboxInfo?.boxContractAddress,
         items,
         account,
-        library
+        library,
+        isKaikas
       );
       // TODO : Comment out to display only revealed items
       // } else {
@@ -330,7 +347,8 @@ const MyCollectiblesDetails = () => {
         mboxInfo?.boxContractAddress,
         items,
         account,
-        library
+        library,
+        isKaikas
       );
     }
 
@@ -354,7 +372,8 @@ const MyCollectiblesDetails = () => {
     try {
       if (mboxInfo && account && library?.connection) {
         const targetWallet = getTargetWallet(mboxInfo?.chainId, wallet);
-        const isKaikas = checkKaikas(library);
+        const network = getTargetNetworkName(mboxInfo?.chainId) ?? '';
+        const isKaikas = checkKaikasWallet(wallet, network);
         if (
           (isKaikas && targetWallet === 'metamask') ||
           (!isKaikas && targetWallet === 'kaikas')
@@ -388,7 +407,7 @@ const MyCollectiblesDetails = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -405,7 +424,7 @@ const MyCollectiblesDetails = () => {
     fetchFeatured();
   }, [mboxInfo]);
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   const getSnsButtons = () => {
     if (featuredInfo && featuredInfo.links) {
       const test = featuredInfo.links.map((link: LinkTypes) => {
@@ -419,18 +438,62 @@ const MyCollectiblesDetails = () => {
           >
             <div className="image-item hide-max-1024px">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
           </div>
         );
       });
@@ -488,7 +551,6 @@ const MyCollectiblesDetails = () => {
       </ul>
     );
   };
-  console.log('mbox???', featuredInfo);
   return (
     <main className="collectibles-details-container min-height-content">
       <div className="collectibles-details-wp">
@@ -498,25 +560,7 @@ const MyCollectiblesDetails = () => {
           </button>
         </Link> */}
         <div className="product-details">
-          <div className="showcase-box">
-            {mboxInfo?.packageImage.split('.').pop() === 'mp4' ? (
-              <video
-                playsInline
-                autoPlay
-                controls
-                muted
-                loop
-                controlsList="nodownload"
-                width={'100%'}
-              >
-                <source src={mboxInfo?.packageImage} type="video/mp4" />
-              </video>
-            ) : (
-              <img src={mboxInfo?.packageImage} alt="" draggable={false} />
-            )}
-            {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
-          </div>
-          <div className="details-box">
+          <div className="details-box-mobile">
             <div className="banner-dropdown" ref={ref}>
               <div className="logo">
                 <img
@@ -634,6 +678,159 @@ const MyCollectiblesDetails = () => {
               </div> */}
             </div>
             <div className="line-banner"></div>
+          </div>
+          <div className="showcase-box">
+            {mboxInfo?.packageImage.split('.').pop() === 'mp4' ? (
+              <video
+                playsInline
+                autoPlay
+                controls
+                muted
+                loop
+                controlsList="nodownload"
+                width={'100%'}
+              >
+                <source src={mboxInfo?.packageImage} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={mboxInfo?.packageImage} alt="" draggable={false} />
+            )}
+            {/* <canvas className="canvas-card" width="1125" height="1125" style={{ width: '900px', height: '900px' }}></canvas> */}
+          </div>
+          <div className="details-box">
+            <div className="banner-dropdown" ref={ref}>
+              <div className="logo">
+                <img
+                  src={mboxInfo?.companyimage}
+                  alt="Sweet"
+                  className="logo-img"
+                />
+                <div className="logo-info">
+                  <div className="creator">Creator</div>
+                  <div className="name">{mboxInfo?.companyname.en}</div>
+                </div>
+              </div>
+              {/* list sns icon */}
+              <div className="collection-info-right">
+                <div className="collection-info-left-details">
+                  <div className="info-item hide-max-1024px">
+                    <div
+                      className="image-item"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() =>
+                        moveToScope(
+                          mboxInfo?.chainId,
+                          mboxInfo?.boxContractAddress,
+                          true
+                        )
+                      }
+                      data-for="tooltip-explorer"
+                      data-tip
+                    >
+                      <img src={klaytn_white} alt="website icon" />
+                    </div>
+                    <ReactTooltip
+                      id="tooltip-explorer"
+                      getContent={(dataTip) => 'Explorer'}
+                      type={'light'}
+                      offset={{ top: 25 }}
+                    />
+                  </div>
+                  {getSnsButtons()}
+                  <div className="dropdown hide-min-1025px" ref={refDropdown}>
+                    <div
+                      className="dropdown-button"
+                      onClick={() =>
+                        setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                      }
+                    >
+                      <img src={ic_dropdown} alt="dropdown" />
+                    </div>
+                    {dropdownOpen && getSnsMobileButtons()}
+                  </div>
+                </div>
+                <div className="line-icon" />
+                <div className="collection-info-left-details">
+                  <div
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => copyToClipBoard(window.location.href)}
+                    className="info-item"
+                    data-for="tooltip-copy"
+                    data-tip
+                  >
+                    <div className="image-item">
+                      <img src={icon_share} alt="Twitter Icon" width="20px" />
+                    </div>
+                    <ReactTooltip
+                      id="tooltip-copy"
+                      getContent={(dataTip) => 'Copy'}
+                      type={'light'}
+                      offset={{ top: 25 }}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* <div className="dropdown">
+                <div
+                  className="dropdown-button"
+                  onClick={() =>
+                    setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                  }
+                >
+                  <img src={ic_dropdown} alt="dropdown" />
+                </div>
+                {dropdownOpen && (
+                  <ul className="dropdown-box">
+                    <li className="list-dropdown-item">
+                      <button
+                        className="dropdown-item-nft "
+                        onClick={() => {
+                          setWarningOpen(true);
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        <svg
+                          width="19"
+                          height="18"
+                          viewBox="0 0 19 18"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 15V16C18 17.1 17.1 18 16 18H2C1.46957 18 0.960859 17.7893 0.585786 17.4142C0.210714 17.0391 0 16.5304 0 16V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H16C17.1 0 18 0.9 18 2V3H9C8.46957 3 7.96086 3.21071 7.58579 3.58579C7.21071 3.96086 7 4.46957 7 5V13C7 13.5304 7.21071 14.0391 7.58579 14.4142C7.96086 14.7893 8.46957 15 9 15H18ZM9 13H19V5H9V13ZM13 10.5C12.17 10.5 11.5 9.83 11.5 9C11.5 8.17 12.17 7.5 13 7.5C13.83 7.5 14.5 8.17 14.5 9C14.5 9.83 13.83 10.5 13 10.5Z"
+                            fill="white"
+                          />
+                        </svg>
+                        Send to My Wallet
+                      </button>
+                    </li>
+                    <li className="list-dropdown-item">
+                      <button
+                        className="dropdown-item-nft"
+                        onClick={() => {
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1.75 18.9531C1.75 19.368 2.08516 19.7031 2.5 19.7031H9.20312V10.8906H1.75V18.9531ZM10.7969 19.7031H17.5C17.9148 19.7031 18.25 19.368 18.25 18.9531V10.8906H10.7969V19.7031ZM18.625 5.26562H15.1656C15.4844 4.76406 15.6719 4.16875 15.6719 3.53125C15.6719 1.74766 14.2211 0.296875 12.4375 0.296875C11.4672 0.296875 10.593 0.728125 10 1.40781C9.40703 0.728125 8.53281 0.296875 7.5625 0.296875C5.77891 0.296875 4.32812 1.74766 4.32812 3.53125C4.32812 4.16875 4.51328 4.76406 4.83438 5.26562H1.375C0.960156 5.26562 0.625 5.60078 0.625 6.01562V9.29688H9.20312V5.26562H10.7969V9.29688H19.375V6.01562C19.375 5.60078 19.0398 5.26562 18.625 5.26562ZM9.20312 5.17188H7.5625C6.65781 5.17188 5.92188 4.43594 5.92188 3.53125C5.92188 2.62656 6.65781 1.89062 7.5625 1.89062C8.46719 1.89062 9.20312 2.62656 9.20312 3.53125V5.17188ZM12.4375 5.17188H10.7969V3.53125C10.7969 2.62656 11.5328 1.89062 12.4375 1.89062C13.3422 1.89062 14.0781 2.62656 14.0781 3.53125C14.0781 4.43594 13.3422 5.17188 12.4375 5.17188Z"
+                            fill="white"
+                          />
+                        </svg>
+                        Gift this token
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </div> */}
+            </div>
+            <div className="line-banner"></div>
             <div className="name-product">{mboxInfo?.title.en}</div>
             <div className="sub-product">{mboxInfo?.introduction.en}</div>
             {/*<a*/}
@@ -684,15 +881,15 @@ const MyCollectiblesDetails = () => {
               </div>
               <div className="item">
                 <div className="label" data-qa-component="token-type-label">
-                  Token Type
+                  Token Standard
                 </div>
                 <div className="value" data-qa-component="token-type-value">
-                  erc721
+                  ERC-721
                 </div>
               </div>
               <div className="item">
-                <div className="label">Network</div>
-                <div className="value">
+                <div className="label">Chain</div>
+                <div className="value" style={{ textTransform: 'capitalize' }}>
                   {getNetworkNameByChainId(mboxInfo?.chainId)}
                 </div>
               </div>
@@ -793,7 +990,7 @@ const MyCollectiblesDetails = () => {
                       <div className="total_item">Index: {item.no}</div>
                     </div>
                     <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                      <div>erc721</div>
+                      <div>ERC-721</div>
                     </div>
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="card-image">
@@ -818,7 +1015,7 @@ const MyCollectiblesDetails = () => {
                       <div className="owner_product">
                         <div className="owner_product_box">
                           <div className="owner_product_avatar">
-                            <img src={mboxInfo?.packageImage} alt="" />
+                            <img src={mboxInfo?.companyimage} alt="" />
                           </div>
                           <div className="">{mboxInfo?.companyname.en}</div>
                         </div>

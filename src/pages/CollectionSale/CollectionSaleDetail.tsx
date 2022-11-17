@@ -37,6 +37,8 @@ import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import { BigNumber } from 'ethers';
+import { checkKaikasWallet, getTargetNetworkName } from '../../utils/wallet';
+import ReactTooltip from 'react-tooltip';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -85,11 +87,12 @@ const CollectionSaleDetail = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [freedropAble, setFreedropAble] = useState(false);
+  const wallet = useSelector((state: any) => state.wallet);
   const closeWarning = () => {
     setWarningOpen(false);
   };
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
-  useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
+  // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   const handeCheckCountDownFinish = () => {
     setCountDownFinish(true);
   };
@@ -133,6 +136,10 @@ const CollectionSaleDetail = () => {
 
   const handleBuyClick = async () => {
     setIsLoading(true);
+    const isKaikas = checkKaikasWallet(
+      wallet,
+      getTargetNetworkName(collectionItemInfo?.collectionInfo?.chainId) ?? ''
+    );
     const contract = collectionItemInfo?.collectionInfo?.boxContractAddress;
     const quote = collectionItemInfo?.collectionInfo?.quote;
     const index = collectionItemInfo?.index ?? 0;
@@ -160,7 +167,8 @@ const CollectionSaleDetail = () => {
       payment!.toString(),
       quoteToken!,
       account,
-      library
+      library,
+      isKaikas
     );
 
     if (result.status === SUCCESS) {
@@ -213,18 +221,62 @@ const CollectionSaleDetail = () => {
           >
             <div className="image-item hide-max-1024px">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
+            />
           </div>
         );
       });
@@ -343,20 +395,18 @@ const CollectionSaleDetail = () => {
     let url = '/';
     if (item.isCollection === false) {
       if (item.isAirdrop === false) {
-        url = `/klaytn/mbox/${item.id}`;
+        url = `/mbox/${item.id}`;
       } else {
-        url = `/klaytn/airdrop/${item.id}`;
+        url = `/airdrop/${item.id}`;
       }
     } else {
-      url = `/klaytn/collection/${infoId}/${item.id}`;
+      url = `/collection/${infoId}/${item.id}`;
     }
     return url;
   };
 
   const moveToFeatured = () => {
-    navigate(
-      `/klaytn/featured/${collectionItemInfo?.collectionInfo.featuredId}`
-    );
+    navigate(`/creator/${collectionItemInfo?.collectionInfo.featuredId}`);
   };
 
   const fetchCollectionItemInfo = async () => {
@@ -410,7 +460,7 @@ const CollectionSaleDetail = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -427,6 +477,70 @@ const CollectionSaleDetail = () => {
       <div>
         <div className="price-collection-view-page">
           <div className="price-collection-box">
+            <div className="token-details-box-mobile">
+              <div className="wrapper-head-token">
+                <div className="box-owner-product" onClick={moveToFeatured}>
+                  <button className="btn-avatar-owner-product">
+                    <img
+                      src={collectionItemInfo?.companyLogo}
+                      alt={collectionItemInfo?.companyName}
+                    />
+                  </button>
+                  <div className="name-owner-product">
+                    <div className="creator-title">Creator</div>
+                    <button className="btn-name-owner-product">
+                      {collectionItemInfo?.companyName}
+                    </button>
+                  </div>
+                </div>
+                <div className="collection-info-right">
+                  <div className="collection-info-left-details">
+                    <div className="info-item hide-max-1024px">
+                      <div
+                        className="image-item"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          moveToScope(
+                            collectionItemInfo?.collectionInfo.chainId,
+                            collectionItemInfo?.collectionInfo
+                              ?.boxContractAddress,
+                            true
+                          )
+                        }
+                        data-for="tooltip-explorer"
+                        data-tip
+                      >
+                        <img src={klaytn_white} alt="website icon" />
+                      </div>
+                    </div>
+                    {getSnsButtons()}
+                    <div className="dropdown hide-min-1025px" ref={refDropdown}>
+                      <div
+                        className="dropdown-button"
+                        onClick={() =>
+                          setDropdownOpen((dropdownOpen) => !dropdownOpen)
+                        }
+                      >
+                        <img src={ic_dropdown} alt="dropdown" />
+                      </div>
+                      {dropdownOpen && getSnsMobileButtons()}
+                    </div>
+                  </div>
+                  <div className="line-icon" />
+                  <div className="collection-info-left-details">
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => copyToClipBoard(window.location.href)}
+                      className="info-item"
+                    >
+                      <div className="image-item">
+                        <img src={icon_share} alt="Twitter Icon" width="20px" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="token-showcase-box">
               {collectionItemInfo &&
               collectionItemInfo?.originalImage!.indexOf('.mp4') > -1 ? (
@@ -504,9 +618,17 @@ const CollectionSaleDetail = () => {
                             true
                           )
                         }
+                        data-for="tooltip-explorer"
+                        data-tip
                       >
                         <img src={klaytn_white} alt="website icon" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-explorer"
+                        getContent={(dataTip) => 'Explorer'}
+                        type={'light'}
+                        offset={{ top: 25 }}
+                      />
                     </div>
                     {getSnsButtons()}
                     <div className="dropdown hide-min-1025px" ref={refDropdown}>
@@ -527,14 +649,23 @@ const CollectionSaleDetail = () => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
                       className="info-item"
+                      data-for="tooltip-copy"
+                      data-tip
                     >
                       <div className="image-item">
                         <img src={icon_share} alt="Twitter Icon" width="20px" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-copy"
+                        getContent={(dataTip) => 'Copy'}
+                        type={'light'}
+                        offset={{ top: 25 }}
+                      />
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="bottom-line" />
               <div>
                 {freedropAble && (
                   <div className="btn-buy-now">
@@ -581,11 +712,14 @@ const CollectionSaleDetail = () => {
                     </div>
                   </div>
                   <div className="box-price-detail-collection">
-                    <div className="lable-top">Network</div>
-                    <div className="lable-bottom fw-600">
+                    <div className="lable-top">Chain</div>
+                    <div
+                      className="lable-bottom fw-600"
+                      style={{ textTransform: 'capitalize' }}
+                    >
                       {getNetworkNameById(
                         collectionItemInfo?.collectionInfo.chainId
-                      )}
+                      )?.toLowerCase()}
                     </div>
                   </div>
                 </div>
@@ -650,7 +784,11 @@ const CollectionSaleDetail = () => {
               <div>
                 <div className="box-purchase-price">
                   <div className="lable-top">Purchase price</div>
-                  <div className="lable-bottom fw-600">{`${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}</div>
+                  <div className="lable-bottom fw-600">
+                    {collectionItemInfo?.price === 0
+                      ? 'FREE'
+                      : `${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}
+                  </div>
                 </div>
                 {!countDownFinish && (
                   <CountDownTimer

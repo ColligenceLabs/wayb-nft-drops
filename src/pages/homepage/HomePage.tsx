@@ -6,29 +6,24 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
-import { hotCollectiblesTestData } from './mockData';
 import {
   getAirdropList,
   getCollectibleList,
   getCollectionList,
   getEventList,
   getFeaturedCollections,
-  getFeaturedList,
 } from '../../services/services';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import FeaturedCard from '../../components/card/FeaturedCard';
 import ArrowCarouselCollections from 'components/common/ArrowCarouselCollections';
 import CustomArrowCarousel from 'components/common/CustomArrowCarousel';
 import { MBoxTypes } from '../../types/MBoxTypes';
-import { getItemRemains, getItemRemainsNoSigner } from 'utils/transactions';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { getPrice } from '../../utils/getPrice';
 import ArrowCarouselBannerMain from 'components/common/ArrowCarouselBannerMain';
 import { getRarityToString } from '../../utils/getRarityToString';
-import { getNetworkNameByChainId } from 'utils/getNetworkNameByChainId';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import Skeleton from 'components/common/skeleton/Skeleton';
-import { isMobile } from 'react-device-detect';
 import { useMediaQuery } from 'react-responsive';
 
 type ExMBoxType = MBoxTypes & {
@@ -53,10 +48,7 @@ const Homepage = () => {
     if (item.eventUrl) {
       window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
     } else {
-      window.open(
-        `/klaytn/featured/${item.id}`,
-        item.newWindow ? '_blank' : '_self'
-      );
+      window.open(`/creator/${item.id}`, item.newWindow ? '_blank' : '_self');
     }
   };
 
@@ -85,7 +77,6 @@ const Homepage = () => {
     const fetchSlideData = async () => {
       const res = await getEventList();
       if (res.data.status === 1) {
-        console.log(res.data.data.list);
         setSlideData(res.data.data.list);
       }
     };
@@ -102,11 +93,12 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            const remaining = await getItemRemainsNoSigner(
-              item.boxContractAddress,
-              account,
-              chainId
-            );
+            // const remainFrChain = await getItemRemainsNoSigner(
+            //   item.boxContractAddress,
+            //   account,
+            //   chainId
+            // );
+            const remaining = item.totalAmount! - item.soldAmount!;
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
@@ -125,9 +117,9 @@ const Homepage = () => {
       if (res.data.data) {
         const newList = await Promise.all(
           res.data.data.map(async (item: any) => {
-            const id = Math.floor(
-              Math.random() * item.mysteryboxItems[0].issueAmount
-            );
+            const id =
+              Math.floor(Math.random() * item.mysteryboxItems[0].issueAmount) +
+              1;
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
@@ -146,11 +138,7 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            const remaining = await getItemRemainsNoSigner(
-              item.boxContractAddress,
-              account,
-              chainId
-            );
+            const remaining = item.totalAmount! - item.soldAmount!;
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
@@ -207,9 +195,8 @@ const Homepage = () => {
           <div className="text-bottom">
             Check out NFTs and Collectibles from popular teams,&nbsp;
             <br className="text-head-pc" />
-            famous brands&nbsp;
-            <br className="text-head-mobile" />
-            and world renown artists
+            famous brands&nbsp;and world renown artists
+            {/* <br className="text-head-mobile" /> */}
           </div>
         </div>
         <div>
@@ -280,7 +267,7 @@ const Homepage = () => {
         <div className="featured-collections">
           <div className="wrapper-header title-header">
             <div className="header-name">Featured Creators</div>
-            <Link to={'/klaytn/featureds'} className="show-all-item button">
+            <Link to={'/creators'} className="show-all-item button">
               See all
             </Link>
           </div>
@@ -295,7 +282,7 @@ const Homepage = () => {
               desktop: {
                 breakpoint: {
                   max: 3000,
-                  min: 1420,
+                  min: 1367,
                 },
                 items: 5,
                 partialVisibilityGutter: 40,
@@ -318,7 +305,7 @@ const Homepage = () => {
               },
               laptopLarge: {
                 breakpoint: {
-                  max: 1420,
+                  max: 1367,
                   min: 1180,
                 },
                 items: 4,
@@ -360,7 +347,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -383,7 +370,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -405,8 +392,8 @@ const Homepage = () => {
                   <Link
                     to={
                       item.itemAmount === 1 && item.mysteryboxItems
-                        ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
-                        : `/klaytn/collections/${item.id}`
+                        ? `/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
+                        : `/collections/${item.id}`
                     }
                     // state={
                     //   item.itemAmount === 1
@@ -437,8 +424,13 @@ const Homepage = () => {
                           Total Items: {item.totalAmount}
                         </span>
                       </div>
-                      <div className="hot-ollectibles-item">
-                        <div>{getNetworkNameById(item.chainId)}</div>
+                      <div
+                        className="hot-ollectibles-item"
+                        style={{ textTransform: 'capitalize' }}
+                      >
+                        <div>
+                          {getNetworkNameById(item.chainId)?.toLowerCase()}
+                        </div>
                       </div>
                       <div className="hot-ollectibles-item">
                         <div className="img-token">
@@ -505,7 +497,7 @@ const Homepage = () => {
                           <div className="quantity-remaining">
                             {!item.isSoldOut && item.remainingAmount
                               ? item.remainingAmount
-                              : '-'}
+                              : 'Sold Out'}
                           </div>
                         </div>
                       </div>
@@ -638,7 +630,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -661,7 +653,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -683,7 +675,12 @@ const Homepage = () => {
                 .map((item: any, index) => {
                   return (
                     <Link
-                      to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
+                      to={`/${getNetworkNameById(
+                        item.chainId
+                      )?.toLowerCase()}/${item.boxContractAddress}/${
+                        item.mysteryboxItems[0]?.no
+                      }/${item.itemId}`}
+                      // to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
                       state={{
                         item: {
                           ...item,
@@ -701,12 +698,17 @@ const Homepage = () => {
                             {`#${item.itemId}/${item.mysteryboxItems[0]?.issueAmount}`}
                           </span>
                         </div>
-                        <div className="hot-ollectibles-item">
-                          <div>{getNetworkNameById(item.chainId)}</div>
+                        <div
+                          className="hot-ollectibles-item"
+                          style={{ textTransform: 'capitalize' }}
+                        >
+                          <div>
+                            {getNetworkNameById(item.chainId)?.toLowerCase()}
+                          </div>
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
-                            {item?.mysteryboxItems[0]?.originalImage
+                            {item?.mysteryboxItems[0]?.itemImage
                               .split('.')
                               .pop() === 'mp4' ? (
                               <video
@@ -719,15 +721,15 @@ const Homepage = () => {
                                 width={'100%'}
                               >
                                 <source
-                                  src={item?.mysteryboxItems[0]?.originalImage}
+                                  src={item?.mysteryboxItems[0]?.itemImage}
                                   type="video/mp4"
                                 />
                               </video>
-                            ) : item?.mysteryboxItems[0]?.originalImage
+                            ) : item?.mysteryboxItems[0]?.itemImage
                                 .split('.')
                                 .pop() === 'gif' ? (
                               <img
-                                src={item.mysteryboxItems[0]?.originalImage}
+                                src={item.mysteryboxItems[0]?.itemImage}
                                 alt=""
                                 draggable={false}
                               />
@@ -809,7 +811,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -832,7 +834,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -854,7 +856,7 @@ const Homepage = () => {
                 .map((item: any, index) => {
                   return (
                     <Link
-                      to={`/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
+                      to={`/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
                       state={{
                         item: {
                           ...item,
@@ -872,8 +874,13 @@ const Homepage = () => {
                             Total Items: {item.totalAmount}
                           </span>
                         </div>
-                        <div className="hot-ollectibles-item">
-                          <div>{getNetworkNameById(item.chainId)}</div>
+                        <div
+                          className="hot-ollectibles-item"
+                          style={{ textTransform: 'capitalize' }}
+                        >
+                          <div>
+                            {getNetworkNameById(item.chainId)?.toLowerCase()}
+                          </div>
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
@@ -940,7 +947,7 @@ const Homepage = () => {
                             <div className="quantity-remaining">
                               {!item.isSoldOut && item.remainingAmount
                                 ? item.remainingAmount
-                                : '-'}
+                                : 'Sold Out'}
                             </div>
                           </div>
                         </div>

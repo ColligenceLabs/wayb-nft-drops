@@ -8,6 +8,7 @@ import arrow_up_right from '../../assets/icon/arrow_up_right.png';
 import { useSelector } from 'react-redux';
 import { getFeaturedById, getHistory } from '../../services/services';
 import { splitString } from '../../utils/splitString';
+import splitAddress from '../../utils/splitAddress';
 import { moveToScope } from '../../utils/moveToScope';
 
 const Purchase_History = () => {
@@ -27,12 +28,12 @@ const Purchase_History = () => {
   const moveToUrl = (item: any) => {
     let url;
     if (item.mysteryboxInfo.isCollection) {
-      url = `/klaytn/collection/${item.mysteryBoxId}/${item.itemId}`;
+      url = `/collection/${item.mysteryBoxId}/${item.itemId}`;
     } else {
       if (item.mysteryboxInfo.isAirdrop) {
-        url = `/klaytn/airdrop/${item.mysteryBoxId}/${item.itemId}`;
+        url = `/airdrop/${item.mysteryBoxId}/${item.itemId}`;
       } else {
-        url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
+        url = `/mbox/${item.mysteryboxInfo.id}`;
       }
     }
 
@@ -83,7 +84,7 @@ const Purchase_History = () => {
               <div className="title payment_type">Type</div>
               <div className="title name">NFT</div>
               <div className="title amount">Price</div>
-              <div className="title blockchain">BlockChain</div>
+              <div className="title blockchain">Chain</div>
               <div className="title explorer_url">Confirmation</div>
               <div className="icon value"></div>
             </div>
@@ -118,7 +119,7 @@ const Purchase_History = () => {
                         : 'Binance'}
                     </div>
                     <div className="value explorer_url">
-                      {drop.txHash ? splitString(drop.txHash) : ''}
+                      {drop.txHash ? splitAddress(drop.txHash) : ''}
                     </div>
                     <div className="icon value">
                       <a href="#">
