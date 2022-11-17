@@ -116,40 +116,44 @@ const MyProfile = () => {
             </div>
           </div>
           <div className="my-profile-rightdetail">
-            <div className="my-profile-rightdetail-item">
-              <div className="item-label">
-                <img src={twitter_icon} alt="Icon Twitter" />
-                Twitter
+            {dropsAccount.twitter && dropsAccount.twitter !== 'null' ? (
+              <div className="my-profile-rightdetail-item">
+                <div className="item-label">
+                  <img src={twitter_icon} alt="Icon Twitter" />
+                  Twitter
+                </div>
+                <div className="item-value">
+                  <a
+                    href={`https://twitter.com/${
+                      dropsAccount.twitter ? dropsAccount.twitter : ''
+                    }`}
+                    target="_blank"
+                    className="custom-link-sns"
+                  >
+                    {`${dropsAccount.twitter}`}
+                  </a>
+                </div>
               </div>
-              <div className="item-value">
-                <a
-                  href={`https://twitter.com/${
-                    dropsAccount.twitter ? dropsAccount.twitter : ''
-                  }`}
-                  target="_blank"
-                  className="custom-link-sns"
-                >
-                  {dropsAccount.twitter ? `${dropsAccount.twitter}` : '-'}
-                </a>
+            ) : null}
+            {dropsAccount.instagram && dropsAccount.instagram !== 'null' ? (
+              <div className="my-profile-rightdetail-item">
+                <div className="item-label">
+                  <img src={icon_insta_realistic} alt="Icon Instagram" />
+                  Instagram
+                </div>
+                <div className="item-value">
+                  <a
+                    href={`https://instagram.com/${
+                      dropsAccount.instagram ? dropsAccount.instagram : ''
+                    }`}
+                    target="_blank"
+                    className="custom-link-sns"
+                  >
+                    {`${dropsAccount.instagram}`}
+                  </a>
+                </div>
               </div>
-            </div>
-            <div className="my-profile-rightdetail-item">
-              <div className="item-label">
-                <img src={icon_insta_realistic} alt="Icon Instagram" />
-                Instagram
-              </div>
-              <div className="item-value">
-                <a
-                  href={`https://instagram.com/${
-                    dropsAccount.instagram ? dropsAccount.instagram : ''
-                  }`}
-                  target="_blank"
-                  className="custom-link-sns"
-                >
-                  {dropsAccount.instagram ? `${dropsAccount.instagram}` : '-'}
-                </a>
-              </div>
-            </div>
+            ) : null}
             <Popup modal trigger={<button>Edit Profile</button>}>
               {Edit}
             </Popup>
