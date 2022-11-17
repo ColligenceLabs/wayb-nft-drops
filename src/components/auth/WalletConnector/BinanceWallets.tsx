@@ -17,6 +17,7 @@ import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
 import env from '../../../env';
+import { isMobile } from 'react-device-detect';
 
 type BinanceWalletsProps = {
   close: any;
@@ -72,6 +73,11 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
+        if (isMobile) {
+          console.log('this is mobile');
+        } else {
+          console.log('this is not mobile');
+        }
         // console.log(`click ${id}, this is Talken (Binance)`);
         // setWalletName('talken');
         const wc = talkenwallet(true);

@@ -726,6 +726,7 @@
           .remaining-total {
             font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
           }
         }
 
@@ -1263,7 +1264,7 @@
             gap: 5px;
             .item {
               max-width: 30vw;
-              padding: 20px 10px;
+              padding: 20px 5px;
               font-size: 12px;
             }
           }
@@ -1298,7 +1299,7 @@
             gap: 5px;
             .item {
               max-width: 30vw;
-              padding: 20px 10px;
+              padding: 20px 5px;
               font-size: 12px;
             }
           }
@@ -1323,7 +1324,7 @@
             gap: 5px;
             .item {
               max-width: 30vw;
-              padding: 20px 10px;
+              padding: 20px 5px;
               font-size: 12px;
               .label {
                 font-size: 10px;

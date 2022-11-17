@@ -404,6 +404,7 @@
           .remaining-total {
             font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
           }
         }
 
@@ -1242,7 +1243,7 @@
   }
 }
 
-@media (max-width: 1420px) {
+@media (max-width: 1367px) {
   .box-collection {
     .marketplace {
       .marketplace-items {
