@@ -116,7 +116,11 @@ const CollectionSale = () => {
   const handleClickSeeMore = () => {
     if (mBoxInfo) {
       if (mBoxInfo?.isCollection) {
-        navigate(`/collections/${mBoxInfo.id}`);
+        if (mBoxInfo?.mysteryboxItems && mBoxInfo?.mysteryboxItems[0].id) {
+          navigate(
+            `/collection/${mBoxInfo.id}/${mBoxInfo?.mysteryboxItems[0].id}`
+          );
+        }
       } else {
         if (mBoxInfo?.isAirdrop) {
           if (mBoxInfo?.mysteryboxItems && mBoxInfo?.mysteryboxItems[0].id) {
@@ -217,7 +221,7 @@ const CollectionSale = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -340,7 +344,7 @@ const CollectionSale = () => {
               </div>
               {/* dropdown change color */}
               {/*<Accordion defaultActiveKey={['0']} alwaysOpen>*/}
-              <Accordion alwaysOpen>
+              <Accordion defaultActiveKey={['1']} alwaysOpen>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>
                     <div className="content-left">
@@ -410,8 +414,11 @@ const CollectionSale = () => {
                       </div>
                       <div className="item-details">
                         <div className="name">Chain</div>
-                        <div className="info-name">
-                          {getNetworkNameById(mBoxInfo.chainId)}
+                        <div
+                          className="info-name"
+                          style={{ textTransform: 'capitalize' }}
+                        >
+                          {getNetworkNameById(mBoxInfo.chainId)?.toLowerCase()}
                         </div>
                       </div>
                       {/* <div className="item-details">
@@ -532,8 +539,11 @@ const CollectionSale = () => {
                   </div>
                 </div>
                 <div className="item">
-                  <div className="label">Network</div>
-                  <div className="value">
+                  <div className="label">Chain</div>
+                  <div
+                    className="value"
+                    style={{ textTransform: 'capitalize' }}
+                  >
                     {getNetworkNameByChainId(
                       env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217
                     )}
@@ -541,6 +551,101 @@ const CollectionSale = () => {
                 </div>
               </div>
               {/* <div className="list-trade"></div> */}
+              <div className="wrapper-detail-box-mobile">
+                <Accordion defaultActiveKey={['1']} alwaysOpen>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                      <div className="content-left">
+                        <div className="image-properties">
+                          <img src={icon_properties} alt="Properties" />
+                        </div>
+                        <div className="title-properties">Properties</div>
+                      </div>
+                    </Accordion.Header>
+                    <Accordion.Body className="accordion-properties">
+                      <div className="padding-content">
+                        {itemInfo.properties &&
+                          itemInfo.properties.map((property) => (
+                            <div className="item-properties">
+                              <div className="content-01">{property.type}</div>
+                              <div className="content-02">{property.name}</div>
+                              {/*<div className="content-03">*/}
+                              {/*  35% have this trait*/}
+                              {/*</div>*/}
+                            </div>
+                          ))}
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                      <div className="content-left">
+                        <div className="image-details">
+                          <img src={icon_details} alt="Details" />
+                        </div>
+                        <div className="title-details">Details</div>
+                      </div>
+                    </Accordion.Header>
+                    <Accordion.Body className="accordion-details">
+                      <div className="padding-content">
+                        <div className="item-details">
+                          <div className="name">Contract Address</div>
+                          <div
+                            className="info-name"
+                            onClick={() =>
+                              moveToScope(
+                                mBoxInfo?.chainId,
+                                mBoxInfo?.boxContractAddress,
+                                true
+                              )
+                            }
+                          >
+                            {splitAddress(mBoxInfo.boxContractAddress)}
+                          </div>
+                        </div>
+                        <div className="item-details">
+                          <div className="name">Token ID</div>
+                          <div
+                            className="info-name"
+                            onClick={() =>
+                              window.open(
+                                `https://www.klaytnfinder.io/nft/${mBoxInfo?.boxContractAddress}/${params.id}`
+                              )
+                            }
+                          >
+                            {params.id}
+                          </div>
+                        </div>
+                        <div className="item-details">
+                          <div className="name">Token Standard</div>
+                          <div className="info-name">ERC-721</div>
+                        </div>
+                        <div className="item-details">
+                          <div className="name">Chain</div>
+                          <div
+                            className="info-name"
+                            style={{ textTransform: 'capitalize' }}
+                          >
+                            {getNetworkNameById(
+                              mBoxInfo.chainId
+                            )?.toLowerCase()}
+                          </div>
+                        </div>
+                        {/* <div className="item-details">
+                        <div className="name">Last Updated</div>
+                        <div className="info-name">
+                          {toStringByFormatting(new Date(mBoxInfo.updatedAt!))}
+                        </div>
+                      </div> */}
+                        {/* <div className="item-details">
+                        <div className="name">Creator Earnings</div>
+                        <div className="info-name">2.5%</div>
+                      </div> */}
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </div>
               <div className="wrapper-user-details">
                 <div className="title-details">
                   Collection this item belongs to

@@ -415,7 +415,7 @@ const CollectionSaleDetail = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -649,11 +649,14 @@ const CollectionSaleDetail = () => {
                     </div>
                   </div>
                   <div className="box-price-detail-collection">
-                    <div className="lable-top">Network</div>
-                    <div className="lable-bottom fw-600">
+                    <div className="lable-top">Chain</div>
+                    <div
+                      className="lable-bottom fw-600"
+                      style={{ textTransform: 'capitalize' }}
+                    >
                       {getNetworkNameById(
                         collectionItemInfo?.collectionInfo.chainId
-                      )}
+                      )?.toLowerCase()}
                     </div>
                   </div>
                 </div>
@@ -718,7 +721,11 @@ const CollectionSaleDetail = () => {
               <div>
                 <div className="box-purchase-price">
                   <div className="lable-top">Purchase price</div>
-                  <div className="lable-bottom fw-600">{`${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}</div>
+                  <div className="lable-bottom fw-600">
+                    {collectionItemInfo?.price === 0
+                      ? 'FREE'
+                      : `${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}
+                  </div>
                 </div>
                 {!countDownFinish && (
                   <CountDownTimer

@@ -577,9 +577,12 @@ const SaleCollectibles = () => {
                       <div className="lable-bottom fw-600">{remains}</div>
                     </div>
                     <div className="box-price-detail-collection">
-                      <div className="lable-top">Network</div>
-                      <div className="lable-bottom fw-600">
-                        {getNetworkNameById(mBoxInfo.chainId)}
+                      <div className="lable-top">Chain</div>
+                      <div
+                        className="lable-bottom fw-600"
+                        style={{ textTransform: 'capitalize' }}
+                      >
+                        {getNetworkNameById(mBoxInfo.chainId)?.toLowerCase()}
                       </div>
                     </div>
                   </div>
@@ -587,7 +590,11 @@ const SaleCollectibles = () => {
                 <div>
                   <div className="box-purchase-price">
                     <div className="lable-top">Purchase price</div>
-                    <div className="lable-bottom fw-600">{`${mBoxInfo.price} ${mBoxInfo.quote}`}</div>
+                    <div className="lable-bottom fw-600">
+                      {mBoxInfo?.price === 0
+                        ? 'FREE'
+                        : `${mBoxInfo?.price} ${mBoxInfo?.quote}`}
+                    </div>
                   </div>
                   {!countDownFinish && (
                     <CountDownTimer

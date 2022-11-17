@@ -406,7 +406,7 @@ NFTs: ${claimableCount}`;
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -827,8 +827,8 @@ NFTs: ${claimableCount}`;
                 </div>
               </div>
               <div className="item">
-                <div className="label">Network</div>
-                <div className="value">
+                <div className="label">Chain</div>
+                <div className="value" style={{ textTransform: 'capitalize' }}>
                   {getNetworkNameByChainId(mboxInfo?.chainId)}
                 </div>
               </div>
