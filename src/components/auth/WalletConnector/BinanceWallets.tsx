@@ -73,15 +73,16 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
-        if (isMobile) {
-          console.log('this is mobile');
-        } else {
-          console.log('this is not mobile');
-        }
         // console.log(`click ${id}, this is Talken (Binance)`);
         // setWalletName('talken');
-        const wc = talkenwallet(true);
-        await activate(wc, undefined, true);
+        if (isMobile) {
+          await activate(injected, undefined, true);
+          dispatch(setActivatingConnector(injected));
+        } else {
+          const wc = talkenwallet(true);
+          await activate(wc, undefined, true);
+          await dispatch(setActivatingConnector(wc));
+        }
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Binance)`);
         // setWalletName('kaikas');
