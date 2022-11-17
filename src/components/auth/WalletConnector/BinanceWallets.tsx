@@ -23,7 +23,7 @@ type BinanceWalletsProps = {
 const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
   const dispatch = useDispatch();
   const context = useWeb3React();
-  const { activate, account, library } = context;
+  const { activate, account, library, deactivate } = context;
   const { binance } = useSelector((state: any) => state.wallet);
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
@@ -36,15 +36,13 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
       // createToken();
       dispatch(initDropsAccount());
       tokenGenerator.createToken().then((res) => {
-        // if (res === 'notIncludeAccount') {
-        //   deactivate();
-        //   console.log('권한이 없습니다. Talken 관리자에게 연락하세요');
-        // } else if (res === 'notRegistered') {
-        //   deactivate();
-        //   console.log(
-        //     '등록되지 않은 사용자입니다. Talken 관리자에게 연락하세요.'
-        //   );
-        // }
+        if (res === 'userDenied') {
+          deactivate();
+          dispatch(setBinance({}));
+          console.log('서명을 거부하였습니다. 다시 시도해주세요.');
+          return;
+        }
+        close();
       });
     }
   }, [account, library, doSign]);
@@ -89,7 +87,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
         await dispatch(setActivatingConnector(abc));
       }
       window.localStorage.setItem('walletStatus', 'connected');
-      close();
+      // close();
     } catch (e: any) {
       console.log('connect wallet error', e);
       const error: string = e.message;
