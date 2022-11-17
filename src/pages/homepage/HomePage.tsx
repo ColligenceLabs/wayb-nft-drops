@@ -117,9 +117,9 @@ const Homepage = () => {
       if (res.data.data) {
         const newList = await Promise.all(
           res.data.data.map(async (item: any) => {
-            const id = Math.floor(
-              Math.random() * item.mysteryboxItems[0].issueAmount
-            );
+            const id =
+              Math.floor(Math.random() * item.mysteryboxItems[0].issueAmount) +
+              1;
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
