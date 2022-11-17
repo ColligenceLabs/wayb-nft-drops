@@ -16,6 +16,7 @@ import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from 'hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
 import env from '../../../env';
+import { isMobile } from 'react-device-detect';
 
 type KlaytnWalletsProps = {
   close: any;
@@ -23,7 +24,7 @@ type KlaytnWalletsProps = {
 const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
   const dispatch = useDispatch();
   const context = useWeb3React();
-  const { activate, account, library } = context;
+  const { activate, account, library, deactivate } = context;
   const { klaytn } = useSelector((state: any) => state.wallet);
   const [walletName, setWalletName] = useState('');
   const [connectedWallet, setConnectedWallet] = useState<any | null>(null);
@@ -48,15 +49,13 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       // createToken();
       dispatch(initDropsAccount());
       tokenGenerator.createToken().then((res) => {
-        // if (res === 'notIncludeAccount') {
-        //   deactivate();
-        //   console.log('권한이 없습니다. Talken 관리자에게 연락하세요');
-        // } else if (res === 'notRegistered') {
-        //   deactivate();
-        //   console.log(
-        //     '등록되지 않은 사용자입니다. Talken 관리자에게 연락하세요.'
-        //   );
-        // }
+        if (res === 'userDenied') {
+          deactivate();
+          dispatch(setKlaytn({}));
+          console.log('서명을 거부하였습니다. 다시 시도해주세요.');
+          return;
+        }
+        close();
       });
     }
   }, [account, library, doSign]);
@@ -75,12 +74,18 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
+        if (isMobile) {
+          console.log('this is mobile');
+        } else {
+          console.log('this is not mobile');
+        }
         // console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
         // await activate(injected, undefined, true);
         // dispatch(setActivatingConnector(injected));
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
+        await dispatch(setActivatingConnector(wc));
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
@@ -94,7 +99,6 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       }
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);
-      close();
     } catch (e: any) {
       console.log('connect wallet error : ', e);
       const error: string = e.message;

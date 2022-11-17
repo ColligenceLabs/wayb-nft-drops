@@ -14,6 +14,7 @@ import search_icon from '../../assets/icon/search_icon.svg';
 import wallet_blue from '../../assets/icon/wallet_blue.svg';
 import wallet_white from '../../assets/icon/wallet_white.svg';
 
+import makeBlockie from 'ethereum-blockies-base64';
 import nav_icon from '../../assets/icon/nav_icon.svg';
 import { Link, useLocation } from 'react-router-dom';
 import DialogWallets from 'components/modal/DialogWallets';
@@ -225,7 +226,7 @@ const Navbar = () => {
                     src={
                       dropsAccount.profile_image
                         ? dropsAccount.profile_image
-                        : avatar_user
+                        : makeBlockie(dropsAccount.address)
                     }
                     alt="profile-avatar"
                   />
