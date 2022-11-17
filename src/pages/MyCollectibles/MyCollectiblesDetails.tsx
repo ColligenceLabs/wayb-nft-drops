@@ -473,18 +473,26 @@ NFTs: ${claimableCount}`;
             <ReactTooltip
               id="tooltip-website"
               getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-discord"
               getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-twitter"
               getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-instagram"
               getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
           </div>
         );
@@ -724,6 +732,8 @@ NFTs: ${claimableCount}`;
                     <ReactTooltip
                       id="tooltip-explorer"
                       getContent={(dataTip) => 'Explorer'}
+                      type={'light'}
+                      offset={{ top: 25 }}
                     />
                   </div>
                   {getSnsButtons()}
@@ -754,6 +764,8 @@ NFTs: ${claimableCount}`;
                     <ReactTooltip
                       id="tooltip-copy"
                       getContent={(dataTip) => 'Copy'}
+                      type={'light'}
+                      offset={{ top: 25 }}
                     />
                   </div>
                 </div>
@@ -869,10 +881,10 @@ NFTs: ${claimableCount}`;
               </div>
               <div className="item">
                 <div className="label" data-qa-component="token-type-label">
-                  Token Type
+                  Token Standard
                 </div>
                 <div className="value" data-qa-component="token-type-value">
-                  erc721
+                  ERC-721
                 </div>
               </div>
               <div className="item">
@@ -978,7 +990,7 @@ NFTs: ${claimableCount}`;
                       <div className="total_item">Index: {item.no}</div>
                     </div>
                     <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                      <div>erc721</div>
+                      <div>ERC-721</div>
                     </div>
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="card-image">

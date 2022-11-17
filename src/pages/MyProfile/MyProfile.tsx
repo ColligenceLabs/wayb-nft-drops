@@ -103,12 +103,14 @@ const MyProfile = () => {
               {/*  <div className="title">Birthday</div>*/}
               {/*  <div className="content">07/05/2018</div>*/}
               {/*</div>*/}
-              <div className="contact-detail">
-                <div className="title">Email</div>
-                <div className="content">
-                  {dropsAccount.email ? dropsAccount.email : '-'}
+              {dropsAccount.email && dropsAccount.email !== 'null' ? (
+                <div className="contact-detail">
+                  <div className="title">Email</div>
+                  <div className="content">
+                    {dropsAccount.email ? dropsAccount.email : '-'}
+                  </div>
                 </div>
-              </div>
+              ) : null}
               {/*<div className="contact-detail">*/}
               {/*  <div className="title">Mobile Phone</div>*/}
               {/*  <div className="content">0123456789</div>*/}

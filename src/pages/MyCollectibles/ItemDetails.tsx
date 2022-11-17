@@ -184,18 +184,26 @@ const CollectionSale = () => {
             <ReactTooltip
               id="tooltip-website"
               getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-discord"
               getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-twitter"
               getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-instagram"
               getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
           </div>
         );
@@ -511,6 +519,8 @@ const CollectionSale = () => {
                       <ReactTooltip
                         id="tooltip-explorer"
                         getContent={(dataTip) => 'Explorer'}
+                        type={'light'}
+                        offset={{ top: 25 }}
                       />
                     </div>
                     {getSnsButtons()}
@@ -541,6 +551,8 @@ const CollectionSale = () => {
                       <ReactTooltip
                         id="tooltip-copy"
                         getContent={(dataTip) => 'Copy'}
+                        type={'light'}
+                        offset={{ top: 25 }}
                       />
                     </div>
                   </div>
@@ -581,10 +593,10 @@ const CollectionSale = () => {
                 </div>
                 <div className="item">
                   <div className="label" data-qa-component="token-type-label">
-                    Token Type
+                    Token Standard
                   </div>
                   <div className="value" data-qa-component="token-type-value">
-                    erc721
+                    ERC-721
                   </div>
                 </div>
                 <div className="item">
@@ -711,9 +723,9 @@ const CollectionSale = () => {
                     onClick={handleClickSeeMore}
                   >
                     <div className="wrapper-see-collection">
-                      <div className="image-see-collection">
+                      {/* <div className="image-see-collection">
                         <img src={see_collection} alt="Icon See Collection" />
-                      </div>
+                      </div> */}
                       <div className="title">See this collection</div>
                     </div>
                   </div>

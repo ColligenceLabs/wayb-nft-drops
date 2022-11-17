@@ -256,18 +256,26 @@ const CollectionSaleDetail = () => {
             <ReactTooltip
               id="tooltip-website"
               getContent={(dataTip) => 'Website'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-discord"
               getContent={(dataTip) => 'Discord'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-twitter"
               getContent={(dataTip) => 'Twitter'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
             <ReactTooltip
               id="tooltip-instagram"
               getContent={(dataTip) => 'Instagram'}
+              type={'light'}
+              offset={{ top: 25 }}
             />
           </div>
         );
@@ -618,6 +626,8 @@ const CollectionSaleDetail = () => {
                       <ReactTooltip
                         id="tooltip-explorer"
                         getContent={(dataTip) => 'Explorer'}
+                        type={'light'}
+                        offset={{ top: 25 }}
                       />
                     </div>
                     {getSnsButtons()}
@@ -648,6 +658,8 @@ const CollectionSaleDetail = () => {
                       <ReactTooltip
                         id="tooltip-copy"
                         getContent={(dataTip) => 'Copy'}
+                        type={'light'}
+                        offset={{ top: 25 }}
                       />
                     </div>
                   </div>
