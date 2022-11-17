@@ -102,11 +102,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
               to={
                 item.isCollection
                   ? item.itemAmount === 1 && item.mysteryboxItems
-                    ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
-                    : `/klaytn/collections/${item.id}`
+                    ? `/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
+                    : `/collections/${item.id}`
                   : item.isAirdrop
-                  ? `/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
-                  : `/klaytn/mbox/${item.id}`
+                  ? `/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
+                  : `/mbox/${item.id}`
               }
               // state={
               //   item.isCollection && item.itemAmount === 1
@@ -174,11 +174,11 @@ const CollectionList: React.FC<CollectionListProps> = ({
                         to={
                           item.isCollection
                             ? item.itemAmount === 1 && item.mysteryboxItems
-                              ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
-                              : `/klaytn/collections/${item.id}`
+                              ? `/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
+                              : `/collections/${item.id}`
                             : item.isAirdrop
-                            ? `/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
-                            : `/klaytn/mbox/${item.id}`
+                            ? `/airdrop/${item.id}/${item.mysteryboxItems[0]?.id}`
+                            : `/mbox/${item.id}`
                         }
                         // state={
                         //   item.isCollection && item.itemAmount === 1
