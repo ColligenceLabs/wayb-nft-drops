@@ -147,13 +147,15 @@ const MyCollectiblesDetails = () => {
         mboxInfo?.keyContractAddress,
         mboxInfo?.boxContractAddress,
         account,
-        library
+        library,
+        isKaikas
       );
       const result: number = await claimMysteryBox(
         mboxInfo?.boxContractAddress,
         balance,
         account,
-        library
+        library,
+        isKaikas
       );
       // setOpenSnackbar({
       //   show: true,
@@ -330,7 +332,8 @@ NFTs: ${claimableCount}`;
         mboxInfo?.boxContractAddress,
         items,
         account,
-        library
+        library,
+        isKaikas
       );
       // TODO : Comment out to display only revealed items
       // } else {
@@ -343,7 +346,8 @@ NFTs: ${claimableCount}`;
         mboxInfo?.boxContractAddress,
         items,
         account,
-        library
+        library,
+        isKaikas
       );
     }
 
