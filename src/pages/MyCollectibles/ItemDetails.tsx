@@ -144,6 +144,7 @@ const CollectionSale = () => {
             style={{
               cursor: 'pointer',
             }}
+            key={link.type}
             className="info-item hide-max-1024px"
             onClick={() => window.open(link.url)}
           >
