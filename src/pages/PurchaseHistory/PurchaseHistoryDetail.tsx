@@ -60,8 +60,8 @@ const Purchase_History_Detail = () => {
                 <p className="value">09/02/2022</p>
               </div>
               <div className="info">
-                <p className="title">Token Type</p>
-                <p className="value">ERC721</p>
+                <p className="title">Token Standard</p>
+                <p className="value">ERC-721</p>
               </div>
               <div className="info">
                 <p className="title">Chain</p>

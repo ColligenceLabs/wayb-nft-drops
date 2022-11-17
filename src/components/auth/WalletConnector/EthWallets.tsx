@@ -11,6 +11,7 @@ import {
   kaikas,
   abc,
   walletconnect,
+  talkenwallet,
 } from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 
@@ -48,7 +49,9 @@ const EthWallets = () => {
         await activate(wc, undefined, true);
       } else if (id === 2) {
         // console.log(`click ${id}, this is Talken (Ethereum)`);
-        // setWalletName(value;
+        // setWalletName('talken');
+        const wc = talkenwallet(true);
+        await activate(wc, undefined, true);
       } else {
         // console.log(`click ${id}, this is Kaikas (Ethereum)`);
         // setWalletName(value;

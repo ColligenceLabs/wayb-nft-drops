@@ -11,11 +11,13 @@ import {
   kaikas,
   abc,
   walletconnect,
+  talkenwallet,
 } from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
 import { initDropsAccount } from '../../../redux/slices/account';
 import env from '../../../env';
+import { isMobile } from 'react-device-detect';
 
 type BinanceWalletsProps = {
   close: any;
@@ -73,8 +75,14 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
       } else if (id === 2) {
         // console.log(`click ${id}, this is Talken (Binance)`);
         // setWalletName('talken');
-        const wc = walletconnect(true);
-        await activate(wc, undefined, true);
+        if (isMobile) {
+          await activate(injected, undefined, true);
+          dispatch(setActivatingConnector(injected));
+        } else {
+          const wc = talkenwallet(true);
+          await activate(wc, undefined, true);
+          await dispatch(setActivatingConnector(wc));
+        }
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Binance)`);
         // setWalletName('kaikas');

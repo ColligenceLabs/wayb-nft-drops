@@ -111,7 +111,7 @@ const Navbar = () => {
         <div className="nav-right">
           <div className="contact-header">
             <a href="https://talken.io/" target={'_blank'}>
-              Talken.io
+              About
             </a>
             <a href="https://talken-io.medium.com/" target={'_blank'}>
               Blog
