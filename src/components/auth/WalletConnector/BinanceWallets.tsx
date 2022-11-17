@@ -11,6 +11,7 @@ import {
   kaikas,
   abc,
   walletconnect,
+  talkenwallet,
 } from '../../../hooks/connectors';
 import splitAddress from '../../../utils/splitAddress';
 import useCreateToken from '../../../hooks/useCreateToken';
@@ -73,7 +74,7 @@ const BinanceWallets: React.FC<BinanceWalletsProps> = ({ close }) => {
       } else if (id === 2) {
         // console.log(`click ${id}, this is Talken (Binance)`);
         // setWalletName('talken');
-        const wc = walletconnect(true);
+        const wc = talkenwallet(true);
         await activate(wc, undefined, true);
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Binance)`);
