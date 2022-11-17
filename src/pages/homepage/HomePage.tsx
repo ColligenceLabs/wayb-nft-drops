@@ -283,7 +283,7 @@ const Homepage = () => {
               desktop: {
                 breakpoint: {
                   max: 3000,
-                  min: 1420,
+                  min: 1367,
                 },
                 items: 5,
                 partialVisibilityGutter: 40,
@@ -306,7 +306,7 @@ const Homepage = () => {
               },
               laptopLarge: {
                 breakpoint: {
-                  max: 1420,
+                  max: 1367,
                   min: 1180,
                 },
                 items: 4,
@@ -348,7 +348,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -371,7 +371,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -425,8 +425,13 @@ const Homepage = () => {
                           Total Items: {item.totalAmount}
                         </span>
                       </div>
-                      <div className="hot-ollectibles-item">
-                        <div>{getNetworkNameById(item.chainId)}</div>
+                      <div
+                        className="hot-ollectibles-item"
+                        style={{ textTransform: 'capitalize' }}
+                      >
+                        <div>
+                          {getNetworkNameById(item.chainId)?.toLowerCase()}
+                        </div>
                       </div>
                       <div className="hot-ollectibles-item">
                         <div className="img-token">
@@ -493,7 +498,7 @@ const Homepage = () => {
                           <div className="quantity-remaining">
                             {!item.isSoldOut && item.remainingAmount
                               ? item.remainingAmount
-                              : '-'}
+                              : 'Sold Out'}
                           </div>
                         </div>
                       </div>
@@ -626,7 +631,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -649,7 +654,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -669,12 +674,13 @@ const Homepage = () => {
               {collectibleList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
-                  console.log('123', item);
                   return (
                     <Link
-                      to={`/${getNetworkNameById(item.chainId).toLowerCase()}/${
-                        item.boxContractAddress
-                      }/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
+                      to={`/${getNetworkNameById(
+                        item.chainId
+                      )?.toLowerCase()}/${item.boxContractAddress}/${
+                        item.mysteryboxItems[0]?.no
+                      }/${item.itemId}`}
                       // to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
                       state={{
                         item: {
@@ -693,8 +699,13 @@ const Homepage = () => {
                             {`#${item.itemId}/${item.mysteryboxItems[0]?.issueAmount}`}
                           </span>
                         </div>
-                        <div className="hot-ollectibles-item">
-                          <div>{getNetworkNameById(item.chainId)}</div>
+                        <div
+                          className="hot-ollectibles-item"
+                          style={{ textTransform: 'capitalize' }}
+                        >
+                          <div>
+                            {getNetworkNameById(item.chainId)?.toLowerCase()}
+                          </div>
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
@@ -801,7 +812,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -824,7 +835,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -864,8 +875,13 @@ const Homepage = () => {
                             Total Items: {item.totalAmount}
                           </span>
                         </div>
-                        <div className="hot-ollectibles-item">
-                          <div>{getNetworkNameById(item.chainId)}</div>
+                        <div
+                          className="hot-ollectibles-item"
+                          style={{ textTransform: 'capitalize' }}
+                        >
+                          <div>
+                            {getNetworkNameById(item.chainId)?.toLowerCase()}
+                          </div>
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
@@ -932,7 +948,7 @@ const Homepage = () => {
                             <div className="quantity-remaining">
                               {!item.isSoldOut && item.remainingAmount
                                 ? item.remainingAmount
-                                : '-'}
+                                : 'Sold Out'}
                             </div>
                           </div>
                         </div>

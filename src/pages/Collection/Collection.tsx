@@ -16,6 +16,7 @@ import useCopyToClipBoard from 'hooks/useCopyToClipboard';
 import CSnackbar from '../../components/common/CSnackbar';
 import { useMediaQuery } from 'react-responsive';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
+import ReactTooltip from 'react-tooltip';
 
 type LinkTypes = {
   type: string;
@@ -59,18 +60,54 @@ const Collection = () => {
           >
             <div className="image-item">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+            />
           </div>
         );
       });
@@ -129,7 +166,7 @@ const Collection = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
   return (
@@ -189,10 +226,16 @@ const Collection = () => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
                       className="info-item"
+                      data-for="tooltip-copy"
+                      data-tip
                     >
                       <div className="image-item">
                         <img src={icon_share} alt="Twitter Icon" width="20px" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-copy"
+                        getContent={(dataTip) => 'Copy'}
+                      />
                     </div>
                   </div>
                 </div>

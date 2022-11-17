@@ -62,6 +62,7 @@ import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import moment from 'moment';
+import ReactTooltip from 'react-tooltip';
 
 const overlayStyle = { background: 'rgba(0,0,0,0.8)' };
 const closeOnDocumentClick = false;
@@ -406,7 +407,7 @@ NFTs: ${claimableCount}`;
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -437,18 +438,54 @@ NFTs: ${claimableCount}`;
           >
             <div className="image-item hide-max-1024px">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+            />
           </div>
         );
       });
@@ -679,9 +716,15 @@ NFTs: ${claimableCount}`;
                           true
                         )
                       }
+                      data-for="tooltip-explorer"
+                      data-tip
                     >
                       <img src={klaytn_white} alt="website icon" />
                     </div>
+                    <ReactTooltip
+                      id="tooltip-explorer"
+                      getContent={(dataTip) => 'Explorer'}
+                    />
                   </div>
                   {getSnsButtons()}
                   <div className="dropdown hide-min-1025px" ref={refDropdown}>
@@ -702,10 +745,16 @@ NFTs: ${claimableCount}`;
                     style={{ cursor: 'pointer' }}
                     onClick={() => copyToClipBoard(window.location.href)}
                     className="info-item"
+                    data-for="tooltip-copy"
+                    data-tip
                   >
                     <div className="image-item">
                       <img src={icon_share} alt="Twitter Icon" width="20px" />
                     </div>
+                    <ReactTooltip
+                      id="tooltip-copy"
+                      getContent={(dataTip) => 'Copy'}
+                    />
                   </div>
                 </div>
               </div>
@@ -827,8 +876,8 @@ NFTs: ${claimableCount}`;
                 </div>
               </div>
               <div className="item">
-                <div className="label">Network</div>
-                <div className="value">
+                <div className="label">Chain</div>
+                <div className="value" style={{ textTransform: 'capitalize' }}>
                   {getNetworkNameByChainId(mboxInfo?.chainId)}
                 </div>
               </div>

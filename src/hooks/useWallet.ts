@@ -5,18 +5,21 @@ import { injected, kaikas, abc, walletconnect } from './connectors';
 import env from '../env';
 import useActiveWeb3React from './useActiveWeb3React';
 import { setupNetwork } from '../utils/wallet';
+import { useSelector } from 'react-redux';
 
 export function useEagerConnect() {
   const { activate, active } = useWeb3React();
   const [tried, setTried] = useState(false);
+  const wallets = useSelector((state: any) => state.wallet);
 
   useEffect(() => {
     const walletStatus =
       window.localStorage.getItem('walletStatus') ?? 'disconnected';
-    const connectorId = window.localStorage.getItem('wallet') ?? 'injected';
-
+    // const connectorId = window.localStorage.getItem('wallet') ?? 'injected';
+    // console.log('=====>', wallets);
     if (walletStatus === 'connected') {
-      if (!connectorId || connectorId === 'injected') {
+      if (wallets.klaytn.wallet === 'metamask') {
+        // if (!connectorId || connectorId === 'injected') {
         injected.isAuthorized().then(async (isAuthorized: boolean) => {
           if (isAuthorized) {
             await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
@@ -30,23 +33,39 @@ export function useEagerConnect() {
           }
         });
       }
-      if (!connectorId || connectorId === 'kaikas') {
-        injected.isAuthorized().then(async (isAuthorized: boolean) => {
-          await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
-
+      if (wallets.klaytn.wallet === 'kaikas') {
+        // if (!connectorId || connectorId === 'kaikas') {
+        kaikas.isAuthorized().then(async (isAuthorized: boolean) => {
           // Caution : Kaikas alway return false
-          // if (isAuthorized) {
-          activate(kaikas, undefined, true).catch(() => {
+          if (isAuthorized) {
+            await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
+            activate(kaikas, undefined, true).catch(() => {
+              setTried(true);
+            });
+          } else {
             setTried(true);
-          });
-          // } else {
-          //   setTried(true);
-          // }
+          }
         });
       }
-      if (!connectorId || connectorId === 'walletconnect') {
+      if (wallets.klaytn.wallet === 'walletconnect') {
+        // if (!connectorId || connectorId === 'walletconnect') {
         const wc = walletconnect(false);
         activate(wc);
+      }
+      if (wallets.klaytn.wallet === 'abcWallet') {
+        abc.isAuthorized().then(async (isAuthorized: boolean) => {
+          console.log(isAuthorized);
+          if (isAuthorized) {
+            await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
+
+            activate(abc, undefined, true).catch(() => {
+              setTried(true);
+            });
+          } else {
+            console.log('@@@@@@@@@@@@@@@@@@@');
+            setTried(true);
+          }
+        });
       }
     }
   }, []); // intentionally only running on mount (make sure it's only mounted once :))
@@ -63,40 +82,46 @@ export function useEagerConnect() {
 
 export function useInactiveListener(suppress = false) {
   const { active, error, activate } = useWeb3React();
+  const wallets = useSelector((state: any) => state.wallet);
 
   useEffect((): any => {
-    const { ethereum } = window as any;
-    if (ethereum && ethereum.on && !active && !error && !suppress) {
+    const { ethereum, klaytn, abc } = window as any;
+    let connector: any;
+    if (wallets.klaytn.wallet === 'ethereum') connector = ethereum;
+    if (wallets.klaytn.wallet === 'klaytn') connector = klaytn;
+    if (wallets.klaytn.wallet === 'abcWallet') connector = abc;
+
+    if (connector && connector.on && !active && !error && !suppress) {
       const handleConnect = () => {
         console.log('Handling "connect" event');
-        activate(injected);
+        activate(connector);
       };
       const handleChainChanged = (chainId: string | number) => {
         console.log('Handling "chainChanged" event with payload', chainId);
-        activate(injected);
+        activate(connector);
       };
       const handleAccountsChanged = (accounts: string[]) => {
         console.log('Handling "accountsChanged" event with payload', accounts);
         if (accounts.length > 0) {
-          activate(injected);
+          activate(connector);
         }
       };
       const handleNetworkChanged = (networkId: string | number) => {
         console.log('Handling "networkChanged" event with payload', networkId);
-        activate(injected);
+        activate(connector);
       };
 
-      ethereum.on('connect', handleConnect);
-      ethereum.on('chainChanged', handleChainChanged);
-      ethereum.on('accountsChanged', handleAccountsChanged);
-      ethereum.on('networkChanged', handleNetworkChanged);
+      connector.on('connect', handleConnect);
+      connector.on('chainChanged', handleChainChanged);
+      connector.on('accountsChanged', handleAccountsChanged);
+      connector.on('networkChanged', handleNetworkChanged);
 
       return () => {
-        if (ethereum.removeListener) {
-          ethereum.removeListener('connect', handleConnect);
-          ethereum.removeListener('chainChanged', handleChainChanged);
-          ethereum.removeListener('accountsChanged', handleAccountsChanged);
-          ethereum.removeListener('networkChanged', handleNetworkChanged);
+        if (connector.removeListener) {
+          connector.removeListener('connect', handleConnect);
+          connector.removeListener('chainChanged', handleChainChanged);
+          connector.removeListener('accountsChanged', handleAccountsChanged);
+          connector.removeListener('networkChanged', handleNetworkChanged);
         }
       };
     }

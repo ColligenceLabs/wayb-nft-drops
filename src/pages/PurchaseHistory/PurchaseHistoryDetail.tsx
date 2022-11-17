@@ -64,7 +64,7 @@ const Purchase_History_Detail = () => {
                 <p className="value">ERC721</p>
               </div>
               <div className="info">
-                <p className="title">Network</p>
+                <p className="title">Chain</p>
                 <p className="value">Polygon</p>
               </div>
             </div>

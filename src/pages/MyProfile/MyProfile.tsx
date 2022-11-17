@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import twitter_icon from '../../assets/svg/twitter_icon.svg';
 import icon_insta_realistic from '../../assets/svg/icon_insta_realistic.svg';
 import avatar from '../../assets/img/avatar_user.webp';
+import makeBlockie from 'ethereum-blockies-base64';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-multi-carousel/lib/styles.css';
@@ -64,7 +65,7 @@ const MyProfile = () => {
                     src={
                       dropsAccount.profile_image
                         ? dropsAccount.profile_image
-                        : avatar
+                        : makeBlockie(dropsAccount.address)
                     }
                     alt="avatar"
                   />

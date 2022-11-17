@@ -32,8 +32,11 @@ const MBoxItemCard: React.FC<MBoxItemCardProps> = ({
             Total Items: {item.issueAmount}
           </span>
         </div>
-        <div className="hot-ollectibles-item">
-          <div>{getNetworkNameById(chainId)}</div>
+        <div
+          className="hot-ollectibles-item"
+          style={{ textTransform: 'capitalize' }}
+        >
+          <div>{getNetworkNameById(chainId)?.toLowerCase()}</div>
         </div>
         <div className="hot-ollectibles-item">
           <div className="img-token">
