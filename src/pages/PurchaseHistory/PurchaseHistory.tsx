@@ -84,7 +84,7 @@ const Purchase_History = () => {
               <div className="title payment_type">Type</div>
               <div className="title name">NFT</div>
               <div className="title amount">Price</div>
-              <div className="title blockchain">BlockChain</div>
+              <div className="title blockchain">Chain</div>
               <div className="title explorer_url">Confirmation</div>
               <div className="icon value"></div>
             </div>

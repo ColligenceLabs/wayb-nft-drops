@@ -109,11 +109,14 @@ const Navbar = () => {
         </div> */}
         <div className="nav-right">
           <div className="contact-header">
-            <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
-              About
+            <a href="https://talken.io/" target={'_blank'}>
+              Talken.io
             </a>
             <a href="https://talken-io.medium.com/" target={'_blank'}>
               Blog
+            </a>
+            <a href="https://docs.talken.io/talken-docs/" target={'_blank'}>
+              Docs
             </a>
             <a
               href="https://talkensupport.zendesk.com/hc/en-us/requests/new"
@@ -215,7 +218,7 @@ const Navbar = () => {
             <>
               <div
                 className="wrapper-user"
-                onClick={() => setModalOpen(!isModalOpen)}
+                onMouseEnter={() => setModalOpen(true)}
               >
                 <div className="avatar-user">
                   <img
