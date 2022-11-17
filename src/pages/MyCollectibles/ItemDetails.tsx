@@ -34,6 +34,7 @@ import { moveToScope } from '../../utils/moveToScope';
 import useOnClickOutsideDropdown from 'components/common/useOnClickOutside';
 import ReactModal from 'react-modal';
 import close_icon from '../../assets/icon/close_icon.svg';
+import ReactTooltip from 'react-tooltip';
 import env from '../../env';
 
 type ExMBoxType = MBoxTypes & {
@@ -148,18 +149,54 @@ const CollectionSale = () => {
           >
             <div className="image-item hide-max-1024px">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+            />
           </div>
         );
       });
@@ -466,9 +503,15 @@ const CollectionSale = () => {
                             true
                           )
                         }
+                        data-for="tooltip-explorer"
+                        data-tip
                       >
                         <img src={klaytn_white} alt="website icon" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-explorer"
+                        getContent={(dataTip) => 'Explorer'}
+                      />
                     </div>
                     {getSnsButtons()}
                     <div className="dropdown hide-min-1025px" ref={refDropdown}>
@@ -489,10 +532,16 @@ const CollectionSale = () => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
                       className="info-item"
+                      data-for="tooltip-copy"
+                      data-tip
                     >
                       <div className="image-item">
                         <img src={icon_share} alt="Twitter Icon" width="20px" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-copy"
+                        getContent={(dataTip) => 'Copy'}
+                      />
                     </div>
                   </div>
                 </div>
