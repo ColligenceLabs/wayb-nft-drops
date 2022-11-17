@@ -116,16 +116,16 @@ const CollectionSale = () => {
   const handleClickSeeMore = () => {
     if (mBoxInfo) {
       if (mBoxInfo?.isCollection) {
-        navigate(`/klaytn/collections/${mBoxInfo.id}`);
+        navigate(`/collections/${mBoxInfo.id}`);
       } else {
         if (mBoxInfo?.isAirdrop) {
           if (mBoxInfo?.mysteryboxItems && mBoxInfo?.mysteryboxItems[0].id) {
             navigate(
-              `/klaytn/airdrop/${mBoxInfo.id}/${mBoxInfo?.mysteryboxItems[0].id}`
+              `/airdrop/${mBoxInfo.id}/${mBoxInfo?.mysteryboxItems[0].id}`
             );
           }
         } else {
-          navigate(`/klaytn/mbox/${mBoxInfo.id}`);
+          navigate(`/mbox/${mBoxInfo.id}`);
         }
       }
     }
@@ -553,7 +553,7 @@ const CollectionSale = () => {
                     <div className="user-name">{mBoxInfo.title.en}</div>
                   </div>
                   <div
-                    // to={`/klaytn/collection/${itemInfo.infoId}/${itemInfo.id}`}
+                    // to={`/collection/${itemInfo.infoId}/${itemInfo.id}`}
                     onClick={handleClickSeeMore}
                   >
                     <div className="wrapper-see-collection">
@@ -571,7 +571,7 @@ const CollectionSale = () => {
                   <div className="title-items">Other Items</div>
                   <Link
                     className="seemore-otheritems"
-                    to={`/klaytn/featured/${mBoxInfo.featured?.companyId}`}
+                    to={`/creator/${mBoxInfo.featured?.companyId}`}
                   >
                     See more
                   </Link>

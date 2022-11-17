@@ -28,12 +28,12 @@ const Purchase_History = () => {
   const moveToUrl = (item: any) => {
     let url;
     if (item.mysteryboxInfo.isCollection) {
-      url = `/klaytn/collection/${item.mysteryBoxId}/${item.itemId}`;
+      url = `/collection/${item.mysteryBoxId}/${item.itemId}`;
     } else {
       if (item.mysteryboxInfo.isAirdrop) {
-        url = `/klaytn/airdrop/${item.mysteryBoxId}/${item.itemId}`;
+        url = `/airdrop/${item.mysteryBoxId}/${item.itemId}`;
       } else {
-        url = `/klaytn/mbox/${item.mysteryboxInfo.id}`;
+        url = `/mbox/${item.mysteryboxInfo.id}`;
       }
     }
 

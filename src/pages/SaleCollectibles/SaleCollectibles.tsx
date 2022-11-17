@@ -153,7 +153,7 @@ const SaleCollectibles = () => {
   };
 
   const moveToFeatured = () => {
-    if (mBoxInfo) navigate(`/klaytn/featured/${mBoxInfo.featuredId}`);
+    if (mBoxInfo) navigate(`/creator/${mBoxInfo.featuredId}`);
   };
 
   useEffect(() => {

@@ -43,22 +43,38 @@ const Router = () => [
       { path: '/purchase-history', element: <PurchaseHistory /> },
       { path: '/series', element: <PurchaseHistoryDetail /> },
 
-      { path: '/klaytn/featured/:id', element: <Collection /> },
-      { path: '/klaytn/featureds', element: <Collections /> },
-      { path: '/klaytn/collections/:id', element: <CollectionSale /> },
+      { path: '/creator/:id', element: <Collection /> },
+      { path: '/creators', element: <Collections /> },
+      { path: '/collections/:id', element: <CollectionSale /> },
       {
-        path: '/klaytn/collection/:collectionId/:id',
+        path: '/collection/:collectionId/:id',
         element: <CollectionSaleDetail />,
       },
-      { path: '/klaytn/mbox/:id', element: <SaleCollectibles /> },
+      { path: '/mbox/:id', element: <SaleCollectibles /> },
       {
-        path: '/klaytn/airdrop/:collectionId/:id',
+        path: '/airdrop/:collectionId/:id',
         element: <CollectionSaleDetail />,
       },
       {
         path: '/klaytn/:contractAddress/:itemNo/:id',
         element: <ItemDetails />,
       },
+      {
+        path: '/:network/:contractAddress/:itemNo/:id',
+        element: <ItemDetails />,
+      },
+      // { path: '/klaytn/featured/:id', element: <Collection /> },
+      // { path: '/klaytn/featureds', element: <Collections /> },
+      // { path: '/klaytn/collections/:id', element: <CollectionSale /> },
+      // {
+      //   path: '/klaytn/collection/:collectionId/:id',
+      //   element: <CollectionSaleDetail />,
+      // },
+      // { path: '/klaytn/mbox/:id', element: <SaleCollectibles /> },
+      // {
+      //   path: '/klaytn/airdrop/:collectionId/:id',
+      //   element: <CollectionSaleDetail />,
+      // },
     ],
   },
   {

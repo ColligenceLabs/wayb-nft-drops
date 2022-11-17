@@ -343,20 +343,18 @@ const CollectionSaleDetail = () => {
     let url = '/';
     if (item.isCollection === false) {
       if (item.isAirdrop === false) {
-        url = `/klaytn/mbox/${item.id}`;
+        url = `/mbox/${item.id}`;
       } else {
-        url = `/klaytn/airdrop/${item.id}`;
+        url = `/airdrop/${item.id}`;
       }
     } else {
-      url = `/klaytn/collection/${infoId}/${item.id}`;
+      url = `/collection/${infoId}/${item.id}`;
     }
     return url;
   };
 
   const moveToFeatured = () => {
-    navigate(
-      `/klaytn/featured/${collectionItemInfo?.collectionInfo.featuredId}`
-    );
+    navigate(`/creator/${collectionItemInfo?.collectionInfo.featuredId}`);
   };
 
   const fetchCollectionItemInfo = async () => {
