@@ -680,6 +680,7 @@ const Homepage = () => {
               {collectibleList
                 // .filter((item) => item.price === null || item.price === 0)
                 .map((item: any, index) => {
+                  console.log('123', item);
                   return (
                     <Link
                       to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
@@ -705,7 +706,7 @@ const Homepage = () => {
                         </div>
                         <div className="hot-ollectibles-item">
                           <div className="img-token">
-                            {item?.mysteryboxItems[0]?.originalImage
+                            {item?.mysteryboxItems[0]?.itemImage
                               .split('.')
                               .pop() === 'mp4' ? (
                               <video
@@ -718,15 +719,15 @@ const Homepage = () => {
                                 width={'100%'}
                               >
                                 <source
-                                  src={item?.mysteryboxItems[0]?.originalImage}
+                                  src={item?.mysteryboxItems[0]?.itemImage}
                                   type="video/mp4"
                                 />
                               </video>
-                            ) : item?.mysteryboxItems[0]?.originalImage
+                            ) : item?.mysteryboxItems[0]?.itemImage
                                 .split('.')
                                 .pop() === 'gif' ? (
                               <img
-                                src={item.mysteryboxItems[0]?.originalImage}
+                                src={item.mysteryboxItems[0]?.itemImage}
                                 alt=""
                                 draggable={false}
                               />
