@@ -6,6 +6,7 @@ import env from '../env';
 import useActiveWeb3React from './useActiveWeb3React';
 import { setupNetwork } from '../utils/wallet';
 import { useSelector } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 
 export function useEagerConnect() {
   const { activate, active } = useWeb3React();
@@ -48,9 +49,23 @@ export function useEagerConnect() {
         });
       }
       if (wallets.klaytn.wallet === 'walletconnect') {
-        // if (!connectorId || connectorId === 'walletconnect') {
-        const wc = walletconnect(false);
-        activate(wc);
+        if (isMobile) {
+          injected.isAuthorized().then(async (isAuthorized: boolean) => {
+            if (isAuthorized) {
+              await setupNetwork(env.REACT_APP_TARGET_NETWORK_KLAY ?? 8217);
+
+              activate(injected, undefined, true).catch(() => {
+                setTried(true);
+              });
+            } else {
+              console.log('@@@@@@@@@@@@@@@@@@@');
+              setTried(true);
+            }
+          });
+        } else {
+          const wc = walletconnect(false);
+          activate(wc);
+        }
       }
       if (wallets.klaytn.wallet === 'abcWallet') {
         abc.isAuthorized().then(async (isAuthorized: boolean) => {

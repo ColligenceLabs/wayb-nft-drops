@@ -7,6 +7,7 @@ import {
   kaikas,
   abc,
   walletconnect,
+  talkenwallet,
 } from '../../../hooks/connectors';
 import {
   setActivatingConnector,
@@ -74,18 +75,16 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         const wc = walletconnect(true);
         await activate(wc, undefined, true);
       } else if (id === 2) {
-        if (isMobile) {
-          console.log('this is mobile');
-        } else {
-          console.log('this is not mobile');
-        }
         // console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
-        // await activate(injected, undefined, true);
-        // dispatch(setActivatingConnector(injected));
-        const wc = walletconnect(true);
-        await activate(wc, undefined, true);
-        await dispatch(setActivatingConnector(wc));
+        if (isMobile) {
+          await activate(injected, undefined, true);
+          dispatch(setActivatingConnector(injected));
+        } else {
+          const wc = talkenwallet(true);
+          await activate(wc, undefined, true);
+          await dispatch(setActivatingConnector(wc));
+        }
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
