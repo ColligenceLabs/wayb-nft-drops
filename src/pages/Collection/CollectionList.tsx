@@ -140,7 +140,9 @@ const CollectionList: React.FC<CollectionListProps> = ({
                   </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div>{getNetworkNameByChainId(item.chainId)}</div>
+                  <div style={{ textTransform: 'capitalize' }}>
+                    {getNetworkNameByChainId(item.chainId)}
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
@@ -232,7 +234,7 @@ const CollectionList: React.FC<CollectionListProps> = ({
                     <div className="remaining-total ">
                       {!item.isSoldOut && item.remainingAmount
                         ? item.remainingAmount
-                        : '-'}
+                        : 'Sold Out'}
                     </div>
                   </div>
                 </div>

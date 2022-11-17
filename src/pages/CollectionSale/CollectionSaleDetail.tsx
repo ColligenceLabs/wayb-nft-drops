@@ -38,6 +38,7 @@ import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import { BigNumber } from 'ethers';
 import { checkKaikasWallet, getTargetNetworkName } from '../../utils/wallet';
+import ReactTooltip from 'react-tooltip';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -220,18 +221,54 @@ const CollectionSaleDetail = () => {
           >
             <div className="image-item hide-max-1024px">
               {link.type === 'SITE' && (
-                <img src={website_icon} alt="Website Icon" />
+                <img
+                  src={website_icon}
+                  alt="Website Icon"
+                  data-for="tooltip-website"
+                  data-tip
+                />
               )}
               {link.type === 'DISCORD' && (
-                <img src={icon_discord} alt="Website Icon" />
+                <img
+                  src={icon_discord}
+                  alt="Website Icon"
+                  data-for="tooltip-discord"
+                  data-tip
+                />
               )}
               {link.type === 'TWITTER' && (
-                <img src={icon_twitter} alt="Website Icon" />
+                <img
+                  src={icon_twitter}
+                  alt="Website Icon"
+                  data-for="tooltip-twitter"
+                  data-tip
+                />
               )}
               {link.type === 'INSTAGRAM' && (
-                <img src={icon_instagram} alt="Website Icon" />
+                <img
+                  src={icon_instagram}
+                  alt="Website Icon"
+                  data-for="tooltip-instagram"
+                  data-tip
+                />
               )}
             </div>
+            <ReactTooltip
+              id="tooltip-website"
+              getContent={(dataTip) => 'Website'}
+            />
+            <ReactTooltip
+              id="tooltip-discord"
+              getContent={(dataTip) => 'Discord'}
+            />
+            <ReactTooltip
+              id="tooltip-twitter"
+              getContent={(dataTip) => 'Twitter'}
+            />
+            <ReactTooltip
+              id="tooltip-instagram"
+              getContent={(dataTip) => 'Instagram'}
+            />
           </div>
         );
       });
@@ -415,7 +452,7 @@ const CollectionSaleDetail = () => {
     setOpenSnackbar({
       open: copyResult,
       type: 'success',
-      message: 'copied!',
+      message: 'Copied!',
     });
   }, [copyResult]);
 
@@ -462,6 +499,8 @@ const CollectionSaleDetail = () => {
                             true
                           )
                         }
+                        data-for="tooltip-explorer"
+                        data-tip
                       >
                         <img src={klaytn_white} alt="website icon" />
                       </div>
@@ -571,9 +610,15 @@ const CollectionSaleDetail = () => {
                             true
                           )
                         }
+                        data-for="tooltip-explorer"
+                        data-tip
                       >
                         <img src={klaytn_white} alt="website icon" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-explorer"
+                        getContent={(dataTip) => 'Explorer'}
+                      />
                     </div>
                     {getSnsButtons()}
                     <div className="dropdown hide-min-1025px" ref={refDropdown}>
@@ -594,10 +639,16 @@ const CollectionSaleDetail = () => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => copyToClipBoard(window.location.href)}
                       className="info-item"
+                      data-for="tooltip-copy"
+                      data-tip
                     >
                       <div className="image-item">
                         <img src={icon_share} alt="Twitter Icon" width="20px" />
                       </div>
+                      <ReactTooltip
+                        id="tooltip-copy"
+                        getContent={(dataTip) => 'Copy'}
+                      />
                     </div>
                   </div>
                 </div>
@@ -649,11 +700,14 @@ const CollectionSaleDetail = () => {
                     </div>
                   </div>
                   <div className="box-price-detail-collection">
-                    <div className="lable-top">Network</div>
-                    <div className="lable-bottom fw-600">
+                    <div className="lable-top">Chain</div>
+                    <div
+                      className="lable-bottom fw-600"
+                      style={{ textTransform: 'capitalize' }}
+                    >
                       {getNetworkNameById(
                         collectionItemInfo?.collectionInfo.chainId
-                      )}
+                      )?.toLowerCase()}
                     </div>
                   </div>
                 </div>
@@ -718,7 +772,11 @@ const CollectionSaleDetail = () => {
               <div>
                 <div className="box-purchase-price">
                   <div className="lable-top">Purchase price</div>
-                  <div className="lable-bottom fw-600">{`${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}</div>
+                  <div className="lable-bottom fw-600">
+                    {collectionItemInfo?.price === 0
+                      ? 'FREE'
+                      : `${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}
+                  </div>
                 </div>
                 {!countDownFinish && (
                   <CountDownTimer
