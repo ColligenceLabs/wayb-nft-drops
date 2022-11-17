@@ -48,10 +48,7 @@ const Homepage = () => {
     if (item.eventUrl) {
       window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
     } else {
-      window.open(
-        `/klaytn/featured/${item.id}`,
-        item.newWindow ? '_blank' : '_self'
-      );
+      window.open(`/creator/${item.id}`, item.newWindow ? '_blank' : '_self');
     }
   };
 
@@ -80,7 +77,6 @@ const Homepage = () => {
     const fetchSlideData = async () => {
       const res = await getEventList();
       if (res.data.status === 1) {
-        console.log(res.data.data.list);
         setSlideData(res.data.data.list);
       }
     };
@@ -103,7 +99,6 @@ const Homepage = () => {
             //   chainId
             // );
             const remaining = item.totalAmount! - item.soldAmount!;
-            // console.log('MBox, Collections ===>', remainFrChain, remaining);
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
@@ -143,13 +138,7 @@ const Homepage = () => {
       if (res.data.data.list) {
         const newList = await Promise.all(
           res.data.data.list.map(async (item: MBoxTypes) => {
-            // const remainFrChain = await getItemRemainsNoSigner(
-            //   item.boxContractAddress,
-            //   account,
-            //   chainId
-            // );
             const remaining = item.totalAmount! - item.soldAmount!;
-            // console.log('AirDrop ===>', remainFrChain, remaining);
             const milliseconds =
               new Date().getTime() - Date.parse(item.releaseDatetime);
             return {
@@ -279,7 +268,7 @@ const Homepage = () => {
         <div className="featured-collections">
           <div className="wrapper-header title-header">
             <div className="header-name">Featured Creators</div>
-            <Link to={'/klaytn/featureds'} className="show-all-item button">
+            <Link to={'/creators'} className="show-all-item button">
               See all
             </Link>
           </div>
@@ -404,8 +393,8 @@ const Homepage = () => {
                   <Link
                     to={
                       item.itemAmount === 1 && item.mysteryboxItems
-                        ? `/klaytn/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
-                        : `/klaytn/collections/${item.id}`
+                        ? `/collection/${item.id}/${item.mysteryboxItems[0]?.id}`
+                        : `/collections/${item.id}`
                     }
                     // state={
                     //   item.itemAmount === 1
@@ -683,7 +672,10 @@ const Homepage = () => {
                   console.log('123', item);
                   return (
                     <Link
-                      to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
+                      to={`/${getNetworkNameById(item.chainId).toLowerCase()}/${
+                        item.boxContractAddress
+                      }/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
+                      // to={`/klaytn/${item.boxContractAddress}/${item.mysteryboxItems[0]?.no}/${item.itemId}`}
                       state={{
                         item: {
                           ...item,
@@ -854,7 +846,7 @@ const Homepage = () => {
                 .map((item: any, index) => {
                   return (
                     <Link
-                      to={`/klaytn/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
+                      to={`/airdrop/${item.id}/${item.mysteryboxItems[0].id}`}
                       state={{
                         item: {
                           ...item,

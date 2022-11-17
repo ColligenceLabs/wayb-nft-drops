@@ -77,8 +77,10 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
       } else if (id === 2) {
         // console.log(`click ${id}, this is Talken (Klaytn)`);
         // setWalletName('talken');
-        await activate(injected, undefined, true);
-        dispatch(setActivatingConnector(injected));
+        // await activate(injected, undefined, true);
+        // dispatch(setActivatingConnector(injected));
+        const wc = walletconnect(true);
+        await activate(wc, undefined, true);
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Klaytn)`);
         // setWalletName('kaikas');
@@ -88,7 +90,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         // console.log('abc wallet');
         // setWalletName('abc');
         await activate(abc, undefined, true);
-        dispatch(setActivatingConnector(abc));
+        await dispatch(setActivatingConnector(abc));
       }
       window.localStorage.setItem('walletStatus', 'connected');
       setDoSign(true);

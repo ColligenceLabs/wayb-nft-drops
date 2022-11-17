@@ -37,6 +37,7 @@ import { FeaturedTypes } from '../../types/FeaturedTypes';
 import { moveToScope } from '../../utils/moveToScope';
 import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import { BigNumber } from 'ethers';
+import { checkKaikasWallet, getTargetNetworkName } from '../../utils/wallet';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -85,6 +86,7 @@ const CollectionSaleDetail = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [warningOpen, setWarningOpen] = useState(false);
   const [freedropAble, setFreedropAble] = useState(false);
+  const wallet = useSelector((state: any) => state.wallet);
   const closeWarning = () => {
     setWarningOpen(false);
   };
@@ -133,6 +135,10 @@ const CollectionSaleDetail = () => {
 
   const handleBuyClick = async () => {
     setIsLoading(true);
+    const isKaikas = checkKaikasWallet(
+      wallet,
+      getTargetNetworkName(collectionItemInfo?.collectionInfo?.chainId) ?? ''
+    );
     const contract = collectionItemInfo?.collectionInfo?.boxContractAddress;
     const quote = collectionItemInfo?.collectionInfo?.quote;
     const index = collectionItemInfo?.index ?? 0;
@@ -160,7 +166,8 @@ const CollectionSaleDetail = () => {
       payment!.toString(),
       quoteToken!,
       account,
-      library
+      library,
+      isKaikas
     );
 
     if (result.status === SUCCESS) {
@@ -343,20 +350,18 @@ const CollectionSaleDetail = () => {
     let url = '/';
     if (item.isCollection === false) {
       if (item.isAirdrop === false) {
-        url = `/klaytn/mbox/${item.id}`;
+        url = `/mbox/${item.id}`;
       } else {
-        url = `/klaytn/airdrop/${item.id}`;
+        url = `/airdrop/${item.id}`;
       }
     } else {
-      url = `/klaytn/collection/${infoId}/${item.id}`;
+      url = `/collection/${infoId}/${item.id}`;
     }
     return url;
   };
 
   const moveToFeatured = () => {
-    navigate(
-      `/klaytn/featured/${collectionItemInfo?.collectionInfo.featuredId}`
-    );
+    navigate(`/creator/${collectionItemInfo?.collectionInfo.featuredId}`);
   };
 
   const fetchCollectionItemInfo = async () => {

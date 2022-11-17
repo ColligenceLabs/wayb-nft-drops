@@ -138,17 +138,22 @@ const SaleCollectibles = () => {
   };
 
   const getAvailability = async (info: ExMBoxType) => {
+    const isKaikas = checkKaikasWallet(
+      wallet,
+      getTargetNetworkName(info?.chainId) ?? ''
+    );
     const left = await getKeyRemains(
       info.keyContractAddress,
       info.boxContractAddress,
       account,
-      library
+      library,
+      isKaikas
     );
     setRemains(left);
   };
 
   const moveToFeatured = () => {
-    if (mBoxInfo) navigate(`/klaytn/featured/${mBoxInfo.featuredId}`);
+    if (mBoxInfo) navigate(`/creator/${mBoxInfo.featuredId}`);
   };
 
   useEffect(() => {

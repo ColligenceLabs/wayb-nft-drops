@@ -341,13 +341,10 @@ export async function setApproveForAll(
   address: string,
   target: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1081,13 +1078,10 @@ export async function approveKIP7(
   spender: string,
   amount: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1197,13 +1191,9 @@ export async function getItemAmount(
   index: number,
   type: number, // 1 = MysteryBox, 2 = Collection
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
-
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1306,13 +1296,9 @@ export async function getItemAmountNoSigner(
 export async function getItemRemains(
   address: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<number> {
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
-
   let contract: any;
   if (isKaikas) {
     // @ts-ignore : In case of Klaytn Kaikas Wallet
@@ -1375,13 +1361,10 @@ export async function buyItem(
   payment: string,
   quote: string,
   account: string | undefined | null,
-  library: any
+  library: any,
+  isKaikas: boolean
 ): Promise<txResult> {
   const gasPrice = await caver.rpc.klay.getGasPrice();
-  const isKaikas =
-    library.provider.bridge !== 'https://bridge.walletconnect.org' &&
-    (library.connection.url !== 'metamask' ||
-      library.connection.url === 'eip-1193:');
 
   let contract: any;
   if (isKaikas) {

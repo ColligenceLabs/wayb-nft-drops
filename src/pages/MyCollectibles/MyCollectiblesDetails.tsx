@@ -96,6 +96,7 @@ const MyCollectiblesDetails = () => {
   const [countDownFinish, setCountDownFinish] = useState(false);
   const [scrollPercentPosition, setScrollPercentPosition] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isKaikas, setIsKaikas] = useState(false);
   const [featuredInfo, setFeaturedInfo] = useState<FeaturedTypes | null>(null);
   const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [openSnackbar, setOpenSnackbar] = useState({
@@ -106,6 +107,13 @@ const MyCollectiblesDetails = () => {
   const wallet = useSelector((state: any) => state.wallet);
   const { activate } = useWeb3React();
   // useOnClickOutside(ref, () => setDropdownOpen(false));
+
+  useEffect(() => {
+    if (!wallet || !mboxInfo) return;
+    const network = getTargetNetworkName(mboxInfo?.chainId) ?? '';
+    const checkKaikas = checkKaikasWallet(wallet, network);
+    setIsKaikas(checkKaikas);
+  }, [mboxInfo, wallet]);
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar({
@@ -139,13 +147,15 @@ const MyCollectiblesDetails = () => {
         mboxInfo?.keyContractAddress,
         mboxInfo?.boxContractAddress,
         account,
-        library
+        library,
+        isKaikas
       );
       const result: number = await claimMysteryBox(
         mboxInfo?.boxContractAddress,
         balance,
         account,
-        library
+        library,
+        isKaikas
       );
       // setOpenSnackbar({
       //   show: true,
@@ -276,7 +286,8 @@ NFTs: ${claimableCount}`;
       const balance = await getKeyBalance(
         mboxInfo?.keyContractAddress,
         account,
-        library
+        library,
+        isKaikas
       );
       setBalance(balance);
     }
@@ -284,7 +295,8 @@ NFTs: ${claimableCount}`;
     const items = await getItemBalance(
       mboxInfo?.boxContractAddress,
       account,
-      library
+      library,
+      isKaikas
     );
 
     console.log(account, library.connection, balance);
@@ -310,7 +322,8 @@ NFTs: ${claimableCount}`;
     const items = await getItemBalance(
       mboxInfo?.boxContractAddress,
       account,
-      library
+      library,
+      isKaikas
     );
     let tokenURI: string[] = [];
     let tokenIds: number[] = [];
@@ -319,7 +332,8 @@ NFTs: ${claimableCount}`;
         mboxInfo?.boxContractAddress,
         items,
         account,
-        library
+        library,
+        isKaikas
       );
       // TODO : Comment out to display only revealed items
       // } else {
@@ -332,7 +346,8 @@ NFTs: ${claimableCount}`;
         mboxInfo?.boxContractAddress,
         items,
         account,
-        library
+        library,
+        isKaikas
       );
     }
 
