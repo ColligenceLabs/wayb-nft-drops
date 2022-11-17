@@ -636,7 +636,7 @@
               display: flex;
               font-weight: 700;
               padding: 0;
-              font-size: 18px;
+              font-size: 16px;
               text-align: left;
             }
 
@@ -792,12 +792,13 @@
         margin: 15px 0px;
 
         .name-collection {
-          font-size: 28px;
+          font-size: 24px;
           text-transform: uppercase;
         }
       }
       .content-collection {
         color: #aaaaaa;
+        font-size: 14px;
       }
 
       .authenticity-button {
@@ -830,7 +831,7 @@
         }
 
         .lable-bottom {
-          font-size: 28px;
+          font-size: 24px;
         }
       }
 
@@ -855,7 +856,7 @@
         }
 
         .lable-bottom {
-          font-size: 28px;
+          font-size: 24px;
           text-transform: uppercase;
         }
       }
@@ -863,7 +864,7 @@
       .btn-sale-collection {
         font-weight: 600;
         text-transform: uppercase;
-        font-size: 22px;
+        font-size: 18px;
         border-radius: 16px;
         display: block;
         width: 100%;
@@ -954,14 +955,14 @@
 
   .title-sale-by-Collectors {
     text-align: center;
-    font-size: 40px;
+    font-size: 28px;
     letter-spacing: -1.2px;
     padding-top: 60px;
   }
 
   .sub-title-sale-by-Collectors {
     text-align: center;
-    font-size: 20px;
+    font-size: 14px;
     letter-spacing: -0.6px;
     color: #444444;
   }
@@ -1424,7 +1425,7 @@
         width: 100%;
         .zoom-image {
           right: 15px;
-          top: -45px;
+          top: -5px;
         }
         img {
           border: none;
@@ -1568,10 +1569,9 @@
                 display: flex;
                 font-weight: 700;
                 padding: 0;
-                font-size: 18px;
+                font-size: 16px;
                 text-align: left;
               }
-  
             }
           }
           //new css list sns
@@ -1679,27 +1679,27 @@
             .collection-info-right-details {
               // padding: 0px 30px;
               text-align: center;
-  
+
               .value {
                 font-size: 26px;
                 margin-bottom: 5px;
                 font-weight: 600;
               }
-  
+
               .label {
                 color: #2f8af5;
                 font-size: 18px;
                 font-family: BrandonLight, sans-serif;
               }
             }
-  
+
             .collection-info-right-details:last-child {
               padding-right: 0px;
               border-right: none;
             }
           }
         }
-  
+
         .btn-buy-now {
           font-size: 12px;
           color: #944fff;
@@ -1707,10 +1707,10 @@
           text-transform: uppercase;
           font-weight: 700;
         }
-  
+
         .box-name-collection {
           margin: 15px 0px;
-  
+
           .name-collection {
             font-size: 28px;
             text-transform: uppercase;
@@ -1719,7 +1719,7 @@
         .content-collection {
           color: #aaaaaa;
         }
-  
+
         .authenticity-button {
           font-size: 14px;
           color: #2f8af5;
@@ -1730,30 +1730,30 @@
           -webkit-box-align: center;
           align-items: center;
         }
-  
+
         .box-price-collection {
           display: flex;
           flex-wrap: wrap;
-  
+
           .box-price-detail-collection {
             -webkit-box-flex: 1;
             flex-grow: 1;
             width: 33px;
           }
-  
+
           .box-price-detail-collection:not(:last-child) {
             border-right: 1px solid #444444;
           }
-  
+
           .lable-top {
             font-size: 14px;
           }
-  
+
           .lable-bottom {
-            font-size: 28px;
+            font-size: 24px;
           }
         }
-  
+
         .box-purchase-price {
           position: relative;
           display: flex;
@@ -1767,23 +1767,23 @@
           border: 1px solid $dark-color-primary;
           border-radius: 60px;
           margin: 40px 0px;
-  
+
           .lable-top {
             font-size: 12px;
             color: #2f8af5;
             margin-top: 10px;
           }
-  
+
           .lable-bottom {
-            font-size: 28px;
+            font-size: 24px;
             text-transform: uppercase;
           }
         }
-  
+
         .btn-sale-collection {
           font-weight: 600;
           text-transform: uppercase;
-          font-size: 22px;
+          font-size: 18px;
           border-radius: 16px;
           display: block;
           width: 100%;
@@ -2019,7 +2019,7 @@
           .name-owner-product {
             .btn-name-owner-product {
               padding: 10px 0;
-              font-size: 20px;
+              font-size: 14px;
               text-transform: capitalize;
             }
           }
@@ -2035,7 +2035,7 @@
     }
     .sub-title-sale-by-Collectors {
       padding: 0 20px 20px 20px;
-      font-size: 16px;
+      font-size: 14px;
     }
     .userSales {
       .filter-box {
@@ -2079,7 +2079,7 @@
         .box-price-collection {
           .box-price-detail-collection {
             .lable-bottom {
-              font-size: 28px;
+              font-size: 24px;
             }
           }
         }
@@ -2091,7 +2091,7 @@
     }
     .sub-title-sale-by-Collectors {
       padding: 0 20px 20px 20px;
-      font-size: 16px;
+      font-size: 14px;
     }
     .userSales {
       .filter-box {
@@ -2206,7 +2206,7 @@
 
           .name {
             padding: 0px;
-            width: 170px;
+            width: 150px;
             margin-top: 0;
             .username {
               font-size: 16px;
@@ -2264,6 +2264,8 @@
             }
           }
         }
+      }
+      .token-details-box-mobile {
         .wrapper-head-token {
           .box-owner-product {
             .name-owner-product {
@@ -2282,7 +2284,7 @@
     .price-collection-box {
       .token-details-box {
         .btn-sale-collection {
-          font-size: 26px;
+          font-size: 18px;
         }
       }
     }
