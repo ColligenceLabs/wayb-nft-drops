@@ -195,9 +195,8 @@ const Homepage = () => {
           <div className="text-bottom">
             Check out NFTs and Collectibles from popular teams,&nbsp;
             <br className="text-head-pc" />
-            famous brands&nbsp;
-            <br className="text-head-mobile" />
-            and world renown artists
+            famous brands&nbsp;and world renown artists
+            {/* <br className="text-head-mobile" /> */}
           </div>
         </div>
         <div>
