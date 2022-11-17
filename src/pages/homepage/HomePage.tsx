@@ -283,7 +283,7 @@ const Homepage = () => {
               desktop: {
                 breakpoint: {
                   max: 3000,
-                  min: 1420,
+                  min: 1367,
                 },
                 items: 5,
                 partialVisibilityGutter: 40,
@@ -306,7 +306,7 @@ const Homepage = () => {
               },
               laptopLarge: {
                 breakpoint: {
-                  max: 1420,
+                  max: 1367,
                   min: 1180,
                 },
                 items: 4,
@@ -348,7 +348,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -371,7 +371,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -626,7 +626,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -649,7 +649,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
@@ -801,7 +801,7 @@ const Homepage = () => {
                 desktop: {
                   breakpoint: {
                     max: 3000,
-                    min: 1420,
+                    min: 1367,
                   },
                   items: 5,
                   partialVisibilityGutter: 40,
@@ -824,7 +824,7 @@ const Homepage = () => {
                 },
                 laptopLarge: {
                   breakpoint: {
-                    max: 1420,
+                    max: 1367,
                     min: 1180,
                   },
                   items: 4,
