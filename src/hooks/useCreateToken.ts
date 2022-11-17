@@ -66,8 +66,9 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
 
         const studioAccount: StudioAccount = resp.data;
         dispatch(setDropsAccount(studioAccount));
-      } catch (e) {
+      } catch (e: any) {
         console.log(e);
+        if (e.code === 4001) return 'userDenied';
         return null;
       }
     }
