@@ -247,7 +247,7 @@ const editprofile: any = (close: any) => {
               <div className="content-box-edit">
                 <div className="content-title">Instagram ID</div>
                 <input
-                  placeholder="Change Twitter"
+                  placeholder="Change Instagram"
                   name="instagram"
                   value={instagram}
                   onChange={handleChangeInputValue}

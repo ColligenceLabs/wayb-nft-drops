@@ -88,7 +88,10 @@ const Navbar = () => {
 
   const location = useLocation();
   return (
-    <div className={scroll ? 'nav-bar' : 'nav-bar scroll-top'}>
+    <div
+      className={scroll ? 'nav-bar' : 'nav-bar scroll-top'}
+      onMouseLeave={() => setModalOpen(false)}
+    >
       <div
         className={`${
           location.pathname === '/' ? 'nav-home' : 'nav-other-page'
@@ -259,9 +262,11 @@ const Navbar = () => {
                     strokeWidth="3"
                   ></path>
                 </svg>
-                {/* user dropdown box */}
-                {isModalOpen && <UsernameBox />}
               </button>
+              {/* user dropdown box */}
+              <div onMouseLeave={() => setModalOpen(false)}>
+                {isModalOpen && <UsernameBox />}
+              </div>
             </>
           ) : (
             screenSize < 769 && (
