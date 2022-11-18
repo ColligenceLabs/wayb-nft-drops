@@ -52,7 +52,7 @@ const Navbar = () => {
   const { account } = useActiveWeb3React();
   // console.log(dropsAccount);
   const screenSize = useScreenSize();
-  useOnClickOutside(ref, () => setModalOpen(false));
+  // useOnClickOutside(ref, () => setModalOpen(false));
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
