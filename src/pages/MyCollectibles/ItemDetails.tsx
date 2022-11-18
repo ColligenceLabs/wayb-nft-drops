@@ -83,6 +83,7 @@ const CollectionSale = () => {
   const { copyToClipBoard, copyResult, setCopyResult } = useCopyToClipBoard();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   // useOnClickOutside(ref, () => setDropdownOpen(false));
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const { library } = useWeb3React();
   const [mBoxInfo, setMBoxInfo] = useState<ExMBoxType | null>(null);
@@ -299,6 +300,11 @@ const CollectionSale = () => {
 
     fetchMboxItemList();
   }, [params, library]);
+
+  useEffect(() => {
+    videoRef.current?.load();
+  }, [itemInfo]);
+
   const refDropdown = useRef() as MutableRefObject<HTMLDivElement>;
   // useOnClickOutsideDropdown(refDropdown, () => setDropdownOpen(false));
   return (
@@ -375,7 +381,14 @@ const CollectionSale = () => {
               <div className="showcase-box">
                 {/*<img src={itemInfo.itemImage} alt="" className="thumbnail" />*/}
                 {itemInfo.originalImage.split('.').pop() === 'mp4' ? (
-                  <video muted autoPlay playsInline loop className="thumbnail">
+                  <video
+                    ref={videoRef}
+                    muted
+                    autoPlay
+                    playsInline
+                    loop
+                    className="thumbnail"
+                  >
                     <source src={itemInfo.originalImage} type="video/mp4" />
                   </video>
                 ) : (
