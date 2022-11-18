@@ -652,6 +652,7 @@
         }
       }
       .carousel-main-page {
+        touch-action: none;
         margin-top: 20px;
         .home-carousel {
           z-index: 50;
@@ -685,7 +686,13 @@
           }
         }
       }
+      .grid-container-featured {
+        touch-action: none;
+      }
       .page-grid {
+        .hot-collectibles {
+          touch-action: none;
+        }
         .title-header {
           font-size: 22px;
           margin-bottom: 5px;
