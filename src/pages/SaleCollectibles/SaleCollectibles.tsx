@@ -446,7 +446,7 @@ const SaleCollectibles = () => {
                   <>
                     {mBoxInfo.packageImage.indexOf('.mp4') > -1 ? (
                       <div>
-                        <video muted autoPlay playsInline loop>
+                        <video controls muted autoPlay playsInline loop>
                           <source
                             src={mBoxInfo.packageImage}
                             type="video/mp4"
@@ -484,7 +484,7 @@ const SaleCollectibles = () => {
                   <>
                     {mBoxInfo.revealAnimation.indexOf('.mp4') > -1 ? (
                       <div>
-                        <video muted autoPlay playsInline loop>
+                        <video controls muted autoPlay playsInline loop>
                           <source
                             src={mBoxInfo.revealAnimation}
                             type="video/mp4"

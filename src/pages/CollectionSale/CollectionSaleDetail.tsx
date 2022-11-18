@@ -545,7 +545,7 @@ const CollectionSaleDetail = () => {
               {collectionItemInfo &&
               collectionItemInfo?.originalImage!.indexOf('.mp4') > -1 ? (
                 <div>
-                  <video muted autoPlay playsInline loop>
+                  <video controls muted autoPlay playsInline loop>
                     <source
                       src={collectionItemInfo?.originalImage}
                       type="video/mp4"
