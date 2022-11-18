@@ -178,7 +178,7 @@
       .wallet-connected {
         height: 45px;
         display: flex;
-        // justify-content: space-around;
+        justify-content: space-around;
         //background-color: #113577;
         padding: 0 2.5px;
         align-items: center;
@@ -192,7 +192,7 @@
           align-items: center;
           justify-content: center;
           width: 20px;
-          height: 20px;
+          height: 30px;
           border-radius: 50%;
           background-color: #ffffff;
           opacity: 0.8;
