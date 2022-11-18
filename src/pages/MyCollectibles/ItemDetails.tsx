@@ -387,6 +387,7 @@ const CollectionSale = () => {
                     autoPlay
                     playsInline
                     loop
+                    controls
                     className="thumbnail"
                   >
                     <source src={itemInfo.originalImage} type="video/mp4" />

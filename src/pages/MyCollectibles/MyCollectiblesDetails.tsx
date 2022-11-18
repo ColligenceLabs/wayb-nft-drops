@@ -998,7 +998,7 @@ NFTs: ${claimableCount}`;
                           <video
                             playsInline
                             autoPlay
-                            // controls
+                            controls
                             controlsList="nodownload"
                             muted
                             loop
