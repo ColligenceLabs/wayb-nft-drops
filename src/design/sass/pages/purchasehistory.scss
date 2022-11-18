@@ -51,6 +51,7 @@
           display: table-cell;
           box-sizing: border-box;
           // padding: 15px 15px 0px 0px;
+          font-size: 14px;
           padding: 14px 0;
         }
         .purchase_date {
@@ -98,7 +99,6 @@
           .campaign_name {
             display: block;
             margin-bottom: 3px;
-            font-size: 15px;
             color: rgb(155, 154, 154);
             &:hover {
               color:white;
@@ -216,7 +216,7 @@
         .campaign_name {
           margin-right: 4px;
           font-weight: 700;
-          font-size: 0.75rem;
+          font-size: 14px;
         }
       }
       .line-purchase {
