@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import background from '../../assets/img/home_01.png';
+import backgroundMobile from '../../assets/img/home_01_mobile.png';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -188,6 +189,9 @@ const Homepage = () => {
       <div className="section-01">
         <div className="background-section-01">
           <img src={background} alt="" />
+        </div>
+        <div className="background-section-01-mobile">
+          <img src={backgroundMobile} alt="" />
         </div>
         {/* <img src={background} alt="" /> */}
         <div className="content-header">
