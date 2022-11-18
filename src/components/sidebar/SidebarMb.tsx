@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import icon_insta from '../../assets/icon/instagram.png';
 import icon_twitter from '../../assets/icon/twitter.png';
 import icon_discord from '../../assets/icon/discord.png';
+import docs from '../../assets/icon/docs.png';
 import close_icon from '../../assets/icon/close_icon.svg';
 import about from '../../assets/icon/about_02.svg';
 import blog from '../../assets/icon/blog_02.svg';
@@ -55,7 +56,7 @@ const SidebarMb = () => {
           </div> */}
           <div className="wrapper">
             <a
-              href="https://docs.talken.io/talken-docs/"
+              href="https://talken.io/"
               className="wrapper-item button"
               target={'_blank'}
             >
@@ -69,6 +70,14 @@ const SidebarMb = () => {
             >
               <img src={blog} alt="Blog Icon" />
               Blog
+            </a>
+            <a
+              href="https://docs.talken.io/talken-docs/"
+              className="wrapper-item button"
+              target={'_blank'}
+            >
+              <img src={docs} style={{ width: '24px' }} alt="Docs Icon" />
+              Docs
             </a>
             <a
               href="//talkensupport.zendesk.com/hc/en-us/requests/new"
