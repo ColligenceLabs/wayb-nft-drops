@@ -464,6 +464,9 @@
   }
   @media (max-width: 768px) {
     .section-01 {
+      .carousel-main-page {
+        touch-action: none;
+      }
       .content-header {
         padding: 100px 40px 30px 40px;
         .text-head {
@@ -478,6 +481,9 @@
   }
   @media (max-width: 639px) {
     .section-01 {
+      .carousel-main-page {
+        touch-action: none;
+      }
       .background-section-01 {
         img {
           // object-fit: contain;
@@ -550,6 +556,7 @@
       }
       .featured-collections {
         .grid-container-featured {
+          touch-action: none;
           grid-template-columns: 1fr;
           .custom-link {
             margin: 10px;
@@ -592,6 +599,7 @@
         }
       }
       .carousel-main-page {
+        touch-action: none;
         margin-top: 70px;
         .home-carousel {
           .slide-item {
@@ -729,6 +737,9 @@
           }
         }
       }
+      .grid-container-featured {
+        touch-action: none;
+      }
     }
   }
   @media (max-width: 340px) {
@@ -751,6 +762,11 @@
         .text-bottom {
           font-size: 12px;
         }
+      }
+    }
+    .section-02 {
+      .grid-container-featured {
+        touch-action: none;
       }
     }
   }
