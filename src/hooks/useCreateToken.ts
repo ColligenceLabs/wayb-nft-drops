@@ -30,7 +30,7 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
       const isKaikas = checkKaikasWallet(wallet, network);
 
       try {
-        let token = '';
+        let token;
         if (isKaikas) {
           // @ts-ignore : In case of Klaytn Kaikas Wallet
           const caver = new Caver(window.klaytn);
