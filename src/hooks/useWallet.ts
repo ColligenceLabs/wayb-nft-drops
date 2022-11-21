@@ -48,7 +48,7 @@ export function useEagerConnect() {
           }
         });
       }
-      if (wallets.klaytn.wallet === 'walletconnect') {
+      if (wallets.klaytn.wallet === 'talken') {
         if (isMobile) {
           injected.isAuthorized().then(async (isAuthorized: boolean) => {
             if (isAuthorized) {
@@ -66,6 +66,10 @@ export function useEagerConnect() {
           const wc = walletconnect(false);
           activate(wc);
         }
+      }
+      if (wallets.klaytn.wallet === 'walletConnector') {
+        const wc = walletconnect(false);
+        activate(wc);
       }
       if (wallets.klaytn.wallet === 'abcWallet') {
         abc.isAuthorized().then(async (isAuthorized: boolean) => {

@@ -40,6 +40,7 @@ const UsernameBox = () => {
     dispatch(initWallets());
     dispatch(initDropsAccount());
     localStorage.removeItem('dropsJwtToken');
+    localStorage.removeItem('walletconnect');
   };
   const navigate = useNavigate();
 
