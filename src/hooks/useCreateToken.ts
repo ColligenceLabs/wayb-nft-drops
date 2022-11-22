@@ -70,10 +70,10 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
           //wallet connect 연결 후 새창 열거나 브라우저 다시 열면 여기에 도달하지 못함
           console.log('afterSign:::');
         }
-        console.log('1111', token);
-        // @ts-ignore TS2693: only refers to a type
-        const veri = await Web3Token.verify(token);
-        console.log('2222', account, veri);
+        // console.log('1111', token);
+        // // @ts-ignore TS2693: only refers to a type
+        // const veri = await Web3Token.verify(token);
+        // console.log('2222', account, veri);
         localStorage.setItem('dropsJwtToken', token);
 
         // Check User Role
