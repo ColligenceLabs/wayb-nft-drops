@@ -478,6 +478,13 @@
         }
       }
     }
+    .section-02 {
+      .page-grid {
+        .hot-collectibles {
+          touch-action: none;
+        }
+      }
+    }
   }
   @media (max-width: 639px) {
     .section-01 {
@@ -526,6 +533,7 @@
       padding: 0 20px;
       .page-grid {
         .hot-collectibles {
+          touch-action: none;
           .custom-box {
             width: 100%;
             margin: 10px;
@@ -625,6 +633,11 @@
           // padding: 40px 0 10px;
         }
         padding-bottom: 40px;
+      }
+      .page-grid {
+        .hot-collectibles {
+          touch-action: none;
+        }
       }
     }
   }
@@ -740,6 +753,11 @@
       .grid-container-featured {
         touch-action: none;
       }
+      .page-grid {
+        .hot-collectibles {
+          touch-action: none;
+        }
+      }
     }
   }
   @media (max-width: 340px) {
@@ -767,6 +785,11 @@
     .section-02 {
       .grid-container-featured {
         touch-action: none;
+      }
+      .page-grid {
+        .hot-collectibles {
+          touch-action: none;
+        }
       }
     }
   }

@@ -44,6 +44,7 @@ import { moveToScope } from 'utils/moveToScope';
 import { FeaturedTypes } from 'types/FeaturedTypes';
 import useCopyToClipBoard from 'hooks/useCopyToClipboard';
 import ReactTooltip from 'react-tooltip';
+import { getPrice } from '../../utils/getPrice';
 
 type ExMBoxType = MBoxTypes & {
   companyLogo: string;
@@ -267,25 +268,29 @@ const SaleCollectibles = () => {
               id="tooltip-website"
               getContent={(dataTip) => 'Website'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-discord"
               getContent={(dataTip) => 'Discord'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-twitter"
               getContent={(dataTip) => 'Twitter'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-instagram"
               getContent={(dataTip) => 'Instagram'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
           </div>
         );
@@ -558,7 +563,8 @@ const SaleCollectibles = () => {
                           id="tooltip-explorer"
                           getContent={(dataTip) => 'Explorer'}
                           type={'light'}
-                          offset={{ top: 25 }}
+                          offset={{ top: 10 }}
+                          effect={'solid'}
                         />
                       </div>
                       {getSnsButtons()}
@@ -597,7 +603,8 @@ const SaleCollectibles = () => {
                           id="tooltip-copy"
                           getContent={(dataTip) => 'Copy'}
                           type={'light'}
-                          offset={{ top: 25 }}
+                          offset={{ top: 10 }}
+                          effect={'solid'}
                         />
                       </div>
                     </div>
@@ -654,7 +661,10 @@ const SaleCollectibles = () => {
                     <div className="lable-bottom fw-600">
                       {mBoxInfo?.price === 0
                         ? 'FREE'
-                        : `${mBoxInfo?.price} ${mBoxInfo?.quote}`}
+                        : getPrice(
+                            mBoxInfo?.price || 0,
+                            mBoxInfo?.quote || 'null'
+                          )}
                     </div>
                   </div>
                   {!countDownFinish && (

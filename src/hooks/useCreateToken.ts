@@ -61,10 +61,14 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
             options.wallet = 'kaikas';
           }
           // @ts-ignore TS2693: only refers to a type
+          //여기에서는 로그가 찍힘
+          console.log('beforeSign:::');
           token = await Web3Token.sign(
             async (msg: string) => await library.getSigner().signMessage(msg),
             options
           );
+          //wallet connect 연결 후 새창 열거나 브라우저 다시 열면 여기에 도달하지 못함
+          console.log('afterSign:::');
         }
         console.log('1111', token);
         // @ts-ignore TS2693: only refers to a type
