@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Caver from 'caver-js';
-import Web3Token from 'web3-token';
+import Web3Token from 'talken-web3-token';
 import { getAccount } from '../services/services';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,11 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
           const caver = new Caver(window.klaytn);
           // @ts-ignore TS2693: only refers to a type
           token = await Web3Token.sign(
-            async (msg: string) => await caver.klay.sign(msg, account ?? ''),
+            async (msg: string) => {
+              const tmp = await caver.klay.sign(msg, account ?? '');
+              console.log('===>', msg, tmp);
+              return tmp;
+            },
             // TODO : 아래 함수로 처리가 되는 것이 맞으나... klaytn-connector애서 뭘 수정해야 하지?
             //        에러 = unknown account #0 (operation="getAddress", code=UNSUPPORTED_OPERATION
             // async () => await library.getSigner().signMessage(account),
@@ -48,16 +52,24 @@ const useCreateToken = (setDoSign: SetStateAction<any>, network: string) => {
             }
           );
         } else {
+          const options: any = {
+            domain: 'apps.talken.io',
+            expires_in: '1 days',
+            statement: 'Talken Drops Sign In',
+          };
+          if (wallet.klaytn.wallet === 'abcWallet') {
+            options.wallet = 'kaikas';
+          }
           // @ts-ignore TS2693: only refers to a type
           token = await Web3Token.sign(
             async (msg: string) => await library.getSigner().signMessage(msg),
-            {
-              domain: 'apps.talken.io',
-              expires_in: '1 days',
-              statement: 'Talken Drops Sign In',
-            }
+            options
           );
         }
+        console.log('1111', token);
+        // @ts-ignore TS2693: only refers to a type
+        const veri = await Web3Token.verify(token);
+        console.log('2222', account, veri);
         localStorage.setItem('dropsJwtToken', token);
 
         // Check User Role
