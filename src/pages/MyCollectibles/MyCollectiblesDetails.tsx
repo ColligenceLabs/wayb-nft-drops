@@ -474,25 +474,29 @@ NFTs: ${claimableCount}`;
               id="tooltip-website"
               getContent={(dataTip) => 'Website'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-discord"
               getContent={(dataTip) => 'Discord'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-twitter"
               getContent={(dataTip) => 'Twitter'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-instagram"
               getContent={(dataTip) => 'Instagram'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
           </div>
         );
@@ -733,7 +737,8 @@ NFTs: ${claimableCount}`;
                       id="tooltip-explorer"
                       getContent={(dataTip) => 'Explorer'}
                       type={'light'}
-                      offset={{ top: 25 }}
+                      offset={{ top: 10 }}
+                      effect={'solid'}
                     />
                   </div>
                   {getSnsButtons()}
@@ -765,7 +770,8 @@ NFTs: ${claimableCount}`;
                       id="tooltip-copy"
                       getContent={(dataTip) => 'Copy'}
                       type={'light'}
-                      offset={{ top: 25 }}
+                      offset={{ top: 10 }}
+                      effect={'solid'}
                     />
                   </div>
                 </div>

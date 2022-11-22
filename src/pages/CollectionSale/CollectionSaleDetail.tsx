@@ -39,6 +39,7 @@ import useCopyToClipBoard from '../../hooks/useCopyToClipboard';
 import { BigNumber } from 'ethers';
 import { checkKaikasWallet, getTargetNetworkName } from '../../utils/wallet';
 import ReactTooltip from 'react-tooltip';
+import { getPrice } from '../../utils/getPrice';
 
 type ExMBoxItemTypes = MBoxItemTypes & {
   collectionInfo: any;
@@ -257,25 +258,29 @@ const CollectionSaleDetail = () => {
               id="tooltip-website"
               getContent={(dataTip) => 'Website'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-discord"
               getContent={(dataTip) => 'Discord'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-twitter"
               getContent={(dataTip) => 'Twitter'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
             <ReactTooltip
               id="tooltip-instagram"
               getContent={(dataTip) => 'Instagram'}
               type={'light'}
-              offset={{ top: 25 }}
+              offset={{ top: 10 }}
+              effect={'solid'}
             />
           </div>
         );
@@ -627,7 +632,8 @@ const CollectionSaleDetail = () => {
                         id="tooltip-explorer"
                         getContent={(dataTip) => 'Explorer'}
                         type={'light'}
-                        offset={{ top: 25 }}
+                        offset={{ top: 10 }}
+                        effect={'solid'}
                       />
                     </div>
                     {getSnsButtons()}
@@ -659,7 +665,8 @@ const CollectionSaleDetail = () => {
                         id="tooltip-copy"
                         getContent={(dataTip) => 'Copy'}
                         type={'light'}
-                        offset={{ top: 25 }}
+                        offset={{ top: 10 }}
+                        effect={'solid'}
                       />
                     </div>
                   </div>
@@ -787,7 +794,10 @@ const CollectionSaleDetail = () => {
                   <div className="lable-bottom fw-600">
                     {collectionItemInfo?.price === 0
                       ? 'FREE'
-                      : `${collectionItemInfo?.price} ${collectionItemInfo?.quote}`}
+                      : getPrice(
+                          collectionItemInfo?.price || 0,
+                          collectionItemInfo?.quote || 'null'
+                        )}
                   </div>
                 </div>
                 {!countDownFinish && (
