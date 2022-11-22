@@ -6,7 +6,6 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@ethersproject/providers": "^5.7.1",
-    "@klaybay/web3-token": "^1.0.0-alpha.3",
     "@metamask/detect-provider": "^1.2.0",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.8",
