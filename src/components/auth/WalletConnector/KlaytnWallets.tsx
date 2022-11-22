@@ -83,7 +83,7 @@ const KlaytnWallets: React.FC<KlaytnWalletsProps> = ({ close }) => {
         } else {
           const wc = talkenwallet(true);
           await activate(wc, undefined, true);
-          await dispatch(setActivatingConnector(wc));
+          // await dispatch(setActivatingConnector(wc));
         }
       } else if (id === 3) {
         // console.log(`click ${id}, this is Kaikas (Klaytn)`);
