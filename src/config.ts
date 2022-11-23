@@ -10,6 +10,8 @@ export const ChainId = {
   BSCTESTNET: 97,
   KLAYTN: 8217,
   BAOBAB: 1001,
+  POLYGON: 137,
+  MUMBAI: 80001,
   TMP: 203,
 };
 
