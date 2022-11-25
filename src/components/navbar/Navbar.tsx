@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useRef, useState, useEffect } from 'react';
-import logo_header from '../../assets/svg/logo_header.svg';
+import logo_header from '../../assets/img/logo.png';
 // import icon_twitter from '../../assets/img/icon_twitter.png';
 // import icon_discord from '../../assets/img/icon_discord.png';
 import icon_insta from '../../assets/icon/instagram.png';
