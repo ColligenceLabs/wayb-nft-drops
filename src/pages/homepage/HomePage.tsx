@@ -3,8 +3,18 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import background from '../../assets/img/home_01.png';
 import backgroundMobile from '../../assets/img/home_01_mobile.png';
+import textInbanner from '../../assets/img/textBanner.png';
+import bannerService from '../../assets/img/bannerService.png';
+import iPhone_12 from '../../assets/img/iPhone_12_Pro.png';
+import globular from '../../assets/img/globular.png';
+import line from '../../assets/img/line.png';
+import phase from '../../assets/img/phase.png';
+import partner_advisor from '../../assets/img/partner_advisor.png';
+import bannerRoadMap from '../../assets/img/bannerRoadMap.png';
+import bannerQA from '../../assets/img/bannerQA.png';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Accordion from 'react-bootstrap/Accordion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import useScreenSize from 'components/common/useScreenSize';
 import {
@@ -195,12 +205,8 @@ const Homepage = () => {
         </div>
         {/* <img src={background} alt="" /> */}
         <div className="content-header">
-          <div className="text-head">Talken Drops</div>
-          <div className="text-bottom">
-            Check out NFTs and Collectibles from popular teams,&nbsp;
-            <br className="text-head-pc" />
-            famous brands&nbsp;and world renown artists
-            {/* <br className="text-head-mobile" /> */}
+          <div className="text-head">
+            <img src={textInbanner} alt="img" />
           </div>
         </div>
         <div>
@@ -265,6 +271,171 @@ const Homepage = () => {
 
         </div> */}
       </div>
+      {/* section service */}
+      <div className="section-service">
+        <img src={bannerService} />
+        <div className="info-service">
+          <img src={iPhone_12} />
+          <div className="info-text">
+            <h2>Service</h2>
+            <p>웨이비 서비스에 가입하세요</p>
+            <p>NFT 홀더 전용 혜택 ~~~~~~~~~~~~~</p>
+            <button className="btn-go">Go</button>
+          </div>
+        </div>
+        <img src={globular} className="globularBottom shake-vertical" />
+        <img src={globular} className="globularTop shake-vertical" />
+      </div>
+      {/* end section service*/}
+      {/* section RoadMap */}
+      <div className="section-roadMap">
+        <img src={bannerRoadMap} className="bannerRoadMap" />
+        <div className="info-roadMap">
+          <h2>Road Map</h2>
+          <div className="line-roadMap">
+            <div className="step">
+              <p>
+                <img src={phase} /> Phase 1
+              </p>
+              <p>
+                {' '}
+                <img src={phase} />
+                Phase 2
+              </p>
+              <p>Phase 3</p>
+              <p>Phase 4</p>
+            </div>
+            <img src={line} className="line-img" />
+            <div className="info-step">
+              <ul className="color-primary">
+                <li>
+                  {' '}
+                  Establish The Degens community on <br />
+                  Twitter and Discord
+                </li>
+                <li> Work on the Genesis Collection</li>
+                <li>Launch Website</li>
+                <li>Fair Launch of Genesis Collection </li>
+                <li>
+                  Listing of Genesis Collection on <br /> Secondary Marketplaces
+                </li>
+              </ul>
+              <ul>
+                <li className="color-primary">
+                  {' '}
+                  Establish The Degens community on <br />
+                  Twitter and Discord
+                </li>
+                <li className="color-primary">
+                  {' '}
+                  Work on the Genesis Collection
+                </li>
+                <li className="color-primary">Launch Website</li>
+                <li>Fair Launch of Genesis Collection </li>
+                <li>
+                  Listing of Genesis Collection on <br /> Secondary Marketplaces
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  {' '}
+                  Establish The Degens community on <br />
+                  Twitter and Discord
+                </li>
+                <li> Work on the Genesis Collection</li>
+                <li>Launch Website</li>
+                <li>Fair Launch of Genesis Collection </li>
+                <li>
+                  Listing of Genesis Collection on <br /> Secondary Marketplaces
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  {' '}
+                  Establish The Degens community on <br />
+                  Twitter and Discord
+                </li>
+                <li> Work on the Genesis Collection</li>
+                <li>Launch Website</li>
+                <li>Fair Launch of Genesis Collection </li>
+                <li>
+                  Listing of Genesis Collection on <br /> Secondary Marketplaces
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="partner-advisor">
+            <h2>Partner & Advisor</h2>
+            <img src={partner_advisor} />
+          </div>
+        </div>
+      </div>
+      {/* end section RoadMMap */}
+      {/* section Q & A */}
+      <div className="section-qa">
+        <img src={bannerQA} />
+        <div className="list-qa">
+          <h2 className="title">FAQs</h2>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>
+                Ut euismod fermentum netus platea letius?
+              </Accordion.Header>
+              <Accordion.Body>
+                Ullamcorper ridiculus inceptos metus imperdiet nibh nam in fusce
+                tortor bibendum vel. Tellus netus mollis ultricies lorem
+                eleifend amet ipsum convallis proin. Nam leo vel nibh per augue
+                ut interdum maximus gravida efficitur.
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>
+                Ut euismod fermentum netus platea letius?
+              </Accordion.Header>
+              <Accordion.Body>
+                Ullamcorper ridiculus inceptos metus imperdiet nibh nam in fusce
+                tortor bibendum vel. Tellus netus mollis ultricies lorem
+                eleifend amet ipsum convallis proin. Nam leo vel nibh per augue
+                ut interdum maximus gravida efficitur.
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>
+                Ut euismod fermentum netus platea letius?
+              </Accordion.Header>
+              <Accordion.Body>
+                Ullamcorper ridiculus inceptos metus imperdiet nibh nam in fusce
+                tortor bibendum vel. Tellus netus mollis ultricies lorem
+                eleifend amet ipsum convallis proin. Nam leo vel nibh per augue
+                ut interdum maximus gravida efficitur.
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>
+                Ut euismod fermentum netus platea letius?
+              </Accordion.Header>
+              <Accordion.Body>
+                Ullamcorper ridiculus inceptos metus imperdiet nibh nam in fusce
+                tortor bibendum vel. Tellus netus mollis ultricies lorem
+                eleifend amet ipsum convallis proin. Nam leo vel nibh per augue
+                ut interdum maximus gravida efficitur.
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header>
+                Ut euismod fermentum netus platea letius?
+              </Accordion.Header>
+              <Accordion.Body>
+                Ullamcorper ridiculus inceptos metus imperdiet nibh nam in fusce
+                tortor bibendum vel. Tellus netus mollis ultricies lorem
+                eleifend amet ipsum convallis proin. Nam leo vel nibh per augue
+                ut interdum maximus gravida efficitur.
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </div>
+      </div>
+      {/* end section Q&A */}
       {/* section 02 */}
       <div className="section-02">
         {/* Featured Collections */}
