@@ -19,6 +19,8 @@ import Aquarium1402One from 'pages/Landingpage/Aquarium1402-1';
 import Aquarium1402Two from 'pages/Landingpage/Aquarium1402-2';
 import ItemDetails from 'pages/MyCollectibles/ItemDetails';
 import Product from 'pages/Product/Product';
+import CollectionWayB from 'pages/CollectionsWayB/Collection';
+import MyCollections from 'pages/MyCollectionsWayB/MyCollections';
 const Router = () => [
   {
     path: '/',
@@ -78,6 +80,14 @@ const Router = () => [
       {
         path: '/product',
         element: <Product />,
+      },
+      {
+        path: '/collectionWayB',
+        element: <CollectionWayB />,
+      },
+      {
+        path: '/mycollectionWayB',
+        element: <MyCollections />,
       },
     ],
   },
