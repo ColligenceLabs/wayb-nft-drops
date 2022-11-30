@@ -84,153 +84,155 @@ export default function Collection() {
               <Box>
                 <FormControl
                   sx={{ m: 3 }}
-                  component="fieldset"
+                  // component="fieldset"
                   variant="standard"
+                  className="mobile-checkbox"
                 >
-                  <FormLabel component="legend">Project</FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={gilad}
-                          onChange={handleChange}
-                          name="gilad"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Project 1"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={jason}
-                          onChange={handleChange}
-                          name="jason"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Project 2"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={antoine}
-                          onChange={handleChange}
-                          name="antoine"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Project 3"
-                    />
-                  </FormGroup>
-                  <FormLabel component="legend" style={{ paddingTop: '30px' }}>
-                    Rarity
-                  </FormLabel>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={gilad}
-                          onChange={handleChange}
-                          name="Ordinary"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Ordinary"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={jason}
-                          onChange={handleChange}
-                          name="jason"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Extraordinary"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={antoine}
-                          onChange={handleChange}
-                          name="antoine"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Rare"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={antoine}
-                          onChange={handleChange}
-                          name="antoine"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Super Rare"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          className="xx"
-                          checked={antoine}
-                          onChange={handleChange}
-                          name="antoine"
-                          sx={{
-                            color: '#C4C4C4',
-                            '&.Mui-checked': {
-                              color: '#0095FF',
-                            },
-                          }}
-                        />
-                      }
-                      label="Legendary"
-                    />
-                  </FormGroup>
+                  <div className="left-mobile">
+                    <FormLabel component="legend">Project</FormLabel>
+                    <FormGroup>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            className="xx"
+                            checked={gilad}
+                            onChange={handleChange}
+                            name="gilad"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Project 1"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={jason}
+                            onChange={handleChange}
+                            name="jason"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Project 2"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={antoine}
+                            onChange={handleChange}
+                            name="antoine"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Project 3"
+                      />
+                    </FormGroup>
+                  </div>
+                  <div className="right-mobile">
+                    <FormLabel component="legend" className="padding-top">
+                      Rarity
+                    </FormLabel>
+                    <FormGroup>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={gilad}
+                            onChange={handleChange}
+                            name="Ordinary"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Ordinary"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            className="xx"
+                            checked={jason}
+                            onChange={handleChange}
+                            name="jason"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Extraordinary"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            className="xx"
+                            checked={antoine}
+                            onChange={handleChange}
+                            name="antoine"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Rare"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            className="xx"
+                            checked={antoine}
+                            onChange={handleChange}
+                            name="antoine"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Super Rare"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            className="xx"
+                            checked={antoine}
+                            onChange={handleChange}
+                            name="antoine"
+                            sx={{
+                              color: '#C4C4C4',
+                              '&.Mui-checked': {
+                                color: '#0095FF',
+                              },
+                            }}
+                          />
+                        }
+                        label="Legendary"
+                      />
+                    </FormGroup>
+                  </div>
                 </FormControl>
               </Box>
             </div>

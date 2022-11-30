@@ -1,75 +1,105 @@
-.collection-items {
-    margin: 0px;
-    width: 100%;
-    position: relative;
-    display: grid;
-    grid-gap: 20px;
-    gap: 20px;
-    place-items: center;
-    max-width: 1200px;
-    grid-template-columns: repeat(5, 1fr);
+.box-collection {
+    .collection-items {
+        margin: 0px;
+        width: 100%;
+        position: relative;
+        display: grid;
+        grid-gap: 20px;
+        gap: 20px;
+        place-items: center;
+        max-width: 1200px;
+        grid-template-columns: repeat(4, 1fr);
 
-    a {
-        background: #02021e;
-        color: #fff;
-        border-radius: 15px;
-        border: 1px solid #444444;
-
-        .item_product {
-            width: 220px;
-            height: 300px;
-            display: flex;
-            flex-flow: row wrap;
+        a {
+            background: #02021e;
+            color: #fff;
             border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.15s ease-in-out 0s;
-            cursor: pointer;
-            margin: 0px;
+            border: 1px solid #444444;
 
-            .collection-img {
-                text-align: center;
-                width: 100%;
-                margin: auto;
+            .item_product {
+                width: 220px;
+                height: 300px !important;
+                display: flex;
+                flex-flow: row wrap;
+                border-radius: 15px;
+                overflow: hidden;
+                transition: transform 0.15s ease-in-out 0s;
+                cursor: pointer;
+                margin: 0px;
 
-                img {
-                    height: 200px;
+                .collection-img {
+                    text-align: center;
                     width: 100%;
-                    object-fit: cover;
-                }
-            }
+                    margin: auto;
 
-            .info-product {
-                text-align: left;
-                padding: 10px;
-
-                button {
-                    font-size: 12px;
-                    border-radius: 3px;
-                    background: #1AA0FF;
-                    padding: 3px 20px;
-                    margin-right: 10px;
+                    img {
+                        height: 200px;
+                        width: 100%;
+                        object-fit: cover;
+                    }
                 }
 
-                p {
-                    font-size: 16px;
-                }
-            }
+                .info-product {
+                    text-align: left;
+                    padding: 10px;
 
-            .item_product_detail {
-                flex: 1 1;
-                text-align: center;
-                background-color: rgba(255, 255, 255, 0.1);
-                padding: 15px 0px;
-                width: 50%;
-                font-size: 0.6875rem;
-                margin: 0 auto;
+                    button {
+                        font-size: 12px;
+                        border-radius: 3px;
+                        background: #1AA0FF;
+                        padding: 3px 20px;
+                        margin-right: 10px;
+                    }
+
+                    p {
+                        font-size: 16px;
+                    }
+                }
+
+                .item_product_detail {
+                    flex: 1 1;
+                    text-align: center;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    padding: 15px 0px;
+                    width: 50%;
+                    font-size: 0.6875rem;
+                    margin: 0 auto;
+                }
             }
         }
     }
 
-    // a:hover {
-    //     transform: scale(1.05);
-    //     transition: 0.5s;
-    //     border: 1px solid #2f8af5;
-    // }
+    table {
+        tr {
+            td {
+                width: 25%;
+                padding: 17px 10px 0 10px;
+
+                img {
+                    width: 18px;
+                }
+            }
+
+            .tr-header td {
+                color: #0095FF;
+            }
+        }
+
+        .bg {
+            border-top: 15px solid #02021e;
+            background: rgba(255, 255, 255, 0.08);
+
+            .td-p {
+                p {
+                    font-size: 14px;
+                }
+
+                span {
+                    color: #AAAAAA;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
 }
