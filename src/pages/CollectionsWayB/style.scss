@@ -72,6 +72,14 @@ body {
         display: flex;
         justify-content: center;
         padding-top: 20px;
+
+        ul {
+            li {
+                .css-1v2lvtn-MuiPaginationItem-root {
+                    color: white;
+                }
+            }
+        }
     }
 }
 
