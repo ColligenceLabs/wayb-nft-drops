@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import product from '../../assets/img/product.png';
+import share from '../../assets/img/share.png';
+
 import './style.scss';
 function MyCollections() {
   const [state, setState] = React.useState({
@@ -41,7 +36,7 @@ function MyCollections() {
     <main className="collection-container min-height-content">
       <div className="box-collection">
         <div className="marketplace">
-          <div className="marketplace-collection-tittle">Collection</div>
+          <div className="marketplace-collection-tittle">My Collectibles</div>
           <hr />
           <div className="info-top">
             <div className="total-item">40 items</div>
@@ -64,7 +59,7 @@ function MyCollections() {
               </FormControl>
             </div>
           </div>
-          <div className="collection-items">
+          <div className="marketplace-items collection-items">
             <Link to="/">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
@@ -146,6 +141,52 @@ function MyCollections() {
               </div>
             </Link>
           </div>
+          <div className="marketplace-collection-tittle">Collect History</div>
+          <hr />
+          <table>
+            <tr className="tr-header">
+              <td>Date</td>
+              <td>Type</td>
+              <td>NFT</td>
+              <td>Price</td>
+              <td>Blockchain</td>
+              <td>Confirmation</td>
+              <td></td>
+            </tr>
+            <tr className="bg">
+              <td>Sep 2, 2022</td>
+              <td>Web purchase</td>
+              <td>
+                <div className="td-p">
+                  <span>Be rewarded!</span>
+                  <p>GENERATIVE MAGIC THE DOG</p>
+                </div>
+              </td>
+              <td>$5.00</td>
+              <td>Polygon</td>
+              <td>48 48</td>
+              <td>
+                {' '}
+                <img src={share} />
+              </td>
+            </tr>
+            <tr className="bg">
+              <td>Sep 2, 2022</td>
+              <td>Web purchase</td>
+              <td>
+                <div className="td-p">
+                  <span>Be rewarded!</span>
+                  <p>GENERATIVE MAGIC THE DOG</p>
+                </div>
+              </td>
+              <td>$5.00</td>
+              <td>Polygon</td>
+              <td>48 48</td>
+              <td>
+                <img src={share} />
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     </main>

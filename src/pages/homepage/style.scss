@@ -1,0 +1,168 @@
+.none-pc {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .home-page {
+        .section-01 {
+            .content-header {
+                .text-head {
+                    // padding-top: 100px !important;
+
+                    img {
+                        width: 100%;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .section-service {
+            display: inherit !important;
+
+            .info-service {
+                text-align: center;
+                padding-top: 44px;
+                display: inherit !important;
+                position: unset !important;
+
+                .info-text {
+                    .btn-go {
+                        margin-top: 0;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+
+
+            .img-service,
+            .shake-vertical {
+                display: none;
+            }
+        }
+
+        .section-qa {
+            top: 0 !important;
+
+            .none-mobile {
+                display: none;
+            }
+
+
+
+            .list-qa {
+                position: unset !important;
+
+                .accordion-body {
+
+                    height: auto !important;
+                }
+
+                .title {
+                    padding-top: 30px;
+                }
+            }
+        }
+
+        .none-pc {
+            display: block;
+        }
+
+    }
+
+    .none-mobile {
+        display: none;
+    }
+
+    .section-roadMap-mobile {
+        .img-center {
+            text-align: center;
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .phase {
+            box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
+            margin-bottom: 30px !important;
+            background: #16273D;
+            color: #0095FF;
+            width: 90%;
+            margin: auto;
+            border-radius: 10px;
+            padding: 10px;
+
+            .flex-end {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            p {
+                margin: 0px;
+                color: white;
+                padding-left: 10px;
+            }
+
+            ul {
+                li {
+                    list-style: none;
+                }
+            }
+        }
+
+        .Phase-right {
+            color: aliceblue;
+            text-align: right;
+        }
+
+        .partner-advisor {
+            img {
+                padding: 25px;
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 425px) {
+    .home-page {
+        .section-01 {
+            .content-header {
+                .text-head {
+                    padding-top: 0 !important;
+
+                    img {
+                        width: 100%;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .section-service {
+            .info-service {
+                .info-text {
+                    text-align: left;
+
+                    .btn-go {
+                        margin-top: 0;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-page {
+        .section-qa {
+            top: 310px;
+        }
+    }
+}

@@ -14,6 +14,10 @@ body {
         padding: 10px;
         height: 550px;
 
+        .padding-top {
+            padding-top: 30px;
+        }
+
         legend {
             font-weight: 700;
             color: white;
@@ -25,10 +29,6 @@ body {
     }
 
     .collection-right {
-        .collection-items {
-            grid-template-columns: repeat(4, 1fr) !important;
-        }
-
         .item_product {
             height: 315px !important;
         }
@@ -72,6 +72,14 @@ body {
         display: flex;
         justify-content: center;
         padding-top: 20px;
+
+        ul {
+            li {
+                .css-1v2lvtn-MuiPaginationItem-root {
+                    color: white;
+                }
+            }
+        }
     }
 }
 
@@ -98,8 +106,48 @@ body {
 
 @media (max-width: 900px) {
     .main-collection {
+        display: inline;
+
         .marketplace-items {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+        }
+
+        .collection-left {
+            height: 330px;
+            width: 100%;
+            margin-bottom: 30px;
+
+            .padding-top {
+                padding-top: 0;
+            }
+
+            .mobile-checkbox {
+                width: 100%;
+                flex-direction: row;
+
+                .left-mobile {
+                    width: 50%;
+                }
+
+                .right-mobile {
+                    width: 50%;
+                }
+            }
+
+        }
+    }
+}
+
+
+@media (max-width: 425px) {
+    .main-collection {
+
+        .marketplace-items {
+            grid-template-columns: repeat(1, 1fr) !important;
+
+            .item_product {
+                height: 335px !important;
+            }
         }
     }
 }
