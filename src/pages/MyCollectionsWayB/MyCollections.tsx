@@ -60,7 +60,7 @@ function MyCollections() {
             </div>
           </div>
           <div className="marketplace-items collection-items">
-            <Link to="/">
+            <Link to="/mycollectionWayB/details">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="collection-img">
@@ -76,7 +76,7 @@ function MyCollections() {
                 </div>
               </div>
             </Link>
-            <Link to="/">
+            <Link to="/mycollectionWayB/details">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="collection-img">
@@ -92,7 +92,7 @@ function MyCollections() {
                 </div>
               </div>
             </Link>
-            <Link to="/">
+            <Link to="/mycollectionWayB/details">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="collection-img">
@@ -108,7 +108,7 @@ function MyCollections() {
                 </div>
               </div>
             </Link>
-            <Link to="/">
+            <Link to="/mycollectionWayB/details">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="collection-img">
@@ -124,7 +124,7 @@ function MyCollections() {
                 </div>
               </div>
             </Link>
-            <Link to="/">
+            <Link to="/mycollectionWayB/details">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="collection-img">

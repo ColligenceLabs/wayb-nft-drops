@@ -103,3 +103,135 @@
     }
 
 }
+
+//  detail
+.collectibles-item-details-container {
+    .btn-back {
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        width: 100px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+            padding-right: 5px;
+        }
+    }
+
+    .product-details {
+        .go-to-opensea {
+            font-size: 24px;
+            border: 1px solid #0095FF;
+            padding: 10px;
+            text-align: center;
+            color: #0095FF;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .wrapper-right {
+            width: 50%;
+            padding-right: 20px;
+
+            .header-product {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .avatar {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+
+                    .userName {
+                        padding-left: 10px;
+
+                        p {
+                            font-size: 12px;
+                            margin: 0;
+                        }
+
+                        b {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+
+            .info-product {
+                .status {
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 25px;
+                    padding-top: 10px;
+                }
+
+                button {
+                    margin-right: 10px;
+                    background: #1AA0FF;
+                    color: white;
+                    font-size: 12px;
+                    border-radius: 5px;
+                }
+
+                span {
+                    font-size: 12px;
+                    color: #AAAAAA;
+                }
+
+                .des {
+                    font-size: 14px;
+                    color: #AAAAAA;
+                    padding-bottom: 30px;
+                }
+
+                .level-status {
+                    font-size: 14px;
+                }
+
+                .utility {
+                    margin-top: 30px;
+                    background: rgba(255, 255, 255, 0.08);
+                    padding: 20px;
+                    border-radius: 20px;
+
+                    p {
+                        font-size: 14px;
+                    }
+
+                    .content {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+
+                .lv {
+                    b {
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 900px) {
+    .collectibles-item-details-container {
+        .product-details {
+            .wrapper-right {
+                padding: 30px;
+                width: 100%;
+            }
+        }
+    }
+
+}

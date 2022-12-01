@@ -238,7 +238,7 @@ export default function Collection() {
             </div>
             <div className="collection-right">
               <div className="marketplace-items collection-items">
-                <Link to="/">
+                <Link to="/mycollectionWayB/details">
                   <div className="item_product">
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="collection-img">
@@ -254,7 +254,7 @@ export default function Collection() {
                     </div>
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/mycollectionWayB/details">
                   <div className="item_product">
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="collection-img">
@@ -270,7 +270,7 @@ export default function Collection() {
                     </div>
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/mycollectionWayB/details">
                   <div className="item_product">
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="collection-img">
@@ -286,7 +286,7 @@ export default function Collection() {
                     </div>
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/mycollectionWayB/details">
                   <div className="item_product">
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="collection-img">
@@ -302,7 +302,7 @@ export default function Collection() {
                     </div>
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/mycollectionWayB/details">
                   <div className="item_product">
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="collection-img">
