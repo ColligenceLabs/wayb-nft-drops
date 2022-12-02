@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import product from '../../assets/img/product.png';
 import share from '../../assets/img/share.png';
-
+import arrow_blue from '../../assets/icon/arrow_blue.png';
 import './style.scss';
 function MyCollections() {
   const [state, setState] = React.useState({
@@ -145,7 +145,9 @@ function MyCollections() {
           <hr />
           <table>
             <tr className="tr-header">
-              <td>Date</td>
+              <td>
+                Date <img src={arrow_blue} />
+              </td>
               <td>Type</td>
               <td>NFT</td>
               <td>Price</td>
@@ -167,6 +169,22 @@ function MyCollections() {
               <td>48 48</td>
               <td>
                 {' '}
+                <img src={share} />
+              </td>
+            </tr>
+            <tr className="bg">
+              <td>Sep 2, 2022</td>
+              <td>Web purchase</td>
+              <td>
+                <div className="td-p">
+                  <span>Be rewarded!</span>
+                  <p>GENERATIVE MAGIC THE DOG</p>
+                </div>
+              </td>
+              <td>$5.00</td>
+              <td>Polygon</td>
+              <td>48 48</td>
+              <td>
                 <img src={share} />
               </td>
             </tr>
