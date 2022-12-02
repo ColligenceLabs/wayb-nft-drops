@@ -65,7 +65,7 @@ export default function Product() {
           </div>
         </div>
         {/*  min-height-content */}
-        <div className="marketplace">
+        <div className="marketplace product">
           <div className="marketplace-collection-tittle">IP</div>
           <div className="marketplace-items">
             <Link to="/">
