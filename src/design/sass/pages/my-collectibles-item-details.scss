@@ -41,7 +41,6 @@
     }
     .product-details {
       display: flex;
-      justify-content: space-around;
       padding-bottom: 40px;
       margin-top: 24px;
       padding-top: 40px;
@@ -52,7 +51,7 @@
         display: none;
       }
       .wrapper-left {
-        padding: 30px 20px;
+        padding: 0 20px;
         border-right: 1px solid #444444;
         width: 50%;
         display: flex;

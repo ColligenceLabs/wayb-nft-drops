@@ -67,7 +67,151 @@
         text-align: center;
         font-weight: 800;
     }
+}
 
+.product {
+
+    .products-items {
+        margin: 0px;
+        width: 100%;
+        position: relative;
+        display: grid;
+        grid-gap: 20px;
+        gap: 20px;
+        place-items: center;
+        max-width: 1200px;
+        grid-template-columns: repeat(5, 1fr);
+
+        a {
+            background: #02021e;
+            color: #fff;
+            border-radius: 15px;
+            border: 1px solid #444444;
+
+            .item_product {
+                width: 221px;
+                height: auto;
+                flex-flow: row wrap;
+                border-radius: 15px;
+                overflow: hidden;
+                transition: transform 0.15s ease-in-out 0s;
+                cursor: pointer;
+                margin: 0px;
+
+                .item_product_detail_top {
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: space-around;
+                    padding: 15px 0;
+                    margin-bottom: 15px;
+
+                    .chain {
+                        color: #AAAAAA;
+                    }
+                }
+
+                .remaining-price {
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    background: rgba(255, 255, 255, 0.1);
+                    padding: 10px 0;
+
+                    .border-right {
+                        border-right: 0.5px solid rgba(255, 255, 255, 0.3);
+                    }
+
+                    .w-50 {
+                        width: 50%;
+                    }
+
+                    .remaining {
+                        font-size: 10px;
+                    }
+
+                    .remaining-total {
+                        font-size: 14px;
+                        padding-top: 10px;
+                    }
+                }
+
+                .info-product_item {
+                    padding: 10px;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+
+                    .owner_product {
+                        align-items: center;
+                        display: flex;
+                        justify-content: space-between;
+
+                        .status {
+                            color: #0095FF;
+                            font-size: 12px;
+                            font-weight: 700;
+                        }
+
+                        .owner_product_avatar {
+                            align-items: center;
+                            display: flex;
+
+                            img {
+                                width: 24px;
+                                height: 24px;
+                                object-fit: cover;
+                                margin-right: 10px;
+                            }
+
+                            .name {
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    .title {
+                        padding-top: 12px;
+                        font-size: 14px;
+                    }
+
+                }
+
+
+                .item_product_detail {
+                    width: 100%;
+                    font-size: 12px;
+                    flex: 1 1;
+
+                    .card-image {
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
+
+                        img {
+                            object-fit: cover;
+                            text-align: center;
+                            height: 158px;
+                            width: 158px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .products-items {
+        grid-template-columns: repeat(3, 1fr) !important;
+
+    }
+}
+
+@media (max-width: 1024px) {
+    .products-items {
+        grid-template-columns: repeat(4, 1fr) !important;
+
+    }
 }
 
 @media (max-width: 540px) {
@@ -85,5 +229,10 @@
         .btn-minting {
             padding: 10px;
         }
+    }
+
+    .products-items {
+        grid-template-columns: repeat(2, 1fr) !important;
+
     }
 }

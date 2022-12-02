@@ -15,10 +15,11 @@
             color: #fff;
             border-radius: 15px;
             border: 1px solid #444444;
+            width: 100%;
 
             .item_product {
-                width: 220px;
-                height: 300px !important;
+                width: 100%;
+                // height: 300px !important;
                 display: flex;
                 flex-flow: row wrap;
                 border-radius: 15px;
@@ -33,15 +34,24 @@
                     margin: auto;
 
                     img {
-                        height: 200px;
                         width: 100%;
                         object-fit: cover;
+                        height: 242px;
                     }
                 }
 
                 .info-product {
                     text-align: left;
-                    padding: 10px;
+                    padding: 15px;
+
+                    .padding-bottom {
+                        padding-top: 5px;
+
+                        span {
+                            color: #AAAAAA;
+                            font-size: 12px;
+                        }
+                    }
 
                     button {
                         font-size: 12px;
@@ -52,6 +62,8 @@
                     }
 
                     p {
+                        padding-top: 15px;
+                        margin: 0;
                         font-size: 16px;
                     }
                 }
@@ -70,6 +82,9 @@
     }
 
     table {
+        border-collapse: separate;
+        border-spacing: 0 1em;
+
         tr {
             td {
                 width: 25%;
@@ -79,14 +94,29 @@
                     width: 18px;
                 }
             }
+        }
 
-            .tr-header td {
-                color: #0095FF;
+        td:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        // Set border-radius on the top-right and bottom-right of the last table data on the table row
+        td:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .tr-header td {
+            font-weight: 700;
+            color: #0095FF;
+
+            &:nth-child(1) {
+                align-items: center;
+                display: flex;
+                cursor: pointer;
             }
         }
 
         .bg {
-            border-top: 15px solid #02021e;
             background: rgba(255, 255, 255, 0.08);
 
             .td-p {
@@ -102,4 +132,149 @@
         }
     }
 
+}
+
+//  detail
+.collectibles-item-details-container {
+    .btn-back {
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        width: 100px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+            padding-right: 5px;
+        }
+    }
+
+    .product-details {
+        .go-to-opensea {
+            font-size: 24px;
+            border: 1px solid #0095FF;
+            padding: 10px;
+            text-align: center;
+            color: #0095FF;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .wrapper-right {
+            width: 50%;
+            padding-right: 20px;
+
+            .header-product {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .avatar {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+
+                    .userName {
+                        padding-left: 10px;
+
+                        p {
+                            font-size: 12px;
+                            margin: 0;
+                        }
+
+                        b {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+
+            .info-product {
+                .status {
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 25px;
+                    padding-top: 10px;
+                }
+
+                button {
+                    margin-right: 10px;
+                    background: #1AA0FF;
+                    color: white;
+                    font-size: 12px;
+                    border-radius: 5px;
+                }
+
+                span {
+                    font-size: 12px;
+                    color: #AAAAAA;
+                }
+
+                .des {
+                    font-size: 14px;
+                    color: #AAAAAA;
+                    padding-bottom: 30px;
+                }
+
+                .level-status {
+                    font-size: 14px;
+                }
+
+                .utility {
+                    margin-top: 30px;
+                    background: rgba(255, 255, 255, 0.08);
+                    padding: 20px;
+                    border-radius: 20px;
+
+                    p {
+                        font-size: 14px;
+                    }
+
+                    .content {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+
+                .lv {
+                    b {
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .box-collection {
+        .item_product {
+            width: 100% !important;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .collectibles-item-details-container {
+        .product-details {
+            .wrapper-right {
+                padding: 30px;
+                width: 100%;
+            }
+        }
+    }
+
+    .box-collection {
+        .item_product {
+            width: 100% !important;
+        }
+    }
 }

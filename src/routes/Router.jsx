@@ -21,6 +21,7 @@ import ItemDetails from 'pages/MyCollectibles/ItemDetails';
 import Product from 'pages/Product/Product';
 import CollectionWayB from 'pages/CollectionsWayB/Collection';
 import MyCollections from 'pages/MyCollectionsWayB/MyCollections';
+import Detail from 'pages/MyCollectionsWayB/Detail';
 const Router = () => [
   {
     path: '/',
@@ -88,6 +89,10 @@ const Router = () => [
       {
         path: '/mycollectionWayB',
         element: <MyCollections />,
+      },
+      {
+        path: '/mycollectionWayB/details',
+        element: <Detail />,
       },
     ],
   },

@@ -65,50 +65,41 @@ export default function Product() {
           </div>
         </div>
         {/*  min-height-content */}
-        <div className="marketplace">
+        <div className="marketplace product">
           <div className="marketplace-collection-tittle">IP</div>
-          <div className="marketplace-items">
+          <div className="products-items">
             <Link to="/">
               <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                <div className="item_product_detail_top">
                   <div className="total_item">Total Run: 35000</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div style={{ textTransform: 'capitalize' }}>erc721</div>
+                  <div
+                    style={{ textTransform: 'capitalize' }}
+                    className="chain"
+                  >
+                    erc721
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
                     <img src={product} alt="" draggable={false} />
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                <div className="info-product_item">
                   <div className="owner_product">
-                    <div className="owner_product_box">
-                      <div className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </div>
-                      <div className="">McLaren Racing</div>
+                    <div className="owner_product_avatar">
+                      <img src={avatar} alt="" />
+                      <div className="name">McLaren Racing</div>
                     </div>
-                    <div>
-                      <Link to={'/'}>
-                        <div className="status ">Buy Now</div>
-                      </Link>
-                    </div>
+                    <div className="status">Buy Now</div>
                   </div>
+                  <div className="title">McLaren British GP Commem...</div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name ">
-                    McLaren British GP Commem...
+                <div className="remaining-price">
+                  <div className="w-50 border-right">
+                    <div className="remaining">Price</div>
+                    <div className="remaining-total">$29.99</div>
                   </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price ">Price</div>
-                    <div className="currency ">$29.99</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
+                  <div className="w-50">
                     <div className="remaining">Remaining</div>
                     <div className="remaining-total">100</div>
                   </div>
@@ -117,92 +108,36 @@ export default function Product() {
             </Link>
             <Link to="/">
               <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                <div className="item_product_detail_top">
                   <div className="total_item">Total Run: 35000</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div style={{ textTransform: 'capitalize' }}>erc721</div>
+                  <div
+                    style={{ textTransform: 'capitalize' }}
+                    className="chain"
+                  >
+                    erc721
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
                     <img src={product} alt="" draggable={false} />
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                <div className="info-product_item">
                   <div className="owner_product">
-                    <div className="owner_product_box">
-                      <div className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </div>
-                      <div className="">McLaren Racing</div>
+                    <div className="owner_product_avatar">
+                      <img src={avatar} alt="" />
+                      <div className="name">McLaren Racing</div>
                     </div>
-                    <div>
-                      <Link to={'/'}>
-                        <div className="status ">Buy Now</div>
-                      </Link>
-                    </div>
+                    <div className="status">Buy Now</div>
                   </div>
+                  <div className="title">McLaren British GP Commem...</div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name ">
-                    McLaren British GP Commem...
+                <div className="remaining-price">
+                  <div className="w-50 border-right">
+                    <div className="remaining">Price</div>
+                    <div className="remaining-total">$29.99</div>
                   </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price ">Price</div>
-                    <div className="currency ">$29.99</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>{' '}
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
-                  <div className="total_item">Total Run: 35000</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div style={{ textTransform: 'capitalize' }}>erc721</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
-                  <div className="owner_product">
-                    <div className="owner_product_box">
-                      <div className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </div>
-                      <div className="">McLaren Racing</div>
-                    </div>
-                    <div>
-                      <Link to={'/'}>
-                        <div className="status ">Buy Now</div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name ">
-                    McLaren British GP Commem...
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price ">Price</div>
-                    <div className="currency ">$29.99</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
+                  <div className="w-50">
                     <div className="remaining">Remaining</div>
                     <div className="remaining-total">100</div>
                   </div>
@@ -211,45 +146,36 @@ export default function Product() {
             </Link>
             <Link to="/">
               <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                <div className="item_product_detail_top">
                   <div className="total_item">Total Run: 35000</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div style={{ textTransform: 'capitalize' }}>erc721</div>
+                  <div
+                    style={{ textTransform: 'capitalize' }}
+                    className="chain"
+                  >
+                    erc721
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
                     <img src={product} alt="" draggable={false} />
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                <div className="info-product_item">
                   <div className="owner_product">
-                    <div className="owner_product_box">
-                      <div className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </div>
-                      <div className="">McLaren Racing</div>
+                    <div className="owner_product_avatar">
+                      <img src={avatar} alt="" />
+                      <div className="name">McLaren Racing</div>
                     </div>
-                    <div>
-                      <Link to={'/'}>
-                        <div className="status ">Buy Now</div>
-                      </Link>
-                    </div>
+                    <div className="status">Buy Now</div>
                   </div>
+                  <div className="title">McLaren British GP Commem...</div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name ">
-                    McLaren British GP Commem...
+                <div className="remaining-price">
+                  <div className="w-50 border-right">
+                    <div className="remaining">Price</div>
+                    <div className="remaining-total">$29.99</div>
                   </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price ">Price</div>
-                    <div className="currency ">$29.99</div>
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
+                  <div className="w-50">
                     <div className="remaining">Remaining</div>
                     <div className="remaining-total">100</div>
                   </div>
@@ -258,45 +184,112 @@ export default function Product() {
             </Link>
             <Link to="/">
               <div className="item_product">
-                <div className="item_product_detail MARKETPLACE_TOTAL_KEY fw-600">
+                <div className="item_product_detail_top">
                   <div className="total_item">Total Run: 35000</div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_TYPE_KEY fw-600">
-                  <div style={{ textTransform: 'capitalize' }}>erc721</div>
+                  <div
+                    style={{ textTransform: 'capitalize' }}
+                    className="chain"
+                  >
+                    erc721
+                  </div>
                 </div>
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                   <div className="card-image">
                     <img src={product} alt="" draggable={false} />
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_AUTHOR_KEY">
+                <div className="info-product_item">
                   <div className="owner_product">
-                    <div className="owner_product_box">
-                      <div className="owner_product_avatar">
-                        <img src={avatar} alt="" />
-                      </div>
-                      <div className="">McLaren Racing</div>
+                    <div className="owner_product_avatar">
+                      <img src={avatar} alt="" />
+                      <div className="name">McLaren Racing</div>
                     </div>
-                    <div>
-                      <Link to={'/'}>
-                        <div className="status ">Buy Now</div>
-                      </Link>
+                    <div className="status">Buy Now</div>
+                  </div>
+                  <div className="title">McLaren British GP Commem...</div>
+                </div>
+                <div className="remaining-price">
+                  <div className="w-50 border-right">
+                    <div className="remaining">Price</div>
+                    <div className="remaining-total">$29.99</div>
+                  </div>
+                  <div className="w-50">
+                    <div className="remaining">Remaining</div>
+                    <div className="remaining-total">100</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link to="/">
+              <div className="item_product">
+                <div className="item_product_detail_top">
+                  <div className="total_item">Total Run: 35000</div>
+                  <div
+                    style={{ textTransform: 'capitalize' }}
+                    className="chain"
+                  >
+                    erc721
+                  </div>
+                </div>
+                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                  <div className="card-image">
+                    <img src={product} alt="" draggable={false} />
+                  </div>
+                </div>
+                <div className="info-product_item">
+                  <div className="owner_product">
+                    <div className="owner_product_avatar">
+                      <img src={avatar} alt="" />
+                      <div className="name">McLaren Racing</div>
                     </div>
+                    <div className="status">Buy Now</div>
+                  </div>
+                  <div className="title">McLaren British GP Commem...</div>
+                </div>
+                <div className="remaining-price">
+                  <div className="w-50 border-right">
+                    <div className="remaining">Price</div>
+                    <div className="remaining-total">$29.99</div>
+                  </div>
+                  <div className="w-50">
+                    <div className="remaining">Remaining</div>
+                    <div className="remaining-total">100</div>
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_NAME_KEY">
-                  <div className="product_name ">
-                    McLaren British GP Commem...
+              </div>
+            </Link>
+            <Link to="/">
+              <div className="item_product">
+                <div className="item_product_detail_top">
+                  <div className="total_item">Total Run: 35000</div>
+                  <div
+                    style={{ textTransform: 'capitalize' }}
+                    className="chain"
+                  >
+                    erc721
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_BID_KEY">
-                  <div className="box-price">
-                    <div className="price ">Price</div>
-                    <div className="currency ">$29.99</div>
+                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                  <div className="card-image">
+                    <img src={product} alt="" draggable={false} />
                   </div>
                 </div>
-                <div className="item_product_detail MARKETPLACE_NAME_TIME">
-                  <div>
+                <div className="info-product_item">
+                  <div className="owner_product">
+                    <div className="owner_product_avatar">
+                      <img src={avatar} alt="" />
+                      <div className="name">McLaren Racing</div>
+                    </div>
+                    <div className="status">Buy Now</div>
+                  </div>
+                  <div className="title">McLaren British GP Commem...</div>
+                </div>
+                <div className="remaining-price">
+                  <div className="w-50 border-right">
+                    <div className="remaining">Price</div>
+                    <div className="remaining-total">$29.99</div>
+                  </div>
+                  <div className="w-50">
                     <div className="remaining">Remaining</div>
                     <div className="remaining-total">100</div>
                   </div>
