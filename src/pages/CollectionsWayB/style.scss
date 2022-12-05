@@ -26,6 +26,26 @@ body {
         .MuiFormControlLabel-label {
             font-size: 14px;
         }
+
+        .box-search {
+            padding-bottom: 20px;
+            align-items: center;
+            width: 100%;
+            display: flex;
+            position: relative;
+
+            input {
+                border-radius: 8px;
+                padding: 7px;
+                width: 89%;
+                outline: none;
+            }
+
+            img {
+                position: absolute;
+                right: 50px;
+            }
+        }
     }
 
     .item_product {
@@ -128,6 +148,16 @@ body {
                 }
             }
 
+        }
+
+        .box-search {
+            input {
+                width: 100% !important;
+            }
+
+            img {
+                right: 15px !important;
+            }
         }
     }
 }
