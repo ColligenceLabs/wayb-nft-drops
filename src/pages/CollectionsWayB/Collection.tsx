@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import avatar from '../../assets/img/avatar.png';
 import product from '../../assets/img/product.png';
+import icon_search from '../../assets/img/icon_search.png';
 import './style.scss';
 import Box from '@mui/material/Box';
 import FormLabel from '@mui/material/FormLabel';
@@ -81,6 +82,10 @@ export default function Collection() {
           </div>
           <div className="main-collection">
             <div className="collection-left">
+              <div className="box-search">
+                <input placeholder="Search" />
+                <img src={icon_search} />
+              </div>
               <Box>
                 <FormControl
                   sx={{ m: 3 }}
