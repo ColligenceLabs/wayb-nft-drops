@@ -115,35 +115,31 @@
 }
 //arrow carousel banner main page
 .banner-main-carousel {
-  $temp: calc((100% - min(calc(100% - 80px), 1200px)) / 2);
+  $temp: calc((100% - min(calc(100% - 80px), 1187px)) / 2);
   .arrow-one {
     width: 40px;
     height: 40px;
-    background: rgba($color: #ffffff, $alpha: 0.2);
-    border-radius: 100%;
+    opacity: 0.2;
     position: absolute;
     left: $temp;
     transform: translateX(-40%);
     cursor: pointer;
-    .arrow-left {
-      img {
-        padding: 9px 0 0 9px;
-      }
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
   .arrow-two {
     width: 40px;
     height: 40px;
-    background: rgba($color: #ffffff, $alpha: 0.2);
-    border-radius: 100%;
+    opacity: 0.2;
     position: absolute;
     right: $temp;
     transform: translateX(40%);
     cursor: pointer;
-    .arrow-right {
-      img {
-        padding: 9px 0 0 9px;
-      }
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
   @media (max-width: 1024px) {
@@ -165,14 +161,13 @@
   }
   &:hover {
     .arrow-one {
-      background: #ffffff;
+      opacity: 1;
     }
     .arrow-two {
-      background: #ffffff;
+      opacity: 1;
     }
   }
 }
-
 //arrow carousel item details
 .arrow-item-details {
   position: absolute;

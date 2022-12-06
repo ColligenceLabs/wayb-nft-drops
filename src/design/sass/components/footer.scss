@@ -208,6 +208,12 @@
         grid-gap: 32px 16px;
       }
       .footer-right {
+        .logo-footer {
+          width: 100px;
+          img {
+            width: 100%;
+          }
+        }
         .content-head {
           font-size: 14px;
         }

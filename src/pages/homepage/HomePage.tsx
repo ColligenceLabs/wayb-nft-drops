@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import background from '../../assets/img/home_01.png';
-import backgroundMobile from '../../assets/img/home_01_mobile.png';
+// import background from '../../assets/img/home_01.png';
+import background from '../../assets/img/home_bg_01.png';
+// import backgroundMobile from '../../assets/img/home_01_mobile.png';
+import backgroundMobile from '../../assets/img/home_bg_01_mb.png';
 import textInbanner from '../../assets/img/textBanner.png';
 import bannerService from '../../assets/img/bannerService.png';
 import iPhone_12 from '../../assets/img/iPhone_12_Pro.png';
@@ -205,7 +207,6 @@ const Homepage = () => {
         <div className="background-section-01-mobile">
           <img src={backgroundMobile} alt="" />
         </div>
-        {/* <img src={background} alt="" /> */}
         <div className="content-header">
           <div className="text-head">
             <img src={textInbanner} alt="img" />
@@ -272,17 +273,27 @@ const Homepage = () => {
         {/* <div className="wrapper-section01">
 
         </div> */}
+        {/* <img
+          src={globular}
+          className="globularBottom shake-vertical globular-left-section1"
+        />
+        <img
+          src={globular}
+          className="globularTop shake-vertical globular-right-section1"
+        /> */}
       </div>
       {/* section service */}
       <div className="section-service">
-        <img src={bannerService} className="img-service" />
+        {/* <img src={bannerService} className="img-service" /> */}
         <div className="info-service">
-          <img src={iPhone_12} />
+          <div className="img-iphone">
+            <img src={iPhone_12} />
+          </div>
           <div className="info-text">
-            <h2>Service</h2>
+            <div className="title-info-text">Service</div>
             <p>웨이비 서비스에 가입하세요</p>
             <p>NFT 홀더 전용 혜택 ~~~~~~~~~~~~~</p>
-            <button className="btn-go">Go</button>
+            <button className="btn-go button">Go</button>
           </div>
         </div>
         <img src={globular} className="globularBottom shake-vertical" />
@@ -291,9 +302,11 @@ const Homepage = () => {
       {/* end section service*/}
       {/* section RoadMap */}
       <div className="section-roadMap none-mobile">
-        <img src={bannerRoadMap} className="bannerRoadMap" />
+        {/* <div className="bannerRoadMap">
+          <img src={bannerRoadMap} className="bannerRoadMap" />
+        </div> */}
         <div className="info-roadMap">
-          <h2>Road Map</h2>
+          <div className="title-roadmap">Road Map</div>
           <div className="line-roadMap">
             <div className="step">
               <p>
@@ -367,89 +380,95 @@ const Homepage = () => {
             </div>
           </div>
           <div className="partner-advisor">
-            <h2>Partner & Advisor</h2>
-            <img src={partner_advisor} />
+            <div className="title-partner-advisor">Partner & Advisor</div>
+            <div className="img-partner-advisor">
+              <img src={partner_advisor} />
+            </div>
           </div>
         </div>
       </div>
-      <hr />
+      {/* <hr /> */}
       <div className="section-roadMap-mobile none-pc">
         {/* <div className="img-center">
           <img src={line_mobile} />
         </div> */}
-        <h2>Road Map</h2>
-        <div className="Phase-left phase">
-          <div className="d-flex">
-            <img src={ellipase} width={25} height={25} /> <p>Phase 1</p>
+        <div className="wrapper-roadmap-head">
+          <div className="title-roadmap">Road Map</div>
+          <div className="Phase-left phase">
+            <div className="d-flex">
+              <img src={ellipase} width={25} height={25} /> <p>Phase 1</p>
+            </div>
+            <ul className="color-primary">
+              <li>
+                {' '}
+                Establish The Degens community pauseOnHover Twitter and Discord
+              </li>
+              <li> Work on the Genesis Collection</li>
+              <li>Launch Website</li>
+              <li>Fair Launch of Genesis Collection </li>
+              <li>Listing of Genesis Collection on Secondary Marketplaces</li>
+            </ul>
           </div>
-          <ul className="color-primary">
-            <li>
-              {' '}
-              Establish The Degens community pauseOnHover Twitter and Discord
-            </li>
-            <li> Work on the Genesis Collection</li>
-            <li>Launch Website</li>
-            <li>Fair Launch of Genesis Collection </li>
-            <li>Listing of Genesis Collection on Secondary Marketplaces</li>
-          </ul>
-        </div>
-        <div className="Phase-right phase">
-          <div className="flex-end">
-            <img src={ellipase} width={25} height={25} /> <p>Phase 2</p>
+          <div className="Phase-right phase">
+            <div className="flex-end">
+              <img src={ellipase} width={25} height={25} /> <p>Phase 2</p>
+            </div>
+            <ul className="color-primary">
+              <li>
+                {' '}
+                Establish The Degens community pauseOnHover Twitter and Discord
+              </li>
+              <li> Work on the Genesis Collection</li>
+              <li>Launch Website</li>
+              <li>Fair Launch of Genesis Collection </li>
+              <li>Listing of Genesis Collection on Secondary Marketplaces</li>
+            </ul>
           </div>
-          <ul className="color-primary">
-            <li>
-              {' '}
-              Establish The Degens community pauseOnHover Twitter and Discord
-            </li>
-            <li> Work on the Genesis Collection</li>
-            <li>Launch Website</li>
-            <li>Fair Launch of Genesis Collection </li>
-            <li>Listing of Genesis Collection on Secondary Marketplaces</li>
-          </ul>
-        </div>
-        <div className="Phase-left phase">
-          <div className="d-flex">
-            <img src={ellipase} width={25} height={25} /> <p>Phase 3</p>
+          <div className="Phase-left phase">
+            <div className="d-flex">
+              <img src={ellipase} width={25} height={25} /> <p>Phase 3</p>
+            </div>
+            <ul className="color-primary">
+              <li>
+                {' '}
+                Establish The Degens community pauseOnHover Twitter and Discord
+              </li>
+              <li> Work on the Genesis Collection</li>
+              <li>Launch Website</li>
+              <li>Fair Launch of Genesis Collection </li>
+              <li>Listing of Genesis Collection on Secondary Marketplaces</li>
+            </ul>
           </div>
-          <ul className="color-primary">
-            <li>
-              {' '}
-              Establish The Degens community pauseOnHover Twitter and Discord
-            </li>
-            <li> Work on the Genesis Collection</li>
-            <li>Launch Website</li>
-            <li>Fair Launch of Genesis Collection </li>
-            <li>Listing of Genesis Collection on Secondary Marketplaces</li>
-          </ul>
-        </div>
-        <div className="Phase-right phase">
-          <div className="flex-end">
-            <img src={ellipase} width={25} height={25} /> <p>Phase 4</p>
+          <div className="Phase-right phase">
+            <div className="flex-end">
+              <img src={ellipase} width={25} height={25} /> <p>Phase 4</p>
+            </div>
+            <ul className="color-primary">
+              <li>
+                {' '}
+                Establish The Degens community pauseOnHover Twitter and Discord
+              </li>
+              <li> Work on the Genesis Collection</li>
+              <li>Launch Website</li>
+              <li>Fair Launch of Genesis Collection </li>
+              <li>Listing of Genesis Collection on Secondary Marketplaces</li>
+            </ul>
           </div>
-          <ul className="color-primary">
-            <li>
-              {' '}
-              Establish The Degens community pauseOnHover Twitter and Discord
-            </li>
-            <li> Work on the Genesis Collection</li>
-            <li>Launch Website</li>
-            <li>Fair Launch of Genesis Collection </li>
-            <li>Listing of Genesis Collection on Secondary Marketplaces</li>
-          </ul>
         </div>
         <div className="partner-advisor">
-          <h2>Partner & Advisor</h2>
-          <img src={partner_advisor} />
+          <div className="title-partner-advisor">Partner & Advisor</div>
+          <div className="img-partner-advisor">
+            <img src={partner_advisor} />
+          </div>
         </div>
       </div>
       {/* end section RoadMMap */}
       {/* section Q & A */}
-      <hr />
+      {/* <hr /> */}
       <div className="section-qa">
-        <img src={bannerQA} className="none-mobile" />
+        {/* <img src={bannerQA} className="none-mobile" /> */}
         <div className="list-qa">
-          <h2 className="title">FAQs</h2>
+          <div className="title">FAQs</div>
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header>

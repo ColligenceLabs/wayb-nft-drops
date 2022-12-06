@@ -1,6 +1,7 @@
 import React from 'react';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
 import productDemo from '../../assets/img/productDemo.png';
+import go_opensea from '../../assets/icon/arrow_go_opensea.png';
 import charm_menu_meatball from '../../assets/img/charm_menu_meatball.png';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -98,7 +99,12 @@ function Detail() {
         <div className="product-details">
           <div className="wrapper-left">
             <img src={productDemo} />
-            <div className="go-to-opensea">Go to Opensea</div>
+            <div className="go-to-opensea">
+              <div>Go to Opensea</div>
+              <div className="arrow-go-opensea">
+                <img src={go_opensea} alt="arrow" />
+              </div>
+            </div>
           </div>
           <div className="wrapper-right">
             <div className="header-product">
@@ -117,7 +123,7 @@ function Detail() {
             <div className="info-product">
               <h2>GENERATIVE MAGIC THE DOG</h2>
               <div className="status">
-                <button>Ordinary</button>
+                <button className="button">Ordinary</button>
                 <span>Level: 1</span>
               </div>
               <div className="des">
