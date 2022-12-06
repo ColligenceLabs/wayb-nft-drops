@@ -4,7 +4,7 @@
   padding: 65px 0 100px;
   margin: auto;
   max-width: 100vw;
-  background: #02021e;
+  background: #030b15;
   color: white;
   a,
   button {
@@ -582,7 +582,8 @@
       grid-template-columns: repeat(5, 1fr);
 
       a {
-        background: #02021e;
+        // background: #02021e;
+        background: #030b15;
         color: #fff;
         border-radius: 15px;
         // box-shadow: 0 0 5px 5px #f0ebfc;
@@ -960,7 +961,7 @@
             -webkit-box-pack: justify;
             justify-content: space-between;
             position: relative;
-  
+
             .logo {
               display: flex;
               > img {
@@ -1090,20 +1091,20 @@
               .collection-info-right-details {
                 // padding: 0px 30px;
                 text-align: center;
-  
+
                 .value {
                   font-size: 26px;
                   margin-bottom: 5px;
                   font-weight: 600;
                 }
-  
+
                 .label {
                   color: #2f8af5;
                   font-size: 18px;
                   font-family: BrandonLight, sans-serif;
                 }
               }
-  
+
               .collection-info-right-details:last-child {
                 padding-right: 0px;
                 border-right: none;
