@@ -40,7 +40,7 @@ import { getRarityToString } from '../../utils/getRarityToString';
 import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import Skeleton from 'components/common/skeleton/Skeleton';
 import { useMediaQuery } from 'react-responsive';
-import './style.scss';
+import './homepage-wayb.scss';
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
 };
@@ -364,7 +364,7 @@ const Homepage = () => {
                   Listing of Genesis Collection on <br /> Secondary Marketplaces
                 </li>
               </ul>
-              <ul>
+              {/* <ul>
                 <li>
                   {' '}
                   Establish The Degens community on <br />
@@ -376,7 +376,10 @@ const Homepage = () => {
                 <li>
                   Listing of Genesis Collection on <br /> Secondary Marketplaces
                 </li>
-              </ul>
+              </ul> */}
+              <div className="empty-step">
+                To be announced.. (We have enough to work on for now eh!?)
+              </div>
             </div>
           </div>
           <div className="partner-advisor">
@@ -443,7 +446,7 @@ const Homepage = () => {
             <div className="flex-end">
               <img src={ellipase} width={25} height={25} /> <p>Phase 4</p>
             </div>
-            <ul className="color-primary">
+            {/* <ul className="color-primary">
               <li>
                 {' '}
                 Establish The Degens community pauseOnHover Twitter and Discord
@@ -452,7 +455,10 @@ const Homepage = () => {
               <li>Launch Website</li>
               <li>Fair Launch of Genesis Collection </li>
               <li>Listing of Genesis Collection on Secondary Marketplaces</li>
-            </ul>
+            </ul> */}
+            <div className="empty-step">
+              To be announced.. (We have enough to work on for now eh!?)
+            </div>
           </div>
         </div>
         <div className="partner-advisor">

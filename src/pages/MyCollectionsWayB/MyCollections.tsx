@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import product from '../../assets/img/product.png';
 import share from '../../assets/img/share.png';
 import arrow_blue from '../../assets/icon/arrow_blue.png';
-import './style.scss';
+import './mycollections-wayb.scss';
 function MyCollections() {
   const [state, setState] = React.useState({
     gilad: true,
@@ -48,6 +48,9 @@ function MyCollections() {
                   displayEmpty
                   //   inputProps={{ 'aria-label': 'Without label' }}
                   className="filter"
+                  MenuProps={{
+                    disableScrollLock: true,
+                  }}
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -59,7 +62,7 @@ function MyCollections() {
               </FormControl>
             </div>
           </div>
-          <div className="marketplace-items collection-items">
+          <div className="my-collection-items">
             <Link to="/mycollectionWayB/details">
               <div className="item_product">
                 <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
@@ -143,68 +146,72 @@ function MyCollections() {
           </div>
           <div className="marketplace-collection-tittle">Collect History</div>
           <hr />
-          <table>
-            <tr className="tr-header">
-              <td>
-                Date <img src={arrow_blue} />
-              </td>
-              <td>Type</td>
-              <td>NFT</td>
-              <td>Price</td>
-              <td>Blockchain</td>
-              <td>Confirmation</td>
-              <td></td>
-            </tr>
-            <tr className="bg">
-              <td>Sep 2, 2022</td>
-              <td>Web purchase</td>
-              <td>
-                <div className="td-p">
-                  <span>Be rewarded!</span>
-                  <p>GENERATIVE MAGIC THE DOG</p>
-                </div>
-              </td>
-              <td>$5.00</td>
-              <td>Polygon</td>
-              <td>48 48</td>
-              <td>
-                {' '}
-                <img src={share} />
-              </td>
-            </tr>
-            <tr className="bg">
-              <td>Sep 2, 2022</td>
-              <td>Web purchase</td>
-              <td>
-                <div className="td-p">
-                  <span>Be rewarded!</span>
-                  <p>GENERATIVE MAGIC THE DOG</p>
-                </div>
-              </td>
-              <td>$5.00</td>
-              <td>Polygon</td>
-              <td>48 48</td>
-              <td>
-                <img src={share} />
-              </td>
-            </tr>
-            <tr className="bg">
-              <td>Sep 2, 2022</td>
-              <td>Web purchase</td>
-              <td>
-                <div className="td-p">
-                  <span>Be rewarded!</span>
-                  <p>GENERATIVE MAGIC THE DOG</p>
-                </div>
-              </td>
-              <td>$5.00</td>
-              <td>Polygon</td>
-              <td>48 48</td>
-              <td>
-                <img src={share} />
-              </td>
-            </tr>
-          </table>
+          <div className="table-my-collection">
+            <table>
+              <tr className="tr-header">
+                <td>
+                  Date <img src={arrow_blue} />
+                </td>
+                <td>Type</td>
+                <td>NFT</td>
+                <td>Price</td>
+                <td>Blockchain</td>
+                <td>Confirmation</td>
+                <td></td>
+              </tr>
+              <tr className="bg">
+                <td>Sep 2, 2022</td>
+                <td>Web purchase</td>
+                <td>
+                  <div className="td-p">
+                    <span className="title-be-rewarded">Be rewarded!</span>
+                    <div>GENERATIVE MAGIC THE DOG</div>
+                  </div>
+                </td>
+                <td>$5.00</td>
+                <td>Polygon</td>
+                <td>48 48</td>
+                <td>
+                  {' '}
+                  <img src={share} />
+                </td>
+              </tr>
+              <tr className="bg">
+                <td>Sep 2, 2022</td>
+                <td>Web purchase</td>
+                <td>
+                  <div className="td-p">
+                    <span className="title-be-rewarded">Be rewarded!</span>
+                    <div>GENERATIVE MAGIC THE DOG</div>
+                  </div>
+                </td>
+                <td>$5.00</td>
+                <td>Polygon</td>
+                <td>48 48</td>
+                <td>
+                  <img src={share} />
+                </td>
+              </tr>
+              <tr className="bg">
+                <td>
+                  <div>Sep 2, 2022</div>
+                </td>
+                <td>Web purchase</td>
+                <td>
+                  <div className="td-p">
+                    <span className="title-be-rewarded">Be rewarded!</span>
+                    <div>GENERATIVE MAGIC THE DOG</div>
+                  </div>
+                </td>
+                <td>$5.00</td>
+                <td>Polygon</td>
+                <td>48 48</td>
+                <td>
+                  <img src={share} />
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </main>

@@ -8,7 +8,6 @@
       .content-header {
         .text-head {
           // padding-top: 100px !important;
-
           img {
             width: 100%;
             display: block;
@@ -41,19 +40,16 @@
     }
 
     .section-qa {
-      top: 0 !important;
-
       .none-mobile {
         display: none;
       }
 
       .list-qa {
-        position: unset !important;
-
-        .accordion-body {
-          height: auto !important;
+        .accordion {
+          .accordion-body {
+            height: auto;
+          }
         }
-
         .title {
           //   padding-top: 30px;
         }
@@ -96,7 +92,7 @@
         margin: 0 auto 30px;
         border-radius: 10px;
         padding: 10px;
-
+        min-height: 181px;
         .flex-end {
           display: flex;
           justify-content: flex-end;
@@ -112,6 +108,11 @@
           li {
             list-style: none;
           }
+        }
+        .empty-step {
+          color: #ffffff;
+          opacity: 0.5;
+          margin-top: 1rem;
         }
       }
 
@@ -134,7 +135,7 @@
         font-weight: 700;
       }
       img {
-        padding: 20px;
+        padding: 20px 20px 50px;
         width: 100%;
       }
     }
