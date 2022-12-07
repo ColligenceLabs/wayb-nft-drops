@@ -16,7 +16,7 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 2px;
     background: transparent;
   }
 
@@ -228,18 +228,6 @@
     background: #030b15;
 
     .marketplace-collection-tittle {
-      // position: relative;
-      // top: -70px;
-      // left: 0px;
-      // right: 0px;
-      // font-family: BrandonBlack, sans-serif;
-      // white-space: nowrap;
-      // text-overflow: ellipsis;
-      // overflow: hidden;
-      // font-size: 26px;
-      // letter-spacing: -1px;
-      // margin: 25px 0px 10px;
-      // font-weight: bold;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -1399,7 +1387,7 @@
   .box-collection {
     .collection-details-box {
       .collection-info {
-        margin: 0;
+        // margin: 0;
         .collection-info-left {
           display: flex;
 

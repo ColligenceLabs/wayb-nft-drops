@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import avatar from '../../assets/img/avatar.png';
 import product from '../../assets/img/product.png';
 import icon_search from '../../assets/img/icon_search.png';
-import './style.scss';
+import './collection-wayb.scss';
 import Box from '@mui/material/Box';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
@@ -69,6 +69,9 @@ export default function Collection() {
                   displayEmpty
                   //   inputProps={{ 'aria-label': 'Without label' }}
                   className="filter"
+                  MenuProps={{
+                    disableScrollLock: true,
+                  }}
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -242,7 +245,7 @@ export default function Collection() {
               </Box>
             </div>
             <div className="collection-right">
-              <div className="marketplace-items collection-items">
+              <div className="collection-items">
                 <Link to="/mycollectionWayB/details">
                   <div className="item_product">
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
@@ -325,23 +328,24 @@ export default function Collection() {
                 </Link>
               </div>
               <div className="pagination">
-                <Stack spacing={2}>
-                  <Pagination count={1} shape="rounded" hidden />
-                  <Pagination
-                    count={10}
-                    variant="outlined"
-                    shape="rounded"
-                    color="primary"
-                    page={metaData.page}
-                    defaultPage={1}
-                    onChange={(item, page) => {
-                      setMetaData({
-                        ...metaData,
-                        page,
-                      });
-                    }}
-                  />
-                </Stack>
+                {/* <Pagination count={1} shape="rounded" hidden /> */}
+                <Pagination
+                  className="custom-pagination"
+                  boundaryCount={0}
+                  count={8}
+                  siblingCount={2}
+                  variant="outlined"
+                  shape="rounded"
+                  color="primary"
+                  page={metaData.page}
+                  defaultPage={1}
+                  onChange={(item, page) => {
+                    setMetaData({
+                      ...metaData,
+                      page,
+                    });
+                  }}
+                />
               </div>
             </div>
           </div>

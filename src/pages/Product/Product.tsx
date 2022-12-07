@@ -18,7 +18,7 @@ import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
-import './style.scss';
+import './product-wayb.scss';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 15,

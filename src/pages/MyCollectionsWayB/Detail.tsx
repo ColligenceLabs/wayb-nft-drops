@@ -15,6 +15,7 @@ import StepConnector, {
   stepConnectorClasses,
 } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
+import { useNavigate } from 'react-router-dom';
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -89,10 +90,11 @@ function ColorlibStepIcon(props: StepIconProps) {
 
 const steps = ['Lv1', 'Lv2', 'Lv3', 'Lv4', 'Lv5'];
 function Detail() {
+  const navigate = useNavigate();
   return (
     <main className="collectibles-item-details-container min-height-content">
       <div className="collectibles-details-wp">
-        <div className="btn-back">
+        <div className="btn-back" onClick={() => navigate(-1)}>
           <img src={arrow_btn_back} />
           <span>Back</span>
         </div>

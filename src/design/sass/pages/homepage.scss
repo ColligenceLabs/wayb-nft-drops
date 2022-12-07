@@ -613,6 +613,14 @@
               text-align: left;
             }
           }
+          .empty-step {
+            color: #ffffff;
+            opacity: 0.5;
+            margin-top: 1rem;
+            width: 22%;
+            text-align: left;
+            padding-left: 20px;
+          }
         }
 
         .line-img {
@@ -847,6 +855,11 @@
     }
     .section-service {
       padding: 100px 20px 50px;
+    }
+    .section-qa {
+      .list-qa {
+        padding: 50px 40px 100px;
+      }
     }
   }
 
