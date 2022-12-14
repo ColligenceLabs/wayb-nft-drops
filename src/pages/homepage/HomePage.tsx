@@ -306,7 +306,12 @@ const Homepage = () => {
       <div className="section-collections">
         <div className="title-head-collections">
           <div className="title-collections">Collections</div>
-          <div className="title-see-all">See all</div>
+          <div
+            className="title-see-all"
+            onClick={() => navigate('/CollectionWayB')}
+          >
+            See all
+          </div>
         </div>
         <div className="collections-card">
           {hotCollectiblesTestData
