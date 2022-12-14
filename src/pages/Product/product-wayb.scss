@@ -76,7 +76,6 @@
     width: 100%;
     position: relative;
     display: grid;
-    grid-gap: 20px;
     gap: 20px;
     place-items: center;
     max-width: 1200px;
@@ -162,6 +161,8 @@
                 height: 24px;
                 object-fit: cover;
                 margin-right: 10px;
+                border-radius: 100%;
+                background: #ffffff;
               }
 
               .name {

@@ -41,6 +41,7 @@ import { getNetworkNameById } from '../../utils/getNetworkNameById';
 import Skeleton from 'components/common/skeleton/Skeleton';
 import { useMediaQuery } from 'react-responsive';
 import './homepage-wayb.scss';
+import { hotCollectiblesTestData } from './mockData';
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
 };
@@ -50,6 +51,7 @@ const Homepage = () => {
   const isMobile = useMediaQuery({
     query: '(max-width: 640px)',
   });
+
   const navigate = useNavigate();
   const screenSize = useScreenSize();
   const [slideData, setSlideData] = useState<FeaturedTypes[]>([]);
@@ -300,6 +302,63 @@ const Homepage = () => {
         <img src={globular} className="globularTop shake-vertical" />
       </div>
       {/* end section service*/}
+      {/* section collections */}
+      <div className="section-collections">
+        <div className="title-head-collections">
+          <div className="title-collections">Collections</div>
+          <div className="title-see-all">See all</div>
+        </div>
+        <div className="collections-card">
+          {hotCollectiblesTestData
+            .filter((item, index) => index < 5)
+            .map((item, index) => {
+              return (
+                <Link to="/" key={index}>
+                  <div className="item_product">
+                    <div className="item_product_detail_top">
+                      <div className="total_item">Total Run: 35000</div>
+                      <div
+                        style={{ textTransform: 'capitalize' }}
+                        className="chain"
+                      >
+                        erc721
+                      </div>
+                    </div>
+                    <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                      <div className="card-image">
+                        <img src={item.image} alt="" draggable={false} />
+                      </div>
+                    </div>
+                    <div className="info-product_item">
+                      <div className="owner_product">
+                        <div className="owner_product_avatar">
+                          <img src={item.imageAvt} alt="" />
+                          <div className="name">McLaren Racing</div>
+                        </div>
+                        <div className="status">Buy Now</div>
+                      </div>
+                      <div className="title">{item.details}</div>
+                    </div>
+                    <div className="remaining-price">
+                      <div className="w-50 border-right">
+                        <div className="remaining">Price</div>
+                        <div className="remaining-total">$29.99</div>
+                      </div>
+                      <div className="w-50">
+                        <div className="remaining">Remaining</div>
+                        <div className="remaining-total">100</div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+        </div>
+        <img
+          src={globular}
+          className="globular-section-collections shake-vertical "
+        />
+      </div>
       {/* section RoadMap */}
       <div className="section-roadMap none-mobile">
         {/* <div className="bannerRoadMap">
