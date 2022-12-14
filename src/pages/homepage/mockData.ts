@@ -66,6 +66,7 @@ export const featuredCollectionsTestData = [
 ];
 export const hotCollectiblesTestData = [
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_11,
     imageAvt: home_13_avt,
@@ -73,8 +74,29 @@ export const hotCollectiblesTestData = [
     details: 'Elton John Rocket NFT Club Pass',
     currentPrice: 29.99,
     quantityRemaining: 26008,
+    mysteryboxItems: [
+      {
+        name: 'Elton John Rocket NFT Club Pass',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 1,
+      },
+    ],
+    onsale: true,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_13_avt,
+        name: {
+          en: 'Elton John',
+        },
+      },
+    },
+    price: 29.99,
+    quote: '$',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_12,
     imageAvt: home_14_avt,
@@ -82,8 +104,29 @@ export const hotCollectiblesTestData = [
     details: 'Generative Magic the Dog',
     currentPrice: 0.094,
     quantityRemaining: 0,
+    mysteryboxItems: [
+      {
+        name: 'Generative Magic the Dog',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 2,
+      },
+    ],
+    onsale: false,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_14_avt,
+        name: {
+          en: 'Old Navy',
+        },
+      },
+    },
+    price: 29.99,
+    quote: 'KRW',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_11,
     imageAvt: home_13_avt,
@@ -91,8 +134,29 @@ export const hotCollectiblesTestData = [
     details: 'Elton John Rocket NFT Club Pass',
     currentPrice: 29.99,
     quantityRemaining: 26008,
+    mysteryboxItems: [
+      {
+        name: 'Elton John Rocket NFT Club Pass',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 1,
+      },
+    ],
+    onsale: true,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_13_avt,
+        name: {
+          en: 'Elton John',
+        },
+      },
+    },
+    price: 29.99,
+    quote: '$',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_12,
     imageAvt: home_14_avt,
@@ -100,8 +164,29 @@ export const hotCollectiblesTestData = [
     details: 'Generative Magic the Dog',
     currentPrice: 0.094,
     quantityRemaining: 0,
+    mysteryboxItems: [
+      {
+        name: 'Generative Magic the Dog',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 2,
+      },
+    ],
+    onsale: false,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_14_avt,
+        name: {
+          en: 'Old Navy',
+        },
+      },
+    },
+    price: 29.99,
+    quote: 'KRW',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_11,
     imageAvt: home_13_avt,
@@ -109,8 +194,29 @@ export const hotCollectiblesTestData = [
     details: 'Elton John Rocket NFT Club Pass',
     currentPrice: 29.99,
     quantityRemaining: 26008,
+    mysteryboxItems: [
+      {
+        name: 'Elton John Rocket NFT Club Pass',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 1,
+      },
+    ],
+    onsale: true,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_13_avt,
+        name: {
+          en: 'Elton John',
+        },
+      },
+    },
+    price: 29.99,
+    quote: '$',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_12,
     imageAvt: home_14_avt,
@@ -118,8 +224,29 @@ export const hotCollectiblesTestData = [
     details: 'Generative Magic the Dog',
     currentPrice: 0.094,
     quantityRemaining: 0,
+    mysteryboxItems: [
+      {
+        name: 'Generative Magic the Dog',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 2,
+      },
+    ],
+    onsale: false,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_14_avt,
+        name: {
+          en: 'Old Navy',
+        },
+      },
+    },
+    price: 29.99,
+    quote: 'KRW',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_11,
     imageAvt: home_13_avt,
@@ -127,8 +254,29 @@ export const hotCollectiblesTestData = [
     details: 'Elton John Rocket NFT Club Pass',
     currentPrice: 29.99,
     quantityRemaining: 26008,
+    mysteryboxItems: [
+      {
+        name: 'Elton John Rocket NFT Club Pass',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 1,
+      },
+    ],
+    onsale: true,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_13_avt,
+        name: {
+          en: 'Elton John',
+        },
+      },
+    },
+    price: 29.99,
+    quote: '$',
   },
   {
+    itemId: 'Total Item: ',
     url: '/sale',
     image: home_12,
     imageAvt: home_14_avt,
@@ -136,14 +284,25 @@ export const hotCollectiblesTestData = [
     details: 'Generative Magic the Dog',
     currentPrice: 0.094,
     quantityRemaining: 0,
-  },
-  {
-    url: '/sale',
-    image: home_11,
-    imageAvt: home_13_avt,
-    nameLabel: 'Elton John',
-    details: 'Elton John Rocket NFT Club Pass',
-    currentPrice: 29.99,
-    quantityRemaining: 26008,
+    mysteryboxItems: [
+      {
+        name: 'Generative Magic the Dog',
+        issueAmount: 3500,
+        itemImage: home_12,
+        rarity: 2,
+      },
+    ],
+    onsale: false,
+    chainId: 'ERC721',
+    featured: {
+      company: {
+        image: home_14_avt,
+        name: {
+          en: 'Old Navy',
+        },
+      },
+    },
+    price: 29.99,
+    quote: 'KRW',
   },
 ];
