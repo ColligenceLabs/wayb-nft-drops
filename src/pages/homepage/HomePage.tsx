@@ -314,44 +314,93 @@ const Homepage = () => {
           </div>
         </div>
         <div className="collections-card">
-          {hotCollectiblesTestData
-            .filter((item, index) => index < 5)
-            .map((item, index) => {
+          {collectibleList
+            .filter((item: any, index) => index < 5)
+            .map((item: any, index) => {
               return (
                 <Link to="/" key={index}>
                   <div className="item_product">
                     <div className="item_product_detail_top">
-                      <div className="total_item">Total Run: 35000</div>
+                      <div className="total_item">
+                        {`#${item.itemId}/${item.mysteryboxItems[0]?.issueAmount}`}
+                      </div>
                       <div
                         style={{ textTransform: 'capitalize' }}
                         className="chain"
                       >
-                        erc721
+                        {getNetworkNameById(item.chainId)?.toLowerCase()}
                       </div>
                     </div>
                     <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                       <div className="card-image">
-                        <img src={item.image} alt="" draggable={false} />
+                        {item?.mysteryboxItems[0]?.itemImage
+                          .split('.')
+                          .pop() === 'mp4' ? (
+                          <video
+                            playsInline
+                            autoPlay
+                            controls
+                            muted
+                            loop
+                            controlsList="nodownload"
+                            width={'100%'}
+                          >
+                            <source
+                              src={item?.mysteryboxItems[0]?.itemImage}
+                              type="video/mp4"
+                            />
+                          </video>
+                        ) : item?.mysteryboxItems[0]?.itemImage
+                            .split('.')
+                            .pop() === 'gif' ? (
+                          <img
+                            src={item.mysteryboxItems[0]?.itemImage}
+                            alt=""
+                            draggable={false}
+                          />
+                        ) : (
+                          <img
+                            src={item.mysteryboxItems[0]?.itemImage}
+                            alt=""
+                            draggable={false}
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="info-product_item">
                       <div className="owner_product">
                         <div className="owner_product_avatar">
-                          <img src={item.imageAvt} alt="" />
-                          <div className="name">McLaren Racing</div>
+                          <div className="avatar">
+                            <img
+                              src={item.featured.company.image}
+                              alt=""
+                              draggable={false}
+                            />
+                          </div>
+                          <div className="name-label">
+                            {item.featured.company.name.en}
+                          </div>
                         </div>
-                        <div className="status">Buy Now</div>
+                        <div className="status">
+                          {item.onsale ? 'Buy Now' : 'Waiting'}
+                        </div>
                       </div>
-                      <div className="title">{item.details}</div>
+                      <div className="title">
+                        {item.mysteryboxItems[0]?.name}
+                      </div>
                     </div>
                     <div className="remaining-price">
                       <div className="w-50 border-right">
                         <div className="remaining">Price</div>
-                        <div className="remaining-total">$29.99</div>
+                        <div className="remaining-total">
+                          {getPrice(item.price, item.quote.toUpperCase())}
+                        </div>
                       </div>
                       <div className="w-50">
-                        <div className="remaining">Remaining</div>
-                        <div className="remaining-total">100</div>
+                        <div className="remaining">Rarity</div>
+                        <div className="remaining-total">
+                          {getRarityToString(item.mysteryboxItems[0].rarity)}
+                        </div>
                       </div>
                     </div>
                   </div>
