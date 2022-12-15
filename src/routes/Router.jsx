@@ -94,6 +94,15 @@ const Router = () => [
         path: '/mycollectionWayB/details',
         element: <Detail />,
       },
+      {
+        path: '/product/:ipId',
+        element: <Product />,
+      },
+
+      {
+        path: '/detail/:itemId',
+        element: <Detail />,
+      },
     ],
   },
   {

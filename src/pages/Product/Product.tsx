@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import bannerproduct from '../../assets/img/bannerproduct.png';
 import magic_dogs from '../../assets/img/magic_dogs.gif';
 import website_icon from '../../assets/icon/website_icon.svg';
@@ -13,12 +13,19 @@ import img18 from '../../assets/img/image18.png';
 import minus from '../../assets/img/minus.png';
 import plus from '../../assets/img/plus.png';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import './product-wayb.scss';
+import { getMysteryBoxInfo } from '../../services/services';
+import { MBoxTypes } from '../../types/MBoxTypes';
+import { SUCCESS } from '../../config';
+import { getNetworkNameById } from '../../utils/getNetworkNameById';
+import { getPrice } from '../../utils/getPrice';
+import { MBoxItemTypes } from 'types/MBoxItemTypes';
+import { getRarityToString } from '../../utils/getRarityToString';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 15,
@@ -34,268 +41,105 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function Product() {
+  const params = useParams();
+  const [ipInfo, setIpInfo] = useState<MBoxTypes | null>(null);
+
+  const fetchIpInfo = async (ipId: string) => {
+    const ipInfoRes = await getMysteryBoxInfo(ipId);
+    console.log(ipInfoRes);
+    if (ipInfoRes.data.status === SUCCESS) setIpInfo(ipInfoRes.data.data);
+  };
+
+  useEffect(() => {
+    console.log(params);
+    if (params.ipId) fetchIpInfo(params.ipId);
+  }, [params.ipId]);
+
+  useEffect(() => {
+    if (ipInfo) console.log(ipInfo.mysteryboxItems);
+  }, [ipInfo]);
+
   return (
     <main className="collection-container min-height-content">
       <div
         className="collection-banner-image"
         style={{
-          backgroundImage: `url("${
-            // isMobile ? featured.mobileBanner : featured.banner
-            bannerproduct
-          }")`,
+          backgroundImage: `url("${ipInfo?.mobileBanner}")`,
         }}
       ></div>
       <div className="box-collection">
         <div className="collection-details-box">
           <div className="collection-info">
             <div className="collection-info-left">
-              <img src={magic_dogs} alt="" draggable={false} />
+              <img
+                src={ipInfo?.featured?.company.image}
+                alt=""
+                draggable={false}
+              />
               <div className="name">
-                <div className="fullname">Old Navy</div>
+                <div className="fullname">
+                  {ipInfo?.featured?.company.name.en}
+                </div>
               </div>
             </div>
           </div>
           <div className="collection-info-content">
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-              unde quae quis doloribus, eaque nobis quasi eveniet laudantium
-              ratione, et numquam iusto molestiae iste recusandae ipsa commodi
-              repudiandae tenetur nesciunt?
-            </div>
+            <div>{ipInfo?.introduction.en}</div>
           </div>
         </div>
         {/*  min-height-content */}
         <div className="marketplace product">
           <div className="marketplace-collection-tittle">IP</div>
           <div className="products-items">
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail_top">
-                  <div className="total_item">Total Run: 35000</div>
-                  <div
-                    style={{ textTransform: 'capitalize' }}
-                    className="chain"
-                  >
-                    erc721
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="info-product_item">
-                  <div className="owner_product">
-                    <div className="owner_product_avatar">
-                      <img src={avatar} alt="" />
-                      <div className="name">McLaren Racing</div>
+            {ipInfo?.mysteryboxItems &&
+              ipInfo?.mysteryboxItems.map((item: MBoxItemTypes, index) => (
+                <Link key={index} to={`/detail/${item.id}`}>
+                  <div className="item_product">
+                    <div className="item_product_detail_top">
+                      <div className="total_item">
+                        Total Run: {ipInfo.totalAmount}
+                      </div>
+                      <div
+                        style={{ textTransform: 'capitalize' }}
+                        className="chain"
+                      >
+                        {getNetworkNameById(ipInfo.chainId)?.toLowerCase()}
+                      </div>
                     </div>
-                    <div className="status">Buy Now</div>
-                  </div>
-                  <div className="title">McLaren British GP Commem...</div>
-                </div>
-                <div className="remaining-price">
-                  <div className="w-50 border-right">
-                    <div className="remaining">Price</div>
-                    <div className="remaining-total">$29.99</div>
-                  </div>
-                  <div className="w-50">
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail_top">
-                  <div className="total_item">Total Run: 35000</div>
-                  <div
-                    style={{ textTransform: 'capitalize' }}
-                    className="chain"
-                  >
-                    erc721
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="info-product_item">
-                  <div className="owner_product">
-                    <div className="owner_product_avatar">
-                      <img src={avatar} alt="" />
-                      <div className="name">McLaren Racing</div>
+                    <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                      <div className="card-image">
+                        <img src={item.itemImage} alt="" draggable={false} />
+                      </div>
                     </div>
-                    <div className="status">Buy Now</div>
-                  </div>
-                  <div className="title">McLaren British GP Commem...</div>
-                </div>
-                <div className="remaining-price">
-                  <div className="w-50 border-right">
-                    <div className="remaining">Price</div>
-                    <div className="remaining-total">$29.99</div>
-                  </div>
-                  <div className="w-50">
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail_top">
-                  <div className="total_item">Total Run: 35000</div>
-                  <div
-                    style={{ textTransform: 'capitalize' }}
-                    className="chain"
-                  >
-                    erc721
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="info-product_item">
-                  <div className="owner_product">
-                    <div className="owner_product_avatar">
-                      <img src={avatar} alt="" />
-                      <div className="name">McLaren Racing</div>
+                    <div className="info-product_item">
+                      <div className="owner_product">
+                        <div className="owner_product_avatar">
+                          <img src={ipInfo?.featured?.company.image} alt="" />
+                          <div className="name">
+                            {ipInfo?.featured?.company.name.en}
+                          </div>
+                        </div>
+                        <div className="status">Buy Now</div>
+                      </div>
+                      <div className="title">{item.name}</div>
                     </div>
-                    <div className="status">Buy Now</div>
-                  </div>
-                  <div className="title">McLaren British GP Commem...</div>
-                </div>
-                <div className="remaining-price">
-                  <div className="w-50 border-right">
-                    <div className="remaining">Price</div>
-                    <div className="remaining-total">$29.99</div>
-                  </div>
-                  <div className="w-50">
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail_top">
-                  <div className="total_item">Total Run: 35000</div>
-                  <div
-                    style={{ textTransform: 'capitalize' }}
-                    className="chain"
-                  >
-                    erc721
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="info-product_item">
-                  <div className="owner_product">
-                    <div className="owner_product_avatar">
-                      <img src={avatar} alt="" />
-                      <div className="name">McLaren Racing</div>
+                    <div className="remaining-price">
+                      <div className="w-50 border-right">
+                        <div className="remaining">Price</div>
+                        <div className="remaining-total">
+                          {getPrice(item?.price, ipInfo?.quote!.toUpperCase())}
+                        </div>
+                      </div>
+                      <div className="w-50">
+                        <div className="remaining">Rarity</div>
+                        <div className="remaining-total">
+                          {getRarityToString(parseInt(item.rarity))}
+                        </div>
+                      </div>
                     </div>
-                    <div className="status">Buy Now</div>
                   </div>
-                  <div className="title">McLaren British GP Commem...</div>
-                </div>
-                <div className="remaining-price">
-                  <div className="w-50 border-right">
-                    <div className="remaining">Price</div>
-                    <div className="remaining-total">$29.99</div>
-                  </div>
-                  <div className="w-50">
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail_top">
-                  <div className="total_item">Total Run: 35000</div>
-                  <div
-                    style={{ textTransform: 'capitalize' }}
-                    className="chain"
-                  >
-                    erc721
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="info-product_item">
-                  <div className="owner_product">
-                    <div className="owner_product_avatar">
-                      <img src={avatar} alt="" />
-                      <div className="name">McLaren Racing</div>
-                    </div>
-                    <div className="status">Buy Now</div>
-                  </div>
-                  <div className="title">McLaren British GP Commem...</div>
-                </div>
-                <div className="remaining-price">
-                  <div className="w-50 border-right">
-                    <div className="remaining">Price</div>
-                    <div className="remaining-total">$29.99</div>
-                  </div>
-                  <div className="w-50">
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link to="/">
-              <div className="item_product">
-                <div className="item_product_detail_top">
-                  <div className="total_item">Total Run: 35000</div>
-                  <div
-                    style={{ textTransform: 'capitalize' }}
-                    className="chain"
-                  >
-                    erc721
-                  </div>
-                </div>
-                <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                  <div className="card-image">
-                    <img src={product} alt="" draggable={false} />
-                  </div>
-                </div>
-                <div className="info-product_item">
-                  <div className="owner_product">
-                    <div className="owner_product_avatar">
-                      <img src={avatar} alt="" />
-                      <div className="name">McLaren Racing</div>
-                    </div>
-                    <div className="status">Buy Now</div>
-                  </div>
-                  <div className="title">McLaren British GP Commem...</div>
-                </div>
-                <div className="remaining-price">
-                  <div className="w-50 border-right">
-                    <div className="remaining">Price</div>
-                    <div className="remaining-total">$29.99</div>
-                  </div>
-                  <div className="w-50">
-                    <div className="remaining">Remaining</div>
-                    <div className="remaining-total">100</div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+                </Link>
+              ))}
           </div>
           {/* <div style={{ paddingTop: '30px' }}>
             <img src={img17} style={{ width: '100%' }} />

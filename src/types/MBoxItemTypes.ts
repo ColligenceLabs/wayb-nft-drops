@@ -16,4 +16,5 @@ export interface MBoxItemTypes {
   stats: OptionsTypes[] | null;
   remainingAmount?: number | null;
   originalImage: string;
+  price: number;
 }

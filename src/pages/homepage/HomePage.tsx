@@ -63,6 +63,7 @@ const Homepage = () => {
   const [collectibleList, setCollectibleList] = useState<ExMBoxType[]>([]);
   const [airdropList, setAirdropList] = useState<ExMBoxType[]>([]);
   const navigateToUrl = (item: MBoxTypes) => {
+    navigate(`/product/${item.id}`);
     // if (item.eventUrl) {
     //   window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
     // } else {
@@ -319,7 +320,7 @@ const Homepage = () => {
             .filter((item: any, index) => index < 5)
             .map((item: any, index) => {
               return (
-                <Link to="/" key={index}>
+                <Link to={`/detail/${item.id}`} key={index}>
                   <div className="item_product">
                     <div className="item_product_detail_top">
                       <div className="total_item">
