@@ -1,18 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import bannerproduct from '../../assets/img/bannerproduct.png';
-import magic_dogs from '../../assets/img/magic_dogs.gif';
-import website_icon from '../../assets/icon/website_icon.svg';
-import icon_discord from '../../assets/img/icon_discord.png';
-import icon_instagram from '../../assets/img/icon_instagram.png';
-import icon_twitter from '../../assets/img/icon_twitter.png';
-import icon_share from '../../assets/img/icon_share.png';
-import product from '../../assets/img/product.png';
-import avatar from '../../assets/img/avatar.png';
-import img17 from '../../assets/img/image17.png';
-import img18 from '../../assets/img/image18.png';
 import minus from '../../assets/img/minus.png';
 import plus from '../../assets/img/plus.png';
-
 import { Link, useParams } from 'react-router-dom';
 import LinearProgress, {
   linearProgressClasses,
@@ -46,18 +34,12 @@ export default function Product() {
 
   const fetchIpInfo = async (ipId: string) => {
     const ipInfoRes = await getMysteryBoxInfo(ipId);
-    console.log(ipInfoRes);
     if (ipInfoRes.data.status === SUCCESS) setIpInfo(ipInfoRes.data.data);
   };
 
   useEffect(() => {
-    console.log(params);
     if (params.ipId) fetchIpInfo(params.ipId);
   }, [params.ipId]);
-
-  useEffect(() => {
-    if (ipInfo) console.log(ipInfo.mysteryboxItems);
-  }, [ipInfo]);
 
   return (
     <main className="collection-container min-height-content">
