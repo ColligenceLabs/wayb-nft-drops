@@ -27,6 +27,7 @@ import {
   getCollectionList,
   getEventList,
   getFeaturedCollections,
+  getMysteryBoxList,
 } from '../../services/services';
 import { FeaturedTypes } from '../../types/FeaturedTypes';
 import FeaturedCard from '../../components/card/FeaturedCard';
@@ -54,19 +55,19 @@ const Homepage = () => {
 
   const navigate = useNavigate();
   const screenSize = useScreenSize();
-  const [slideData, setSlideData] = useState<FeaturedTypes[]>([]);
+  const [slideData, setSlideData] = useState<MBoxTypes[]>([]);
   const [featuredCollections, setFeaturedCollections] = useState<
     FeaturedTypes[]
   >([]);
   const [collectionList, setCollectionList] = useState<ExMBoxType[]>([]);
   const [collectibleList, setCollectibleList] = useState<ExMBoxType[]>([]);
   const [airdropList, setAirdropList] = useState<ExMBoxType[]>([]);
-  const navigateToUrl = (item: FeaturedTypes) => {
-    if (item.eventUrl) {
-      window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
-    } else {
-      window.open(`/creator/${item.id}`, item.newWindow ? '_blank' : '_self');
-    }
+  const navigateToUrl = (item: MBoxTypes) => {
+    // if (item.eventUrl) {
+    //   window.open(item.eventUrl, item.newWindow ? '_blank' : '_self');
+    // } else {
+    //   window.open(`/creator/${item.id}`, item.newWindow ? '_blank' : '_self');
+    // }
   };
 
   function useQuery() {
@@ -92,7 +93,7 @@ const Homepage = () => {
 
   useEffect(() => {
     const fetchSlideData = async () => {
-      const res = await getEventList();
+      const res = await getMysteryBoxList();
       if (res.data.status === 1) {
         setSlideData(res.data.data.list);
       }
@@ -235,7 +236,7 @@ const Homepage = () => {
               }}
             >
               {slideData.length
-                ? slideData.map((item: FeaturedTypes, index) => {
+                ? slideData.map((item: MBoxTypes, index) => {
                     return (
                       <div
                         className="slide-item"
@@ -245,9 +246,9 @@ const Homepage = () => {
                         <div>
                           <img
                             src={
-                              isMobile && item.eventMobileBanner
-                                ? item.eventMobileBanner
-                                : item.eventBanner!
+                              isMobile && item.packageImage
+                                ? item.packageImage
+                                : item.packageImage
                             }
                             alt=""
                             draggable={false}
