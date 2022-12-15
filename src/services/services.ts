@@ -136,3 +136,22 @@ export const nicknameDuplicateCheck = async (nickname: string) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const getIpList = async (page: number, limit: number) => {
+  return await customAxios.get(
+    `/api/service/mysterybox?page=${page}&limit=${limit}`
+  );
+};
+
+export const getCollectionListWithFilter = async (
+  mboxIds: string,
+  rarities: string,
+  own: boolean,
+  wallet_address: string,
+  page: number,
+  limit: string
+) => {
+  const url = `/api/service/mysterybox/items?mysterybox_ids=${mboxIds}&rarities=${rarities}&own=${own}&wallet_address=${wallet_address}&page=${page}&limit=${limit}`;
+  console.log(url);
+  return await customAxios.get(url);
+};

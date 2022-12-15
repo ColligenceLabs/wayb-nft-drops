@@ -132,7 +132,6 @@ export default function Product() {
         </div>
         <div className="info-minting">
           <p>
-            {' '}
             <span>Current Block Number</span> #0000000
           </p>
           <p>
@@ -147,7 +146,6 @@ export default function Product() {
               <span>Per transaction</span> MAX 00{' '}
             </p>
             <p>
-              {' '}
               <span>Per Wallet</span> Unlimited
             </p>
           </div>

@@ -310,7 +310,7 @@ const Homepage = () => {
           <div className="title-collections">Collections</div>
           <div
             className="title-see-all"
-            onClick={() => navigate('/CollectionWayB')}
+            onClick={() => navigate('/collections')}
           >
             See all
           </div>

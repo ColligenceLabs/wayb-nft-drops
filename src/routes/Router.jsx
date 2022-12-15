@@ -48,7 +48,7 @@ const Router = () => [
 
       { path: '/creator/:id', element: <Collection /> },
       { path: '/creators', element: <Collections /> },
-      { path: '/collections/:id', element: <CollectionSale /> },
+      // { path: '/collections/:id', element: <CollectionSale /> },
       {
         path: '/collection/:collectionId/:id',
         element: <CollectionSaleDetail />,
@@ -102,6 +102,10 @@ const Router = () => [
       {
         path: '/detail/:itemId',
         element: <Detail />,
+      },
+      {
+        path: '/collections',
+        element: <CollectionWayB />,
       },
     ],
   },
