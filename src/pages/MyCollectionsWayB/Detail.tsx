@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import arrow_btn_back from '../../assets/img/arrow_btn_back.png';
-import productDemo from '../../assets/img/productDemo.png';
 import go_opensea from '../../assets/icon/arrow_go_opensea.png';
 import charm_menu_meatball from '../../assets/img/charm_menu_meatball.png';
 import { styled } from '@mui/material/styles';
@@ -8,9 +7,6 @@ import Stack from '@mui/material/Stack';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import SettingsIcon from '@mui/icons-material/Settings';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import StepConnector, {
   stepConnectorClasses,
 } from '@mui/material/StepConnector';
@@ -106,7 +102,6 @@ function Detail() {
       const itemDetailRes = await getItemDetailById(params.itemId);
       if (itemDetailRes.data.status === SUCCESS) {
         setItemDetail(itemDetailRes.data.data);
-        console.log(itemDetailRes.data.data);
       }
     }
   };
@@ -114,7 +109,6 @@ function Detail() {
   const fetchIpInfo = async () => {
     if (params.ipId) {
       const ipInfoRes = await getMysteryBoxInfo(params.ipId);
-      console.log(ipInfoRes);
       if (ipInfoRes.data.status === SUCCESS) {
         setIpInfo(ipInfoRes.data.data);
       }
