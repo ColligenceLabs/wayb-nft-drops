@@ -68,7 +68,7 @@ const UsernameBox = () => {
           </div>
         </div> */}
         <Link
-          to={'/my-collectibles'}
+          to={'/mycollection'}
           className="wallet-button"
           onClick={closeSidebar}
         >

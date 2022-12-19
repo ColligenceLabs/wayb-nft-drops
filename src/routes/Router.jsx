@@ -107,6 +107,11 @@ const Router = () => [
         path: '/collections',
         element: <CollectionWayB />,
       },
+
+      {
+        path: '/mycollection',
+        element: <MyCollections />,
+      },
     ],
   },
   {
