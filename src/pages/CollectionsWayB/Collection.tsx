@@ -49,6 +49,7 @@ export default function Collection() {
   const [limit, setLimit] = useState('10');
   const [allItems, setAllItems] = useState<MBoxItemTypes[] | null>(null);
   const [ipList, setIpList] = useState<ExMBoxTypes[] | null>(null);
+  const [keyword, setKeyword] = useState('');
   const [selectedIp, setSelectedIp] = useState([]);
 
   const handleChangeSelectedIp = (
@@ -63,6 +64,11 @@ export default function Collection() {
       );
       setIpList(newIpList);
     }
+  };
+
+  const handleChangeKeyword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setKeyword(event.target.value);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,25 +89,20 @@ export default function Collection() {
     setLimit(event.target.value);
   };
 
-  // const handleCheckIp = (id: number) => {
-  //   let result = false;
-  //   if (ipList) {
-  //     result = ipList?.find((ip: ExMBoxTypes) => ip.id! === id);
-  //     console.log(result);
-  //     return false;
-  //   } else return false;
-  //   return false;
-  // };
+  const fetchAllItems = async (reqPage: number) => {
+    const selectedIps = ipList
+      ?.filter((ip) => {
+        if (ip.checked) return { id: ip.id };
+      })
+      .map((ip) => ip.id);
 
-  const fetchAllItems = async () => {
-    const selectedIps = ipList?.filter((ip) => ip.checked && ip.id);
-    console.log(selectedIps);
     const allItemsRes = await getCollectionListWithFilter(
-      '',
+      keyword,
+      selectedIps ? selectedIps.toString() : '',
       '',
       ownChecked,
       ownChecked && account ? account : '',
-      page,
+      reqPage,
       limit
     );
 
@@ -124,12 +125,17 @@ export default function Collection() {
       );
   };
 
+  // useEffect(() => {
+  //   console.log(ipList);
+  // }, [ipList]);
+
   useEffect(() => {
-    console.log(ipList);
-  }, [ipList]);
+    fetchAllItems(1);
+  }, [limit, ownChecked, ipList, keyword]);
+
   useEffect(() => {
-    fetchAllItems();
-  }, [page, limit, ownChecked]);
+    fetchAllItems(page);
+  }, [page]);
 
   useEffect(() => {
     fetchIpList();
@@ -182,7 +188,11 @@ export default function Collection() {
           <div className="main-collection">
             <div className="collection-left">
               <div className="box-search">
-                <input placeholder="Search" />
+                <input
+                  value={keyword}
+                  onChange={handleChangeKeyword}
+                  placeholder="Search"
+                />
                 <img src={icon_search} />
               </div>
               <Box>

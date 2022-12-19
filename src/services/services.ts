@@ -144,6 +144,7 @@ export const getIpList = async (page: number, limit: number) => {
 };
 
 export const getCollectionListWithFilter = async (
+  keyword: string,
   mboxIds: string,
   rarities: string,
   own: boolean,
@@ -151,7 +152,7 @@ export const getCollectionListWithFilter = async (
   page: number,
   limit: string
 ) => {
-  const url = `/api/service/mysterybox/items?mysterybox_ids=${mboxIds}&rarities=${rarities}&own=${own}&wallet_address=${wallet_address}&page=${page}&limit=${limit}`;
+  const url = `/api/service/mysterybox/items?keyword=${keyword}&mysterybox_ids=${mboxIds}&rarities=${rarities}&own=${own}&wallet_address=${wallet_address}&page=${page}&limit=${limit}`;
   console.log(url);
   return await customAxios.get(url);
 };
