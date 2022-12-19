@@ -158,7 +158,7 @@ function Detail() {
             </div>
             <hr />
             <div className="info-product">
-              <h2>GENERATIVE MAGIC THE DOG</h2>
+              <h2>{itemDetail?.name}</h2>
               <div className="status">
                 <button className="button">
                   {getRarityToString(itemDetail?.rarity)}
