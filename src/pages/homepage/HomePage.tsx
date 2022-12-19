@@ -148,6 +148,7 @@ const Homepage = () => {
             };
           })
         );
+        console.log(newList);
         setCollectibleList(newList);
       }
     };
@@ -320,7 +321,10 @@ const Homepage = () => {
             .filter((item: any, index) => index < 5)
             .map((item: any, index) => {
               return (
-                <Link to={`/detail/${item.id}`} key={index}>
+                <Link
+                  to={`/detail/${item.id}/${item.mysteryboxItems[0]?.id}`}
+                  key={index}
+                >
                   <div className="item_product">
                     <div className="item_product_detail_top">
                       <div className="total_item">

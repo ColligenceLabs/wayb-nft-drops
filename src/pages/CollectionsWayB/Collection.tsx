@@ -107,6 +107,7 @@ export default function Collection() {
     );
 
     if (allItemsRes.data.status === SUCCESS) {
+      console.log(allItemsRes.data.data.list);
       setAllItems(allItemsRes.data.data.list);
       setTotalPage(allItemsRes.data.data.headers.x_pages_count);
     }
@@ -327,7 +328,7 @@ export default function Collection() {
               <div className="collection-items">
                 {allItems &&
                   allItems.map((item) => (
-                    <Link to={`/detail/${item.id}`}>
+                    <Link to={`/detail/${item.mysteryboxInfo.id}/${item.id}`}>
                       <div className="item_product">
                         <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
                           <div className="collection-img">

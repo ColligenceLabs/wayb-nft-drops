@@ -17,4 +17,5 @@ export interface MBoxItemTypes {
   remainingAmount?: number | null;
   originalImage: string;
   price: number;
+  mysteryboxInfo?: any;
 }

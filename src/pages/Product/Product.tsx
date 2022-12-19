@@ -75,7 +75,7 @@ export default function Product() {
           <div className="products-items">
             {ipInfo?.mysteryboxItems &&
               ipInfo?.mysteryboxItems.map((item: MBoxItemTypes, index) => (
-                <Link key={index} to={`/detail/${item.id}`}>
+                <Link key={index} to={`/detail/${ipInfo.id}/${item.id}`}>
                   <div className="item_product">
                     <div className="item_product_detail_top">
                       <div className="total_item">

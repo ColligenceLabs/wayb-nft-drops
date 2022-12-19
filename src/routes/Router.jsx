@@ -100,7 +100,7 @@ const Router = () => [
       },
 
       {
-        path: '/detail/:itemId',
+        path: '/detail/:ipId/:itemId',
         element: <Detail />,
       },
       {

@@ -156,3 +156,6 @@ export const getCollectionListWithFilter = async (
   console.log(url);
   return await customAxios.get(url);
 };
+export const getItemDetailById = async (itemId: string) => {
+  return await customAxios.get(`/api/service/mysterybox/items/${itemId}`);
+};
