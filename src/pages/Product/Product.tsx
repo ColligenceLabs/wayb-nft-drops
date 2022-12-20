@@ -100,7 +100,7 @@ export default function Product() {
             <img src={img18} style={{ width: '100%' }} />
           </div> */}
         </div>
-        <div className="info-product">
+        <div className="info-product-page">
           {' '}
           <div className="info-product-left">
             <img
