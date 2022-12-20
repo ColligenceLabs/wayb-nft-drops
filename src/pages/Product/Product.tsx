@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import React from 'react';
-import bannerproduct from '../../assets/img/bannerproduct.png';
-import magic_dogs from '../../assets/img/magic_dogs.gif';
 import website_icon from '../../assets/icon/website_icon.svg';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
