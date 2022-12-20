@@ -1,74 +1,104 @@
-.info-minting {
-  border: 1px solid #444444;
-  padding: 30px 100px;
-  margin-top: 40px;
-  border-radius: 10px;
+.collection-info {
+  .social-network {
+    gap: 25px !important;
 
-  p {
-    font-size: 14px;
-
-    span {
-      color: #aaaaaa;
+    img {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
     }
   }
 
-  .d-flex {
+}
+
+.info-product {
+  gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  .info-product-left {
+    width: 50%;
+
+    .img-left {
+      border-radius: 10px;
+      width: 100%;
+    }
+  }
+
+  .info-minting {
+    width: 50%;
+    border: 1px solid #444444;
+    padding: 30px;
+    border-radius: 10px;
+
     p {
-      width: 50%;
+      font-size: 14px;
+
+      span {
+        color: #aaaaaa;
+      }
+    }
+
+    .d-flex {
+      p {
+        width: 50%;
+        padding-top: 20px;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+    }
+
+    .text-balance {
       padding-top: 20px;
     }
 
-    .text-right {
-      text-align: right;
-    }
-  }
+    .minting-amount {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #444444;
+      padding: 10px 30px;
+      border-radius: 60px;
 
-  .text-balance {
-    padding-top: 20px;
-  }
+      .center {
+        text-align: center;
 
-  .minting-amount {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #444444;
-    padding: 10px 30px;
-    border-radius: 60px;
+        &>p {
+          margin: 0px;
+          padding-top: 7px;
+        }
 
-    .center {
-      text-align: center;
+        .p-top {
+          color: #2f8af5;
+        }
 
-      & > p {
-        margin: 0px;
-        padding-top: 7px;
+        .p-bottom {
+          font-size: 24px;
+          font-weight: 700;
+        }
       }
 
-      .p-top {
-        color: #2f8af5;
-      }
-
-      .p-bottom {
-        font-size: 24px;
-        font-weight: 700;
+      .img-minus,
+      .img-plus {
+        height: 36px;
+        cursor: pointer;
       }
     }
 
-    .img-minus,
-    .img-plus {
-      height: 36px;
+    .btn-minting {
+      font-size: 24px;
+      background: #0095ff;
+      padding: 20px;
       cursor: pointer;
+      text-align: center;
+      font-weight: 800;
     }
-  }
-
-  .btn-minting {
-    font-size: 24px;
-    background: #0095ff;
-    padding: 20px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: 800;
   }
 }
+
 
 .product {
   .products-items {
@@ -87,6 +117,7 @@
       color: #fff;
       border-radius: 15px;
       border: 1px solid #444444;
+
       .item_product {
         width: 221px;
         height: auto;
@@ -141,6 +172,7 @@
           // margin-top: 20px;
           // margin-bottom: 10px;
           padding: 28px 12px 12px;
+
           .owner_product {
             align-items: center;
             display: flex;
@@ -201,6 +233,7 @@
           }
         }
       }
+
       &:hover {
         transform: scale(1.05);
         transition: 0.5s;
@@ -217,6 +250,23 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .info-product {
+    display: block;
+
+    .info-product-left {
+      display: flex;
+      margin: auto;
+    }
+
+    .info-minting {
+      margin-top: 30px;
+      width: 100%;
+    }
+  }
+}
+
 @media (max-width: 1040px) {
   .product {
     .products-items {
@@ -224,6 +274,7 @@
     }
   }
 }
+
 @media (max-width: 768px) {
   .product {
     .products-items {
@@ -231,6 +282,7 @@
     }
   }
 }
+
 @media (max-width: 540px) {
   .info-minting {
     padding: 10px;
@@ -247,27 +299,34 @@
       padding: 10px;
     }
   }
+
   .product {
     .products-items {
       grid-template-columns: repeat(1, 1fr);
+
       a {
         width: 100%;
+
         .item_product {
           width: 100%;
           height: auto;
+
           .info-product_item {
             .title {
               white-space: unset;
             }
           }
+
           .item_product_detail_top {
             justify-content: space-between;
             padding: 15px 10px;
           }
+
           .item_product_detail {
             .card-image {
               height: 258px;
               width: 100%;
+
               img {
                 width: 100%;
                 height: 100%;
