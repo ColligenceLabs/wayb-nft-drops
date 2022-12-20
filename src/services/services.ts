@@ -36,6 +36,10 @@ export const getFeaturedById = async (id: string) => {
   return await customAxios.get(`/api/service/featured/${id}`);
 };
 
+export const getMysteryBoxList = async () => {
+  return await customAxios.get(`/api/service/mysterybox?page=1&limit=10`);
+};
+
 export const getMysteryBoxInfo = async (id: string) => {
   return await customAxios.get(`/api/service/mysterybox/${id}`);
 };
@@ -131,4 +135,27 @@ export const nicknameDuplicateCheck = async (nickname: string) => {
   return await customAxios.get(`/api/account/name/duplicate?name=${nickname}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+};
+
+export const getIpList = async (page: number, limit: number) => {
+  return await customAxios.get(
+    `/api/service/mysterybox?page=${page}&limit=${limit}`
+  );
+};
+
+export const getCollectionListWithFilter = async (
+  keyword: string,
+  mboxIds: string,
+  rarities: string,
+  own: boolean,
+  wallet_address: string,
+  page: number,
+  limit: string
+) => {
+  const url = `/api/service/mysterybox/items?keyword=${keyword}&mysterybox_ids=${mboxIds}&rarities=${rarities}&own=${own}&wallet_address=${wallet_address}&page=${page}&limit=${limit}`;
+  console.log(url);
+  return await customAxios.get(url);
+};
+export const getItemDetailById = async (itemId: string) => {
+  return await customAxios.get(`/api/service/mysterybox/items/${itemId}`);
 };

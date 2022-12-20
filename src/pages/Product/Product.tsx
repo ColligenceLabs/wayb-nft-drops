@@ -1,6 +1,4 @@
-import React from 'react';
-import bannerproduct from '../../assets/img/bannerproduct.png';
-import magic_dogs from '../../assets/img/magic_dogs.gif';
+import React, { useEffect, useState } from 'react';
 import website_icon from '../../assets/icon/website_icon.svg';
 import icon_discord from '../../assets/img/icon_discord.png';
 import icon_instagram from '../../assets/img/icon_instagram.png';
@@ -13,14 +11,21 @@ import img17 from '../../assets/img/image17.png';
 import img18 from '../../assets/img/image18.png';
 import minus from '../../assets/img/minus.png';
 import plus from '../../assets/img/plus.png';
+import { Link, useParams } from 'react-router-dom';
 import etherscan_logo from '../../assets/img/etherscan_logo.png';
 
-import { Link } from 'react-router-dom';
 import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import './product-wayb.scss';
+import { getMysteryBoxInfo } from '../../services/services';
+import { MBoxTypes } from '../../types/MBoxTypes';
+import { SUCCESS } from '../../config';
+import { getNetworkNameById } from '../../utils/getNetworkNameById';
+import { getPrice } from '../../utils/getPrice';
+import { MBoxItemTypes } from 'types/MBoxItemTypes';
+import { getRarityToString } from '../../utils/getRarityToString';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 15,
@@ -36,24 +41,39 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function Product() {
+  const params = useParams();
+  const [ipInfo, setIpInfo] = useState<MBoxTypes | null>(null);
+
+  const fetchIpInfo = async (ipId: string) => {
+    const ipInfoRes = await getMysteryBoxInfo(ipId);
+    if (ipInfoRes.data.status === SUCCESS) setIpInfo(ipInfoRes.data.data);
+  };
+
+  useEffect(() => {
+    if (params.ipId) fetchIpInfo(params.ipId);
+  }, [params.ipId]);
+
   return (
     <main className="collection-container min-height-content">
       <div
         className="collection-banner-image"
         style={{
-          backgroundImage: `url("${
-            // isMobile ? featured.mobileBanner : featured.banner
-            bannerproduct
-          }")`,
+          backgroundImage: `url("${ipInfo?.mobileBanner}")`,
         }}
       ></div>
       <div className="box-collection">
         <div className="collection-details-box">
           <div className="collection-info">
             <div className="collection-info-left">
-              <img src={magic_dogs} alt="" draggable={false} />
+              <img
+                src={ipInfo?.featured?.company.image}
+                alt=""
+                draggable={false}
+              />
               <div className="name">
-                <div className="fullname">Old Navy</div>
+                <div className="fullname">
+                  {ipInfo?.featured?.company.name.en}
+                </div>
               </div>
             </div>
             <div className="collection-info-right social-network">
@@ -64,13 +84,8 @@ export default function Product() {
               <img src={icon_twitter} />
             </div>
           </div>
-          <div className="collection-info-content ">
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-              unde quae quis doloribus, eaque nobis quasi eveniet laudantium
-              ratione, et numquam iusto molestiae iste recusandae ipsa commodi
-              repudiandae tenetur nesciunt?
-            </div>
+          <div className="collection-info-content">
+            <div>{ipInfo?.introduction.en}</div>
           </div>
         </div>
         {/*  min-height-content */}
@@ -85,7 +100,7 @@ export default function Product() {
             <img src={img18} style={{ width: '100%' }} />
           </div> */}
         </div>
-        <div className="info-product">
+        <div className="info-product-page">
           {' '}
           <div className="info-product-left">
             <img

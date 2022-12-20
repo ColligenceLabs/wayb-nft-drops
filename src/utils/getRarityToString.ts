@@ -1,4 +1,4 @@
-export const getRarityToString = (rarity: number) => {
+export const getRarityToString = (rarity: number | string | undefined) => {
   let result = '';
   switch (rarity) {
     case 1:
