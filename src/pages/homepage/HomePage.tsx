@@ -13,6 +13,7 @@ import line from '../../assets/img/line.png';
 import phase from '../../assets/img/phase.png';
 import ellipase from '../../assets/img/ellipase.png';
 import partner_advisor from '../../assets/img/partner_advisor.png';
+import list_partner from '../../assets/img/list_partner.png';
 import bannerRoadMap from '../../assets/img/bannerRoadMap.png';
 import line_mobile from '../../assets/img/line_mobile.png';
 import bannerQA from '../../assets/img/bannerQA.png';
@@ -43,6 +44,7 @@ import Skeleton from 'components/common/skeleton/Skeleton';
 import { useMediaQuery } from 'react-responsive';
 import './homepage-wayb.scss';
 import { hotCollectiblesTestData } from './mockData';
+import { Button } from 'reactstrap';
 type ExMBoxType = MBoxTypes & {
   remainingAmount: number | null;
 };
@@ -216,65 +218,67 @@ const Homepage = () => {
           <div className="text-head">
             <img src={textInbanner} alt="img" />
           </div>
+          <div className="text-bottom">
+            웨이비는 아티스트와 팬이 서로 새로운 관계를 형성하고 소통하며 호텔을
+            중심으로 실물 혜택을 만드는 Web3 기반 Fanship 플랫폼입니다
+          </div>
         </div>
-        <div>
-          <div className="carousel-main-page">
-            <Carousel
-              {...carouselOption}
-              customButtonGroup={<ArrowCarouselBannerMain />}
-              renderButtonGroupOutside={false}
-              centerMode={screenSize > 1023}
-              dotListClass="custom-dot"
-              containerClass="container-with-dots home-carousel banner-main-carousel"
-              responsive={{
-                desktop: {
-                  breakpoint: {
-                    max: 3000,
-                    min: 0,
-                  },
-                  items: 1,
-                  partialVisibilityGutter: 40,
+        {/* <div className="carousel-main-page">
+          <Carousel
+            {...carouselOption}
+            customButtonGroup={<ArrowCarouselBannerMain />}
+            renderButtonGroupOutside={false}
+            centerMode={screenSize > 1023}
+            dotListClass="custom-dot"
+            containerClass="container-with-dots home-carousel banner-main-carousel"
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 0,
                 },
-              }}
-            >
-              {slideData.length
-                ? slideData.map((item: MBoxTypes, index) => {
-                    return (
-                      <div
-                        className="slide-item"
-                        key={index}
-                        onClick={() => navigateToUrl(item)}
-                      >
-                        <div>
-                          <img
-                            src={
-                              isMobile && item.packageImage
-                                ? item.packageImage
-                                : item.packageImage
-                            }
-                            alt=""
-                            draggable={false}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })
-                : [1, 2, 3].map((item) => (
-                    <div className="slide-item" key={item}>
+                items: 1,
+                partialVisibilityGutter: 40,
+              },
+            }}
+          >
+            {slideData.length
+              ? slideData.map((item: MBoxTypes, index) => {
+                  return (
+                    <div
+                      className="slide-item"
+                      key={index}
+                      onClick={() => navigateToUrl(item)}
+                    >
                       <div>
-                        <Skeleton
-                          style={{
-                            width: '100%',
-                            aspectRatio: '24/7',
-                            height: 'unset',
-                          }}
+                        <img
+                          src={
+                            isMobile && item.packageImage
+                              ? item.packageImage
+                              : item.packageImage
+                          }
+                          alt=""
+                          draggable={false}
                         />
                       </div>
                     </div>
-                  ))}
-            </Carousel>
-          </div>
-        </div>
+                  );
+                })
+              : [1, 2, 3].map((item) => (
+                  <div className="slide-item" key={item}>
+                    <div>
+                      <Skeleton
+                        style={{
+                          width: '100%',
+                          aspectRatio: '24/7',
+                          height: 'unset',
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+          </Carousel>
+        </div> */}
         {/* <div className="wrapper-section01">
 
         </div> */}
@@ -287,9 +291,80 @@ const Homepage = () => {
           className="globularTop shake-vertical globular-right-section1"
         /> */}
       </div>
+      {/* section fanship NFT */}
+      <div className="section-fanship-nft">
+        <div className="wrapper-title-fanship">
+          <div className="title-head-fanship">Fanship NFT</div>
+          <div className="title-bottom-fanship">
+            당신이 관심있는 아티스트의 Fanship NFT를 소유해보세요. Rarity에 따라
+            VIP급의 호텔 혜택이 제공되며 Level에 따라 특별한 리워드 프로그램이
+            마련되어 있습니다
+          </div>
+        </div>
+
+        <img
+          src={globular}
+          className="globularTop shake-vertical globular-right-section1"
+        />
+      </div>
+      <div className="carousel-main-page">
+        <Carousel
+          {...carouselOption}
+          customButtonGroup={<ArrowCarouselBannerMain />}
+          renderButtonGroupOutside={false}
+          centerMode={screenSize > 1023}
+          dotListClass="custom-dot"
+          containerClass="container-with-dots home-carousel banner-main-carousel"
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 40,
+            },
+          }}
+        >
+          {slideData.length
+            ? slideData.map((item: MBoxTypes, index) => {
+                return (
+                  <div
+                    className="slide-item"
+                    key={index}
+                    onClick={() => navigateToUrl(item)}
+                  >
+                    <div>
+                      <img
+                        src={
+                          isMobile && item.packageImage
+                            ? item.packageImage
+                            : item.packageImage
+                        }
+                        alt=""
+                        draggable={false}
+                      />
+                    </div>
+                  </div>
+                );
+              })
+            : [1, 2, 3].map((item) => (
+                <div className="slide-item" key={item}>
+                  <div>
+                    <Skeleton
+                      style={{
+                        width: '100%',
+                        aspectRatio: '24/7',
+                        height: 'unset',
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+        </Carousel>
+      </div>
       {/* section service */}
-      <div className="section-service">
-        {/* <img src={bannerService} className="img-service" /> */}
+      {/* <div className="section-service">
         <div className="info-service">
           <div className="img-iphone">
             <img src={iPhone_12} />
@@ -303,11 +378,101 @@ const Homepage = () => {
         </div>
         <img src={globular} className="globularBottom shake-vertical" />
         <img src={globular} className="globularTop shake-vertical" />
-      </div>
+      </div> */}
       {/* end section service*/}
+      {/* section stage */}
+      <div className="section-stage">
+        <div className="wrapper-head-stage">
+          <div className="title-stage">wayB.Stage</div>
+          <div className="content-stage">
+            웨이비의 스테이지에서 아티스트와 소통해보세요. Fanship NFT
+            소유자에게는 전용 콘텐츠와 전용 혜택을 받을 수 있는 권한이 부여
+            됩니다
+          </div>
+          <Button color="primary" size="lg" className="btn-section-stage">
+            웨이비 스테이지 입장하기
+          </Button>
+        </div>
+        <div className="list-mbphone">
+          <div className="img-iphone">
+            <img src={iPhone_12} />
+          </div>
+          <div className="img-iphone">
+            <img src={iPhone_12} />
+          </div>
+          <div className="img-iphone">
+            <img src={iPhone_12} />
+          </div>
+        </div>
+        <div className="carousel-main-page">
+          <Carousel
+            {...carouselOption}
+            customButtonGroup={<ArrowCarouselBannerMain />}
+            renderButtonGroupOutside={false}
+            centerMode={screenSize > 1023}
+            dotListClass="custom-dot"
+            containerClass="container-with-dots home-carousel banner-main-carousel"
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 0,
+                },
+                items: 1,
+                partialVisibilityGutter: 40,
+              },
+            }}
+          >
+            {slideData.length
+              ? slideData.map((item: MBoxTypes, index) => {
+                  return (
+                    <div
+                      className="slide-item"
+                      key={index}
+                      onClick={() => navigateToUrl(item)}
+                    >
+                      <div>
+                        <img
+                          src={
+                            isMobile && item.packageImage
+                              ? item.packageImage
+                              : item.packageImage
+                          }
+                          alt=""
+                          draggable={false}
+                        />
+                      </div>
+                    </div>
+                  );
+                })
+              : [1, 2, 3].map((item) => (
+                  <div className="slide-item" key={item}>
+                    <div>
+                      <Skeleton
+                        style={{
+                          width: '100%',
+                          aspectRatio: '24/7',
+                          height: 'unset',
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+          </Carousel>
+        </div>
+        <img src={globular} className="globularBottom shake-vertical" />
+        <img src={globular} className="globularTop shake-vertical" />
+      </div>
       {/* section collections */}
       <div className="section-collections">
-        <div className="title-head-collections">
+        <div className="wrapper-head-gallery">
+          <div className="title-gallery">Gallery</div>
+          <div className="content-gallery">
+            아티스트의 Fanship NFT를 확인해보세요. 각 NFT 마다 Rarity, Level,
+            Utility 이용 현황을 확인할 수 있습니다
+          </div>
+        </div>
+        {/* <div className="title-head-collections">
           <div className="title-collections">Collections</div>
           <div
             className="title-see-all"
@@ -315,109 +480,168 @@ const Homepage = () => {
           >
             See all
           </div>
-        </div>
-        <div className="collections-card">
-          {collectibleList
-            .filter((item: any, index) => index < 5)
-            .map((item: any, index) => {
-              return (
-                <Link
-                  to={`/detail/${item.id}/${item.mysteryboxItems[0]?.id}`}
-                  key={index}
-                >
-                  <div className="item_product">
-                    <div className="item_product_detail_top">
-                      <div className="total_item">
-                        {`#${item.itemId}/${item.mysteryboxItems[0]?.issueAmount}`}
+        </div> */}
+        <div className="wrapper-bottom-gallery">
+          <div
+            className="title-see-all"
+            onClick={() => navigate('/collections')}
+          >
+            See all
+          </div>
+          {/* <div className="collections-card">
+            {collectibleList
+              .filter((item: any, index) => index < 5)
+              .map((item: any, index) => {
+                return (
+                  <Link
+                    to={`/detail/${item.id}/${item.mysteryboxItems[0]?.id}`}
+                    key={index}
+                  >
+                    <div className="item_product">
+                      <div className="item_product_detail_top">
+                        <div className="total_item">
+                          {`#${item.itemId}/${item.mysteryboxItems[0]?.issueAmount}`}
+                        </div>
+                        <div
+                          style={{ textTransform: 'capitalize' }}
+                          className="chain"
+                        >
+                          {getNetworkNameById(item.chainId)?.toLowerCase()}
+                        </div>
                       </div>
-                      <div
-                        style={{ textTransform: 'capitalize' }}
-                        className="chain"
-                      >
-                        {getNetworkNameById(item.chainId)?.toLowerCase()}
-                      </div>
-                    </div>
-                    <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
-                      <div className="card-image">
-                        {item?.mysteryboxItems[0]?.itemImage
-                          .split('.')
-                          .pop() === 'mp4' ? (
-                          <video
-                            playsInline
-                            autoPlay
-                            controls
-                            muted
-                            loop
-                            controlsList="nodownload"
-                            width={'100%'}
-                          >
-                            <source
-                              src={item?.mysteryboxItems[0]?.itemImage}
-                              type="video/mp4"
-                            />
-                          </video>
-                        ) : item?.mysteryboxItems[0]?.itemImage
+                      <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                        <div className="card-image">
+                          {item?.mysteryboxItems[0]?.itemImage
                             .split('.')
-                            .pop() === 'gif' ? (
-                          <img
-                            src={item.mysteryboxItems[0]?.itemImage}
-                            alt=""
-                            draggable={false}
-                          />
-                        ) : (
-                          <img
-                            src={item.mysteryboxItems[0]?.itemImage}
-                            alt=""
-                            draggable={false}
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div className="info-product_item">
-                      <div className="owner_product">
-                        <div className="owner_product_avatar">
-                          <div className="avatar">
+                            .pop() === 'mp4' ? (
+                            <video
+                              playsInline
+                              autoPlay
+                              controls
+                              muted
+                              loop
+                              controlsList="nodownload"
+                              width={'100%'}
+                            >
+                              <source
+                                src={item?.mysteryboxItems[0]?.itemImage}
+                                type="video/mp4"
+                              />
+                            </video>
+                          ) : item?.mysteryboxItems[0]?.itemImage
+                              .split('.')
+                              .pop() === 'gif' ? (
                             <img
-                              src={item.featured.company.image}
+                              src={item.mysteryboxItems[0]?.itemImage}
                               alt=""
                               draggable={false}
                             />
-                          </div>
-                          <div className="name-label">
-                            {item.featured.company.name.en}
-                          </div>
-                        </div>
-                        <div className="status">
-                          {item.onsale ? 'Buy Now' : 'Waiting'}
+                          ) : (
+                            <img
+                              src={item.mysteryboxItems[0]?.itemImage}
+                              alt=""
+                              draggable={false}
+                            />
+                          )}
                         </div>
                       </div>
-                      <div className="title">
-                        {item.mysteryboxItems[0]?.name}
+                      <div className="info-product_item">
+                        <div className="owner_product">
+                          <div className="owner_product_avatar">
+                            <div className="avatar">
+                              <img
+                                src={item.featured.company.image}
+                                alt=""
+                                draggable={false}
+                              />
+                            </div>
+                            <div className="name-label">
+                              {item.featured.company.name.en}
+                            </div>
+                          </div>
+                          <div className="status">
+                            {item.onsale ? 'Buy Now' : 'Waiting'}
+                          </div>
+                        </div>
+                        <div className="title">
+                          {item.mysteryboxItems[0]?.name}
+                        </div>
+                      </div>
+                      <div className="remaining-price">
+                        <div className="w-50 border-right">
+                          <div className="remaining">Price</div>
+                          <div className="remaining-total">
+                            {getPrice(item.price, item.quote.toUpperCase())}
+                          </div>
+                        </div>
+                        <div className="w-50">
+                          <div className="remaining">Rarity</div>
+                          <div className="remaining-total">
+                            {getRarityToString(item.mysteryboxItems[0].rarity)}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="remaining-price">
-                      <div className="w-50 border-right">
-                        <div className="remaining">Price</div>
-                        <div className="remaining-total">
-                          {getPrice(item.price, item.quote.toUpperCase())}
+                  </Link>
+                );
+              })}
+          </div> */}
+          <div className="collections-card">
+            {hotCollectiblesTestData
+              .filter((item: any, index) => index < 5)
+              .map((item: any, index) => {
+                return (
+                  <Link
+                    to={`/detail/${item.id}/${item.mysteryboxItems[0]?.id}`}
+                    key={index}
+                  >
+                    <div className="item_product">
+                      <div className="item_product_detail_top">
+                        <div className="total_item">1</div>
+                        <div
+                          style={{ textTransform: 'capitalize' }}
+                          className="chain"
+                        >
+                          EDC123
                         </div>
                       </div>
-                      <div className="w-50">
-                        <div className="remaining">Rarity</div>
-                        <div className="remaining-total">
-                          {getRarityToString(item.mysteryboxItems[0].rarity)}
+                      <div className="item_product_detail MARKETPLACE_GRAPHICS_KEY">
+                        <div className="card-image">
+                          <img src={item.image} alt="" draggable={false} />
+                        </div>
+                      </div>
+                      <div className="info-product_item">
+                        <div className="owner_product">
+                          <div className="owner_product_avatar">
+                            <div className="avatar">
+                              <img
+                                src={item.imageAvt}
+                                alt=""
+                                draggable={false}
+                              />
+                            </div>
+                            <div className="name-label">name</div>
+                          </div>
+                          <div className="status">Buy Now</div>
+                        </div>
+                        <div className="title">title</div>
+                      </div>
+                      <div className="remaining-price">
+                        <div className="w-50 border-right">
+                          <div className="remaining">Price</div>
+                          <div className="remaining-total">123123</div>
+                        </div>
+                        <div className="w-50">
+                          <div className="remaining">Rarity</div>
+                          <div className="remaining-total">12412</div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
+          </div>
         </div>
-        <img
-          src={globular}
-          className="globular-section-collections shake-vertical "
-        />
       </div>
       {/* section RoadMap */}
       <div className="section-roadMap none-mobile">
@@ -502,9 +726,10 @@ const Homepage = () => {
             </div>
           </div>
           <div className="partner-advisor">
-            <div className="title-partner-advisor">Partner & Advisor</div>
+            <div className="title-partner-advisor">Investor & Partner</div>
             <div className="img-partner-advisor">
-              <img src={partner_advisor} />
+              {/* <img src={partner_advisor} /> */}
+              <img src={list_partner} />
             </div>
           </div>
         </div>
@@ -581,9 +806,10 @@ const Homepage = () => {
           </div>
         </div>
         <div className="partner-advisor">
-          <div className="title-partner-advisor">Partner & Advisor</div>
+          <div className="title-partner-advisor">Investor & Partner</div>
           <div className="img-partner-advisor">
-            <img src={partner_advisor} />
+            {/* <img src={partner_advisor} /> */}
+            <img src={list_partner} />
           </div>
         </div>
       </div>
